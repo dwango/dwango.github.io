@@ -25,11 +25,11 @@ const RepoCard = ({repo}) => (
     <div className={styles.links}>
       {repo.homepage ? (
         <a className={styles.homepageLink} href={repo.homepage}>
-          <HomeIcon />HOMEPAGE
+          <HomeIcon />PAGE
         </a>
       ) : null}
       <a className={styles.githubLink} href={repo.htmlUrl}>
-        <GitHubIcon />GITHUB
+        <GitHubIcon />REPO
       </a>
     </div>
     <div className={styles.description}>
