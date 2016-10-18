@@ -53,7 +53,7 @@
   "scripts": {
     "build": "webpack --progress",
     "bundle": "NODE_ENV=production webpack --progress",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d dist -b master -m \"Update `date +%Y-%m-%d:%H:%M:%s`\"",
     "watch": "webpack --watch --progress"
   }
 }
