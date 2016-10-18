@@ -1,0 +1,58 @@
+@import '../../../css/common.css';
+
+.header {
+  background-color: #0075C2;
+  padding: 64px 0 48px;
+  width: 100%;
+  overflow: hidden;
+
+  @media(--small) {
+    padding: 32px 0 24px;
+  }
+}
+
+.logoArea {
+  display: block;
+  width: 480px;
+  margin: 0 auto;
+
+  @media(--small) {
+    width: 80%;
+  }
+  & svg {
+    width: 100%;
+  }
+  & path {
+    fill: #FFF;
+  }
+  & text {
+    fill: #FFF;
+    font-family: 'Squada One', cursive;
+  }
+}
+
+.logoArea__text {
+  width: 40%;
+  color: #FFF;
+  display: inline-block;
+  font-size: 24px;
+}
+
+.header__subText {
+  font-family: 'Squada One', cursive;
+  display: block;
+  width: 640px;
+  margin: 0 auto;
+  padding: 12px 0;
+  color: #FFF;
+  font-size: 18px;
+  line-height: 1.2;
+  text-align: center;
+
+  @media(--small) {
+    width: 90%;
+    font-size: 14px;
+    padding: 8px 0;
+  }
+}
+

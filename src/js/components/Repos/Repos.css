@@ -1,0 +1,180 @@
+@import '../../../css/common.css';
+
+.container {
+  padding-bottom: 32px;
+}
+
+.header {
+  display: block;
+  padding-top: 32px;
+  font-size: 32px;
+  font-family: 'Squada One', cursive;
+  color: #333;
+
+  @media(--small) {
+    padding-top: 16px;
+    font-size: 24px;
+  }
+}
+
+.repositories {
+  padding-top: 16px;
+  @media(--small) {
+    padding-top: 8px;
+  }
+  &::after {
+    content: '';
+    clear: both;
+    display: block;
+  }
+}
+
+.repositories__item {
+  float: left;
+  box-sizing: border-box;
+  width: 25%;
+  height: 200px;
+  padding: 8px 1px;
+  will-change: opacity;
+  animation-name: appear;
+  animation-duration: 0.8s;
+
+  &:nth-child(1), &:nth-child(2), &:nth-child(3) {
+    width: 33.33%;
+    height: 240px;
+    @media(--small) {
+      width: 100%;
+      height: 200px;
+    }
+
+    & .fullName {
+      font-size: 16px;
+      @media(--small) {
+        font-size: 14px;
+      }
+    }
+  }
+  @media(--small) {
+    width: 100%;
+    padding: 8px 0;
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.repositories__itemInner {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  overflow: hidden;
+  background-color: #FFF;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  @media(--small) {
+    padding: 8px;
+  }
+}
+
+.fullName {
+  word-break: break-all;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1.25;
+  &, &:hover, &:visited, &:active, &:link {
+    color: #666;
+    text-decoration: none;
+  }
+  &:hover {
+    color: #999;
+    text-decoration: underline;
+  }
+}
+
+
+.infomation {
+  padding-top: 2px;
+}
+
+.language {
+  display: inline-block;
+  color: #999;
+  font-family: 'Squada One', cursive;
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.stargazersCount {
+  display: inline-block;
+  color: #FF8F00;
+  font-size: 12px;
+  & svg {
+    vertical-align: top !important;
+  }
+}
+
+.homepageLink, .githubLink {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 2px;
+  font-size: 13px;
+  transition: opacity 0.2s ease;
+  margin-top: 8px;
+  margin-right: 4px;
+  will-change: opacity;
+  &, &:hover, &:visited, &:active, &:link {
+    color: #FFF;
+    text-decoration: none;
+  }
+  &:hover {
+    opacity: 0.6;
+  }
+  & svg {
+    vertical-align: top !important;
+    margin-right: 2px;
+  }
+}
+
+.homepageLink {
+  background-color: #00BCD4;
+}
+.githubLink {
+  background-color: #FF4081;
+}
+
+.description {
+  font-size: 12px;
+  line-height: 1.5;
+  max-height: 7.5em;
+  color: #777;
+  padding-top: 8px;
+  overflow: hidden;
+}
+
+.moreButton {
+  display: block;
+  cursor: pointer;
+  width: 80%;
+  margin: 8px auto 0;
+  padding: 12px;
+  border: 0;
+  border-radius: 4px;
+  color: #FFF;
+  background-color: #0b97c4;
+  font-size: 16px;
+  font-family: 'Squada One', cursive;
+  transition: opacity 0.3s ease;
+  will-change: opacity;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  &:hover {
+    opacity: 0.7;
+  }
+}
+

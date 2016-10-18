@@ -1,0 +1,5 @@
+:root {
+  @custom-media --small (max-width: 640px);
+  @custom-media --middle (max-width: 1024px);
+  --dwango-blue: #0075C2;
+}

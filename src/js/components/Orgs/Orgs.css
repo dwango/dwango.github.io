@@ -1,0 +1,88 @@
+@import '../../../css/common.css';
+
+.container {
+  padding-bottom: 32px;
+}
+
+.header {
+  display: block;
+  padding-top: 32px;
+  font-size: 32px;
+  font-family: 'Squada One', cursive;
+  color: #333;
+
+  @media(--small) {
+    padding-top: 16px;
+    font-size: 24px;
+  }
+}
+.organizations {
+  text-align: center;
+  padding-top: 16px;
+  @media(--small) {
+    padding-top: 8px;
+  }
+}
+
+
+.organizations__item {
+  vertical-align: top;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 20%;
+  padding: 16px;
+  overflow: hidden;
+  @media(--small) {
+    width: 33.33%;
+  }
+}
+
+.linkArea {
+  text-decoration: none;
+  &:hover > .avatarImage, &:hover > .name {
+    opacity: 0.6;
+  }
+}
+
+.avatarImage {
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  will-change: opacity;
+  transition: opacity 0.3s ease;
+  &::after {
+    content: '';
+    display: block;
+    padding-top: 100%;
+  }
+}
+
+.name {
+  font-weight: bold;
+  font-size: 14px;
+  color: #666;
+  padding-top: 8px;
+  will-change: opacity;
+  transition: opacity 0.3s ease;
+}
+
+.repoCount {
+  padding-top: 2px;
+  color: #999;
+  font-family: 'Squada One', cursive;
+  font-size: 14px;
+}
+
+.description {
+  text-align: left;
+  font-size: 12px;
+  line-height: 1.5;
+  max-height: 7.5em;
+  color: #777;
+  padding-top: 8px;
+  overflow: hidden;
+}

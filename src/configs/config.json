@@ -1,0 +1,23 @@
+{
+  "organizations": [
+    "dwango",
+    "dwango-js",
+    "opentoonz",
+    "asciidwango",
+    "nico-opendata"
+  ],
+  "pins": [
+    {
+      "full_name": "opentoonz/opentoonz",
+      "description": "OpenToonz is a 2D animation software published by DWANGO. It is based on Toonz Studio Ghibli Version, originally developed in Italy by Digital Video, Inc., and customized by Studio Ghibli over many years of production."
+    },
+    {
+      "full_name": "dwango/scala_text",
+      "description": "scala_textは株式会社ドワンゴの新入社員研修のために作成された資料です。"
+    },
+    {
+      "full_name": "dwango/moyo",
+      "description": "MOYOはErlang用のユーティリティモジュール集です。"
+    }
+  ]
+}

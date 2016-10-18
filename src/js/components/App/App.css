@@ -1,0 +1,11 @@
+@import '../../../css/common.css';
+
+.container {
+  box-sizing: border-box;
+  width: 1024px;
+  margin: 0 auto;
+  padding: 0 8px;
+  @media (--middle) {
+    width: 100%;
+  }
+}

@@ -1,0 +1,15 @@
+@import './reset.css';
+
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "Meiryo UI", メイリオ, Meiryo, 游ゴシック, "Yu Gothic", 游ゴシック, "Yu Gothic", 游ゴシック体, YuGothic, sans-serif;
+  background-color: #F5F5F5;
+  color: #333;
+}
+
+h2 {
+  font-family: 'Squada One', cursive;
+}

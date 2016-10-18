@@ -1,0 +1,79 @@
+@import '../../../css/common.css';
+
+.footer {
+  box-sizing: border-box;
+  border-top: solid 1px #CCC;
+  width: 100%;
+  padding: 16px 0 16px;
+}
+
+.logoAndLink {
+  text-align: left;
+}
+
+.logoArea {
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+  width: 160px;
+  padding-left: 8px;
+  padding-right: 32px;
+
+  & svg {
+    width: 120px;
+    height: 21.22px;
+  }
+  & path {
+    fill: #999;
+  }
+
+  @media(--small) {
+    display: block;
+    margin: 0 auto;
+    width: 120px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.logoLink {
+  will-change: opacity;
+  transition: opacity 0.3s ease;
+&:hover {
+   opacity: 0.6;
+ }
+}
+
+.links {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  padding: 8px 0;
+
+  @media(--small) {
+    display: block;
+  }
+}
+
+.links__item {
+  display: inline-block;
+  padding: 8px;
+  font-size: 12px;
+}
+
+.links__link {
+  &, &:hover, &:visited, &:active, &:link {
+    color: #999;
+    text-decoration: none;
+  }
+  &:hover {
+    color: #AAA;
+    text-decoration: underline;
+  }
+}
+
+.bottomText {
+  text-align: center;
+  font-size: 12px;
+  color: #999;
+}
