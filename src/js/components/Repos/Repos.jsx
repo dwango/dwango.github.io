@@ -63,7 +63,7 @@ class Repos extends React.Component {
         </ul>
         {this.state.moreButtonPushed ? null : (
           <button className={styles.moreButton} onClick={() => this.setState({moreButtonPushed: true})}>
-            more {repositories.length - 11} repositories
+            {repositories.length - 11} more repositories
           </button>
         )}
       </div>
