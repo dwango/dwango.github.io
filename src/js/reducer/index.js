@@ -2,6 +2,7 @@
 import {handleActions} from "redux-actions";
 
 const reducer = handleActions(
+  {},
   {
     pins         : [],
     repositories : [],
