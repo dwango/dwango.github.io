@@ -1,13 +1,16 @@
 language: node_js
-
 sudo: false
-
 node_js:
-  - "6.1"
-
+- '6.1'
 cache:
   directories:
-    - node_modules
-
+  - node_modules
 script:
-  - npm run build
+- npm run build
+after_success:
+- npm run bundle
+- "./deploy.sh"
+env:
+  global:
+  - secure: Ik4t/queRbSScLpFbiOdiBQpy7IWpFsxzYRp0aC5/HbBHj5sw7cB1j1cFgBKo8ZkiTy226iGB5g5ntuq7ymwF000RR/DrQBvOTyfve3t6YaMEKKvBrs/BDNlRAYGLsfrwBTzIFWG0WtwFdO1aXkORMX0v3TR+qeoRUEAiL61sNFa2lLrQknp4GvnjukU1m9bNrEtNEhXFHd7p7viDQC+jd6OZX0r8iPeZDm9PM3ly27xQwklBoKVmS+hxdCVggPpwYKAYQpcjH4sFWcjgfoTMz32V0dXWNyzZO83hTaqEs3rHKHxhkch/SzftFFwMW5wGNfgJppT4D1Ckl7R03CoBzGzWoZUasP01ANPaLcTQ3Dq8WkM7wTBw4rGPdOgLbwDtHnX+m36ZIwFj++VX09bbSsQK7YrpLCjp8B9YCxig1GnE40lRLa1SILwKzxHp0ayeu/j3v35UknbeaNnZVTvvKGswdzyWoYlSJ0tcmgc6Sc2cRwGRYRVvkBGEhn4BnPHQ+ZMahmow/UIlT93tM2gvMuo7h5P8OODmQOTzdNDeAdZJdGS2AK/J8XdYL4fl/w+g11oG1+O4CfuArvMUUPzvihNo5N/M3+HUYM+lJdi7jF7FqaaaxBWfHy0pWbpdo0r6NjFRqsiz066e1f+VqmmNlsXGf+MLNRJmduN1BtS3YE=
+  - secure: Fym7WjcMGzT5zlhF5PQgG70g3VT4np4UjqdLpBCzxTYWitIsCWUzetkV1wPIS/JPYcWUWZ2lTnWzZt+x1lwj3yuZLX97IDYXC1pSIH/G86ZuGXxuqJ/Vnzfkue+NCU4B7j1EiGLm4mmiAsmAHLS56gqmukEw+EaPFUkCau3Bav0MLmtMP5h8/b5qcSRgOwfH/6cYw8uQ086yeKKSipuywhsUijyNk+s58V1EQB47ziuaLsIoXCqURkl0g7pBeKLDCFMv7fyXzU1vXNgXW2wpP+gdEjyL8BvQTIRQkxxqYAW5WBjnjQVrCmbs1oQr080yuP7sCuQ9/uUf4YgXqHpEnyNQoLjYhOyE8cw65BpYXv/Q//qV9CUAQ/bYCmXT3wXgejjL0BHy043As1VkXu+zIhkQFtBElTDuxX4QqPrdzZC7aH7H8zx0SumyPX8OE67A23fHvGll27Gh2Bx305vtNNNfJZsQqgcizAVDrFiHF9IL3JGwfv9pT5JTLhOIQgcT0o1vSWalMBO3CiPAGavysPM51yaez7zLnLEY1IXzL8uYRHY2s6O8YGBnHnDirrqY9+QYARyUeYXnKzraKGjAg93H6NEw/5Uty+7Infepzj2mkEOYXoPFhxTS3vMsZpeLbqbc2gdIBwcxkMHVlS63fkMllAF0XJBFON6J8hVwHes=
