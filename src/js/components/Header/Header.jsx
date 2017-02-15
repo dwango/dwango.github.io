@@ -8,7 +8,7 @@ import styles from './Header.css';
 const Header = ({repositories}) => (
   <header className={styles.header}>
     <div className={styles.logoArea}>
-      <InlineSVG src={require('svg-inline!./logo.svg')} />
+      <InlineSVG src={require('svg-inline-loader!./logo.svg')} />
     </div>
     <div className={styles.header__subText}>
       {repositories.length} repositories developed by DWANGO engineers.

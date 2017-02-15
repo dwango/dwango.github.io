@@ -10,7 +10,7 @@ const Footer = () => (
     <div className={styles.logoAndLink}>
       <div className={styles.logoArea}>
         <a href="http://dwango.co.jp/" target="_blank" className={styles.logoLink}>
-          <InlineSVG src={require('svg-inline!./logo.svg')} />
+          <InlineSVG src={require('svg-inline-loader!./logo.svg')} />
         </a>
       </div>
       <ul className={styles.links}>

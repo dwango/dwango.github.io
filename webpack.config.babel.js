@@ -19,19 +19,15 @@ const config = {
     libraryTarget: 'umd'
   },
   module : {
-    loaders: [
+    rules: [
       {
         test   : /\.jsx?$/,
         exclude: /node_modules/,
-        loader : "babel",
-      },
-      {
-        test  : /\.json$/,
-        loader: "json"
+        loader : "babel-loader",
       },
       {
         test  : /\.(png|jpg|ico)$/,
-        loader: "file?name=images/[name].[ext]"
+        loader: "file-loader?name=images/[name].[ext]"
       },
       {
         test  : /\.ejs$/,
@@ -39,13 +35,33 @@ const config = {
       },
       {
         test  : /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader')
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: function () {
+                  return [
+                    require("postcss-import")({addDependencyTo: webpack}),
+                    require('postcss-cssnext')()
+                  ];
+                }
+              }
+            }
+          ]
+        })
       }
     ],
   },
   devtool: "source-map",
   plugins: [
-    new ExtractTextPlugin('main.css', {allChunks: true}),
+    new ExtractTextPlugin({
+      filename: 'main.css',
+      disable: false,
+      allChunks: true
+    }),
     new CopyWebpackPlugin([
       {
         from: "src/images/favicon.ico"
@@ -53,12 +69,8 @@ const config = {
     ]),
     new StaticSiteGeneratorPlugin('main', ['/'], {getGithubData, renderToString})
   ],
-  postcss: webpack => [
-    require("postcss-import")({addDependencyTo: webpack}),
-    require('postcss-cssnext')(),
-  ],
   resolve: {
-    extensions: ["", ".js", ".jsx", ".json"]
+    extensions: ["*", ".js", ".jsx", ".json"]
   }
 };
 
