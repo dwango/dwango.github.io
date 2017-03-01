@@ -1,2 +1,578 @@
-a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:"";content:none}table{border-collapse:collapse;border-spacing:0}body{margin:0;padding:0;border:0;font-size:100%;font-family:Helvetica Neue,Helvetica,Arial,\\30D2\30E9\30AE\30CE\89D2\30B4 ProN W3,Hiragino Kaku Gothic ProN,Meiryo UI,メイリオ,Meiryo,游ゴシック,Yu Gothic,游ゴシック体,YuGothic,sans-serif;background-color:#f5f5f5;color:#333}h2{font-family:Squada One,cursive}.Footer__footer___1oXll{box-sizing:border-box;border-top:1px solid #ccc;width:100%;padding:16px 0}.Footer__logoAndLink___3NY3n{text-align:left}.Footer__logoArea___nTSYJ{box-sizing:border-box;display:inline-block;vertical-align:middle;width:160px;padding-left:8px;padding-right:32px}.Footer__logoArea___nTSYJ svg{width:120px;height:21.22px}.Footer__logoArea___nTSYJ path{fill:#999}@media(max-width:640px){.Footer__logoArea___nTSYJ{display:block;margin:0 auto;width:120px;padding-left:0;padding-right:0}}.Footer__logoLink___3mOhV{will-change:opacity;-webkit-transition:opacity .3s ease;transition:opacity .3s ease}.Footer__logoLink___3mOhV:hover{opacity:.6}.Footer__links___K_b_5{display:inline-block;vertical-align:middle;text-align:center;padding:8px 0}@media(max-width:640px){.Footer__links___K_b_5{display:block}}.Footer__links__item___WcQE1{display:inline-block;padding:8px;font-size:12px}.Footer__links__link___1YWkz,.Footer__links__link___1YWkz:active,.Footer__links__link___1YWkz:hover,.Footer__links__link___1YWkz:link,.Footer__links__link___1YWkz:visited{color:#999;text-decoration:none}.Footer__links__link___1YWkz:hover{color:#aaa;text-decoration:underline}.Footer__bottomText___QZHtc{text-align:center;font-size:12px;color:#999}.Header__header___16wcQ{background-color:#0075c2;padding:64px 0 48px;width:100%;overflow:hidden}@media(max-width:640px){.Header__header___16wcQ{padding:32px 0 24px}}.Header__logoArea___3tJqE{display:block;width:480px;margin:0 auto}@media(max-width:640px){.Header__logoArea___3tJqE{width:80%}}.Header__logoArea___3tJqE svg{width:100%}.Header__logoArea___3tJqE path{fill:#fff}.Header__logoArea___3tJqE text{fill:#fff;font-family:Squada One,cursive}.Header__logoArea__text___2NxPi{width:40%;color:#fff;display:inline-block;font-size:24px}.Header__header__subText___24Cn1{font-family:Squada One,cursive;display:block;width:640px;margin:0 auto;padding:12px 0;color:#fff;font-size:18px;line-height:1.2;text-align:center}@media(max-width:640px){.Header__header__subText___24Cn1{width:90%;font-size:14px;padding:8px 0}}.Orgs__container___fkJhr{padding-bottom:32px}.Orgs__header___2oiim{display:block;padding-top:32px;font-size:32px;font-family:Squada One,cursive;color:#333}@media(max-width:640px){.Orgs__header___2oiim{padding-top:16px;font-size:24px}}.Orgs__organizations___2Cdv5{text-align:center;padding-top:16px}@media(max-width:640px){.Orgs__organizations___2Cdv5{padding-top:8px}}.Orgs__organizations__item___1D2b7{vertical-align:top;display:inline-block;box-sizing:border-box;width:20%;padding:16px;overflow:hidden}@media(max-width:640px){.Orgs__organizations__item___1D2b7{width:33.33%}}.Orgs__linkArea___gz9St{text-decoration:none}.Orgs__linkArea___gz9St:hover>.Orgs__avatarImage___WITe0,.Orgs__linkArea___gz9St:hover>.Orgs__name___1wx29{opacity:.6}.Orgs__avatarImage___WITe0{background-size:cover;background-position:50%;color:#fff;width:100%;margin:0 auto;border-radius:50%;box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);will-change:opacity;-webkit-transition:opacity .3s ease;transition:opacity .3s ease}.Orgs__avatarImage___WITe0:after{content:"";display:block;padding-top:100%}.Orgs__name___1wx29{font-weight:700;font-size:14px;color:#666;padding-top:8px;will-change:opacity;-webkit-transition:opacity .3s ease;transition:opacity .3s ease}.Orgs__repoCount___p2YlE{padding-top:2px;color:#999;font-family:Squada One,cursive;font-size:14px}.Orgs__description___1LC4A{text-align:left;font-size:12px;line-height:1.5;max-height:7.5em;color:#777;padding-top:8px;overflow:hidden}.Repos__container___tU5qy{padding-bottom:32px}.Repos__header___2KTZA{display:block;padding-top:32px;font-size:32px;font-family:Squada One,cursive;color:#333}@media(max-width:640px){.Repos__header___2KTZA{padding-top:16px;font-size:24px}}.Repos__repositories___1CNj2{padding-top:16px}@media(max-width:640px){.Repos__repositories___1CNj2{padding-top:8px}}.Repos__repositories___1CNj2:after{content:"";clear:both;display:block}.Repos__repositories__item___rTKkJ{float:left;box-sizing:border-box;width:25%;height:200px;padding:8px 1px;will-change:opacity;-webkit-animation-name:Repos__appear____iav4;animation-name:Repos__appear____iav4;-webkit-animation-duration:.8s;animation-duration:.8s}.Repos__repositories__item___rTKkJ:first-child,.Repos__repositories__item___rTKkJ:nth-child(2),.Repos__repositories__item___rTKkJ:nth-child(3){width:33.33%;height:240px}@media(max-width:640px){.Repos__repositories__item___rTKkJ:first-child,.Repos__repositories__item___rTKkJ:nth-child(2),.Repos__repositories__item___rTKkJ:nth-child(3){width:100%;height:200px}}.Repos__repositories__item___rTKkJ:first-child .Repos__fullName___348I0,.Repos__repositories__item___rTKkJ:nth-child(2) .Repos__fullName___348I0,.Repos__repositories__item___rTKkJ:nth-child(3) .Repos__fullName___348I0{font-size:16px}@media(max-width:640px){.Repos__repositories__item___rTKkJ:first-child .Repos__fullName___348I0,.Repos__repositories__item___rTKkJ:nth-child(2) .Repos__fullName___348I0,.Repos__repositories__item___rTKkJ:nth-child(3) .Repos__fullName___348I0{font-size:14px}}@media(max-width:640px){.Repos__repositories__item___rTKkJ{width:100%;padding:8px 0}}@-webkit-keyframes Repos__appear____iav4{0%{opacity:0}to{opacity:1}}@keyframes Repos__appear____iav4{0%{opacity:0}to{opacity:1}}.Repos__repositories__itemInner___2NLET{display:block;box-sizing:border-box;width:100%;height:100%;padding:12px;overflow:hidden;background-color:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24)}@media(max-width:640px){.Repos__repositories__itemInner___2NLET{padding:8px}}.Repos__fullName___348I0{word-break:break-all;font-weight:700;font-size:14px;line-height:1.25}.Repos__fullName___348I0,.Repos__fullName___348I0:active,.Repos__fullName___348I0:hover,.Repos__fullName___348I0:link,.Repos__fullName___348I0:visited{color:#666;text-decoration:none}.Repos__fullName___348I0:hover{color:#999;text-decoration:underline}.Repos__infomation___2_nez{padding-top:2px}.Repos__language___oWXoq{display:inline-block;color:#999;font-family:Squada One,cursive;font-size:14px;margin-right:8px}.Repos__stargazersCount___3RNeO{display:inline-block;color:#ff8f00;font-size:12px}.Repos__stargazersCount___3RNeO svg{vertical-align:top!important}.Repos__githubLink___3jZWQ,.Repos__homepageLink___2K-zT{display:inline-block;padding:4px 8px;border-radius:2px;font-size:13px;-webkit-transition:opacity .2s ease;transition:opacity .2s ease;margin-top:8px;margin-right:4px;will-change:opacity}.Repos__githubLink___3jZWQ,.Repos__githubLink___3jZWQ:active,.Repos__githubLink___3jZWQ:hover,.Repos__githubLink___3jZWQ:link,.Repos__githubLink___3jZWQ:visited,.Repos__homepageLink___2K-zT,.Repos__homepageLink___2K-zT:active,.Repos__homepageLink___2K-zT:hover,.Repos__homepageLink___2K-zT:link,.Repos__homepageLink___2K-zT:visited{color:#fff;text-decoration:none}.Repos__githubLink___3jZWQ:hover,.Repos__homepageLink___2K-zT:hover{opacity:.6}.Repos__githubLink___3jZWQ svg,.Repos__homepageLink___2K-zT svg{vertical-align:top!important;margin-right:2px}.Repos__homepageLink___2K-zT{background-color:#00bcd4}.Repos__githubLink___3jZWQ{background-color:#ff4081}.Repos__description___1g-c7{font-size:12px;line-height:1.5;max-height:7.5em;color:#777;padding-top:8px;overflow:hidden}.Repos__moreButton___1AoIa{display:block;cursor:pointer;width:80%;margin:8px auto 0;padding:12px;border:0;border-radius:4px;color:#fff;background-color:#0b97c4;font-size:16px;font-family:Squada One,cursive;-webkit-transition:opacity .3s ease;transition:opacity .3s ease;will-change:opacity;box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24)}.Repos__moreButton___1AoIa:hover{opacity:.7}.App__container___3GYYT{box-sizing:border-box;width:1024px;margin:0 auto;padding:0 8px}@media (max-width:1024px){.App__container___3GYYT{width:100%}}
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, "\30D2\30E9\30AE\30CE\89D2\30B4   ProN W3", "Hiragino Kaku Gothic ProN", "Meiryo UI", メイリオ, Meiryo, 游ゴシック, "Yu Gothic", 游ゴシック, "Yu Gothic", 游ゴシック体, YuGothic, sans-serif;
+  background-color: #F5F5F5;
+  color: #333;
+}
+
+h2 {
+  font-family: 'Squada One', cursive;
+}
+:root {
+}
+
+.Footer__footer___1oXll {
+  box-sizing: border-box;
+  border-top: solid 1px #CCC;
+  width: 100%;
+  padding: 16px 0 16px;
+}
+
+.Footer__logoAndLink___3NY3n {
+  text-align: left;
+}
+
+.Footer__logoArea___nTSYJ {
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+  width: 160px;
+  padding-left: 8px;
+  padding-right: 32px
+}
+
+.Footer__logoArea___nTSYJ svg {
+  width: 120px;
+  height: 21.22px;
+}
+
+.Footer__logoArea___nTSYJ path {
+  fill: #999;
+}
+
+@media(max-width: 640px) {
+
+  .Footer__logoArea___nTSYJ {
+    display: block;
+    margin: 0 auto;
+    width: 120px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  }
+
+.Footer__logoLink___3mOhV {
+  will-change: opacity;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease
+}
+
+.Footer__logoLink___3mOhV:hover {
+  opacity: 0.6;
+}
+
+.Footer__links___K_b_5 {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  padding: 8px 0
+}
+
+@media(max-width: 640px) {
+
+  .Footer__links___K_b_5 {
+    display: block;
+  }
+  }
+
+.Footer__links__item___WcQE1 {
+  display: inline-block;
+  padding: 8px;
+  font-size: 12px;
+}
+
+.Footer__links__link___1YWkz {
+}
+
+.Footer__links__link___1YWkz, .Footer__links__link___1YWkz:hover, .Footer__links__link___1YWkz:visited, .Footer__links__link___1YWkz:active, .Footer__links__link___1YWkz:link {
+  color: #999;
+  text-decoration: none;
+}
+
+.Footer__links__link___1YWkz:hover {
+  color: #AAA;
+  text-decoration: underline;
+}
+
+.Footer__bottomText___QZHtc {
+  text-align: center;
+  font-size: 12px;
+  color: #999;
+}
+:root {
+}
+
+.Header__header___16wcQ {
+  background-color: #0075C2;
+  padding: 64px 0 48px;
+  width: 100%;
+  overflow: hidden
+}
+
+@media(max-width: 640px) {
+
+  .Header__header___16wcQ {
+    padding: 32px 0 24px
+  }
+  }
+
+.Header__logoArea___3tJqE {
+  display: block;
+  width: 480px;
+  margin: 0 auto
+}
+
+@media(max-width: 640px) {
+
+  .Header__logoArea___3tJqE {
+    width: 80%
+  }
+  }
+
+.Header__logoArea___3tJqE svg {
+  width: 100%
+}
+
+.Header__logoArea___3tJqE path {
+  fill: #FFF
+}
+
+.Header__logoArea___3tJqE text {
+  fill: #FFF;
+  font-family: 'Squada One', cursive
+}
+
+.Header__logoArea__text___2NxPi {
+  width: 40%;
+  color: #FFF;
+  display: inline-block;
+  font-size: 24px;
+}
+
+.Header__header__subText___24Cn1 {
+  font-family: 'Squada One', cursive;
+  display: block;
+  width: 640px;
+  margin: 0 auto;
+  padding: 12px 0;
+  color: #FFF;
+  font-size: 18px;
+  line-height: 1.2;
+  text-align: center
+}
+
+@media(max-width: 640px) {
+
+  .Header__header__subText___24Cn1 {
+    width: 90%;
+    font-size: 14px;
+    padding: 8px 0
+  }
+  }
+
+:root {
+}
+
+.Orgs__container___fkJhr {
+  padding-bottom: 32px;
+}
+
+.Orgs__header___2oiim {
+  display: block;
+  padding-top: 32px;
+  font-size: 32px;
+  font-family: 'Squada One', cursive;
+  color: #333
+}
+
+@media(max-width: 640px) {
+
+  .Orgs__header___2oiim {
+    padding-top: 16px;
+    font-size: 24px;
+  }
+  }
+
+.Orgs__organizations___2Cdv5 {
+  text-align: center;
+  padding-top: 16px
+}
+
+@media(max-width: 640px) {
+
+  .Orgs__organizations___2Cdv5 {
+    padding-top: 8px;
+  }
+  }
+
+.Orgs__organizations__item___1D2b7 {
+  vertical-align: top;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 20%;
+  padding: 16px;
+  overflow: hidden
+}
+
+@media(max-width: 640px) {
+
+  .Orgs__organizations__item___1D2b7 {
+    width: 33.33%;
+  }
+  }
+
+.Orgs__linkArea___gz9St {
+  text-decoration: none
+}
+
+.Orgs__linkArea___gz9St:hover > .Orgs__avatarImage___WITe0, .Orgs__linkArea___gz9St:hover > .Orgs__name___1wx29 {
+  opacity: 0.6;
+}
+
+.Orgs__avatarImage___WITe0 {
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+  will-change: opacity;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease
+}
+
+.Orgs__avatarImage___WITe0::after {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+.Orgs__name___1wx29 {
+  font-weight: bold;
+  font-size: 14px;
+  color: #666;
+  padding-top: 8px;
+  will-change: opacity;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+}
+
+.Orgs__repoCount___p2YlE {
+  padding-top: 2px;
+  color: #999;
+  font-family: 'Squada One', cursive;
+  font-size: 14px;
+}
+
+.Orgs__description___1LC4A {
+  text-align: left;
+  font-size: 12px;
+  line-height: 1.5;
+  max-height: 7.5em;
+  color: #777;
+  padding-top: 8px;
+  overflow: hidden;
+}
+:root {
+}
+
+.Repos__container___tU5qy {
+  padding-bottom: 32px;
+}
+
+.Repos__header___2KTZA {
+  display: block;
+  padding-top: 32px;
+  font-size: 32px;
+  font-family: 'Squada One', cursive;
+  color: #333
+}
+
+@media(max-width: 640px) {
+
+  .Repos__header___2KTZA {
+    padding-top: 16px;
+    font-size: 24px;
+  }
+  }
+
+.Repos__repositories___1CNj2 {
+  padding-top: 16px
+}
+
+@media(max-width: 640px) {
+
+  .Repos__repositories___1CNj2 {
+    padding-top: 8px;
+  }
+  }
+
+.Repos__repositories___1CNj2::after {
+  content: '';
+  clear: both;
+  display: block;
+}
+
+.Repos__repositories__item___rTKkJ {
+  float: left;
+  box-sizing: border-box;
+  width: 25%;
+  height: 200px;
+  padding: 8px 1px;
+  will-change: opacity;
+  -webkit-animation-name: Repos__appear____iav4;
+          animation-name: Repos__appear____iav4;
+  -webkit-animation-duration: 0.8s;
+          animation-duration: 0.8s
+}
+
+.Repos__repositories__item___rTKkJ:nth-child(1), .Repos__repositories__item___rTKkJ:nth-child(2), .Repos__repositories__item___rTKkJ:nth-child(3) {
+  width: 33.33%;
+  height: 240px;
+}
+
+@media(max-width: 640px) {
+
+  .Repos__repositories__item___rTKkJ:nth-child(1), .Repos__repositories__item___rTKkJ:nth-child(2), .Repos__repositories__item___rTKkJ:nth-child(3) {
+    width: 100%;
+    height: 200px;
+  }
+}
+
+.Repos__repositories__item___rTKkJ:nth-child(1) .Repos__fullName___348I0, .Repos__repositories__item___rTKkJ:nth-child(2) .Repos__fullName___348I0, .Repos__repositories__item___rTKkJ:nth-child(3) .Repos__fullName___348I0 {
+  font-size: 16px;
+}
+
+@media(max-width: 640px) {
+
+  .Repos__repositories__item___rTKkJ:nth-child(1) .Repos__fullName___348I0, .Repos__repositories__item___rTKkJ:nth-child(2) .Repos__fullName___348I0, .Repos__repositories__item___rTKkJ:nth-child(3) .Repos__fullName___348I0 {
+    font-size: 14px;
+  }
+}
+
+@media(max-width: 640px) {
+
+  .Repos__repositories__item___rTKkJ {
+    width: 100%;
+    padding: 8px 0;
+  }
+  }
+
+@-webkit-keyframes Repos__appear____iav4 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes Repos__appear____iav4 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.Repos__repositories__itemInner___2NLET {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  overflow: hidden;
+  background-color: #FFF;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24)
+}
+
+@media(max-width: 640px) {
+
+  .Repos__repositories__itemInner___2NLET {
+    padding: 8px;
+  }
+  }
+
+.Repos__fullName___348I0 {
+  word-break: break-all;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1.25
+}
+
+.Repos__fullName___348I0, .Repos__fullName___348I0:hover, .Repos__fullName___348I0:visited, .Repos__fullName___348I0:active, .Repos__fullName___348I0:link {
+  color: #666;
+  text-decoration: none;
+}
+
+.Repos__fullName___348I0:hover {
+  color: #999;
+  text-decoration: underline;
+}
+
+.Repos__infomation___2_nez {
+  padding-top: 2px;
+}
+
+.Repos__language___oWXoq {
+  display: inline-block;
+  color: #999;
+  font-family: 'Squada One', cursive;
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.Repos__stargazersCount___3RNeO {
+  display: inline-block;
+  color: #FF8F00;
+  font-size: 12px
+}
+
+.Repos__stargazersCount___3RNeO svg {
+  vertical-align: top !important;
+}
+
+.Repos__homepageLink___2K-zT, .Repos__githubLink___3jZWQ {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 2px;
+  font-size: 13px;
+  -webkit-transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease;
+  margin-top: 8px;
+  margin-right: 4px;
+  will-change: opacity
+}
+
+.Repos__homepageLink___2K-zT, .Repos__homepageLink___2K-zT:hover, .Repos__homepageLink___2K-zT:visited, .Repos__homepageLink___2K-zT:active, .Repos__homepageLink___2K-zT:link, .Repos__githubLink___3jZWQ, .Repos__githubLink___3jZWQ:hover, .Repos__githubLink___3jZWQ:visited, .Repos__githubLink___3jZWQ:active, .Repos__githubLink___3jZWQ:link {
+  color: #FFF;
+  text-decoration: none;
+}
+
+.Repos__homepageLink___2K-zT:hover, .Repos__githubLink___3jZWQ:hover {
+  opacity: 0.6;
+}
+
+.Repos__homepageLink___2K-zT svg, .Repos__githubLink___3jZWQ svg {
+  vertical-align: top !important;
+  margin-right: 2px;
+}
+
+.Repos__homepageLink___2K-zT {
+  background-color: #00BCD4;
+}
+
+.Repos__githubLink___3jZWQ {
+  background-color: #FF4081;
+}
+
+.Repos__description___1g-c7 {
+  font-size: 12px;
+  line-height: 1.5;
+  max-height: 7.5em;
+  color: #777;
+  padding-top: 8px;
+  overflow: hidden;
+}
+
+.Repos__moreButton___1AoIa {
+  display: block;
+  cursor: pointer;
+  width: 80%;
+  margin: 8px auto 0;
+  padding: 12px;
+  border: 0;
+  border-radius: 4px;
+  color: #FFF;
+  background-color: #0b97c4;
+  font-size: 16px;
+  font-family: 'Squada One', cursive;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+  will-change: opacity;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24)
+}
+
+.Repos__moreButton___1AoIa:hover {
+  opacity: 0.7;
+}
+
+:root {
+}
+
+.App__container___3GYYT {
+  box-sizing: border-box;
+  width: 1024px;
+  margin: 0 auto;
+  padding: 0 8px
+}
+
+@media (max-width: 1024px) {
+
+  .App__container___3GYYT {
+    width: 100%
+  }
+  }
+
 /*# sourceMappingURL=main.css.map*/
