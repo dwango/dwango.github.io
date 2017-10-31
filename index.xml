@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dwango on GitHub</title>
+    <link>http://dwango.github.io/</link>
+    <description>Recent content on Dwango on GitHub</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>Dwango</copyright>
+    <lastBuildDate>Tue, 31 Oct 2017 18:00:00 +0900</lastBuildDate>
+    
+	<atom:link href="http://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>dwango.github.io を公開しました</title>
+      <link>http://dwango.github.io/articles/move_to_github_io/</link>
+      <pubDate>Tue, 31 Oct 2017 18:00:00 +0900</pubDate>
+      
+      <guid>http://dwango.github.io/articles/move_to_github_io/</guid>
+      <description>ドワンゴ 技術コミュニケーション室の塩谷（ @kwappa / kwappa@friends.nico ）です。 ドワンゴではエンジニアブログとして自社プロダクトである「ブロマガ」を使ってきました。し</description>
+    </item>
+    
+  </channel>
+</rss>

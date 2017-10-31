@@ -1,0 +1,7 @@
+.theme-dwango .sidebar {
+  background-color: #0075C2;
+}
+.theme-dwango .content a,
+.theme-dwango .related-posts li a:hover {
+  color: #0075C2;
+}
