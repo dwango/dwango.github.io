@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Dwango on GitHub</title>
-    <link>http://dwango.github.io/tags/</link>
+    <link>https://dwango.github.io/tags/</link>
     <description>Recent content in Tags on Dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Dwango</copyright>
     
-	<atom:link href="http://dwango.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://dwango.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
