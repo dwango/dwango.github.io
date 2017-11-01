@@ -5,3 +5,8 @@
 .theme-dwango .related-posts li a:hover {
   color: #0075C2;
 }
+
+.share {
+  display: inline-block;
+  vertical-align: top;
+}
