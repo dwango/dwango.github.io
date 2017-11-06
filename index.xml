@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>Dwango</copyright>
-    <lastBuildDate>Fri, 03 Nov 2017 08:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 06 Nov 2017 13:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ニコニコ生放送におけるdockerの活用事例</title>
+      <link>https://dwango.github.io/articles/nicolive_docker_swarm/</link>
+      <pubDate>Mon, 06 Nov 2017 13:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/nicolive_docker_swarm/</guid>
+      <description>この記事はdwango エンジニア ブロマガの記事を再収録したものです。 はじめに はじめまして。ニコニコ生放送でマイクロサービスチームのグループリ</description>
+    </item>
     
     <item>
       <title>riapi.nicovideo.jp APIサーバの廃止と移行のお知らせ</title>
