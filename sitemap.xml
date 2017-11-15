@@ -34,13 +34,13 @@
   </url>
   
   <url>
-    <loc>https://dwango.github.io/</loc>
-    <lastmod>2017-11-14T00:00:00+09:00</lastmod>
+    <loc>https://dwango.github.io/tags/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://dwango.github.io/tags/</loc>
+    <loc>https://dwango.github.io/</loc>
+    <lastmod>2017-11-14T00:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
