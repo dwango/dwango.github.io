@@ -1,3 +1,9 @@
+@media (min-width: 48em) {
+  .content {
+    max-width: 58rem;
+  }
+}
+
 .theme-dwango .sidebar {
   background-color: #0075C2;
 }
@@ -10,3 +16,12 @@
   display: inline-block;
   vertical-align: top;
 }
+
+.all-articles {
+  text-align: center;
+}
+
+article#content {
+  line-height: 1.4;
+}
+
