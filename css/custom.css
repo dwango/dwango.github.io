@@ -25,3 +25,41 @@ article#content {
   line-height: 1.4;
 }
 
+.post {
+  margin-bottom: 1em;
+}
+
+.post .post-date {
+  font-size: 0.7em;
+  text-align: right;
+  margin-bottom: 0;
+}
+
+.post p.summary {
+  font-size: 0.8em;
+  padding-left: 1.2em;
+}
+
+.pagination-container {
+  text-align: center;
+}
+
+.pagination {
+  display: inline-block;
+  margin: 0;
+}
+
+.pagination a,
+.pagination span {
+  margin: 0 0.4em;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  width: 1.2em;
+}
+
+.pagination a.current {
+  background-color: #0075c2;
+  color: white;
+  border-radius: 4px;
+}
