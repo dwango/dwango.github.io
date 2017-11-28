@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>DWANGO Co., Ltd.</copyright>
-    <lastBuildDate>Tue, 14 Nov 2017 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 28 Nov 2017 16:30:00 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>RubyWorld Conference 2017に参加してきました</title>
+      <link>https://dwango.github.io/articles/rubyworld_conference_2017/</link>
+      <pubDate>Tue, 28 Nov 2017 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/rubyworld_conference_2017/</guid>
+      <description>ドワンゴ 技術コミュニケーション室の塩谷（ @kwappa / kwappa@friends.nico ）です。 11月1日と2日に島根県松江市で開催された「RubyWorld Conference 2017」に参加してき</description>
+    </item>
     
     <item>
       <title>VimConf 2017のスポンサーをしました</title>
