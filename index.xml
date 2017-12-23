@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>DWANGO Co., Ltd.</copyright>
-    <lastBuildDate>Tue, 28 Nov 2017 16:30:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 24 Dec 2017 00:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>エンジニアが読みたくなる職務経歴書</title>
+      <link>https://dwango.github.io/articles/engineers-resume/</link>
+      <pubDate>Sun, 24 Dec 2017 00:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/engineers-resume/</guid>
+      <description>この記事はドワンゴ Advent Calendar 2017 24日目の記事です。メリークリスマス！ ドワンゴ 技術コミュニケーション室の塩谷（ @kwappa / kwappa@friends.nico ）です。 先日、技術コミュニケーシ</description>
+    </item>
     
     <item>
       <title>RubyWorld Conference 2017に参加してきました</title>

@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://dwango.github.io/articles/engineers-resume/</loc>
+    <lastmod>2017-12-24T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://dwango.github.io/articles/rubyworld_conference_2017/</loc>
     <lastmod>2017-11-28T16:30:00+09:00</lastmod>
   </url>
@@ -29,7 +34,7 @@
   
   <url>
     <loc>https://dwango.github.io/articles/</loc>
-    <lastmod>2017-11-28T16:30:00+09:00</lastmod>
+    <lastmod>2017-12-24T00:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -45,7 +50,7 @@
   
   <url>
     <loc>https://dwango.github.io/</loc>
-    <lastmod>2017-11-28T16:30:00+09:00</lastmod>
+    <lastmod>2017-12-24T00:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
