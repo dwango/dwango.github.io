@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>DWANGO Co., Ltd.</copyright>
-    <lastBuildDate>Tue, 26 Dec 2017 14:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 27 Dec 2017 08:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>超歌舞伎に登場する初音ミクさんの美麗な舞を高品質なままMicrosoft HoloLensで鑑賞する技術</title>
+      <link>https://dwango.github.io/articles/dc-expo-miku/</link>
+      <pubDate>Wed, 27 Dec 2017 08:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/dc-expo-miku/</guid>
+      <description>TL;DR（とても長いのでまとめ） HoloLensの3D計算能力は限られているので、美麗なミクさんを美麗なまま鑑賞するために細々とした工夫を</description>
+    </item>
     
     <item>
       <title>白黒漫画にDeep Learningで着色する ～参照画像を使って～</title>
