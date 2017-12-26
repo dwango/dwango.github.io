@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>DWANGO Co., Ltd.</copyright>
-    <lastBuildDate>Sun, 24 Dec 2017 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 26 Dec 2017 14:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>白黒漫画にDeep Learningで着色する ～参照画像を使って～</title>
+      <link>https://dwango.github.io/articles/comicolorization/</link>
+      <pubDate>Tue, 26 Dec 2017 14:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/comicolorization/</guid>
+      <description>この記事はドワンゴアドベントカレンダー26日目(延長戦!)の記事です。 私は、Dwango Media Villageで研究を行なっている古澤です。Dwa</description>
+    </item>
     
     <item>
       <title>エンジニアが読みたくなる職務経歴書</title>
