@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>DWANGO Co., Ltd.</copyright>
-    <lastBuildDate>Wed, 27 Dec 2017 08:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jan 2018 13:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>とあるクエリを2万倍速にした話 -データベースの気持ちになる- 前編</title>
+      <link>https://dwango.github.io/articles/mastodon-database-index-1/</link>
+      <pubDate>Thu, 18 Jan 2018 13:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/mastodon-database-index-1/</guid>
+      <description>技術コミュニケーション室 OSSグループの髙﨑です。 当グループでは、マストドンというオープンソースの分散型マイクロブログについて、 弊社が運営す</description>
+    </item>
     
     <item>
       <title>超歌舞伎に登場する初音ミクさんの美麗な舞を高品質なままMicrosoft HoloLensで鑑賞する技術</title>
