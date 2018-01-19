@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.29" />
+
+  <meta property="og:title" content="とあるクエリを2万倍速にした話 -データベースの気持ちになる- 後編 - dwango on GitHub">
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>とあるクエリを2万倍速にした話 -データベースの気持ちになる- 後編 - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
+      <p class="lead">
+       
+ 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a> </li>
+      <li><a href="/articles"> Articles </a></li><li><a href="https://nico.ms/job/"> Hiring </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li>
+    </ul>
+
+    <p>
+      
+        <p style="display:inline-block;vertical-align:middle;">
+          Copyright &copy; DWANGO Co., Ltd.
+        </p>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+<div class="post">
+  <h1>とあるクエリを2万倍速にした話 -データベースの気持ちになる- 後編</h1>
+  <span class="post-date"> Fri, Jan 19, 2018 </span>
+  <div class="share">
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="とあるクエリを2万倍速にした話 -データベースの気持ちになる- 後編 - dwango on GitHub" data-url="https://dwango.github.io/articles/mastodon-database-index-2/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/mastodon-database-index-2/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2fmastodon-database-index-2%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+  </div>
+  <div>
+    <article id="content">
+       
+
+<p>技術コミュニケーション室 OSSグループの<a href="https://github.com/takayamaki">髙﨑</a>です。</p>
+
+<p>本記事は、<a href="../mastodon-database-index-1/">とあるクエリを2万倍速にした話 -データベースの気持ちになる- 前編</a>の続きです。</p>
+
+<p>前回の記事でお話しした内容がPullRequestを作ったときの過程だったわけですが、
+そのような結果に至った経緯、Index Only Scanを使わなかったPostgreSQL特有の事情について、
+PostgreSQLのアーキテクチャなども交えもう少し詳しくお話させていただきます。</p>
+
+<h1 id="要するに">要するに</h1>
+
+<ul>
+<li>実行計画のコストとはレコードやindexの読み込み、フィルタ処理などからその実行にどの程度の時間が必要となるかの推定値</li>
+<li>indexを張る際にはそのindexがどのように辿られるかを意識する必要がある
+
+<ul>
+<li>範囲検索される可能性があるカラムはindexの先頭にはあまり適さない</li>
+</ul></li>
+<li>PostgreSQLにおけるIndex Only Scanは新しい/更新頻度の高いデータに対しては効きにくい
+
+<ul>
+<li>対象レコードの含まれるブロックに未VACUUMな古いレコードがあった場合対象レコード本体を確認しに行くため</li>
+</ul></li>
+<li>PostgreSQLの実行計画のFilterサブ処理は暗黙のうちにレコード本体の全体を取得する
+
+<ul>
+<li>indexに載っていないカラムでも絞り込みができる反面、常にレコード本体の取得が行われることに注意する必要がある</li>
+</ul></li>
+</ul>
+
+<h1 id="データベースの気持ちになる">データベースの気持ちになる</h1>
+
+<h2 id="まず実行計画のコストとは何なのか">まず実行計画のコストとは何なのか</h2>
+
+<p>PostgreSQLのプランナが推定および算出するコストとは、DBにおけるデータの読み込み単位であるページ(OSにおける仮想記憶の層で使われる用語のページとは異なります)をシーケンシャルリード、すなわちHDDで磁気ヘッダのシークなしに1個読み込む動作を1とした、その実行計画の実行にどの程度の時間が必要かを見積もった数値です。</p>
+
+<p>ほかにもindexを辿る時のCPUコスト、indexを1行チェックする時に処理コストなど様々な種類がありますが、詳しくは<a href="https://www.postgresql.jp/document/9.6/html/runtime-config-query.html#runtime-config-query-constants">PostgreSQL日本語訳マニュアル プランナコスト定数</a>をご参照ください。</p>
+
+<p>マストドンのユースケースにおいてパラレルワーカーが動作することは滅多にありませんので、実行計画のコストで支配的になるのはページの読み出しコストとなります。</p>
+
+<p>すなわち、おおざっぱに表現するとディスクから読み込むレコードまたはindexの量を減らせば減らすほど実行計画のコストが下がり、また実際に高速となると考えることができます。これについては普段MySQLをお使いの方も「EXPLAINのRowを減らす」という形で似た考え方をされていると思います。</p>
+
+<h2 id="4750-https-github-com-tootsuite-mastodon-pull-4750-のindexはなぜ良くなかったのか"><a href="https://github.com/tootsuite/mastodon/pull/4750">#4750</a>のindexはなぜ良くなかったのか</h2>
+
+<p>なぜ良くなかったのか、と書くと前回の記事でお話ししました通り「選択性の低い列から順番にindexを張ってしまっていたから」となるわけですが、逆にその様な張り方をしてしまったにも関わらずなぜ高速化したのでしょうか。</p>
+
+<p>これは実行計画のコストについての項でもお話ししましたとおり、クエリの実行において支配的なのはディスクからデータを取得する待ち時間であることからわかります。</p>
+
+<p>下記が#4750に書いてある改善前の実行計画ですが、</p>
+
+<pre><code>                                                                           QUERY PLAN                                                                           
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.43..5155.13 rows=15 width=29) (actual time=910.979..3401.273 rows=15 loops=1)
+   -&gt;  Index Scan Backward using notifications_pkey on notifications  (cost=0.43..486603.34 rows=1416 width=29) (actual time=910.974..3401.245 rows=15 loops=1)
+         Filter: ((account_id = *****) AND ((activity_type)::text = ANY ('{Mention,Status,Follow,Favourite}'::text[])))
+         Rows Removed by Filter: 7990584
+ Planning time: 0.140 ms
+ Execution time: 3401.305 ms
+(6 rows)
+</code></pre>
+
+<p>これを見るとnotifications_pkeyをIndex Scan Backward、つまりidを逆順に遡りながらレコード全体を取得し、account_idおよびactivity_typeが異なるものをFilterで合計799万件強捨てるという動作をしていました。</p>
+
+<p>そして<a href="https://github.com/tootsuite/mastodon/pull/6108">#6108</a>の改善前(#4750の改善後)を再掲しますが、</p>
+
+<pre><code>                                                                                          QUERY PLAN                                                        
+                                  
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.56..4347.50 rows=20 width=33) (actual time=56.979..1990.931 rows=20 loops=1)
+   -&gt;  Index Scan using index_notifications_on_id_and_account_id_and_activity_type on notifications  (cost=0.56..494247.53 rows=2274 width=33) (actual time=56.975..1990.906 rows=20 loops=1)
+         Index Cond: (account_id = $1)
+         Filter: ((activity_type)::text = ANY ('{Mention,Status,Follow,Favourite}'::text[]))
+ Planning time: 0.145 ms
+ Execution time: 1990.972 ms
+(6 rows)
+</code></pre>
+
+<p>この時のindex_notifications_on_id_and_account_id_and_activity_typeは<code>(id DESC, account_id, activity_type)</code>の順番で張ってあったため、実行時にはindex上のidを辿りながら、account_idによる絞り込みをindex上で行い、その後でactivity_typeによる絞り込みを行っていたと考えられます。</p>
+
+<p>すなわち、#4750改善前のような799万件強を捨てるという明らかな無駄はなくなったものの、依然としてindexを逐次走査する必要がある状態だったと考えられます。</p>
+
+<p>それに対して#6108ではaccount_idによって対象範囲が絞り込まれた後、idの降順にまず15件取得しながらactivity_typeが条件に合わなかった場合にのみ捨てて追加取得するという動作となるため辿るべきindexの量が劇的に少なくなりました。</p>
+
+<h1 id="もっとデータベースの気持ちになる">もっとデータベースの気持ちになる</h1>
+
+<p><code>SELECT  &quot;notifications&quot;.&quot;id&quot;, &quot;notifications&quot;.&quot;updated_at&quot;, &quot;notifications&quot;.&quot;activity_type&quot;, &quot;notifications&quot;.&quot;activity_id&quot; FROM &quot;notifications&quot; WHERE &quot;notifications&quot;.&quot;account_id&quot; = $1 AND &quot;notifications&quot;.&quot;activity_type&quot; IN ('Mention', 'Status', 'Follow', 'Favourite') ORDER BY &quot;notifications&quot;.&quot;id&quot; DESC LIMIT $2;</code></p>
+
+<h2 id="なぜindex-only-scanを採用しなかったのか">なぜIndex Only Scanを採用しなかったのか</h2>
+
+<p>前回の記事で「普段MySQLをお使いの方であれば『取得するべきカラムが限定されているのになぜIndex Only Scanを使わないのか』と疑問に思われるかと思います」と書きました。</p>
+
+<p>実はこれについては下記の通り試していて、確かにIndex Only Scanとの記述は出ていたものの、速度の向上はありませんでした。</p>
+
+<pre><code>mastodon-production=&gt; CREATE INDEX CONCURRENTLY index_20171225_notify_3 on notifications (account_id, id desc, activity_type, updated_at, activity_id);
+CREATE INDEX                                                                                                                                                
+mastodon-production=&gt; explain analyze SELECT  &quot;notifications&quot;.&quot;id&quot;, &quot;notifications&quot;.&quot;updated_at&quot;, &quot;notifications&quot;.&quot;activity_type&quot;, &quot;notifications&quot;.&quot;activity_id&quot; FROM &quot;notifications&quot; WHERE &quot;notifications&quot;.&quot;account_id&quot; = 3 AND &quot;notifications&quot;.&quot;activity_type&quot; IN ('Mention', 'Status', 'Follow', 'Favourite') ORDER BY &quot;notifications&quot;.&quot;id&quot; DESC LIMIT 15;
+                                                                          QUERY PLAN                                                                        
+  
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+--
+ Limit  (cost=0.56..24.56 rows=15 width=33) (actual time=0.033..0.058 rows=15 loops=1)
+   -&gt;  Index Only Scan using index_20171225_notify_3 on notifications  (cost=0.56..185436.28 rows=115910 width=33) (actual time=0.032..0.054 rows=15 loops=1
+)
+         Index Cond: (account_id = 3)
+         Filter: ((activity_type)::text = ANY ('{Mention,Status,Follow,Favourite}'::text[]))
+         Heap Fetches: 15
+ Planning time: 0.261 ms
+ Execution time: 0.088 ms
+(7 rows)
+</code></pre>
+
+<p>これについてはPostgreSQLが追記型アーキテクチャを採用しているという点が関係しています。</p>
+
+<p>PostgreSQLはDELETEやUPDATEを行う際、MySQLのように古いレコードを直接削除や上書きをするのではなく、
+UPDATEの場合には空き領域に新しいレコードを書き込み、古いレコードに削除マークを付けるという動作を行います。</p>
+
+<p>それによって万一の電源断などに対する堅牢性を増している一方で、削除マークが付けられた古いレコードを
+空き領域へとリサイクルするVACUUMと呼ばれる作業をある程度の間隔で行う必要があります。</p>
+
+<p>私の経験によった話ですが、VACUUMの実行間隔は手動で実行しなければならなかった時代の環境では概ねオフピーク時間帯である早朝ごろに日次で行うものでしたし、
+のべ更新削除行数を基準に自動で行ってくれるAUTO VACUUMが実装されているバージョンであるfriends.nicoのPostgreSQLもnotificationsテーブルにおけるAUTO VACUUMの発動は日次より長い間隔となっています。</p>
+
+<p>そして、PostgreSQLではIndex Only Scanを行う上でVisibility Mapと呼ばれる仕組みでIndex上に書いてある値を本当に返してよいのか、
+それともページ上のレコード本体を確認するべきかを管理しており、それは対象レコードが含まれるテーブルのブロックに削除マークが付けられたレコードが存在するかどうかが条件となっています。</p>
+
+<p>UPDATEやDELETEと共にindexも書き換えられているはずなのでそのまま返してしまってもよいのではないかと思ってしまいがちですが、
+PostgreSQLにおけるIndex Only Scanは比較的新しい機能(といっても2012年9月)であり、それまではIndex Scanによって
+レコード本体を逐一取得する方法で行っていたためそれとの一貫性を取り安全側に倒した結果としてそうなっているようです。</p>
+
+<p>さて、話を戻しますと対象レコードが含まれるテーブルのブロックに削除マークが付けられたレコードが存在しない状態というのはすなわち、
+そのブロックにおいてVACUUMが完了している状態を意味しますが、VACUUMは先ほど書きました通りリアルタイムに行う処理ではありませんので、
+今回のクエリのようにidの降順で新しいものを取得する場合にVACUUMが行われている可能性は低いと考えられます。</p>
+
+<p>上記のEXPLAINの結果では<code>Heap Fetches: 15</code>と書いてある部分がページ上のレコード本体を確認した件数を表しており、
+結局15件全てにおいてレコード本体を確認したことがわかります。</p>
+
+<p>であれば、無理にカラムを全てindexに含めてIndex Only Scanを狙うより、<code>(account_id, id DESC)</code>のみに絞ってindexの必要領域を削減したほうが良いだろう、という判断でした。</p>
+
+<h2 id="なぜactivity-typeをindexに含めなかったのか">なぜactivity_typeをindexに含めなかったのか</h2>
+
+<p>activity_typeをindexに含めようとした場合、<code>(account_id, activity_type, id DESC)</code>と<code>(account_id, id DESC, activity_type)</code>の二つの場合が考えられますので、それぞれの場合について考えてみます。</p>
+
+<h3 id="account-id-activity-type-id-desc"><code>(account_id, activity_type, id DESC)</code></h3>
+
+<p>前回の記事の結論である<code>(account_id, id DESC)</code>の間にactivity_typeを素直に挟んだパターンです。</p>
+
+<p>この順番のindexも念のため作ってみてはいたのですが、実行計画に選択されることはありませんでした。</p>
+
+<p>問題のクエリはaccount_idごとの新しい順で取得したいにも関わらず、activity_typeが挟まっていることによりidが降順で一括取得できなくなってしまっており、top-N sort、すなわち複数のソート済み集合から新しい順に取得しまとめるという処理が必要であったため、その分のコストが嵩んだからであると考えられます。</p>
+
+<h3 id="account-id-id-desc-activity-type"><code>(account_id, id DESC, activity_type)</code></h3>
+
+<p>同様にidの後にactivity_typeを付けたパターンも試していたのですが、こちらも実所要時間に大きな差はありませんでした。</p>
+
+<p>より正確に表現すると、使用するindexとしては選択してもらえたものの、index上のactivity_typeが参照されている様子はありませんでした。</p>
+
+<pre><code>                                                                     QUERY PLAN                                                                      
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.56..60.81 rows=15 width=33) (actual time=0.032..0.061 rows=15 loops=1)
+   -&gt;  Index Scan using index_20171225_notify_2 on notifications  (cost=0.56..9134.20 rows=2274 width=33) (actual time=0.030..0.054 rows=15 loops=1)
+         Index Cond: (account_id = x)
+         Filter: ((activity_type)::text = ANY ('{Mention,Status,Follow,Favourite}'::text[]))
+ Planning time: 0.262 ms
+ Execution time: 0.086 ms
+(6 rows)
+</code></pre>
+
+<p>試した時には「account_idとidで取得するレコードの一覧を作成し、activity_typeを用いて絞り込んだ後にレコード本体を取得」という動作を期待していたのですが、
+PostgreSQLでは複数個の値が指定されたIN演算子は基本的にFilterサブ処理に変換され、
+Index ScanのFilterサブ処理をする際には暗黙のうちにレコード本体の全体を取得するようでした。</p>
+
+<p>実際にactivity_typeの条件の個数を変化させてEXPLAINしたところ、一つに絞るまでIndex CondがAND条件となることはありませんでした。</p>
+
+<p>マストドンのユースケースからするとactivity_typeが1種類のみで指定されることはまずなく、
+activity_typeを含めるだけでindexのデータサイズが1.5倍強になってしまうため、
+迷った結果、indexにはactivity_typeを含めないことにしました。</p>
+
+<p>activity_typeに入り得る5種類の値(<code>'Mention', 'Status', 'Follow', 'Favourite', 'FollowRequest'</code>)のうち、
+FollowRequestだけは単独で指定される可能性がそれなりにありますが、
+FollowRequestはそもそも検索条件として指定される頻度が少なく、そこにindexを張る必要性は今のところ感じていません。</p>
+
+<p>どうしても必要そうであれば、<code>CREATE INDEX CONCURRENTLY partitive_index ON notifications (account_id, id DESC) WHERE activity_type = 'FollowRequest'</code>として部分indexを張ることになるでしょう。</p>
+
+<h1 id="参考文献">参考文献</h1>
+
+<ul>
+<li><a href="https://www.postgresql.jp/document/9.6/html/index.html">PostgreSQL日本語訳マニュアル</a></li>
+<li><a href="http://use-the-index-luke.com/ja">Use The Index, Luke</a></li>
+<li><a href="https://www.slideshare.net/MikiShimogai/postgre-sql-explain">PostgreSQLクエリ実行の基礎知識 ～Explainを読み解こう～</a></li>
+<li><a href="https://wiki.postgresql.org/wiki/Index-only_scans/ja">Index-only scans/ja - PostgreSQL wiki</a></li>
+</ul>
+
+    </article>
+  </div>
+</div>
+
+    </div>
+
+    
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-109076308-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>
