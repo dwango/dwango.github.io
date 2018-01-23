@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>DWANGO Co., Ltd.</copyright>
-    <lastBuildDate>Fri, 19 Jan 2018 19:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 23 Jan 2018 18:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>いきのこれ！社畜ちゃん3巻のプログラム作成をお手伝いした時の話</title>
+      <link>https://dwango.github.io/articles/shachiku-chan-vol3/</link>
+      <pubDate>Tue, 23 Jan 2018 18:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/shachiku-chan-vol3/</guid>
+      <description>技術コミュニケーション室の中山です。 2017年11月に発売されたいきのこれ！ 社畜ちゃん（3）のプログラミング講座にて、プログラム作成をお手伝</description>
+    </item>
     
     <item>
       <title>とあるクエリを2万倍速にした話 -データベースの気持ちになる- 後編</title>
