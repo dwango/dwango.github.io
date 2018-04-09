@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>DWANGO Co., Ltd.</copyright>
-    <lastBuildDate>Tue, 23 Jan 2018 18:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 09 Apr 2018 18:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Harekaze CTF 2018のスポンサーをしました</title>
+      <link>https://dwango.github.io/articles/harekazectf2018/</link>
+      <pubDate>Mon, 09 Apr 2018 18:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/harekazectf2018/</guid>
+      <description>はじめに 第二サービス開発本部 研究開発部の鷹取です。 私は個人的にCTFチーム Harekazeに所属しています。 チームHarekazeでは、20</description>
+    </item>
     
     <item>
       <title>いきのこれ！社畜ちゃん3巻のプログラム作成をお手伝いした時の話</title>
