@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.29" />
+
+  <meta property="og:title" content="VRM仕様 - dwango on GitHub">
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>VRM仕様 - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/vrm.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
+      <p class="lead">
+       
+ 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a> </li>
+      <li><a href="/articles"> Articles </a></li><li><a href="https://nico.ms/job/"> Hiring </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li>
+    </ul>
+
+    <p>
+      
+        <p style="display:inline-block;vertical-align:middle;">
+          Copyright &copy; DWANGO Co., Ltd.
+        </p>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+<div class="post">
+  <h1>VRM仕様</h1>
+  <span class="post-date"> Mon, Apr 16, 2018 </span>
+  <div class="share">
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="VRM仕様 - dwango on GitHub" data-url="https://dwango.github.io/vrm/vrm_spec/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/vrm/vrm_spec/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2fvrm%2fvrm_spec%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+  </div>
+  <div>
+    <article id="content">
+        <div class="toc"> <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#拡張子">拡張子</a></li>
+<li><a href="#保存できる要素">保存できる要素</a>
+<ul>
+<li><a href="#texture">Texture</a></li>
+<li><a href="#material-json-extensions-vrm-materialproperties">Material(json.extensions.VRM.materialProperties)</a>
+<ul>
+<li><a href="#materialの規約">Materialの規約</a></li>
+</ul></li>
+<li><a href="#mesh">Mesh</a></li>
+<li><a href="#node">Node</a></li>
+</ul></li>
+<li><a href="#保存する値に対する規約">保存する値に対する規約</a>
+<ul>
+<li><a href="#gltf2の規約">GLTF2の規約</a></li>
+<li><a href="#vrmの規約">VRMの規約</a></li>
+</ul></li>
+<li><a href="#vrmが提供するシェーダー">VRMが提供するシェーダー</a>
+<ul>
+<li><a href="#unlit系">Unlit系</a></li>
+<li><a href="#mtoon">MToon</a></li>
+</ul></li>
+<li><a href="#モデルのボーンマッピング-json-extensions-vrm-humanoid">モデルのボーンマッピング(json.extensions.VRM.humanoid)</a>
+<ul>
+<li><a href="#定義しているボーン">定義しているボーン</a></li>
+</ul></li>
+<li><a href="#モデル情報-json-extensions-vrm-meta">モデル情報(json.extensions.VRM.meta)</a>
+<ul>
+<li><a href="#情報">情報</a>
+<ul>
+<li><a href="#タイトル-title">タイトル(Title)</a></li>
+<li><a href="#作者-author">作者(Author)</a></li>
+<li><a href="#連絡先-contact-information">連絡先(Contact Information)</a></li>
+<li><a href="#参照-reference">参照(Reference)</a></li>
+<li><a href="#サムネイル-thumbnail">サムネイル(Thumbnail)</a></li>
+<li><a href="#バージョン">バージョン</a></li>
+</ul></li>
+<li><a href="#使用許諾-ライセンス情報-license">使用許諾・ライセンス情報(License)</a>
+<ul>
+<li><a href="#アバターの人格に関する許諾範囲-personation-charaterization-permission">アバターの人格に関する許諾範囲(Personation / Charaterization Permission)</a>
+<ul>
+<li><a href="#アバターに人格を与えることの許諾範囲-a-person-who-can-perform-with-this-avatar">アバターに人格を与えることの許諾範囲(A person who can perform with this avatar)</a></li>
+<li><a href="#このアバターを用いて暴力表現を演じることの許可-violent-acts-using-this-avatar">このアバターを用いて暴力表現を演じることの許可(Violent acts using this avatar)</a></li>
+<li><a href="#このアバターを用いて性的表現を演じることの許可-sexuality-acts-using-this-avatar">このアバターを用いて性的表現を演じることの許可(Sexuality acts using this avatar)</a></li>
+<li><a href="#商用利用の許可-for-commercial-use">商用利用の許可(For commercial use)</a></li>
+<li><a href="#その他のライセンス条件-other-license-url">その他のライセンス条件(Other License Url)</a></li>
+</ul></li>
+<li><a href="#再配布-改変に関する許諾範囲-redistribution-modifications-license">再配布・改変に関する許諾範囲(Redistribution / Modifications License)</a>
+<ul>
+<li><a href="#ライセンスタイプ-license-type">ライセンスタイプ(License Type)</a></li>
+<li><a href="#その他ライセンス条件-other-license-url">その他ライセンス条件(Other License Url)</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><a href="#モーフ設定-json-extensions-vrm-blendshapemaster">モーフ設定(json.extensions.VRM.blendShapeMaster)</a>
+<ul>
+<li><a href="#ブレンドシェイプグループ-json-extensions-vrm-blendshapemaster-blendshapegroups">ブレンドシェイプグループ(json.extensions.VRM.blendShapeMaster.blendShapeGroups)</a>
+<ul>
+<li><a href="#名前">名前</a></li>
+<li><a href="#事前定義名">事前定義名</a></li>
+<li><a href="#ブレンドシェイプの名前の識別名">ブレンドシェイプの名前の識別名</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#一人称設定-json-extensions-vrm-firstperson">一人称設定(json.extensions.VRM.firstPerson)</a>
+<ul>
+<li><a href="#firstpersonbone-json-extensions-vrm-firstperson-firstpersonbone">firstPersonBone(json.extensions.VRM.firstPerson.firstPersonBone)</a></li>
+<li><a href="#firstpersonboneoffset-json-extensions-vrm-firstperson-firstpersonboneoffset">firstPersonBoneOffset(json.extensions.VRM.firstPerson.firstPersonBoneOffset)</a></li>
+<li><a href="#meshannotations-json-extensions-vrm-firstperson-meshannotations">meshAnnotations(json.extensions.VRM.firstPerson.meshAnnotations)</a></li>
+<li><a href="#視線設定">視線設定</a>
+<ul>
+<li><a href="#目線タイプ-json-extensions-vrm-firstperson-lookattypename">目線タイプ(json.extensions.VRM.firstPerson.lookAtTypeName)</a></li>
+<li><a href="#角度調整">角度調整</a>
+<ul>
+<li><a href="#json-extensions-vrm-firstperson-lookathorizontalinner">json.extensions.VRM.firstPerson.lookAtHorizontalInner</a></li>
+<li><a href="#json-extensions-vrm-firstperson-lookathorizontalouter">json.extensions.VRM.firstPerson.lookAtHorizontalOuter</a></li>
+<li><a href="#json-extensions-vrm-firstperson-lookatverticaldown">json.extensions.VRM.firstPerson.lookAtVerticalDown</a></li>
+<li><a href="#json-extensions-vrm-firstperson-lookatverticalup">json.extensions.VRM.firstPerson.lookAtVerticalUp</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><a href="#揺れモノ設定-json-extensions-vrm-secondaryanimation">揺れモノ設定(json.extensions.VRM.secondaryAnimation)</a>
+<ul>
+<li><a href="#揺れるボーン-secondaryanimation-bonegroups">揺れるボーン(secondaryAnimation.boneGroups)</a>
+<ul>
+<li><a href="#揺れるボーンの根元のボーン-json-extensions-vrm-secondaryanimation-bonegroups-0-bones">揺れるボーンの根元のボーン(json.extensions.VRM.secondaryAnimation.boneGroups[0].bones)</a></li>
+<li><a href="#揺れるボーンと衝突する当たり判定-json-extensions-vrm-secondaryanimation-bonegroups-0-collidergroups">揺れるボーンと衝突する当たり判定(json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups)</a></li>
+<li><a href="#パラメーター">パラメーター</a>
+<ul>
+<li><a href="#center-json-extensions-vrm-secondaryanimation-bonegroups-0-center">center(json.extensions.VRM.secondaryAnimation.boneGroups[0].center)</a></li>
+<li><a href="#dragforce-json-extensions-vrm-secondaryanimation-bonegroups-0-dragforce">dragForce(json.extensions.VRM.secondaryAnimation.boneGroups[0].dragForce)</a></li>
+<li><a href="#garvitydir-json-extensions-vrm-secondaryanimation-bonegroups-0-gravitydir">garvityDir(json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityDir)</a></li>
+<li><a href="#gravitypower-json-extensions-vrm-secondaryanimation-bonegroups-0-gravitypower">gravityPower(json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityPower)</a></li>
+<li><a href="#hitradius-json-extensions-vrm-secondaryanimation-bonegroups-0-hitradius">hitRadius(json.extensions.VRM.secondaryAnimation.boneGroups[0].hitRadius)</a></li>
+<li><a href="#stiffiness-json-extensions-vrm-secondaryanimation-bonegroups-0-stiffiness">stiffiness(json.extensions.VRM.secondaryAnimation.boneGroups[0].stiffiness)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#揺れモノ当たり判定設定-json-extensions-vrm-secondaryanimation-collidergroups">揺れモノ当たり判定設定(json.extensions.VRM.secondaryAnimation.colliderGroups)</a>
+<ul>
+<li><a href="#ノード-json-extensions-vrm-secondaryanimation-collidergroups-0-node">ノード(json.extensions.VRM.secondaryAnimation.colliderGroups[0].node)</a></li>
+<li><a href="#ローカル座標-json-extensions-vrm-secondaryanimation-collidergroups-0-colliders-1-offset">ローカル座標(json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].offset)</a></li>
+<li><a href="#半径-json-extensions-vrm-secondaryanimation-collidergroups-0-colliders-1-radius">半径(json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].radius)</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+        </div>
+       
+
+<p><a href="../"><img src="https://dwango.github.io/images/vrm/vrm_header.png" alt="VRM - humanoid 3d avatar format for VR" />
+
+</a></p>
+
+<p><a href="https://github.com/KhronosGroup/glTF/blob/master/specification/2.0/README.md">glTF-2.0</a>のバイナリ形式glbをベースにした、VR向けモデルフォーマットです。</p>
+
+<h2 id="拡張子">拡張子</h2>
+
+<p><code>.vrm</code>を使います。gltfのバイナリ形式<code>.glb</code>と後方互換性があります。</p>
+
+<h2 id="保存できる要素">保存できる要素</h2>
+
+<p>人間型モデル一体分の情報を保存します。</p>
+
+<h3 id="texture">Texture</h3>
+
+<ul>
+<li>image<sup class="footnote-ref" id="fnref:gltf2"><a rel="footnote" href="#fn:gltf2">1</a></sup></li>
+<li>sampler<sup class="footnote-ref" id="fnref:gltf2"><a rel="footnote" href="#fn:gltf2">1</a></sup></li>
+</ul>
+
+<h3 id="material-json-extensions-vrm-materialproperties">Material(json.extensions.VRM.materialProperties)</h3>
+
+<pre><code>json.extensions.VRM.materialProperties[0] = {};
+json.extensions.VRM.materialProperties[0].name = &quot;Alicia_body&quot;; # 名前
+json.extensions.VRM.materialProperties[0].shader = &quot;VRM/UnlitTexture&quot;; # Shader名
+json.extensions.VRM.materialProperties[0].renderQueue = 2000;
+json.extensions.VRM.materialProperties[0].floatProperties = {}; # float型変数
+json.extensions.VRM.materialProperties[0].keywordMap = {}; # キーワード型変数
+json.extensions.VRM.materialProperties[0].tagMap = {}; # bool型変数
+json.extensions.VRM.materialProperties[0].tagMap.RenderType = &quot;Opaque&quot;;
+json.extensions.VRM.materialProperties[0].textureProperties = {}; # テクスチャ参照変数
+json.extensions.VRM.materialProperties[0].textureProperties._MainTex = 0;
+json.extensions.VRM.materialProperties[0].vectorProperties = {}; # vec4型変数
+</code></pre>
+
+<p>Shader名とパラメータのディクショナリをペアにした汎用の構造で保存します。
+現状、Unityに必要な項目を保存しています。
+Shaderの詳細は、<code>VRMが提供するシェーダー</code>を参照してください。</p>
+
+<h4 id="materialの規約">Materialの規約</h4>
+
+<ul>
+<li><strong>マテリアル名はモデル内でユニークである必要があります</strong></li>
+</ul>
+
+<h3 id="mesh">Mesh</h3>
+
+<p>以下の頂点属性を記録します。</p>
+
+<ul>
+<li>attribute<sup class="footnote-ref" id="fnref:gltf2"><a rel="footnote" href="#fn:gltf2">1</a></sup>
+
+<ul>
+<li>position(vec3)</li>
+<li>normal(vec3)</li>
+<li>uv(vec2)</li>
+<li>tangent(vec4)<sup class="footnote-ref" id="fnref:tangent-w"><a rel="footnote" href="#fn:tangent-w">2</a></sup></li>
+</ul></li>
+</ul>
+
+<p>スキニング情報。4ボーンまでのスキニングを格納します。</p>
+
+<ul>
+<li>bone weight(bone_index(int) + bone_weight(float)) x 4</li>
+</ul>
+
+<p>モーフ情報。</p>
+
+<ul>
+<li>morph target<sup class="footnote-ref" id="fnref:gltf2"><a rel="footnote" href="#fn:gltf2">1</a></sup>
+
+<ul>
+<li>position(相対位置)</li>
+<li>normal(vec3)</li>
+<li>tangent(vec3)</li>
+</ul></li>
+</ul>
+
+<h3 id="node">Node</h3>
+
+<p>ボーン構造とメッシュを保持するノードをひとまとめにしたシーンです。</p>
+
+<ul>
+<li>node<sup class="footnote-ref" id="fnref:gltf2"><a rel="footnote" href="#fn:gltf2">1</a></sup>
+
+<ul>
+<li>name</li>
+<li>position(vec3)</li>
+<li>rotation(quaternion)</li>
+<li>scale(vec3)</li>
+</ul></li>
+</ul>
+
+<h2 id="保存する値に対する規約">保存する値に対する規約</h2>
+
+<h3 id="gltf2の規約">GLTF2の規約</h3>
+
+<p>GLTF2の規約に準拠します。
+特に重要な項目です。</p>
+
+<ul>
+<li>メートル単位</li>
+<li>右手Y-UP座標系<sup class="footnote-ref" id="fnref:OpenGLCoord"><a rel="footnote" href="#fn:OpenGLCoord">3</a></sup></li>
+</ul>
+
+<h3 id="vrmの規約">VRMの規約</h3>
+
+<p>人間型モデルに特化して互換性を高めるために、以下の制約を課します。</p>
+
+<ul>
+<li>モデルは原点に位置する</li>
+<li>モデルは-Z向き<sup class="footnote-ref" id="fnref:OpenGLCoord"><a rel="footnote" href="#fn:OpenGLCoord">3</a></sup></li>
+<li>モデルのヒエラルキーはY-UP<sup class="footnote-ref" id="fnref:ZUP"><a rel="footnote" href="#fn:ZUP">4</a></sup></li>
+<li>モデルのメッシュはY-UP<sup class="footnote-ref" id="fnref:ZUP"><a rel="footnote" href="#fn:ZUP">4</a></sup></li>
+<li>モデルのヒエラルキーはT-Pose</li>
+<li>モデルのメッシュはT-Pose</li>
+<li>ボーンに回転を入れない</li>
+<li>ボーンにスケールを入れない</li>
+<li>ヘッドボーンは真正面を向いている<sup class="footnote-ref" id="fnref:LookAt"><a rel="footnote" href="#fn:LookAt">5</a></sup></li>
+</ul>
+
+<h2 id="vrmが提供するシェーダー">VRMが提供するシェーダー</h2>
+
+<p>セル調のキャラクタモデルの運用を想定して以下のシェーダーを用意しています。</p>
+
+<h3 id="unlit系">Unlit系</h3>
+
+<p>ライティング・シェーディングせずにテクスチャ色をそのまま表示します。
+半透明の扱い別に４種類を用意しています。</p>
+
+<ul>
+<li>UnlitTexture(不透明)</li>
+<li>UnlitCutout(透明度が閾値以下の部分を透明とする)</li>
+<li>UnlitTransparent(アルファブレンド。ZWriteしない)<sup class="footnote-ref" id="fnref:Transparent"><a rel="footnote" href="#fn:Transparent">6</a></sup></li>
+<li>UnlitTransparentZWrite(アルファブレンド。ZWriteする)<sup class="footnote-ref" id="fnref:TransparentZWrite"><a rel="footnote" href="#fn:TransparentZWrite">7</a></sup></li>
+</ul>
+
+<h3 id="mtoon">MToon</h3>
+
+<p>セルシェーディング、輪郭線に対応したシェーダー。
+Unlitよりもきめ細かく設定できます。</p>
+
+<h2 id="モデルのボーンマッピング-json-extensions-vrm-humanoid">モデルのボーンマッピング(json.extensions.VRM.humanoid)</h2>
+
+<p>Meshスキニングに使われているボーンと人体の骨格の対応を規格化することで、モーションキャプチャ等のリアルタイムモーションの流し込みができるようにします。</p>
+
+<pre><code>json.extensions.VRM.humanoid = {};
+json.extensions.VRM.humanoid.armStretch = 0.05;
+json.extensions.VRM.humanoid.feetSpacing = 0;
+json.extensions.VRM.humanoid.hasTranslationDoF = false;
+json.extensions.VRM.humanoid.legStretch = 0.05;
+json.extensions.VRM.humanoid.lowerArmTwist = 0.5;
+json.extensions.VRM.humanoid.lowerLegTwist = 0.5;
+json.extensions.VRM.humanoid.upperArmTwist = 0.5;
+json.extensions.VRM.humanoid.upperLegTwist = 0.5;
+json.extensions.VRM.humanoid.humanBones = [];
+json.extensions.VRM.humanoid.humanBones[0] = {};
+json.extensions.VRM.humanoid.humanBones[0].bone = &quot;hips&quot;; # 定義ボーン名
+json.extensions.VRM.humanoid.humanBones[0].node = 3;
+json.extensions.VRM.humanoid.humanBones[0].useDefaultValues = true;
+</code></pre>
+
+<h3 id="定義しているボーン">定義しているボーン</h3>
+
+<ul>
+<li>hips</li>
+<li>spine</li>
+<li>chest</li>
+<li>upperChest<sup class="footnote-ref" id="fnref:notrequired"><a rel="footnote" href="#fn:notrequired">8</a></sup></li>
+<li>neck</li>
+<li>head</li>
+
+<li><p>Left/Right eye<sup class="footnote-ref" id="fnref:notrequired"><a rel="footnote" href="#fn:notrequired">8</a></sup></p></li>
+
+<li><p>Left/Right upperArm</p></li>
+
+<li><p>Left/Right lowerArm</p></li>
+
+<li><p>Left/Right hand</p></li>
+
+<li><p>Left/Right upperLeg</p></li>
+
+<li><p>Left/Right lowerLeg</p></li>
+
+<li><p>Left/Right foot</p></li>
+
+<li><p>Left/Right toe<sup class="footnote-ref" id="fnref:notrequired"><a rel="footnote" href="#fn:notrequired">8</a></sup></p></li>
+
+<li><p>Left/Right thumb proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a rel="footnote" href="#fn:notrequired">8</a></sup></p></li>
+
+<li><p>Left/Right index proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a rel="footnote" href="#fn:notrequired">8</a></sup></p></li>
+
+<li><p>Left/Right middle proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a rel="footnote" href="#fn:notrequired">8</a></sup></p></li>
+
+<li><p>Left/Right ring proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a rel="footnote" href="#fn:notrequired">8</a></sup></p></li>
+
+<li><p>Left/Right little proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a rel="footnote" href="#fn:notrequired">8</a></sup></p></li>
+</ul>
+
+<h2 id="モデル情報-json-extensions-vrm-meta">モデル情報(json.extensions.VRM.meta)</h2>
+
+<pre><code>json.extensions.VRM.meta = {};
+json.extensions.VRM.meta.title = &quot;Alicia Solid&quot;;
+json.extensions.VRM.meta.author = &quot;DWANGO Co., Ltd.&quot;;
+json.extensions.VRM.meta.contactInformation = &quot;http://3d.nicovideo.jp/alicia/&quot;;
+json.extensions.VRM.meta.reference = &quot;&quot;;
+json.extensions.VRM.meta.texture = 6;
+json.extensions.VRM.meta.version = &quot;&quot;;
+
+json.extensions.VRM.meta.allowedUserName = &quot;Everyone&quot;;
+json.extensions.VRM.meta.violentUssageName = &quot;Disallow&quot;;
+json.extensions.VRM.meta.sexualUssageName = &quot;Disallow&quot;;
+json.extensions.VRM.meta.commercialUssageName = &quot;Allow&quot;;
+json.extensions.VRM.meta.otherPermissionUrl = &quot;http://3d.nicovideo.jp/alicia/rule.html&quot;;
+
+json.extensions.VRM.meta.licenseName = &quot;Other&quot;;
+json.extensions.VRM.meta.otherLicenseUrl = &quot;http://3d.nicovideo.jp/alicia/rule.html&quot;;
+</code></pre>
+
+<h3 id="情報">情報</h3>
+
+<h4 id="タイトル-title">タイトル(Title)</h4>
+
+<p>アバターモデルの名前を設定します</p>
+
+<h4 id="作者-author">作者(Author)</h4>
+
+<p>モデルの作者の名前を記述します</p>
+
+<h4 id="連絡先-contact-information">連絡先(Contact Information)</h4>
+
+<p>モデルの作者への連絡先を記述します</p>
+
+<h4 id="参照-reference">参照(Reference)</h4>
+
+<p>何か「親作品」に相当するものがある場合は参照URLなどを記述します</p>
+
+<h4 id="サムネイル-thumbnail">サムネイル(Thumbnail)</h4>
+
+<p>アバターモデルのサムネイルを登録します。2048x2048程度の解像度テクスチャを推奨します。meta情報内ではtexture番号を指定します。</p>
+
+<h4 id="バージョン">バージョン</h4>
+
+<p>モデルの作成バージョンです。</p>
+
+<h3 id="使用許諾-ライセンス情報-license">使用許諾・ライセンス情報(License)</h3>
+
+<h4 id="アバターの人格に関する許諾範囲-personation-charaterization-permission">アバターの人格に関する許諾範囲(Personation / Charaterization Permission)</h4>
+
+<h5 id="アバターに人格を与えることの許諾範囲-a-person-who-can-perform-with-this-avatar">アバターに人格を与えることの許諾範囲(A person who can perform with this avatar)</h5>
+
+<ul>
+<li>アバターを操作することはアバター作者にのみ許される(Only Author)</li>
+<li>明確に許可された人限定(Explictly Licensed Person)</li>
+<li>全員に許可(Everyone)</li>
+</ul>
+
+<h5 id="このアバターを用いて暴力表現を演じることの許可-violent-acts-using-this-avatar">このアバターを用いて暴力表現を演じることの許可(Violent acts using this avatar)</h5>
+
+<ul>
+<li>不許可(Disallow)</li>
+<li>許可(Allow)</li>
+</ul>
+
+<h5 id="このアバターを用いて性的表現を演じることの許可-sexuality-acts-using-this-avatar">このアバターを用いて性的表現を演じることの許可(Sexuality acts using this avatar)</h5>
+
+<ul>
+<li>不許可(Disallow)</li>
+<li>許可(Allow)</li>
+</ul>
+
+<h5 id="商用利用の許可-for-commercial-use">商用利用の許可(For commercial use)</h5>
+
+<ul>
+<li>不許可(Disallow)</li>
+<li>許可(Allow)</li>
+</ul>
+
+<h5 id="その他のライセンス条件-other-license-url">その他のライセンス条件(Other License Url)</h5>
+
+<p>上記許諾条件以外のライセンス条件がある場合はそのライセンス文書へのURLを記述</p>
+
+<h4 id="再配布-改変に関する許諾範囲-redistribution-modifications-license">再配布・改変に関する許諾範囲(Redistribution / Modifications License)</h4>
+
+<h5 id="ライセンスタイプ-license-type">ライセンスタイプ(License Type)</h5>
+
+<ul>
+<li>再配布禁止(Redistribution Prohibited)</li>
+<li><a href="https://creativecommons.org/publicdomain/zero/1.0/deed.ja">著作権放棄(CC0)</a></li>
+<li><a href="https://creativecommons.org/licenses/by/4.0/deed.ja">Creative Commons CC BYライセンス(CC_BY)</a></li>
+<li><a href="https://creativecommons.org/licenses/by-nc/4.0/deed.ja">Creative Commons CC BY NCライセンス(CC_BY_NC)</a></li>
+<li><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja">Creative Commons CC BY SAライセンス(CC_BY_SA)</a></li>
+<li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja">Creative Commons CC BY NC SAライセンス(CC_BY_NC_SA)</a></li>
+<li><a href="https://creativecommons.org/licenses/by-nd/4.0/deed.ja">Creative Commons CC BY NDライセンス(CC_BY_ND)</a></li>
+<li><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja">Creative Commons CC BY NC NDライセンス(CC_BY_NC_ND)</a></li>
+<li>その他(Other)</li>
+</ul>
+
+<h5 id="その他ライセンス条件-other-license-url">その他ライセンス条件(Other License Url)</h5>
+
+<p>上記許諾条件以外のライセンス条件がある場合はそのライセンス文書へのURLを記述</p>
+
+<h2 id="モーフ設定-json-extensions-vrm-blendshapemaster">モーフ設定(json.extensions.VRM.blendShapeMaster)</h2>
+
+<p>BlendShapeをグループ化するBlendShapeGroupの配列を設定します。</p>
+
+<pre><code>json.extensions.VRM.blendShapeMaster.blendShapeGroups[1] = {};
+json.extensions.VRM.blendShapeMaster.blendShapeGroups[1].binds = [];
+json.extensions.VRM.blendShapeMaster.blendShapeGroups[1].binds[0] = {};
+json.extensions.VRM.blendShapeMaster.blendShapeGroups[1].binds[0].index = 0;
+json.extensions.VRM.blendShapeMaster.blendShapeGroups[1].binds[0].mesh = 3;
+json.extensions.VRM.blendShapeMaster.blendShapeGroups[1].binds[0].weight = 100;
+json.extensions.VRM.blendShapeMaster.blendShapeGroups[1].materialValues = [];
+json.extensions.VRM.blendShapeMaster.blendShapeGroups[1].name = &quot;A&quot;; # 名前
+json.extensions.VRM.blendShapeMaster.blendShapeGroups[1].presetName = &quot;a&quot;; # 事前定義名
+</code></pre>
+
+<h3 id="ブレンドシェイプグループ-json-extensions-vrm-blendshapemaster-blendshapegroups">ブレンドシェイプグループ(json.extensions.VRM.blendShapeMaster.blendShapeGroups)</h3>
+
+<h4 id="名前">名前</h4>
+
+<p>名前です。事前定義名と同じ(大文字)を推奨します</p>
+
+<h4 id="事前定義名">事前定義名</h4>
+
+<p>待機状態の表情</p>
+
+<ul>
+<li>Neutral</li>
+</ul>
+
+<p>リップシンク</p>
+
+<ul>
+<li>A</li>
+<li>I</li>
+<li>U</li>
+<li>E</li>
+<li>O</li>
+</ul>
+
+<p>瞬き</p>
+
+<ul>
+<li>Blink</li>
+<li>Blink_L</li>
+<li>Blink_R</li>
+</ul>
+
+<p>喜怒哀楽</p>
+
+<ul>
+<li>Fun</li>
+<li>Angry</li>
+<li>Sorrow</li>
+<li>Joy</li>
+</ul>
+
+<p>視線制御</p>
+
+<ul>
+<li>LookUp</li>
+<li>LookDown</li>
+<li>LookLeft</li>
+<li>LookRight</li>
+</ul>
+
+<p>その他</p>
+
+<ul>
+<li>Unknown</li>
+</ul>
+
+<h4 id="ブレンドシェイプの名前の識別名">ブレンドシェイプの名前の識別名</h4>
+
+<p>システムからブレンドシェイプを一意に認識する文字列IDを以下のロジックで決定します。</p>
+
+<pre><code>// 疑似コード
+function GetID(preset, name)
+{
+  if (Preset != BlendShapePreset.Unknown)
+  {
+      return preset.ToString().ToUpper();
+  }
+  else
+  {
+      return name.ToUpper();
+  }
+}
+</code></pre>
+
+<ul>
+<li>ブレンドシェイプIDがユニークになるようにPresetとNameを設定する</li>
+</ul>
+
+<h2 id="一人称設定-json-extensions-vrm-firstperson">一人称設定(json.extensions.VRM.firstPerson)</h2>
+
+<pre><code>json.extensions.VRM.firstPerson.firstPersonBone = 36;
+json.extensions.VRM.firstPerson.firstPersonBoneOffset = {};
+json.extensions.VRM.firstPerson.firstPersonBoneOffset.x = 0;
+json.extensions.VRM.firstPerson.firstPersonBoneOffset.y = 0.06;
+json.extensions.VRM.firstPerson.firstPersonBoneOffset.z = 0;
+json.extensions.VRM.firstPerson.meshAnnotations = [];
+json.extensions.VRM.firstPerson.meshAnnotations[0] = {};
+json.extensions.VRM.firstPerson.meshAnnotations[0].firstPersonFlag = &quot;Auto&quot;;
+json.extensions.VRM.firstPerson.meshAnnotations[0].mesh = 0;
+json.extensions.VRM.firstPerson.meshAnnotations[1] = {};
+json.extensions.VRM.firstPerson.meshAnnotations[1].firstPersonFlag = &quot;Auto&quot;;
+json.extensions.VRM.firstPerson.meshAnnotations[1].mesh = 1;
+json.extensions.VRM.firstPerson.meshAnnotations[2] = {};
+json.extensions.VRM.firstPerson.meshAnnotations[2].firstPersonFlag = &quot;Auto&quot;;
+json.extensions.VRM.firstPerson.meshAnnotations[2].mesh = 2;
+json.extensions.VRM.firstPerson.meshAnnotations[3] = {};
+json.extensions.VRM.firstPerson.meshAnnotations[3].firstPersonFlag = &quot;Auto&quot;;
+json.extensions.VRM.firstPerson.meshAnnotations[3].mesh = 3;
+json.extensions.VRM.firstPerson.meshAnnotations[4] = {};
+json.extensions.VRM.firstPerson.meshAnnotations[4].firstPersonFlag = &quot;Auto&quot;;
+json.extensions.VRM.firstPerson.meshAnnotations[4].mesh = 4;
+json.extensions.VRM.firstPerson.meshAnnotations[5] = {};
+json.extensions.VRM.firstPerson.meshAnnotations[5].firstPersonFlag = &quot;Auto&quot;;
+json.extensions.VRM.firstPerson.meshAnnotations[5].mesh = 5;
+json.extensions.VRM.firstPerson.meshAnnotations[6] = {};
+json.extensions.VRM.firstPerson.meshAnnotations[6].firstPersonFlag = &quot;Auto&quot;;
+json.extensions.VRM.firstPerson.meshAnnotations[6].mesh = 6;
+</code></pre>
+
+<p>一人称視点のアバターを描画する場合、自モデルの頭部の中が見えてしまうという問題が生じます<sup class="footnote-ref" id="fnref:firstperson"><a rel="footnote" href="#fn:firstperson">9</a></sup>。
+これに対応するために、一人称時の表示状態を指定できます。</p>
+
+<h3 id="firstpersonbone-json-extensions-vrm-firstperson-firstpersonbone">firstPersonBone(json.extensions.VRM.firstPerson.firstPersonBone)</h3>
+
+<p>一人称時に描画を切り替えるべきボーンを指定します。通常<code>Head</code>です。</p>
+
+<h3 id="firstpersonboneoffset-json-extensions-vrm-firstperson-firstpersonboneoffset">firstPersonBoneOffset(json.extensions.VRM.firstPerson.firstPersonBoneOffset)</h3>
+
+<p>一人時のヘッドセットの目標位置。
+頭ボーンからヘッドセットへのオフセットを加味することを想定している。</p>
+
+<h3 id="meshannotations-json-extensions-vrm-firstperson-meshannotations">meshAnnotations(json.extensions.VRM.firstPerson.meshAnnotations)</h3>
+
+<p>各メッシュに対して一人称時とそれ以外で表示・非表示を切り替えることができます。
+以下の設定があります。</p>
+
+<ul>
+<li>Auto: firstPersonBoneとその子孫に対するボーンWeightを持つポリゴンを自動で非表示にする<sup class="footnote-ref" id="fnref:firstPersonAuto"><a rel="footnote" href="#fn:firstPersonAuto">10</a></sup></li>
+<li>FirstPersonOnly: 一人称のみ表示</li>
+<li>ThirdPersonOnly: 三人称のみ表示(頭など一人称時に非表示にするメッシュに指定する)</li>
+<li>Both: 特に表示切替をしない</li>
+</ul>
+
+<h3 id="視線設定">視線設定</h3>
+
+<p>ターゲットの方向を向くようにキャラクタの視線を制御します。</p>
+
+<pre><code>json.extensions.VRM.firstPerson.lookAtTypeName = &quot;Bone&quot;;
+json.extensions.VRM.firstPerson.lookAtHorizontalInner = {};
+json.extensions.VRM.firstPerson.lookAtHorizontalOuter = {};
+json.extensions.VRM.firstPerson.lookAtVerticalDown = {};
+json.extensions.VRM.firstPerson.lookAtVerticalUp = {};
+</code></pre>
+
+<h4 id="目線タイプ-json-extensions-vrm-firstperson-lookattypename">目線タイプ(json.extensions.VRM.firstPerson.lookAtTypeName)</h4>
+
+<ul>
+<li>Bone: ボーンにより目線を操作します。</li>
+<li>BlendShape: BlendShapeにより目線を操作します。BlendShapePreset.LookUp, LookDown, LookLeft, LookRightを使います。</li>
+</ul>
+
+<h4 id="角度調整">角度調整</h4>
+
+<p>頭と目標物の角度差を目ボーンに適用する場合の角度を調整します。</p>
+
+<h5 id="json-extensions-vrm-firstperson-lookathorizontalinner">json.extensions.VRM.firstPerson.lookAtHorizontalInner</h5>
+
+<h5 id="json-extensions-vrm-firstperson-lookathorizontalouter">json.extensions.VRM.firstPerson.lookAtHorizontalOuter</h5>
+
+<h5 id="json-extensions-vrm-firstperson-lookatverticaldown">json.extensions.VRM.firstPerson.lookAtVerticalDown</h5>
+
+<h5 id="json-extensions-vrm-firstperson-lookatverticalup">json.extensions.VRM.firstPerson.lookAtVerticalUp</h5>
+
+<h2 id="揺れモノ設定-json-extensions-vrm-secondaryanimation">揺れモノ設定(json.extensions.VRM.secondaryAnimation)</h2>
+
+<p>尻尾や髪の毛などのひも状のオブジェクトの自動アニメーションの設定です。</p>
+
+<h3 id="揺れるボーン-secondaryanimation-bonegroups">揺れるボーン(secondaryAnimation.boneGroups)</h3>
+
+<pre><code>json.extensions.VRM.secondaryAnimation.boneGroups[0] = {};
+json.extensions.VRM.secondaryAnimation.boneGroups[0].bones = [];
+json.extensions.VRM.secondaryAnimation.boneGroups[0].bones[0] = 41;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].bones[1] = 49;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].bones[2] = 57;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].bones[3] = 59;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].bones[4] = 61;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].center = -1;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups = [];
+json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups[0] = 2;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups[1] = 1;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups[2] = 0;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups[3] = 3;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups[4] = 5;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups[5] = 4;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups[6] = 6;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].comment = &quot;&quot;;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].dragForce = 0.4;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityDir = {};
+json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityDir.x = 0;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityDir.y = -1;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityDir.z = 0;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityPower = 0;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].hitRadius = 0.01;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].stiffiness = 0.65;
+</code></pre>
+
+<h4 id="揺れるボーンの根元のボーン-json-extensions-vrm-secondaryanimation-bonegroups-0-bones">揺れるボーンの根元のボーン(json.extensions.VRM.secondaryAnimation.boneGroups[0].bones)</h4>
+
+<p>揺れモノの根元のボーンのノードインデックスを指定します。</p>
+
+<h4 id="揺れるボーンと衝突する当たり判定-json-extensions-vrm-secondaryanimation-bonegroups-0-collidergroups">揺れるボーンと衝突する当たり判定(json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups)</h4>
+
+<p>揺れモノに対する衝突判定グループのインデックスを指定します。</p>
+
+<h4 id="パラメーター">パラメーター</h4>
+
+<h5 id="center-json-extensions-vrm-secondaryanimation-bonegroups-0-center">center(json.extensions.VRM.secondaryAnimation.boneGroups[0].center)</h5>
+
+<p>world原点以外の、揺れモノの基準点を設定できます。
+ワープで移動するUIを実装した場合に、ワープ移動で揺れモノを揺らしたくない場合にワープで移動する親ノードを指定できます。</p>
+
+<h5 id="dragforce-json-extensions-vrm-secondaryanimation-bonegroups-0-dragforce">dragForce(json.extensions.VRM.secondaryAnimation.boneGroups[0].dragForce)</h5>
+
+<p>自動アニメーションの抵抗(減速)です。</p>
+
+<h5 id="garvitydir-json-extensions-vrm-secondaryanimation-bonegroups-0-gravitydir">garvityDir(json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityDir)</h5>
+
+<p>重力の方向です。(0, -1, 0)にすると重力に、(1, 0, 0)にすると風のように作用します。</p>
+
+<h5 id="gravitypower-json-extensions-vrm-secondaryanimation-bonegroups-0-gravitypower">gravityPower(json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityPower)</h5>
+
+<p>重力の強さです。</p>
+
+<h5 id="hitradius-json-extensions-vrm-secondaryanimation-bonegroups-0-hitradius">hitRadius(json.extensions.VRM.secondaryAnimation.boneGroups[0].hitRadius)</h5>
+
+<p>Colliderとの当たり判定の半径です</p>
+
+<h5 id="stiffiness-json-extensions-vrm-secondaryanimation-bonegroups-0-stiffiness">stiffiness(json.extensions.VRM.secondaryAnimation.boneGroups[0].stiffiness)</h5>
+
+<p>揺れモノの復元力(初期姿勢に戻る力)です</p>
+
+<h3 id="揺れモノ当たり判定設定-json-extensions-vrm-secondaryanimation-collidergroups">揺れモノ当たり判定設定(json.extensions.VRM.secondaryAnimation.colliderGroups)</h3>
+
+<p>揺れモノと衝突する球を設定します。</p>
+
+<pre><code class="language-cs">json.extensions.VRM.secondaryAnimation.colliderGroups = [];
+json.extensions.VRM.secondaryAnimation.colliderGroups[0] = {};
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders = [];
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[0] = {};
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[0].offset = {};
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[0].offset.x = 0;
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[0].offset.y = 0.05;
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[0].offset.z = 0;
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[0].radius = 0.09;
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1] = {};
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].offset = {};
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].offset.x = 0;
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].offset.y = 0;
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].offset.z = 0;
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].radius = 0.09;
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].node = 34;
+</code></pre>
+
+<h4 id="ノード-json-extensions-vrm-secondaryanimation-collidergroups-0-node">ノード(json.extensions.VRM.secondaryAnimation.colliderGroups[0].node)</h4>
+
+<p>当たり判定を設置するノードです。</p>
+
+<h4 id="ローカル座標-json-extensions-vrm-secondaryanimation-collidergroups-0-colliders-1-offset">ローカル座標(json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].offset)</h4>
+
+<p>当たり判定のノードからのローカル座標です。</p>
+
+<h4 id="半径-json-extensions-vrm-secondaryanimation-collidergroups-0-colliders-1-radius">半径(json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].radius)</h4>
+
+<p>当たり判定の半径です。</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:gltf2">gltf2として保存します。
+ <a class="footnote-return" href="#fnref:gltf2"><sup>[return]</sup></a></li>
+<li id="fn:tangent-w">wには1か-1が入ります。
+ <a class="footnote-return" href="#fnref:tangent-w"><sup>[return]</sup></a></li>
+<li id="fn:OpenGLCoord">OpenGL座標系。+Xが右、+Yが上、+Zが手前です。
+ <a class="footnote-return" href="#fnref:OpenGLCoord"><sup>[return]</sup></a></li>
+<li id="fn:ZUP">Blenderや3ds MaxなどのZ-UPのモデラーに由来するモデルでヒエラルキーの途中でx軸-90度の回転を入れてZ-UPが入れ子になっている場合があります。
+ <a class="footnote-return" href="#fnref:ZUP"><sup>[return]</sup></a></li>
+<li id="fn:LookAt">視線制御はT-Pose時のヘッドの向きを基準に目標物の方向を計算します。
+ <a class="footnote-return" href="#fnref:LookAt"><sup>[return]</sup></a></li>
+<li id="fn:Transparent">煙や頬の色など実体の無いオブジェクト向けです。
+ <a class="footnote-return" href="#fnref:Transparent"><sup>[return]</sup></a></li>
+<li id="fn:TransparentZWrite">半透明の衣装や、髪の先が半透明など実体のあるオブジェクト向けです。
+ <a class="footnote-return" href="#fnref:TransparentZWrite"><sup>[return]</sup></a></li>
+<li id="fn:notrequired">無くても問題ありません。
+ <a class="footnote-return" href="#fnref:notrequired"><sup>[return]</sup></a></li>
+<li id="fn:firstperson">バックフェースカリングや近平面である程度対処できますが、口の中が作りこんであるモデルの歯茎が意図せずに見えてしまうなど不十分な場合があります。
+ <a class="footnote-return" href="#fnref:firstperson"><sup>[return]</sup></a></li>
+<li id="fn:firstPersonAuto">実行時に自動で非表示部分を削除したモデルを生成します。
+ <a class="footnote-return" href="#fnref:firstPersonAuto"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+    </article>
+  </div>
+</div>
+
+    </div>
+
+    
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-109076308-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

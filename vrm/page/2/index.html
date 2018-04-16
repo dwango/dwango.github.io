@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.29" />
+
+  <meta property="og:title" content="VRM - dwango on GitHub">
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>VRM - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/vrm.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="https://dwango.github.io/vrm/index.xml" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
+      <p class="lead">
+       
+ 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a> </li>
+      <li><a href="/articles"> Articles </a></li><li><a href="https://nico.ms/job/"> Hiring </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li>
+    </ul>
+
+    <p>
+      
+        <p style="display:inline-block;vertical-align:middle;">
+          Copyright &copy; DWANGO Co., Ltd.
+        </p>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    <h1>Articles</h1>
+
+
+<div class="posts">
+<div class="post">
+  <h3 class="post-title">
+    ・<a href="https://dwango.github.io/vrm/how_to_make_vrm/">VRMファイルを作ってみたい</a>
+  </h3>
+  <span class="post-date">Mon, Apr 16, 2018</span>
+  <p class="summary">
+    VRMファイルのつくりかた（既存3Dモデルからのコンバート） VRMファイルをつくるためには、UnityとUniVRMを使用します。 おおまかな
+    
+    <a href="/vrm/how_to_make_vrm/">...</a>
+    
+  </p>
+</div>
+<div class="post">
+  <h3 class="post-title">
+    ・<a href="https://dwango.github.io/vrm/how_to_view_vrm/">VRMファイルを眺めてみたい</a>
+  </h3>
+  <span class="post-date">Mon, Apr 16, 2018</span>
+  <p class="summary">
+    VRMファイルの読み込みかた 申し訳ありません、簡単なVRMファイルのビューアーアプリケーションは2018年4月16日現在まだありません！ 少し
+    
+    <a href="/vrm/how_to_view_vrm/">...</a>
+    
+  </p>
+</div>
+<div class="post">
+  <h3 class="post-title">
+    ・<a href="https://dwango.github.io/vrm/univrm/api/univrm_import_runtime/">VRMモデルを実行時にインポートする</a>
+  </h3>
+  <span class="post-date">Mon, Apr 16, 2018</span>
+  <p class="summary">
+    Unityで実行時にモデルをインポートする方法です。 ファイルパスからVRMを開く var path=&#34;sample.vrm&#34;; var go=VRM.VRMImporter.LoadFromPath(path); Debug.LogFormat(&#34;loaded {0}&#34;, go.name); ファイルパスから非同期にVRMを開く var path=&#34;sample.vrm&#34;; VRMImporter.LoadVrmAsync(path, go =&gt;
+    
+    <a href="/vrm/univrm/api/univrm_import_runtime/">...</a>
+    
+  </p>
+</div>
+<div class="post">
+  <h3 class="post-title">
+    ・<a href="https://dwango.github.io/vrm/vrm_spec/">VRM仕様</a>
+  </h3>
+  <span class="post-date">Mon, Apr 16, 2018</span>
+  <p class="summary">
+    glTF-2.0のバイナリ形式glbをベースにした、VR向けモデルフォーマットです。 拡張子 .vrmを使います。gltfのバイナリ形式.glb
+    
+    <a href="/vrm/vrm_spec/">...</a>
+    
+  </p>
+</div>
+<div class="post">
+  <h3 class="post-title">
+    ・<a href="https://dwango.github.io/vrm/vrm_extension/">gltf VRM extension</a>
+  </h3>
+  <span class="post-date">Mon, Apr 16, 2018</span>
+  <p class="summary">
+    Contributors  dwango  Status Draft
+Dependencies Written against the glTF 2.0 spec.
+Overview This extension defines Humanoid model for VR.
+ human bone definitions standard morphs secondary animation annotations mesh visibilities for first person view  glTF Schema Updates This extension adds:
+JSON Schema TODO: Links to the JSON schema for the new extension properties.
+Known Implementations  TODO: List of known implementations, with links to each if available.
+    
+    <a href="/vrm/vrm_extension/">...</a>
+    
+  </p>
+</div>
+<div class="post">
+  <h3 class="post-title">
+    ・<a href="https://dwango.github.io/vrm/vrm_about/">「VRM」って何？どんなことができる？</a>
+  </h3>
+  <span class="post-date">Mon, Apr 16, 2018</span>
+  <p class="summary">
+    「VRM」とは VR(Virtual Reality)やVTuberなどにおいて「キャラクターや人型のアバター（の3Dモデル）」を取り扱おうとした場合、従来はアプ
+    
+    <a href="/vrm/vrm_about/">...</a>
+    
+  </p>
+</div>
+<div class="post">
+  <h3 class="post-title">
+    ・<a href="https://dwango.github.io/vrm/univrm/components/univrm_blendshape/">ブレンドシェイプの設定</a>
+  </h3>
+  <span class="post-date">Mon, Apr 16, 2018</span>
+  <p class="summary">
+    VRMBlendShapeProxy 実行時のVRMBlendShapeProxyのインスペクタ。Editorをプレイ状態にすると表示されます 使い方は、 BlendShapeAv
+    
+    <a href="/vrm/univrm/components/univrm_blendshape/">...</a>
+    
+  </p>
+</div>
+<div class="post">
+  <h3 class="post-title">
+    ・<a href="https://dwango.github.io/vrm/univrm/components/univrm_meta/">モデル情報</a>
+  </h3>
+  <span class="post-date">Mon, Apr 16, 2018</span>
+  <p class="summary">
+    VRMMeta VRMMetaコンポーネント 情報(Information) タイトル(Title) アバターモデルの名前を設定します 作者(Author) モデル
+    
+    <a href="/vrm/univrm/components/univrm_meta/">...</a>
+    
+  </p>
+</div>
+<div class="post">
+  <h3 class="post-title">
+    ・<a href="https://dwango.github.io/vrm/univrm/components/univrm_firstperson/">一人称表示</a>
+  </h3>
+  <span class="post-date">Mon, Apr 16, 2018</span>
+  <p class="summary">
+    VRMFirstPerson 一人称表示に関連する設定です。 立体ちゃんは頭とそれ以外が分かれているので体をBoth、頭をThirdPersonOnlyに設定します。 FirstPersonBone 通
+    
+    <a href="/vrm/univrm/components/univrm_firstperson/">...</a>
+    
+  </p>
+</div>
+<div class="post">
+  <h3 class="post-title">
+    ・<a href="https://dwango.github.io/vrm/univrm/components/univrm_lookat/">視線制御</a>
+  </h3>
+  <span class="post-date">Mon, Apr 16, 2018</span>
+  <p class="summary">
+    VRMLookAtHead VRMLookAtHead このコンポーネントは頭から見たTargetの方向を計算します。 Target 注視する対象物です。目を向けたい場所にあるオブジェクトをセットしてくださ
+    
+    <a href="/vrm/univrm/components/univrm_lookat/">...</a>
+    
+  </p>
+</div>
+
+</div>
+
+
+
+<div class="pagination-container">
+  <div class="pagination">
+
+    
+      
+      <a href="/vrm/" aria-label="First">&lt;&lt;</a>
+      
+
+      <a href="/vrm/" aria-label="Previous">&lt;</a>
+    
+
+
+    
+      <a href="/vrm/">1</a>
+    
+      <a href="/vrm/page/2/" class="current">2</a>
+    
+
+
+    
+    <span aria-hidden="true">&gt;</span>
+    <span aria-hidden="true">&gt;&gt;</span>
+    
+
+  </div>
+</div>
+
+
+    </div>
+
+    
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-109076308-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

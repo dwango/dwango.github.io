@@ -3,6 +3,111 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://dwango.github.io/vrm/univrm/api/univrm_use_blendshape/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/vrm/gltf_about/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/vrm/univrm/shaders/mtoon/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/vrm/univrm/shaders/univrm_shaders/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/vrm/univrm/univrm_install/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/vrm/univrm/api/univrm_coordinate/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/vrm/univrm/univrm_workflow/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/vrm/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/vrm/univrm/components/univrm_secondary/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/vrm/vrm_tpose/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/vrm/vrm_applications/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/vrm/how_to_make_vrm/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/vrm/how_to_view_vrm/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/vrm/univrm/api/univrm_import_runtime/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/vrm/vrm_spec/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/vrm/vrm_extension/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/vrm/vrm_about/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/vrm/univrm/components/univrm_blendshape/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/vrm/univrm/components/univrm_meta/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/vrm/univrm/components/univrm_firstperson/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/vrm/univrm/components/univrm_lookat/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://dwango.github.io/articles/harekazectf2018/</loc>
     <lastmod>2018-04-09T18:00:00+09:00</lastmod>
   </url>
@@ -80,7 +185,7 @@
   
   <url>
     <loc>https://dwango.github.io/</loc>
-    <lastmod>2018-04-09T18:00:00+09:00</lastmod>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   

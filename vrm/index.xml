@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>dwango on GitHub</title>
-    <link>https://dwango.github.io/</link>
-    <description>Recent content on dwango on GitHub</description>
+    <title>VRM on dwango on GitHub</title>
+    <link>https://dwango.github.io/vrm/</link>
+    <description>Recent content in VRM on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>DWANGO Co., Ltd.</copyright>
     <lastBuildDate>Mon, 16 Apr 2018 16:30:00 +0900</lastBuildDate>
     
-	<atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://dwango.github.io/vrm/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -195,114 +195,6 @@ Known Implementations  TODO: List of known implementations, with links to each i
       
       <guid>https://dwango.github.io/vrm/univrm/components/univrm_lookat/</guid>
       <description>VRMLookAtHead VRMLookAtHead このコンポーネントは頭から見たTargetの方向を計算します。 Target 注視する対象物です。目を向けたい場所にあるオブジェクトをセットしてくださ</description>
-    </item>
-    
-    <item>
-      <title>Harekaze CTF 2018のスポンサーをしました</title>
-      <link>https://dwango.github.io/articles/harekazectf2018/</link>
-      <pubDate>Mon, 09 Apr 2018 18:00:00 +0900</pubDate>
-      
-      <guid>https://dwango.github.io/articles/harekazectf2018/</guid>
-      <description>はじめに 第二サービス開発本部 研究開発部の鷹取です。 私は個人的にCTFチーム Harekazeに所属しています。 チームHarekazeでは、20</description>
-    </item>
-    
-    <item>
-      <title>いきのこれ！社畜ちゃん3巻のプログラム作成をお手伝いした時の話</title>
-      <link>https://dwango.github.io/articles/shachiku-chan-vol3/</link>
-      <pubDate>Tue, 23 Jan 2018 18:00:00 +0900</pubDate>
-      
-      <guid>https://dwango.github.io/articles/shachiku-chan-vol3/</guid>
-      <description>技術コミュニケーション室の中山です。 2017年11月に発売されたいきのこれ！ 社畜ちゃん（3）のプログラミング講座にて、プログラム作成をお手伝</description>
-    </item>
-    
-    <item>
-      <title>とあるクエリを2万倍速にした話 -データベースの気持ちになる- 後編</title>
-      <link>https://dwango.github.io/articles/mastodon-database-index-2/</link>
-      <pubDate>Fri, 19 Jan 2018 19:00:00 +0900</pubDate>
-      
-      <guid>https://dwango.github.io/articles/mastodon-database-index-2/</guid>
-      <description>技術コミュニケーション室 OSSグループの髙﨑です。 本記事は、とあるクエリを2万倍速にした話 -データベースの気持ちになる- 前編の続きです。 前回</description>
-    </item>
-    
-    <item>
-      <title>とあるクエリを2万倍速にした話 -データベースの気持ちになる- 前編</title>
-      <link>https://dwango.github.io/articles/mastodon-database-index-1/</link>
-      <pubDate>Thu, 18 Jan 2018 13:00:00 +0900</pubDate>
-      
-      <guid>https://dwango.github.io/articles/mastodon-database-index-1/</guid>
-      <description>技術コミュニケーション室 OSSグループの髙﨑です。 当グループでは、マストドンというオープンソースの分散型マイクロブログについて、 弊社が運営す</description>
-    </item>
-    
-    <item>
-      <title>超歌舞伎に登場する初音ミクさんの美麗な舞を高品質なままMicrosoft HoloLensで鑑賞する技術</title>
-      <link>https://dwango.github.io/articles/dc-expo-miku/</link>
-      <pubDate>Wed, 27 Dec 2017 08:00:00 +0900</pubDate>
-      
-      <guid>https://dwango.github.io/articles/dc-expo-miku/</guid>
-      <description>TL;DR（とても長いのでまとめ） HoloLensの3D計算能力は限られているので、美麗なミクさんを美麗なまま鑑賞するために細々とした工夫を</description>
-    </item>
-    
-    <item>
-      <title>白黒漫画にDeep Learningで着色する ～参照画像を使って～</title>
-      <link>https://dwango.github.io/articles/comicolorization/</link>
-      <pubDate>Tue, 26 Dec 2017 14:00:00 +0900</pubDate>
-      
-      <guid>https://dwango.github.io/articles/comicolorization/</guid>
-      <description>この記事はドワンゴアドベントカレンダー26日目(延長戦!)の記事です。 私は、Dwango Media Villageで研究を行なっている古澤です。Dwa</description>
-    </item>
-    
-    <item>
-      <title>エンジニアが読みたくなる職務経歴書</title>
-      <link>https://dwango.github.io/articles/engineers-resume/</link>
-      <pubDate>Sun, 24 Dec 2017 00:00:00 +0900</pubDate>
-      
-      <guid>https://dwango.github.io/articles/engineers-resume/</guid>
-      <description>この記事はドワンゴ Advent Calendar 2017 24日目の記事です。メリークリスマス！ ドワンゴ 技術コミュニケーション室の塩谷（ @kwappa / kwappa@friends.nico ）です。 先日、技術コミュニケーシ</description>
-    </item>
-    
-    <item>
-      <title>RubyWorld Conference 2017に参加してきました</title>
-      <link>https://dwango.github.io/articles/rubyworld_conference_2017/</link>
-      <pubDate>Tue, 28 Nov 2017 16:30:00 +0900</pubDate>
-      
-      <guid>https://dwango.github.io/articles/rubyworld_conference_2017/</guid>
-      <description>ドワンゴ 技術コミュニケーション室の塩谷（ @kwappa / kwappa@friends.nico ）です。 11月1日と2日に島根県松江市で開催された「RubyWorld Conference 2017」に参加してき</description>
-    </item>
-    
-    <item>
-      <title>VimConf 2017のスポンサーをしました</title>
-      <link>https://dwango.github.io/articles/vimconf2017/</link>
-      <pubDate>Tue, 14 Nov 2017 00:00:00 +0900</pubDate>
-      
-      <guid>https://dwango.github.io/articles/vimconf2017/</guid>
-      <description>はじめに こんにちは。 第二サービス開発本部所属、新卒エンジニアのmoppです。 先日(2017/11/04)にVimConf 2017が開催され、</description>
-    </item>
-    
-    <item>
-      <title>ニコニコ生放送におけるdockerの活用事例</title>
-      <link>https://dwango.github.io/articles/nicolive_docker_swarm/</link>
-      <pubDate>Mon, 06 Nov 2017 13:00:00 +0900</pubDate>
-      
-      <guid>https://dwango.github.io/articles/nicolive_docker_swarm/</guid>
-      <description>この記事はdwango エンジニア ブロマガの記事を再収録したものです。 はじめに はじめまして。ニコニコ生放送でマイクロサービスチームのグループリ</description>
-    </item>
-    
-    <item>
-      <title>riapi.nicovideo.jp APIサーバの廃止と移行のお知らせ</title>
-      <link>https://dwango.github.io/articles/nicovideo_remove_flapi/</link>
-      <pubDate>Fri, 03 Nov 2017 08:00:00 +0900</pubDate>
-      
-      <guid>https://dwango.github.io/articles/nicovideo_remove_flapi/</guid>
-      <description>こんにちは、ニコニコ動画開発チームからのお知らせです。 運用状況の都合により、 riapi.nicovideo.jp のAPIサーバは 2018年1月31日をもちまして機能を停止させ</description>
-    </item>
-    
-    <item>
-      <title>dwango.github.io を公開しました</title>
-      <link>https://dwango.github.io/articles/move_to_github_io/</link>
-      <pubDate>Tue, 31 Oct 2017 18:00:00 +0900</pubDate>
-      
-      <guid>https://dwango.github.io/articles/move_to_github_io/</guid>
-      <description>ドワンゴ 技術コミュニケーション室の塩谷（ @kwappa / kwappa@friends.nico ）です。 ドワンゴではエンジニアブログとして自社プロダクトである「ブロマガ」を使ってきました。し</description>
     </item>
     
   </channel>
