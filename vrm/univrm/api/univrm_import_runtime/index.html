@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.29" />
+  <meta name="generator" content="Hugo 0.37.1" />
 
   <meta property="og:title" content="VRMモデルを実行時にインポートする - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -94,59 +94,54 @@
 
 <h2 id="ファイルパスからvrmを開く">ファイルパスからVRMを開く</h2>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="">var path=&#34;sample.vrm&#34;;
-</span><span style="">var go=VRM.VRMImporter.LoadFromPath(path);
-</span><span style="">Debug.LogFormat(&#34;loaded {0}&#34;, go.name);</span></code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
+<span style="color:#66d9ef">var</span> go=<span style="color:#a6e22e">VRM</span>.<span style="color:#a6e22e">VRMImporter</span>.LoadFromPath(path);
+<span style="color:#a6e22e">Debug</span>.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, <span style="color:#a6e22e">go</span>.name);</code></pre></div>
 
 <h2 id="ファイルパスから非同期にvrmを開く">ファイルパスから非同期にVRMを開く</h2>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="">var path=&#34;sample.vrm&#34;;
-</span><span style="">VRMImporter.LoadVrmAsync(path, go =&gt; {
-</span><span style="">    Debug.LogFormat(&#34;loaded {0}&#34;, go.name);
-</span><span style="">});</span></code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
+<span style="color:#a6e22e">VRMImporter</span>.LoadVrmAsync(path, go =&gt; {
+    <span style="color:#a6e22e">Debug</span>.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, <span style="color:#a6e22e">go</span>.name);
+});</code></pre></div>
 
 <h2 id="バイト列からvrm開く">バイト列からVRM開く</h2>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="">var path=&#34;sample.vrm&#34;;
-</span><span style="">var bytes = File.ReadAllBytes(path);
-</span><span style="">var go=VRMImporter.LoadFromBytes(bytes);</span></code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
+<span style="color:#66d9ef">var</span> bytes = <span style="color:#a6e22e">File</span>.ReadAllBytes(path);
+<span style="color:#66d9ef">var</span> go=<span style="color:#a6e22e">VRMImporter</span>.LoadFromBytes(bytes);</code></pre></div>
 
 <h2 id="バイト列から非同期にvrmを開く">バイト列から非同期にVRMを開く</h2>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="">VRMImporter.LoadVrmAsync(bytes, go =&gt; {
-</span><span style="">    Debug.LogFormat(&#34;loaded {0}&#34;, go.name);
-</span><span style="">});</span></code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#a6e22e">VRMImporter</span>.LoadVrmAsync(bytes, go =&gt; {
+    <span style="color:#a6e22e">Debug</span>.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, <span style="color:#a6e22e">go</span>.name);
+});</code></pre></div>
 
 <h2 id="vrmから情報を取り出す">VRMから情報を取り出す</h2>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="">var path=&#34;sample.vrm&#34;;
-</span><span style="">var bytes = File.ReadAllBytes(path);
-</span><span style="">
-</span><span style="">var context = new VRMImporterContext(path);
-</span><span style="">
-</span><span style="">// GLB形式でJSONを取得しParseします
-</span><span style="">var dataChunk = context.ParseVrm(bytes);
-</span><span style="">
-</span><span style="">// GLTFにアクセスできます
-</span><span style="">Debug.LogFormat(&#34;{0}&#34;, context.VRM);
-</span><span style="">
-</span><span style="">// ParseしたJSONをシーンオブジェクトに変換していく
-</span><span style="">if (m_loadAsync)
-</span><span style="">{
-</span><span style="">     VRMImporter.LoadVrmAsync(context, dataChunk, go=&gt; {
-</span><span style="">        Debug.LogFormat(&#34;loaded {0}&#34;, go.name);
-</span><span style="">    });
-</span><span style="">}
-</span><span style="">else
-</span><span style="">{
-</span><span style="">    var go=VRMImporter.LoadFromBytes(context, dataChunk);
-</span><span style="">    Debug.LogFormat(&#34;loaded {0}&#34;, go.name);
-</span><span style="">}</span></code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
+<span style="color:#66d9ef">var</span> bytes = <span style="color:#a6e22e">File</span>.ReadAllBytes(path);
+
+<span style="color:#66d9ef">var</span> context = <span style="color:#66d9ef">new</span> VRMImporterContext(path);
+
+<span style="color:#75715e">// GLB形式でJSONを取得しParseします
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> dataChunk = <span style="color:#a6e22e">context</span>.ParseVrm(bytes);
+
+<span style="color:#75715e">// GLTFにアクセスできます
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Debug</span>.LogFormat(<span style="color:#e6db74">&#34;{0}&#34;</span>, <span style="color:#a6e22e">context</span>.VRM);
+
+<span style="color:#75715e">// ParseしたJSONをシーンオブジェクトに変換していく
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> (m_loadAsync)
+{
+     <span style="color:#a6e22e">VRMImporter</span>.LoadVrmAsync(context, dataChunk, go=&gt; {
+        <span style="color:#a6e22e">Debug</span>.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, <span style="color:#a6e22e">go</span>.name);
+    });
+}
+<span style="color:#66d9ef">else</span>
+{
+    <span style="color:#66d9ef">var</span> go=<span style="color:#a6e22e">VRMImporter</span>.LoadFromBytes(context, dataChunk);
+    <span style="color:#a6e22e">Debug</span>.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, <span style="color:#a6e22e">go</span>.name);
+}</code></pre></div>
 
     </article>
   </div>
@@ -155,12 +150,5 @@
     </div>
 
     
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-109076308-1', 'auto');
-ga('send', 'pageview');
-</script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
-
   </body>
 </html>

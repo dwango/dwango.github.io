@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.29" />
+  <meta name="generator" content="Hugo 0.37.1" />
 
   <meta property="og:title" content="VRM仕様 - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -200,8 +200,8 @@
 <h3 id="texture">Texture</h3>
 
 <ul>
-<li>image<sup class="footnote-ref" id="fnref:gltf2"><a rel="footnote" href="#fn:gltf2">1</a></sup></li>
-<li>sampler<sup class="footnote-ref" id="fnref:gltf2"><a rel="footnote" href="#fn:gltf2">1</a></sup></li>
+<li>image<sup class="footnote-ref" id="fnref:gltf2"><a href="#fn:gltf2">1</a></sup></li>
+<li>sampler<sup class="footnote-ref" id="fnref:gltf2"><a href="#fn:gltf2">1</a></sup></li>
 </ul>
 
 <h3 id="material-json-extensions-vrm-materialproperties">Material(json.extensions.VRM.materialProperties)</h3>
@@ -234,13 +234,13 @@ Shaderの詳細は、<code>VRMが提供するシェーダー</code>を参照し�
 <p>以下の頂点属性を記録します。</p>
 
 <ul>
-<li>attribute<sup class="footnote-ref" id="fnref:gltf2"><a rel="footnote" href="#fn:gltf2">1</a></sup>
+<li>attribute<sup class="footnote-ref" id="fnref:gltf2"><a href="#fn:gltf2">1</a></sup>
 
 <ul>
 <li>position(vec3)</li>
 <li>normal(vec3)</li>
 <li>uv(vec2)</li>
-<li>tangent(vec4)<sup class="footnote-ref" id="fnref:tangent-w"><a rel="footnote" href="#fn:tangent-w">2</a></sup></li>
+<li>tangent(vec4)<sup class="footnote-ref" id="fnref:tangent-w"><a href="#fn:tangent-w">2</a></sup></li>
 </ul></li>
 </ul>
 
@@ -253,7 +253,7 @@ Shaderの詳細は、<code>VRMが提供するシェーダー</code>を参照し�
 <p>モーフ情報。</p>
 
 <ul>
-<li>morph target<sup class="footnote-ref" id="fnref:gltf2"><a rel="footnote" href="#fn:gltf2">1</a></sup>
+<li>morph target<sup class="footnote-ref" id="fnref:gltf2"><a href="#fn:gltf2">1</a></sup>
 
 <ul>
 <li>position(相対位置)</li>
@@ -267,7 +267,7 @@ Shaderの詳細は、<code>VRMが提供するシェーダー</code>を参照し�
 <p>ボーン構造とメッシュを保持するノードをひとまとめにしたシーンです。</p>
 
 <ul>
-<li>node<sup class="footnote-ref" id="fnref:gltf2"><a rel="footnote" href="#fn:gltf2">1</a></sup>
+<li>node<sup class="footnote-ref" id="fnref:gltf2"><a href="#fn:gltf2">1</a></sup>
 
 <ul>
 <li>name</li>
@@ -286,7 +286,7 @@ Shaderの詳細は、<code>VRMが提供するシェーダー</code>を参照し�
 
 <ul>
 <li>メートル単位</li>
-<li>右手Y-UP座標系<sup class="footnote-ref" id="fnref:OpenGLCoord"><a rel="footnote" href="#fn:OpenGLCoord">3</a></sup></li>
+<li>右手Y-UP座標系<sup class="footnote-ref" id="fnref:OpenGLCoord"><a href="#fn:OpenGLCoord">3</a></sup></li>
 </ul>
 
 <h3 id="vrmの規約">VRMの規約</h3>
@@ -295,14 +295,14 @@ Shaderの詳細は、<code>VRMが提供するシェーダー</code>を参照し�
 
 <ul>
 <li>モデルは原点に位置する</li>
-<li>モデルは-Z向き<sup class="footnote-ref" id="fnref:OpenGLCoord"><a rel="footnote" href="#fn:OpenGLCoord">3</a></sup></li>
-<li>モデルのヒエラルキーはY-UP<sup class="footnote-ref" id="fnref:ZUP"><a rel="footnote" href="#fn:ZUP">4</a></sup></li>
-<li>モデルのメッシュはY-UP<sup class="footnote-ref" id="fnref:ZUP"><a rel="footnote" href="#fn:ZUP">4</a></sup></li>
+<li>モデルは-Z向き<sup class="footnote-ref" id="fnref:OpenGLCoord"><a href="#fn:OpenGLCoord">3</a></sup></li>
+<li>モデルのヒエラルキーはY-UP<sup class="footnote-ref" id="fnref:ZUP"><a href="#fn:ZUP">4</a></sup></li>
+<li>モデルのメッシュはY-UP<sup class="footnote-ref" id="fnref:ZUP"><a href="#fn:ZUP">4</a></sup></li>
 <li>モデルのヒエラルキーはT-Pose</li>
 <li>モデルのメッシュはT-Pose</li>
 <li>ボーンに回転を入れない</li>
 <li>ボーンにスケールを入れない</li>
-<li>ヘッドボーンは真正面を向いている<sup class="footnote-ref" id="fnref:LookAt"><a rel="footnote" href="#fn:LookAt">5</a></sup></li>
+<li>ヘッドボーンは真正面を向いている<sup class="footnote-ref" id="fnref:LookAt"><a href="#fn:LookAt">5</a></sup></li>
 </ul>
 
 <h2 id="vrmが提供するシェーダー">VRMが提供するシェーダー</h2>
@@ -317,8 +317,8 @@ Shaderの詳細は、<code>VRMが提供するシェーダー</code>を参照し�
 <ul>
 <li>UnlitTexture(不透明)</li>
 <li>UnlitCutout(透明度が閾値以下の部分を透明とする)</li>
-<li>UnlitTransparent(アルファブレンド。ZWriteしない)<sup class="footnote-ref" id="fnref:Transparent"><a rel="footnote" href="#fn:Transparent">6</a></sup></li>
-<li>UnlitTransparentZWrite(アルファブレンド。ZWriteする)<sup class="footnote-ref" id="fnref:TransparentZWrite"><a rel="footnote" href="#fn:TransparentZWrite">7</a></sup></li>
+<li>UnlitTransparent(アルファブレンド。ZWriteしない)<sup class="footnote-ref" id="fnref:Transparent"><a href="#fn:Transparent">6</a></sup></li>
+<li>UnlitTransparentZWrite(アルファブレンド。ZWriteする)<sup class="footnote-ref" id="fnref:TransparentZWrite"><a href="#fn:TransparentZWrite">7</a></sup></li>
 </ul>
 
 <h3 id="mtoon">MToon</h3>
@@ -352,11 +352,11 @@ json.extensions.VRM.humanoid.humanBones[0].useDefaultValues = true;
 <li>hips</li>
 <li>spine</li>
 <li>chest</li>
-<li>upperChest<sup class="footnote-ref" id="fnref:notrequired"><a rel="footnote" href="#fn:notrequired">8</a></sup></li>
+<li>upperChest<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">8</a></sup></li>
 <li>neck</li>
 <li>head</li>
 
-<li><p>Left/Right eye<sup class="footnote-ref" id="fnref:notrequired"><a rel="footnote" href="#fn:notrequired">8</a></sup></p></li>
+<li><p>Left/Right eye<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">8</a></sup></p></li>
 
 <li><p>Left/Right upperArm</p></li>
 
@@ -370,17 +370,17 @@ json.extensions.VRM.humanoid.humanBones[0].useDefaultValues = true;
 
 <li><p>Left/Right foot</p></li>
 
-<li><p>Left/Right toe<sup class="footnote-ref" id="fnref:notrequired"><a rel="footnote" href="#fn:notrequired">8</a></sup></p></li>
+<li><p>Left/Right toe<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">8</a></sup></p></li>
 
-<li><p>Left/Right thumb proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a rel="footnote" href="#fn:notrequired">8</a></sup></p></li>
+<li><p>Left/Right thumb proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">8</a></sup></p></li>
 
-<li><p>Left/Right index proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a rel="footnote" href="#fn:notrequired">8</a></sup></p></li>
+<li><p>Left/Right index proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">8</a></sup></p></li>
 
-<li><p>Left/Right middle proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a rel="footnote" href="#fn:notrequired">8</a></sup></p></li>
+<li><p>Left/Right middle proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">8</a></sup></p></li>
 
-<li><p>Left/Right ring proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a rel="footnote" href="#fn:notrequired">8</a></sup></p></li>
+<li><p>Left/Right ring proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">8</a></sup></p></li>
 
-<li><p>Left/Right little proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a rel="footnote" href="#fn:notrequired">8</a></sup></p></li>
+<li><p>Left/Right little proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">8</a></sup></p></li>
 </ul>
 
 <h2 id="モデル情報-json-extensions-vrm-meta">モデル情報(json.extensions.VRM.meta)</h2>
@@ -610,7 +610,7 @@ json.extensions.VRM.firstPerson.meshAnnotations[6].firstPersonFlag = &quot;Auto&
 json.extensions.VRM.firstPerson.meshAnnotations[6].mesh = 6;
 </code></pre>
 
-<p>一人称視点のアバターを描画する場合、自モデルの頭部の中が見えてしまうという問題が生じます<sup class="footnote-ref" id="fnref:firstperson"><a rel="footnote" href="#fn:firstperson">9</a></sup>。
+<p>一人称視点のアバターを描画する場合、自モデルの頭部の中が見えてしまうという問題が生じます<sup class="footnote-ref" id="fnref:firstperson"><a href="#fn:firstperson">9</a></sup>。
 これに対応するために、一人称時の表示状態を指定できます。</p>
 
 <h3 id="firstpersonbone-json-extensions-vrm-firstperson-firstpersonbone">firstPersonBone(json.extensions.VRM.firstPerson.firstPersonBone)</h3>
@@ -628,7 +628,7 @@ json.extensions.VRM.firstPerson.meshAnnotations[6].mesh = 6;
 以下の設定があります。</p>
 
 <ul>
-<li>Auto: firstPersonBoneとその子孫に対するボーンWeightを持つポリゴンを自動で非表示にする<sup class="footnote-ref" id="fnref:firstPersonAuto"><a rel="footnote" href="#fn:firstPersonAuto">10</a></sup></li>
+<li>Auto: firstPersonBoneとその子孫に対するボーンWeightを持つポリゴンを自動で非表示にする<sup class="footnote-ref" id="fnref:firstPersonAuto"><a href="#fn:firstPersonAuto">10</a></sup></li>
 <li>FirstPersonOnly: 一人称のみ表示</li>
 <li>ThirdPersonOnly: 三人称のみ表示(頭など一人称時に非表示にするメッシュに指定する)</li>
 <li>Both: 特に表示切替をしない</li>
@@ -800,12 +800,5 @@ json.extensions.VRM.secondaryAnimation.colliderGroups[0].node = 34;
     </div>
 
     
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-109076308-1', 'auto');
-ga('send', 'pageview');
-</script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
-
   </body>
 </html>

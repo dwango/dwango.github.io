@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.29" />
+  <meta name="generator" content="Hugo 0.37.1" />
 
   <meta property="og:title" content="VRM - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -60,169 +60,104 @@
 </div>
 
     <div class="content container">
-    <h1>Articles</h1>
+    <div class="posts">
+
+    
+
+<img src="https://dwango.github.io/images/vrm/vrm_topheader.png" alt="VRM - humanoid 3d avatar format for VR" />
 
 
-<div class="posts">
-<div class="post">
-  <h3 class="post-title">
-    ・<a href="https://dwango.github.io/vrm/univrm/api/univrm_use_blendshape/">BlendShapeを操作する</a>
-  </h3>
-  <span class="post-date">Mon, Apr 16, 2018</span>
-  <p class="summary">
-    var proxy=GetComponent&lt;VRMBlendShapeProxy&gt;(); // enumで呼び出し proxy.SetValue(BlendShapePreset.A, 1.0f); // 0から1で指定 // stringで呼び出し proxy.SetValue(&#34;A&#34;, 1.0f);
-    
-  </p>
-</div>
-<div class="post">
-  <h3 class="post-title">
-    ・<a href="https://dwango.github.io/vrm/gltf_about/">GLTFについて</a>
-  </h3>
-  <span class="post-date">Mon, Apr 16, 2018</span>
-  <p class="summary">
-    glTFはOpenGLの仕様策定をしているKHRONOSによる3Dフォーマットです。2017年にVersion2が策定されました。 VRMはg
-    
-    <a href="/vrm/gltf_about/">...</a>
-    
-  </p>
-</div>
-<div class="post">
-  <h3 class="post-title">
-    ・<a href="https://dwango.github.io/vrm/univrm/shaders/mtoon/">MToon</a>
-  </h3>
-  <span class="post-date">Mon, Apr 16, 2018</span>
-  <p class="summary">
-    Shader preloadingの設定 MToon について MToon は日本のアニメ的表現をすることを目標としています。 主色 (Lit Color) と陰色 (Shade Color) の 2 色を、Lighting パラメ
-    
-    <a href="/vrm/univrm/shaders/mtoon/">...</a>
-    
-  </p>
-</div>
-<div class="post">
-  <h3 class="post-title">
-    ・<a href="https://dwango.github.io/vrm/univrm/shaders/univrm_shaders/">UniVRMで使えるシェーダー</a>
-  </h3>
-  <span class="post-date">Mon, Apr 16, 2018</span>
-  <p class="summary">
-    Shader preloadingの設定 PBR Standardシェーダー Unity標準です。 Unlit系シェーダー VRM/UnlitTexture UnityのUnit/Textureと同
-    
-    <a href="/vrm/univrm/shaders/univrm_shaders/">...</a>
-    
-  </p>
-</div>
-<div class="post">
-  <h3 class="post-title">
-    ・<a href="https://dwango.github.io/vrm/univrm/univrm_install/">UniVRMのインストール</a>
-  </h3>
-  <span class="post-date">Mon, Apr 16, 2018</span>
-  <p class="summary">
-    Unity Version Unity5.6以降をサポートしています。 インストール Assets/VRMにインストールします。 既存のVRMが存在している場合、あらかじ
-    
-    <a href="/vrm/univrm/univrm_install/">...</a>
-    
-  </p>
-</div>
-<div class="post">
-  <h3 class="post-title">
-    ・<a href="https://dwango.github.io/vrm/univrm/api/univrm_coordinate/">UniVRMの座標系変換について</a>
-  </h3>
-  <span class="post-date">Mon, Apr 16, 2018</span>
-  <p class="summary">
-    UniVRMは、インポート・エクスポート時に自動でGLTFとの座標返還を実行しています。 VRMの座標系 VRMはGLTFの拡張なので、GLTF
-    
-    <a href="/vrm/univrm/api/univrm_coordinate/">...</a>
-    
-  </p>
-</div>
-<div class="post">
-  <h3 class="post-title">
-    ・<a href="https://dwango.github.io/vrm/univrm/univrm_workflow/">UniVRMモデルのワークフロー</a>
-  </h3>
-  <span class="post-date">Mon, Apr 16, 2018</span>
-  <p class="summary">
-    ワークフロー humanoid avatarがセット済みの人間型モデルを用意します Fbx等のUnityのHumanoidモデルを用意してください。 FbxのIm
-    
-    <a href="/vrm/univrm/univrm_workflow/">...</a>
-    
-  </p>
-</div>
-<div class="post">
-  <h3 class="post-title">
-    ・<a href="https://dwango.github.io/vrm/univrm/components/univrm_secondary/">VRMSpringBone</a>
-  </h3>
-  <span class="post-date">Mon, Apr 16, 2018</span>
-  <p class="summary">
-    Root/secondary:VRMSpringBone 尻尾、髪の毛、衣装などで動きに合わせて揺れて欲しいものの設定です。 揺らしたいオブジェクトの一番親のGameObjectをRootBones
-    
-    <a href="/vrm/univrm/components/univrm_secondary/">...</a>
-    
-  </p>
-</div>
-<div class="post">
-  <h3 class="post-title">
-    ・<a href="https://dwango.github.io/vrm/vrm_tpose/">VRMのT-Poseについて</a>
-  </h3>
-  <span class="post-date">Mon, Apr 16, 2018</span>
-  <p class="summary">
-    VRMの第１実装のUnityのHumanoidに準拠したT-Pose1を採用しています。 T-Poseの例 胴体と頭・足については自明ですが、腕
-    
-    <a href="/vrm/vrm_tpose/">...</a>
-    
-  </p>
-</div>
-<div class="post">
-  <h3 class="post-title">
-    ・<a href="https://dwango.github.io/vrm/vrm_applications/">VRMファイルが使えるアプリケーションは？</a>
-  </h3>
-  <span class="post-date">Mon, Apr 16, 2018</span>
-  <p class="summary">
-    VRMファイル対応アプリケーション ニコニ立体 3Dモデルデータ投稿サービス。VRMファイル投稿可能 バーチャルキャスト VR空間のスタジオをリアル
-    
-    <a href="/vrm/vrm_applications/">...</a>
-    
-  </p>
-</div>
+
+<h1 id="vrm-vr向け3dアバターファイルフォーマット">VRM - VR向け3Dアバターファイルフォーマット -</h1>
+
+<p>「VRM」は<strong>VRアプリケーション向けの人型3Dアバター（3Dモデル）データを扱うためのファイルフォーマット</strong>です。<a href="https://www.khronos.org/gltf/">glTF2.0</a>をベースとしており、誰でも自由に利用することができます。また、<a href="https://unity3d.com/jp">Unity</a>向けのVRMファイルの読み書きを行うC#による標準実装（<a href="https://github.com/dwango/UniVRM">UniVRM</a>）がオープンソースで提供されます。</p>
+
+<hr />
+
+<h2 id="vrmについて">VRMについて</h2>
+
+<ul>
+<li><p><a href="./vrm_about/">「VRM」って何？どんなことができる？</a></p>
+
+<ul>
+<li><a href="./vrm_about/#vrm-とは">VRMとは</a></li>
+<li><a href="./vrm_about/#vrmで何ができるの">VRMで何ができるの？</a></li>
+<li><a href="./vrm_about/#vrmの特徴">VRMの特徴</a></li>
+<li><a href="./vrm_about/#vrmファイルに設定できるライセンスデータ">VRMファイルに設定できるライセンスデータ</a></li>
+</ul></li>
+
+<li><p><a href="./how_to_make_vrm/">VRMファイルを作ってみたい</a></p>
+
+<ul>
+<li><a href="./how_to_make_vrm/#vrmファイルのつくりかた-既存3dモデルからのコンバート">VRMファイルのつくりかた（既存3Dモデルからのコンバート）</a></li>
+</ul></li>
+
+<li><p><a href="./how_to_view_vrm/">VRMファイルを眺めてみたい</a></p>
+
+<ul>
+<li><a href="./how_to_view_vrm/#vrmファイルの読み込みかた">VRMファイルの読み込みかた</a></li>
+<li><a href="./how_to_view_vrm/#vrmファイルの読み込みかた-簡易版">VRMファイルの読み込みかた（簡易版）</a></li>
+<li><a href="./how_to_view_vrm/#vrmファイルを投稿する-探す">VRMファイルを投稿する・探す</a></li>
+</ul></li>
+
+<li><p><a href="./vrm_applications/">VRMファイルが使えるアプリケーションは？</a></p>
+
+<ul>
+<li><a href="./vrm_applications/#vrmファイル対応アプリケーション">VRMファイル対応アプリケーション</a></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="vrmフォーマット技術仕様">VRMフォーマット技術仕様</h2>
+
+<ul>
+<li><a href="./gltf_about/">GLTFとは</a></li>
+<li><a href="./vrm_spec/">VRM仕様</a>
+
+<ul>
+<li><a href="./vrm_tpose/">Tポーズについて</a></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="univrm-https-github-com-dwango-univrm-unity向けvrm標準実装-仕様"><a href="https://github.com/dwango/UniVRM">UniVRM</a>(Unity向けVRM標準実装)仕様</h2>
+
+<ul>
+<li><a href="./univrm/univrm_install/">UniVRMのインストール</a></li>
+
+<li><p><a href="./univrm/univrm_workflow/">UniVRMのワークフロー</a></p></li>
+
+<li><p>UniVRMのコンポーネント</p>
+
+<ul>
+<li><a href="./univrm/components/univrm_meta/">モデル情報</a></li>
+<li><a href="./univrm/components/univrm_blendshape/">BlendShape</a></li>
+<li><a href="./univrm/components/univrm_firstperson/">一人称視点</a></li>
+<li><a href="./univrm/components/univrm_lookat/">視線制御</a></li>
+<li><a href="./univrm/components/univrm_secondary/">揺れモノ</a></li>
+</ul></li>
+
+<li><p><a href="./univrm/shaders/univrm_shaders/">UniVRMで使えるシェーダー</a></p>
+
+<ul>
+<li><a href="./univrm/shaders/mtoon/">MToonの設定</a></li>
+</ul></li>
+
+<li><p>API</p>
+
+<ul>
+<li><a href="./univrm/api/univrm_import_runtime/">実行時にVRMモデルをインポートする</a></li>
+<li><a href="./univrm/api/univrm_use_blendshape/">実行時にBlendShapeを操作する</a></li>
+<li><a href="./univrm/api/univrm_coordinate/">座標系の変換について</a></li>
+</ul></li>
+</ul>
+
 
 </div>
-
-
-
-<div class="pagination-container">
-  <div class="pagination">
-
-    
-    <span aria-hidden="true">&lt;&lt;</span>
-    <span aria-hidden="true">&lt;</span>
-    
-
-
-    
-      <a href="/vrm/" class="current">1</a>
-    
-      <a href="/vrm/page/2/">2</a>
-    
-
-
-    
-      <a href="/vrm/page/2/" aria-label="Next">&gt;</a>
-      
-      <a href="/vrm/page/2/" aria-label="Last">&gt;&gt;</a>
-      
-    
-
-  </div>
-</div>
-
-
     </div>
 
     
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-109076308-1', 'auto');
-ga('send', 'pageview');
-</script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
-
   </body>
 </html>
