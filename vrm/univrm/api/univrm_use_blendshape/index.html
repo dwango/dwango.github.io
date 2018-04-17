@@ -76,15 +76,56 @@
   </div>
   <div>
     <article id="content">
-        <div class="toc"> 
+        <div class="toc"> <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#スクリプトからblendshapeを適用する">スクリプトからBlendShapeを適用する</a></li>
+<li><a href="#複数のblendshapeをまとめて適用する">複数のBlendShapeをまとめて適用する</a></li>
+</ul></li>
+</ul>
+</nav>
         </div>
-       <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> proxy=GetComponent&lt;VRMBlendShapeProxy&gt;();
+       
+
+<h2 id="スクリプトからblendshapeを適用する">スクリプトからBlendShapeを適用する</h2>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> proxy=GetComponent&lt;VRMBlendShapeProxy&gt;();
 
 <span style="color:#75715e">// enumで呼び出し
 </span><span style="color:#75715e"></span>proxy.SetValue(BlendShapePreset.A, <span style="color:#ae81ff">1.0f</span>); <span style="color:#75715e">// 0から1で指定
 </span><span style="color:#75715e"></span>
 <span style="color:#75715e">// stringで呼び出し
 </span><span style="color:#75715e"></span>proxy.SetValue(<span style="color:#e6db74">&#34;A&#34;</span>, <span style="color:#ae81ff">1.0f</span>);</code></pre></div>
+
+<h2 id="複数のblendshapeをまとめて適用する">複数のBlendShapeをまとめて適用する</h2>
+
+<p>たとえば</p>
+
+<p>Blink_Lが</p>
+
+<ul>
+<li>MeshAのeye_L=100</li>
+<li>MeshAのeye_R=1</li>
+</ul>
+
+<p>Blink_Rが</p>
+
+<ul>
+<li>MeshAのeye_L=1</li>
+<li>MeshAのeye_R=100</li>
+</ul>
+
+<p>で定義されている場合に両方を有効にする意図で下記のようにすると、後からセットしたものだけが適用されてしまいます。</p>
+
+<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">proxy.SetValue(BlendShapePreset.Blink_L, <span style="color:#ae81ff">1.0f</span>);
+proxy.SetValue(BlendShapePreset.Blink_R, <span style="color:#ae81ff">1.0f</span>);</code></pre></div></p>
+
+<p>この場合は、以下のようにできます。</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">proxy.SetValue(BlendShapePreset.Blink_L, <span style="color:#ae81ff">1.0f</span>, <span style="color:#66d9ef">false</span>); <span style="color:#75715e">// すぐに適用せずにたくわえる
+</span><span style="color:#75715e"></span>proxy.SetValue(BlendShapePreset.Blink_R, <span style="color:#ae81ff">1.0f</span>, <span style="color:#66d9ef">false</span>);
+proxy.Apply(); // <span style="color:#960050;background-color:#1e0010">蓄積した値をまとめて適用する</span></code></pre></div>
 
     </article>
   </div>

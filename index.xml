@@ -17,7 +17,7 @@
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/vrm/univrm/api/univrm_use_blendshape/</guid>
-      <description>var proxy=GetComponent&amp;lt;VRMBlendShapeProxy&amp;gt;(); // enumで呼び出し proxy.SetValue(BlendShapePreset.A, 1.0f); // 0から1で指定 // stringで呼び出し proxy.SetValue(&amp;#34;A&amp;#34;, 1.0f);</description>
+      <description>スクリプトからBlendShapeを適用する var proxy=GetComponent&amp;lt;VRMBlendShapeProxy&amp;gt;(); // enumで呼び出し proxy.SetValue(BlendShapePreset.A, 1.0f); // 0から1で指定 // stringで呼び出し proxy.SetValue(&amp;#34;A&amp;#34;, 1.0f); 複数のBlendShap</description>
     </item>
     
     <item>
