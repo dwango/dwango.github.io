@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.37.1" />
+  <meta name="generator" content="Hugo 0.38.2" />
 
   <meta property="og:title" content="UniVRMの座標系変換について - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -60,6 +60,11 @@
 </div>
 
     <div class="content container">
+
+        <a href="https://dwango.github.io/vrm">
+          <img src="https://dwango.github.io/images/vrm/vrm_header.png" alt="VRM - humanoid 3d avatar format for VR">
+        </a>
+
     
 <div class="post">
   <h1>UniVRMの座標系変換について</h1>
@@ -89,7 +94,7 @@
         </div>
        
 
-<p>UniVRMは、インポート・エクスポート時に自動でGLTFとの座標返還を実行しています。</p>
+<p>UniVRMは、インポート・エクスポート時に自動でGLTFとの座標変換を実行しています。</p>
 
 <h2 id="vrmの座標系">VRMの座標系</h2>
 
@@ -120,7 +125,7 @@ OpenGL標準の右手系Y-UP座標系です。</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Vector3 ReverseZ(<span style="color:#66d9ef">this</span> Vector3 v)
 {
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Vector3(<span style="color:#a6e22e">v</span>.x, <span style="color:#a6e22e">v</span>.y, -<span style="color:#a6e22e">v</span>.z);
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Vector3(v.x, v.y, -v.z);
 }</code></pre></div>
 
 <h3 id="quaternion-rotation">Quaternion(Rotation)</h3>
@@ -129,8 +134,8 @@ OpenGL標準の右手系Y-UP座標系です。</p>
 {
     <span style="color:#66d9ef">float</span> angle;
     Vector3 axis;
-    <span style="color:#a6e22e">q</span>.ToAngleAxis(<span style="color:#66d9ef">out</span> angle, <span style="color:#66d9ef">out</span> axis);
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">Quaternion</span>.AngleAxis(-angle, ReverseZ(axis));
+    q.ToAngleAxis(<span style="color:#66d9ef">out</span> angle, <span style="color:#66d9ef">out</span> axis);
+    <span style="color:#66d9ef">return</span> Quaternion.AngleAxis(-angle, ReverseZ(axis));
 }</code></pre></div>
 
 <h3 id="matrix-bindmatrices">Matrix(BindMatrices)</h3>
@@ -140,9 +145,9 @@ OpenGL標準の右手系Y-UP座標系です。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Matrix4x4 ReverseZ(<span style="color:#66d9ef">this</span> Matrix4x4 m)
 {
 <span style="color:#75715e">#if UNITY_2017_1_OR_NEWER
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">m</span>.SetTRS(<span style="color:#a6e22e">m</span>.GetColumn(<span style="color:#ae81ff">3</span>).ReverseZ(), <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">rotation</span>.ReverseZ(), <span style="color:#a6e22e">Vector3</span>.one);
+</span><span style="color:#75715e"></span>    m.SetTRS(m.GetColumn(<span style="color:#ae81ff">3</span>).ReverseZ(), m.rotation.ReverseZ(), Vector3.one);
 <span style="color:#75715e">#else
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">m</span>.SetTRS(<span style="color:#a6e22e">m</span>.ExtractPosition().ReverseZ(), <span style="color:#a6e22e">m</span>.ExtractRotation().ReverseZ(), <span style="color:#a6e22e">Vector3</span>.one);
+</span><span style="color:#75715e"></span>    m.SetTRS(m.ExtractPosition().ReverseZ(), m.ExtractRotation().ReverseZ(), Vector3.one);
 <span style="color:#75715e">#endif
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> m;
 }</code></pre></div>
@@ -151,8 +156,20 @@ OpenGL標準の右手系Y-UP座標系です。</p>
   </div>
 </div>
 
+
+        <a href="https://dwango.github.io/vrm">
+          <img src="https://dwango.github.io/images/vrm/vrm_header.png" alt="VRM - humanoid 3d avatar format for VR">
+        </a>
+
     </div>
 
     
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-109076308-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
   </body>
 </html>

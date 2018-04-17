@@ -62,7 +62,7 @@
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/vrm/univrm/api/univrm_coordinate/</guid>
-      <description>UniVRMは、インポート・エクスポート時に自動でGLTFとの座標返還を実行しています。 VRMの座標系 VRMはGLTFの拡張なので、GLTF</description>
+      <description>UniVRMは、インポート・エクスポート時に自動でGLTFとの座標変換を実行しています。 VRMの座標系 VRMはGLTFの拡張なので、GLTF</description>
     </item>
     
     <item>

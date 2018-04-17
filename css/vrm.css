@@ -1,16 +1,29 @@
 /* copy from poole.css */
 h1 {
-  font-size: 2rem;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #dddddf;
+  margin-top: 2rem;
+  margin-bottom: 16px;
 }
 h2 {
+  font-size: 1.25rem;
+  border-bottom: 1px solid #dddddf;
   margin-top: 1rem;
-  font-size: 1.5rem;
+  margin-bottom: 16px;
 }
 h3 {
+  font-size: 1.0rem;
+  border-left: 8px solid #dddddf;
+  padding-left: 10px;
   margin-top: 1.5rem;
-  font-size: 1.25rem;
 }
-h4, h5, h6 {
-  margin-top: 1rem;
+h4 {
+  font-size: 1.0rem;
+  border-left: 2px solid #dddddf;
+  padding-left: 6px;
+  margin-top: 1.5rem;
+}
+h5, h6 {
   font-size: 1rem;
+  margin-top: 1rem;
 }

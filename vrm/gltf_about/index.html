@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.37.1" />
+  <meta name="generator" content="Hugo 0.38.2" />
 
   <meta property="og:title" content="GLTFについて - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -60,6 +60,11 @@
 </div>
 
     <div class="content container">
+
+        <a href="https://dwango.github.io/vrm">
+          <img src="https://dwango.github.io/images/vrm/vrm_header.png" alt="VRM - humanoid 3d avatar format for VR">
+        </a>
+
     
 <div class="post">
   <h1>GLTFについて</h1>
@@ -84,10 +89,6 @@
 </nav>
         </div>
        
-
-<p><a href="../"><img src="https://dwango.github.io/images/vrm/vrm_header.png" alt="VRM - humanoid 3d avatar format for VR" />
-
-</a></p>
 
 <p>glTFはOpenGLの仕様策定をしているKHRONOSによる3Dフォーマットです。2017年にVersion2が策定されました。
 VRMはglTF2.0をベースとしたフォーマットとなっています。</p>
@@ -228,7 +229,7 @@ glb形式ではJSON部とバイナリ部をひとつのファイルにまとめ�
         <span style="color:#66d9ef">return</span> result
 
     <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">read_uint</span>(self):
-        result <span style="color:#f92672">=</span> struct<span style="color:#f92672">.</span>unpack(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;I&#39;</span>, self<span style="color:#f92672">.</span>data[self<span style="color:#f92672">.</span>pos:self<span style="color:#f92672">.</span>pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">4</span>])[<span style="color:#ae81ff">0</span>]
+        result <span style="color:#f92672">=</span> struct<span style="color:#f92672">.</span>unpack(<span style="color:#e6db74">&#39;I&#39;</span>, self<span style="color:#f92672">.</span>data[self<span style="color:#f92672">.</span>pos:self<span style="color:#f92672">.</span>pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">4</span>])[<span style="color:#ae81ff">0</span>]
         self<span style="color:#f92672">.</span>pos <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4</span>
         <span style="color:#66d9ef">return</span> result
 
@@ -237,11 +238,11 @@ glb形式ではJSON部とバイナリ部をひとつのファイルにまとめ�
     reader <span style="color:#f92672">=</span> Reader(data)
     magic <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span>read_str(<span style="color:#ae81ff">4</span>)
     <span style="color:#66d9ef">if</span>  magic <span style="color:#f92672">!=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;glTF&#39;</span>:
-        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;magic not found: #{magic}&#39;</span>)
+        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(f<span style="color:#e6db74">&#39;magic not found: #{magic}&#39;</span>)
 
     version <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span>read_uint()
     <span style="color:#66d9ef">if</span> version <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span>:
-        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;version:#{version} is not 2&#39;</span>)
+        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(f<span style="color:#e6db74">&#39;version:#{version} is not 2&#39;</span>)
 
     size <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span>read_uint()
     size <span style="color:#f92672">-=</span> <span style="color:#ae81ff">12</span>
@@ -265,12 +266,12 @@ glb形式ではJSON部とバイナリ部をひとつのファイルにまとめ�
         <span style="color:#66d9ef">elif</span> chunk_type <span style="color:#f92672">==</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;JSON&#39;</span>:
             json_str <span style="color:#f92672">=</span> chunk_data
         <span style="color:#66d9ef">else</span>:
-            <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;unknown chunk_type: {chunk_type}&#39;</span>)
+            <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(f<span style="color:#e6db74">&#39;unknown chunk_type: {chunk_type}&#39;</span>)
 
     <span style="color:#66d9ef">return</span> json<span style="color:#f92672">.</span>loads(json_str), body
 
 
-<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;AliciaSolid.vrm&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> f:
+<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;AliciaSolid.vrm&#39;</span>, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> f:
     parsed, body <span style="color:#f92672">=</span> parse_glb(f<span style="color:#f92672">.</span>read())</code></pre></div>
 
 <h1 id="vrmによる拡張情報">VRMによる拡張情報</h1>
@@ -296,8 +297,20 @@ glb形式ではJSON部とバイナリ部をひとつのファイルにまとめ�
   </div>
 </div>
 
+
+        <a href="https://dwango.github.io/vrm">
+          <img src="https://dwango.github.io/images/vrm/vrm_header.png" alt="VRM - humanoid 3d avatar format for VR">
+        </a>
+
     </div>
 
     
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-109076308-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
   </body>
 </html>
