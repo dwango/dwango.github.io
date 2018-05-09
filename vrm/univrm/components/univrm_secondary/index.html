@@ -78,14 +78,45 @@
     <article id="content">
         <div class="toc"> <nav id="TableOfContents">
 <ul>
-<li><a href="#root-secondary-vrmspringbone">Root/secondary:VRMSpringBone</a></li>
-<li><a href="#揺れモノに当たり判定を入れる">揺れモノに当たり判定を入れる</a></li>
+<li><a href="#コンポーネントのアタッチされるノード">コンポーネントのアタッチされるノード</a></li>
+<li><a href="#vrmspringbone">VRMSpringBone</a></li>
+<li><a href="#オプション-vrmspringbonecollidergroup-当たり判定">[オプション]VRMSpringBoneColliderGroup(当たり判定)</a>
+<ul>
+<li><a href="#ひとつのvrmspringbonecollidergroupに複数の当たり判定を設定できます">ひとつのVRMSpringBoneColliderGroupに複数の当たり判定を設定できます</a></li>
+</ul></li>
 </ul>
 </nav>
         </div>
        
 
-<h1 id="root-secondary-vrmspringbone">Root/secondary:VRMSpringBone</h1>
+<p>揺れモノ設定。</p>
+
+<h1 id="コンポーネントのアタッチされるノード">コンポーネントのアタッチされるノード</h1>
+
+<p>VRMをインポートしたとき、揺れモノ関連のコンポーネントは以下のようにアタッチされます。</p>
+
+<ul>
+<li>VRMSpringBoneは、名前が<code>secondary</code>のノードが自動的に作成されてそこにアタッチされます。</li>
+<li>VRMSpringBoneColliderGroupは、エクスポート時にアタッチされていたノードに復旧されます。</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th><img src="https://dwango.github.io/images/vrm/vrm_settings.png"  />
+
+</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>VRMSpringBoneが見つからない場合には<code>secondary</code>ノードをご確認ください。</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="vrmspringbone">VRMSpringBone</h1>
 
 <p>尻尾、髪の毛、衣装などで動きに合わせて揺れて欲しいものの設定です。
 揺らしたいオブジェクトの一番親のGameObjectをRootBonesにセットしてください。</p>
@@ -101,14 +132,16 @@
 
 <tbody>
 <tr>
-<td>LookAt。</td>
+<td>RootBonesに髪の毛とリボンを設定</td>
 </tr>
 </tbody>
 </table>
 
-<h1 id="揺れモノに当たり判定を入れる">揺れモノに当たり判定を入れる</h1>
+<p>これだけで、指定したボーンが動きに合わせて揺れます。</p>
 
-<p>揺れモノとの当たり判定で押しのけることができます。</p>
+<h1 id="オプション-vrmspringbonecollidergroup-当たり判定">[オプション]VRMSpringBoneColliderGroup(当たり判定)</h1>
+
+<p>揺れモノが特定の部位を貫通しないように、当たり判定を入れることができます。</p>
 
 <table>
 <thead>
@@ -121,7 +154,7 @@
 
 <tbody>
 <tr>
-<td>頭にVRMSpringBoneのColliderを設定。</td>
+<td>headに頭に当たり判定(VRMSpringBoneColliderGroup)を設定</td>
 </tr>
 </tbody>
 </table>
@@ -139,12 +172,10 @@
 
 <tbody>
 <tr>
-<td>ColliderをVRMSpringBoneに登録。</td>
+<td>headにVRMSpringBoneColliderGroupをアタッチして、VRMSpringBoneのCollierGroupsに設定</td>
 </tr>
 </tbody>
 </table>
-
-<p>VRMSpringBoneColliderGroupにデフォルトでひとつの球が設定されますが、複数の球をセットすることができます。</p>
 
 <table>
 <thead>
@@ -161,6 +192,10 @@
 </tr>
 </tbody>
 </table>
+
+<h2 id="ひとつのvrmspringbonecollidergroupに複数の当たり判定を設定できます">ひとつのVRMSpringBoneColliderGroupに複数の当たり判定を設定できます</h2>
+
+<p>VRMSpringBoneColliderGroupには最初からひとつの球が設定されますが、複数の球をセットすることができます。</p>
 
     </article>
   </div>

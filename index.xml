@@ -6,10 +6,19 @@
     <description>Recent content on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 16 Apr 2018 16:30:00 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 09 May 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>UniVRMでよくある質問</title>
+      <link>https://dwango.github.io/vrm/univrm/univrm_faq/</link>
+      <pubDate>Wed, 09 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://dwango.github.io/vrm/univrm/univrm_faq/</guid>
+      <description>設定したVRMSpringBoneが居なくなった VRMSpringBoneはインポート時にsecondaryノードにアタッチされます。 VRMSpringBone プロ</description>
+    </item>
     
     <item>
       <title>BlendShapeを操作する</title>
@@ -80,7 +89,7 @@
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/vrm/univrm/components/univrm_secondary/</guid>
-      <description>Root/secondary:VRMSpringBone 尻尾、髪の毛、衣装などで動きに合わせて揺れて欲しいものの設定です。 揺らしたいオブジェクトの一番親のGameObjectをRootBones</description>
+      <description>揺れモノ設定。 コンポーネントのアタッチされるノード VRMをインポートしたとき、揺れモノ関連のコンポーネントは以下のようにアタッチされます。 V</description>
     </item>
     
     <item>
