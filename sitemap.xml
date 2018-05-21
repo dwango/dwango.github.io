@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://dwango.github.io/vrm/univrm/api/univrm_api_history/</loc>
+    <lastmod>2018-05-21T10:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://dwango.github.io/vrm/univrm/univrm_faq/</loc>
     <lastmod>2018-05-09T00:00:00+00:00</lastmod>
   </url>
@@ -190,7 +195,7 @@
   
   <url>
     <loc>https://dwango.github.io/</loc>
-    <lastmod>2018-05-09T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-21T10:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   

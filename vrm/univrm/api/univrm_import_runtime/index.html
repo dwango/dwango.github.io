@@ -120,29 +120,48 @@ VRMImporter.LoadVrmAsync(path, go =&gt; {
 
 <h2 id="vrmから情報を取り出す">VRMから情報を取り出す</h2>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
-<span style="color:#66d9ef">var</span> bytes = File.ReadAllBytes(path);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#75715e">#if UNITY_STANDALONE_WIN
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> path = FileDialogForWindows.FileDialog(<span style="color:#e6db74">&#34;open VRM&#34;</span>, <span style="color:#e6db74">&#34;.vrm&#34;</span>);
+<span style="color:#75715e">#else
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> path = Application.dataPath + <span style="color:#e6db74">&#34;/default.vrm&#34;</span>;
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">string</span>.IsNullOrEmpty(path))
+            {
+                <span style="color:#66d9ef">return</span>;
+            }
 
-<span style="color:#66d9ef">var</span> context = <span style="color:#66d9ef">new</span> VRMImporterContext(path);
+            <span style="color:#75715e">// Byte列を得る
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> bytes = File.ReadAllBytes(path);
 
-<span style="color:#75715e">// GLB形式でJSONを取得しParseします
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> dataChunk = context.ParseVrm(bytes);
+            <span style="color:#66d9ef">var</span> context = <span style="color:#66d9ef">new</span> VRMImporterContext(path);
 
-<span style="color:#75715e">// GLTFにアクセスできます
-</span><span style="color:#75715e"></span>Debug.LogFormat(<span style="color:#e6db74">&#34;{0}&#34;</span>, context.VRM);
+            <span style="color:#75715e">// GLB形式をParseしてチャンクからJSONを取得しParseします
+</span><span style="color:#75715e"></span>            context.ParseVrm(bytes);
 
-<span style="color:#75715e">// ParseしたJSONをシーンオブジェクトに変換していく
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> (m_loadAsync)
-{
-     VRMImporter.LoadVrmAsync(context, dataChunk, go=&gt; {
-        Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);
-    });
-}
-<span style="color:#66d9ef">else</span>
-{
-    <span style="color:#66d9ef">var</span> go=VRMImporter.LoadFromBytes(context, dataChunk);
-    Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);
-}</code></pre></div>
+            <span style="color:#75715e">// metaを取得
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> meta = context.ReadMeta();
+            Debug.LogFormat(<span style="color:#e6db74">&#34;meta: title:{0}&#34;</span>, meta.Title);
+
+            <span style="color:#75715e">// もしくはこちらでパースされたGLTF全体にアクセスできます
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> vrm = context.VRM;
+
+            <span style="color:#75715e">// ParseしたJSONをもとにシーンを構築します
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (m_loadAsync)
+            {
+                <span style="color:#75715e">// 非同期に実行する
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">var</span> now = Time.time;
+                VRMImporter.LoadVrmAsync(context, go=&gt; {
+                    <span style="color:#66d9ef">var</span> delta = Time.time - now;
+                    Debug.LogFormat(<span style="color:#e6db74">&#34;LoadVrmAsync {0:0.0} seconds&#34;</span>, delta);
+                    OnLoaded(go);
+                });
+            }
+            <span style="color:#66d9ef">else</span>
+            {
+                <span style="color:#75715e">// 同期的に実行する
+</span><span style="color:#75715e"></span>                VRMImporter.LoadFromBytes(context);
+                OnLoaded(context.Root);
+            }</code></pre></div>
 
     </article>
   </div>

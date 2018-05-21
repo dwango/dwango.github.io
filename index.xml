@@ -6,10 +6,19 @@
     <description>Recent content on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Wed, 09 May 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 21 May 2018 10:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>APIの変更履歴</title>
+      <link>https://dwango.github.io/vrm/univrm/api/univrm_api_history/</link>
+      <pubDate>Mon, 21 May 2018 10:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/vrm/univrm/api/univrm_api_history/</guid>
+      <description>プログラムに影響のある変更についてです。 v0.36 テクスチャ名の格納位置の修正 GLTFの仕様に準拠しました。 extraはextrasの間違い imag</description>
+    </item>
     
     <item>
       <title>UniVRMでよくある質問</title>
