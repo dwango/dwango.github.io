@@ -78,13 +78,15 @@
     <article id="content">
         <div class="toc"> <nav id="TableOfContents">
 <ul>
-<li>
-<ul>
 <li><a href="#vrmfirstperson">VRMFirstPerson</a>
 <ul>
 <li><a href="#firstpersonbone">FirstPersonBone</a></li>
 <li><a href="#firstpersonoffset">FirstPersonOffset</a></li>
-<li><a href="#renderers">Renderers</a></li>
+<li><a href="#renderers">Renderers</a>
+<ul>
+<li><a href="#頭が分かれている場合">頭が分かれている場合</a></li>
+<li><a href="#頭が分かれていない場合">頭が分かれていない場合</a></li>
+<li><a href="#特に設定しない場合">特に設定しない場合</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -92,9 +94,31 @@
         </div>
        
 
-<h2 id="vrmfirstperson">VRMFirstPerson</h2>
+<h1 id="vrmfirstperson">VRMFirstPerson</h1>
 
 <p>一人称表示に関連する設定です。</p>
+
+<h2 id="firstpersonbone">FirstPersonBone</h2>
+
+<p>通常頭ボーンを指定します。
+一人称時にヘッドセットに追随させるボーンです。</p>
+
+<h2 id="firstpersonoffset">FirstPersonOffset</h2>
+
+<p>追随一をFirstPersonBoneの位置からオフセットします。
+デフォルト値[0, 0.06, 0]は、Headから両目の間へのオフセットを想定しています。</p>
+
+<h2 id="renderers">Renderers</h2>
+
+<p>一人称描画時のメッシュのOn/Offをコントロールする設定です。</p>
+
+<p>VRアプリでは、自分モデルの頭部の見えなくていい部分が見えてしまう問題があります。
+VRMFristPersonでは一人称時に頭を描画しないようにすることを支援する機能を用意しています。</p>
+
+<h3 id="頭が分かれている場合">頭が分かれている場合</h3>
+
+<p>頭に<strong>ThirdPersonOnly</strong>を指定します。
+その他の部分に<strong>Both</strong>を指定します。</p>
 
 <table>
 <thead>
@@ -112,27 +136,6 @@
 </tbody>
 </table>
 
-<h3 id="firstpersonbone">FirstPersonBone</h3>
-
-<p>通常頭ボーンを指定します。
-一人称時にヘッドセットに追随させるボーンです。</p>
-
-<h3 id="firstpersonoffset">FirstPersonOffset</h3>
-
-<p>追随一をFirstPersonBoneの位置からオフセットします。
-デフォルト値[0, 0.06, 0]は、Headから両目の間へのオフセットを想定しています。</p>
-
-<h3 id="renderers">Renderers</h3>
-
-<p>一人称描画時のメッシュのOn/Offをコントロールする設定です。</p>
-
-<ul>
-<li>Auto: FirstPersonBoneとその子孫のWeightを持つ三角形を除去したメッシュを表示します。通常、首から上が無くなります。非分割モデルの頭部をランタイムに簡易に非表示にすることを意図しています。</li>
-<li>Both: すべてのカメラで描画します</li>
-<li>ThirdPersonOnly: FirstPersonカメラ以外のカメラで描画します</li>
-<li>FirstPersonOnly: FirstPersonカメラのみで描画します。頭等の一人称時に描画したくないことを明示します。</li>
-</ul>
-
 <table>
 <thead>
 <tr>
@@ -148,6 +151,17 @@
 </tr>
 </tbody>
 </table>
+
+<h3 id="頭が分かれていない場合">頭が分かれていない場合</h3>
+
+<p>Autoを指定します。
+実行時に頭以外をコピーしたモデルを複製して、これを<strong>FirstPersonOnly</strong>として扱います。
+元のモデルは<strong>ThirdPersonOnly</strong>として扱います。
+頭ボーンのとその子孫のウェイトを持っている部分が削除対象になります。</p>
+
+<h3 id="特に設定しない場合">特に設定しない場合</h3>
+
+<p>Bothを設定してください。</p>
 
     </article>
   </div>

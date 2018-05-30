@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>VRMFirstPersonの使い方</title>
+      <link>https://dwango.github.io/vrm/univrm/api/univrm_use_firstperson/</link>
+      <pubDate>Tue, 29 May 2018 10:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/vrm/univrm/api/univrm_use_firstperson/</guid>
+      <description>VRMFirstPersonの設定 VRMFirstPersonではRendererに対して設定があります。 FirstPersonFlag レイヤー 備考 Both default 一人称と三人称で</description>
+    </item>
+    
+    <item>
       <title>APIの変更履歴</title>
       <link>https://dwango.github.io/vrm/univrm/api/univrm_api_history/</link>
       <pubDate>Mon, 21 May 2018 10:00:00 +0900</pubDate>
@@ -202,7 +211,7 @@ Known Implementations  TODO: List of known implementations, with links to each i
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/vrm/univrm/components/univrm_firstperson/</guid>
-      <description>VRMFirstPerson 一人称表示に関連する設定です。 立体ちゃんは頭とそれ以外が分かれているので体をBoth、頭をThirdPersonOnlyに設定します。 FirstPersonBone 通</description>
+      <description>VRMFirstPerson 一人称表示に関連する設定です。 FirstPersonBone 通常頭ボーンを指定します。 一人称時にヘッドセットに追随させるボーンです。 FirstPersonOffset 追随一をFirstPersonB</description>
     </item>
     
     <item>
