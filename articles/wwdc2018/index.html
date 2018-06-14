@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.38.2" />
+
+  <meta property="og:title" content="機械学習エンジニアから見たWWDC2018 - dwango on GitHub">
+
+  <meta property="og:image" content="https://dwango.github.io/images/wwdc2018/cover.jpg">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>機械学習エンジニアから見たWWDC2018 - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
+      <p class="lead">
+       
+ 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a> </li>
+      <li><a href="/articles"> Articles </a></li><li><a href="https://nico.ms/job/"> Hiring </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/vrm"> VRM </a></li><li><a href="https://nico-opendata.jp/ja/index.html"> nico-opendata </a></li>
+    </ul>
+
+    <p>
+      
+        <p style="display:inline-block;vertical-align:middle;">
+          Copyright &copy; DWANGO Co., Ltd.
+        </p>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+<div class="post">
+  <h1>機械学習エンジニアから見たWWDC2018</h1>
+  <span class="post-date"> Thu, Jun 14, 2018 </span>
+  <div class="share">
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="機械学習エンジニアから見たWWDC2018 - dwango on GitHub" data-url="https://dwango.github.io/articles/wwdc2018/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/wwdc2018/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2fwwdc2018%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+  </div>
+  <div>
+    <article id="content">
+       
+
+<figure>
+<img src="https://dwango.github.io/images/wwdc2018/cover.jpg" alt="cover" width="80%" />
+
+</figure>
+
+<p>Dwangoの中の、機械学習の研究開発部署<a href="https://nico-opendata.jp/ja/index.html">Dwango Media Village</a>で働くエンジニアの大垣です。
+今回はAppleのWWDCに機械学習エンジニアとして参加してきたので、スマホアプリエンジニアとはおそらく少し異なる視点からのレポートになるだろうと思い、自分なりにWWDCの機械学習系のセッションのまとめをしようと思います。</p>
+
+<h1 id="ar関連技術を推しに推した基調講演">AR関連技術を推しに推した基調講演</h1>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UThGcWBIMpU?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+<figure>
+<img src="https://www.apple.com/newsroom/images/live-action/wwdc-2018/WWDC-2018-Wrap-Up_gaming_hub_1_06042018_big.jpg.large.jpg" width="50%" />
+<figcaption><em>画像は<a href="https://www.apple.com/jp/newsroom/2018/06/highlights-from-wwdc-2018/">WWDC 2018基調講演のハイライトシーン</a>より。ARKit2のデモゲーム"SwiftShot"</em></figcaption>
+</figure>
+
+<p><a href="https://developer.apple.com/videos/play/wwdc2018/101/">https://developer.apple.com/videos/play/wwdc2018/101/</a></p>
+
+<p>基調講演については他のブログでたくさん触れられてるので網羅的には書かなくても良いかなと思います。
+私は10:00からの基調講演に対して9:00過ぎくらいに会場ついたのですが、だいたい会場全体の前から2/3くらいの席だったので、そこまで熾烈な席取り競争ということはないです。ただし、前方の席の盛り上がりはすごいので、スピーカーの一挙手一投足に拍手するあの感じを味わいたい人は絶対に早朝から並ぶべきです。</p>
+
+<p>ここで発表されたもののうち、気になったものは</p>
+
+<h3 id="ar">AR</h3>
+
+<ul>
+<li><strong>Memoji</strong> アバターの簡易作成</li>
+<li><strong>Portrait Segmentation</strong> 人物写真の前景背景分離</li>
+<li><strong>Gaze Tracking</strong> 視線トラッキング</li>
+<li><strong>USDZ</strong> ARでプレビュー可能な3Dモデルフォーマット</li>
+</ul>
+
+<h3 id="機械学習">機械学習</h3>
+
+<ul>
+<li><strong>CreateML</strong> Swiftで書かれたCoreML用のモデルの学習フレームワーク</li>
+</ul>
+
+<h3 id="その他">その他</h3>
+
+<ul>
+<li><strong>Dark Mode</strong> UI全体をダークトーンにする機能</li>
+<li><strong>Walkie Talkie</strong> トランシーバー機能</li>
+</ul>
+
+<p>と、私の興味の偏りもありますが、やはりARKit周りの発表が多かったように感じます。ARを推すなら機械学習も一緒に推してくるだろう、と思ってたんですが結構熱量は違うかな、という感触でした。</p>
+
+<h1 id="マップ共有-そして顔-のarkit関連セッション">マップ共有、そして顔、のARKit関連セッション</h1>
+
+<figure>
+<img src="https://www.apple.com/newsroom/images/product/os/ios/standard/ios12_memoji-customize_06042018_carousel.jpg.large.jpg" width="30%" />
+<p><em>画像は<a href="https://www.apple.com/newsroom/2018/06/apple-previews-ios-12/">Apple previews iOS 12</a>より</em></p>
+</figure>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/o3WyhCUsfMA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+<ul>
+<li>(オススメ) <strong>Wat&rsquo;s New in ARKit2</strong> <a href="https://developer.apple.com/videos/play/wwdc2018/602/">https://developer.apple.com/videos/play/wwdc2018/602/</a></li>
+<li><strong>Inside SwiftShot: Creating an AR Game</strong> <a href="https://developer.apple.com/wwdc18/605">https://developer.apple.com/wwdc18/605</a></li>
+<li><strong>Creating Photo and Video Effects Using Depth</strong> <a href="https://developer.apple.com/wwdc18/503">https://developer.apple.com/wwdc18/503</a></li>
+<li><strong>Creating Great AR Experiences</strong>* <a href="https://developer.apple.com/wwdc18/805">https://developer.apple.com/wwdc18/805</a></li>
+<li>(オススメ) <strong>Understanding ARKit Tracking and Detection</strong>
+
+<ul>
+<li>ARKitがどう動いているかの中身の話でとても面白い。VisualSLAMの話。センサとカメラをどう合わせて60fpsを達成するかが特に楽しかった。</li>
+</ul></li>
+</ul>
+
+<p><strong>Gaze and Tongue</strong> とにかくGazeTrackingがすごい。iPhoneXのカメラを用いて視線追跡をすることが出来る。
+もちろんAnimoji/Memojiで目をそらす・合わせるというコミュニケーションが出来るようになります。目が合うってのは相手の実在感に大きな役割を果たすと考えられるのでとても楽しみです。
+また、従来から視線追跡が役立つと言われていたアプリケーション、たとえばwebデザインの評価をするための調査アプリなども今後現れてくると考えられるのでわくわくします。なお現地ではGazeと同じくらい舌のトラッキングもアピールされてたんですが、正直そういう派手なコミュニケーションをしない私には舌の使用機会の想像は難しいかもという感想でした。。。</p>
+
+<p><strong>Saving World Model</strong> これは来るだろうと予想されていた機能の一つ。ARKitを用いて作成された環境マップをシリアライズしてsave/loadできる。一度アプリを閉じて再起動しても閉じる前に置いておいた仮想物体が使えるとか、さらにはネットワーク越しに送信できるので、複数人で座標系を同期したAR体験ができるようになりました。会場では会期中常設でAppleの複数人ARゲームのデモアプリ&rdquo;SwiftShot&rdquo;が遊べるようになっていて、私も2回プレイしました。</p>
+
+<p><strong>Environment Texturing</strong> これはAR空間に置いた仮想物体の実在性を高める機能としてとても印象に残りました。金属製のボウルのような光沢の有る仮想物体を置いたときに、現実側のテクスチャをちゃんと反映させる機能です。そのボウルの置かれた点から見た世界のテクスチャマップを自動でつくる機能という感じです。詳細は不明ですが、滑らかに複数視点のテクスチャマップをつないで補完するのはコンピュータビジョン技術を用いているとのことです。</p>
+
+<p><strong>Portrait Segmentation</strong> 機械学習屋さんの私としては、データセット作成にもアプリの性能向上にも使えると思った機能。iPhoneXの深度カメラを利用して、前景である人間領域だけ抜き取った画像を返してくれるAPI。たとえばこれを利用すれば背景の影響を除いた人間のデータセットが作れるし、あるいは個人認証のようなアプリケーションでも背景を除いてから実行できるのでロバストになる、と、応用先がかなりある技術と感じました。アプリケーションとしては、背景を差し替えるとか、顔を半透明にしてホログラム風とか、ってのをデモしてました。</p>
+
+<h1 id="誰でも-そして高速に-機械学習">誰でも、そして高速に、機械学習</h1>
+
+<ul>
+<li><strong>Introducing Create ML</strong> <a href="https://developer.apple.com/videos/play/wwdc2018/703/">https://developer.apple.com/videos/play/wwdc2018/703/</a></li>
+<li>(オススメ) <strong>What’s New in Core ML, Part 1</strong> <a href="https://developer.apple.com/videos/play/wwdc2018/708/">https://developer.apple.com/videos/play/wwdc2018/708/</a>
+
+<ul>
+<li>重みの量子化についていろいろ説明</li>
+</ul></li>
+<li><strong>What’s New in Core ML, Part 2</strong> <a href="https://developer.apple.com/wwdc18/709">https://developer.apple.com/wwdc18/709</a></li>
+<li>(参加してない) <strong>A Guide to Turi Create</strong> <a href="https://developer.apple.com/wwdc18/712">https://developer.apple.com/wwdc18/712</a></li>
+<li>(参加してない) <strong>Object Tracking in Vision</strong> <a href="https://developer.apple.com/wwdc18/716">https://developer.apple.com/wwdc18/716</a></li>
+<li><strong>Vision with Core ML</strong> <a href="https://developer.apple.com/wwdc18/717">https://developer.apple.com/wwdc18/717</a></li>
+</ul>
+
+<p><strong>CreateML</strong> Something native, Something swifty. Swiftで書かれた機械学習フレームワーク。機械学習フレームワークとしてはかなり高級なフレームワークのようで、よく知られたモデルを自前のデータで学習したい、というような用途に向いているように感じました。Nvidia Digitsとかを思い出しました。たとえば私の所属するDwango Media Villageで論文を書くための実験に使うには少し高級すぎるんじゃないかな、とは思います。面白いのは、ディープラーニング一辺倒ではなくRandomForestなどもきっちりカバーしてること。CoreMLはすでにtensorflowやONNX(chainerやmxnetなどから変換可能)やscikit-learnなどのモデルを利用することが出来るけれど、やっぱりswiftで書かれててswiftで使えるってとこを推してるんじゃないかなって思います。ちなみにturiという今はapple傘下のフレームワークもあって、これはpython用のものとなってます。turiも割と高級な機能がメインで、appleはそういうユーザー向けに機械学習機能を開発していくのかなと感じました。</p>
+
+<p><strong>Weight Quantization</strong> しれっとCoreMLにモデル圧縮機能が入った、これはとても印象深かかったです。モバイル向け機械学習業界ではたしかに激しく研究されている分野なので。float32で表現されてるResnet50のモデルをuint4に量子化してたった14MBでもある程度の精度を保つことが出来る、というデモをしていました。学習フレームワークからfloatでモデル吐き出して、coreml toolで圧縮して、iPhoneで使う、という流れが作られています。なお、精度が変わらない、というのをプレゼン映えさせるのにStyle Transferの例を出して、floatのモデルと見た目が変わらないことをデモしていて、とてもわかり易いなーーーって思いました(2bitまで圧縮すると流石に崩れる)。</p>
+
+<h1 id="個人的な感想">個人的な感想</h1>
+
+<figure>
+<img src="https://dwango.github.io/images/wwdc2018/labs.jpg" alt="cover" width="50%" />
+
+</figure>
+
+<p><strong>Labs</strong> 現地で参加することの面白い点としては、Technology Labsという名前で、appleのエンジニアがチームごとに別れて相談に乗ってくれる時間が有ることです。本当にフランクに話しかけて相談に乗ってくれます。私はARKit LabとMachine Learning Labに参加して自分の開発中のアプリの相談をしたりしました。ちなみに&rdquo;こういう機能追加する予定ないの？&rdquo;という探りは流石にスルーされました。純粋にいまの機能の使い方を質問しましょう。審査やデザインについて質問できるLabも有るらしくて、そちらは超人気という話を聞きました。</p>
+
+<figure>
+<img src="https://dwango.github.io/images/wwdc2018/bash.jpg" alt="cover" width="70%" />
+
+</figure>
+
+<p><strong>Bash</strong> 私は普段人と話すよりコーディングしてる時間のほうが圧倒的に長いタイプの人間なので、正直パーティー的なものには苦手意識が有るんですが、Bashは楽しかったです。楽しかったですが、じゃあすぐ東京で他の企業が真似したら嬉しいかと言われるとたぶん参加しないので難しいですね。Appleのスタッフやそもそも参加者たちが作り出すフランクな雰囲気があってこそ成立してる会なのだと思います。ちなみにハード面でも真似するのは難しくて、公園まるごと貸し切りで野外ライブもあったりとか、スケールでかいです。</p>
+
+<p>Bashも含めてですが、基本的にAppleのスタッフ自身が楽しんでいる(のを見せる)のがいいな、うまいな、と思いました。列整理をしてるだけなのに踊ってるスタッフとか普通にいるんで、異次元の文化でした。そういう空気感だからこそ、参加者も盛り上がりやすく、また、逆に各セッションを盛り上げようという気分になるんだなと学びました。</p>
+
+    </article>
+  </div>
+</div>
+
+    </div>
+
+    
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-109076308-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

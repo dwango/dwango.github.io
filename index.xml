@@ -6,10 +6,19 @@
     <description>Recent content on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 29 May 2018 10:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 14 Jun 2018 16:30:00 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>機械学習エンジニアから見たWWDC2018</title>
+      <link>https://dwango.github.io/articles/wwdc2018/</link>
+      <pubDate>Thu, 14 Jun 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/wwdc2018/</guid>
+      <description>Dwangoの中の、機械学習の研究開発部署Dwango Media Villageで働くエンジニアの大垣です。 今回はAppleのWWDCに機械学習エンジ</description>
+    </item>
     
     <item>
       <title>VRMFirstPersonの使い方</title>
