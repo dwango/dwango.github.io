@@ -100,8 +100,7 @@
 
 <h2 id="vrmファイルのつくりかた-既存3dモデルからのコンバート">VRMファイルのつくりかた（既存3Dモデルからのコンバート）</h2>
 
-<p><img src="https://dwango.github.io/images/vrm/vrm_workflow.png" alt="vrm workflow" />
-
+<p><img src="https://dwango.github.io/images/vrm/vrm_workflow.png" alt="vrm workflow"  />
 
 VRMファイルをつくるためには、<a href="https://unity3d.com/jp">Unity</a>と<a href="https://github.com/dwango/UniVRM">UniVRM</a>を使用します。
 おおまかな作業のながれは以下のようになります</p>
@@ -123,15 +122,13 @@ VRMファイルをつくるためには、<a href="https://unity3d.com/jp">Unity
 
 <h3 id="1-unityで空のプロジェクトを作る">1.Unityで空のプロジェクトを作る</h3>
 
-<p><img src="https://dwango.github.io/images/vrm/unity_new_project.png"  />
-
+<p><img src="https://dwango.github.io/images/vrm/unity_new_project.png"   />
 
 Unityを起動し、プロジェクトを新規作成します。New→Create projectをクリック。</p>
 
 <h3 id="2-unityにunivrmをインストール">2.UnityにUniVRMをインストール</h3>
 
-<p><img src="https://dwango.github.io/images/vrm/package_import.png" alt="package_import" />
-
+<p><img src="https://dwango.github.io/images/vrm/package_import.png" alt="package_import"  />
 
 <a href="https://github.com/dwango/UniVRM/releases">UniVRM/releases</a>から最新のunitypackageをダウンロードし、<code>Assets/VRM</code>にインストールします。
 <strong>既存のVRMが存在している場合、あらかじめVRMフォルダを削除することを推奨</strong>しています。
@@ -139,15 +136,13 @@ UniVRM-XXX.unitypackageファイルをUnityにインポートしてください�
 
 <h3 id="3-unityでhumanoidとして扱えるモデルデータを用意します">3.UnityでHumanoidとして扱えるモデルデータを用意します</h3>
 
-<p><img src="https://dwango.github.io/images/vrm/alicia_generic.png"  />
-
+<p><img src="https://dwango.github.io/images/vrm/alicia_generic.png"   />
 
 FBX等のUnityで読み込めるHumanoidモデルを用意しUnityにインポートします。ボーンの設定もされている必要があります。また、<strong>必ずご自分で作られたモデル、ないし、加工しVRアバターとして使うことが許諾されているモデルデータをご用意ください</strong>。後述しますが、<strong>VRMファイル自体にライセンス情報を記述する項目がありますので、特にその項目については権利者自身が設定するようにしてください</strong>。</p>
 
 <p>インポート後、FBXのImport SettingsのRigタブでAnimationTypeをHumanoidにしてください。</p>
 
-<p><img src="https://dwango.github.io/images/vrm/fix_eye.png"  />
-
+<p><img src="https://dwango.github.io/images/vrm/fix_eye.png"   />
 
 FBXインポート時の自動認識が食い違うことがありますので、ボーンの設定が間違っていたら修正します</p>
 
@@ -160,8 +155,7 @@ FBXインポート時の自動認識が食い違うことがありますので�
 
 <h3 id="4-モデルデータを調整し-メニューから一度vrmをエクスポートする-正規化">4.モデルデータを調整し、メニューから一度VRMをエクスポートする（※正規化）</h3>
 
-<p><img src="https://dwango.github.io/images/vrm/alicia_scene.png"  />
-
+<p><img src="https://dwango.github.io/images/vrm/alicia_scene.png"   />
 
 3.で用意したモデルデータを<strong>一度Unityのシーンに配置します</strong>。その上で、以下の項目を調整します。</p>
 
@@ -209,13 +203,11 @@ FBXインポート時の自動認識が食い違うことがありますので�
 </ul></li>
 </ul>
 
-<p><img src="https://dwango.github.io/images/vrm/vrm_menu_enable.png"  />
-
+<p><img src="https://dwango.github.io/images/vrm/vrm_menu_enable.png"   />
 
 調整が終わったら、UnityのHierarchyでモデルデータを選択し、メニューからVRM→Export humanoidを実行します</p>
 
-<p><img src="https://dwango.github.io/images/vrm/export_dialog.png"  />
-
+<p><img src="https://dwango.github.io/images/vrm/export_dialog.png"   />
 
 チェックボックスを設定してExportを押してください。</p>
 
@@ -236,14 +228,12 @@ FBXインポート時の自動認識が食い違うことがありますので�
 
 <h3 id="5-先ほどエクスポートしたvrmを再度unity上に読み込む">5.先ほどエクスポートしたVRMを再度Unity上に読み込む</h3>
 
-<img src="https://dwango.github.io/images/vrm/vrm_prefab.png"  />
-
+<img src="https://dwango.github.io/images/vrm/vrm_prefab.png"   />
 
 
 <p><strong>4.で出力したVRMファイルを、UnityのAssetsにドラッグ＆ドロップする</strong>だけで、VRMファイルがインポートされ<strong>モデルデータのPrefabが生成されます</strong>。</p>
 
-<img src="https://dwango.github.io/images/vrm/alicia_scene2.png"  />
-
+<img src="https://dwango.github.io/images/vrm/alicia_scene2.png"   />
 
 
 <p>さきほど4.で配置したモデルデータをいったん消し、<strong>VRMから生成されたPrefabをあらためてシーンに配置します</strong>。
@@ -251,8 +241,7 @@ FBXインポート時の自動認識が食い違うことがありますので�
 
 <h3 id="6-vrm独自の設定を行う">6.VRM独自の設定を行う</h3>
 
-<img src="https://dwango.github.io/images/vrm/vrm_settings.png"  />
-
+<img src="https://dwango.github.io/images/vrm/vrm_settings.png"   />
 
 
 <p>5.で読み込まれたモデルデータをHierarchyで選択すると、<strong>インスペクタにさまざまな設定項目</strong>があらわれます。また、<strong>secondaryには揺れ物の設定</strong>が入っています。これらを設定していきます。
@@ -366,8 +355,7 @@ FBXインポート時の自動認識が食い違うことがありますので�
 
 <h3 id="7-unity上で再生し挙動を確認する-必要であれば">7.Unity上で再生し挙動を確認する（※必要であれば）</h3>
 
-<img src="https://dwango.github.io/images/vrm/aiueo.png"  />
-
+<img src="https://dwango.github.io/images/vrm/aiueo.png"   />
 
 
 <p>AnimationClip/AnimationControllerをセットしたり、VRMLookAtHeadのTargetにGameObjectをセットしたり（視線がどこを向くかの設定）して、実際にUnity上で動作を確認します。
@@ -375,8 +363,7 @@ FBXインポート時の自動認識が食い違うことがありますので�
 
 <h3 id="8-vrmファイルを出力する">8.VRMファイルを出力する</h3>
 
-<p><img src="https://dwango.github.io/images/vrm/vrm_menu_enable.png"  />
-
+<p><img src="https://dwango.github.io/images/vrm/vrm_menu_enable.png"   />
 
 調整が終わったら、UnityのHierarchyでモデルデータを選択し、再度メニューからVRM→Export humanoidを実行します</p>
 
