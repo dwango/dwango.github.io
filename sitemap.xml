@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://dwango.github.io/articles/moving-seminar-room/</loc>
+    <lastmod>2018-06-21T16:01:23+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://dwango.github.io/articles/wwdc2018/</loc>
     <lastmod>2018-06-14T16:30:00+09:00</lastmod>
   </url>
@@ -189,7 +194,7 @@
   
   <url>
     <loc>https://dwango.github.io/articles/</loc>
-    <lastmod>2018-06-14T16:30:00+09:00</lastmod>
+    <lastmod>2018-06-21T16:01:23+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -205,7 +210,7 @@
   
   <url>
     <loc>https://dwango.github.io/</loc>
-    <lastmod>2018-06-14T16:30:00+09:00</lastmod>
+    <lastmod>2018-06-21T16:01:23+09:00</lastmod>
     <priority>0</priority>
   </url>
   

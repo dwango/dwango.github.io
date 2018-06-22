@@ -6,10 +6,19 @@
     <description>Recent content on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Thu, 14 Jun 2018 16:30:00 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 21 Jun 2018 16:01:23 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ドワンゴのセミナールームが移転しました</title>
+      <link>https://dwango.github.io/articles/moving-seminar-room/</link>
+      <pubDate>Thu, 21 Jun 2018 16:01:23 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/moving-seminar-room/</guid>
+      <description>ドワンゴ 技術コミュニケーション室の塩谷（ @kwappa / kwappa@friends.nico ）です。 勉強会の会場としてご利用いただいていたドワンゴのセミナールームが、このたび移転しました</description>
+    </item>
     
     <item>
       <title>機械学習エンジニアから見たWWDC2018</title>
