@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.42.2" />
+
+  <meta property="og:title" content="I would like to create VRM file - dwango on GitHub">
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>I would like to create VRM file - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/vrm.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
+      <p class="lead">
+       
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a> </li>
+      <li><a href="/articles"> Articles </a></li><li><a href="https://nico.ms/job/"> Hiring </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/vrm"> VRM </a></li><li><a href="https://nico-opendata.jp/ja/index.html"> nico-opendata </a></li>
+    </ul>
+
+    <p>
+      
+        <p style="display:inline-block;vertical-align:middle;">
+          Copyright &copy; DWANGO Co., Ltd.
+        </p>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+
+        <a href="https://dwango.github.io/vrm">
+          <img src="https://dwango.github.io/images/vrm/vrm_header.png" alt="VRM - humanoid 3d avatar format for VR">
+        </a>
+
+        
+        <li>
+          <a class="language" href="https://dwango.github.io/vrm/how_to_make_vrm/"><i class="fa fa-globe">&nbsp;</i>VRMファイルを作ってみたい(ja)</a>
+        </li>
+        
+
+    
+<div class="post">
+  <h1>I would like to create VRM file</h1>
+  <span class="post-date"> Mon, Apr 16, 2018 </span>
+  <div class="share">
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="I would like to create VRM file - dwango on GitHub" data-url="https://dwango.github.io/en/vrm/how_to_make_vrm/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/en/vrm/how_to_make_vrm/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2fen%2fvrm%2fhow_to_make_vrm%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+  </div>
+  <div>
+    <article id="content">
+        <div class="toc"> <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#how-to-create-vrm-file-conversion-from-existing-3d-model">How to create VRM file (conversion from existing 3D model)</a>
+<ul>
+<li><a href="#1-create-an-empty-project-from-start-page-of-unity">1. Create an empty project from start page of Unity</a></li>
+<li><a href="#2-install-univrm-in-unity">2. Install UniVRM in Unity</a></li>
+<li><a href="#3-prepare-model-data-that-can-be-handled-as-humanoid-in-unity">3. Prepare model data that can be handled as &ldquo;Humanoid&rdquo; in Unity</a></li>
+<li><a href="#4-adjust-model-data-and-export-vrm-once-from-menu-normalization-processing">4. Adjust model data and export VRM once from menu（normalization processing）</a></li>
+<li><a href="#5-read-the-exported-vrm-file-again-in-unity">5. Read the exported VRM file again in Unity</a></li>
+<li><a href="#6-custom-settings-in-vrm">6. Custom settings in VRM</a></li>
+<li><a href="#7-check-model-expression-movement-in-play-mode-if-necessary">7. Check model expression/movement in play mode（If necessary）</a></li>
+<li><a href="#8-output-vrm-file">8. Output VRM file</a></li>
+<li><a href="#done">Done！</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+        </div>
+       
+
+<h2 id="how-to-create-vrm-file-conversion-from-existing-3d-model">How to create VRM file (conversion from existing 3D model)</h2>
+
+<p><img src="https://dwango.github.io/images/vrm/vrm_workflow_en.png" alt="vrm workflow"  />
+
+As we mentioned in the previous section, <a href="https://unity3d.com/jp">Unity</a> and <a href="https://github.com/dwango/UniVRM">UniVRM</a> were used to create VRM file. The general workflow is described as follows:</p>
+
+<ol>
+<li>Load 3D model data and <a href="https://github.com/dwango/UniVRM">UniVRM</a> in Unity. Next, adjust and set the size, material, etc.</li>
+<li>Output VRM file from Unity once（normalization processing）</li>
+<li>Read output VRM file with Unity and perform VRM specific settings (license, swaying object, expression, perspective view and so on)
+
+<ul>
+<li>In some cases, make sure the model is working (e.g. facial expression change) in play mode.</li>
+</ul></li>
+<li>After the settings are finished, the VRM file with all the updated settings embedded is output.</li>
+</ol>
+
+<p>Briefly speaking, <strong>created 3D models can be adjusted in Unity and then output again from Unity. Once a VRM file is created, it can be reloaded for fine tuning the model</strong>.</p>
+
+<hr />
+
+<h3 id="1-create-an-empty-project-from-start-page-of-unity">1. Create an empty project from start page of Unity</h3>
+
+<p><img src="https://dwango.github.io/images/vrm/unity_new_project.png"   />
+
+Launch Unity and create a new project (New -&gt; Create project).</p>
+
+<h3 id="2-install-univrm-in-unity">2. Install UniVRM in Unity</h3>
+
+<img src="https://dwango.github.io/images/vrm/package_import.png" alt="package_import"  />
+
+
+<p>Download the latest unitypackage from <a href="https://github.com/dwango/UniVRM/releases">UniVRM/releases</a> and import it in the folder Assets/VRM (Assets -&gt; Import Package -&gt; Custom Package). <strong>If there exists any VRM file in the VRM folder, it is recommended to delete the folder in advance</strong>.</p>
+
+<h3 id="3-prepare-model-data-that-can-be-handled-as-humanoid-in-unity">3. Prepare model data that can be handled as &ldquo;Humanoid&rdquo; in Unity</h3>
+
+<img src="https://dwango.github.io/images/vrm/alicia_generic.png"   />
+
+
+<p>Prepare a humanoid model that can be read by Unity such as FBX format and import it into Unity. It is also necessary to have the bones setup. Also, <strong>be sure to use your own created model or processed model data that is used as VR avatar under license rules</strong>. As we will describe later, <strong>there are items that describe license information in the VRM file itself. Please make sure the license data settings is the same as the author did</strong>.</p>
+
+<p>After import, please select &ldquo;Humanoid&rdquo; from FBX import settings -&gt; Rig -&gt; Animation Type.</p>
+
+<img src="https://dwango.github.io/images/vrm/fix_eye.png"   />
+
+
+<p>When importing FBX, bone assignments done by auto-recognition may be different from expectations (see image above):</p>
+
+<ul>
+<li>Jaw is assigned to mouth</li>
+<li>Eye is assigned to eye highlight</li>
+</ul>
+
+<p>Please fix them manually.</p>
+
+<h3 id="4-adjust-model-data-and-export-vrm-once-from-menu-normalization-processing">4. Adjust model data and export VRM once from menu（normalization processing）</h3>
+
+<img src="https://dwango.github.io/images/vrm/alicia_scene.png"   />
+
+
+<p><strong>Put the model data made in step 3 in Unity scene once</strong>. On top of that, adjust the following items:</p>
+
+<ul>
+<li>Model Position
+
+<ul>
+<li>Model is placed at the origin</li>
+</ul></li>
+<li>Model Scale
+
+<ul>
+<li>1.0 = 1m</li>
+</ul></li>
+<li>Model Pose
+
+<ul>
+<li>Model faces towards +Z(axis) direction</li>
+</ul></li>
+<li>Texture（material / shader）
+
+<ul>
+<li>It is <strong>highly recommended</strong> to use the shaders listed as follows:
+
+<ul>
+<li>PBR
+
+<ul>
+<li>Standard shader (Unity standard)</li>
+</ul></li>
+<li>Unlit type shader
+
+<ul>
+<li>VRM/UnlitTexture (same as Unit/Texture)</li>
+<li>VRM/UnlitCutout (same as Unit/Coutout)</li>
+<li>VRM/UnlitTransparent (same as Unit/Transparent)</li>
+<li>VRM/UnlitTransparentZWrite (Alpha blending and ZWrite are available. It is assumed to be applied to semitransparent objects)</li>
+</ul></li>
+<li>Toon shader
+
+<ul>
+<li>VRM/MToon (lighting supported toon shader）</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<img src="https://dwango.github.io/images/vrm/vrm_menu_enable.png"   />
+
+
+<p>After finishing the adjustment, select the model data in &ldquo;Hierarchy&rdquo; and export the model from menu -&gt; VRM -&gt; export humanoid.</p>
+
+<img src="https://dwango.github.io/images/vrm/export_dialog.png"   />
+
+
+<p>Check the boxes and click Export button</p>
+
+<ul>
+<li>Force T Pose
+
+<ul>
+<li>Force the model pose to become <a href="../vrm_tpose/">T-Pose</a> before removing rotation / scale.</li>
+</ul></li>
+<li>Pose Freeze
+
+<ul>
+<li>Whether removal processing of rotation / scale should be performed or not, <strong>the model need to be first normalized</strong> in order to conform to the VRM rule. Please make sure to check the boxes at the <strong>first time of use</strong>. By passing through this process beforehand, various components can work correctly.</li>
+</ul></li>
+</ul>
+
+<p>After clicking Export button, the VRM file is output. To easily track this file, it is recommended to name the file like this format &ldquo;Model_Name_Normalized.vrm&rdquo;.</p>
+
+<h3 id="5-read-the-exported-vrm-file-again-in-unity">5. Read the exported VRM file again in Unity</h3>
+
+<img src="https://dwango.github.io/images/vrm/vrm_prefab_en.png"   />
+
+
+<p><strong>By simply dragging and dropping the exported VRM file (~.vrm) from step 4 in the folder Unity/Assets</strong>, the <strong>Prefab file</strong> can be automatically generated.</p>
+
+<img src="https://dwango.github.io/images/vrm/alicia_scene2.png"   />
+
+
+<p>Now delete the model data from step 4 and <strong>again put the generated Prefab from the VRM file into the scene</strong> (e.g. drag the Prefab file to the sidebar on the left in the image). Then, normalized model data such as mesh, etc. can be rendered in the scene.</p>
+
+<h3 id="6-custom-settings-in-vrm">6. Custom settings in VRM</h3>
+
+<img src="https://dwango.github.io/images/vrm/vrm_settings.png"   />
+
+
+<p>When selecting the model data (step 5) in &ldquo;Hierarchy&rdquo;, various items are displayed in &ldquo;Inspector&rdquo;. In addition, we will set <strong>swaying object in &ldquo;secondary&rdquo;</strong>. Please at least fill in title, author, license information. <strong>Specially, license information is crucial!</strong></p>
+
+<ul>
+<li><p>Information</p>
+
+<ul>
+<li>Title
+
+<ul>
+<li>Avatar model name (any input)</li>
+</ul></li>
+<li>Version
+
+<ul>
+<li>Avatar model version (any input)</li>
+</ul></li>
+<li>Author
+
+<ul>
+<li>Author name</li>
+</ul></li>
+<li>Contact Information
+
+<ul>
+<li>Author contact information</li>
+</ul></li>
+<li>Reference
+
+<ul>
+<li>The original / related works of this avatar, if any</li>
+</ul></li>
+</ul></li>
+
+<li><p>License</p>
+
+<ul>
+<li><p>Permission for the use of this avatar</p>
+
+<ul>
+<li>Access right
+
+<ul>
+<li>Only Author</li>
+<li>Explicitly Licensed Person</li>
+<li>Everyone</li>
+</ul></li>
+<li>Violent acts performed by this avatar
+
+<ul>
+<li>Disallow</li>
+<li>Allow</li>
+</ul></li>
+<li>Sexuality acts performed by this avatar
+
+<ul>
+<li>Disallow</li>
+<li>Allow</li>
+</ul></li>
+<li>For commercial use
+
+<ul>
+<li>Disallow</li>
+<li>Allow</li>
+</ul></li>
+<li>License Url
+
+<ul>
+<li>If there are any conditions not mentioned above, put the license Url link here</li>
+</ul></li>
+</ul></li>
+
+<li><p>License redistribution / modification</p>
+
+<ul>
+<li><p>License Type</p>
+
+<ul>
+<li>Redistribution Prohibited</li>
+<li><a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">Copyright wavier (CC0)</a></li>
+<li><a href="https://creativecommons.org/licenses/by/4.0/deed.en">Creative Commons CC BY License(CC_BY)</a></li>
+<li><a href="https://creativecommons.org/licenses/by-nc/4.0/deed.en">Creative Commons CC BY NC License(CC_BY_NC)</a></li>
+<li><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">Creative Commons CC BY SA License(CC_BY_SA)</a></li>
+<li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Creative Commons CC BY NC SA License(CC_BY_NC_SA)</a></li>
+<li><a href="https://creativecommons.org/licenses/by-nd/4.0/deed.en">Creative Commons CC BY ND License(CC_BY_ND)</a></li>
+<li><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.en">Creative Commons CC BY NC ND License(CC_BY_NC_ND)</a></li>
+<li>Other</li>
+</ul></li>
+
+<li><p>License Url (license type “other”)</p>
+
+<ul>
+<li>If “other” is selected, please put the license Url link here.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>Besides, please set the necessary items in each link listed below:</p>
+
+<ul>
+<li><a href="../univrm/components/univrm_blendshape/">Expression and lip-sync setting（BlendShape)</a></li>
+<li><a href="../univrm/components/univrm_firstperson/">First-person view setting（the case for operating model by first-person view, specify parts such as head that may block the scene and set the standard viewpoint position)</a></li>
+<li><a href="../univrm/components/univrm_lookat/">Movable curve and movable range of view / eyeball settings. Not only eyeball is supported by bone, but also eyeball animation is supported by BlendShape</a></li>
+<li><a href="../univrm/components/univrm_secondary/">Swaying motion setting（SpringBone/SpringBoneCollider)</a></li>
+</ul>
+
+<h3 id="7-check-model-expression-movement-in-play-mode-if-necessary">7. Check model expression/movement in play mode（If necessary）</h3>
+
+<img src="https://dwango.github.io/images/vrm/aiueo.png"   />
+
+
+<p>Set AnimationClip/AnimationController and GameObject in VRMLookAtHead -&gt; Target (viewpoint direction), and then check model&rsquo;s movement and expression in the scene. Also, fairly simple test scripts &ldquo;AIUEO&rdquo; and &ldquo;Blinker&rdquo; are available for users to test out. Click &ldquo;Add Component&rdquo; at the bottom of &ldquo;Inspector&rdquo; and search for “AIUEO”. After setting this component, the animation of mouth shape &ldquo;あ&rdquo;, &ldquo;い&rdquo;, &ldquo;う&rdquo;, &ldquo;え&rdquo;, &ldquo;お&rdquo; switching in turn can be created. If the component &ldquo;Blinker&rdquo; is set, blink animation played periodically can be created.</p>
+
+<h3 id="8-output-vrm-file">8. Output VRM file</h3>
+
+<img src="https://dwango.github.io/images/vrm/vrm_menu_enable.png"   />
+
+
+<p>After the adjustment is completed, select the model data in &ldquo;Hierarchy&rdquo; and again export the model from menu -&gt; VRM -&gt; export humanoid from menu.</p>
+
+<p>This time <strong>please uncheck &ldquo;Force T Pose&rdquo; and &ldquo;Pose Freeze&rdquo;</strong>. They are only used for the first time (normalization processing). Name the file and output the VRM file.</p>
+
+<h3 id="done">Done！</h3>
+
+<p>Your VRM file is good to go. Let’s try to load the VRM file into VRM supported applications!</p>
+
+    </article>
+  </div>
+</div>
+
+
+        <a href="https://dwango.github.io/vrm">
+          <img src="https://dwango.github.io/images/vrm/vrm_header.png" alt="VRM - humanoid 3d avatar format for VR">
+        </a>
+
+    </div>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-109076308-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

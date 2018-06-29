@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.42.2" />
+
+  <meta property="og:title" content="MToon - dwango on GitHub">
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>MToon - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/vrm.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
+      <p class="lead">
+       
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a> </li>
+      <li><a href="/articles"> Articles </a></li><li><a href="https://nico.ms/job/"> Hiring </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/vrm"> VRM </a></li><li><a href="https://nico-opendata.jp/ja/index.html"> nico-opendata </a></li>
+    </ul>
+
+    <p>
+      
+        <p style="display:inline-block;vertical-align:middle;">
+          Copyright &copy; DWANGO Co., Ltd.
+        </p>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+
+        <a href="https://dwango.github.io/vrm">
+          <img src="https://dwango.github.io/images/vrm/vrm_header.png" alt="VRM - humanoid 3d avatar format for VR">
+        </a>
+
+        
+        <li>
+          <a class="language" href="https://dwango.github.io/vrm/univrm/shaders/mtoon/"><i class="fa fa-globe">&nbsp;</i>MToon(ja)</a>
+        </li>
+        
+
+    
+<div class="post">
+  <h1>MToon</h1>
+  <span class="post-date"> Mon, Apr 16, 2018 </span>
+  <div class="share">
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="MToon - dwango on GitHub" data-url="https://dwango.github.io/en/vrm/univrm/shaders/mtoon/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/en/vrm/univrm/shaders/mtoon/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2fen%2fvrm%2funivrm%2fshaders%2fmtoon%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+  </div>
+  <div>
+    <article id="content">
+        <div class="toc"> <nav id="TableOfContents">
+<ul>
+<li><a href="#about-mtoon">About MToon</a></li>
+<li><a href="#for-users-who-want-to-have-a-quick-setup">For users who want to have a quick setup</a>
+<ul>
+<li><a href="#common-items">Common items</a></li>
+<li><a href="#general-material">General material</a></li>
+<li><a href="#materials-that-don-t-want-to-be-influenced-by-shadow-such-as-character-s-face">Materials that don&rsquo;t want to be influenced by shadow, such as character&rsquo;s face</a></li>
+</ul></li>
+<li><a href="#setting-items">Setting items</a>
+<ul>
+<li><a href="#preparation">Preparation</a></li>
+<li><a href="#basic">Basic</a>
+<ul>
+<li><a href="#rendering-type">Rendering Type</a></li>
+<li><a href="#cull-mode">Cull Mode</a></li>
+<li><a href="#alpha">Alpha</a></li>
+<li><a href="#color">Color</a></li>
+</ul></li>
+<li><a href="#lighting">Lighting</a>
+<ul>
+<li><a href="#shade-shift">Shade Shift</a></li>
+<li><a href="#shade-toony">Shade Toony</a></li>
+<li><a href="#shade-lightcolor-attenuation">Shade LightColor Attenuation</a></li>
+<li><a href="#shadow-receive-rate">Shadow Receive Rate</a></li>
+<li><a href="#rim-additive">Rim Additive</a></li>
+<li><a href="#emission">Emission</a></li>
+<li><a href="#normal-map">Normal Map</a></li>
+</ul></li>
+<li><a href="#outline">Outline</a>
+<ul>
+<li><a href="#width-mode">Width Mode</a></li>
+<li><a href="#width">Width</a></li>
+<li><a href="#color-mode">Color Mode</a></li>
+<li><a href="#color-1">Color</a></li>
+<li><a href="#color-lighting-mix">Color Lighting Mix</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+        </div>
+       
+
+<p><a href="../../univrm_install/#shader-preloading-setting">Shader preloading setting</a></p>
+
+<h1 id="about-mtoon">About MToon</h1>
+
+<p>MToon aims for making Japanese anime expression. It is achieved by mixing the two colors Lit Color and Shade Color based on Lighting parameters and light source environment.</p>
+
+<table>
+<thead>
+<tr>
+<th><img src="https://dwango.github.io/images/vrm/mtoon_about.png" alt="alicia MToon"  />
+</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Apply MToon to Niconi &ldquo;3D chan&rdquo;</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="for-users-who-want-to-have-a-quick-setup">For users who want to have a quick setup</h1>
+
+<h2 id="common-items">Common items</h2>
+
+<ul>
+<li>Select the target material and change the shader <code>VRM/MToon</code></li>
+<li>Set the same texture in <code>Basic-&gt;Color-&gt;Lit&amp;Alpha</code> and <code>Basic-&gt;Color-&gt;Shade</code></li>
+<li>Set white color in <code>Basic-&gt;Color-&gt;Lit&amp;Alpha</code> and set your preference shade color in <code>Basic-&gt;Color-&gt;Shade</code>.</li>
+<li>Set your preference value in <code>Shade -&gt; Toony</code>. Change the lit color and shade color clearly:<code>1</code></li>
+<li>Set the texture equivalent to sphere map or Matcap in <code>Rim-&gt;Additive</code></li>
+<li>If outline is necessary, select <code>WorldCoordinates</code> from <code>Outline-&gt;Width-&gt;Mode</code>. Select <code>None</code> if outline is not needed.</li>
+<li>Set the value with good appearance in <code>Outline-&gt;Width-&gt;Width</code></li>
+</ul>
+
+<h2 id="general-material">General material</h2>
+
+<ul>
+<li><code>Shade-&gt;Shift</code> is <code>0</code></li>
+<li><code>Shadow-&gt;ReceiveRate</code> is <code>1</code></li>
+</ul>
+
+<h2 id="materials-that-don-t-want-to-be-influenced-by-shadow-such-as-character-s-face">Materials that don&rsquo;t want to be influenced by shadow, such as character&rsquo;s face</h2>
+
+<ul>
+<li><code>Shade-&gt;Shift</code> is negative value</li>
+<li><code>Shadow-&gt;Receive Rate</code> is <code>0</code></li>
+</ul>
+
+<h1 id="setting-items">Setting items</h1>
+
+<h2 id="preparation">Preparation</h2>
+
+<p>Select the target material and change the shader to VRM-&gt;MToon</p>
+
+<table>
+<thead>
+<tr>
+<th><img src="https://dwango.github.io/images/vrm/set_mtoon.png" alt="select MToon"  />
+</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Change material shader VRM/MToon</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="basic">Basic</h2>
+
+<table>
+<thead>
+<tr>
+<th><img src="https://dwango.github.io/images/vrm/mtoon_inspector_basic.png" alt="MToon Basic"  />
+</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Items included in Basic Inspector</td>
+</tr>
+</tbody>
+</table>
+
+<p>Set the items Lit color, Shade color and rendering method in &ldquo;Basic&rdquo;.</p>
+
+<h3 id="rendering-type">Rendering Type</h3>
+
+<p>Set the material that is opaque or semi-transparent.</p>
+
+<ul>
+<li>Opaque
+
+<ul>
+<li>It is opaque. Generally it is recommended to set &ldquo;Opaque&rdquo;.</li>
+</ul></li>
+
+<li><p>Cutout</p>
+
+<ul>
+<li>Although it is opaque, it refers to the alpha value in <code>Basic-&gt;Color-&gt;Lit&amp;Alpha</code> and skips rendering for places having smaller value than <code>Basic-&gt;Alpha-&gt;Cutoff</code>.</li>
+</ul></li>
+
+<li><p>Transparent</p>
+
+<ul>
+<li>It is semi-transparent. It is opacity based on the alpha value in <code>Basic-&gt;Color-&gt;Lit&amp;Alpha</code>.</li>
+<li>The disadvantage is outline plotting can not be rendered correctly.</li>
+</ul></li>
+</ul>
+
+<h3 id="cull-mode">Cull Mode</h3>
+
+<p>Set which side of polygon is drawn.</p>
+
+<ul>
+<li>Back
+
+<ul>
+<li>Render the back side. Generally it is recommended to select &ldquo;Back&rdquo;.</li>
+</ul></li>
+<li>Front
+
+<ul>
+<li>Render the front side.</li>
+</ul></li>
+<li>None
+
+<ul>
+<li>Render the both sides.</li>
+</ul></li>
+</ul>
+
+<h3 id="alpha">Alpha</h3>
+
+<p>Required if only select <code>Rendering Type-&gt;Cutout</code>.</p>
+
+<ul>
+<li>Cutoff
+
+<ul>
+<li>Set the threshold value for not rendering.</li>
+</ul></li>
+</ul>
+
+<h3 id="color">Color</h3>
+
+<p>Set the rendering color.
+The texture and the color are multiplied.
+Set the color hit by light in <code>Lit &amp; Alpha</code> and set the color not hit by light in <code>Shade</code>.<br />
+Also, set the alpha value in <code>Lit &amp; Alpha</code> as opacity information.</p>
+
+<h2 id="lighting">Lighting</h2>
+
+<h3 id="shade-shift">Shade Shift</h3>
+
+<p>Depend on how light ray hits the object, adjust the threshold value of the lit color and the shade color.
+When the value is set as <code>0</code>, it is normal lighting.
+When a negative value is set, it becomes the lighting with anime-like, wide range of lit color.
+When the value is negative, it is necessary to disable self-shadow with setting the value as <code>0</code> in <code>Shadow-&gt;ReceiveRate</code> according to the displayed warning message .</p>
+
+<h3 id="shade-toony">Shade Toony</h3>
+
+<p>Set whether to smoothly change for the lit color and the shade color around the threshold in the item <code>Shade Shift</code>.
+When the value is set as <code>0</code>, it becomes realistically smooth like normal Lambert model
+When the value is set as <code>1</code>, it becomes animation-style lighting whose lit color and shade color change obviously with the threshold value.</p>
+
+<h3 id="shade-lightcolor-attenuation">Shade LightColor Attenuation</h3>
+
+<p>Enable influence by light source color.
+<code>0</code>: Influence.
+<code>1</code>: No influence. Only reflects the luminance of the light source color.</p>
+
+<h3 id="shadow-receive-rate">Shadow Receive Rate</h3>
+
+<p>Enable influence by self-shadow or shadow.
+<code>0</code>: No influence.
+<code>1</code>: Influence.</p>
+
+<h3 id="rim-additive">Rim Additive</h3>
+
+<p>Display additional light sources based on the relationship between the camera and the normal.
+In general it is called sphere map or Matcap.</p>
+
+<h3 id="emission">Emission</h3>
+
+<p>Set a constant color regardless of the light source environment.</p>
+
+<h3 id="normal-map">Normal Map</h3>
+
+<p>Set normal map.
+Set the value for the strength of normal map on the right side.</p>
+
+<h2 id="outline">Outline</h2>
+
+<p>Set outline</p>
+
+<h3 id="width-mode">Width Mode</h3>
+
+<ul>
+<li>None
+
+<ul>
+<li>Outline is not rendered</li>
+</ul></li>
+<li>WorldCoordinates
+
+<ul>
+<li>Render the outline of the constant width for the world</li>
+</ul></li>
+<li>ScreenCoordinates
+
+<ul>
+<li>Render the outline of the constant width for the screen</li>
+</ul></li>
+</ul>
+
+<h3 id="width">Width</h3>
+
+<p>Set outline width.
+The unit is meter when <code>Width Mode-&gt;WorldCoordinates</code> is selected.</p>
+
+<h3 id="color-mode">Color Mode</h3>
+
+<ul>
+<li>FixedColor
+
+<ul>
+<li>Render with fixed color</li>
+</ul></li>
+<li>MixedLighting
+
+<ul>
+<li>Multiply lighting effects</li>
+</ul></li>
+</ul>
+
+<h3 id="color-1">Color</h3>
+
+<p>Set outline color.</p>
+
+<h3 id="color-lighting-mix">Color Lighting Mix</h3>
+
+<p>Set multiplier coefficient when <code>Color Mode-&gt;MixedLighting</code> is selected.</p>
+
+    </article>
+  </div>
+</div>
+
+
+        <a href="https://dwango.github.io/vrm">
+          <img src="https://dwango.github.io/images/vrm/vrm_header.png" alt="VRM - humanoid 3d avatar format for VR">
+        </a>
+
+    </div>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-109076308-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

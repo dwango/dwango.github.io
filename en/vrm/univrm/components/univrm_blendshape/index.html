@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.42.2" />
+
+  <meta property="og:title" content="BlendShape setting - dwango on GitHub">
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>BlendShape setting - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/vrm.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
+      <p class="lead">
+       
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a> </li>
+      <li><a href="/articles"> Articles </a></li><li><a href="https://nico.ms/job/"> Hiring </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/vrm"> VRM </a></li><li><a href="https://nico-opendata.jp/ja/index.html"> nico-opendata </a></li>
+    </ul>
+
+    <p>
+      
+        <p style="display:inline-block;vertical-align:middle;">
+          Copyright &copy; DWANGO Co., Ltd.
+        </p>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+
+        <a href="https://dwango.github.io/vrm">
+          <img src="https://dwango.github.io/images/vrm/vrm_header.png" alt="VRM - humanoid 3d avatar format for VR">
+        </a>
+
+        
+        <li>
+          <a class="language" href="https://dwango.github.io/vrm/univrm/components/univrm_blendshape/"><i class="fa fa-globe">&nbsp;</i>ブレンドシェイプの設定(ja)</a>
+        </li>
+        
+
+    
+<div class="post">
+  <h1>BlendShape setting</h1>
+  <span class="post-date"> Mon, Apr 16, 2018 </span>
+  <div class="share">
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="BlendShape setting - dwango on GitHub" data-url="https://dwango.github.io/en/vrm/univrm/components/univrm_blendshape/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/en/vrm/univrm/components/univrm_blendshape/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2fen%2fvrm%2funivrm%2fcomponents%2funivrm_blendshape%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+  </div>
+  <div>
+    <article id="content">
+        <div class="toc"> <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#vrmblendshapeproxy">VRMBlendShapeProxy</a></li>
+<li><a href="#blendshapeavatar">BlendShapeAvatar</a></li>
+<li><a href="#blendshape-preset">BlendShape preset</a>
+<ul>
+<li><a href="#neutral">NEUTRAL</a></li>
+<li><a href="#a-i-u-e-o">A, I, U, E, O</a></li>
+<li><a href="#blink">Blink</a></li>
+<li><a href="#blink-l-blink-r">Blink_L, Blink_R</a></li>
+<li><a href="#joy-angry-sorrow-fun">Joy, Angry, Sorrow, Fun</a></li>
+<li><a href="#lookup-lookdown-lookleft-lookright">LookUp, LookDown, LookLeft, LookRight</a></li>
+<li><a href="#unknown">Unknown</a></li>
+</ul></li>
+<li><a href="#change-the-value-in-blendshapeproxy-at-runtime">Change the value in BlendShapeProxy (at runtime)</a></li>
+<li><a href="#option-add-additional-facial-expressions">[Option]Add additional facial expressions</a></li>
+<li><a href="#option-morph-material-color">[Option]Morph material color</a></li>
+</ul></li>
+</ul>
+</nav>
+        </div>
+       
+
+<h2 id="vrmblendshapeproxy">VRMBlendShapeProxy</h2>
+
+<table>
+<thead>
+<tr>
+<th><img src="https://dwango.github.io/images/vrm/VRMBlendShapeProxy.png"   />
+</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Facial expression is enabled at runtime (inspector-&gt;VRMBlendShapeProxy)</td>
+</tr>
+</tbody>
+</table>
+
+<p>The method is:</p>
+
+<ul>
+<li>Set BlendShapeAvatar in VRMBlendShapeProxy-&gt;inspector</li>
+<li>Change BlendShapeClip value between 0 and 1 at runtime (e.g. BLINK, JOY)</li>
+</ul>
+
+<h2 id="blendshapeavatar">BlendShapeAvatar</h2>
+
+<p>Create expression settings in the inspector</p>
+
+<table>
+<thead>
+<tr>
+<th><img src="https://dwango.github.io/images/vrm/VRMBlendShapeProxyEditor.png"   />
+</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Double click &ldquo;Blend Shape Avatar&rdquo; box</td>
+</tr>
+</tbody>
+</table>
+
+<p>or</p>
+
+<table>
+<thead>
+<tr>
+<th><img src="https://dwango.github.io/images/vrm/BlendShapeAvatarAsset.png"   />
+</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Select BlendShape from here</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th><img src="https://dwango.github.io/images/vrm/BlendShapeAvatarEditor.png"   />
+</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>The inspector of BlendShapeEditor</td>
+</tr>
+</tbody>
+</table>
+
+<p>Select a facial expression and adjust its parameters. For example, we select &ldquo;Fun&rdquo; (and click &ldquo;face&rdquo; below BlendShapeValues) as shown in the following:</p>
+
+<table>
+<thead>
+<tr>
+<th><img src="https://dwango.github.io/images/vrm/BlendShapeClip.png"   />
+</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Set the values mouth_smile, eye_smile and eyeblow_smile to 100</td>
+</tr>
+</tbody>
+</table>
+
+<p>The individual BlendShape such as eyebrow, eye and mouth can be grouped into one facial expression like an image. You can specify the name for that grouped BlendShape.</p>
+
+<p>After changing the slider bar of the BlendShape, click &ldquo;Apply&rdquo; button for saving the current values.</p>
+
+<h2 id="blendshape-preset">BlendShape preset</h2>
+
+<table>
+<thead>
+<tr>
+<th><img src="https://dwango.github.io/images/vrm/BlendShape_Preset.png"   />
+</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Select Preset</td>
+</tr>
+</tbody>
+</table>
+
+<p>A predefined name for BlendShapeClip.
+The followings are available:</p>
+
+<h3 id="neutral">NEUTRAL</h3>
+
+<p>Assigned as the standard facial expression and assumed to be used in standby state.</p>
+
+<h3 id="a-i-u-e-o">A, I, U, E, O</h3>
+
+<p>Corresponds to the sound of lip-sync <code>あ・い・う・え・お</code>.</p>
+
+<h3 id="blink">Blink</h3>
+
+<p>Eye blink.</p>
+
+<h3 id="blink-l-blink-r">Blink_L, Blink_R</h3>
+
+<p>Blink with only one eye.</p>
+
+<h3 id="joy-angry-sorrow-fun">Joy, Angry, Sorrow, Fun</h3>
+
+<p>Emotion.</p>
+
+<h3 id="lookup-lookdown-lookleft-lookright">LookUp, LookDown, LookLeft, LookRight</h3>
+
+<p>Available for the model whose view is controlled by morph.</p>
+
+<h3 id="unknown">Unknown</h3>
+
+<p>Assign created expressions that are not predefined as &ldquo;Unknown&rdquo;.</p>
+
+<h2 id="change-the-value-in-blendshapeproxy-at-runtime">Change the value in BlendShapeProxy (at runtime)</h2>
+
+<table>
+<thead>
+<tr>
+<th><img src="https://dwango.github.io/images/vrm/VRMBlendShapeProxyRuntime.png"   />
+</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>with using &ldquo;Present&rdquo;</td>
+</tr>
+</tbody>
+</table>
+
+<p>Operate it from the inspector</p>
+
+<h2 id="option-add-additional-facial-expressions">[Option]Add additional facial expressions</h2>
+
+<table>
+<thead>
+<tr>
+<th><img src="https://dwango.github.io/images/vrm/VRMBlendShapeProxyRuntime.png"   />
+</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Double click &ldquo;Blend Shape Avatar&rdquo; box and click &ldquo;add BlendShapeClip&rdquo;</td>
+</tr>
+</tbody>
+</table>
+
+<p>After creating the new BlendShapeClip, please select the empty button at the back and input a name. Also, please set the values for this BlendShape.</p>
+
+<table>
+<thead>
+<tr>
+<th><img src="https://dwango.github.io/images/vrm/BlendShapeClipOption.png"   />
+</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Click the button &ldquo;びっくり&rdquo; (surprised)</td>
+</tr>
+</tbody>
+</table>
+
+<p>You can call it from the codes shown as follows:</p>
+
+<pre><code class="language-cs">// Call with string since it belongs to unknown category
+proxy.SetValue(&quot;びっくり&quot;, 1.0f); // Assign the value between the range 0~1
+</code></pre>
+
+<h2 id="option-morph-material-color">[Option]Morph material color</h2>
+
+<table>
+<thead>
+<tr>
+<th><img src="https://dwango.github.io/images/vrm/BlendShapeClipMaterial.png"   />
+</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Material morph setting (double click &ldquo;Current clip&rdquo; box)</td>
+</tr>
+</tbody>
+</table>
+
+    </article>
+  </div>
+</div>
+
+
+        <a href="https://dwango.github.io/vrm">
+          <img src="https://dwango.github.io/images/vrm/vrm_header.png" alt="VRM - humanoid 3d avatar format for VR">
+        </a>
+
+    </div>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-109076308-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

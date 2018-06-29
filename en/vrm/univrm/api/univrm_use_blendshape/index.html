@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.42.2" />
+
+  <meta property="og:title" content="BlendShape operation - dwango on GitHub">
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>BlendShape operation - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/vrm.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
+      <p class="lead">
+       
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a> </li>
+      <li><a href="/articles"> Articles </a></li><li><a href="https://nico.ms/job/"> Hiring </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/vrm"> VRM </a></li><li><a href="https://nico-opendata.jp/ja/index.html"> nico-opendata </a></li>
+    </ul>
+
+    <p>
+      
+        <p style="display:inline-block;vertical-align:middle;">
+          Copyright &copy; DWANGO Co., Ltd.
+        </p>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+
+        <a href="https://dwango.github.io/vrm">
+          <img src="https://dwango.github.io/images/vrm/vrm_header.png" alt="VRM - humanoid 3d avatar format for VR">
+        </a>
+
+        
+        <li>
+          <a class="language" href="https://dwango.github.io/vrm/univrm/api/univrm_use_blendshape/"><i class="fa fa-globe">&nbsp;</i>BlendShapeを操作する(ja)</a>
+        </li>
+        
+
+    
+<div class="post">
+  <h1>BlendShape operation</h1>
+  <span class="post-date"> Mon, Apr 16, 2018 </span>
+  <div class="share">
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="BlendShape operation - dwango on GitHub" data-url="https://dwango.github.io/en/vrm/univrm/api/univrm_use_blendshape/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/en/vrm/univrm/api/univrm_use_blendshape/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2fen%2fvrm%2funivrm%2fapi%2funivrm_use_blendshape%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+  </div>
+  <div>
+    <article id="content">
+        <div class="toc"> <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#apply-blendshape-from-script">Apply BlendShape from script</a></li>
+<li><a href="#apply-multiple-blendshapes">Apply multiple BlendShapes</a></li>
+</ul></li>
+</ul>
+</nav>
+        </div>
+       
+
+<h2 id="apply-blendshape-from-script">Apply BlendShape from script</h2>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> proxy=GetComponent&lt;VRMBlendShapeProxy&gt;();
+
+<span style="color:#75715e">// Call enum 
+</span><span style="color:#75715e"></span>proxy.SetValue(BlendShapePreset.A, <span style="color:#ae81ff">1.0f</span>); <span style="color:#75715e">// Assign value from 0 to 1
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// Call string
+</span><span style="color:#75715e"></span>proxy.SetValue(<span style="color:#e6db74">&#34;A&#34;</span>, <span style="color:#ae81ff">1.0f</span>);</code></pre></div>
+
+<h2 id="apply-multiple-blendshapes">Apply multiple BlendShapes</h2>
+
+<p>For example,</p>
+
+<p>For Blink_L</p>
+
+<ul>
+<li>MeshA eye_L=100</li>
+<li>MeshA eye_R=1</li>
+</ul>
+
+<p>For Blink_R</p>
+
+<ul>
+<li>MeshA eye_L=1</li>
+<li>MeshA eye_R=100</li>
+</ul>
+
+<p>If both BlendShapes are defined and enabled as shown below, later only those items set before can be applied.</p>
+
+<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">proxy.SetValue(BlendShapePreset.Blink_L, <span style="color:#ae81ff">1.0f</span>);
+proxy.SetValue(BlendShapePreset.Blink_R, <span style="color:#ae81ff">1.0f</span>);</code></pre></div></p>
+
+<p>In this case, the following codes are workable:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">proxy.SetValue(BlendShapePreset.Blink_L, <span style="color:#ae81ff">1.0f</span>, <span style="color:#66d9ef">false</span>); <span style="color:#75715e">// Calling the function without immediate use
+</span><span style="color:#75715e"></span>proxy.SetValue(BlendShapePreset.Blink_R, <span style="color:#ae81ff">1.0f</span>, <span style="color:#66d9ef">false</span>);
+proxy.Apply(); // Apply all the BlendShapes at once</code></pre></div>
+
+    </article>
+  </div>
+</div>
+
+
+        <a href="https://dwango.github.io/vrm">
+          <img src="https://dwango.github.io/images/vrm/vrm_header.png" alt="VRM - humanoid 3d avatar format for VR">
+        </a>
+
+    </div>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-109076308-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

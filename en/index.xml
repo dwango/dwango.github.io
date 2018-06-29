@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>dwango on GitHub</title>
+    <link>https://dwango.github.io/en/</link>
+    <description>Recent content on dwango on GitHub</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Tue, 29 May 2018 10:00:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://dwango.github.io/en/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to use VRMFirstPerson</title>
+      <link>https://dwango.github.io/en/vrm/univrm/api/univrm_use_firstperson/</link>
+      <pubDate>Tue, 29 May 2018 10:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_use_firstperson/</guid>
+      <description>VRMFirstPerson setting VRMFirstPerson has settings available for Renderer.
+   FirstPersonFlag Layer Note     Both default Specify parts that are not necessarily separated between first-person view and third-person view.   ThirdPersonOnly THIRDPERSON_ONLY_LAYER Specify parts that will not be rendered in first-person view.   FirstPersonOnly FIRSTPERSON_ONLY_LAYER Specify parts that will not be rendered in third-person view. Use the automatically created model without head.   Auto THIRDPERSON_ONLY_LAYER The model for the first-person view is automatically created at runtime.</description>
+    </item>
+    
+    <item>
+      <title>API revision history</title>
+      <link>https://dwango.github.io/en/vrm/univrm/api/univrm_api_history/</link>
+      <pubDate>Mon, 21 May 2018 10:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_api_history/</guid>
+      <description> This section describes about changes affecting the program.
+v0.36 Revision of storage location of texture name It conforms to GLTF specification.
+json.images[i].extra.name  After the change
+json.images[i].name  Revision of storage location of project name It conforms to GLTF specification.
+ &amp;ldquo;extras&amp;rdquo; is not allowed in target https://github.com/KhronosGroup/glTF/issues/1036#issuecomment-314078356  json.meshes[i].primitives[j].targets[k].extra.name  After the change
+json.meshes[i].primitives[j].extras.targetNames[k]  </description>
+    </item>
+    
+    <item>
+      <title>Frequently asked questions</title>
+      <link>https://dwango.github.io/en/vrm/univrm/univrm_faq/</link>
+      <pubDate>Wed, 09 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/univrm/univrm_faq/</guid>
+      <description>The parameters I set were disappeared VRMSpringBone is attached to secondary node during import.
+VRMSpringBone
+The loader is not working when building a project Shaders used by UniVRM may not be included in the build target.
+Please double check
+Edit - Project Settings - Graphics - Shader preloading
+The setting procedure for Shader preloading</description>
+    </item>
+    
+    <item>
+      <title>About GLTF</title>
+      <link>https://dwango.github.io/en/vrm/gltf_about/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/gltf_about/</guid>
+      <description>glTF is a 3D format created by Khronos Group, which is developing openGL specifications. glTF 2.0 was released in 2017. VRM format is based on glTF 2.0.
+ https://github.com/KhronosGroup/glTF  What kind of information can be stored in glTF?  Mesh (Vertex array、index array)  Morph target Skinning (4weight)  Texture Material (PBR) Scene Animation1 Camera1 Light source1  The whole 3D scene can be stored.
+ OpenGL right-handed, Y-UP coordinate system Meter (unit) Little endian  glTF format outline The glTF file consists of the JSON description part and the binary part that stores image and vertex arrays.</description>
+    </item>
+    
+    <item>
+      <title>About VRM T-pose</title>
+      <link>https://dwango.github.io/en/vrm/vrm_tpose/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/vrm_tpose/</guid>
+      <description>T-Pose which conforms to Unity Humanoid of VRM first implementation is adopted.
+        T-Pose example    Besides apparent parts such as body and head / leg, there are also rules on arm and finger.
+ The palm faces downward Thumb is horizontally spread 45 degrees (view from the top) on the XZ plane  </description>
+    </item>
+    
+    <item>
+      <title>About coordinate system transformation of UniVRM</title>
+      <link>https://dwango.github.io/en/vrm/univrm/api/univrm_coordinate/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_coordinate/</guid>
+      <description>UniVRM automatically performs coordinate transformation during import / export.
+VRM coordinate system Since VRM is an extension of GLTF, it conforms to the coordinate system of GLTF. It is a OpenGL standard right-handed Y-UP coordinate system.
+ Right: X+ Up: Y+ In front: Z-  Unity coordinate system Left-handed Y-UP coordinate system。
+ Right:X+ Up:Y+ In front:Z+ (+- is inverted)  Transformation of each value Z-axis is inverted.
+Vector3(Position, Normal and so on) public static Vector3 ReverseZ(this Vector3 v) { return new Vector3(v.</description>
+    </item>
+    
+    <item>
+      <title>BlendShape operation</title>
+      <link>https://dwango.github.io/en/vrm/univrm/api/univrm_use_blendshape/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_use_blendshape/</guid>
+      <description>Apply BlendShape from script var proxy=GetComponent&amp;lt;VRMBlendShapeProxy&amp;gt;(); // Call enum proxy.SetValue(BlendShapePreset.A, 1.0f); // Assign value from 0 to 1  // Call string proxy.SetValue(&amp;#34;A&amp;#34;, 1.0f); Apply multiple BlendShapes For example,
+For Blink_L
+ MeshA eye_L=100 MeshA eye_R=1  For Blink_R
+ MeshA eye_L=1 MeshA eye_R=100  If both BlendShapes are defined and enabled as shown below, later only those items set before can be applied.
+proxy.SetValue(BlendShapePreset.Blink_L, 1.0f); proxy.SetValue(BlendShapePreset.Blink_R, 1.0f);
+In this case, the following codes are workable:</description>
+    </item>
+    
+    <item>
+      <title>BlendShape setting</title>
+      <link>https://dwango.github.io/en/vrm/univrm/components/univrm_blendshape/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_blendshape/</guid>
+      <description>VRMBlendShapeProxy Facial expression is enabled at runtime (inspector-&amp;gt;VRMBlendShapeProxy) The method is: Set BlendShapeAvatar in VRMBlendShapeProxy-&amp;gt;inspector Change BlendShapeClip value between 0 and 1 at runtime (e.g. BLINK, JOY) BlendShapeAvatar Create expression settings in the inspector Double click &amp;ldquo;Blend Shape Avatar&amp;rdquo; box or Select BlendShape from here The inspector of BlendShapeEditor Select a facial expression and adjust its parameters. For example, we select &amp;ldquo;Fun&amp;rdquo; (and click &amp;ldquo;face&amp;rdquo; below BlendShapeValues) as shown in</description>
+    </item>
+    
+    <item>
+      <title>Eye control</title>
+      <link>https://dwango.github.io/en/vrm/univrm/components/univrm_lookat/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_lookat/</guid>
+      <description>VRMLookAtHead         VRMLookAtHead    This component calculates the direction of the seen Target from the head.
+Target The observed target. Please select and set the object where the eyes are pointing to. If the camera is set, it will become the camera view.
+Bone control view: VRMLookAtBoneApplyer         VRMLookAtBoneApplyer    Apply the parameters of calculated eye direction of VRMLookAtHead to EyeBone.</description>
+    </item>
+    
+    <item>
+      <title>First person display</title>
+      <link>https://dwango.github.io/en/vrm/univrm/components/univrm_firstperson/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_firstperson/</guid>
+      <description>VRMFirstPerson Settings related to first person display
+FirstPersonBone Normally head bone is assigned as FirstPersonBone. It is the bone that keeps track of the headset in first-person view.
+FirstPersonOffset The offset from the position of FirstPersonBone. Assuming the default value [0, 0.06, 0] is the offset between head and the middle of the eyes.
+Renderers The setting of mesh on/off control for first-person rendering.
+However, for VR applications, you may see the head of the model that is not supposed to be rendered in the scene.</description>
+    </item>
+    
+    <item>
+      <title>I would like to create VRM file</title>
+      <link>https://dwango.github.io/en/vrm/how_to_make_vrm/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/how_to_make_vrm/</guid>
+      <description>How to create VRM file (conversion from existing 3D model) As we mentioned in the previous section, Unity and UniVRM were used to create VRM file. The general workflow is described as follows: Load 3D model data and UniVRM in Unity. Next, adjust and set the size, material, etc. Output VRM file from Unity once（normalizati</description>
+    </item>
+    
+    <item>
+      <title>I would like to play around with VRM file</title>
+      <link>https://dwango.github.io/en/vrm/how_to_view_vrm/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/how_to_view_vrm/</guid>
+      <description>How to read VRM file We are sorry there is no simple viewer application available as of June, 2018. Although the current method described below may be a little tedious, you can check the contents of a VRM file inside read in Unity.
+1. Create an empty project from start page of Unity Launch Unity and create a new project (New -&amp;gt; Create project).
+2. Install UniVRM in Unity Download the latest unitypackage from UniVRM/releases and import it in the folder Assets/VRM (Assets -&amp;gt; Import Package -&amp;gt; Custom Package).</description>
+    </item>
+    
+    <item>
+      <title>Import VRM model at runtime</title>
+      <link>https://dwango.github.io/en/vrm/univrm/api/univrm_import_runtime/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_import_runtime/</guid>
+      <description>The followings are the methods to import model in Unity at runtime.
+Open VRM from file path var path=&amp;#34;sample.vrm&amp;#34;; var go=VRM.VRMImporter.LoadFromPath(path); Debug.LogFormat(&amp;#34;loaded {0}&amp;#34;, go.name); Open VRM asynchronously from file path var path=&amp;#34;sample.vrm&amp;#34;; VRMImporter.LoadVrmAsync(path, go =&amp;gt; { Debug.LogFormat(&amp;#34;loaded {0}&amp;#34;, go.name); }); Open VRM from byte string var path=&amp;#34;sample.vrm&amp;#34;; var bytes = File.ReadAllBytes(path); var go=VRMImporter.LoadFromBytes(bytes); Open VRM asynchronously from byte string VRMImporter.LoadVrmAsync(bytes, go =&amp;gt; { Debug.LogFormat(&amp;#34;loaded {0}&amp;#34;, go.name); }); Get the information form VRM #if UNITY_STANDALONE_WIN  var path = FileDialogForWindows.</description>
+    </item>
+    
+    <item>
+      <title>MToon</title>
+      <link>https://dwango.github.io/en/vrm/univrm/shaders/mtoon/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/univrm/shaders/mtoon/</guid>
+      <description>Shader preloading setting
+About MToon MToon aims for making Japanese anime expression. It is achieved by mixing the two colors Lit Color and Shade Color based on Lighting parameters and light source environment.
+        Apply MToon to Niconi &amp;ldquo;3D chan&amp;rdquo;    For users who want to have a quick setup Common items  Select the target material and change the shader VRM/MToon Set the same texture in Basic-&amp;gt;Color-&amp;gt;Lit&amp;amp;Alpha and Basic-&amp;gt;Color-&amp;gt;Shade Set white color in Basic-&amp;gt;Color-&amp;gt;Lit&amp;amp;Alpha and set your preference shade color in Basic-&amp;gt;Color-&amp;gt;Shade.</description>
+    </item>
+    
+    <item>
+      <title>Model information</title>
+      <link>https://dwango.github.io/en/vrm/univrm/components/univrm_meta/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_meta/</guid>
+      <description>VRMMeta         VRMMeta component    Information Title Avatar model name
+Author Author name
+Contact Information Author contact information
+Reference The original / related works of this avatar (Url), if any
+Thumbnail Register the thumbnail of the avatar model. A resolution texture about 2048x2048 is recommended. Assign the texture number in meta information.
+Version Specify the model version with character string. Any description is OK.</description>
+    </item>
+    
+    <item>
+      <title>UniVRM installation</title>
+      <link>https://dwango.github.io/en/vrm/univrm/univrm_install/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/univrm/univrm_install/</guid>
+      <description>Unity Version Unity5.6 or after is supported.
+Installation Download the latest unitypackage from UniVRM/releases and import it (Assets -&amp;gt; Import Package -&amp;gt; Custom Package). The files will be saved in the folder Assets/VRM.
+If there exists any VRM file in the VRM folder, it is recommended to delete that VRM folder in advance.
+        Import unityPackage    Shader variant         Set of the shaders    Shader preloading setting There is no need to move shader into Resources folder (VRM/Resources) since v0.</description>
+    </item>
+    
+    <item>
+      <title>UniVRM model workflow</title>
+      <link>https://dwango.github.io/en/vrm/univrm/univrm_workflow/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/univrm/univrm_workflow/</guid>
+      <description>Workflow Prepare humanoid model with set humanoid avatar Prepare a humanoid model that can be read by Unity such as FBX format and import it into Unity.
+After import, please select “Humanoid” from FBX import settings -&amp;gt; Rig -&amp;gt; Animation Type.
+        Set Humanoid    Correct bone assignment with rig configuration When importing FBX, bone assignments done by auto-recognition may be different from expectations (see image below):</description>
+    </item>
+    
+    <item>
+      <title>Usable shaders in UniVRM</title>
+      <link>https://dwango.github.io/en/vrm/univrm/shaders/univrm_shaders/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/univrm/shaders/univrm_shaders/</guid>
+      <description>Shader preloading setting
+PBR Standard shader Unity standard.
+Unlit type shader VRM/UnlitTexture Same as Unity&amp;rsquo;s Unit/Texture.
+VRM/UnlitCutout Same as Unity&amp;rsquo;s Unit/Coutout.
+VRM/UnlitTransparent Same as Unity&amp;rsquo;s Unit/Transparent.
+It is assumed to be applied to particle things such as smoke effect, semi-transparent objects without substances (depth value) such as rosy cheeks.
+VRM/UnlitTransparentZWrite Alpha blending and ZWrite are available. It is assumed to be applied to semi-transparent objects with substances (depth value) such as semi-transparent clothes and hair.</description>
+    </item>
+    
+    <item>
+      <title>VRM specification</title>
+      <link>https://dwango.github.io/en/vrm/vrm_spec/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/vrm_spec/</guid>
+      <description>VRM is based on binary format glb of glTF 2.0. It is a model format for VR.
+Filename extension .vrm is used. It is compatible with glTF binary format .glb.
+Savable element The whole humanoid model information.
+Texture  image1 sampler1  Material (json.extensions.VRM.materialProperties) json.extensions.VRM.materialProperties[0] = {}; json.extensions.VRM.materialProperties[0].name = &amp;quot;Alicia_body&amp;quot;; # Name json.extensions.VRM.materialProperties[0].shader = &amp;quot;VRM/UnlitTexture&amp;quot;; # Shader name json.extensions.VRM.materialProperties[0].renderQueue = 2000; json.extensions.VRM.materialProperties[0].floatProperties = {}; # float type variable json.extensions.VRM.materialProperties[0].keywordMap = {}; # Keyword type variable json.</description>
+    </item>
+    
+    <item>
+      <title>VRMSpringBone</title>
+      <link>https://dwango.github.io/en/vrm/univrm/components/univrm_secondary/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_secondary/</guid>
+      <description>Swaying motion setting.
+Node attached by component with swaying motion setting When VRM is imported, the components related to the swaying objects are attached as follows:
+ VRMSpringBone is attached to the automatically created node named secondary. VRMSpringBoneColliderGroup is restored to the node attached during the export.          Please check the node secondary if you cannot find VRMSpringBone.    VRMSpringBone The preference setting of swaying movements of tail, hair, clothes and so on.</description>
+    </item>
+    
+    <item>
+      <title>What applications that supports VRM file？</title>
+      <link>https://dwango.github.io/en/vrm/vrm_applications/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/vrm_applications/</guid>
+      <description> VRM file supported applications  Niconi 3D
+ 3D model data posting service. It is available for users to post and download VRM files.  Virtual Cast
+ A VR live communication service that allows users to communicate in a shared VR space in real-time. The model data can be adopted and read as VRM format.  cluster
+ Hitogata
+  </description>
+    </item>
+    
+    <item>
+      <title>What is &#34;VRM&#34;? What can VRM do？</title>
+      <link>https://dwango.github.io/en/vrm/vrm_about/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/vrm_about/</guid>
+      <description>&amp;ldquo;VRM&amp;rdquo; means&amp;hellip; In the past, when handling character and humanoid avatar (3D model) in VR (Virtual Reality), VTuber, etc., it was necessary to develop their own systems for applications and further fine-tune 3D model data due to&amp;hellip;
+ The output data made by 3D model creators and modeling tools is different
+ The coordinate system is different, the scale is different, the initial pose is different, the expression is different&amp;hellip; Of course, the method importing bones into the program is also different.</description>
+    </item>
+    
+    <item>
+      <title>gltf VRM extension</title>
+      <link>https://dwango.github.io/en/vrm/vrm_extension/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/vrm_extension/</guid>
+      <description>Contributors  dwango  Status Draft
+Dependencies Written against the glTF 2.0 spec.
+Overview This extension defines Humanoid model for VR.
+ human bone definitions standard morphs secondary animation annotations mesh visibilities for first-person view  glTF Schema Updates This extension adds:
+JSON Schema TODO: Links to the JSON schema for the new extension properties.
+Known Implementations  TODO: List of known implementations, with links to each if available.  Resources  TODO: Resources, if any.</description>
+    </item>
+    
+  </channel>
+</rss>

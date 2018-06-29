@@ -229,7 +229,7 @@ Known Implementations  TODO: List of known implementations, with links to each i
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/vrm/univrm/components/univrm_firstperson/</guid>
-      <description>VRMFirstPerson 一人称表示に関連する設定です。 FirstPersonBone 通常頭ボーンを指定します。 一人称時にヘッドセットに追随させるボーンです。 FirstPersonOffset 追随一をFirstPersonB</description>
+      <description>VRMFirstPerson 一人称表示に関連する設定です。 FirstPersonBone 通常頭ボーンを指定します。 一人称時にヘッドセットに追随させるボーンです。 FirstPersonOffset 追随する位置をFirstPers</description>
     </item>
     
     <item>

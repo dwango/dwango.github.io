@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.42.2" />
+
+  <meta property="og:title" content="VRM specification - dwango on GitHub">
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>VRM specification - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/vrm.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
+      <p class="lead">
+       
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a> </li>
+      <li><a href="/articles"> Articles </a></li><li><a href="https://nico.ms/job/"> Hiring </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/vrm"> VRM </a></li><li><a href="https://nico-opendata.jp/ja/index.html"> nico-opendata </a></li>
+    </ul>
+
+    <p>
+      
+        <p style="display:inline-block;vertical-align:middle;">
+          Copyright &copy; DWANGO Co., Ltd.
+        </p>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+
+        <a href="https://dwango.github.io/vrm">
+          <img src="https://dwango.github.io/images/vrm/vrm_header.png" alt="VRM - humanoid 3d avatar format for VR">
+        </a>
+
+        
+        <li>
+          <a class="language" href="https://dwango.github.io/vrm/vrm_spec/"><i class="fa fa-globe">&nbsp;</i>VRM仕様(ja)</a>
+        </li>
+        
+
+    
+<div class="post">
+  <h1>VRM specification</h1>
+  <span class="post-date"> Mon, Apr 16, 2018 </span>
+  <div class="share">
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="VRM specification - dwango on GitHub" data-url="https://dwango.github.io/en/vrm/vrm_spec/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/en/vrm/vrm_spec/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2fen%2fvrm%2fvrm_spec%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+  </div>
+  <div>
+    <article id="content">
+        <div class="toc"> <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#filename-extension">Filename extension</a></li>
+<li><a href="#savable-element">Savable element</a>
+<ul>
+<li><a href="#texture">Texture</a></li>
+<li><a href="#material-json-extensions-vrm-materialproperties">Material (json.extensions.VRM.materialProperties)</a>
+<ul>
+<li><a href="#material-rule">Material rule</a></li>
+</ul></li>
+<li><a href="#mesh">Mesh</a></li>
+<li><a href="#node">Node</a></li>
+</ul></li>
+<li><a href="#rule-for-stored-value">Rule for stored value</a>
+<ul>
+<li><a href="#gltf2-rule">GLTF2 rule</a></li>
+<li><a href="#vrm-rule">VRM rule</a></li>
+</ul></li>
+<li><a href="#shaders-provided-by-vrm">Shaders provided by VRM</a>
+<ul>
+<li><a href="#unlit-type">Unlit type</a></li>
+<li><a href="#mtoon">MToon</a></li>
+</ul></li>
+<li><a href="#vrm-version">VRM version</a>
+<ul>
+<li><a href="#from-v0-36">From v0.36</a></li>
+</ul></li>
+<li><a href="#model-bone-mapping-json-extensions-vrm-humanoid">Model bone mapping (json.extensions.VRM.humanoid)</a>
+<ul>
+<li><a href="#defined-bone">Defined bone</a></li>
+</ul></li>
+<li><a href="#model-information-json-extensions-vrm-meta">Model information (json.extensions.VRM.meta)</a>
+<ul>
+<li><a href="#information">Information</a>
+<ul>
+<li><a href="#title">Title</a></li>
+<li><a href="#author">Author</a></li>
+<li><a href="#contact-information">Contact Information</a></li>
+<li><a href="#reference">Reference</a></li>
+<li><a href="#thumbnail">Thumbnail</a></li>
+<li><a href="#version">Version</a></li>
+</ul></li>
+<li><a href="#permission-license-information">Permission・License information</a>
+<ul>
+<li><a href="#access-right">Access right</a>
+<ul>
+<li><a href="#permission-for-the-use-of-this-avatar-json-extensions-vrm-meta-allowedusername">Permission for the use of this avatar (json.extensions.VRM.meta.allowedUserName)</a></li>
+<li><a href="#violent-acts-performed-by-this-avatar-json-extensions-vrm-meta-violentussagename">Violent acts performed by this avatar (json.extensions.VRM.meta.violentUssageName)</a></li>
+<li><a href="#sexuality-acts-performed-by-this-avatar-json-extensions-vrm-meta-sexualussagename">Sexuality acts performed by this avatar (json.extensions.VRM.meta.sexualUssageName)</a></li>
+<li><a href="#for-commercial-use-json-extensions-vrm-meta-commercialussagename">For commercial use (json.extensions.VRM.meta.commercialUssageName)</a></li>
+<li><a href="#other-license-condition-url-json-extensions-vrm-meta-otherpermissionurl">Other license condition (Url) (json.extensions.VRM.meta.otherPermissionUrl)</a></li>
+</ul></li>
+<li><a href="#redistribution-modifications-license">Redistribution / Modifications License</a>
+<ul>
+<li><a href="#license-type-json-extensions-vrm-meta-licensename">License type (json.extensions.VRM.meta.licenseName)</a></li>
+<li><a href="#other-license-type-url-json-extensions-vrm-meta-otherlicenseurl">Other license type (Url) (json.extensions.VRM.meta.otherLicenseUrl)</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><a href="#morph-setting-json-extensions-vrm-blendshapemaster">Morph setting (json.extensions.VRM.blendShapeMaster)</a>
+<ul>
+<li><a href="#blendshape-group-json-extensions-vrm-blendshapemaster-blendshapegroups">BlendShape group (json.extensions.VRM.blendShapeMaster.blendShapeGroups)</a>
+<ul>
+<li><a href="#name">Name</a></li>
+<li><a href="#predefined-name">Predefined name</a></li>
+<li><a href="#blendshape-name-identifier">BlendShape name identifier</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#first-person-settings-json-extensions-vrm-firstperson">First-person settings (json.extensions.VRM.firstPerson)</a>
+<ul>
+<li><a href="#firstpersonbone-json-extensions-vrm-firstperson-firstpersonbone">firstPersonBone (json.extensions.VRM.firstPerson.firstPersonBone)</a></li>
+<li><a href="#firstpersonboneoffset-json-extensions-vrm-firstperson-firstpersonboneoffset">firstPersonBoneOffset (json.extensions.VRM.firstPerson.firstPersonBoneOffset)</a></li>
+<li><a href="#meshannotations-json-extensions-vrm-firstperson-meshannotations">meshAnnotations (json.extensions.VRM.firstPerson.meshAnnotations)</a></li>
+<li><a href="#character-perspective-settings">Character perspective settings</a>
+<ul>
+<li><a href="#perspective-type-json-extensions-vrm-firstperson-lookattypename">Perspective type (json.extensions.VRM.firstPerson.lookAtTypeName)</a></li>
+<li><a href="#angle-adjustment">Angle adjustment</a>
+<ul>
+<li><a href="#json-extensions-vrm-firstperson-lookathorizontalinner">json.extensions.VRM.firstPerson.lookAtHorizontalInner</a></li>
+<li><a href="#json-extensions-vrm-firstperson-lookathorizontalouter">json.extensions.VRM.firstPerson.lookAtHorizontalOuter</a></li>
+<li><a href="#json-extensions-vrm-firstperson-lookatverticaldown">json.extensions.VRM.firstPerson.lookAtVerticalDown</a></li>
+<li><a href="#json-extensions-vrm-firstperson-lookatverticalup">json.extensions.VRM.firstPerson.lookAtVerticalUp</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><a href="#swaying-motion-settings-json-extensions-vrm-secondaryanimation">Swaying motion settings (json.extensions.VRM.secondaryAnimation)</a>
+<ul>
+<li><a href="#swaying-bones-secondaryanimation-bonegroups">Swaying bones (secondaryAnimation.boneGroups)</a>
+<ul>
+<li><a href="#root-of-swaying-bones-json-extensions-vrm-secondaryanimation-bonegroups-0-bones">Root of swaying bones (json.extensions.VRM.secondaryAnimation.boneGroups[0].bones)</a></li>
+<li><a href="#collision-detection-with-swaying-bones-json-extensions-vrm-secondaryanimation-bonegroups-0-collidergroups">Collision detection with swaying bones (json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups)</a></li>
+<li><a href="#parameter">Parameter</a>
+<ul>
+<li><a href="#center-json-extensions-vrm-secondaryanimation-bonegroups-0-center">center (json.extensions.VRM.secondaryAnimation.boneGroups[0].center)</a></li>
+<li><a href="#dragforce-json-extensions-vrm-secondaryanimation-bonegroups-0-dragforce">dragForce (json.extensions.VRM.secondaryAnimation.boneGroups[0].dragForce)</a></li>
+<li><a href="#garvitydir-json-extensions-vrm-secondaryanimation-bonegroups-0-gravitydir">garvityDir (json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityDir)</a></li>
+<li><a href="#gravitypower-json-extensions-vrm-secondaryanimation-bonegroups-0-gravitypower">gravityPower (json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityPower)</a></li>
+<li><a href="#hitradius-json-extensions-vrm-secondaryanimation-bonegroups-0-hitradius">hitRadius (json.extensions.VRM.secondaryAnimation.boneGroups[0].hitRadius)</a></li>
+<li><a href="#stiffiness-json-extensions-vrm-secondaryanimation-bonegroups-0-stiffiness">stiffiness (json.extensions.VRM.secondaryAnimation.boneGroups[0].stiffiness)</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#collision-detection-setting-for-swaying-object-json-extensions-vrm-secondaryanimation-collidergroups">Collision detection setting for swaying object (json.extensions.VRM.secondaryAnimation.colliderGroups)</a>
+<ul>
+<li><a href="#node-json-extensions-vrm-secondaryanimation-collidergroups-0-node">Node (json.extensions.VRM.secondaryAnimation.colliderGroups[0].node)</a></li>
+<li><a href="#local-coordinate-json-extensions-vrm-secondaryanimation-collidergroups-0-colliders-1-offset">Local coordinate (json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].offset)</a></li>
+<li><a href="#radius-json-extensions-vrm-secondaryanimation-collidergroups-0-colliders-1-radius">Radius (json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].radius)</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+        </div>
+       
+
+<p>VRM is based on binary format glb of <a href="https://github.com/KhronosGroup/glTF/blob/master/specification/2.0/README.md">glTF 2.0</a>. It is a model format for VR.</p>
+
+<h2 id="filename-extension">Filename extension</h2>
+
+<p><code>.vrm</code> is used. It is compatible with glTF binary format <code>.glb</code>.</p>
+
+<h2 id="savable-element">Savable element</h2>
+
+<p>The whole humanoid model information.</p>
+
+<h3 id="texture">Texture</h3>
+
+<ul>
+<li>image<sup class="footnote-ref" id="fnref:gltf2"><a href="#fn:gltf2">1</a></sup></li>
+<li>sampler<sup class="footnote-ref" id="fnref:gltf2"><a href="#fn:gltf2">1</a></sup></li>
+</ul>
+
+<h3 id="material-json-extensions-vrm-materialproperties">Material (json.extensions.VRM.materialProperties)</h3>
+
+<pre><code>json.extensions.VRM.materialProperties[0] = {};
+json.extensions.VRM.materialProperties[0].name = &quot;Alicia_body&quot;; # Name
+json.extensions.VRM.materialProperties[0].shader = &quot;VRM/UnlitTexture&quot;; # Shader name
+json.extensions.VRM.materialProperties[0].renderQueue = 2000;
+json.extensions.VRM.materialProperties[0].floatProperties = {}; # float type variable
+json.extensions.VRM.materialProperties[0].keywordMap = {}; # Keyword type variable
+json.extensions.VRM.materialProperties[0].tagMap = {}; # bool type variable
+json.extensions.VRM.materialProperties[0].tagMap.RenderType = &quot;Opaque&quot;;
+json.extensions.VRM.materialProperties[0].textureProperties = {}; # Texture reference variable
+json.extensions.VRM.materialProperties[0].textureProperties._MainTex = 0;
+json.extensions.VRM.materialProperties[0].vectorProperties = {}; # vec4 type variable
+</code></pre>
+
+<p>Saved as a general-purpose structure paired with Shader name and parameter dictionary.
+Currently, it saves the items needed by Unity.
+Please refer to <code>Shader provided by VRM</code> for detailed descriptions.</p>
+
+<h4 id="material-rule">Material rule</h4>
+
+<ul>
+<li><strong>Material name must be unique in the model</strong></li>
+</ul>
+
+<h3 id="mesh">Mesh</h3>
+
+<p>The attributes of vertex are stored as follows:</p>
+
+<ul>
+<li>attribute<sup class="footnote-ref" id="fnref:gltf2"><a href="#fn:gltf2">1</a></sup>
+
+<ul>
+<li>position(vec3)</li>
+<li>normal(vec3)</li>
+<li>uv(vec2)</li>
+<li>tangent(vec4)<sup class="footnote-ref" id="fnref:tangent-w"><a href="#fn:tangent-w">2</a></sup></li>
+</ul></li>
+</ul>
+
+<p>Skinning information. Store skinning of up to 4 bones.</p>
+
+<ul>
+<li>bone weight(bone_index(int) + bone_weight(float)) x 4</li>
+</ul>
+
+<p>Morph information。</p>
+
+<ul>
+<li>morph target<sup class="footnote-ref" id="fnref:gltf2"><a href="#fn:gltf2">1</a></sup>
+
+<ul>
+<li>position(relative position)</li>
+<li>normal(vec3)</li>
+<li>tangent(vec3)</li>
+</ul></li>
+</ul>
+
+<h3 id="node">Node</h3>
+
+<p>Where the bone structure and meshes are stored.</p>
+
+<ul>
+<li>node<sup class="footnote-ref" id="fnref:gltf2"><a href="#fn:gltf2">1</a></sup>
+
+<ul>
+<li>name</li>
+<li>position(vec3)</li>
+<li>rotation(quaternion)</li>
+<li>scale(vec3)</li>
+</ul></li>
+</ul>
+
+<h2 id="rule-for-stored-value">Rule for stored value</h2>
+
+<h3 id="gltf2-rule">GLTF2 rule</h3>
+
+<p>Conforms to the GLTF2, a very important item.</p>
+
+<ul>
+<li>Meter (unit)</li>
+<li>Right-handed, Y-UP coordinate system<sup class="footnote-ref" id="fnref:OpenGLCoord"><a href="#fn:OpenGLCoord">3</a></sup></li>
+</ul>
+
+<h3 id="vrm-rule">VRM rule</h3>
+
+<p>In order to improve the compatibility by specializing in humanoid model, the following constraints are imposed:</p>
+
+<ul>
+<li>Model is placed at the origin</li>
+<li>Model faces towards -Z direction<sup class="footnote-ref" id="fnref:OpenGLCoord"><a href="#fn:OpenGLCoord">3</a></sup></li>
+<li>Model hierarchy is Y-UP<sup class="footnote-ref" id="fnref:ZUP"><a href="#fn:ZUP">4</a></sup></li>
+<li>Model mesh is Y-UP<sup class="footnote-ref" id="fnref:ZUP"><a href="#fn:ZUP">4</a></sup></li>
+<li>Model hierarchy is T-Pose</li>
+<li>Model mesh is T-Pose</li>
+<li>No rotation for bone</li>
+<li>No scale for bone</li>
+<li>Head bone faces front direction[^LookAt]</li>
+</ul>
+
+<h2 id="shaders-provided-by-vrm">Shaders provided by VRM</h2>
+
+<p>The following Shaders are available assuming operating cel shading character model.</p>
+
+<h3 id="unlit-type">Unlit type</h3>
+
+<p>Texture color is displayed as it is without lighting / shading.
+There are four types available for handling degree of transparency.</p>
+
+<ul>
+<li>UnlitTexture(opacity)</li>
+<li>UnlitCutout(make the part whose transparency is below the threshold transparent)</li>
+<li>UnlitTransparent(Alpha Blend. ZWrite is off)<sup class="footnote-ref" id="fnref:Transparent"><a href="#fn:Transparent">5</a></sup></li>
+<li>UnlitTransparentZWrite(Alpha Blend. ZWrite is on)<sup class="footnote-ref" id="fnref:TransparentZWrite"><a href="#fn:TransparentZWrite">6</a></sup></li>
+</ul>
+
+<h3 id="mtoon">MToon</h3>
+
+<p>The shader that corresponds to cel shading and outline. More details than Unlit can be set.</p>
+
+<h2 id="vrm-version">VRM version</h2>
+
+<h3 id="from-v0-36">From v0.36</h3>
+
+<pre><code>json.extensions.VRM.exporterVersion = &quot;UniVRM-0.36&quot;;
+</code></pre>
+
+<h2 id="model-bone-mapping-json-extensions-vrm-humanoid">Model bone mapping (json.extensions.VRM.humanoid)</h2>
+
+<p>By standardizing the bone used in mesh skinning and the human body skeleton, real-time motion such as motion capture can be achieved.</p>
+
+<pre><code>json.extensions.VRM.humanoid = {};
+json.extensions.VRM.humanoid.armStretch = 0.05;
+json.extensions.VRM.humanoid.feetSpacing = 0;
+json.extensions.VRM.humanoid.hasTranslationDoF = false;
+json.extensions.VRM.humanoid.legStretch = 0.05;
+json.extensions.VRM.humanoid.lowerArmTwist = 0.5;
+json.extensions.VRM.humanoid.lowerLegTwist = 0.5;
+json.extensions.VRM.humanoid.upperArmTwist = 0.5;
+json.extensions.VRM.humanoid.upperLegTwist = 0.5;
+json.extensions.VRM.humanoid.humanBones = [];
+json.extensions.VRM.humanoid.humanBones[0] = {};
+json.extensions.VRM.humanoid.humanBones[0].bone = &quot;hips&quot;; # Defined bone name
+json.extensions.VRM.humanoid.humanBones[0].node = 3;
+json.extensions.VRM.humanoid.humanBones[0].useDefaultValues = true;
+</code></pre>
+
+<h3 id="defined-bone">Defined bone</h3>
+
+<ul>
+<li>hips</li>
+<li>spine</li>
+<li>chest</li>
+<li>upperChest<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">7</a></sup></li>
+<li>neck</li>
+<li>head</li>
+
+<li><p>Left/Right eye<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">7</a></sup></p></li>
+
+<li><p>Left/Right upperArm</p></li>
+
+<li><p>Left/Right lowerArm</p></li>
+
+<li><p>Left/Right hand</p></li>
+
+<li><p>Left/Right upperLeg</p></li>
+
+<li><p>Left/Right lowerLeg</p></li>
+
+<li><p>Left/Right foot</p></li>
+
+<li><p>Left/Right toe<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">7</a></sup></p></li>
+
+<li><p>Left/Right thumb proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">7</a></sup></p></li>
+
+<li><p>Left/Right index proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">7</a></sup></p></li>
+
+<li><p>Left/Right middle proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">7</a></sup></p></li>
+
+<li><p>Left/Right ring proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">7</a></sup></p></li>
+
+<li><p>Left/Right little proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">7</a></sup></p></li>
+</ul>
+
+<h2 id="model-information-json-extensions-vrm-meta">Model information (json.extensions.VRM.meta)</h2>
+
+<pre><code>json.extensions.VRM.meta = {};
+json.extensions.VRM.meta.title = &quot;Alicia Solid&quot;;
+json.extensions.VRM.meta.author = &quot;DWANGO Co., Ltd.&quot;;
+json.extensions.VRM.meta.contactInformation = &quot;http://3d.nicovideo.jp/alicia/&quot;;
+json.extensions.VRM.meta.reference = &quot;&quot;;
+json.extensions.VRM.meta.texture = 6;
+json.extensions.VRM.meta.version = &quot;&quot;;
+
+json.extensions.VRM.meta.allowedUserName = &quot;Everyone&quot;;
+json.extensions.VRM.meta.violentUssageName = &quot;Disallow&quot;;
+json.extensions.VRM.meta.sexualUssageName = &quot;Disallow&quot;;
+json.extensions.VRM.meta.commercialUssageName = &quot;Allow&quot;;
+json.extensions.VRM.meta.otherPermissionUrl = &quot;http://3d.nicovideo.jp/alicia/rule.html&quot;;
+
+json.extensions.VRM.meta.licenseName = &quot;Other&quot;;
+json.extensions.VRM.meta.otherLicenseUrl = &quot;http://3d.nicovideo.jp/alicia/rule.html&quot;;
+</code></pre>
+
+<h3 id="information">Information</h3>
+
+<h4 id="title">Title</h4>
+
+<p>Avatar model name</p>
+
+<h4 id="author">Author</h4>
+
+<p>Author name</p>
+
+<h4 id="contact-information">Contact Information</h4>
+
+<p>Author contact information</p>
+
+<h4 id="reference">Reference</h4>
+
+<p>The original / related works of this avatar (Url), if any</p>
+
+<h4 id="thumbnail">Thumbnail</h4>
+
+<p>Register the thumbnail of the avatar model. A resolution texture about 2048x2048 is recommended. Assign the texture number in meta information.</p>
+
+<h4 id="version">Version</h4>
+
+<p>Model creation version</p>
+
+<h3 id="permission-license-information">Permission・License information</h3>
+
+<h4 id="access-right">Access right</h4>
+
+<h5 id="permission-for-the-use-of-this-avatar-json-extensions-vrm-meta-allowedusername">Permission for the use of this avatar (json.extensions.VRM.meta.allowedUserName)</h5>
+
+<ul>
+<li>Only Author</li>
+<li>Explicitly Licensed Person</li>
+<li>Everyone</li>
+</ul>
+
+<h5 id="violent-acts-performed-by-this-avatar-json-extensions-vrm-meta-violentussagename">Violent acts performed by this avatar (json.extensions.VRM.meta.violentUssageName)</h5>
+
+<ul>
+<li>Disallow</li>
+<li>Allow</li>
+</ul>
+
+<h5 id="sexuality-acts-performed-by-this-avatar-json-extensions-vrm-meta-sexualussagename">Sexuality acts performed by this avatar (json.extensions.VRM.meta.sexualUssageName)</h5>
+
+<ul>
+<li>Disallow</li>
+<li>Allow</li>
+</ul>
+
+<h5 id="for-commercial-use-json-extensions-vrm-meta-commercialussagename">For commercial use (json.extensions.VRM.meta.commercialUssageName)</h5>
+
+<ul>
+<li>Disallow</li>
+<li>Allow</li>
+</ul>
+
+<h5 id="other-license-condition-url-json-extensions-vrm-meta-otherpermissionurl">Other license condition (Url) (json.extensions.VRM.meta.otherPermissionUrl)</h5>
+
+<p>If there are any conditions not mentioned above, put the license Url link here.</p>
+
+<h4 id="redistribution-modifications-license">Redistribution / Modifications License</h4>
+
+<h5 id="license-type-json-extensions-vrm-meta-licensename">License type (json.extensions.VRM.meta.licenseName)</h5>
+
+<ul>
+<li>Redistribution Prohibited</li>
+<li><a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">Copyright wavier(CC0)</a></li>
+<li><a href="https://creativecommons.org/licenses/by/4.0/deed.en">Creative Commons CC BY License(CC_BY)</a></li>
+<li><a href="https://creativecommons.org/licenses/by-nc/4.0/deed.en">Creative Commons CC BY NC License(CC_BY_NC)</a></li>
+<li><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">Creative Commons CC BY SA License(CC_BY_SA)</a></li>
+<li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Creative Commons CC BY NC SA License(CC_BY_NC_SA)</a></li>
+<li><a href="https://creativecommons.org/licenses/by-nd/4.0/deed.en">Creative Commons CC BY ND License(CC_BY_ND)</a></li>
+<li><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.en">Creative Commons CC BY NC ND License(CC_BY_NC_ND)</a></li>
+<li>Other</li>
+</ul>
+
+<h5 id="other-license-type-url-json-extensions-vrm-meta-otherlicenseurl">Other license type (Url) (json.extensions.VRM.meta.otherLicenseUrl)</h5>
+
+<p>If “other” is selected, please put the license Url link here.</p>
+
+<h2 id="morph-setting-json-extensions-vrm-blendshapemaster">Morph setting (json.extensions.VRM.blendShapeMaster)</h2>
+
+<p>Set an array of BlendShapeGroups to group BlendShape.</p>
+
+<pre><code>json.extensions.VRM.blendShapeMaster.blendShapeGroups[1] = {};
+json.extensions.VRM.blendShapeMaster.blendShapeGroups[1].binds = [];
+json.extensions.VRM.blendShapeMaster.blendShapeGroups[1].binds[0] = {};
+json.extensions.VRM.blendShapeMaster.blendShapeGroups[1].binds[0].index = 0;
+json.extensions.VRM.blendShapeMaster.blendShapeGroups[1].binds[0].mesh = 3;
+json.extensions.VRM.blendShapeMaster.blendShapeGroups[1].binds[0].weight = 100;
+json.extensions.VRM.blendShapeMaster.blendShapeGroups[1].materialValues = [];
+json.extensions.VRM.blendShapeMaster.blendShapeGroups[1].name = &quot;A&quot;; # Name
+json.extensions.VRM.blendShapeMaster.blendShapeGroups[1].presetName = &quot;a&quot;; # Predefined name
+</code></pre>
+
+<h3 id="blendshape-group-json-extensions-vrm-blendshapemaster-blendshapegroups">BlendShape group (json.extensions.VRM.blendShapeMaster.blendShapeGroups)</h3>
+
+<h4 id="name">Name</h4>
+
+<p>Using the same name as the predefined name is recommended.</p>
+
+<h4 id="predefined-name">Predefined name</h4>
+
+<p>Standby state expression</p>
+
+<ul>
+<li>Neutral</li>
+</ul>
+
+<p>Lip-sync</p>
+
+<ul>
+<li>A</li>
+<li>I</li>
+<li>U</li>
+<li>E</li>
+<li>O</li>
+</ul>
+
+<p>Blink</p>
+
+<ul>
+<li>Blink</li>
+<li>Blink_L</li>
+<li>Blink_R</li>
+</ul>
+
+<p>Emotion</p>
+
+<ul>
+<li>Fun</li>
+<li>Angry</li>
+<li>Sorrow</li>
+<li>Joy</li>
+</ul>
+
+<p>Eye control</p>
+
+<ul>
+<li>LookUp</li>
+<li>LookDown</li>
+<li>LookLeft</li>
+<li>LookRight</li>
+</ul>
+
+<p>Others</p>
+
+<ul>
+<li>Unknown</li>
+</ul>
+
+<h4 id="blendshape-name-identifier">BlendShape name identifier</h4>
+
+<p>The following pseudo code can recognize BlendShape ID from the system:</p>
+
+<pre><code>// Pseudo code
+function GetID(preset, name)
+{
+  if (Preset != BlendShapePreset.Unknown)
+  {
+      return preset.ToString().ToUpper();
+  }
+  else
+  {
+      return name.ToUpper();
+  }
+}
+</code></pre>
+
+<ul>
+<li>Set Preset and Name for making BlendShape ID unique.<br /></li>
+</ul>
+
+<h2 id="first-person-settings-json-extensions-vrm-firstperson">First-person settings (json.extensions.VRM.firstPerson)</h2>
+
+<pre><code>json.extensions.VRM.firstPerson.firstPersonBone = 36;
+json.extensions.VRM.firstPerson.firstPersonBoneOffset = {};
+json.extensions.VRM.firstPerson.firstPersonBoneOffset.x = 0;
+json.extensions.VRM.firstPerson.firstPersonBoneOffset.y = 0.06;
+json.extensions.VRM.firstPerson.firstPersonBoneOffset.z = 0;
+json.extensions.VRM.firstPerson.meshAnnotations = [];
+json.extensions.VRM.firstPerson.meshAnnotations[0] = {};
+json.extensions.VRM.firstPerson.meshAnnotations[0].firstPersonFlag = &quot;Auto&quot;;
+json.extensions.VRM.firstPerson.meshAnnotations[0].mesh = 0;
+json.extensions.VRM.firstPerson.meshAnnotations[1] = {};
+json.extensions.VRM.firstPerson.meshAnnotations[1].firstPersonFlag = &quot;Auto&quot;;
+json.extensions.VRM.firstPerson.meshAnnotations[1].mesh = 1;
+json.extensions.VRM.firstPerson.meshAnnotations[2] = {};
+json.extensions.VRM.firstPerson.meshAnnotations[2].firstPersonFlag = &quot;Auto&quot;;
+json.extensions.VRM.firstPerson.meshAnnotations[2].mesh = 2;
+json.extensions.VRM.firstPerson.meshAnnotations[3] = {};
+json.extensions.VRM.firstPerson.meshAnnotations[3].firstPersonFlag = &quot;Auto&quot;;
+json.extensions.VRM.firstPerson.meshAnnotations[3].mesh = 3;
+json.extensions.VRM.firstPerson.meshAnnotations[4] = {};
+json.extensions.VRM.firstPerson.meshAnnotations[4].firstPersonFlag = &quot;Auto&quot;;
+json.extensions.VRM.firstPerson.meshAnnotations[4].mesh = 4;
+json.extensions.VRM.firstPerson.meshAnnotations[5] = {};
+json.extensions.VRM.firstPerson.meshAnnotations[5].firstPersonFlag = &quot;Auto&quot;;
+json.extensions.VRM.firstPerson.meshAnnotations[5].mesh = 5;
+json.extensions.VRM.firstPerson.meshAnnotations[6] = {};
+json.extensions.VRM.firstPerson.meshAnnotations[6].firstPersonFlag = &quot;Auto&quot;;
+json.extensions.VRM.firstPerson.meshAnnotations[6].mesh = 6;
+</code></pre>
+
+<p>When rendering avatar in first-person view, there is a defect that we may see model&rsquo;s head inside<sup class="footnote-ref" id="fnref:firstperson"><a href="#fn:firstperson">8</a></sup>.
+To address this issue, we can specify the display state of first-person view as described below:</p>
+
+<h3 id="firstpersonbone-json-extensions-vrm-firstperson-firstpersonbone">firstPersonBone (json.extensions.VRM.firstPerson.firstPersonBone)</h3>
+
+<p>Switch to the <code>Head</code> bone (normal circumstance) when rendering first-person view.</p>
+
+<h3 id="firstpersonboneoffset-json-extensions-vrm-firstperson-firstpersonboneoffset">firstPersonBoneOffset (json.extensions.VRM.firstPerson.firstPersonBoneOffset)</h3>
+
+<p>The target position of headset in first-person perspective. It is assumed that an offset between the head bone and the headset is taken into account.</p>
+
+<h3 id="meshannotations-json-extensions-vrm-firstperson-meshannotations">meshAnnotations (json.extensions.VRM.firstPerson.meshAnnotations)</h3>
+
+<p>Switch on / off mesh for only displaying first-person view or the others. The setting options are listed as follows:</p>
+
+<ul>
+<li>Auto:Automatically hide the polygon with bone weight for firstPersonBone and its descendants<sup class="footnote-ref" id="fnref:firstPersonAuto"><a href="#fn:firstPersonAuto">9</a></sup></li>
+<li>FirstPersonOnly: Rendering only in first-person view</li>
+<li>ThirdPersonOnly: Rendering only in third-person view (specify the mesh parts such as head that will not be displayed in first-person view)</li>
+<li>Both: no specific mesh display portion</li>
+</ul>
+
+<h3 id="character-perspective-settings">Character perspective settings</h3>
+
+<p>Control the perspective view of the character as it faces towards the target.</p>
+
+<pre><code>json.extensions.VRM.firstPerson.lookAtTypeName = &quot;Bone&quot;;
+json.extensions.VRM.firstPerson.lookAtHorizontalInner = {};
+json.extensions.VRM.firstPerson.lookAtHorizontalOuter = {};
+json.extensions.VRM.firstPerson.lookAtVerticalDown = {};
+json.extensions.VRM.firstPerson.lookAtVerticalUp = {};
+</code></pre>
+
+<h4 id="perspective-type-json-extensions-vrm-firstperson-lookattypename">Perspective type (json.extensions.VRM.firstPerson.lookAtTypeName)</h4>
+
+<ul>
+<li>Bone: control perspective view by bone.</li>
+<li>BlendShape: control perspective view by BlendShape. BlendShapePreset.LookUp, LookDown, LookLeft and LookRight are used.</li>
+</ul>
+
+<h4 id="angle-adjustment">Angle adjustment</h4>
+
+<p>Adjust the angle when applying the angle difference between the head and the target object to the eyebone.</p>
+
+<h5 id="json-extensions-vrm-firstperson-lookathorizontalinner">json.extensions.VRM.firstPerson.lookAtHorizontalInner</h5>
+
+<h5 id="json-extensions-vrm-firstperson-lookathorizontalouter">json.extensions.VRM.firstPerson.lookAtHorizontalOuter</h5>
+
+<h5 id="json-extensions-vrm-firstperson-lookatverticaldown">json.extensions.VRM.firstPerson.lookAtVerticalDown</h5>
+
+<h5 id="json-extensions-vrm-firstperson-lookatverticalup">json.extensions.VRM.firstPerson.lookAtVerticalUp</h5>
+
+<h2 id="swaying-motion-settings-json-extensions-vrm-secondaryanimation">Swaying motion settings (json.extensions.VRM.secondaryAnimation)</h2>
+
+<p>Settings of automatic animation for string objects such as tail and hair.</p>
+
+<h3 id="swaying-bones-secondaryanimation-bonegroups">Swaying bones (secondaryAnimation.boneGroups)</h3>
+
+<pre><code>json.extensions.VRM.secondaryAnimation.boneGroups[0] = {};
+json.extensions.VRM.secondaryAnimation.boneGroups[0].bones = [];
+json.extensions.VRM.secondaryAnimation.boneGroups[0].bones[0] = 41;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].bones[1] = 49;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].bones[2] = 57;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].bones[3] = 59;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].bones[4] = 61;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].center = -1;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups = [];
+json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups[0] = 2;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups[1] = 1;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups[2] = 0;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups[3] = 3;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups[4] = 5;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups[5] = 4;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups[6] = 6;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].comment = &quot;&quot;;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].dragForce = 0.4;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityDir = {};
+json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityDir.x = 0;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityDir.y = -1;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityDir.z = 0;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityPower = 0;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].hitRadius = 0.01;
+json.extensions.VRM.secondaryAnimation.boneGroups[0].stiffiness = 0.65;
+</code></pre>
+
+<h4 id="root-of-swaying-bones-json-extensions-vrm-secondaryanimation-bonegroups-0-bones">Root of swaying bones (json.extensions.VRM.secondaryAnimation.boneGroups[0].bones)</h4>
+
+<p>Index the root of swaying bones.</p>
+
+<h4 id="collision-detection-with-swaying-bones-json-extensions-vrm-secondaryanimation-bonegroups-0-collidergroups">Collision detection with swaying bones (json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups)</h4>
+
+<p>Index the collision detection group regard to swaying objects.</p>
+
+<h4 id="parameter">Parameter</h4>
+
+<h5 id="center-json-extensions-vrm-secondaryanimation-bonegroups-0-center">center (json.extensions.VRM.secondaryAnimation.boneGroups[0].center)</h5>
+
+<p>The reference point of the swaying object can be set at any location except the origin. When implementing moving UI by warp, the moving parent node can be specified if you don&rsquo;t want to sway the swaying objects by warp movement.</p>
+
+<h5 id="dragforce-json-extensions-vrm-secondaryanimation-bonegroups-0-dragforce">dragForce (json.extensions.VRM.secondaryAnimation.boneGroups[0].dragForce)</h5>
+
+<p>Resistance (deceleration) of automatic animation.</p>
+
+<h5 id="garvitydir-json-extensions-vrm-secondaryanimation-bonegroups-0-gravitydir">garvityDir (json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityDir)</h5>
+
+<p>The direction of gravity. Gravity is enabled by (0, -1, 0) and wind effect is enabled by (1, 0, 0).</p>
+
+<h5 id="gravitypower-json-extensions-vrm-secondaryanimation-bonegroups-0-gravitypower">gravityPower (json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityPower)</h5>
+
+<p>The power of gravity.</p>
+
+<h5 id="hitradius-json-extensions-vrm-secondaryanimation-bonegroups-0-hitradius">hitRadius (json.extensions.VRM.secondaryAnimation.boneGroups[0].hitRadius)</h5>
+
+<p>Radius of collision detection with collider.</p>
+
+<h5 id="stiffiness-json-extensions-vrm-secondaryanimation-bonegroups-0-stiffiness">stiffiness (json.extensions.VRM.secondaryAnimation.boneGroups[0].stiffiness)</h5>
+
+<p>Resilience of swaying objects (the power of returning to initial pose).</p>
+
+<h3 id="collision-detection-setting-for-swaying-object-json-extensions-vrm-secondaryanimation-collidergroups">Collision detection setting for swaying object (json.extensions.VRM.secondaryAnimation.colliderGroups)</h3>
+
+<p>Set a sphere ball colliding with swaying objects.</p>
+
+<pre><code class="language-cs">json.extensions.VRM.secondaryAnimation.colliderGroups = [];
+json.extensions.VRM.secondaryAnimation.colliderGroups[0] = {};
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders = [];
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[0] = {};
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[0].offset = {};
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[0].offset.x = 0;
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[0].offset.y = 0.05;
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[0].offset.z = 0;
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[0].radius = 0.09;
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1] = {};
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].offset = {};
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].offset.x = 0;
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].offset.y = 0;
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].offset.z = 0;
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].radius = 0.09;
+json.extensions.VRM.secondaryAnimation.colliderGroups[0].node = 34;
+</code></pre>
+
+<h4 id="node-json-extensions-vrm-secondaryanimation-collidergroups-0-node">Node (json.extensions.VRM.secondaryAnimation.colliderGroups[0].node)</h4>
+
+<p>The node where collision detection is set up.</p>
+
+<h4 id="local-coordinate-json-extensions-vrm-secondaryanimation-collidergroups-0-colliders-1-offset">Local coordinate (json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].offset)</h4>
+
+<p>Local coordinate from the node of collision detection.</p>
+
+<h4 id="radius-json-extensions-vrm-secondaryanimation-collidergroups-0-colliders-1-radius">Radius (json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].radius)</h4>
+
+<p>The radius of collision detection.</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:gltf2">Saved as gltf2.
+ <a class="footnote-return" href="#fnref:gltf2"><sup>[return]</sup></a></li>
+<li id="fn:tangent-w">w is 1 or -1.
+ <a class="footnote-return" href="#fnref:tangent-w"><sup>[return]</sup></a></li>
+<li id="fn:OpenGLCoord">OpenGL coordinate system. +X going right, +Y going up, +Z going forward.
+ <a class="footnote-return" href="#fnref:OpenGLCoord"><sup>[return]</sup></a></li>
+<li id="fn:ZUP">In the middle of the hierarchy, Z-UP modelers such as Blender and 3ds Max may be mistakenly rotated Z-axis -90 degrees instead of being rotated X-axis from the derived model.
+ <a class="footnote-return" href="#fnref:ZUP"><sup>[return]</sup></a></li>
+<li id="fn:Transparent">For objects without substances such as smoke or cheek color.
+ <a class="footnote-return" href="#fnref:Transparent"><sup>[return]</sup></a></li>
+<li id="fn:TransparentZWrite">For objects with substances such as semitransparent clothe or semitransparent tip of the hair.
+ <a class="footnote-return" href="#fnref:TransparentZWrite"><sup>[return]</sup></a></li>
+<li id="fn:notrequired">There is no problem without it.
+ <a class="footnote-return" href="#fnref:notrequired"><sup>[return]</sup></a></li>
+<li id="fn:firstperson">Back-face culling and near plane can handle this issue to some extent, but there still exists some problems, for example, the gums in the model&rsquo;s mouth may be seen unintentionally.
+ <a class="footnote-return" href="#fnref:firstperson"><sup>[return]</sup></a></li>
+<li id="fn:firstPersonAuto">Generate the model that undisplayed portions are automatically discarded during execution.
+ <a class="footnote-return" href="#fnref:firstPersonAuto"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+    </article>
+  </div>
+</div>
+
+
+        <a href="https://dwango.github.io/vrm">
+          <img src="https://dwango.github.io/images/vrm/vrm_header.png" alt="VRM - humanoid 3d avatar format for VR">
+        </a>
+
+    </div>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-109076308-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>
