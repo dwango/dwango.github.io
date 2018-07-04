@@ -89,11 +89,11 @@
 <ul>
 <li><a href="#target">Target</a></li>
 </ul></li>
-<li><a href="#bone-control-view-vrmlookatboneapplyer">Bone control view: VRMLookAtBoneApplyer</a>
+<li><a href="#bone-s-view-control-vrmlookatboneapplyer">Bone&rsquo;s view control: VRMLookAtBoneApplyer</a>
 <ul>
 <li><a href="#degreemapping">DegreeMapping</a></li>
 </ul></li>
-<li><a href="#option-morph-control-view-vrmlookatblendshapeapplyer">[Option] Morph control view: VRMLookAtBlendShapeApplyer</a></li>
+<li><a href="#option-morph-s-view-control-vrmlookatblendshapeapplyer">[Option] Morph&rsquo;s view control: VRMLookAtBlendShapeApplyer</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -117,14 +117,14 @@
 </tbody>
 </table>
 
-<p>This component calculates the direction of the seen Target from the head.</p>
+<p>This component calculates the direction of the seen target from the head.</p>
 
 <h3 id="target">Target</h3>
 
-<p>The observed target. Please select and set the object where the eyes are pointing to.
-If the camera is set, it will become the camera view.</p>
+<p>The observed object. Please set the object where the eyes are pointing to.
+If a camera is set, the object will be visible within the camera field of view.</p>
 
-<h2 id="bone-control-view-vrmlookatboneapplyer">Bone control view: VRMLookAtBoneApplyer</h2>
+<h2 id="bone-s-view-control-vrmlookatboneapplyer">Bone&rsquo;s view control: VRMLookAtBoneApplyer</h2>
 
 <table>
 <thead>
@@ -145,19 +145,19 @@ If the camera is set, it will become the camera view.</p>
 
 <h3 id="degreemapping">DegreeMapping</h3>
 
-<p>Adjust the angle when applying rotation to EyeBone.</p>
+<p>Adjust angle when applying rotation to EyeBone.</p>
 
 <ul>
 <li>HorizontalOuter: The angle limit of outer horizontal direction</li>
 <li>HorizontalInner: The angle limit of inner horizontal direction</li>
-<li>VerticalDown: The angle limit of vertical down direction</li>
-<li>VerticalUp: The angle limit of vertical up direction</li>
+<li>VerticalDown: The angle limit of vertical downward direction</li>
+<li>VerticalUp: The angle limit of vertical upward direction</li>
 </ul>
 
-<h2 id="option-morph-control-view-vrmlookatblendshapeapplyer">[Option] Morph control view: VRMLookAtBlendShapeApplyer</h2>
+<h2 id="option-morph-s-view-control-vrmlookatblendshapeapplyer">[Option] Morph&rsquo;s view control: VRMLookAtBlendShapeApplyer</h2>
 
-<p>BlendShape is a component for model eye control.
-Replace VRMLookAtBoneApplyer with it.</p>
+<p>The component for model to control eye direction with BlendShape.
+Please delete VRMLookAtBoneApplyer and attach VRMLookAtBlendShapeApplyer instead.</p>
 
     </article>
   </div>

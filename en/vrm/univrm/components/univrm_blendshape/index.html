@@ -97,7 +97,7 @@
 <li><a href="#lookup-lookdown-lookleft-lookright">LookUp, LookDown, LookLeft, LookRight</a></li>
 <li><a href="#unknown">Unknown</a></li>
 </ul></li>
-<li><a href="#change-the-value-in-blendshapeproxy-at-runtime">Change the value in BlendShapeProxy (at runtime)</a></li>
+<li><a href="#change-the-value-of-blendshapeproxy-at-runtime">Change the value of BlendShapeProxy (at runtime)</a></li>
 <li><a href="#option-add-additional-facial-expressions">[Option]Add additional facial expressions</a></li>
 <li><a href="#option-morph-material-color">[Option]Morph material color</a></li>
 </ul></li>
@@ -118,21 +118,21 @@
 
 <tbody>
 <tr>
-<td>Facial expression is enabled at runtime (inspector-&gt;VRMBlendShapeProxy)</td>
+<td>Inspector of VRMBlendShapeProxy at runtime. It is enabled in play mode</td>
 </tr>
 </tbody>
 </table>
 
-<p>The method is:</p>
+<p>How to use it:</p>
 
 <ul>
-<li>Set BlendShapeAvatar in VRMBlendShapeProxy-&gt;inspector</li>
+<li>Set BlendShapeAvatar (VRMBlendShapeProxy-&gt;BlendShapeAvatar) in inspector</li>
 <li>Change BlendShapeClip value between 0 and 1 at runtime (e.g. BLINK, JOY)</li>
 </ul>
 
 <h2 id="blendshapeavatar">BlendShapeAvatar</h2>
 
-<p>Create expression settings in the inspector</p>
+<p>Create facial expression settings in inspector (Assets).</p>
 
 <table>
 <thead>
@@ -144,7 +144,7 @@
 
 <tbody>
 <tr>
-<td>Double click &ldquo;Blend Shape Avatar&rdquo; box</td>
+<td>Double click the box &ldquo;Blend Shape Avatar&rdquo;</td>
 </tr>
 </tbody>
 </table>
@@ -161,7 +161,7 @@
 
 <tbody>
 <tr>
-<td>Select BlendShape from here</td>
+<td>Directly click BlendShape here (the highlighted file)</td>
 </tr>
 </tbody>
 </table>
@@ -176,12 +176,12 @@
 
 <tbody>
 <tr>
-<td>The inspector of BlendShapeEditor</td>
+<td>Inspector of BlendShapeEditor</td>
 </tr>
 </tbody>
 </table>
 
-<p>Select a facial expression and adjust its parameters. For example, we select &ldquo;Fun&rdquo; (and click &ldquo;face&rdquo; below BlendShapeValues) as shown in the following:</p>
+<p>Create the facial expression you want by selecting expression names and adjust their values. For example, we select &ldquo;Fun&rdquo; (and click &ldquo;face&rdquo; below BlendShapeValues) as shown in the following:</p>
 
 <table>
 <thead>
@@ -198,9 +198,9 @@
 </tbody>
 </table>
 
-<p>The individual BlendShape such as eyebrow, eye and mouth can be grouped into one facial expression like an image. You can specify the name for that grouped BlendShape.</p>
+<p>The individual BlendShape such as eyebrow, eye and mouth can be grouped into one facial expression like an image. You can specify the name and preset for that grouped BlendShape.</p>
 
-<p>After changing the slider bar of the BlendShape, click &ldquo;Apply&rdquo; button for saving the current values.</p>
+<p>After slider value is changed and BlendShape is created, please click &ldquo;Apply&rdquo; button for saving the current values.</p>
 
 <h2 id="blendshape-preset">BlendShape preset</h2>
 
@@ -214,13 +214,12 @@
 
 <tbody>
 <tr>
-<td>Select Preset</td>
+<td>Select Preset (below CurrentClip)</td>
 </tr>
 </tbody>
 </table>
 
-<p>A predefined name for BlendShapeClip.
-The followings are available:</p>
+<p>The followings are predefined expression names corresponding to BlendShapeClip available in UniVRM:</p>
 
 <h3 id="neutral">NEUTRAL</h3>
 
@@ -244,13 +243,13 @@ The followings are available:</p>
 
 <h3 id="lookup-lookdown-lookleft-lookright">LookUp, LookDown, LookLeft, LookRight</h3>
 
-<p>Available for the model whose view is controlled by morph.</p>
+<p>Used when perspective view is controlled by morph.</p>
 
 <h3 id="unknown">Unknown</h3>
 
 <p>Assign created expressions that are not predefined as &ldquo;Unknown&rdquo;.</p>
 
-<h2 id="change-the-value-in-blendshapeproxy-at-runtime">Change the value in BlendShapeProxy (at runtime)</h2>
+<h2 id="change-the-value-of-blendshapeproxy-at-runtime">Change the value of BlendShapeProxy (at runtime)</h2>
 
 <table>
 <thead>
@@ -262,12 +261,12 @@ The followings are available:</p>
 
 <tbody>
 <tr>
-<td>with using &ldquo;Present&rdquo;</td>
+<td>Use preset</td>
 </tr>
 </tbody>
 </table>
 
-<p>Operate it from the inspector</p>
+<p>You can operate it from inspector.</p>
 
 <h2 id="option-add-additional-facial-expressions">[Option]Add additional facial expressions</h2>
 
@@ -281,12 +280,12 @@ The followings are available:</p>
 
 <tbody>
 <tr>
-<td>Double click &ldquo;Blend Shape Avatar&rdquo; box and click &ldquo;add BlendShapeClip&rdquo;</td>
+<td>Double click the box &ldquo;Blend Shape Avatar&rdquo; and click &ldquo;Add BlendShapeClip&rdquo;</td>
 </tr>
 </tbody>
 </table>
 
-<p>After creating the new BlendShapeClip, please select the empty button at the back and input a name. Also, please set the values for this BlendShape.</p>
+<p>Create and save the new BlendShapeClip. Please select the empty button at the back and input a name. Also, please set the values for this BlendShape (expression).</p>
 
 <table>
 <thead>
@@ -298,7 +297,7 @@ The followings are available:</p>
 
 <tbody>
 <tr>
-<td>Click the button &ldquo;びっくり&rdquo; (surprised)</td>
+<td>Click the new created button &ldquo;びっくり&rdquo; (surprised)</td>
 </tr>
 </tbody>
 </table>
@@ -321,7 +320,7 @@ proxy.SetValue(&quot;びっくり&quot;, 1.0f); // Assign the value between the 
 
 <tbody>
 <tr>
-<td>Material morph setting (double click &ldquo;Current clip&rdquo; box)</td>
+<td>Material morph setting (double click the box &ldquo;Current clip&rdquo;)</td>
 </tr>
 </tbody>
 </table>

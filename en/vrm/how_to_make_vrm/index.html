@@ -156,7 +156,7 @@ Launch Unity and create a new project (New -&gt; Create project).</p>
 <li>Eye is assigned to eye highlight</li>
 </ul>
 
-<p>Please fix them manually.</p>
+<p>We can fix them by assigning the right corresponding parts manually.</p>
 
 <h3 id="4-adjust-model-data-and-export-vrm-once-from-menu-normalization-processing">4. Adjust model data and export VRM once from menu（normalization processing）</h3>
 
@@ -184,7 +184,7 @@ Launch Unity and create a new project (New -&gt; Create project).</p>
 <li>Texture（material / shader）
 
 <ul>
-<li>It is <strong>highly recommended</strong> to use the shaders listed as follows:
+<li>It is <strong>highly recommended</strong> to use the shaders listed below:
 
 <ul>
 <li>PBR
@@ -280,7 +280,7 @@ Launch Unity and create a new project (New -&gt; Create project).</p>
 <li>Reference
 
 <ul>
-<li>The original / related works of this avatar, if any</li>
+<li>Original / Related works of this avatar, if any</li>
 </ul></li>
 </ul></li>
 
@@ -354,7 +354,7 @@ Launch Unity and create a new project (New -&gt; Create project).</p>
 <li><a href="../univrm/components/univrm_blendshape/">Expression and lip-sync setting（BlendShape)</a></li>
 <li><a href="../univrm/components/univrm_firstperson/">First-person view setting（the case for operating model by first-person view, specify parts such as head that may block the scene and set the standard viewpoint position)</a></li>
 <li><a href="../univrm/components/univrm_lookat/">Movable curve and movable range of view / eyeball settings. Not only eyeball is supported by bone, but also eyeball animation is supported by BlendShape</a></li>
-<li><a href="../univrm/components/univrm_secondary/">Swaying motion setting（SpringBone/SpringBoneCollider)</a></li>
+<li><a href="../univrm/components/univrm_secondary/">Swaying object setting（SpringBone/SpringBoneCollider)</a></li>
 </ul>
 
 <h3 id="7-check-model-expression-movement-in-play-mode-if-necessary">7. Check model expression/movement in play mode（If necessary）</h3>
@@ -362,14 +362,14 @@ Launch Unity and create a new project (New -&gt; Create project).</p>
 <img src="https://dwango.github.io/images/vrm/aiueo.png"   />
 
 
-<p>Set AnimationClip/AnimationController and GameObject in VRMLookAtHead -&gt; Target (viewpoint direction), and then check model&rsquo;s movement and expression in the scene. Also, fairly simple test scripts &ldquo;AIUEO&rdquo; and &ldquo;Blinker&rdquo; are available for users to test out. Click &ldquo;Add Component&rdquo; at the bottom of &ldquo;Inspector&rdquo; and search for “AIUEO”. After setting this component, the animation of mouth shape &ldquo;あ&rdquo;, &ldquo;い&rdquo;, &ldquo;う&rdquo;, &ldquo;え&rdquo;, &ldquo;お&rdquo; switching in turn can be created. If the component &ldquo;Blinker&rdquo; is set, blink animation played periodically can be created.</p>
+<p>Set AnimationClip/AnimationController and GameObject in VRMLookAtHead -&gt; Target (viewpoint direction), and then check model&rsquo;s movement and expression in the scene. Also, fairly simple test scripts &ldquo;AIUEO&rdquo; and &ldquo;Blinker&rdquo; are available for users to test out. Click &ldquo;Add Component&rdquo; at the bottom of &ldquo;Inspector&rdquo; and search for “AIUEO”. After setting this component, the animation of mouth shape &ldquo;あ&rdquo;, &ldquo;い&rdquo;, &ldquo;う&rdquo;, &ldquo;え&rdquo;, &ldquo;お&rdquo; switching in turn can be created. If the component &ldquo;Blinker&rdquo; is set, blink animation played periodically can be created. For more information, please refer to our <a href="https://github.com/dwango/UniVRM/releases">VRMViewer</a> (download UniVRM-RuntimeLoaderSample).</p>
 
 <h3 id="8-output-vrm-file">8. Output VRM file</h3>
 
 <img src="https://dwango.github.io/images/vrm/vrm_menu_enable.png"   />
 
 
-<p>After the adjustment is completed, select the model data in &ldquo;Hierarchy&rdquo; and again export the model from menu -&gt; VRM -&gt; export humanoid from menu.</p>
+<p>After the adjustment is completed, select the model data in &ldquo;Hierarchy&rdquo; and again export the model from menu -&gt; VRM -&gt; export humanoid.</p>
 
 <p>This time <strong>please uncheck &ldquo;Force T Pose&rdquo; and &ldquo;Pose Freeze&rdquo;</strong>. They are only used for the first time (normalization processing). Name the file and output the VRM file.</p>
 

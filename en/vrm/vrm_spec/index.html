@@ -156,9 +156,9 @@
 <li><a href="#firstpersonbone-json-extensions-vrm-firstperson-firstpersonbone">firstPersonBone (json.extensions.VRM.firstPerson.firstPersonBone)</a></li>
 <li><a href="#firstpersonboneoffset-json-extensions-vrm-firstperson-firstpersonboneoffset">firstPersonBoneOffset (json.extensions.VRM.firstPerson.firstPersonBoneOffset)</a></li>
 <li><a href="#meshannotations-json-extensions-vrm-firstperson-meshannotations">meshAnnotations (json.extensions.VRM.firstPerson.meshAnnotations)</a></li>
-<li><a href="#character-perspective-settings">Character perspective settings</a>
+<li><a href="#perspective-view-settings">Perspective view settings</a>
 <ul>
-<li><a href="#perspective-type-json-extensions-vrm-firstperson-lookattypename">Perspective type (json.extensions.VRM.firstPerson.lookAtTypeName)</a></li>
+<li><a href="#lookat-type-json-extensions-vrm-firstperson-lookattypename">LookAt Type (json.extensions.VRM.firstPerson.lookAtTypeName)</a></li>
 <li><a href="#angle-adjustment">Angle adjustment</a>
 <ul>
 <li><a href="#json-extensions-vrm-firstperson-lookathorizontalinner">json.extensions.VRM.firstPerson.lookAtHorizontalInner</a></li>
@@ -168,7 +168,7 @@
 </ul></li>
 </ul></li>
 </ul></li>
-<li><a href="#swaying-motion-settings-json-extensions-vrm-secondaryanimation">Swaying motion settings (json.extensions.VRM.secondaryAnimation)</a>
+<li><a href="#swaying-object-settings-json-extensions-vrm-secondaryanimation">Swaying object settings (json.extensions.VRM.secondaryAnimation)</a>
 <ul>
 <li><a href="#swaying-bones-secondaryanimation-bonegroups">Swaying bones (secondaryAnimation.boneGroups)</a>
 <ul>
@@ -229,9 +229,9 @@ json.extensions.VRM.materialProperties[0].textureProperties._MainTex = 0;
 json.extensions.VRM.materialProperties[0].vectorProperties = {}; # vec4 type variable
 </code></pre>
 
-<p>Saved as a general-purpose structure paired with Shader name and parameter dictionary.
-Currently, it saves the items needed by Unity.
-Please refer to <code>Shader provided by VRM</code> for detailed descriptions.</p>
+<p>Material is saved as a general-purpose structure paired with Shader name and parameter dictionary.
+Currently, it saves the items necessary to Unity.
+Please refer to <a href="../vrm_spec/#shaders-provided-by-vrm">Shader provided by VRM</a> for detailed descriptions.</p>
 
 <h4 id="material-rule">Material rule</h4>
 
@@ -241,7 +241,7 @@ Please refer to <code>Shader provided by VRM</code> for detailed descriptions.</
 
 <h3 id="mesh">Mesh</h3>
 
-<p>The attributes of vertex are stored as follows:</p>
+<p>The vertex attributes are stored as follows:</p>
 
 <ul>
 <li>attribute<sup class="footnote-ref" id="fnref:gltf2"><a href="#fn:gltf2">1</a></sup>
@@ -254,13 +254,13 @@ Please refer to <code>Shader provided by VRM</code> for detailed descriptions.</
 </ul></li>
 </ul>
 
-<p>Skinning information. Store skinning of up to 4 bones.</p>
+<p>Skinning information. Stores skinning up to 4 bones.</p>
 
 <ul>
 <li>bone weight(bone_index(int) + bone_weight(float)) x 4</li>
 </ul>
 
-<p>Morph information。</p>
+<p>Morph information.</p>
 
 <ul>
 <li>morph target<sup class="footnote-ref" id="fnref:gltf2"><a href="#fn:gltf2">1</a></sup>
@@ -274,7 +274,7 @@ Please refer to <code>Shader provided by VRM</code> for detailed descriptions.</
 
 <h3 id="node">Node</h3>
 
-<p>Where the bone structure and meshes are stored.</p>
+<p>Where bone structure and mesh are stored.</p>
 
 <ul>
 <li>node<sup class="footnote-ref" id="fnref:gltf2"><a href="#fn:gltf2">1</a></sup>
@@ -291,7 +291,7 @@ Please refer to <code>Shader provided by VRM</code> for detailed descriptions.</
 
 <h3 id="gltf2-rule">GLTF2 rule</h3>
 
-<p>Conforms to the GLTF2, a very important item.</p>
+<p>Conforming to GLTF2, a very important item.</p>
 
 <ul>
 <li>Meter (unit)</li>
@@ -311,12 +311,12 @@ Please refer to <code>Shader provided by VRM</code> for detailed descriptions.</
 <li>Model mesh is T-Pose</li>
 <li>No rotation for bone</li>
 <li>No scale for bone</li>
-<li>Head bone faces front direction[^LookAt]</li>
+<li>Head bone faces front direction<sup class="footnote-ref" id="fnref:LookAt"><a href="#fn:LookAt">5</a></sup></li>
 </ul>
 
 <h2 id="shaders-provided-by-vrm">Shaders provided by VRM</h2>
 
-<p>The following Shaders are available assuming operating cel shading character model.</p>
+<p>The following Shaders are available assuming operating cel style character model.</p>
 
 <h3 id="unlit-type">Unlit type</h3>
 
@@ -326,13 +326,13 @@ There are four types available for handling degree of transparency.</p>
 <ul>
 <li>UnlitTexture(opacity)</li>
 <li>UnlitCutout(make the part whose transparency is below the threshold transparent)</li>
-<li>UnlitTransparent(Alpha Blend. ZWrite is off)<sup class="footnote-ref" id="fnref:Transparent"><a href="#fn:Transparent">5</a></sup></li>
-<li>UnlitTransparentZWrite(Alpha Blend. ZWrite is on)<sup class="footnote-ref" id="fnref:TransparentZWrite"><a href="#fn:TransparentZWrite">6</a></sup></li>
+<li>UnlitTransparent(Alpha Blend. ZWrite is off)<sup class="footnote-ref" id="fnref:Transparent"><a href="#fn:Transparent">6</a></sup></li>
+<li>UnlitTransparentZWrite(Alpha Blend. ZWrite is on)<sup class="footnote-ref" id="fnref:TransparentZWrite"><a href="#fn:TransparentZWrite">7</a></sup></li>
 </ul>
 
 <h3 id="mtoon">MToon</h3>
 
-<p>The shader that corresponds to cel shading and outline. More details than Unlit can be set.</p>
+<p>The shader that supports cel shading and outline. More details than Unlit can be set.</p>
 
 <h2 id="vrm-version">VRM version</h2>
 
@@ -343,7 +343,7 @@ There are four types available for handling degree of transparency.</p>
 
 <h2 id="model-bone-mapping-json-extensions-vrm-humanoid">Model bone mapping (json.extensions.VRM.humanoid)</h2>
 
-<p>By standardizing the bone used in mesh skinning and the human body skeleton, real-time motion such as motion capture can be achieved.</p>
+<p>By standardizing bone used in mesh skinning and human body skeleton, real-time motion such as motion capture can be achieved.</p>
 
 <pre><code>json.extensions.VRM.humanoid = {};
 json.extensions.VRM.humanoid.armStretch = 0.05;
@@ -367,11 +367,11 @@ json.extensions.VRM.humanoid.humanBones[0].useDefaultValues = true;
 <li>hips</li>
 <li>spine</li>
 <li>chest</li>
-<li>upperChest<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">7</a></sup></li>
+<li>upperChest<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">8</a></sup></li>
 <li>neck</li>
 <li>head</li>
 
-<li><p>Left/Right eye<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">7</a></sup></p></li>
+<li><p>Left/Right eye<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">8</a></sup></p></li>
 
 <li><p>Left/Right upperArm</p></li>
 
@@ -385,17 +385,17 @@ json.extensions.VRM.humanoid.humanBones[0].useDefaultValues = true;
 
 <li><p>Left/Right foot</p></li>
 
-<li><p>Left/Right toe<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">7</a></sup></p></li>
+<li><p>Left/Right toe<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">8</a></sup></p></li>
 
-<li><p>Left/Right thumb proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">7</a></sup></p></li>
+<li><p>Left/Right thumb proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">8</a></sup></p></li>
 
-<li><p>Left/Right index proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">7</a></sup></p></li>
+<li><p>Left/Right index proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">8</a></sup></p></li>
 
-<li><p>Left/Right middle proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">7</a></sup></p></li>
+<li><p>Left/Right middle proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">8</a></sup></p></li>
 
-<li><p>Left/Right ring proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">7</a></sup></p></li>
+<li><p>Left/Right ring proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">8</a></sup></p></li>
 
-<li><p>Left/Right little proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">7</a></sup></p></li>
+<li><p>Left/Right little proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">8</a></sup></p></li>
 </ul>
 
 <h2 id="model-information-json-extensions-vrm-meta">Model information (json.extensions.VRM.meta)</h2>
@@ -434,7 +434,7 @@ json.extensions.VRM.meta.otherLicenseUrl = &quot;http://3d.nicovideo.jp/alicia/r
 
 <h4 id="reference">Reference</h4>
 
-<p>The original / related works of this avatar (Url), if any</p>
+<p>Original / Related works of this avatar (Url), if any</p>
 
 <h4 id="thumbnail">Thumbnail</h4>
 
@@ -625,31 +625,31 @@ json.extensions.VRM.firstPerson.meshAnnotations[6].firstPersonFlag = &quot;Auto&
 json.extensions.VRM.firstPerson.meshAnnotations[6].mesh = 6;
 </code></pre>
 
-<p>When rendering avatar in first-person view, there is a defect that we may see model&rsquo;s head inside<sup class="footnote-ref" id="fnref:firstperson"><a href="#fn:firstperson">8</a></sup>.
-To address this issue, we can specify the display state of first-person view as described below:</p>
+<p>When the avatar is rendered in first-person view, there is a problem that users may see model&rsquo;s head inside<sup class="footnote-ref" id="fnref:firstperson"><a href="#fn:firstperson">9</a></sup>.
+To address this issue, we can specify the display state in first-person view.</p>
 
 <h3 id="firstpersonbone-json-extensions-vrm-firstperson-firstpersonbone">firstPersonBone (json.extensions.VRM.firstPerson.firstPersonBone)</h3>
 
-<p>Switch to the <code>Head</code> bone (normal circumstance) when rendering first-person view.</p>
+<p>Switch to <code>Head</code> bone when model is rendered first-person view.</p>
 
 <h3 id="firstpersonboneoffset-json-extensions-vrm-firstperson-firstpersonboneoffset">firstPersonBoneOffset (json.extensions.VRM.firstPerson.firstPersonBoneOffset)</h3>
 
-<p>The target position of headset in first-person perspective. It is assumed that an offset between the head bone and the headset is taken into account.</p>
+<p>The target headset position in first-person view. Assuming the head bone is offset from the headset.</p>
 
 <h3 id="meshannotations-json-extensions-vrm-firstperson-meshannotations">meshAnnotations (json.extensions.VRM.firstPerson.meshAnnotations)</h3>
 
-<p>Switch on / off mesh for only displaying first-person view or the others. The setting options are listed as follows:</p>
+<p>Switch on / off mesh for display in first-person view, third-person view, or the others. The setting options are:</p>
 
 <ul>
-<li>Auto:Automatically hide the polygon with bone weight for firstPersonBone and its descendants<sup class="footnote-ref" id="fnref:firstPersonAuto"><a href="#fn:firstPersonAuto">9</a></sup></li>
-<li>FirstPersonOnly: Rendering only in first-person view</li>
-<li>ThirdPersonOnly: Rendering only in third-person view (specify the mesh parts such as head that will not be displayed in first-person view)</li>
-<li>Both: no specific mesh display portion</li>
+<li>Auto: automatically hides the polygon with bone weight in firstPersonBone and its descendants<sup class="footnote-ref" id="fnref:firstPersonAuto"><a href="#fn:firstPersonAuto">10</a></sup></li>
+<li>FirstPersonOnly: renders only in first-person view</li>
+<li>ThirdPersonOnly: renders only in third-person view (specify the mesh parts such as head that are not displayed in first-person view)</li>
+<li>Both: no particular switch display</li>
 </ul>
 
-<h3 id="character-perspective-settings">Character perspective settings</h3>
+<h3 id="perspective-view-settings">Perspective view settings</h3>
 
-<p>Control the perspective view of the character as it faces towards the target.</p>
+<p>Control the perspective view of the character as facing towards the target.</p>
 
 <pre><code>json.extensions.VRM.firstPerson.lookAtTypeName = &quot;Bone&quot;;
 json.extensions.VRM.firstPerson.lookAtHorizontalInner = {};
@@ -658,7 +658,7 @@ json.extensions.VRM.firstPerson.lookAtVerticalDown = {};
 json.extensions.VRM.firstPerson.lookAtVerticalUp = {};
 </code></pre>
 
-<h4 id="perspective-type-json-extensions-vrm-firstperson-lookattypename">Perspective type (json.extensions.VRM.firstPerson.lookAtTypeName)</h4>
+<h4 id="lookat-type-json-extensions-vrm-firstperson-lookattypename">LookAt Type (json.extensions.VRM.firstPerson.lookAtTypeName)</h4>
 
 <ul>
 <li>Bone: control perspective view by bone.</li>
@@ -677,9 +677,9 @@ json.extensions.VRM.firstPerson.lookAtVerticalUp = {};
 
 <h5 id="json-extensions-vrm-firstperson-lookatverticalup">json.extensions.VRM.firstPerson.lookAtVerticalUp</h5>
 
-<h2 id="swaying-motion-settings-json-extensions-vrm-secondaryanimation">Swaying motion settings (json.extensions.VRM.secondaryAnimation)</h2>
+<h2 id="swaying-object-settings-json-extensions-vrm-secondaryanimation">Swaying object settings (json.extensions.VRM.secondaryAnimation)</h2>
 
-<p>Settings of automatic animation for string objects such as tail and hair.</p>
+<p>Automatic animation setting for string-shaped objects such as tail and hair.</p>
 
 <h3 id="swaying-bones-secondaryanimation-bonegroups">Swaying bones (secondaryAnimation.boneGroups)</h3>
 
@@ -712,17 +712,17 @@ json.extensions.VRM.secondaryAnimation.boneGroups[0].stiffiness = 0.65;
 
 <h4 id="root-of-swaying-bones-json-extensions-vrm-secondaryanimation-bonegroups-0-bones">Root of swaying bones (json.extensions.VRM.secondaryAnimation.boneGroups[0].bones)</h4>
 
-<p>Index the root of swaying bones.</p>
+<p>Specify the node index of the root bone of the swaying object.</p>
 
 <h4 id="collision-detection-with-swaying-bones-json-extensions-vrm-secondaryanimation-bonegroups-0-collidergroups">Collision detection with swaying bones (json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups)</h4>
 
-<p>Index the collision detection group regard to swaying objects.</p>
+<p>Specify the index of the collision detection group for the swaying object.</p>
 
 <h4 id="parameter">Parameter</h4>
 
 <h5 id="center-json-extensions-vrm-secondaryanimation-bonegroups-0-center">center (json.extensions.VRM.secondaryAnimation.boneGroups[0].center)</h5>
 
-<p>The reference point of the swaying object can be set at any location except the origin. When implementing moving UI by warp, the moving parent node can be specified if you don&rsquo;t want to sway the swaying objects by warp movement.</p>
+<p>The reference point of the swaying object can be set at any location except the origin. When implementing UI moving with warp, the parent node to move with warp can be specified if you don&rsquo;t want the object swaying by warp movement.</p>
 
 <h5 id="dragforce-json-extensions-vrm-secondaryanimation-bonegroups-0-dragforce">dragForce (json.extensions.VRM.secondaryAnimation.boneGroups[0].dragForce)</h5>
 
@@ -790,6 +790,8 @@ json.extensions.VRM.secondaryAnimation.colliderGroups[0].node = 34;
  <a class="footnote-return" href="#fnref:OpenGLCoord"><sup>[return]</sup></a></li>
 <li id="fn:ZUP">In the middle of the hierarchy, Z-UP modelers such as Blender and 3ds Max may be mistakenly rotated Z-axis -90 degrees instead of being rotated X-axis from the derived model.
  <a class="footnote-return" href="#fnref:ZUP"><sup>[return]</sup></a></li>
+<li id="fn:LookAt">Eye control calculates the target direction based on the head orientation at T-Pose
+ <a class="footnote-return" href="#fnref:LookAt"><sup>[return]</sup></a></li>
 <li id="fn:Transparent">For objects without substances such as smoke or cheek color.
  <a class="footnote-return" href="#fnref:Transparent"><sup>[return]</sup></a></li>
 <li id="fn:TransparentZWrite">For objects with substances such as semitransparent clothe or semitransparent tip of the hair.

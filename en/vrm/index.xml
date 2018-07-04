@@ -28,9 +28,9 @@
       
       <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_api_history/</guid>
       <description> This section describes about changes affecting the program.
-v0.36 Revision of storage location of texture name It conforms to GLTF specification.
+v0.36 Revision of storage location of texture name Conforming to GLTF specification.
 json.images[i].extra.name  After the change
-json.images[i].name  Revision of storage location of project name It conforms to GLTF specification.
+json.images[i].name  Revision of storage location of project name Conforming to GLTF specification.
  &amp;ldquo;extras&amp;rdquo; is not allowed in target https://github.com/KhronosGroup/glTF/issues/1036#issuecomment-314078356  json.meshes[i].primitives[j].targets[k].extra.name  After the change
 json.meshes[i].primitives[j].extras.targetNames[k]  </description>
     </item>
@@ -41,7 +41,7 @@ json.meshes[i].primitives[j].extras.targetNames[k]  </description>
       <pubDate>Wed, 09 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/univrm_faq/</guid>
-      <description>The parameters I set were disappeared VRMSpringBone is attached to secondary node during import.
+      <description>The parameters I set were disappeared VRMSpringBone is attached to the node secondary during import.
 VRMSpringBone
 The loader is not working when building a project Shaders used by UniVRM may not be included in the build target.
 Please double check
@@ -78,7 +78,7 @@ The setting procedure for Shader preloading</description>
       
       <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_coordinate/</guid>
       <description>UniVRM automatically performs coordinate transformation during import / export.
-VRM coordinate system Since VRM is an extension of GLTF, it conforms to the coordinate system of GLTF. It is a OpenGL standard right-handed Y-UP coordinate system.
+VRM coordinate system Since VRM is an extension of GLTF, it conforms to the coordinate system of GLTF. It is OpenGL standard right-handed Y-UP coordinate system.
  Right: X+ Up: Y+ In front: Z-  Unity coordinate system Left-handed Y-UP coordinate system。
  Right:X+ Up:Y+ In front:Z+ (+- is inverted)  Transformation of each value Z-axis is inverted.
 Vector3(Position, Normal and so on) public static Vector3 ReverseZ(this Vector3 v) { return new Vector3(v.</description>
@@ -90,12 +90,11 @@ Vector3(Position, Normal and so on) public static Vector3 ReverseZ(this Vector3 
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_use_blendshape/</guid>
-      <description>Apply BlendShape from script var proxy=GetComponent&amp;lt;VRMBlendShapeProxy&amp;gt;(); // Call enum proxy.SetValue(BlendShapePreset.A, 1.0f); // Assign value from 0 to 1  // Call string proxy.SetValue(&amp;#34;A&amp;#34;, 1.0f); Apply multiple BlendShapes For example,
+      <description>Apply BlendShape from script var proxy=GetComponent&amp;lt;VRMBlendShapeProxy&amp;gt;(); // Call enum proxy.SetValue(BlendShapePreset.A, 1.0f); // Assign value from 0 to 1  // Call string proxy.SetValue(&amp;#34;A&amp;#34;, 1.0f); Apply multiple BlendShapes at once For example,
 For Blink_L
  MeshA eye_L=100 MeshA eye_R=1  For Blink_R
  MeshA eye_L=1 MeshA eye_R=100  If both BlendShapes are defined and enabled as shown below, later only those items set before can be applied.
-proxy.SetValue(BlendShapePreset.Blink_L, 1.0f); proxy.SetValue(BlendShapePreset.Blink_R, 1.0f);
-In this case, the following codes are workable:</description>
+proxy.SetValue(BlendShapePreset.Blink_L, 1.0f); proxy.SetValue(BlendShapePreset.Blink_R, 1.</description>
     </item>
     
     <item>
@@ -104,7 +103,7 @@ In this case, the following codes are workable:</description>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_blendshape/</guid>
-      <description>VRMBlendShapeProxy Facial expression is enabled at runtime (inspector-&amp;gt;VRMBlendShapeProxy) The method is: Set BlendShapeAvatar in VRMBlendShapeProxy-&amp;gt;inspector Change BlendShapeClip value between 0 and 1 at runtime (e.g. BLINK, JOY) BlendShapeAvatar Create expression settings in the inspector Double click &amp;ldquo;Blend Shape Avatar&amp;rdquo; box or Select BlendShape from here The inspector of BlendShapeEditor Select a facial expression and adjust its parameters. For example, we select &amp;ldquo;Fun&amp;rdquo; (and click &amp;ldquo;face&amp;rdquo; below BlendShapeValues) as shown in</description>
+      <description>VRMBlendShapeProxy Inspector of VRMBlendShapeProxy at runtime. It is enabled in play mode How to use it: Set BlendShapeAvatar (VRMBlendShapeProxy-&amp;gt;BlendShapeAvatar) in inspector Change BlendShapeClip value between 0 and 1 at runtime (e.g. BLINK, JOY) BlendShapeAvatar Create facial expression settings in inspector (Assets). Double click the box &amp;ldquo;Blend Shape Avatar&amp;rdquo; or Directly click BlendShape here (the highlighted file) Inspector of BlendShapeEditor Create the facial expression you want by selecting expression names and</description>
     </item>
     
     <item>
@@ -113,22 +112,22 @@ In this case, the following codes are workable:</description>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_lookat/</guid>
-      <description>VRMLookAtHead         VRMLookAtHead    This component calculates the direction of the seen Target from the head.
-Target The observed target. Please select and set the object where the eyes are pointing to. If the camera is set, it will become the camera view.
-Bone control view: VRMLookAtBoneApplyer         VRMLookAtBoneApplyer    Apply the parameters of calculated eye direction of VRMLookAtHead to EyeBone.</description>
+      <description>VRMLookAtHead         VRMLookAtHead    This component calculates the direction of the seen target from the head.
+Target The observed object. Please set the object where the eyes are pointing to. If a camera is set, the object will be visible within the camera field of view.
+Bone&amp;rsquo;s view control: VRMLookAtBoneApplyer         VRMLookAtBoneApplyer    Apply the parameters of calculated eye direction of VRMLookAtHead to EyeBone.</description>
     </item>
     
     <item>
-      <title>First person display</title>
+      <title>First-person display</title>
       <link>https://dwango.github.io/en/vrm/univrm/components/univrm_firstperson/</link>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_firstperson/</guid>
-      <description>VRMFirstPerson Settings related to first person display
+      <description>VRMFirstPerson Settings related to first-person display.
 FirstPersonBone Normally head bone is assigned as FirstPersonBone. It is the bone that keeps track of the headset in first-person view.
-FirstPersonOffset The offset from the position of FirstPersonBone. Assuming the default value [0, 0.06, 0] is the offset between head and the middle of the eyes.
-Renderers The setting of mesh on/off control for first-person rendering.
-However, for VR applications, you may see the head of the model that is not supposed to be rendered in the scene.</description>
+FirstPersonOffset Tracking position is offset from the FirstPersonBone position. We assume the default value [0, 0.06, 0] is the offset between the head and the middle of the eyes.
+Renderers The setting for controlling mesh on/off rendered in first-person view.
+For VR applications, you may see the head of the model that is not supposed to be rendered in the scene.</description>
     </item>
     
     <item>
@@ -146,7 +145,7 @@ However, for VR applications, you may see the head of the model that is not supp
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/how_to_view_vrm/</guid>
-      <description>How to read VRM file We are sorry there is no simple viewer application available as of June, 2018. Although the current method described below may be a little tedious, you can check the contents of a VRM file inside read in Unity.
+      <description>How to read VRM file We are sorry there is no simple viewer application available as of July, 2018. Although the current method described below may be a little tedious, you can check the contents of a VRM file inside read in Unity.
 1. Create an empty project from start page of Unity Launch Unity and create a new project (New -&amp;gt; Create project).
 2. Install UniVRM in Unity Download the latest unitypackage from UniVRM/releases and import it in the folder Assets/VRM (Assets -&amp;gt; Import Package -&amp;gt; Custom Package).</description>
     </item>
@@ -181,9 +180,10 @@ About MToon MToon aims for making Japanese anime expression. It is achieved by m
       <description>VRMMeta         VRMMeta component    Information Title Avatar model name
 Author Author name
 Contact Information Author contact information
-Reference The original / related works of this avatar (Url), if any
-Thumbnail Register the thumbnail of the avatar model. A resolution texture about 2048x2048 is recommended. Assign the texture number in meta information.
-Version Specify the model version with character string. Any description is OK.</description>
+Reference Original / Related works of this avatar (Url), if any
+Thumbnail Register the thumbnail of the avatar model. A resolution texture about 2048x2048 is recommended.
+Version Specify the model version with character string. Any description is OK.
+License Access right Permission for the use of this avatar  Only Author Explicitly Licensed Person Everyone  Violent acts performed by this avatar  Disallow Allow  Sexuality acts performed by this avatar  Disallow Allow  For commercial use  Disallow Allow  Other license condition (Url) If there are any conditions not mentioned above, put the license Url link here.</description>
     </item>
     
     <item>
@@ -195,7 +195,7 @@ Version Specify the model version with character string. Any description is OK.<
       <description>Unity Version Unity5.6 or after is supported.
 Installation Download the latest unitypackage from UniVRM/releases and import it (Assets -&amp;gt; Import Package -&amp;gt; Custom Package). The files will be saved in the folder Assets/VRM.
 If there exists any VRM file in the VRM folder, it is recommended to delete that VRM folder in advance.
-        Import unityPackage    Shader variant         Set of the shaders    Shader preloading setting There is no need to move shader into Resources folder (VRM/Resources) since v0.</description>
+        Import unityPackage    Shader variant         Shaders included in VRM    Shader preloading setting There is no need to move shader into Resources folder (VRM/Resources) since v0.</description>
     </item>
     
     <item>
@@ -242,13 +242,13 @@ Texture  image1 sampler1  Material (json.extensions.VRM.materialProperties) json
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_secondary/</guid>
-      <description>Swaying motion setting.
-Node attached by component with swaying motion setting When VRM is imported, the components related to the swaying objects are attached as follows:
- VRMSpringBone is attached to the automatically created node named secondary. VRMSpringBoneColliderGroup is restored to the node attached during the export.          Please check the node secondary if you cannot find VRMSpringBone.    VRMSpringBone The preference setting of swaying movements of tail, hair, clothes and so on.</description>
+      <description>Swaying object setting.
+The node with swaying object setting When VRM is imported, components related to swaying object are attached as follows:
+ VRMSpringBone is attached to the automatically created node secondary. VRMSpringBoneColliderGroup is restored to the node attached during the export.          Please check the node secondary if you cannot find VRMSpringBone.    VRMSpringBone The preference setting of swaying movements of tail, hair, clothes and so on.</description>
     </item>
     
     <item>
-      <title>What applications that supports VRM file？</title>
+      <title>What applications that support VRM file？</title>
       <link>https://dwango.github.io/en/vrm/vrm_applications/</link>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
