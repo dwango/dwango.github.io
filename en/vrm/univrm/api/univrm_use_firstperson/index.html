@@ -84,7 +84,7 @@
         <div class="toc"> <nav id="TableOfContents">
 <ul>
 <li><a href="#vrmfirstperson-setting-univrm-firstperson"><a href="../univrm_firstperson/">VRMFirstPerson setting</a></a></li>
-<li><a href="#assign-additional-render-layer-for-an-application">Assign additional render layer for an application</a></li>
+<li><a href="#specify-the-additional-render-layers-for-the-application">Specify the additional render layers for the application</a></li>
 <li><a href="#call-setup-function-at-runtime-and-set-layermask-in-camera">Call Setup function at runtime and set LayerMask in Camera</a></li>
 </ul>
 </nav>
@@ -93,7 +93,7 @@
 
 <h1 id="vrmfirstperson-setting-univrm-firstperson"><a href="../univrm_firstperson/">VRMFirstPerson setting</a></h1>
 
-<p>VRMFirstPerson has settings available for Renderer.</p>
+<p>VRMFirstPerson has the following settings for Renderer:</p>
 
 <table>
 <thead>
@@ -108,32 +108,32 @@
 <tr>
 <td>Both</td>
 <td>default</td>
-<td>Specify parts that are not necessarily separated between first-person view and third-person view.</td>
+<td>Specifies parts not necessarily separated between first-person view and third-person view.</td>
 </tr>
 
 <tr>
 <td>ThirdPersonOnly</td>
 <td>THIRDPERSON_ONLY_LAYER</td>
-<td>Specify parts that will not be rendered in first-person view.</td>
+<td>Specifies parts not wanting to be rendered in first-person view.</td>
 </tr>
 
 <tr>
 <td>FirstPersonOnly</td>
 <td>FIRSTPERSON_ONLY_LAYER</td>
-<td>Specify parts that will not be rendered in third-person view. Use the automatically created model without head.</td>
+<td>Specifying parts not wanting to be rendered in third-person view. Headless model created automatically is used.</td>
 </tr>
 
 <tr>
 <td>Auto</td>
 <td>THIRDPERSON_ONLY_LAYER</td>
-<td>The model for the first-person view is automatically created at runtime. Set it to FIRSTPERSON_ONLY_LAYER.</td>
+<td>Automatically creates the model for first-person view at runtime and sets it to FIRSTPERSON_ONLY_LAYER.</td>
 </tr>
 </tbody>
 </table>
 
-<p>By calling <strong>VRMFirstPerson.Setup</strong> at runtime, the layer settings described above can be performed. Please explicitly call the function from outside.</p>
+<p>By calling <strong>VRMFirstPerson.Setup</strong> at runtime, the layer settings described above can be performed. Please call the function explicitly from outside.</p>
 
-<h1 id="assign-additional-render-layer-for-an-application">Assign additional render layer for an application</h1>
+<h1 id="specify-the-additional-render-layers-for-the-application">Specify the additional render layers for the application</h1>
 
 <p>The following layers are defined as constant.</p>
 
@@ -155,7 +155,7 @@
 
 <tbody>
 <tr>
-<td>Set layer number as 9 and 10</td>
+<td>Set Layer in #9 and #10</td>
 </tr>
 </tbody>
 </table>
@@ -164,7 +164,7 @@
 
 <ul>
 <li>Call VRMFirstPerson.Setup</li>
-<li>The LayerMask that corresponds to first-person and third-person, respectively.</li>
+<li>Set LayerMask for first-person camera view and other camera views</li>
 </ul>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">using</span> System.Collections;
@@ -178,10 +178,10 @@
     Camera m_firstPersonCamera; <span style="color:#75715e">// HMD camera
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">
 </span><span style="color:#a6e22e">    [SerializeField]</span>
-    LayerMask m_firstPersonMask; <span style="color:#75715e">// Set mask in HMD camera. default | FIRSTPERSON_ONLY_LAYER, etc.
+    LayerMask m_firstPersonMask; <span style="color:#75715e">// Set the mask in HMD camera. default | FIRSTPERSON_ONLY_LAYER, etc.
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">
 </span><span style="color:#a6e22e">    [SerializeField]</span>
-    LayerMask m_otherMask; <span style="color:#75715e">// Set mask in HMD camera. default | THIRDPERSON_ONLY_LAYER, etc.
+    LayerMask m_otherMask; <span style="color:#75715e">// Set the mask in HMD camera. default | THIRDPERSON_ONLY_LAYER, etc.
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">
 </span><span style="color:#a6e22e">    [SerializeField]</span>
     VRMFirstPerson m_firstPerson;

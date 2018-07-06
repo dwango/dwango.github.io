@@ -89,7 +89,7 @@
 <li><a href="#unity-coordinate-system">Unity coordinate system</a></li>
 <li><a href="#transformation-of-each-value">Transformation of each value</a>
 <ul>
-<li><a href="#vector3-position-normal-and-so-on">Vector3(Position, Normal and so on)</a></li>
+<li><a href="#vector3-position-normal-etc">Vector3(Position, Normal, etc.)</a></li>
 <li><a href="#quaternion-rotation">Quaternion(Rotation)</a></li>
 <li><a href="#matrix-bindmatrices">Matrix(BindMatrices)</a></li>
 </ul></li>
@@ -99,7 +99,7 @@
         </div>
        
 
-<p>UniVRM automatically performs coordinate transformation during import / export.</p>
+<p>UniVRM automatically performs coordinate transformation with GLTF during import / export.</p>
 
 <h2 id="vrm-coordinate-system">VRM coordinate system</h2>
 
@@ -126,7 +126,7 @@ It is OpenGL standard right-handed Y-UP coordinate system.</p>
 
 <p>Z-axis is inverted.</p>
 
-<h3 id="vector3-position-normal-and-so-on">Vector3(Position, Normal and so on)</h3>
+<h3 id="vector3-position-normal-etc">Vector3(Position, Normal, etc.)</h3>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Vector3 ReverseZ(<span style="color:#66d9ef">this</span> Vector3 v)
 {

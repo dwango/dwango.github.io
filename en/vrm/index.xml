@@ -17,8 +17,8 @@
       <pubDate>Tue, 29 May 2018 10:00:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_use_firstperson/</guid>
-      <description>VRMFirstPerson setting VRMFirstPerson has settings available for Renderer.
-   FirstPersonFlag Layer Note     Both default Specify parts that are not necessarily separated between first-person view and third-person view.   ThirdPersonOnly THIRDPERSON_ONLY_LAYER Specify parts that will not be rendered in first-person view.   FirstPersonOnly FIRSTPERSON_ONLY_LAYER Specify parts that will not be rendered in third-person view. Use the automatically created model without head.   Auto THIRDPERSON_ONLY_LAYER The model for the first-person view is automatically created at runtime.</description>
+      <description>VRMFirstPerson setting VRMFirstPerson has the following settings for Renderer:
+   FirstPersonFlag Layer Note     Both default Specifies parts not necessarily separated between first-person view and third-person view.   ThirdPersonOnly THIRDPERSON_ONLY_LAYER Specifies parts not wanting to be rendered in first-person view.   FirstPersonOnly FIRSTPERSON_ONLY_LAYER Specifying parts not wanting to be rendered in third-person view. Headless model created automatically is used.   Auto THIRDPERSON_ONLY_LAYER Automatically creates the model for first-person view at runtime and sets it to FIRSTPERSON_ONLY_LAYER.</description>
     </item>
     
     <item>
@@ -27,10 +27,10 @@
       <pubDate>Mon, 21 May 2018 10:00:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_api_history/</guid>
-      <description> This section describes about changes affecting the program.
-v0.36 Revision of storage location of texture name Conforming to GLTF specification.
+      <description> This section describes about the changes affecting the program.
+v0.36 Storage location of texture name Conforming to GLTF specification.
 json.images[i].extra.name  After the change
-json.images[i].name  Revision of storage location of project name Conforming to GLTF specification.
+json.images[i].name  Storage location of BlendShape name Conforming to GLTF specification.
  &amp;ldquo;extras&amp;rdquo; is not allowed in target https://github.com/KhronosGroup/glTF/issues/1036#issuecomment-314078356  json.meshes[i].primitives[j].targets[k].extra.name  After the change
 json.meshes[i].primitives[j].extras.targetNames[k]  </description>
     </item>
@@ -77,11 +77,10 @@ The setting procedure for Shader preloading</description>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_coordinate/</guid>
-      <description>UniVRM automatically performs coordinate transformation during import / export.
+      <description>UniVRM automatically performs coordinate transformation with GLTF during import / export.
 VRM coordinate system Since VRM is an extension of GLTF, it conforms to the coordinate system of GLTF. It is OpenGL standard right-handed Y-UP coordinate system.
  Right: X+ Up: Y+ In front: Z-  Unity coordinate system Left-handed Y-UP coordinate system。
- Right:X+ Up:Y+ In front:Z+ (+- is inverted)  Transformation of each value Z-axis is inverted.
-Vector3(Position, Normal and so on) public static Vector3 ReverseZ(this Vector3 v) { return new Vector3(v.</description>
+ Right:X+ Up:Y+ In front:Z+ (+- is inverted)  Transformation of each value Z-axis is inverted.</description>
     </item>
     
     <item>
@@ -183,7 +182,7 @@ Contact Information Author contact information
 Reference Original / Related works of this avatar (Url), if any
 Thumbnail Register the thumbnail of the avatar model. A resolution texture about 2048x2048 is recommended.
 Version Specify the model version with character string. Any description is OK.
-License Access right Permission for the use of this avatar  Only Author Explicitly Licensed Person Everyone  Violent acts performed by this avatar  Disallow Allow  Sexuality acts performed by this avatar  Disallow Allow  For commercial use  Disallow Allow  Other license condition (Url) If there are any conditions not mentioned above, put the license Url link here.</description>
+License Permission for the use of this avatar Access permission  Only Author Explicitly Licensed Person Everyone  Violent acts performed by this avatar  Disallow Allow  Sexual acts performed by this avatar  Disallow Allow  For commercial use  Disallow Allow  Other license condition (Url) If there are any conditions not mentioned above, put the license Url link here.</description>
     </item>
     
     <item>

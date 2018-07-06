@@ -141,20 +141,20 @@ VRMImporter.LoadVrmAsync(path, go =&gt; {
 
             <span style="color:#66d9ef">var</span> context = <span style="color:#66d9ef">new</span> VRMImporterContext(path);
 
-            <span style="color:#75715e">// Parse GLB format, and then get JSON from chunk and parse
+            <span style="color:#75715e">// Parse GLB format. Get JSON from chunk and parse
 </span><span style="color:#75715e"></span>            context.ParseVrm(bytes);
 
             <span style="color:#75715e">// Get meta
 </span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> meta = context.ReadMeta();
             Debug.LogFormat(<span style="color:#e6db74">&#34;meta: title:{0}&#34;</span>, meta.Title);
 
-            <span style="color:#75715e">// Or you can fully access the parsed GLTF here 
+            <span style="color:#75715e">// Or you can access the entire parsed GLTF here 
 </span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> vrm = context.VRM;
 
-            <span style="color:#75715e">// Build the original scene with parsed JSON
+            <span style="color:#75715e">// Build the scene based on the parsed JSON
 </span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (m_loadAsync)
             {
-                <span style="color:#75715e">// Execute asynchronously
+                <span style="color:#75715e">// Run asynchronously
 </span><span style="color:#75715e"></span>                <span style="color:#66d9ef">var</span> now = Time.time;
                 VRMImporter.LoadVrmAsync(context, go=&gt; {
                     <span style="color:#66d9ef">var</span> delta = Time.time - now;
@@ -164,7 +164,7 @@ VRMImporter.LoadVrmAsync(path, go =&gt; {
             }
             <span style="color:#66d9ef">else</span>
             {
-                <span style="color:#75715e">// Execute synchronously
+                <span style="color:#75715e">// Run synchronously
 </span><span style="color:#75715e"></span>                VRMImporter.LoadFromBytes(context);
                 OnLoaded(context.Root);
             }</code></pre></div>
@@ -173,7 +173,7 @@ VRMImporter.LoadVrmAsync(path, go =&gt; {
 
 <p>A thumbnail texture can be created by passing arguments to ReadMeta.</p>
 
-<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">    <span style="color:#66d9ef">var</span> meta = context.ReadMeta(<span style="color:#66d9ef">true</span>); <span style="color:#75715e">// Make thumbnail texture
+<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">    <span style="color:#66d9ef">var</span> meta = context.ReadMeta(<span style="color:#66d9ef">true</span>); <span style="color:#75715e">// Make a thumbnail texture
 </span><span style="color:#75715e"></span>    Texture2D thumbnail=meta.Thumbnail;</code></pre></div></p>
 
     </article>
