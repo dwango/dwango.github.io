@@ -151,12 +151,12 @@
 <li><a href="#blendshape-name-identifier">BlendShape name identifier</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#first-person-settings-json-extensions-vrm-firstperson">First-person settings (json.extensions.VRM.firstPerson)</a>
+<li><a href="#first-person-setting-json-extensions-vrm-firstperson">First-person setting (json.extensions.VRM.firstPerson)</a>
 <ul>
 <li><a href="#firstpersonbone-json-extensions-vrm-firstperson-firstpersonbone">firstPersonBone (json.extensions.VRM.firstPerson.firstPersonBone)</a></li>
 <li><a href="#firstpersonboneoffset-json-extensions-vrm-firstperson-firstpersonboneoffset">firstPersonBoneOffset (json.extensions.VRM.firstPerson.firstPersonBoneOffset)</a></li>
 <li><a href="#meshannotations-json-extensions-vrm-firstperson-meshannotations">meshAnnotations (json.extensions.VRM.firstPerson.meshAnnotations)</a></li>
-<li><a href="#perspective-view-settings">Perspective view settings</a>
+<li><a href="#perspective-view-setting">Perspective view setting</a>
 <ul>
 <li><a href="#lookat-type-json-extensions-vrm-firstperson-lookattypename">LookAt Type (json.extensions.VRM.firstPerson.lookAtTypeName)</a></li>
 <li><a href="#angle-adjustment">Angle adjustment</a>
@@ -168,9 +168,9 @@
 </ul></li>
 </ul></li>
 </ul></li>
-<li><a href="#swaying-object-settings-json-extensions-vrm-secondaryanimation">Swaying object settings (json.extensions.VRM.secondaryAnimation)</a>
+<li><a href="#swaying-object-setting-json-extensions-vrm-secondaryanimation">Swaying object setting (json.extensions.VRM.secondaryAnimation)</a>
 <ul>
-<li><a href="#swaying-bones-secondaryanimation-bonegroups">Swaying bones (secondaryAnimation.boneGroups)</a>
+<li><a href="#swaying-bone-secondaryanimation-bonegroups">Swaying bone (secondaryAnimation.boneGroups)</a>
 <ul>
 <li><a href="#root-of-swaying-bone-json-extensions-vrm-secondaryanimation-bonegroups-0-bones">Root of swaying bone (json.extensions.VRM.secondaryAnimation.boneGroups[0].bones)</a></li>
 <li><a href="#collision-detection-with-swaying-bone-json-extensions-vrm-secondaryanimation-bonegroups-0-collidergroups">Collision detection with swaying bone (json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups)</a></li>
@@ -321,7 +321,7 @@ Please refer to <a href="../vrm_spec/#shaders-provided-by-vrm">Shader provided b
 <h3 id="unlit-type">Unlit type</h3>
 
 <p>Texture color is displayed as it is without lighting / shading.
-There are four types available for handling degree of transparency.</p>
+There are four types available for handling degree of transparency:</p>
 
 <ul>
 <li>UnlitTexture(opacity)</li>
@@ -594,7 +594,7 @@ function GetID(preset, name)
 <li>Set Preset and Name for making BlendShape ID unique.<br /></li>
 </ul>
 
-<h2 id="first-person-settings-json-extensions-vrm-firstperson">First-person settings (json.extensions.VRM.firstPerson)</h2>
+<h2 id="first-person-setting-json-extensions-vrm-firstperson">First-person setting (json.extensions.VRM.firstPerson)</h2>
 
 <pre><code>json.extensions.VRM.firstPerson.firstPersonBone = 36;
 json.extensions.VRM.firstPerson.firstPersonBoneOffset = {};
@@ -647,7 +647,7 @@ To address this issue, we can specify the display state in first-person view.</p
 <li>Both: no particular switch display</li>
 </ul>
 
-<h3 id="perspective-view-settings">Perspective view settings</h3>
+<h3 id="perspective-view-setting">Perspective view setting</h3>
 
 <p>Control the perspective view of the character as facing towards the target.</p>
 
@@ -677,11 +677,11 @@ json.extensions.VRM.firstPerson.lookAtVerticalUp = {};
 
 <h5 id="json-extensions-vrm-firstperson-lookatverticalup">json.extensions.VRM.firstPerson.lookAtVerticalUp</h5>
 
-<h2 id="swaying-object-settings-json-extensions-vrm-secondaryanimation">Swaying object settings (json.extensions.VRM.secondaryAnimation)</h2>
+<h2 id="swaying-object-setting-json-extensions-vrm-secondaryanimation">Swaying object setting (json.extensions.VRM.secondaryAnimation)</h2>
 
 <p>Automatic animation setting for string-shaped objects such as tail and hair.</p>
 
-<h3 id="swaying-bones-secondaryanimation-bonegroups">Swaying bones (secondaryAnimation.boneGroups)</h3>
+<h3 id="swaying-bone-secondaryanimation-bonegroups">Swaying bone (secondaryAnimation.boneGroups)</h3>
 
 <pre><code>json.extensions.VRM.secondaryAnimation.boneGroups[0] = {};
 json.extensions.VRM.secondaryAnimation.boneGroups[0].bones = [];

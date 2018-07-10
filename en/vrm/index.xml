@@ -67,7 +67,7 @@ The setting procedure for Shader preloading</description>
       
       <guid>https://dwango.github.io/en/vrm/vrm_tpose/</guid>
       <description>T-Pose which conforms to Unity Humanoid of VRM first implementation is adopted.
-        T-Pose example    Besides apparent parts such as body and head / leg, there are also rules on arm and finger.
+        T-Pose example    Besides apparent parts such as body and head / leg, there are also rules on arm and finger:
  The palm faces downward Thumb is horizontally spread 45 degrees (view from the top) on the XZ plane  </description>
     </item>
     
@@ -89,11 +89,11 @@ VRM coordinate system Since VRM is an extension of GLTF, it conforms to the coor
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_use_blendshape/</guid>
-      <description>Apply BlendShape from script var proxy=GetComponent&amp;lt;VRMBlendShapeProxy&amp;gt;(); // Call enum proxy.SetValue(BlendShapePreset.A, 1.0f); // Assign value from 0 to 1  // Call string proxy.SetValue(&amp;#34;A&amp;#34;, 1.0f); Apply multiple BlendShapes at once For example,
+      <description>Apply BlendShape from script var proxy=GetComponent&amp;lt;VRMBlendShapeProxy&amp;gt;(); // Call enum proxy.SetValue(BlendShapePreset.A, 1.0f); // Assign a value between 0 and 1  // Call string proxy.SetValue(&amp;#34;A&amp;#34;, 1.0f); Apply multiple BlendShapes at once For example,
 For Blink_L
  MeshA eye_L=100 MeshA eye_R=1  For Blink_R
  MeshA eye_L=1 MeshA eye_R=100  If both BlendShapes are defined and enabled as shown below, later only those items set before can be applied.
-proxy.SetValue(BlendShapePreset.Blink_L, 1.0f); proxy.SetValue(BlendShapePreset.Blink_R, 1.</description>
+proxy.SetValue(BlendShapePreset.Blink_L, 1.0f); proxy.</description>
     </item>
     
     <item>
@@ -166,8 +166,8 @@ Open VRM from file path var path=&amp;#34;sample.vrm&amp;#34;; var go=VRM.VRMImp
       
       <guid>https://dwango.github.io/en/vrm/univrm/shaders/mtoon/</guid>
       <description>Shader preloading setting
-About MToon MToon aims for making Japanese anime expression. It is achieved by mixing the two colors Lit Color and Shade Color based on Lighting parameters and light source environment.
-        Apply MToon to Niconi &amp;ldquo;3D chan&amp;rdquo;    For users who want to have a quick setup Common items  Select the target material and change the shader VRM/MToon Set the same texture in Basic-&amp;gt;Color-&amp;gt;Lit&amp;amp;Alpha and Basic-&amp;gt;Color-&amp;gt;Shade Set white color in Basic-&amp;gt;Color-&amp;gt;Lit&amp;amp;Alpha and set your preference shade color in Basic-&amp;gt;Color-&amp;gt;Shade.</description>
+About MToon MToon aims for making Japanese anime expression. It is achieved by mixing the two colors &amp;ldquo;Lit Color&amp;rdquo; and &amp;ldquo;Shade Color&amp;rdquo; based on Lighting parameters and light source environment.
+        Apply MToon to Niconi &amp;ldquo;3D chan&amp;rdquo;    For users who want to have a quick setup Common items  Select the target material and change the shader to VRM/MToon Click the shader panel and set the same texture in Basic-&amp;gt;Color-&amp;gt;Lit&amp;amp;Alpha and Basic-&amp;gt;Color-&amp;gt;Shade Set white color in Basic-&amp;gt;Color-&amp;gt;Lit&amp;amp;Alpha and set the preference shade color in Basic-&amp;gt;Color-&amp;gt;Shade Set the preference value in Shade-&amp;gt;Toony.</description>
     </item>
     
     <item>
