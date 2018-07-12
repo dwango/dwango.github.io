@@ -86,7 +86,7 @@
 <li>
 <ul>
 <li><a href="#workflow">Workflow</a></li>
-<li><a href="#prepare-humanoid-model-with-set-humanoid-avatar">Prepare humanoid model with set humanoid avatar</a>
+<li><a href="#prepare-a-humanoid-model-with-the-set-humanoid-avatar">Prepare a humanoid model with the set humanoid avatar</a>
 <ul>
 <li><a href="#correct-bone-assignment-with-rig-configuration">Correct bone assignment with rig configuration</a></li>
 </ul></li>
@@ -111,11 +111,11 @@
 <img src="https://dwango.github.io/images/vrm/vrm_workflow_en.png" alt="vrm workflow"  />
 
 
-<h2 id="prepare-humanoid-model-with-set-humanoid-avatar">Prepare humanoid model with set humanoid avatar</h2>
+<h2 id="prepare-a-humanoid-model-with-the-set-humanoid-avatar">Prepare a humanoid model with the set humanoid avatar</h2>
 
 <p>Prepare a humanoid model that can be read by Unity such as FBX format and import it into Unity.</p>
 
-<p>After import, please select “Humanoid” from FBX import settings -&gt; Rig -&gt; Animation Type.</p>
+<p>After importing the model, please select “Humanoid” from FBX import settings -&gt; Rig -&gt; Animation Type.</p>
 
 <table>
 <thead>
@@ -127,14 +127,14 @@
 
 <tbody>
 <tr>
-<td>Set <code>Humanoid</code></td>
+<td>Select <code>Humanoid</code></td>
 </tr>
 </tbody>
 </table>
 
 <h3 id="correct-bone-assignment-with-rig-configuration">Correct bone assignment with rig configuration</h3>
 
-<p>When importing FBX, bone assignments done by auto-recognition may be different from expectations (see image below):</p>
+<p>When the FBX file is imported, bone assignments done by auto-recognition may be different from expectations (see image below):</p>
 
 <ul>
 <li>Jaw is assigned to mouth</li>
@@ -151,7 +151,7 @@
 
 <tbody>
 <tr>
-<td>Since the eyebone automatic recognition on &ldquo;3D chan&rdquo; is not correct, we fix it by assigning the right component manually</td>
+<td>Since the eyebone (and jawbone) auto-recognition on &ldquo;3D chan&rdquo; is incorrect, we fix it by assigning the right component manually</td>
 </tr>
 </tbody>
 </table>
@@ -161,14 +161,14 @@
 <table>
 <thead>
 <tr>
-<th><img src="https://dwango.github.io/images/vrm/vrm_menu_enable.png"   />
+<th><img src="https://dwango.github.io/images/vrm/vrm_menu_disable.png"   />
 </th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td>If selecting the animator with the set humanoid avatar in “Hierarchy”, the options in <code>VRM</code> will become available</td>
+<td>If an animator with the set humanoid avatar in “Hierarchy” is selected, the options in <code>VRM</code> will become available</td>
 </tr>
 </tbody>
 </table>
@@ -183,7 +183,7 @@
 
 <tbody>
 <tr>
-<td>If selecting the animator with the set humanoid avatar in “Hierarchy”, the options in <code>VRM</code> will become available</td>
+<td>If an animator with the set humanoid avatar in “Hierarchy” is selected, the options in <code>VRM</code> will become available</td>
 </tr>
 </tbody>
 </table>
@@ -205,11 +205,11 @@
 
 <h3 id="force-t-pose">Force T Pose</h3>
 
-<p>Force the model pose to become <a href="../vrm_tpose/">T-Pose</a> before removing rotation / scale.</p>
+<p>Force model pose to become <a href="../../vrm_tpose/">T-Pose</a> before removing rotation / scale.</p>
 
 <h3 id="pose-freeze">Pose Freeze</h3>
 
-<p>Whether removal processing of rotation / scale should be performed or not, <strong>the model need to be first normalized</strong> in order to conform to the VRM rule. Please make sure to check the boxes at the <strong>first time of use</strong>. By passing through this process beforehand, various components can work correctly.</p>
+<p>Whether removal processing of rotation / scale is performed. It is <strong>the process of normalizing model</strong> for conforming to the VRM rules. Please make sure to check the boxes at the <strong>first time of use</strong>. By passing through this process beforehand, various components can work correctly.</p>
 
 <h4 id="hierarchy-normalization">Hierarchy normalization</h4>
 
@@ -223,7 +223,7 @@
 
 <tbody>
 <tr>
-<td>A model type whose bone orientation is valid</td>
+<td>The model that has bone orientation</td>
 </tr>
 </tbody>
 </table>
@@ -238,7 +238,7 @@
 
 <tbody>
 <tr>
-<td>Model with Z-UP and non-meter unit (Blender default)</td>
+<td>The model with Z-UP coordinate and non-meter unit (Blender default)</td>
 </tr>
 </tbody>
 </table>
@@ -255,7 +255,7 @@
 
 <tbody>
 <tr>
-<td>Normalization done</td>
+<td>Normalized</td>
 </tr>
 </tbody>
 </table>
@@ -272,12 +272,12 @@
 
 <tbody>
 <tr>
-<td>Mesh stored with non T-Pose and Z-UP</td>
+<td>The stored mesh in non T-Pose and Z-UP coordinate</td>
 </tr>
 </tbody>
 </table>
 
-<p>Create mesh in T-pose state by using SkinnedMeshRenderer.BakeMesh and make the coordinate Z-UP with coordinate operation</p>
+<p>Create mesh in T-pose state by using SkinnedMeshRenderer.BakeMesh and make the coordinate Z-UP with coordinate operation.</p>
 
 <table>
 <thead>
@@ -289,14 +289,14 @@
 
 <tbody>
 <tr>
-<td>Mesh stored with T-Pose and Y-UP</td>
+<td>The stored mesh in T-Pose and Y-UP coordinate</td>
 </tr>
 </tbody>
 </table>
 
 <h2 id="import">Import</h2>
 
-<p>Please import vrm file in Assets folder</p>
+<p>Please import vrm file into Assets folder</p>
 
 <table>
 <thead>
@@ -316,7 +316,7 @@
 <p>Texture, Material and Prefab are automatically generated from VRM.</p>
 
 <ul>
-<li>If the VRM file is not displayed in the scene of the target project, please right click and select <code>refresh</code></li>
+<li>If the VRM file is not displayed in the target project view, please right click and select <code>refresh</code></li>
 <li>If the Prefab file cannot be generated, please right click on the vrm file and select<code>reimport</code></li>
 </ul>
 

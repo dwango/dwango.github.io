@@ -93,21 +93,6 @@
   </url>
   
   <url>
-    <loc>https://dwango.github.io/en/vrm/univrm/api/univrm_use_blendshape/</loc>
-    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://dwango.github.io/vrm/univrm/api/univrm_use_blendshape/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://dwango.github.io/en/vrm/univrm/api/univrm_use_blendshape/"
-                />
-  </url>
-  
-  <url>
     <loc>https://dwango.github.io/en/vrm/univrm/components/univrm_blendshape/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -224,6 +209,21 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://dwango.github.io/en/vrm/univrm/components/univrm_meta/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/en/vrm/univrm/api/univrm_use_blendshape/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://dwango.github.io/vrm/univrm/api/univrm_use_blendshape/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://dwango.github.io/en/vrm/univrm/api/univrm_use_blendshape/"
                 />
   </url>
   

@@ -88,6 +88,7 @@
 <ul>
 <li><a href="#unity-version">Unity Version</a></li>
 <li><a href="#インストール">インストール</a></li>
+<li><a href="#assetpostprocessorを止める">AssetPostProcessorを止める</a></li>
 <li><a href="#シェーダーバリアント">シェーダーバリアント</a></li>
 <li><a href="#shader-preloadingの設定">Shader Preloadingの設定</a></li>
 </ul></li>
@@ -119,6 +120,28 @@
 <tbody>
 <tr>
 <td>UnityPackageをインポート</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="assetpostprocessorを止める">AssetPostProcessorを止める</h2>
+
+<p>UniVRMのインポーターは<code>AssetPostprocessor</code>で実装しています。
+UnityプロジェクトにUniVRMを含めるときにAssetPostProcessorが都合が悪い場合があり、これを無効にするシンボルを追加しました(v0.39から)。</p>
+
+<p><code>Editor - ProjectSettings - Player</code> の <code>Other Settings - Scripting Define Symbols</code>に<code>VRM_STOP_ASSETPOSTPROCESSOR</code>を設定します。</p>
+
+<table>
+<thead>
+<tr>
+<th><img src="https://dwango.github.io/images/vrm/stop_assetpostprocessor.png"   />
+</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>AssetPostProcessorを停止</td>
 </tr>
 </tbody>
 </table>

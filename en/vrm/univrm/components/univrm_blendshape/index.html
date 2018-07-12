@@ -223,7 +223,7 @@
 
 <h3 id="neutral">NEUTRAL</h3>
 
-<p>Assigned as the standard facial expression and assumed to be used in standby state.</p>
+<p>Specified as the standard facial expression and assumed to be used in standby state.</p>
 
 <h3 id="a-i-u-e-o">A, I, U, E, O</h3>
 
@@ -247,7 +247,7 @@
 
 <h3 id="unknown">Unknown</h3>
 
-<p>Assign created expressions that are not predefined as &ldquo;Unknown&rdquo;.</p>
+<p>Specify created non-predefined expressions as &ldquo;Unknown&rdquo;.</p>
 
 <h2 id="change-the-value-of-blendshapeproxy-at-runtime">Change the value of BlendShapeProxy (at runtime)</h2>
 
@@ -307,6 +307,8 @@
 <pre><code class="language-cs">// Call with string since it belongs to unknown category
 proxy.SetValue(&quot;びっくり&quot;, 1.0f); // Assign the value between the range 0~1
 </code></pre>
+
+<p>After the setting is done, don&rsquo;t forget to export VRM file for being able to use the created expressions at runtime.</p>
 
 <h2 id="option-morph-material-color">[Option]Morph material color</h2>
 
