@@ -61,12 +61,12 @@ The setting procedure for Shader preloading</description>
     </item>
     
     <item>
-      <title>About VRM T-pose</title>
+      <title>About VRM T-Pose</title>
       <link>https://dwango.github.io/en/vrm/vrm_tpose/</link>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/vrm_tpose/</guid>
-      <description>T-Pose which conforms to Unity Humanoid of VRM first implementation is adopted.
+      <description>We adopt T-Pose that conforms to Unity Humanoid of first implementation of VRM.
         T-Pose example    Besides apparent parts such as body and head / leg, there are also rules on arm and finger:
  Palm faces downward Thumb is horizontally spread 45 degrees (a view from the top) on XZ plane  </description>
     </item>
@@ -98,9 +98,9 @@ VRM coordinate system Since VRM is an extension of GLTF, it conforms to the coor
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_lookat/</guid>
-      <description>VRMLookAtHead         VRMLookAtHead    This component calculates the direction of the seen target from the head.
-Target The observed object. Please set the object where the eyes are pointing to. If a camera is set, the object will be visible within the camera field of view.
-Bone&amp;rsquo;s LookAt control: VRMLookAtBoneApplyer         VRMLookAtBoneApplyer    Apply the parameters of calculated eye direction of VRMLookAtHead to EyeBone.</description>
+      <description>VRMLookAtHead         VRMLookAtHead    This component calculates the direction of the target viewed from the model&amp;rsquo;s head.
+Target The object of interest. Please set the object where the eyes want to be pointed. If a camera is set as Target, the model will look at the camera within the range of the movement of eye.
+Bone&amp;rsquo;s LookAt control: VRMLookAtBoneApplyer         VRMLookAtBoneApplyer    Apply the parameters of the calculated eye direction of VRMLookAtHead to EyeBone.</description>
     </item>
     
     <item>
@@ -109,7 +109,7 @@ Bone&amp;rsquo;s LookAt control: VRMLookAtBoneApplyer         VRMLookAtBoneApply
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_firstperson/</guid>
-      <description>VRMFirstPerson Settings related to first-person display.
+      <description>VRMFirstPerson The setting related to first-person display.
 FirstPersonBone Normally head bone is assigned as FirstPersonBone. It is the bone that keeps track of the headset in first-person view.
 FirstPersonOffset Tracking position is offset from the FirstPersonBone position. We assume the default value [0, 0.06, 0] is the offset between the head and the middle of the eyes.
 Renderers The setting for controlling mesh on/off rendered in first-person view.
@@ -142,7 +142,7 @@ For VR applications, you may see the head of the model that is not supposed to b
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_import_runtime/</guid>
-      <description>The followings are the methods to import VRM model in Unity at runtime.
+      <description>The followings are the methods to import VRM model at runtime in Unity.
 Open VRM from file path var path=&amp;#34;sample.vrm&amp;#34;; var go=VRM.VRMImporter.LoadFromPath(path); Debug.LogFormat(&amp;#34;loaded {0}&amp;#34;, go.name); Open VRM asynchronously from file path var path=&amp;#34;sample.vrm&amp;#34;; VRMImporter.LoadVrmAsync(path, go =&amp;gt; { Debug.LogFormat(&amp;#34;loaded {0}&amp;#34;, go.name); }); Open VRM from byte string var path=&amp;#34;sample.vrm&amp;#34;; var bytes = File.ReadAllBytes(path); var go=VRMImporter.LoadFromBytes(bytes); Open VRM asynchronously from byte string VRMImporter.LoadVrmAsync(bytes, go =&amp;gt; { Debug.LogFormat(&amp;#34;loaded {0}&amp;#34;, go.name); }); Get the information form VRM #if UNITY_STANDALONE_WIN  var path = FileDialogForWindows.</description>
     </item>
     
@@ -192,9 +192,7 @@ proxy.SetValue(BlendShapePreset.Blink_L, 1.0f); proxy.</description>
       
       <guid>https://dwango.github.io/en/vrm/univrm/univrm_install/</guid>
       <description>Unity Version Unity5.6 or after is supported.
-Installation Download the latest unitypackage from UniVRM/releases and import it (Assets -&amp;gt; Import Package -&amp;gt; Custom Package). The files will be saved in the folder Assets/VRM.
-If there exists any VRM file in the VRM folder, it is recommended to delete that VRM folder in advance.
-        Import unityPackage    Shader variant         The shaders provided in UniVRM    Shader preloading setting There is no need to move shader into Resources folder (VRM/Resources) since v0.</description>
+Installation Download the latest unitypackage (UniVRM-0.XX) from UniVRM/releases and import it into Unity (Assets -&amp;gt; Import Package -&amp;gt; Custom Package). The imported files will be in the folder Assets/VRM. If there exists any VRM file in the VRM folder, it is recommended to delete that VRM folder in advance. The sample for reading and viewing VRM file at runtime is also provided (download UniVRM-RuntimeLoaderSample-0.</description>
     </item>
     
     <item>
@@ -230,7 +228,7 @@ VRM/UnlitTransparentZWrite Alpha blending and ZWrite are available. It is assume
       
       <guid>https://dwango.github.io/en/vrm/vrm_spec/</guid>
       <description>VRM is based on binary format glb of glTF 2.0. It is a model format for VR.
-Filename extension .vrm is used. It is compatible with glTF binary format .glb.
+File extension .vrm is used. It is compatible with glTF binary format .glb.
 Savable element The whole humanoid model information.
 Texture  image1 sampler1  Material (json.extensions.VRM.materialProperties) json.extensions.VRM.materialProperties[0] = {}; json.extensions.VRM.materialProperties[0].name = &amp;quot;Alicia_body&amp;quot;; # Name json.extensions.VRM.materialProperties[0].shader = &amp;quot;VRM/UnlitTexture&amp;quot;; # Shader name json.extensions.VRM.materialProperties[0].renderQueue = 2000; json.extensions.VRM.materialProperties[0].floatProperties = {}; # float type variable json.extensions.VRM.materialProperties[0].keywordMap = {}; # Keyword type variable json.</description>
     </item>
@@ -243,7 +241,7 @@ Texture  image1 sampler1  Material (json.extensions.VRM.materialProperties) json
       <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_secondary/</guid>
       <description>Swaying object setting.
 The node with swaying object setting When VRM is imported, components related to swaying object are attached as follows:
- VRMSpringBone is attached to the automatically created node secondary. VRMSpringBoneColliderGroup is restored to the node attached during the export.          Please check the node secondary if you cannot find VRMSpringBone.    VRMSpringBone The preference setting of swaying movements of tail, hair, clothes and so on.</description>
+ VRMSpringBone is attached to the nodesecondary. VRMSpringBoneColliderGroup is restored to the node attached during the export.          Please check the nodesecondaryif you cannot find VRMSpringBone    VRMSpringBone The setting for making objects swaying such as tail, hair, clothes and so on.</description>
     </item>
     
     <item>

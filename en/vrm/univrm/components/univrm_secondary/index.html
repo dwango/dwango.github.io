@@ -101,7 +101,7 @@
 <p>When VRM is imported, components related to swaying object are attached as follows:</p>
 
 <ul>
-<li>VRMSpringBone is attached to the automatically created node <code>secondary</code>.</li>
+<li>VRMSpringBone is attached to the node<code>secondary</code>.</li>
 <li>VRMSpringBoneColliderGroup is restored to the node attached during the export.</li>
 </ul>
 
@@ -115,15 +115,14 @@
 
 <tbody>
 <tr>
-<td>Please check the node <code>secondary</code> if you cannot find VRMSpringBone.</td>
+<td>Please check the node<code>secondary</code>if you cannot find VRMSpringBone</td>
 </tr>
 </tbody>
 </table>
 
 <h1 id="vrmspringbone">VRMSpringBone</h1>
 
-<p>The preference setting of swaying movements of tail, hair, clothes and so on.<br />
-Objects are swaying if you put them in <code>Root Bones</code>. Simply drag the object (e.g. <code>hair1_L</code>) to the box &ldquo;Element&rdquo; (e.g. <code>Element 0</code>). You can change the number of swaying objects in <code>Size</code>.</p>
+<p>The setting for making objects swaying such as tail, hair, clothes and so on. Please set the parent GameObject of an object in<code>Root Bones</code>. Simply drag preference part (e.g.<code>hair1_L</code>) to the box &ldquo;Element&rdquo; (e.g.<code>Element 0</code>). You can change the number of elements in<code>Size</code>.</p>
 
 <table>
 <thead>
@@ -135,16 +134,16 @@ Objects are swaying if you put them in <code>Root Bones</code>. Simply drag the 
 
 <tbody>
 <tr>
-<td>Set hair and ribbon in <code>Root Bones</code></td>
+<td>Set hair and ribbon in<code>Root Bones</code></td>
 </tr>
 </tbody>
 </table>
 
-<p>By simply doing that, the specified parts will perform swaying motions according to the previous settings.</p>
+<p>By simply doing that, the specified bones will perform dynamic movements according to the previous setting.</p>
 
 <h1 id="option-vrmspringbonecollidergroup-collision-detection">[Option]VRMSpringBoneColliderGroup(Collision detection)</h1>
 
-<p>Collision detection function can be added to prevent swaying objects from penetrating / overlapping with particular body portions.</p>
+<p>Collision detection mechanism can be added to prevent swaying objects from penetrating specific body parts.</p>
 
 <table>
 <thead>
@@ -161,7 +160,7 @@ Objects are swaying if you put them in <code>Root Bones</code>. Simply drag the 
 </tbody>
 </table>
 
-<p>Simply drag the object (e.g. head) to the box &ldquo;Element&rdquo; (e.g. <code>Element 0</code>) in <code>Collider Groups</code>. You can change offset and radius value (VRMSpringBoneColliderGroup) by double clicking the box.</p>
+<p>Simply drag an object (e.g. head) to the box<code>Element</code>(e.g.<code>Element 0</code>) in<code>Collider Groups</code>. You can change offset and radius value (VRMSpringBoneColliderGroup) by double clicking the box<code>Element</code>in<code>Collider Groups</code>.</p>
 
 <table>
 <thead>
@@ -173,7 +172,7 @@ Objects are swaying if you put them in <code>Root Bones</code>. Simply drag the 
 
 <tbody>
 <tr>
-<td>Attach and set head object in <code>Collider Groups</code></td>
+<td>Attach and set the object<code>head</code>in<code>Collider Groups</code></td>
 </tr>
 </tbody>
 </table>
@@ -188,7 +187,7 @@ Objects are swaying if you put them in <code>Root Bones</code>. Simply drag the 
 
 <tbody>
 <tr>
-<td>Gizmo at runtime (click <code>Draw Gizmo</code>)</td>
+<td>Gizmo at runtime (check the box<code>Draw Gizmo</code>)</td>
 </tr>
 </tbody>
 </table>

@@ -85,7 +85,7 @@
 <ul>
 <li>
 <ul>
-<li><a href="#filename-extension">Filename extension</a></li>
+<li><a href="#file-extension">File extension</a></li>
 <li><a href="#savable-element">Savable element</a>
 <ul>
 <li><a href="#texture">Texture</a></li>
@@ -170,10 +170,10 @@
 </ul></li>
 <li><a href="#swaying-object-setting-json-extensions-vrm-secondaryanimation">Swaying object setting (json.extensions.VRM.secondaryAnimation)</a>
 <ul>
-<li><a href="#swaying-bone-secondaryanimation-bonegroups">Swaying bone (secondaryAnimation.boneGroups)</a>
+<li><a href="#dynamic-bone-secondaryanimation-bonegroups">Dynamic bone (secondaryAnimation.boneGroups)</a>
 <ul>
-<li><a href="#root-of-swaying-bone-json-extensions-vrm-secondaryanimation-bonegroups-0-bones">Root of swaying bone (json.extensions.VRM.secondaryAnimation.boneGroups[0].bones)</a></li>
-<li><a href="#collision-detection-with-swaying-bone-json-extensions-vrm-secondaryanimation-bonegroups-0-collidergroups">Collision detection with swaying bone (json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups)</a></li>
+<li><a href="#root-of-dynamic-bone-json-extensions-vrm-secondaryanimation-bonegroups-0-bones">Root of dynamic bone (json.extensions.VRM.secondaryAnimation.boneGroups[0].bones)</a></li>
+<li><a href="#collision-detection-with-dynamic-bone-json-extensions-vrm-secondaryanimation-bonegroups-0-collidergroups">Collision detection with dynamic bone (json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups)</a></li>
 <li><a href="#parameter">Parameter</a>
 <ul>
 <li><a href="#center-json-extensions-vrm-secondaryanimation-bonegroups-0-center">center (json.extensions.VRM.secondaryAnimation.boneGroups[0].center)</a></li>
@@ -199,7 +199,7 @@
 
 <p>VRM is based on binary format glb of <a href="https://github.com/KhronosGroup/glTF/blob/master/specification/2.0/README.md">glTF 2.0</a>. It is a model format for VR.</p>
 
-<h2 id="filename-extension">Filename extension</h2>
+<h2 id="file-extension">File extension</h2>
 
 <p><code>.vrm</code> is used. It is compatible with glTF binary format <code>.glb</code>.</p>
 
@@ -649,7 +649,7 @@ To address this issue, we can specify the display state in first-person view.</p
 
 <h3 id="lookat-setting">LookAt setting</h3>
 
-<p>Control the perspective view of the character as facing towards the target.</p>
+<p>Control the perspective view (eye) of the character as facing towards the target.</p>
 
 <pre><code>json.extensions.VRM.firstPerson.lookAtTypeName = &quot;Bone&quot;;
 json.extensions.VRM.firstPerson.lookAtHorizontalInner = {};
@@ -661,8 +661,8 @@ json.extensions.VRM.firstPerson.lookAtVerticalUp = {};
 <h4 id="lookat-type-json-extensions-vrm-firstperson-lookattypename">LookAt Type (json.extensions.VRM.firstPerson.lookAtTypeName)</h4>
 
 <ul>
-<li>Bone: control LookAt by bone.</li>
-<li>BlendShape: control LookAt by BlendShape. BlendShapePreset.LookUp, LookDown, LookLeft and LookRight are used.</li>
+<li>Bone: operate LookAt by bone.</li>
+<li>BlendShape: operate LookAt by BlendShape. BlendShapePreset.LookUp, LookDown, LookLeft and LookRight are used.</li>
 </ul>
 
 <h4 id="angle-adjustment">Angle adjustment</h4>
@@ -681,7 +681,7 @@ json.extensions.VRM.firstPerson.lookAtVerticalUp = {};
 
 <p>Automatic animation setting for string-shaped objects such as tail and hair.</p>
 
-<h3 id="swaying-bone-secondaryanimation-bonegroups">Swaying bone (secondaryAnimation.boneGroups)</h3>
+<h3 id="dynamic-bone-secondaryanimation-bonegroups">Dynamic bone (secondaryAnimation.boneGroups)</h3>
 
 <pre><code>json.extensions.VRM.secondaryAnimation.boneGroups[0] = {};
 json.extensions.VRM.secondaryAnimation.boneGroups[0].bones = [];
@@ -710,11 +710,11 @@ json.extensions.VRM.secondaryAnimation.boneGroups[0].hitRadius = 0.01;
 json.extensions.VRM.secondaryAnimation.boneGroups[0].stiffiness = 0.65;
 </code></pre>
 
-<h4 id="root-of-swaying-bone-json-extensions-vrm-secondaryanimation-bonegroups-0-bones">Root of swaying bone (json.extensions.VRM.secondaryAnimation.boneGroups[0].bones)</h4>
+<h4 id="root-of-dynamic-bone-json-extensions-vrm-secondaryanimation-bonegroups-0-bones">Root of dynamic bone (json.extensions.VRM.secondaryAnimation.boneGroups[0].bones)</h4>
 
 <p>Specify the node index of the root bone of the swaying object.</p>
 
-<h4 id="collision-detection-with-swaying-bone-json-extensions-vrm-secondaryanimation-bonegroups-0-collidergroups">Collision detection with swaying bone (json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups)</h4>
+<h4 id="collision-detection-with-dynamic-bone-json-extensions-vrm-secondaryanimation-bonegroups-0-collidergroups">Collision detection with dynamic bone (json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups)</h4>
 
 <p>Specify the index of the collision detection group for the swaying object.</p>
 
@@ -722,7 +722,7 @@ json.extensions.VRM.secondaryAnimation.boneGroups[0].stiffiness = 0.65;
 
 <h5 id="center-json-extensions-vrm-secondaryanimation-bonegroups-0-center">center (json.extensions.VRM.secondaryAnimation.boneGroups[0].center)</h5>
 
-<p>The reference point of the swaying object can be set at any location except the origin. When implementing UI moving with warp, the parent node to move with warp can be specified if you don&rsquo;t want the object swaying by warp movement.</p>
+<p>The reference point of a swaying object can be set at any location except the origin. When implementing UI moving with warp, the parent node to be moved with warp can be specified if you don&rsquo;t want to make the object moving by warp movement.</p>
 
 <h5 id="dragforce-json-extensions-vrm-secondaryanimation-bonegroups-0-dragforce">dragForce (json.extensions.VRM.secondaryAnimation.boneGroups[0].dragForce)</h5>
 
@@ -738,15 +738,15 @@ json.extensions.VRM.secondaryAnimation.boneGroups[0].stiffiness = 0.65;
 
 <h5 id="hitradius-json-extensions-vrm-secondaryanimation-bonegroups-0-hitradius">hitRadius (json.extensions.VRM.secondaryAnimation.boneGroups[0].hitRadius)</h5>
 
-<p>The radius of collision detection with the collider.</p>
+<p>The radius of the sphere (swaying object) used for collision detection with colliders (specified body parts).</p>
 
 <h5 id="stiffiness-json-extensions-vrm-secondaryanimation-bonegroups-0-stiffiness">stiffiness (json.extensions.VRM.secondaryAnimation.boneGroups[0].stiffiness)</h5>
 
-<p>The resilience of the swaying object (the power of returning to initial pose).</p>
+<p>The resilience of the swaying object (the power of returning to the initial pose).</p>
 
 <h3 id="collision-detection-setting-for-swaying-object-json-extensions-vrm-secondaryanimation-collidergroups">Collision detection setting for swaying object (json.extensions.VRM.secondaryAnimation.colliderGroups)</h3>
 
-<p>Set a sphere ball colliding with swaying objects.</p>
+<p>Set sphere balls (specified body parts) to collide with swaying objects.</p>
 
 <pre><code class="language-cs">json.extensions.VRM.secondaryAnimation.colliderGroups = [];
 json.extensions.VRM.secondaryAnimation.colliderGroups[0] = {};
@@ -768,7 +768,7 @@ json.extensions.VRM.secondaryAnimation.colliderGroups[0].node = 34;
 
 <h4 id="node-json-extensions-vrm-secondaryanimation-collidergroups-0-node">Node (json.extensions.VRM.secondaryAnimation.colliderGroups[0].node)</h4>
 
-<p>The node where collision detection is set up.</p>
+<p>Where the collision detection is set up.</p>
 
 <h4 id="local-coordinate-json-extensions-vrm-secondaryanimation-collidergroups-0-colliders-1-offset">Local coordinate (json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].offset)</h4>
 
@@ -776,7 +776,7 @@ json.extensions.VRM.secondaryAnimation.colliderGroups[0].node = 34;
 
 <h4 id="radius-json-extensions-vrm-secondaryanimation-collidergroups-0-colliders-1-radius">Radius (json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].radius)</h4>
 
-<p>The radius of collision detection.</p>
+<p>The radius of the sphere (specified body part) used for collision detection with swaying objects.</p>
 <div class="footnotes">
 
 <hr />

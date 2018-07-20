@@ -87,6 +87,7 @@
 <ul>
 <li><a href="#unity-version">Unity Version</a></li>
 <li><a href="#installation">Installation</a></li>
+<li><a href="#stop-assetpostprocessor">Stop AssetPostProcessor</a></li>
 <li><a href="#shader-variant">Shader variant</a></li>
 <li><a href="#shader-preloading-setting">Shader preloading setting</a></li>
 </ul></li>
@@ -101,9 +102,7 @@
 
 <h2 id="installation">Installation</h2>
 
-<p>Download the latest unitypackage from <a href="https://github.com/dwango/UniVRM/releases">UniVRM/releases</a> and import it (Assets -&gt; Import Package -&gt; Custom Package). The files will be saved in the folder Assets/VRM.</p>
-
-<p>If there exists any VRM file in the VRM folder, it is recommended to delete that VRM folder in advance.</p>
+<p>Download the latest unitypackage (UniVRM-0.XX) from <a href="https://github.com/dwango/UniVRM/releases">UniVRM/releases</a> and import it into Unity (Assets -&gt; Import Package -&gt; Custom Package). The imported files will be in the folder Assets/VRM. If there exists any VRM file in the VRM folder, it is recommended to delete that VRM folder in advance. The sample for reading and viewing VRM file at runtime is also provided (download UniVRM-RuntimeLoaderSample-0.XX).</p>
 
 <table>
 <thead>
@@ -116,6 +115,28 @@
 <tbody>
 <tr>
 <td>Import unityPackage</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="stop-assetpostprocessor">Stop AssetPostProcessor</h2>
+
+<p>The importer of UniVRM is implemented with<code>AssetPostprocessor</code>.
+There may be cases where AssetPostProcessor is inconvenient when including UniVRM in Unity project. We have added a symbol to invalidate this (from v0.39).</p>
+
+<p>Set<code>VRM_STOP_ASSETPOSTPROCESSOR</code>in<code>Edit - ProjectSettings - Player</code>&mdash;&gt;<code>Other Settings - Scripting Define Symbols</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th><img src="https://dwango.github.io/images/vrm/stop_assetpostprocessor.png"   />
+</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Stop AssetPostProcessor</td>
 </tr>
 </tbody>
 </table>
