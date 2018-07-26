@@ -107,12 +107,12 @@
 
 <p><img src="https://dwango.github.io/images/vrm/vrm_workflow_en.png" alt="vrm workflow"  />
 
-As we mentioned in the previous section, <a href="https://unity3d.com/">Unity</a> and <a href="https://github.com/dwango/UniVRM">UniVRM</a> were used to create VRM file. The general workflow is described as follows:</p>
+As mentioned in <a href="../vrm_about/">Introduction to VRM</a>, <a href="https://unity3d.com/">Unity</a> and <a href="https://github.com/dwango/UniVRM">UniVRM</a> were used to create VRM file. The rough workflow is as follow:</p>
 
 <ol>
-<li>Load 3D model data and <a href="https://github.com/dwango/UniVRM">UniVRM</a> in Unity. Next, adjust and set the size, material, etc.</li>
+<li>Load 3D model data and <a href="https://github.com/dwango/UniVRM">UniVRM</a> in Unity. Next, adjust and set up size, material, etc.</li>
 <li>Output VRM file from Unity once（normalization processing）</li>
-<li>Read output VRM file with Unity and perform VRM specific settings (license, swaying object, expression, perspective view and so on)
+<li>Read output VRM file with Unity and perform VRM custom settings (license, swaying object, expression, eyelook, etc.)
 
 <ul>
 <li>In some cases, make sure the model is working (e.g. facial expression change) in play mode.</li>
@@ -128,23 +128,23 @@ As we mentioned in the previous section, <a href="https://unity3d.com/">Unity</a
 
 <p><img src="https://dwango.github.io/images/vrm/unity_new_project.png"   />
 
-Launch Unity and create a new project (New -&gt; Create project).</p>
+Launch Unity and create a new project (<code>New -&gt; Create project</code>).</p>
 
 <h3 id="2-install-univrm-in-unity">2. Install UniVRM in Unity</h3>
 
 <img src="https://dwango.github.io/images/vrm/package_import.png" alt="package_import"  />
 
 
-<p>Download the latest unitypackage (UniVRM-0.XX) from <a href="https://github.com/dwango/UniVRM/releases">UniVRM/releases</a> and import it into Unity (Assets -&gt; Import Package -&gt; Custom Package). The imported files will be in the folder Assets/VRM. <strong>If there exists any VRM file in the VRM folder, it is recommended to delete that VRM folder in advance</strong>.</p>
+<p>Download the latest unitypackage (UniVRM-0.XX) from <a href="https://github.com/dwango/UniVRM/releases">UniVRM/releases</a> and import it into Unity (<code>Assets -&gt; Import Package -&gt; Custom Package</code>). The imported files will be in the folder<code>Assets/VRM</code>. <strong>It is recommended to delete existing VRM folder included VRM in advance before package import</strong>.</p>
 
 <h3 id="3-prepare-the-model-data-that-can-be-handled-as-humanoid-in-unity">3. Prepare the model data that can be handled as &ldquo;Humanoid&rdquo; in Unity</h3>
 
 <img src="https://dwango.github.io/images/vrm/alicia_generic.png"   />
 
 
-<p>Prepare a humanoid model that can be read by Unity such as FBX format and import it into Unity. It is also necessary to have the bone setting. Also, <strong>be sure to use your own created model or the licensed model data that is processed and used as a VR avatar</strong>. As we will describe later, <strong>there are items that describe license information in VRM file itself, authors need to set those items for their created VRM models</strong>.</p>
+<p>Prepare a humanoid model that can be read by Unity such as FBX format and <a href="https://docs.unity3d.com/2018.2/Documentation/Manual/HOWTO-importObject.html">import</a> it into Unity. The bone setting is also required. Also, <strong>be sure to use your own created model or the licensed model data that is processed and used as VR avatar</strong>. As we will describe later, <strong>there are items that describe license information in VRM file itself, authors need to set those items for their created VRM models</strong>.</p>
 
-<p>After importing the model, please select &ldquo;Humanoid&rdquo; from FBX import settings -&gt; Rig -&gt; Animation Type.</p>
+<p>After importing the model, navigate to<code>FBX Import Settings -&gt; Rig -&gt; Animation Type</code>and select<code>Humanoid</code>.</p>
 
 <img src="https://dwango.github.io/images/vrm/fix_eye.png"   />
 
@@ -184,7 +184,7 @@ Launch Unity and create a new project (New -&gt; Create project).</p>
 <li>Texture（material / shader）
 
 <ul>
-<li>It is <strong>highly recommended</strong> to use the shaders listed below:
+<li>Navigate to<code>FBX Import Settings -&gt; Materials -&gt; Location</code>and select<code>Use External Materials (Legacy)</code>to enable shader option. It is <strong>highly recommended</strong> to use the shaders listed below:
 
 <ul>
 <li>PBR
@@ -212,12 +212,12 @@ Launch Unity and create a new project (New -&gt; Create project).</p>
 <img src="https://dwango.github.io/images/vrm/vrm_menu_enable.png"   />
 
 
-<p>After finishing the adjustment, select the model data in &ldquo;Hierarchy&rdquo; and export the model from menu -&gt; VRM -&gt; export humanoid.</p>
+<p>After finishing the adjustment, select the model data in<code>Hierarchy</code>and export the model from<code>menu -&gt; VRM -&gt; export humanoid</code>.</p>
 
 <img src="https://dwango.github.io/images/vrm/export_dialog.png"   />
 
 
-<p>Check the boxes and click Export button</p>
+<p>Check the boxes and click<code>Export</code>button</p>
 
 <ul>
 <li>Force T Pose
@@ -232,7 +232,7 @@ Launch Unity and create a new project (New -&gt; Create project).</p>
 </ul></li>
 </ul>
 
-<p>After clicking Export button, the VRM file is output. To easily track this file, it is recommended to name the file like this format &ldquo;Model_Name_Normalized.vrm&rdquo;.</p>
+<p>After clicking<code>Export</code>button, the VRM file is output. To easily track this file, it is recommended to name the file like this format &ldquo;Model_Name_Normalized.vrm&rdquo;.</p>
 
 <h3 id="5-read-the-exported-vrm-file-again-in-unity">5. Read the exported VRM file again in Unity</h3>
 
@@ -244,14 +244,14 @@ Launch Unity and create a new project (New -&gt; Create project).</p>
 <img src="https://dwango.github.io/images/vrm/alicia_scene2.png"   />
 
 
-<p>Now delete the model data from step 4 and <strong>again put the generated Prefab under the scene category</strong> (e.g. drag the Prefab file to the sidebar on the left in the image). Then, normalized model data such as mesh, etc. can be rendered in the scene.</p>
+<p>Now remove the model data from step 4 and <strong>again put the generated Prefab under the scene category</strong> (e.g. drag the Prefab file to the sidebar on the left in the image). Then, normalized model data such as mesh, etc. can be rendered in the scene.</p>
 
 <h3 id="6-custom-setting-in-vrm">6. Custom setting in VRM</h3>
 
 <img src="https://dwango.github.io/images/vrm/vrm_settings.png"   />
 
 
-<p>When the model data (step 5) is selected in &ldquo;Hierarchy&rdquo;, various items are displayed in &ldquo;Inspector&rdquo;. In addition, we will set <strong>swaying object in &ldquo;secondary&rdquo;</strong>. Please at least fill in title, author, license information. <strong>Specially, license information is crucial!</strong></p>
+<p>When the model data (step 5) is selected in<code>Hierarchy</code>, various items are displayed in<code>Inspector</code>. In addition, we will set <strong>swaying object in &ldquo;secondary&rdquo;</strong>. Please at least fill in title, author, license information. <strong>Specially, license information is crucial!</strong></p>
 
 <ul>
 <li><p>Information</p>
@@ -287,23 +287,23 @@ Launch Unity and create a new project (New -&gt; Create project).</p>
 <li><p>License</p>
 
 <ul>
-<li><p>Permission for the use of this avatar</p>
+<li><p>Personation / Characterization Permission</p>
 
 <ul>
-<li>Access permission
+<li>A person who can perform with this avatar
 
 <ul>
 <li>Only Author</li>
 <li>Explicitly Licensed Person</li>
 <li>Everyone</li>
 </ul></li>
-<li>Violent acts performed by this avatar
+<li>Permission to perform violent acts with this avatar
 
 <ul>
 <li>Disallow</li>
 <li>Allow</li>
 </ul></li>
-<li>Sexual acts performed by this avatar
+<li>Permission to perform sexual acts with this avatar
 
 <ul>
 <li>Disallow</li>
@@ -315,10 +315,10 @@ Launch Unity and create a new project (New -&gt; Create project).</p>
 <li>Disallow</li>
 <li>Allow</li>
 </ul></li>
-<li>License Url
+<li>Other License Url
 
 <ul>
-<li>If there are any conditions not mentioned above, put the license Url link here</li>
+<li>If there are any conditions not mentioned above, put the URL link of the license document here</li>
 </ul></li>
 </ul></li>
 
@@ -339,10 +339,10 @@ Launch Unity and create a new project (New -&gt; Create project).</p>
 <li>Other</li>
 </ul></li>
 
-<li><p>License Url (license type “other”)</p>
+<li><p>Other License Url</p>
 
 <ul>
-<li>If “other” is selected, please put the license Url link here.</li>
+<li>If “Other” is selected, put the URL link of the license document here</li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -353,7 +353,7 @@ Launch Unity and create a new project (New -&gt; Create project).</p>
 <ul>
 <li><a href="../univrm/components/univrm_blendshape/">The setting of expression and lip-sync (BlendShape)</a></li>
 <li><a href="../univrm/components/univrm_firstperson/">The setting of first-person view (the case for operating model by first-person view, specifying parts such as head that may block the scene and setting the standard viewpoint position)</a></li>
-<li><a href="../univrm/components/univrm_lookat/">The setting of movable curve and movable range for eye LookAt / eyeball. It supports not only eyeball rotation by bone but also eyeball animation by BlendShape</a></li>
+<li><a href="../univrm/components/univrm_lookat/">The setting of movable curve and movable range for eye gaze/eyeball. It supports not only eyeball rotation by bone but also eyeball animation by BlendShape</a></li>
 <li><a href="../univrm/components/univrm_secondary/">The setting of swaying object (SpringBone/SpringBoneCollider)</a></li>
 </ul>
 
@@ -362,16 +362,16 @@ Launch Unity and create a new project (New -&gt; Create project).</p>
 <img src="https://dwango.github.io/images/vrm/aiueo.png"   />
 
 
-<p>Set AnimationClip/AnimationController and GameObject in VRMLookAtHead -&gt; Target (viewpoint direction), and then check model&rsquo;s movements and expressions in the scene. Also, fairly simple test scripts &ldquo;AIUEO&rdquo; and &ldquo;Blinker&rdquo; are available for users to test out. Click &ldquo;Add Component&rdquo; at the bottom of &ldquo;Inspector&rdquo; and search for “AIUEO”. After setting this component, the animation of mouth shape &ldquo;あ&rdquo;, &ldquo;い&rdquo;, &ldquo;う&rdquo;, &ldquo;え&rdquo;, &ldquo;お&rdquo; switching in turn can be created. If the component &ldquo;Blinker&rdquo; is set, blink animation played periodically can be created. For more information, please refer to our runtime sample <a href="https://github.com/dwango/UniVRM/releases">VRMViewer</a> (download UniVRM-RuntimeLoaderSample-0.XX).</p>
+<p>Set<code>AnimationClip/AnimationController</code>and GameObject in<code>VRMLookAtHead -&gt; Target</code>(eye direction), and then check model&rsquo;s movements and expressions in the scene. Also, fairly simple test scripts &ldquo;AIUEO&rdquo; and &ldquo;Blinker&rdquo; are available for users to test out. Click<code>Add Component</code>at bottom of<code>Inspector</code>and search for “AIUEO”. After setting this component, the animation of mouth shape &ldquo;あ&rdquo;, &ldquo;い&rdquo;, &ldquo;う&rdquo;, &ldquo;え&rdquo;, &ldquo;お&rdquo; switching in turn can be created. If the component &ldquo;Blinker&rdquo; is set, blink animation played periodically can be created. For more information, please refer to our runtime sample <a href="https://github.com/dwango/UniVRM/releases">VRMViewer</a> (download UniVRM-RuntimeLoaderSample-0.XX).</p>
 
 <h3 id="8-output-vrm-file">8. Output VRM file</h3>
 
 <img src="https://dwango.github.io/images/vrm/vrm_menu_enable.png"   />
 
 
-<p>After the adjustment is completed, select the model data in &ldquo;Hierarchy&rdquo; and again export the model from menu -&gt; VRM -&gt; export humanoid.</p>
+<p>After the adjustment is completed, select the model data in<code>Hierarchy</code>and again export the model from<code>menu -&gt; VRM -&gt; export humanoid</code>.</p>
 
-<p>This time <strong>please uncheck &ldquo;Force T Pose&rdquo; and &ldquo;Pose Freeze&rdquo;</strong>. They are only used for the first time (normalization processing). Name the file and output the VRM file.</p>
+<p>This time <strong>please uncheck &ldquo;Force T Pose&rdquo; and &ldquo;Pose Freeze&rdquo;</strong>. They are only used for the first time (normalization processing). Name the file and output the updated VRM file.</p>
 
 <h3 id="done">Done！</h3>
 

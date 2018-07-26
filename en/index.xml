@@ -41,7 +41,7 @@ json.meshes[i].primitives[j].extras.targetNames[k]  </description>
       <pubDate>Wed, 09 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/univrm_faq/</guid>
-      <description>The parameters I set were disappeared VRMSpringBone is attached to the node secondary during import.
+      <description>The parameters I set were disappeared VRMSpringBone is attached to the nodesecondaryduring import.
 VRMSpringBone
 The loader is not working when building a project Shaders used by UniVRM may not be included in the build target.
 Please double check
@@ -89,7 +89,7 @@ VRM coordinate system Since VRM is an extension of GLTF, it conforms to the coor
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_blendshape/</guid>
-      <description>VRMBlendShapeProxy Inspector of VRMBlendShapeProxy at runtime. It is enabled in play mode How to use it: Set BlendShapeAvatar (VRMBlendShapeProxy-&amp;gt;BlendShapeAvatar) in inspector Change BlendShapeClip value between 0 and 1 at runtime (e.g. BLINK, JOY) BlendShapeAvatar Create facial expression settings in inspector (Assets). Double click the box &amp;ldquo;Blend Shape Avatar&amp;rdquo; or Directly click BlendShape here (the highlighted file) Inspector of BlendShapeEditor Create the facial expression you want by selecting expression names and</description>
+      <description>VRMBlendShapeProxy Inspector of VRMBlendShapeProxy at runtime. It is enabled in play mode How to use it: Set BlendShapeAvatar VRMBlendShapeProxy-&amp;gt;BlendShapeAvatar in inspector Change BlendShapeClip value between 0 and 1 at runtime (e.g. BLINK, JOY) BlendShapeAvatar Create facial expression settings in inspector (Assets). Double click the boxBlend Shape Avatar or Directly click BlendShape here (the highlighted file) Inspector of BlendShapeEditor Create the facial expression you want by selecting expression names and adjust</description>
     </item>
     
     <item>
@@ -100,7 +100,7 @@ VRM coordinate system Since VRM is an extension of GLTF, it conforms to the coor
       <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_lookat/</guid>
       <description>VRMLookAtHead         VRMLookAtHead    This component calculates the direction of the target viewed from the model&amp;rsquo;s head.
 Target The object of interest. Please set the object where the eyes want to be pointed. If a camera is set as Target, the model will look at the camera within the range of the movement of eye.
-Bone&amp;rsquo;s LookAt control: VRMLookAtBoneApplyer         VRMLookAtBoneApplyer    Apply the parameters of the calculated eye direction of VRMLookAtHead to EyeBone.</description>
+Eye control with bone: VRMLookAtBoneApplyer         VRMLookAtBoneApplyer    Apply the parameters of the calculated eye direction of VRMLookAtHead to EyeBone.</description>
     </item>
     
     <item>
@@ -122,7 +122,7 @@ For VR applications, you may see the head of the model that is not supposed to b
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/how_to_make_vrm/</guid>
-      <description>How to create VRM file (conversion from existing 3D model) As we mentioned in the previous section, Unity and UniVRM were used to create VRM file. The general workflow is described as follows: Load 3D model data and UniVRM in Unity. Next, adjust and set the size, material, etc. Output VRM file from Unity once（normalizati</description>
+      <description>How to create VRM file (conversion from existing 3D model) As mentioned in Introduction to VRM, Unity and UniVRM were used to create VRM file. The rough workflow is as follow: Load 3D model data and UniVRM in Unity. Next, adjust and set up size, material, etc. Output VRM file from Unity once（normalization</description>
     </item>
     
     <item>
@@ -133,7 +133,7 @@ For VR applications, you may see the head of the model that is not supposed to b
       <guid>https://dwango.github.io/en/vrm/how_to_view_vrm/</guid>
       <description>How to read VRM file We are sorry there is no simple viewer application available as of July, 2018. Although the current method described below may be a little tedious, you can check the contents of a VRM file inside read in Unity.
 1. Create an empty project from start page of Unity Launch Unity and create a new project (New -&amp;gt; Create project).
-2. Install UniVRM in Unity Download the latest unitypackage from UniVRM/releases and import it in the folder Assets/VRM (Assets -&amp;gt; Import Package -&amp;gt; Custom Package).</description>
+2. Install UniVRM in Unity Download the latest unitypackage (UniVRM-0.</description>
     </item>
     
     <item>
@@ -142,7 +142,7 @@ For VR applications, you may see the head of the model that is not supposed to b
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_import_runtime/</guid>
-      <description>The followings are the methods to import VRM model at runtime in Unity.
+      <description>The followings are the methods to import VRM model at runtime in Unity:
 Open VRM from file path var path=&amp;#34;sample.vrm&amp;#34;; var go=VRM.VRMImporter.LoadFromPath(path); Debug.LogFormat(&amp;#34;loaded {0}&amp;#34;, go.name); Open VRM asynchronously from file path var path=&amp;#34;sample.vrm&amp;#34;; VRMImporter.LoadVrmAsync(path, go =&amp;gt; { Debug.LogFormat(&amp;#34;loaded {0}&amp;#34;, go.name); }); Open VRM from byte string var path=&amp;#34;sample.vrm&amp;#34;; var bytes = File.ReadAllBytes(path); var go=VRMImporter.LoadFromBytes(bytes); Open VRM asynchronously from byte string VRMImporter.LoadVrmAsync(bytes, go =&amp;gt; { Debug.LogFormat(&amp;#34;loaded {0}&amp;#34;, go.name); }); Get the information form VRM #if UNITY_STANDALONE_WIN  var path = FileDialogForWindows.</description>
     </item>
     
@@ -166,10 +166,10 @@ About MToon MToon aims for making Japanese anime expression. It is achieved by m
       <description>VRMMeta         VRMMeta component    Information Title Avatar model name
 Author Author name
 Contact Information Author contact information
-Reference Original / Related works of this avatar (Url), if any
+Reference Original / Related works of this avatar (URL), if any
 Thumbnail Register the thumbnail of the avatar model. A resolution texture about 2048x2048 is recommended.
 Version Specify the model version with character string. Any description is OK.
-License Permission for the use of this avatar Access permission  Only Author Explicitly Licensed Person Everyone  Violent acts performed by this avatar  Disallow Allow  Sexual acts performed by this avatar  Disallow Allow  For commercial use  Disallow Allow  Other license condition (Url) If there are any conditions not mentioned above, put the license Url link here.</description>
+License Personation / Characterization Permission A person who can perform with this avatar  Only Author Explicitly Licensed Person Everyone  Permission to perform violent acts with this avatar  Disallow Allow  Permission to perform sexual acts with this avatar  Disallow Allow  For commercial use  Disallow Allow  Other License Url If there are any conditions not mentioned above, put the URL link of the license document here.</description>
     </item>
     
     <item>
@@ -192,7 +192,8 @@ proxy.SetValue(BlendShapePreset.Blink_L, 1.0f); proxy.</description>
       
       <guid>https://dwango.github.io/en/vrm/univrm/univrm_install/</guid>
       <description>Unity Version Unity5.6 or after is supported.
-Installation Download the latest unitypackage (UniVRM-0.XX) from UniVRM/releases and import it into Unity (Assets -&amp;gt; Import Package -&amp;gt; Custom Package). The imported files will be in the folder Assets/VRM. If there exists any VRM file in the VRM folder, it is recommended to delete that VRM folder in advance. The sample for reading and viewing VRM file at runtime is also provided (download UniVRM-RuntimeLoaderSample-0.</description>
+Installation Download the latest unitypackage (UniVRM-0.XX) from UniVRM/releases and import it into Unity (Assets -&amp;gt; Import Package -&amp;gt; Custom Package). The imported files will be in the folderAssets/VRM. It is recommended to delete existing VRM folder included VRM in advance before package import. The sample for reading and viewing VRM file at runtime is also provided (download UniVRM-RuntimeLoaderSample-0.XX).
+        Import unityPackage    Stop AssetPostProcessor The importer of UniVRM is implemented withAssetPostprocessor.</description>
     </item>
     
     <item>
@@ -202,8 +203,8 @@ Installation Download the latest unitypackage (UniVRM-0.XX) from UniVRM/releases
       
       <guid>https://dwango.github.io/en/vrm/univrm/univrm_workflow/</guid>
       <description>Workflow Prepare a humanoid model with the set humanoid avatar Prepare a humanoid model that can be read by Unity such as FBX format and import it into Unity.
-After importing the model, please select “Humanoid” from FBX import settings -&amp;gt; Rig -&amp;gt; Animation Type.
-        Select Humanoid    Correct bone assignment with rig configuration When the FBX file is imported, bone assignments done by auto-recognition may be different from expectations (see image below):</description>
+After importing the model, navigate toFBX Import Settings -&amp;gt; Rig -&amp;gt; Animation Typeand selectHumanoid.
+        SelectHumanoid    Correct bone assignment with rig configuration When the FBX file is imported, bone assignments done by auto-recognition may be different from expectations (see image below):</description>
     </item>
     
     <item>
@@ -240,7 +241,7 @@ Texture  image1 sampler1  Material (json.extensions.VRM.materialProperties) json
       
       <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_secondary/</guid>
       <description>Swaying object setting.
-The node with swaying object setting When VRM is imported, components related to swaying object are attached as follows:
+The node attached by components with spring bone When VRM is imported, components related to swaying object are attached as follows:
  VRMSpringBone is attached to the nodesecondary. VRMSpringBoneColliderGroup is restored to the node attached during the export.          Please check the nodesecondaryif you cannot find VRMSpringBone    VRMSpringBone The setting for making objects swaying such as tail, hair, clothes and so on.</description>
     </item>
     

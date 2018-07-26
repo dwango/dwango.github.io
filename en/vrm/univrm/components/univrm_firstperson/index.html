@@ -116,7 +116,7 @@ It is the bone that keeps track of the headset in first-person view.</p>
 
 <p>The setting for controlling mesh on/off rendered in first-person view.</p>
 
-<p>For VR applications, you may see the head of the model that is not supposed to be rendered in the scene. To address this problem, we provide the function <strong>VRMFirstPerson</strong> which renders the model without the head in first-person view.</p>
+<p>For VR applications, you may see the head of the model that is not supposed to be rendered in the scene. To address this problem, we provide the function <strong>VRMFirstPerson</strong> which renders the model without the head in first-person view. To test out first-person mode, set up <a href="../../api/univrm_use_firstperson/#specify-the-additional-render-layers-for-the-application">render layer</a> in inspector and call <a href="../../api/univrm_use_firstperson/#call-setup-function-at-runtime-and-set-layermask-in-camera">first-person setup function</a>. Then, navigate to<code>camera-&gt;cull mask</code>and select<code>EVERYTHING</code>but<code>THIRDPERSON_ONLY_LAYER</code>.</p>
 
 <h3 id="the-case-for-head-being-separated">The case for head being separated</h3>
 
