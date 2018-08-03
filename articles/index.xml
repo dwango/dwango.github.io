@@ -6,10 +6,19 @@
     <description>Recent content in Articles on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Thu, 21 Jun 2018 16:01:23 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 03 Aug 2018 15:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Akashic Engineの紹介</title>
+      <link>https://dwango.github.io/articles/akashic/</link>
+      <pubDate>Fri, 03 Aug 2018 15:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/akashic/</guid>
+      <description>はじめに 第二サービス開発本部 第一プロダクト開発部の告原と申します。 ドワンゴには5年程前に入社し、最初のニコキャスに携わった後、この記事で触れ</description>
+    </item>
     
     <item>
       <title>ドワンゴのセミナールームが移転しました</title>
