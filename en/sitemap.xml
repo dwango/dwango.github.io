@@ -228,21 +228,6 @@
   </url>
   
   <url>
-    <loc>https://dwango.github.io/en/vrm/univrm/univrm_install/</loc>
-    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://dwango.github.io/vrm/univrm/univrm_install/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://dwango.github.io/en/vrm/univrm/univrm_install/"
-                />
-  </url>
-  
-  <url>
     <loc>https://dwango.github.io/en/vrm/univrm/univrm_workflow/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -254,6 +239,21 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://dwango.github.io/en/vrm/univrm/univrm_workflow/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/en/vrm/univrm/univrm_install/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://dwango.github.io/vrm/univrm/univrm_install/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://dwango.github.io/en/vrm/univrm/univrm_install/"
                 />
   </url>
   

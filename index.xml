@@ -6,10 +6,28 @@
     <description>Recent content on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 03 Aug 2018 15:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 15 Aug 2018 12:28:34 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>niconicoの開発者向け情報の公開</title>
+      <link>https://dwango.github.io/articles/niconico/</link>
+      <pubDate>Wed, 15 Aug 2018 12:28:34 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/niconico/</guid>
+      <description>本サイトに、ニコニコ動画、ニコニコ生放送他、niconicoに関する開発者向けの情報を掲載するスペースを作成しました。 niconicoの開発</description>
+    </item>
+    
+    <item>
+      <title>実験放送の構成 - コメント編</title>
+      <link>https://dwango.github.io/niconico/jikken-housou/comment/</link>
+      <pubDate>Tue, 14 Aug 2018 15:44:12 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/niconico/jikken-housou/comment/</guid>
+      <description>本ページの内容 本ページでは、実験放送のコメント周りの構成について解説します。 主に、以下のような方を対象としています。 ニコニコ生放送で利用され</description>
+    </item>
     
     <item>
       <title>Akashic Engineの紹介</title>

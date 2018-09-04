@@ -41,12 +41,7 @@ json.meshes[i].primitives[j].extras.targetNames[k]  </description>
       <pubDate>Wed, 09 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/univrm_faq/</guid>
-      <description>The parameters I set were disappeared VRMSpringBone is attached to the nodesecondaryduring import.
-VRMSpringBone
-The loader is not working when building a project Shaders used by UniVRM may not be included in the build target.
-Please double check
-Edit - Project Settings - Graphics - Shader preloading
-The setting procedure for Shader preloading</description>
+      <description>Report errors Please check the contents in console (Window -&amp;gt; Console). If an error messages (red) is shown in console, there might be something wrong. Please report the errors you got in: https://github.com/dwango/UniVRM/issues More details provided in the report will be very helpful for us to look into your problem. For example: OS (Windows10 64bit, etc.) Unity version (Unity-5.6.3p1, etc.) UniVRM version (0.40, etc.) The set VRMSpringBone were gone VRMSpringBone</description>
     </item>
     
     <item>
@@ -66,7 +61,7 @@ The setting procedure for Shader preloading</description>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/vrm_tpose/</guid>
-      <description>We adopt T-Pose that conforms to Unity Humanoid of first implementation of VRM.
+      <description>VRM T-Pose conforms to Humanoid of Unity of the first implementation of VRM.
         T-Pose example    Besides apparent parts such as body and head / leg, there are also rules on arm and finger:
  Palm faces downward Thumb is horizontally spread 45 degrees (a view from the top) on XZ plane  </description>
     </item>
@@ -117,23 +112,22 @@ For VR applications, you may see the head of the model that is not supposed to b
     </item>
     
     <item>
-      <title>I would like to create VRM file</title>
+      <title>How to make VRM file</title>
       <link>https://dwango.github.io/en/vrm/how_to_make_vrm/</link>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/how_to_make_vrm/</guid>
-      <description>How to create VRM file (conversion from existing 3D model) As mentioned in Introduction to VRM, Unity and UniVRM were used to create VRM file. The rough workflow is as follow: Load 3D model data and UniVRM in Unity. Next, adjust and set up size, material, etc. Output VRM file from Unity once（normalization</description>
+      <description>Conversion from existing 3D model To make VRM file, we use Unity and UniVRM. The workflow is as follow:
+ Import the 3D model data and UniVRM into the current unity project. Adjust and set the size, material, etc. Export the 3D model data to VRM in Unity (normalization processing) Import the VRM file into the current unity project and customize the settings (license, swaying object, expression, eyelook, etc.)  In some cases, make sure the model is working (e.</description>
     </item>
     
     <item>
-      <title>I would like to play around with VRM file</title>
+      <title>How to view VRM file</title>
       <link>https://dwango.github.io/en/vrm/how_to_view_vrm/</link>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/how_to_view_vrm/</guid>
-      <description>How to read VRM file We are sorry there is no simple viewer application available as of July, 2018. Although the current method described below may be a little tedious, you can check the contents of a VRM file inside read in Unity.
-1. Create an empty project from start page of Unity Launch Unity and create a new project (New -&amp;gt; Create project).
-2. Install UniVRM in Unity Download the latest unitypackage (UniVRM-0.</description>
+      <description>Import VRM file into VRM Viewer We are sorry the official VRM viewer is not yet available. Please refer to other VRM viewers. Import VRM file into Unity Project Importing VRM file by this way is a little tedious but you can see the information of a VRM model: 1. Create an empty project in Unity Create a new project at the start page (New -&amp;gt; Create project). 2. Import</description>
     </item>
     
     <item>
@@ -186,25 +180,24 @@ proxy.SetValue(BlendShapePreset.Blink_L, 1.0f); proxy.</description>
     </item>
     
     <item>
+      <title>The workflow of UniVRM model</title>
+      <link>https://dwango.github.io/en/vrm/univrm/univrm_workflow/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/univrm/univrm_workflow/</guid>
+      <description>Workflow Prepare a 3D model that can be handled as &amp;ldquo;Humanoid&amp;rdquo; in Unity Prepare a humanoid model that can be imported into Unity such as FBX format. Navigate to model&amp;rsquo;sImport Settings -&amp;gt; Rig -&amp;gt; Animation Typeand selectHumanoidafter the model is imported.
+        SelectHumanoid    Correct bone assignment with rig configuration When the FBX file is imported, bone assignments done by auto-recognition may be different from expectations (see image below):</description>
+    </item>
+    
+    <item>
       <title>UniVRM installation</title>
       <link>https://dwango.github.io/en/vrm/univrm/univrm_install/</link>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/univrm_install/</guid>
-      <description>Unity Version Unity5.6 or after is supported.
-Installation Download the latest unitypackage (UniVRM-0.XX) from UniVRM/releases and import it into Unity (Assets -&amp;gt; Import Package -&amp;gt; Custom Package). The imported files will be in the folderAssets/VRM. It is recommended to delete existing VRM folder included VRM in advance before package import. The sample for reading and viewing VRM file at runtime is also provided (download UniVRM-RuntimeLoaderSample-0.XX).
-        Import unityPackage    Stop AssetPostProcessor The importer of UniVRM is implemented withAssetPostprocessor.</description>
-    </item>
-    
-    <item>
-      <title>UniVRM model workflow</title>
-      <link>https://dwango.github.io/en/vrm/univrm/univrm_workflow/</link>
-      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
-      
-      <guid>https://dwango.github.io/en/vrm/univrm/univrm_workflow/</guid>
-      <description>Workflow Prepare a humanoid model with the set humanoid avatar Prepare a humanoid model that can be read by Unity such as FBX format and import it into Unity.
-After importing the model, navigate toFBX Import Settings -&amp;gt; Rig -&amp;gt; Animation Typeand selectHumanoid.
-        SelectHumanoid    Correct bone assignment with rig configuration When the FBX file is imported, bone assignments done by auto-recognition may be different from expectations (see image below):</description>
+      <description>Unity Version UniVRM supports Unity5.6 and later version.
+Installation Download the latest unitypackage (UniVRM-0.XX) from UniVRM/releases and import it into the current project (Assets -&amp;gt; Import Package -&amp;gt; Custom Package). The imported files will be in the folderAssets/VRM. It is recommended to delete existing VRM folder included VRM in advance before package import. The sample for reading and viewing VRM file at runtime is also provided (download UniVRM-RuntimeLoaderSample-0.XX).
+        Import UniVRM package    Stop AssetPostProcessor The importer of UniVRM is implemented withAssetPostprocessor.</description>
     </item>
     
     <item>
@@ -215,9 +208,9 @@ After importing the model, navigate toFBX Import Settings -&amp;gt; Rig -&amp;gt
       <guid>https://dwango.github.io/en/vrm/univrm/shaders/univrm_shaders/</guid>
       <description>Shader preloading setting
 PBR Standard shader Unity standard.
-Unlit type shader VRM/UnlitTexture Same as Unity&amp;rsquo;s Unit/Texture.
-VRM/UnlitCutout Same as Unity&amp;rsquo;s Unit/Coutout.
-VRM/UnlitTransparent Same as Unity&amp;rsquo;s Unit/Transparent.
+Unlit type shader VRM/UnlitTexture Same as Unit/Texture.
+VRM/UnlitCutout Same as Unit/Coutout.
+VRM/UnlitTransparent Same as Unit/Transparent.
 It is assumed to be applied to particle things such as smoke effect, semi-transparent objects without substances (depth value) such as rosy cheeks.
 VRM/UnlitTransparentZWrite Alpha blending and ZWrite are available. It is assumed to be applied to semi-transparent objects with substances (depth value) such as semi-transparent clothes and hair.</description>
     </item>
@@ -230,7 +223,7 @@ VRM/UnlitTransparentZWrite Alpha blending and ZWrite are available. It is assume
       <guid>https://dwango.github.io/en/vrm/vrm_spec/</guid>
       <description>VRM is based on binary format glb of glTF 2.0. It is a model format for VR.
 File extension .vrm is used. It is compatible with glTF binary format .glb.
-Savable element The whole humanoid model information.
+Storable data The whole humanoid model information.
 Texture  image1 sampler1  Material (json.extensions.VRM.materialProperties) json.extensions.VRM.materialProperties[0] = {}; json.extensions.VRM.materialProperties[0].name = &amp;quot;Alicia_body&amp;quot;; # Name json.extensions.VRM.materialProperties[0].shader = &amp;quot;VRM/UnlitTexture&amp;quot;; # Shader name json.extensions.VRM.materialProperties[0].renderQueue = 2000; json.extensions.VRM.materialProperties[0].floatProperties = {}; # float type variable json.extensions.VRM.materialProperties[0].keywordMap = {}; # Keyword type variable json.</description>
     </item>
     
@@ -246,12 +239,12 @@ The node attached by components with spring bone When VRM is imported, component
     </item>
     
     <item>
-      <title>What applications that support VRM file？</title>
+      <title>What applications that support VRM file?</title>
       <link>https://dwango.github.io/en/vrm/vrm_applications/</link>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/vrm_applications/</guid>
-      <description>VRM file supported applications  Niconi 3D
+      <description>VRM supported applications  Niconi 3D
  3D model data posting service. It is available for users to post and download VRM files.  Virtual Cast
  A VR live communication service that allows users to communicate in a shared VR space in real-time. The model data can be adopted and read as VRM format.  cluster
  Hitogata
@@ -263,14 +256,14 @@ The node attached by components with spring bone When VRM is imported, component
     </item>
     
     <item>
-      <title>What is &#34;VRM&#34;? What can VRM do？</title>
+      <title>What is &#34;VRM&#34;? What can VRM do?</title>
       <link>https://dwango.github.io/en/vrm/vrm_about/</link>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/vrm_about/</guid>
-      <description>What is VRM? In the past, when handling character and humanoid avatar (3D model) in VR (Virtual Reality), VTuber, etc., it was necessary to develop their own systems for applications and further fine-tune 3D model data due to&amp;hellip;
- The output data made by 3D model creators and modeling tools is different
- The coordinate system is different, the scale is different, the initial pose is different, the expression is different&amp;hellip; Of course, the method importing bones into the program is also different.</description>
+      <description>What is VRM? In the past, when handling 3D humanoid avatar (3D model) in Virtual Reality, Virtual YouTuber, etc., it was necessary to develop an unique system for applications and fine-tune 3D model data due to&amp;hellip;
+ The output data is depend on how the creator make the 3D model and what modeling tool is used
+ The coordinate system is different. The scale is different. The initial pose is different.</description>
     </item>
     
     <item>
