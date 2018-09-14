@@ -41,7 +41,7 @@ json.meshes[i].primitives[j].extras.targetNames[k]  </description>
       <pubDate>Wed, 09 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/univrm_faq/</guid>
-      <description>Report errors Please check the contents in console (Window -&amp;gt; Console). If an error messages (red) is shown in console, there might be something wrong. Please report the errors you got in: https://github.com/dwango/UniVRM/issues More details provided in the report will be very helpful for us to look into your problem. For example: OS (Windows10 64bit, etc.) Unity version (Unity-5.6.3p1, etc.) UniVRM version (0.40, etc.) The set VRMSpringBone were gone VRMSpringBone</description>
+      <description>Report errors Please check the contents in console (Window -&amp;gt; Console). If an error messages (red) is shown in console, there might be something wrong somewhere: Please report the errors you got in: https://github.com/dwango/UniVRM/issues More details provided in the report will be very helpful for us to look into your problem. For example: OS (Windows10 64bit, etc.) Unity version (Unity-5.6.3p1, etc.) UniVRM version (0.40, etc.) VRMSpringBone set before was gone</description>
     </item>
     
     <item>
@@ -93,8 +93,8 @@ VRM coordinate system Since VRM is an extension of GLTF, it conforms to the coor
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_lookat/</guid>
-      <description>VRMLookAtHead         VRMLookAtHead    This component calculates the direction of the target viewed from the model&amp;rsquo;s head.
-Target The object of interest. Please set the object where the eyes want to be pointed. If a camera is set as Target, the model will look at the camera within the range of the movement of eye.
+      <description>VRMLookAtHead         VRMLookAtHead    This component calculates direction from model&amp;rsquo;s head to target.
+Target The eye direction is determined by where the target is. If a camera is set as Target, the model will always look at the camera.
 Eye control with bone: VRMLookAtBoneApplyer         VRMLookAtBoneApplyer    Apply the parameters of the calculated eye direction of VRMLookAtHead to EyeBone.</description>
     </item>
     
@@ -186,7 +186,7 @@ proxy.SetValue(BlendShapePreset.Blink_L, 1.0f); proxy.</description>
       
       <guid>https://dwango.github.io/en/vrm/univrm/univrm_workflow/</guid>
       <description>Workflow Prepare a 3D model that can be handled as &amp;ldquo;Humanoid&amp;rdquo; in Unity Prepare a humanoid model that can be imported into Unity such as FBX format. Navigate to model&amp;rsquo;sImport Settings -&amp;gt; Rig -&amp;gt; Animation Typeand selectHumanoidafter the model is imported.
-        SelectHumanoid    Correct bone assignment with rig configuration When the FBX file is imported, bone assignments done by auto-recognition may be different from expectations (see image below):</description>
+        SelectHumanoid    Correct bone assignment with rig configuration When the model file is imported, bone assignments done by auto-recognition may be different from expectations (see image below):</description>
     </item>
     
     <item>
@@ -233,26 +233,23 @@ Texture  image1 sampler1  Material (json.extensions.VRM.materialProperties) json
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_secondary/</guid>
-      <description>Swaying object setting.
+      <description>Object swaying setting.
 The node attached by components with spring bone When VRM is imported, components related to swaying object are attached as follows:
  VRMSpringBone is attached to the nodesecondary. VRMSpringBoneColliderGroup is restored to the node attached during the export.          Please check the nodesecondaryif you cannot find VRMSpringBone    VRMSpringBone The setting for making objects swaying such as tail, hair, clothes and so on.</description>
     </item>
     
     <item>
-      <title>What applications that support VRM file?</title>
+      <title>What applications that support VRM?</title>
       <link>https://dwango.github.io/en/vrm/vrm_applications/</link>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/vrm_applications/</guid>
-      <description>VRM supported applications  Niconi 3D
- 3D model data posting service. It is available for users to post and download VRM files.  Virtual Cast
- A VR live communication service that allows users to communicate in a shared VR space in real-time. The model data can be adopted and read as VRM format.  cluster
- Hitogata
- 3tene
- SEIYA
- VDRAW
- Wakaru
- VPocket</description>
+      <description>3D model submission platform  Niconi 3D
+ The website to which users can submit their 3D model data. Available for VRM file submission and download    Character maker  Vkatsu
+ VRoid
+  Live streaming tool  Virtual Cast
+ A VR live communication application that allows users to communicate in a shared virtual space in real-time. VRM model is importable  VDRAW
+ Hitogata</description>
     </item>
     
     <item>

@@ -6,10 +6,19 @@
     <description>Recent content in Articles on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Wed, 15 Aug 2018 12:28:34 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 14 Sep 2018 12:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Webフロントエンド パフォーマンス改善ハンドブックを公開しました</title>
+      <link>https://dwango.github.io/articles/web-frontend-performance-handbook/</link>
+      <pubDate>Fri, 14 Sep 2018 12:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/web-frontend-performance-handbook/</guid>
+      <description>パフォーマンス改善ハンドブック ウェブページにおけるパフォーマンスに関する問題の見つけ方や考え方の事例をまとめた Webフロントエンド パフォーマ</description>
+    </item>
     
     <item>
       <title>niconicoの開発者向け情報の公開</title>
