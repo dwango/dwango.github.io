@@ -83,25 +83,25 @@
     <article id="content">
         <div class="toc"> <nav id="TableOfContents">
 <ul>
-<li><a href="#what-kind-of-information-can-be-stored-in-gltf">What kind of information can be stored in glTF?</a></li>
-<li><a href="#outline-of-gltf-format">Outline of glTF format</a></li>
+<li><a href="#what-kind-of-information-can-be-recorded-by-gltf">What kind of information can be recorded by glTF?</a></li>
+<li><a href="#gltf-format-outline">glTF format outline</a></li>
 <li><a href="#glb-format">glb format</a>
 <ul>
-<li><a href="#parsing-example-with-python3">Parsing example with python3</a></li>
+<li><a href="#example-of-parsing-with-python3">Example of parsing with python3</a></li>
 </ul></li>
-<li><a href="#extended-information-by-vrm">Extended information by VRM</a></li>
+<li><a href="#vrm-extension">VRM extension</a></li>
 </ul>
 </nav>
         </div>
        
 
-<p>glTF is a 3D format created by Khronos Group, which is developing openGL specifications. glTF 2.0 was released in 2017. VRM format is based on glTF 2.0.</p>
+<p>glTF is a 3D format created by Khronos Group, which is developing openGL specifications. glTF 2.0 was released in 2017. VRM is based on glTF 2.0.</p>
 
 <ul>
 <li><a href="https://github.com/KhronosGroup/glTF">https://github.com/KhronosGroup/glTF</a></li>
 </ul>
 
-<h1 id="what-kind-of-information-can-be-stored-in-gltf">What kind of information can be stored in glTF?</h1>
+<h1 id="what-kind-of-information-can-be-recorded-by-gltf">What kind of information can be recorded by glTF?</h1>
 
 <ul>
 <li>Mesh (Vertex array、index array)
@@ -118,7 +118,7 @@
 <li>Light source<sup class="footnote-ref" id="fnref:vrm-not-supported"><a href="#fn:vrm-not-supported">1</a></sup></li>
 </ul>
 
-<p>The whole 3D scene can be stored.</p>
+<p>An entire 3D scene can be recorded.</p>
 
 <ul>
 <li>OpenGL right-handed, Y-UP coordinate system</li>
@@ -126,15 +126,14 @@
 <li>Little endian</li>
 </ul>
 
-<h1 id="outline-of-gltf-format">Outline of glTF format</h1>
+<h1 id="gltf-format-outline">glTF format outline</h1>
 
-<p>The glTF file consists of the JSON description part and the binary part that stores image and vertex arrays. For glTF format, external binary data can be accessed by referring to Url or path. The JSON part and the binary part are summarized as one file, and the binary data is accessed by the offset of the binary sequence. It is easier using glb format<sup class="footnote-ref" id="fnref:VRM-glb"><a href="#fn:VRM-glb">2</a></sup> to handle a program without directly accessing external files.</p>
+<p>glTF format comprises two parts: a JSON scene description part and a binary part that records images and vertex arrays. External binary data can be accessed by referencing Url or path. For glb format, it combines a JSON part and a binary part into one file. The binary data can be accessed via the offset into the buffer (byteOffset). To handle a program, using glb format which has no access to external files is easier<sup class="footnote-ref" id="fnref:VRM-glb"><a href="#fn:VRM-glb">2</a></sup>.</p>
 
 <h1 id="glb-format">glb format</h1>
 
-<p>glb structure is <code>Header part + Chunk parts</code>.
-More specifically,
-glb is structured as <code>Header part + JSON CHUNk + BINARY CHUNK</code>.</p>
+<p>A structure that has<code>Header part + Chunk parts</code>.
+More specifically, it is<code>Header part + JSON CHUNk + BINARY CHUNK</code>.</p>
 
 <p>Header part</p>
 
@@ -202,13 +201,13 @@ glb is structured as <code>Header part + JSON CHUNk + BINARY CHUNK</code>.</p>
 <tr>
 <td align="left">chunk size</td>
 <td align="left">chunk body</td>
-<td align="left">byte sequence</td>
+<td align="left">bytes</td>
 <td align="left"></td>
 </tr>
 </tbody>
 </table>
 
-<h2 id="parsing-example-with-python3">Parsing example with python3</h2>
+<h2 id="example-of-parsing-with-python3">Example of parsing with python3</h2>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> struct
 <span style="color:#f92672">import</span> json
@@ -274,19 +273,19 @@ glb is structured as <code>Header part + JSON CHUNk + BINARY CHUNK</code>.</p>
 <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;AliciaSolid.vrm&#39;</span>, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> f:
     parsed, body <span style="color:#f92672">=</span> parse_glb(f<span style="color:#f92672">.</span>read())</code></pre></div>
 
-<h1 id="extended-information-by-vrm">Extended information by VRM</h1>
+<h1 id="vrm-extension">VRM extension</h1>
 
-<p>Extended information is stored in JSON <code>json['extensions']['VRM']</code>.</p>
+<p>Information of VRM extension is stored in<code>json['extensions']['VRM']</code>.</p>
 
 <ul>
-<li><a href="../vrm_spec/">VRM specification</a></li>
+<li><a href="../vrm_spec/">VRM specifications</a></li>
 </ul>
 <div class="footnotes">
 
 <hr />
 
 <ol>
-<li id="fn:vrm-not-supported">Not yet supported in current VRM version
+<li id="fn:vrm-not-supported">Not supported in VRM
  <a class="footnote-return" href="#fnref:vrm-not-supported"><sup>[return]</sup></a></li>
 <li id="fn:VRM-glb">glb is adopted in VRM.
  <a class="footnote-return" href="#fnref:VRM-glb"><sup>[return]</sup></a></li>

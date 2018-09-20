@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>実験放送の構成 - コメントサーバー編</title>
+      <link>https://dwango.github.io/niconico/jikken-housou/comment-server/</link>
+      <pubDate>Thu, 20 Sep 2018 17:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/niconico/jikken-housou/comment-server/</guid>
+      <description>本ページの内容 本ページでは、実験放送のコメントサーバの対応プロトコルについて解説します。 主に、以下のような方を対象としています。 ニコニコ生放</description>
+    </item>
+    
+    <item>
       <title>実験放送の構成 - コメント編</title>
       <link>https://dwango.github.io/niconico/jikken-housou/comment/</link>
       <pubDate>Tue, 14 Aug 2018 15:44:12 +0900</pubDate>

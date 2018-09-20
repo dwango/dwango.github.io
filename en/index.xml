@@ -50,9 +50,9 @@ json.meshes[i].primitives[j].extras.targetNames[k]  </description>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/gltf_about/</guid>
-      <description>glTF is a 3D format created by Khronos Group, which is developing openGL specifications. glTF 2.0 was released in 2017. VRM format is based on glTF 2.0.
- https://github.com/KhronosGroup/glTF  What kind of information can be stored in glTF?  Mesh (Vertex array、index array)  Morph target Skinning (4weight)  Texture Material (PBR) Scene Animation1 Camera1 Light source1  The whole 3D scene can be stored.
- OpenGL right-handed, Y-UP coordinate system Meter (unit) Little endian  Outline of glTF format The glTF file consists of the JSON description part and the binary part that stores image and vertex arrays.</description>
+      <description>glTF is a 3D format created by Khronos Group, which is developing openGL specifications. glTF 2.0 was released in 2017. VRM is based on glTF 2.0.
+ https://github.com/KhronosGroup/glTF  What kind of information can be recorded by glTF?  Mesh (Vertex array、index array)  Morph target Skinning (4weight)  Texture Material (PBR) Scene Animation1 Camera1 Light source1  An entire 3D scene can be recorded.
+ OpenGL right-handed, Y-UP coordinate system Meter (unit) Little endian  glTF format outline glTF format comprises two parts: a JSON scene description part and a binary part that records images and vertex arrays.</description>
     </item>
     
     <item>
@@ -105,10 +105,9 @@ Eye control with bone: VRMLookAtBoneApplyer         VRMLookAtBoneApplyer    Appl
       
       <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_firstperson/</guid>
       <description>VRMFirstPerson The setting related to first-person display.
-FirstPersonBone Normally head bone is assigned as FirstPersonBone. It is the bone that keeps track of the headset in first-person view.
+FirstPersonBone Normally head bone is assigned as FirstPersonBone. It is the bone that keeps track of the VR headset in first-person view.
 FirstPersonOffset Tracking position is offset from the FirstPersonBone position. We assume the default value [0, 0.06, 0] is the offset between the head and the middle of the eyes.
-Renderers The setting for controlling mesh on/off rendered in first-person view.
-For VR applications, you may see the head of the model that is not supposed to be rendered in the scene.</description>
+Renderers The setting for controlling mesh on/off rendered in first-person view.</description>
     </item>
     
     <item>
@@ -180,24 +179,24 @@ proxy.SetValue(BlendShapePreset.Blink_L, 1.0f); proxy.</description>
     </item>
     
     <item>
-      <title>The workflow of UniVRM model</title>
-      <link>https://dwango.github.io/en/vrm/univrm/univrm_workflow/</link>
-      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
-      
-      <guid>https://dwango.github.io/en/vrm/univrm/univrm_workflow/</guid>
-      <description>Workflow Prepare a 3D model that can be handled as &amp;ldquo;Humanoid&amp;rdquo; in Unity Prepare a humanoid model that can be imported into Unity such as FBX format. Navigate to model&amp;rsquo;sImport Settings -&amp;gt; Rig -&amp;gt; Animation Typeand selectHumanoidafter the model is imported.
-        SelectHumanoid    Correct bone assignment with rig configuration When the model file is imported, bone assignments done by auto-recognition may be different from expectations (see image below):</description>
-    </item>
-    
-    <item>
       <title>UniVRM installation</title>
       <link>https://dwango.github.io/en/vrm/univrm/univrm_install/</link>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/univrm_install/</guid>
       <description>Unity Version UniVRM supports Unity5.6 and later version.
-Installation Download the latest unitypackage (UniVRM-0.XX) from UniVRM/releases and import it into the current project (Assets -&amp;gt; Import Package -&amp;gt; Custom Package). The imported files will be in the folderAssets/VRM. It is recommended to delete existing VRM folder included VRM in advance before package import. The sample for reading and viewing VRM file at runtime is also provided (download UniVRM-RuntimeLoaderSample-0.XX).
+Installation Download the latest unitypackage (UniVRM-0.XX) from UniVRM/releases and import it into the current project (Assets -&amp;gt; Import Package -&amp;gt; Custom Package). The imported files will be in the folderAssets/VRM. It is recommended to delete existing VRM folder included VRM in advance before package import. The sample for loading and viewing VRM file at runtime is also provided (download UniVRM-RuntimeLoaderSample-0.XX).
         Import UniVRM package    Stop AssetPostProcessor The importer of UniVRM is implemented withAssetPostprocessor.</description>
+    </item>
+    
+    <item>
+      <title>UniVRM workflow</title>
+      <link>https://dwango.github.io/en/vrm/univrm/univrm_workflow/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/univrm/univrm_workflow/</guid>
+      <description>Workflow Prepare a 3D model that can be handled as &amp;ldquo;Humanoid&amp;rdquo; in Unity Prepare a humanoid model that can be imported into Unity such as FBX format. Navigate to model&amp;rsquo;sImport Settings -&amp;gt; Rig -&amp;gt; Animation Typeand selectHumanoidafter the model is imported.
+        SelectHumanoid    Correct bone assignment with rig configuration When the model file is imported, bone assignments done by auto-recognition may be different from expectations (see image below):</description>
     </item>
     
     <item>
@@ -216,15 +215,15 @@ VRM/UnlitTransparentZWrite Alpha blending and ZWrite are available. It is assume
     </item>
     
     <item>
-      <title>VRM specification</title>
+      <title>VRM specifications</title>
       <link>https://dwango.github.io/en/vrm/vrm_spec/</link>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/vrm_spec/</guid>
-      <description>VRM is based on binary format glb of glTF 2.0. It is a model format for VR.
-File extension .vrm is used. It is compatible with glTF binary format .glb.
-Storable data The whole humanoid model information.
-Texture  image1 sampler1  Material (json.extensions.VRM.materialProperties) json.extensions.VRM.materialProperties[0] = {}; json.extensions.VRM.materialProperties[0].name = &amp;quot;Alicia_body&amp;quot;; # Name json.extensions.VRM.materialProperties[0].shader = &amp;quot;VRM/UnlitTexture&amp;quot;; # Shader name json.extensions.VRM.materialProperties[0].renderQueue = 2000; json.extensions.VRM.materialProperties[0].floatProperties = {}; # float type variable json.extensions.VRM.materialProperties[0].keywordMap = {}; # Keyword type variable json.</description>
+      <description>VRM is based on glb format, which is a binary form of glTF 2.0. It is a model format for VR.
+File extension The file extension.vrmis used. It is compatible with.glb. If ModelFileName.vrm is changed to ModelFileName.glb, it can be loaded by GLTF-compatible applications (however, custom settings in VRM will not be shown).
+Json extension Extended asVRM Extensionin the JSON part of GLB.
+{ &amp;#34;extensionsUsed&amp;#34;: [ &amp;#34;VRM&amp;#34; ], &amp;#34;extensions&amp;#34;: [ &amp;#34;VRM&amp;#34;: { // The information of VRM extension  } ], // The information of general GLTF-2.</description>
     </item>
     
     <item>
@@ -258,8 +257,8 @@ The node attached by components with spring bone When VRM is imported, component
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/vrm_about/</guid>
-      <description>What is VRM? In the past, when handling 3D humanoid avatar (3D model) in Virtual Reality, Virtual YouTuber, etc., it was necessary to develop an unique system for applications and fine-tune 3D model data due to&amp;hellip;
- The output data is depend on how the creator make the 3D model and what modeling tool is used
+      <description>What is VRM? In the past, when trying to handle 3D humanoid avatar (3D model) in Virtual Reality, Virtual YouTuber, etc., it was necessary to develop an unique system for applications and fine-tune 3D model data due to&amp;hellip;
+ The output data is depend on how the creator makes the 3D model and what modeling tool is used
  The coordinate system is different. The scale is different. The initial pose is different.</description>
     </item>
     
