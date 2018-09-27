@@ -6,10 +6,19 @@
     <description>Recent content on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Thu, 20 Sep 2018 17:30:00 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 27 Sep 2018 17:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>『ニコニコ漫画』『読書メーター』スマートフォンアプリについて【トリスタinside出張版】</title>
+      <link>https://dwango.github.io/articles/trista-inside/</link>
+      <pubDate>Thu, 27 Sep 2018 17:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/trista-inside/</guid>
+      <description>はじめまして。トリスタアプリ開発セクションのtukiyoです。普段はAndroidアプリの開発を行っています。 このブログの読者の皆さんには、</description>
+    </item>
     
     <item>
       <title>実験放送の構成 - コメントサーバー編</title>
