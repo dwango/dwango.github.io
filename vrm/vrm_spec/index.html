@@ -179,10 +179,10 @@
 <ul>
 <li><a href="#center-json-extensions-vrm-secondaryanimation-bonegroups-0-center">center(json.extensions.VRM.secondaryAnimation.boneGroups[0].center)</a></li>
 <li><a href="#dragforce-json-extensions-vrm-secondaryanimation-bonegroups-0-dragforce">dragForce(json.extensions.VRM.secondaryAnimation.boneGroups[0].dragForce)</a></li>
-<li><a href="#garvitydir-json-extensions-vrm-secondaryanimation-bonegroups-0-gravitydir">garvityDir(json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityDir)</a></li>
+<li><a href="#gravitydir-json-extensions-vrm-secondaryanimation-bonegroups-0-gravitydir">gravityDir(json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityDir)</a></li>
 <li><a href="#gravitypower-json-extensions-vrm-secondaryanimation-bonegroups-0-gravitypower">gravityPower(json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityPower)</a></li>
 <li><a href="#hitradius-json-extensions-vrm-secondaryanimation-bonegroups-0-hitradius">hitRadius(json.extensions.VRM.secondaryAnimation.boneGroups[0].hitRadius)</a></li>
-<li><a href="#stiffiness-json-extensions-vrm-secondaryanimation-bonegroups-0-stiffiness">stiffiness(json.extensions.VRM.secondaryAnimation.boneGroups[0].stiffiness)</a></li>
+<li><a href="#stiffness-json-extensions-vrm-secondaryanimation-bonegroups-0-stiffiness">stiffness(json.extensions.VRM.secondaryAnimation.boneGroups[0].stiffiness)</a></li>
 </ul></li>
 </ul></li>
 <li><a href="#揺れモノ当たり判定設定-json-extensions-vrm-secondaryanimation-collidergroups">揺れモノ当たり判定設定(json.extensions.VRM.secondaryAnimation.colliderGroups)</a>
@@ -838,15 +838,15 @@ function GetID(preset, name)
     <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;object&#34;</span>,
     <span style="color:#e6db74">&#34;properties&#34;</span><span style="color:#f92672">:</span> {
         <span style="color:#e6db74">&#34;firstPersonBone&#34;</span><span style="color:#f92672">:</span> {
-            <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Switch to Head bone when model is rendered in first-person view.&#34;</span>,
+            <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Specify a bone whose rendering mode should be switched in first-person view. Usually Head is specified.&#34;</span>,
             <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;integer&#34;</span>
         },
         <span style="color:#e6db74">&#34;firstPersonBoneOffset&#34;</span><span style="color:#f92672">:</span> {
-            <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;The target headset position in first-person view. Assuming the head bone is offset from the headset.&#34;</span>,
+            <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;The target position of the VR headset in first-person view. It is assumed that an offset from the head bone to the VR headset is added.&#34;</span>,
             <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;array&#34;</span>
         },
         <span style="color:#e6db74">&#34;meshAnnotations&#34;</span><span style="color:#f92672">:</span> {
-            <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Switch on \/ off mesh for display in first-person view, third-person view, or the others.&#34;</span>,
+            <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Switch display / undisplay for each mesh in first-person view or the others.&#34;</span>,
             <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;array&#34;</span>,
             <span style="color:#e6db74">&#34;items&#34;</span><span style="color:#f92672">:</span> {
                 <span style="color:#e6db74">&#34;$ref&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;vrm.firstperson.meshannotation.schema.json&#34;</span>
@@ -970,7 +970,7 @@ json.extensions.VRM.firstPerson.lookAtVerticalUp = {};
             <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;number&#34;</span>
         },
         <span style="color:#e6db74">&#34;gravityDir&#34;</span><span style="color:#f92672">:</span> {
-            <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;The direction of gravity. Gravity can be enabled by (0, -1, 0) and setting (1, 0, 0) will act like wind.&#34;</span>,
+            <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;The direction of gravity. Set (0, -1, 0) for simulating the gravity. Set (1, 0, 0) for simulating the wind.&#34;</span>,
             <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;array&#34;</span>
         },
         <span style="color:#e6db74">&#34;dragForce&#34;</span><span style="color:#f92672">:</span> {
@@ -978,11 +978,11 @@ json.extensions.VRM.firstPerson.lookAtVerticalUp = {};
             <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;number&#34;</span>
         },
         <span style="color:#e6db74">&#34;center&#34;</span><span style="color:#f92672">:</span> {
-            <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;The reference point of a swaying object can be set at any location except the origin. When implementing UI moving with warp, the parent node to be moved with warp can be specified if you don’t want to make the object moving by warp movement.&#34;</span>,
+            <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;The reference point of a swaying object can be set at any location except the origin. When implementing UI moving with warp, the parent node to move with warp can be specified if you don&#39;t want to make the object swaying with warp movement.&#34;</span>,
             <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;integer&#34;</span>
         },
         <span style="color:#e6db74">&#34;hitRadius&#34;</span><span style="color:#f92672">:</span> {
-            <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;The radius of the sphere (swaying object) used for collision detection with colliders (specified body parts).&#34;</span>,
+            <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;The radius of the sphere used for the collision detection with colliders.&#34;</span>,
             <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;number&#34;</span>
         },
         <span style="color:#e6db74">&#34;bones&#34;</span><span style="color:#f92672">:</span> {
@@ -993,7 +993,7 @@ json.extensions.VRM.firstPerson.lookAtVerticalUp = {};
             }
         },
         <span style="color:#e6db74">&#34;colliderGroups&#34;</span><span style="color:#f92672">:</span> {
-            <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Specify the index of the collision detection group for the swaying object.&#34;</span>,
+            <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Specify the index of the collider group for collisions with swaying objects.&#34;</span>,
             <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;array&#34;</span>,
             <span style="color:#e6db74">&#34;items&#34;</span><span style="color:#f92672">:</span> {
                 <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;integer&#34;</span>
@@ -1022,7 +1022,7 @@ json.extensions.VRM.firstPerson.lookAtVerticalUp = {};
 
 <p>自動アニメーションの抵抗(減速)です。</p>
 
-<h5 id="garvitydir-json-extensions-vrm-secondaryanimation-bonegroups-0-gravitydir">garvityDir(json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityDir)</h5>
+<h5 id="gravitydir-json-extensions-vrm-secondaryanimation-bonegroups-0-gravitydir">gravityDir(json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityDir)</h5>
 
 <p>重力の方向です。(0, -1, 0)にすると重力に、(1, 0, 0)にすると風のように作用します。</p>
 
@@ -1034,7 +1034,7 @@ json.extensions.VRM.firstPerson.lookAtVerticalUp = {};
 
 <p>Colliderとの当たり判定の半径です</p>
 
-<h5 id="stiffiness-json-extensions-vrm-secondaryanimation-bonegroups-0-stiffiness">stiffiness(json.extensions.VRM.secondaryAnimation.boneGroups[0].stiffiness)</h5>
+<h5 id="stiffness-json-extensions-vrm-secondaryanimation-bonegroups-0-stiffiness">stiffness(json.extensions.VRM.secondaryAnimation.boneGroups[0].stiffiness)</h5>
 
 <p>揺れモノの復元力(初期姿勢に戻る力)です</p>
 
@@ -1047,7 +1047,7 @@ json.extensions.VRM.firstPerson.lookAtVerticalUp = {};
     <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;object&#34;</span>,
     <span style="color:#e6db74">&#34;properties&#34;</span><span style="color:#f92672">:</span> {
         <span style="color:#e6db74">&#34;node&#34;</span><span style="color:#f92672">:</span> {
-            <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Where the collision detection is set up.&#34;</span>,
+            <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;The node of the collider group for setting up collision detections.&#34;</span>,
             <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;integer&#34;</span>
         },
         <span style="color:#e6db74">&#34;colliders&#34;</span><span style="color:#f92672">:</span> {
@@ -1056,11 +1056,11 @@ json.extensions.VRM.firstPerson.lookAtVerticalUp = {};
                 <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;object&#34;</span>,
                 <span style="color:#e6db74">&#34;properties&#34;</span><span style="color:#f92672">:</span> {
                     <span style="color:#e6db74">&#34;offset&#34;</span><span style="color:#f92672">:</span> {
-                        <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;The local coordinate from the collision detection node.&#34;</span>,
+                        <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;The local coordinate from the node of the collider group.&#34;</span>,
                         <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;array&#34;</span>
                     },
                     <span style="color:#e6db74">&#34;radius&#34;</span><span style="color:#f92672">:</span> {
-                        <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;The radius of the sphere (specified body part) used for collision detection with swaying objects.&#34;</span>,
+                        <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;The radius of the collider.&#34;</span>,
                         <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;number&#34;</span>
                     }
                 }

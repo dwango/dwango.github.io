@@ -8,13 +8,13 @@
   <meta http-equiv="Expires" content="0">
   <meta name="generator" content="Hugo 0.49" />
 
-  <meta property="og:title" content="BlendShape setting - dwango on GitHub">
+  <meta property="og:title" content="BlendShape Setting - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>BlendShape setting - dwango on GitHub</title>
+  <title>BlendShape Setting - dwango on GitHub</title>
 
   
   <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
@@ -72,10 +72,10 @@
 
     
 <div class="post">
-  <h1>BlendShape setting</h1>
+  <h1>BlendShape Setting</h1>
   <span class="post-date"> Mon, Apr 16, 2018 </span>
   <div class="share">
-    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="BlendShape setting - dwango on GitHub" data-url="https://dwango.github.io/en/vrm/univrm/components/univrm_blendshape/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="BlendShape Setting - dwango on GitHub" data-url="https://dwango.github.io/en/vrm/univrm/components/univrm_blendshape/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/en/vrm/univrm/components/univrm_blendshape/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2fen%2fvrm%2funivrm%2fcomponents%2funivrm_blendshape%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
   </div>
@@ -98,8 +98,8 @@
 <li><a href="#unknown">Unknown</a></li>
 </ul></li>
 <li><a href="#change-the-value-of-blendshapeproxy-at-runtime">Change the value of BlendShapeProxy (at runtime)</a></li>
-<li><a href="#option-add-additional-facial-expressions">[Option]Add additional facial expressions</a></li>
-<li><a href="#option-morph-material-color">[Option]Morph material color</a></li>
+<li><a href="#option-add-additional-facial-expressions">[Option] Add additional facial expressions</a></li>
+<li><a href="#option-morph-material-color">[Option] Morph material color</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -118,7 +118,7 @@
 
 <tbody>
 <tr>
-<td>Inspector of VRMBlendShapeProxy at runtime. It is enabled in play mode</td>
+<td>Figure above is VRMBlendShapeProxy in the Inspector window at runtime. VRMBlendShapeProxy can be enabled by clicking the play button in edit mode</td>
 </tr>
 </tbody>
 </table>
@@ -126,13 +126,13 @@
 <p>How to use it:</p>
 
 <ul>
-<li>Set BlendShapeAvatar <code>VRMBlendShapeProxy-&gt;BlendShapeAvatar</code> in inspector</li>
+<li>Set BlendShapeAvatar <code>VRMBlendShapeProxy-&gt;BlendShapeAvatar</code> in the Inspector</li>
 <li>Change BlendShapeClip value between 0 and 1 at runtime (e.g. BLINK, JOY)</li>
 </ul>
 
 <h2 id="blendshapeavatar">BlendShapeAvatar</h2>
 
-<p>Create facial expression settings in inspector (Assets).</p>
+<p>Expressions can be created in the Inspector.</p>
 
 <table>
 <thead>
@@ -161,7 +161,7 @@
 
 <tbody>
 <tr>
-<td>Directly click BlendShape here (the highlighted file)</td>
+<td>Click BlendShape directly here (the highlighted file)</td>
 </tr>
 </tbody>
 </table>
@@ -176,12 +176,13 @@
 
 <tbody>
 <tr>
-<td>Inspector of BlendShapeEditor</td>
+<td>The Inspector of BlendShape editor</td>
 </tr>
 </tbody>
 </table>
 
-<p>Create the facial expression you want by selecting expression names and adjust their values. For example, we select<code>Fun</code>(and click<code>face</code>below<code>BlendShapeValues</code>) as shown in the following:</p>
+<p>Select expressions and customize the values.
+For example, we select<code>Fun</code>and edit its expressions as shown in the following:</p>
 
 <table>
 <thead>
@@ -193,14 +194,14 @@
 
 <tbody>
 <tr>
-<td>Set the values mouth_smile, eye_smile and eyeblow_smile to 100</td>
+<td>Example: Set<code>mouth_smile</code>,<code>eye_smile</code>and<code>eyeblow_smile</code>to 100</td>
 </tr>
 </tbody>
 </table>
 
-<p>The individual BlendShape such as eyebrow, eye and mouth can be grouped into one facial expression like an image. You can specify the name and preset for that grouped BlendShape.</p>
+<p>The individual BlendShape such as eyebrow, eye and mouth can be merged into one expression like the image above. Created BlendShape names can be specified.</p>
 
-<p>After slider value is changed and BlendShape is created, please click<code>Apply</code>button for saving the current values.</p>
+<p>After changing slider value and creating BlendShape, click Apply button for saving the current status.</p>
 
 <h2 id="blendshape-preset">BlendShape preset</h2>
 
@@ -219,7 +220,7 @@
 </tbody>
 </table>
 
-<p>The followings are predefined expression names corresponding to BlendShapeClip available in UniVRM:</p>
+<p>The predefined names for the BlendShape clips. The following predefined expressions are available:</p>
 
 <h3 id="neutral">NEUTRAL</h3>
 
@@ -227,7 +228,7 @@
 
 <h3 id="a-i-u-e-o">A, I, U, E, O</h3>
 
-<p>Corresponds to the sound of lip-sync <code>あ・い・う・え・お</code>.</p>
+<p>Corresponds to the sound of lip-sync<code>aa・ih・ou・E・oh</code>.</p>
 
 <h3 id="blink">Blink</h3>
 
@@ -235,7 +236,7 @@
 
 <h3 id="blink-l-blink-r">Blink_L, Blink_R</h3>
 
-<p>Blink with only one eye.</p>
+<p>Blinks with only one eye.</p>
 
 <h3 id="joy-angry-sorrow-fun">Joy, Angry, Sorrow, Fun</h3>
 
@@ -243,11 +244,11 @@
 
 <h3 id="lookup-lookdown-lookleft-lookright">LookUp, LookDown, LookLeft, LookRight</h3>
 
-<p>Used when perspective view is controlled by morph.</p>
+<p>Used when the model&rsquo;s eyes are controlled by BlendShape.</p>
 
 <h3 id="unknown">Unknown</h3>
 
-<p>Specify created non-predefined expressions as &ldquo;Unknown&rdquo;.</p>
+<p>New created expressions are specified as &ldquo;Unknown&rdquo;.</p>
 
 <h2 id="change-the-value-of-blendshapeproxy-at-runtime">Change the value of BlendShapeProxy (at runtime)</h2>
 
@@ -261,14 +262,14 @@
 
 <tbody>
 <tr>
-<td>Use<code>Preset</code></td>
+<td><code>Preset</code>is used</td>
 </tr>
 </tbody>
 </table>
 
-<p>You can operate it from inspector.</p>
+<p>You can operate expressions from the Inspector.</p>
 
-<h2 id="option-add-additional-facial-expressions">[Option]Add additional facial expressions</h2>
+<h2 id="option-add-additional-facial-expressions">[Option] Add additional facial expressions</h2>
 
 <table>
 <thead>
@@ -285,7 +286,7 @@
 </tbody>
 </table>
 
-<p>Create and save the new BlendShapeClip. Please select the empty button at the back and input a name. Also, please set facial expression values for this BlendShape clip.</p>
+<p>Enter a name for the new BlendShapeClip file (BlendShapeClipName.asset) and save it. Then, select the new generated button in the BlendShapeClip list (the last button) and enter a name. Also, please set facial expression values for new BlendShape clips.</p>
 
 <table>
 <thead>
@@ -297,20 +298,20 @@
 
 <tbody>
 <tr>
-<td>Click the new created button &ldquo;びっくり&rdquo; (surprised)</td>
+<td>Click the new expression &ldquo;びっくり&rdquo; (surprised)</td>
 </tr>
 </tbody>
 </table>
 
 <p>You can call it from the codes shown as follows:</p>
 
-<pre><code class="language-cs">// Call with string since it belongs to unknown category
-proxy.SetValue(&quot;びっくり&quot;, 1.0f); // Assign the value between the range 0~1
+<pre><code class="language-cs">// Call this expression with string since it belongs to unknown category
+proxy.SetValue(&quot;びっくり&quot;, 1.0f); // Assign a value between the range 0~1
 </code></pre>
 
 <p>After the setting is done, don&rsquo;t forget to export VRM file for being able to use the created expressions at runtime.</p>
 
-<h2 id="option-morph-material-color">[Option]Morph material color</h2>
+<h2 id="option-morph-material-color">[Option] Morph material color</h2>
 
 <table>
 <thead>

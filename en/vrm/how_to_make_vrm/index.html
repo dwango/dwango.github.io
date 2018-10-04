@@ -112,7 +112,7 @@ To make VRM file, we use <a href="https://unity3d.com/">Unity</a> and <a href="h
 <ol>
 <li>Import the 3D model data and <a href="https://github.com/dwango/UniVRM">UniVRM</a> into the current unity project. Adjust and set the size, material, etc.</li>
 <li>Export the 3D model data to VRM in Unity (normalization processing)</li>
-<li>Import the VRM file into the current unity project and customize the settings (license, swaying object, expression, eyelook, etc.)
+<li>Import the VRM file into the current unity project and customize the settings (license, spring bone, expression, eyelook, etc.)
 
 <ul>
 <li>In some cases, make sure the model is working (e.g. facial expression change) in play mode first</li>
@@ -145,7 +145,7 @@ To make VRM file, we use <a href="https://unity3d.com/">Unity</a> and <a href="h
 
 <p>Prepare a humanoid model that can be <a href="https://docs.unity3d.com/2018.2/Documentation/Manual/HOWTO-importObject.html">imported</a> into Unity such as FBX format. The bone setting is also required. Also, <strong>be sure to use your own model or the licensed model data that is processed and used as VR avatar</strong>. As we will describe later, <strong>there are items that describe license information in VRM file itself, authors need to set those items for their own VRM models</strong>.</p>
 
-<p>Navigate to model&rsquo;s<code>Import Settings -&gt; Rig -&gt; Animation Type</code>and select<code>Humanoid</code>after the model is imported.</p>
+<p>Go to model&rsquo;s<code>Import Settings -&gt; Rig -&gt; Animation Type</code>and select<code>Humanoid</code>after the model is imported.</p>
 
 <img src="https://dwango.github.io/images/vrm/fix_eye.png"   />
 
@@ -185,7 +185,7 @@ To make VRM file, we use <a href="https://unity3d.com/">Unity</a> and <a href="h
 <li>Texture（material / shader）
 
 <ul>
-<li>Navigate to<code>Import Settings -&gt; Materials -&gt; Location</code>and select<code>Use External Materials (Legacy)</code>to enable shader option. It is <strong>highly recommended</strong> to use the shaders listed below:
+<li>Go to<code>Import Settings -&gt; Materials -&gt; Location</code>and select<code>Use External Materials (Legacy)</code>to enable shader option. It is <strong>highly recommended</strong> to use the shaders listed below:
 
 <ul>
 <li>PBR
@@ -229,7 +229,7 @@ To make VRM file, we use <a href="https://unity3d.com/">Unity</a> and <a href="h
 <li>Pose Freeze
 
 <ul>
-<li>Whether removal processing of rotation / scale is performed. It is <strong>the process of normalizing model</strong> for conforming to the VRM rules. Please make sure to check the boxes at the <strong>first time of use</strong>. By passing through this process beforehand, various components can work correctly.</li>
+<li>Whether the rotation / scale removal processing should be performed. It is <strong>the process of normalizing model</strong> for conforming to the VRM rules. Please make sure to check the boxes at the <strong>first time of use</strong>. After this process is done, all the components can work correctly.</li>
 </ul></li>
 </ul>
 
@@ -252,7 +252,7 @@ To make VRM file, we use <a href="https://unity3d.com/">Unity</a> and <a href="h
 <img src="https://dwango.github.io/images/vrm/vrm_settings.png"   />
 
 
-<p>VRM model&rsquo;s information will be shown in the Inspector window once the GameObject of the model data (step 5) in<code>Hierarchy</code>is selected. In addition, the setting about <strong>object swaying is available in &ldquo;secondary&rdquo;</strong>. Please at least fill in title, author, license information. <strong>Specially, license information is crucial!</strong></p>
+<p>VRM model&rsquo;s information will be shown in the Inspector window once the GameObject of the model data (step 5) in<code>Hierarchy</code>is selected. In addition, the setting about <strong>spring bone (object swaying) is available in &ldquo;secondary&rdquo;</strong>. Please at least fill in title, author, license information. <strong>Specially, license information is crucial!</strong></p>
 
 <ul>
 <li><p>Information</p>
@@ -349,13 +349,13 @@ To make VRM file, we use <a href="https://unity3d.com/">Unity</a> and <a href="h
 </ul></li>
 </ul>
 
-<p>Besides, please set the necessary items listed below:</p>
+<p>Besides, please set up necessary items listed below:</p>
 
 <ul>
 <li><a href="../univrm/components/univrm_blendshape/">Expression and lip-sync (BlendShape)</a></li>
 <li><a href="../univrm/components/univrm_firstperson/">First-person point of view (Get rid of model&rsquo;s head for VR applications)</a></li>
 <li><a href="../univrm/components/univrm_lookat/">Movable range for eye gaze/eyeball controlled by bone or BlendShape</a></li>
-<li><a href="../univrm/components/univrm_secondary/">Object swaying (SpringBone/SpringBoneCollider)</a></li>
+<li><a href="../univrm/components/univrm_secondary/">Spring bone (SpringBone/SpringBoneCollider)</a></li>
 </ul>
 
 <h3 id="7-check-model-expressions-movements-in-play-mode-if-necessary">7. Check model expressions/movements in play mode（If necessary）</h3>

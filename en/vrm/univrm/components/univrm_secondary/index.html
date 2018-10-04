@@ -83,9 +83,9 @@
     <article id="content">
         <div class="toc"> <nav id="TableOfContents">
 <ul>
-<li><a href="#the-node-attached-by-components-with-spring-bone">The node attached by components with spring bone</a></li>
+<li><a href="#the-node-attached-by-spring-bones">The node attached by spring bones</a></li>
 <li><a href="#vrmspringbone">VRMSpringBone</a></li>
-<li><a href="#option-vrmspringbonecollidergroup-collision-detection">[Option]VRMSpringBoneColliderGroup(Collision detection)</a>
+<li><a href="#option-vrmspringbonecollidergroup-collision-detection">[Option] VRMSpringBoneColliderGroup (Collision detection)</a>
 <ul>
 <li><a href="#set-multiple-collision-detections-in-one-vrmspringbonecollidergroup">Set multiple collision detections in one VRMSpringBoneColliderGroup</a></li>
 </ul></li>
@@ -94,15 +94,15 @@
         </div>
        
 
-<p>Object swaying setting.</p>
+<p>Spring bone setting.</p>
 
-<h1 id="the-node-attached-by-components-with-spring-bone">The node attached by components with spring bone</h1>
+<h1 id="the-node-attached-by-spring-bones">The node attached by spring bones</h1>
 
-<p>When VRM is imported, components related to swaying object are attached as follows:</p>
+<p>When VRM is imported, components related to spring bones are attached as follows:</p>
 
 <ul>
 <li>VRMSpringBone is attached to the node<code>secondary</code>.</li>
-<li>VRMSpringBoneColliderGroup is restored to the node attached during the export.</li>
+<li>VRMSpringBoneColliderGroup is restored to the node previously attached during the export.</li>
 </ul>
 
 <table>
@@ -115,14 +115,14 @@
 
 <tbody>
 <tr>
-<td>Please check the node<code>secondary</code>if you cannot find VRMSpringBone</td>
+<td>Please check<code>secondary</code>in the Hierarchy window if you cannot find VRMSpringBone</td>
 </tr>
 </tbody>
 </table>
 
 <h1 id="vrmspringbone">VRMSpringBone</h1>
 
-<p>The setting for making objects swaying such as tail, hair, clothes and so on. Please set the parent GameObject of an object in<code>Root Bones</code>. Drag an object (e.g.<code>hair1_L</code>) to the box<code>Element X</code>(e.g.<code>Element 0</code>). You can change the number of elements in<code>Size</code>.</p>
+<p>The setting for making objects swaying such as tail, hair, clothes and so on. Please set the parent GameObject of an object in<code>Root Bones</code>. Drag an object (e.g.<code>hair1_L</code>) to the box<code>Element X</code>(e.g.<code>Element 0</code>). The number of elements can be changed in<code>Size</code>.</p>
 
 <table>
 <thead>
@@ -134,16 +134,16 @@
 
 <tbody>
 <tr>
-<td>Set hair and ribbon in<code>Root Bones</code></td>
+<td>Example: Set the hair and ribbon in<code>Root Bones</code></td>
 </tr>
 </tbody>
 </table>
 
-<p>That&rsquo;s it. The specified objects will perform swaying movements based on your setting.</p>
+<p>That&rsquo;s it. The specified objects will perform swaying movements.</p>
 
-<h1 id="option-vrmspringbonecollidergroup-collision-detection">[Option]VRMSpringBoneColliderGroup(Collision detection)</h1>
+<h1 id="option-vrmspringbonecollidergroup-collision-detection">[Option] VRMSpringBoneColliderGroup (Collision detection)</h1>
 
-<p>Collision detection mechanism can be added to prevent swaying objects from penetrating specific body parts.</p>
+<p>The collision detection mechanism can be added to prevent swaying objects from penetrating user-specified parts.</p>
 
 <table>
 <thead>
@@ -155,12 +155,12 @@
 
 <tbody>
 <tr>
-<td>Add collision detection mechanism on head (VRMSpringBoneColliderGroup)</td>
+<td>Add the collision detection mechanism on the head (VRMSpringBoneColliderGroup)</td>
 </tr>
 </tbody>
 </table>
 
-<p>For example, drag<code>head</code>to the box<code>Element 0</code>in<code>Collider Groups</code>. You can change offset and radius value (VRMSpringBoneColliderGroup) by double clicking<code>Element X</code>in<code>Collider Groups</code>.</p>
+<p>For example, attach VRMSpringBoneColliderGroup script to<code>head</code>and drag<code>head</code>to the box<code>Element 0</code>in<code>Collider Groups</code>. You can change its offset and radius value by double clicking the box in<code>Collider Groups</code>.</p>
 
 <table>
 <thead>
@@ -187,14 +187,14 @@
 
 <tbody>
 <tr>
-<td>Gizmo at runtime (check the box<code>Draw Gizmo</code>)</td>
+<td>Gizmo at runtime (check<code>Draw Gizmo</code>in the Inspector of VRMSpringBone)</td>
 </tr>
 </tbody>
 </table>
 
 <h2 id="set-multiple-collision-detections-in-one-vrmspringbonecollidergroup">Set multiple collision detections in one VRMSpringBoneColliderGroup</h2>
 
-<p>Though the default is only set for one collision detection (like the range of a sphere ball), you can set multiple detections (multiple balls) in the same group.</p>
+<p>Though the default is only set for one collision detection (the range of a sphere ball), users can change the setting to multiple detections (multiple balls) by changing the value of<code>Size</code>.</p>
 
     </article>
   </div>

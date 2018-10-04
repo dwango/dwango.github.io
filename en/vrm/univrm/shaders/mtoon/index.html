@@ -88,7 +88,7 @@
 <ul>
 <li><a href="#common-items">Common items</a></li>
 <li><a href="#general-material">General material</a></li>
-<li><a href="#material-not-wanting-to-be-attached-by-shadow-too-much-such-as-character-s-face">Material not wanting to be attached by shadow too much such as character&rsquo;s face</a></li>
+<li><a href="#materials-that-don-t-want-to-be-affected-too-much-by-shadows-such-as-the-character-s-face">Materials that don&rsquo;t want to be affected too much by shadows, such as the character&rsquo;s face</a></li>
 </ul></li>
 <li><a href="#setting-items">Setting items</a>
 <ul>
@@ -128,7 +128,7 @@
 
 <h1 id="about-mtoon">About MToon</h1>
 
-<p>MToon aims for making Japanese anime expression. It is achieved by mixing the two colors &ldquo;Lit Color&rdquo; and &ldquo;Shade Color&rdquo; based on Lighting parameters and light source environment.</p>
+<p>MToon aims for making Japanese anime expressions. It is achieved by mixing <code>Lit Color</code> and <code>Shade Color</code> based on Lighting parameters and light source environment.</p>
 
 <table>
 <thead>
@@ -140,7 +140,7 @@
 
 <tbody>
 <tr>
-<td>Apply MToon to Niconi &ldquo;3D chan&rdquo;</td>
+<td>Apply MToon to the 3D model<code>Alicia</code></td>
 </tr>
 </tbody>
 </table>
@@ -153,8 +153,8 @@
 <li>Select the target material and change the shader to <code>VRM/MToon</code></li>
 <li>Click the shader panel and set the same texture in <code>Basic-&gt;Color-&gt;Lit&amp;Alpha</code> and <code>Basic-&gt;Color-&gt;Shade</code></li>
 <li>Set white color in <code>Basic-&gt;Color-&gt;Lit&amp;Alpha</code> and set the preference shade color in <code>Basic-&gt;Color-&gt;Shade</code></li>
-<li>Set the preference value in <code>Shade-&gt;Toony</code>. Make the lit color and the shade color sharp:<code>1</code></li>
-<li>Set the texture in <code>Rim-&gt;Additive</code> equivalent to sphere map or Matcap</li>
+<li>Set the preference value in <code>Shade-&gt;Toony</code>. Make the lit color and shade color sharp:<code>1</code></li>
+<li>Set the texture in <code>Rim-&gt;Additive</code> (equivalent to sphere map or Matcap)</li>
 <li>If outline is necessary, select <code>WorldCoordinates</code> in <code>Outline-&gt;Width-&gt;Mode</code>. Select <code>None</code> if outline is not needed</li>
 <li>Set the value with good appearance in <code>Outline-&gt;Width-&gt;Width</code></li>
 </ul>
@@ -162,22 +162,22 @@
 <h2 id="general-material">General material</h2>
 
 <ul>
-<li><code>Shade-&gt;Shift</code> is <code>0</code></li>
-<li><code>Shadow-&gt;ReceiveRate</code> is <code>1</code></li>
+<li>Choose <code>Shade-&gt;Shift</code> and set <code>0</code></li>
+<li>Choose <code>Shadow-&gt;ReceiveRate</code> and set <code>1</code></li>
 </ul>
 
-<h2 id="material-not-wanting-to-be-attached-by-shadow-too-much-such-as-character-s-face">Material not wanting to be attached by shadow too much such as character&rsquo;s face</h2>
+<h2 id="materials-that-don-t-want-to-be-affected-too-much-by-shadows-such-as-the-character-s-face">Materials that don&rsquo;t want to be affected too much by shadows, such as the character&rsquo;s face</h2>
 
 <ul>
-<li><code>Shade-&gt;Shift</code> is a negative value</li>
-<li><code>Shadow-&gt;Receive Rate</code> is <code>0</code></li>
+<li>Choose <code>Shade-&gt;Shift</code> and set a negative value</li>
+<li>Choose <code>Shadow-&gt;Receive Rate</code> and set <code>0</code></li>
 </ul>
 
 <h1 id="setting-items">Setting items</h1>
 
 <h2 id="preparation">Preparation</h2>
 
-<p>Select the target material and change the shader to VRM-&gt;MToon.</p>
+<p>Select the target material and change the shader to VRM/MToon.</p>
 
 <table>
 <thead>
@@ -206,12 +206,12 @@
 
 <tbody>
 <tr>
-<td>The items included in Basic Inspector</td>
+<td>The items included in the Basic Inspector</td>
 </tr>
 </tbody>
 </table>
 
-<p>Set the items Lit color, Shade color and rendering method in &ldquo;Basic&rdquo;.</p>
+<p>Set the Lit color, Shade color and rendering method in &ldquo;Basic&rdquo;.</p>
 
 <h3 id="rendering-type">Rendering Type</h3>
 
@@ -227,26 +227,26 @@
 <li><p>Cutout</p>
 
 <ul>
-<li>Although it is opaque, it refers to the alpha value in <code>Basic-&gt;Color-&gt;Lit&amp;Alpha</code> and skips rendering for the places having smaller value than <code>Basic-&gt;Alpha-&gt;Cutoff</code>.</li>
+<li>Although it is opaque, it refers to the alpha value in <code>Basic-&gt;Color-&gt;Lit&amp;Alpha</code>. Therefore, it skips rendering for places having smaller value than <code>Basic-&gt;Alpha-&gt;Cutoff</code>.</li>
 </ul></li>
 
 <li><p>Transparent</p>
 
 <ul>
-<li>It is the opacity based on the alpha value in <code>Basic-&gt;Color-&gt;Lit&amp;Alpha</code>.</li>
+<li>The opacity based on the alpha value in <code>Basic-&gt;Color-&gt;Lit&amp;Alpha</code>.</li>
 <li>The downside is that outline rendering cannot be performed correctly.</li>
 </ul></li>
 </ul>
 
 <h3 id="cull-mode">Cull Mode</h3>
 
-<p>Set which side of polygon is to be rendered.</p>
+<p>Set which side of the polygon to be rendered.</p>
 
 <ul>
 <li>Back
 
 <ul>
-<li>Render the front side. Generally it is recommended to select &ldquo;Back&rdquo;.</li>
+<li>Render the front side. Generally selecting &ldquo;Back&rdquo; is recommended.</li>
 </ul></li>
 <li>Front
 
@@ -262,7 +262,7 @@
 
 <h3 id="alpha">Alpha</h3>
 
-<p>Required if selecting <code>Rendering Type-&gt;Cutout</code>.</p>
+<p>Required if choosing <code>Rendering Type-&gt;Cutout</code>.</p>
 
 <ul>
 <li>Cutoff
@@ -275,34 +275,34 @@
 <h3 id="color">Color</h3>
 
 <p>Set the rendering color.
-Multiply the texture and the color.
-Set the color hit by light ray in <code>Lit &amp; Alpha</code> and set the color not hit by light ray in <code>Shade</code>.<br />
-Also, set the alpha value in <code>Lit &amp; Alpha</code> as opacity information.</p>
+The texture and color are multiplied.
+Set the color hit by the light ray in <code>Lit &amp; Alpha</code> and set the color not hit by the light ray in <code>Shade</code>.<br />
+Also, set the opacity information for the alpha value of <code>Lit &amp; Alpha</code>.</p>
 
 <h2 id="lighting">Lighting</h2>
 
 <h3 id="shade-shift">Shade Shift</h3>
 
-<p>Adjust the threshold value of the lit color and the shade color for how the light ray hits the object.
-When the value is <code>0</code>, it is normal lighting.
+<p>Adjust the threshold value of the lit color and shade color for how the light ray hits the object.
+When the value is <code>0</code>, it is the normal lighting.
 When the value is negative, it becomes the lighting with anime-like, wide range of lit color.
-It is necessary to disable self-shadow with setting the value to <code>0</code> in <code>Shadow-&gt;ReceiveRate</code> according to the displayed warning message.</p>
+It is necessary to disable the self-shadow with setting the value to <code>0</code> in <code>Shadow-&gt;ReceiveRate</code> according to the displayed warning message.</p>
 
 <h3 id="shade-toony">Shade Toony</h3>
 
-<p>Set whether to smoothly change the lit color and the shade color around the threshold in the item <code>Shade Shift</code>.
-When the value is <code>0</code>, it becomes realistically smooth like the general Lambert model.
-When the value is <code>1</code>, it becomes animation-style lighting whose lit color and shade color change clearly with the threshold value.</p>
+<p>Set whether to smoothly change the lit color and shade color around the threshold value in <code>Shade Shift</code>.
+When the value is <code>0</code>, it becomes realistically smooth like a general Lambert model.
+When the value is <code>1</code>, it becomes animation-style lighting. The lit color and shade color change rapidly around the threshold value.</p>
 
 <h3 id="shade-lightcolor-attenuation">Shade LightColor Attenuation</h3>
 
-<p>Set the effect of the light source color.
-<code>0</code>: Affected by the light source color
-<code>1</code>: Not affected by the light source color. Only reflects the luminance of the light source color.</p>
+<p>Set the influence of the light source color.
+<code>0</code>: Affected by the light source color.
+<code>1</code>: Not affected by the light source color. It only reflects the luminance of the light source color.</p>
 
 <h3 id="shadow-receive-rate">Shadow Receive Rate</h3>
 
-<p>Set the effect of the self-shadow and the shadow.
+<p>Set the influence of the self-shadow and shadow.
 <code>0</code>: Not affected.
 <code>1</code>: Affected.</p>
 
@@ -318,7 +318,7 @@ In general it is called sphere map or Matcap.</p>
 <h3 id="normal-map">Normal Map</h3>
 
 <p>Set the normal map.
-Set the value in the box on the right hand side for the strength of normal map.</p>
+Set the strength value in the box on the right.</p>
 
 <h2 id="outline">Outline</h2>
 
@@ -346,8 +346,8 @@ Set the value in the box on the right hand side for the strength of normal map.<
 
 <h3 id="width">Width</h3>
 
-<p>Set the outline width.
-The unit is meter when <code>Width Mode-&gt;WorldCoordinates</code> is selected.</p>
+<p>Set the width of the outline.
+The unit of distance is meter when <code>Width Mode-&gt;WorldCoordinates</code> is chosen.</p>
 
 <h3 id="color-mode">Color Mode</h3>
 
@@ -355,12 +355,12 @@ The unit is meter when <code>Width Mode-&gt;WorldCoordinates</code> is selected.
 <li>FixedColor
 
 <ul>
-<li>Render with fixed color</li>
+<li>Render with the fixed color</li>
 </ul></li>
 <li>MixedLighting
 
 <ul>
-<li>Multiply lighting effects</li>
+<li>Multiply the influence of Lighting</li>
 </ul></li>
 </ul>
 
@@ -370,7 +370,7 @@ The unit is meter when <code>Width Mode-&gt;WorldCoordinates</code> is selected.
 
 <h3 id="color-lighting-mix">Color Lighting Mix</h3>
 
-<p>Set the multiplier coefficient when <code>Color Mode-&gt;MixedLighting</code> is selected.</p>
+<p>Set the multiplier coefficient when <code>Color Mode-&gt;MixedLighting</code> is chosen.</p>
 
     </article>
   </div>

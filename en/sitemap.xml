@@ -93,6 +93,21 @@
   </url>
   
   <url>
+    <loc>https://dwango.github.io/en/vrm/univrm/shaders/univrm_shaders/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://dwango.github.io/vrm/univrm/shaders/univrm_shaders/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://dwango.github.io/en/vrm/univrm/shaders/univrm_shaders/"
+                />
+  </url>
+  
+  <url>
     <loc>https://dwango.github.io/en/vrm/univrm/components/univrm_blendshape/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -254,21 +269,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://dwango.github.io/en/vrm/univrm/univrm_workflow/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://dwango.github.io/en/vrm/univrm/shaders/univrm_shaders/</loc>
-    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://dwango.github.io/vrm/univrm/shaders/univrm_shaders/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://dwango.github.io/en/vrm/univrm/shaders/univrm_shaders/"
                 />
   </url>
   

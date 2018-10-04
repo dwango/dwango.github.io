@@ -79,35 +79,50 @@ VRM coordinate system Since VRM is an extension of GLTF, it conforms to the coor
     </item>
     
     <item>
-      <title>BlendShape setting</title>
+      <title>Available shaders in UniVRM</title>
+      <link>https://dwango.github.io/en/vrm/univrm/shaders/univrm_shaders/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/univrm/shaders/univrm_shaders/</guid>
+      <description>Shader preloading setting
+PBR Standard shader Unity standard.
+Unlit type shader VRM/UnlitTexture Same as Unit/Texture.
+VRM/UnlitCutout Same as Unit/Coutout.
+VRM/UnlitTransparent Same as Unit/Transparent.
+It is assumed to be applied to particle things such as smokes, semi-transparent objects without substances (depth value) such as rosy cheeks.
+VRM/UnlitTransparentZWrite Alpha blending and ZWrite are available. It is assumed to be applied to semi-transparent objects with substances (depth value) such as semi-transparent clothes and hairs.</description>
+    </item>
+    
+    <item>
+      <title>BlendShape Setting</title>
       <link>https://dwango.github.io/en/vrm/univrm/components/univrm_blendshape/</link>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_blendshape/</guid>
-      <description>VRMBlendShapeProxy Inspector of VRMBlendShapeProxy at runtime. It is enabled in play mode How to use it: Set BlendShapeAvatar VRMBlendShapeProxy-&amp;gt;BlendShapeAvatar in inspector Change BlendShapeClip value between 0 and 1 at runtime (e.g. BLINK, JOY) BlendShapeAvatar Create facial expression settings in inspector (Assets). Double click the boxBlend Shape Avatar or Directly click BlendShape here (the highlighted file) Inspector of BlendShapeEditor Create the facial expression you want by selecting expression names and adjust</description>
+      <description>VRMBlendShapeProxy Figure above is VRMBlendShapeProxy in the Inspector window at runtime. VRMBlendShapeProxy can be enabled by clicking the play button in edit mode How to use it: Set BlendShapeAvatar VRMBlendShapeProxy-&amp;gt;BlendShapeAvatar in the Inspector Change BlendShapeClip value between 0 and 1 at runtime (e.g. BLINK, JOY) BlendShapeAvatar Expressions can be created in the Inspector. Double click the boxBlend Shape Avatar or Click BlendShape directly here (the highlighted file) The Inspector of</description>
     </item>
     
     <item>
-      <title>Eye control</title>
+      <title>Eye Control</title>
       <link>https://dwango.github.io/en/vrm/univrm/components/univrm_lookat/</link>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_lookat/</guid>
-      <description>VRMLookAtHead         VRMLookAtHead    This component calculates direction from model&amp;rsquo;s head to target.
-Target The eye direction is determined by where the target is. If a camera is set as Target, the model will always look at the camera.
-Eye control with bone: VRMLookAtBoneApplyer         VRMLookAtBoneApplyer    Apply the parameters of the calculated eye direction of VRMLookAtHead to EyeBone.</description>
+      <description>VRMLookAtHead         VRMLookAtHead    This component calculates the direction from the model&amp;rsquo;s head to the target.
+Target The target to be tracked by the model&amp;rsquo;s eyes. If a camera is set as Target, the model will always look at the camera.
+Eye control with bone: VRMLookAtBoneApplyer         VRMLookAtBoneApplyer    Apply the parameters of the calculated eye gaze direction of VRMLookAtHead to EyeBone.</description>
     </item>
     
     <item>
-      <title>First-person display</title>
+      <title>First-Person View</title>
       <link>https://dwango.github.io/en/vrm/univrm/components/univrm_firstperson/</link>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_firstperson/</guid>
-      <description>VRMFirstPerson The setting related to first-person display.
-FirstPersonBone Normally head bone is assigned as FirstPersonBone. It is the bone that keeps track of the VR headset in first-person view.
-FirstPersonOffset Tracking position is offset from the FirstPersonBone position. We assume the default value [0, 0.06, 0] is the offset between the head and the middle of the eyes.
-Renderers The setting for controlling mesh on/off rendered in first-person view.</description>
+      <description>VRMFirstPerson The setting related to first-person perspectives.
+FirstPersonBone FirstPersonBone keeps track of a VR headset in a first-person view. Normally the head bone is assigned as FirstPersonBone.
+FirstPersonOffset The offset from the tracking position to the FirstPersonBone position. We assume the default value [0, 0.06, 0] is the offset between the head and the middle of the eyes.
+Renderers The settings for controlling mesh rendering on/off in a first-person view.</description>
     </item>
     
     <item>
@@ -117,7 +132,7 @@ Renderers The setting for controlling mesh on/off rendered in first-person view.
       
       <guid>https://dwango.github.io/en/vrm/how_to_make_vrm/</guid>
       <description>Conversion from existing 3D model To make VRM file, we use Unity and UniVRM. The workflow is as follow:
- Import the 3D model data and UniVRM into the current unity project. Adjust and set the size, material, etc. Export the 3D model data to VRM in Unity (normalization processing) Import the VRM file into the current unity project and customize the settings (license, swaying object, expression, eyelook, etc.)  In some cases, make sure the model is working (e.</description>
+ Import the 3D model data and UniVRM into the current unity project. Adjust and set the size, material, etc. Export the 3D model data to VRM in Unity (normalization processing) Import the VRM file into the current unity project and customize the settings (license, spring bone, expression, eyelook, etc.)  In some cases, make sure the model is working (e.</description>
     </item>
     
     <item>
@@ -126,7 +141,7 @@ Renderers The setting for controlling mesh on/off rendered in first-person view.
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/how_to_view_vrm/</guid>
-      <description>Import VRM file into VRM Viewer We are sorry the official VRM viewer is not yet available. Please refer to other VRM viewers. Import VRM file into Unity Project Importing VRM file by this way is a little tedious but you can see the information of a VRM model: 1. Create an empty project in Unity Create a new project at the start page (New -&amp;gt; Create project). 2. Import</description>
+      <description>Import VRM file into VRM Viewer Download VRM Viewer from UniVRMTest/releases. Next, run the program and clickVRM Model. Then, select a VRM model available on your computer. You should be able to see your VRM model now. Import VRM file into Unity Project Importing VRM file by this way is a little tedious but you can see the information of a VRM model: 1. Create an empty project in Unity</description>
     </item>
     
     <item>
@@ -146,23 +161,22 @@ Open VRM from file path var path=&amp;#34;sample.vrm&amp;#34;; var go=VRM.VRMImp
       
       <guid>https://dwango.github.io/en/vrm/univrm/shaders/mtoon/</guid>
       <description>Shader preloading setting
-About MToon MToon aims for making Japanese anime expression. It is achieved by mixing the two colors &amp;ldquo;Lit Color&amp;rdquo; and &amp;ldquo;Shade Color&amp;rdquo; based on Lighting parameters and light source environment.
-        Apply MToon to Niconi &amp;ldquo;3D chan&amp;rdquo;    For users who want to have a quick setup Common items  Select the target material and change the shader to VRM/MToon Click the shader panel and set the same texture in Basic-&amp;gt;Color-&amp;gt;Lit&amp;amp;Alpha and Basic-&amp;gt;Color-&amp;gt;Shade Set white color in Basic-&amp;gt;Color-&amp;gt;Lit&amp;amp;Alpha and set the preference shade color in Basic-&amp;gt;Color-&amp;gt;Shade Set the preference value in Shade-&amp;gt;Toony.</description>
+About MToon MToon aims for making Japanese anime expressions. It is achieved by mixing Lit Color and Shade Color based on Lighting parameters and light source environment.
+        Apply MToon to the 3D modelAlicia    For users who want to have a quick setup Common items  Select the target material and change the shader to VRM/MToon Click the shader panel and set the same texture in Basic-&amp;gt;Color-&amp;gt;Lit&amp;amp;Alpha and Basic-&amp;gt;Color-&amp;gt;Shade Set white color in Basic-&amp;gt;Color-&amp;gt;Lit&amp;amp;Alpha and set the preference shade color in Basic-&amp;gt;Color-&amp;gt;Shade Set the preference value in Shade-&amp;gt;Toony.</description>
     </item>
     
     <item>
-      <title>Model information</title>
+      <title>Model Information</title>
       <link>https://dwango.github.io/en/vrm/univrm/components/univrm_meta/</link>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_meta/</guid>
-      <description>VRMMeta         VRMMeta component    Information Title Avatar model name
-Author Author name
-Contact Information Author contact information
+      <description>VRMMeta         VRMMeta component    Information Title Set the name of the VRM model
+Author Enter the author name of the VRM model
+Contact Information Enter the contact information of the author
 Reference Original / Related works of this avatar (URL), if any
-Thumbnail Register the thumbnail of the avatar model. A resolution texture about 2048x2048 is recommended.
-Version Specify the model version with character string. Any description is OK.
-License Personation / Characterization Permission A person who can perform with this avatar  Only Author Explicitly Licensed Person Everyone  Permission to perform violent acts with this avatar  Disallow Allow  Permission to perform sexual acts with this avatar  Disallow Allow  For commercial use  Disallow Allow  Other License Url If there are any conditions not mentioned above, put the URL link of the license document here.</description>
+Thumbnail Register the thumbnail of the VRM model. A texture resolution about 2048x2048 is recommended.
+Version Specify the model version with character string.</description>
     </item>
     
     <item>
@@ -184,7 +198,7 @@ proxy.SetValue(BlendShapePreset.Blink_L, 1.0f); proxy.</description>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/univrm_install/</guid>
-      <description>Unity Version UniVRM supports Unity5.6 and later version.
+      <description>Unity Version UniVRM supports Unity5.6 and later versions.
 Installation Download the latest unitypackage (UniVRM-0.XX) from UniVRM/releases and import it into the current project (Assets -&amp;gt; Import Package -&amp;gt; Custom Package). The imported files will be in the folderAssets/VRM. It is recommended to delete existing VRM folder included VRM in advance before package import. The sample for loading and viewing VRM file at runtime is also provided (download UniVRM-RuntimeLoaderSample-0.XX).
         Import UniVRM package    Stop AssetPostProcessor The importer of UniVRM is implemented withAssetPostprocessor.</description>
     </item>
@@ -195,23 +209,8 @@ Installation Download the latest unitypackage (UniVRM-0.XX) from UniVRM/releases
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/univrm_workflow/</guid>
-      <description>Workflow Prepare a 3D model that can be handled as &amp;ldquo;Humanoid&amp;rdquo; in Unity Prepare a humanoid model that can be imported into Unity such as FBX format. Navigate to model&amp;rsquo;sImport Settings -&amp;gt; Rig -&amp;gt; Animation Typeand selectHumanoidafter the model is imported.
+      <description>Workflow Prepare a 3D model that can be handled as &amp;ldquo;Humanoid&amp;rdquo; in Unity Prepare a humanoid model that can be imported into Unity such as FBX format. Go to model&amp;rsquo;sImport Settings -&amp;gt; Rig -&amp;gt; Animation Typeand selectHumanoidafter the model is imported.
         SelectHumanoid    Correct bone assignment with rig configuration When the model file is imported, bone assignments done by auto-recognition may be different from expectations (see image below):</description>
-    </item>
-    
-    <item>
-      <title>Usable shaders in UniVRM</title>
-      <link>https://dwango.github.io/en/vrm/univrm/shaders/univrm_shaders/</link>
-      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
-      
-      <guid>https://dwango.github.io/en/vrm/univrm/shaders/univrm_shaders/</guid>
-      <description>Shader preloading setting
-PBR Standard shader Unity standard.
-Unlit type shader VRM/UnlitTexture Same as Unit/Texture.
-VRM/UnlitCutout Same as Unit/Coutout.
-VRM/UnlitTransparent Same as Unit/Transparent.
-It is assumed to be applied to particle things such as smoke effect, semi-transparent objects without substances (depth value) such as rosy cheeks.
-VRM/UnlitTransparentZWrite Alpha blending and ZWrite are available. It is assumed to be applied to semi-transparent objects with substances (depth value) such as semi-transparent clothes and hair.</description>
     </item>
     
     <item>
@@ -232,9 +231,9 @@ Json extension Extended asVRM Extensionin the JSON part of GLB.
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_secondary/</guid>
-      <description>Object swaying setting.
-The node attached by components with spring bone When VRM is imported, components related to swaying object are attached as follows:
- VRMSpringBone is attached to the nodesecondary. VRMSpringBoneColliderGroup is restored to the node attached during the export.          Please check the nodesecondaryif you cannot find VRMSpringBone    VRMSpringBone The setting for making objects swaying such as tail, hair, clothes and so on.</description>
+      <description>Spring bone setting.
+The node attached by spring bones When VRM is imported, components related to spring bones are attached as follows:
+ VRMSpringBone is attached to the nodesecondary. VRMSpringBoneColliderGroup is restored to the node previously attached during the export.          Please checksecondaryin the Hierarchy window if you cannot find VRMSpringBone    VRMSpringBone The setting for making objects swaying such as tail, hair, clothes and so on.</description>
     </item>
     
     <item>
