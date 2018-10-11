@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>UniVRM-0.44のマテリアル</title>
+      <link>https://dwango.github.io/vrm/univrm/shaders/univrm_shaders_044/</link>
+      <pubDate>Fri, 05 Oct 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/vrm/univrm/shaders/univrm_shaders_044/</guid>
+      <description>UniVRM-0.44でマテリアル関連の修正と追加があります。 UniGLTF/UniUnlitシェーダーの導入 UniVRM-0.43は以下の</description>
+    </item>
+    
+    <item>
       <title>VRMFirstPersonの使い方</title>
       <link>https://dwango.github.io/vrm/univrm/api/univrm_use_firstperson/</link>
       <pubDate>Tue, 29 May 2018 10:00:00 +0900</pubDate>
@@ -71,7 +80,7 @@
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/vrm/univrm/shaders/univrm_shaders/</guid>
-      <description>Shader preloadingの設定 PBR Standardシェーダー Unity標準です。 Unlit系シェーダー VRM/UnlitTexture UnityのUnit/Textureと同</description>
+      <description>UniVRM-0.44のマテリアル PBR Standardシェーダー Unity標準です。 Unlit系シェーダー VRM/UnlitTexture UnityのUnit/Textur</description>
     </item>
     
     <item>

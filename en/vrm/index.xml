@@ -12,6 +12,18 @@
     
     
     <item>
+      <title>UniVRM-0.44 Material</title>
+      <link>https://dwango.github.io/en/vrm/univrm/shaders/univrm_shaders_044/</link>
+      <pubDate>Fri, 05 Oct 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/univrm/shaders/univrm_shaders_044/</guid>
+      <description>Material-related fixes and additions in UniVRM-0.44.
+Introduction of UniGLTF / UniUnlit shader UniVRM-0.43 was capable of importing / exporting the following Unlit shaders:
+ Unlit/Color Unlit/Texture, VRM/UnlitTexture Unlit/Transparent, VRM/UnlitTransparent Unlit/Transparent Coutout, VRM/UnlitCutout VRM/UnlitTransparentZWrite(not compatible with GLTF)  The following materials that are set with GLTF were not functional:
+ doubleSided the multiplication of color and texture transparent with color vertex color  Hence, we introduced the GLTF-compatible Unlit shader UniGLTF / UnLit:</description>
+    </item>
+    
+    <item>
       <title>How to use VRMFirstPerson</title>
       <link>https://dwango.github.io/en/vrm/univrm/api/univrm_use_firstperson/</link>
       <pubDate>Tue, 29 May 2018 10:00:00 +0900</pubDate>
@@ -84,7 +96,7 @@ VRM coordinate system Since VRM is an extension of GLTF, it conforms to the coor
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/shaders/univrm_shaders/</guid>
-      <description>Shader preloading setting
+      <description>UniVRM-0.44 material
 PBR Standard shader Unity standard.
 Unlit type shader VRM/UnlitTexture Same as Unit/Texture.
 VRM/UnlitCutout Same as Unit/Coutout.
@@ -99,7 +111,7 @@ VRM/UnlitTransparentZWrite Alpha blending and ZWrite are available. It is assume
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_blendshape/</guid>
-      <description>VRMBlendShapeProxy Figure above is VRMBlendShapeProxy in the Inspector window at runtime. VRMBlendShapeProxy can be enabled by clicking the play button in edit mode How to use it: Set BlendShapeAvatar VRMBlendShapeProxy-&amp;gt;BlendShapeAvatar in the Inspector Change BlendShapeClip value between 0 and 1 at runtime (e.g. BLINK, JOY) BlendShapeAvatar Expressions can be created in the Inspector. Double click the boxBlend Shape Avatar or Click BlendShape directly here (the highlighted file) The Inspector of</description>
+      <description>VRMBlendShapeProxy The figure above is VRMBlendShapeProxy in the Inspector window at runtime. VRMBlendShapeProxy can be enabled by clicking the play button in edit mode How to use it: Set BlendShapeAvatar VRMBlendShapeProxy-&amp;gt;BlendShapeAvatar in the Inspector Change BlendShapeClip value between 0 and 1 at runtime (e.g. BLINK, JOY) BlendShapeAvatar Expressions can be created in the Inspector. Double click theBlend Shape Avatarbox or Click BlendShape directly here (the highlighted file) The Inspector of</description>
     </item>
     
     <item>
@@ -132,7 +144,7 @@ Renderers The settings for controlling mesh rendering on/off in a first-person v
       
       <guid>https://dwango.github.io/en/vrm/how_to_make_vrm/</guid>
       <description>Conversion from existing 3D model To make VRM file, we use Unity and UniVRM. The workflow is as follow:
- Import the 3D model data and UniVRM into the current unity project. Adjust and set the size, material, etc. Export the 3D model data to VRM in Unity (normalization processing) Import the VRM file into the current unity project and customize the settings (license, spring bone, expression, eyelook, etc.)  In some cases, make sure the model is working (e.</description>
+ Import the 3D model data and UniVRM into the current unity project. Adjust and set the size, material, etc. Export the 3D model data as VRM in Unity (normalization processing) Import the VRM file into the current unity project and customize the settings (license, spring bone, expression, eyelook, etc.)  In some cases, make sure the model is working (e.</description>
     </item>
     
     <item>
@@ -141,7 +153,7 @@ Renderers The settings for controlling mesh rendering on/off in a first-person v
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/how_to_view_vrm/</guid>
-      <description>Import VRM file into VRM Viewer Download VRM Viewer from UniVRMTest/releases. Next, run the program and clickVRM Model. Then, select a VRM model available on your computer. You should be able to see your VRM model now. Import VRM file into Unity Project Importing VRM file by this way is a little tedious but you can see the information of a VRM model: 1. Create an empty project in Unity</description>
+      <description>Import VRM file into VRM Viewer Download VRM Viewer from UniVRMTest/releases. Next, run the program and clickVRM Model. Then, select a VRM model available on your computer. The VRM model can be shown in the scene. Import VRM file into Unity Project Importing VRM file by this way is a little tedious but you can see the information of a VRM model: 1. Create an empty project in Unity Create</description>
     </item>
     
     <item>
@@ -209,7 +221,7 @@ Installation Download the latest unitypackage (UniVRM-0.XX) from UniVRM/releases
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/univrm_workflow/</guid>
-      <description>Workflow Prepare a 3D model that can be handled as &amp;ldquo;Humanoid&amp;rdquo; in Unity Prepare a humanoid model that can be imported into Unity such as FBX format. Go to model&amp;rsquo;sImport Settings -&amp;gt; Rig -&amp;gt; Animation Typeand selectHumanoidafter the model is imported.
+      <description>Workflow Prepare a 3D model that can be handled as &amp;ldquo;Humanoid&amp;rdquo; in Unity Prepare a humanoid model that can be imported into Unity such as FBX format. Go to the model&amp;rsquo;sImport Settings -&amp;gt; Rig -&amp;gt; Animation Typeand selectHumanoidafter the model is imported.
         SelectHumanoid    Correct bone assignment with rig configuration When the model file is imported, bone assignments done by auto-recognition may be different from expectations (see image below):</description>
     </item>
     

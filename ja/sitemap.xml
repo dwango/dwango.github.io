@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://dwango.github.io/vrm/univrm/shaders/univrm_shaders_044/</loc>
+    <lastmod>2018-10-05T16:30:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://dwango.github.io/en/vrm/univrm/shaders/univrm_shaders_044/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://dwango.github.io/vrm/univrm/shaders/univrm_shaders_044/"
+                />
+  </url>
+  
+  <url>
     <loc>https://dwango.github.io/articles/trista-inside/</loc>
     <lastmod>2018-09-27T17:00:00+09:00</lastmod>
   </url>
@@ -505,7 +520,7 @@
   
   <url>
     <loc>https://dwango.github.io/</loc>
-    <lastmod>2018-09-27T17:00:00+09:00</lastmod>
+    <lastmod>2018-10-05T16:30:00+09:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
