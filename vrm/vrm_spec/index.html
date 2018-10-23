@@ -96,7 +96,7 @@
 <li><a href="#gltf-2-0-mesh">GLTF-2.0: Mesh</a>
 <ul>
 <li><a href="#頂点属性">頂点属性</a></li>
-<li><a href="#モーフ情報">モーフ情報</a></li>
+<li><a href="#モーフターゲット情報">モーフターゲット情報</a></li>
 </ul></li>
 <li><a href="#gltf-2-0-スキニング情報">GLTF-2.0: スキニング情報</a></li>
 <li><a href="#gltf-2-0-node">GLTF-2.0: Node</a></li>
@@ -212,14 +212,14 @@ gltfのバイナリ形式<code>.glb</code>と互換性があるので、拡張�
 <p>GLBのJSON部に<code>VRM Extension</code>として拡張しています。</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
-  <span style="color:#e6db74">&#34;extensionsUsed&#34;</span><span style="color:#f92672">:</span> [
+  <span style="color:#e6db74">&#34;extensionsUsed&#34;</span><span style="color:#f92672">:</span> {
     <span style="color:#e6db74">&#34;VRM&#34;</span>
-  ],
-  <span style="color:#e6db74">&#34;extensions&#34;</span><span style="color:#f92672">:</span> [
+  },
+  <span style="color:#e6db74">&#34;extensions&#34;</span><span style="color:#f92672">:</span> {
     <span style="color:#e6db74">&#34;VRM&#34;</span><span style="color:#f92672">:</span> {
       <span style="color:#75715e">// VRMの拡張情報
 </span><span style="color:#75715e"></span>    }
-  ],
+  },
   <span style="color:#75715e">// 通常のGLTF-2.0の情報
 </span><span style="color:#75715e"></span>}
 </code></pre></div>
@@ -348,34 +348,19 @@ gltfのバイナリ形式<code>.glb</code>と互換性があるので、拡張�
 
 <h4 id="頂点属性">頂点属性</h4>
 
-<p>以下の頂点属性を記録します。</p>
+<ul>
+<li><p>GLTF-2.0の<code>/meshes/*/primitives/*/attributes</code></p>
 
 <ul>
-<li>attribute
-
-<ul>
-<li>POSITION (vec3)</li>
-<li>NORMAL (vec3)</li>
-<li>TEXCOORD_0 (vec2)</li>
 <li>TANGENT (vec4) // v0.42から保存するのをやめて、import時にnormalとuvから計算するようにしています。</li>
-<li>JOINTS_0 (vec4)</li>
-<li>WEIGHTS_0 (vec4)</li>
 </ul></li>
 </ul>
 
-<h4 id="モーフ情報">モーフ情報</h4>
+<h4 id="モーフターゲット情報">モーフターゲット情報</h4>
 
 <ul>
-<li><p>morph target</p>
-
-<ul>
-<li>position(相対位置)</li>
-<li>normal(vec3)</li>
-<li>tangent(vec3)</li>
-</ul></li>
-
-<li><p><code>/meshes/*/primitives/*/extras/targetNames</code>
-にMoprhTargetの名称を記録しています。</p></li>
+<li><code>/meshes/*/primitives/*/extras/targetNames</code>
+にMoprhTargetの名称を記録しています。</li>
 </ul>
 
 <h3 id="gltf-2-0-スキニング情報">GLTF-2.0: スキニング情報</h3>

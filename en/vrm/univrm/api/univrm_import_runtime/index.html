@@ -8,13 +8,13 @@
   <meta http-equiv="Expires" content="0">
   <meta name="generator" content="Hugo 0.49" />
 
-  <meta property="og:title" content="Import VRM model at runtime - dwango on GitHub">
+  <meta property="og:title" content="Import VRM Model at Runtime - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Import VRM model at runtime - dwango on GitHub</title>
+  <title>Import VRM Model at Runtime - dwango on GitHub</title>
 
   
   <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
@@ -72,10 +72,10 @@
 
     
 <div class="post">
-  <h1>Import VRM model at runtime</h1>
+  <h1>Import VRM Model at Runtime</h1>
   <span class="post-date"> Mon, Apr 16, 2018 </span>
   <div class="share">
-    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Import VRM model at runtime - dwango on GitHub" data-url="https://dwango.github.io/en/vrm/univrm/api/univrm_import_runtime/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Import VRM Model at Runtime - dwango on GitHub" data-url="https://dwango.github.io/en/vrm/univrm/api/univrm_import_runtime/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/en/vrm/univrm/api/univrm_import_runtime/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2fen%2fvrm%2funivrm%2fapi%2funivrm_import_runtime%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
   </div>
@@ -85,10 +85,10 @@
 <ul>
 <li>
 <ul>
-<li><a href="#open-vrm-from-file-path">Open VRM from file path</a></li>
-<li><a href="#open-vrm-asynchronously-from-file-path">Open VRM asynchronously from file path</a></li>
-<li><a href="#open-vrm-from-byte-string">Open VRM from byte string</a></li>
-<li><a href="#open-vrm-asynchronously-from-byte-string">Open VRM asynchronously from byte string</a></li>
+<li><a href="#open-vrm-from-a-file-path">Open VRM from a file path</a></li>
+<li><a href="#open-vrm-asynchronously-from-a-file-path">Open VRM asynchronously from a file path</a></li>
+<li><a href="#open-vrm-from-a-byte-array">Open VRM from a byte array</a></li>
+<li><a href="#open-vrm-asynchronously-from-a-byte-array">Open VRM asynchronously from a byte array</a></li>
 <li><a href="#get-the-information-form-vrm">Get the information form VRM</a></li>
 <li><a href="#get-the-thumbnail-from-v0-37">Get the thumbnail (From v0.37)</a></li>
 </ul></li>
@@ -97,28 +97,30 @@
         </div>
        
 
-<p>The followings are the methods to import VRM model at runtime in Unity:</p>
+<p>Examples of importing the VRM model with the latest version <a href="https://github.com/dwango/UniVRM/wiki/Runtime-import%28en%29">can be found here</a>.</p>
 
-<h2 id="open-vrm-from-file-path">Open VRM from file path</h2>
+<p>The followings are the methods to import a VRM model at runtime in Unity:</p>
+
+<h2 id="open-vrm-from-a-file-path">Open VRM from a file path</h2>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
 <span style="color:#66d9ef">var</span> go=VRM.VRMImporter.LoadFromPath(path);
 Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);</code></pre></div>
 
-<h2 id="open-vrm-asynchronously-from-file-path">Open VRM asynchronously from file path</h2>
+<h2 id="open-vrm-asynchronously-from-a-file-path">Open VRM asynchronously from a file path</h2>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
 VRMImporter.LoadVrmAsync(path, go =&gt; {
     Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);
 });</code></pre></div>
 
-<h2 id="open-vrm-from-byte-string">Open VRM from byte string</h2>
+<h2 id="open-vrm-from-a-byte-array">Open VRM from a byte array</h2>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
 <span style="color:#66d9ef">var</span> bytes = File.ReadAllBytes(path);
 <span style="color:#66d9ef">var</span> go=VRMImporter.LoadFromBytes(bytes);</code></pre></div>
 
-<h2 id="open-vrm-asynchronously-from-byte-string">Open VRM asynchronously from byte string</h2>
+<h2 id="open-vrm-asynchronously-from-a-byte-array">Open VRM asynchronously from a byte array</h2>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">VRMImporter.LoadVrmAsync(bytes, go =&gt; {
     Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);
@@ -136,22 +138,22 @@ VRMImporter.LoadVrmAsync(path, go =&gt; {
                 <span style="color:#66d9ef">return</span>;
             }
 
-            <span style="color:#75715e">// Get byte string
+            <span style="color:#75715e">// Get a byte array
 </span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> bytes = File.ReadAllBytes(path);
 
             <span style="color:#66d9ef">var</span> context = <span style="color:#66d9ef">new</span> VRMImporterContext(path);
 
-            <span style="color:#75715e">// Parse GLB format. Get JSON from chunk and parse
+            <span style="color:#75715e">// Get JSON in GLB format and parse it
 </span><span style="color:#75715e"></span>            context.ParseVrm(bytes);
 
-            <span style="color:#75715e">// Get meta
+            <span style="color:#75715e">// Get the meta
 </span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> meta = context.ReadMeta();
             Debug.LogFormat(<span style="color:#e6db74">&#34;meta: title:{0}&#34;</span>, meta.Title);
 
-            <span style="color:#75715e">// Or you can access the entire parsed GLTF here 
+            <span style="color:#75715e">// You can access the entire parsed GLTF here
 </span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> vrm = context.VRM;
 
-            <span style="color:#75715e">// Build the scene based on the parsed JSON
+            <span style="color:#75715e">// Convert the parsed JSON to the Scene Object
 </span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (m_loadAsync)
             {
                 <span style="color:#75715e">// Run asynchronously

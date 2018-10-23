@@ -107,7 +107,7 @@
       <pubDate>Mon, 21 May 2018 10:00:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/vrm/univrm/api/univrm_api_history/</guid>
-      <description>プログラムに影響のある変更についてです。 v0.36 テクスチャ名の格納位置の修正 GLTFの仕様に準拠しました。 extraはextrasの間違い imag</description>
+      <description>プログラムに影響のある変更についてです。 最新バージョンはUniVRM/Wikiをご覧ください。 v0.36 テクスチャ名の格納位置の修正 GLTFの仕様に</description>
     </item>
     
     <item>
@@ -233,7 +233,7 @@
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/vrm/univrm/api/univrm_import_runtime/</guid>
-      <description>Unityで実行時にモデルをインポートする方法です。 ファイルパスからVRMを開く var path=&amp;#34;sample.vrm&amp;#34;; var go=VRM.VRMImporter.LoadFromPath(path); Debug.LogFormat(&amp;#34;loaded {0}&amp;#34;, go.name); ファイルパスから非同期にVRMを開く var path=&amp;#34;sample.vrm&amp;#34;; VRMImporter.LoadVrmAsync(path, go =&amp;gt;</description>
+      <description>最新バージョンはこちらをご覧ください。 Unityで実行時にモデルをインポートする方法です。 ファイルパスからVRMを開く var path=&amp;#34;sample.vrm&amp;#34;; var go=VRM.VRMImporter.LoadFromPath(path); Debug.LogFormat(&amp;#34;loaded {0}&amp;#34;, go.name); ファイル</description>
     </item>
     
     <item>

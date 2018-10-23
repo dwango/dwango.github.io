@@ -24,25 +24,26 @@ Introduction of UniGLTF / UniUnlit shader UniVRM-0.43 was capable of importing /
     </item>
     
     <item>
-      <title>How to use VRMFirstPerson</title>
+      <title>How to Use VRMFirstPerson</title>
       <link>https://dwango.github.io/en/vrm/univrm/api/univrm_use_firstperson/</link>
       <pubDate>Tue, 29 May 2018 10:00:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_use_firstperson/</guid>
-      <description>VRMFirstPerson setting VRMFirstPerson has the following settings for Renderer:
-   FirstPersonFlag Layer Note     Both default Specifying parts not necessarily separated between first-person view and third-person view.   ThirdPersonOnly THIRDPERSON_ONLY_LAYER Specifying parts not wanting to be rendered in first-person view.   FirstPersonOnly FIRSTPERSON_ONLY_LAYER Specifying parts not wanting to be rendered in third-person view. Headless model created automatically is used.   Auto THIRDPERSON_ONLY_LAYER Automatically creating the model for first-person view at runtime and setting it to FIRSTPERSON_ONLY_LAYER.</description>
+      <description>VRMFirstPerson Settings VRMFirstPerson has the following settings for Renderer:
+   FirstPersonFlag Layer Note     Both default Specify parts that are not necessarily separated between first-person view and third-person view.   ThirdPersonOnly THIRDPERSON_ONLY_LAYER Specify parts that are not rendered in first-person view.   FirstPersonOnly FIRSTPERSON_ONLY_LAYER Specify parts that are not rendered in third-person view. The auto-created headless model is used.   Auto THIRDPERSON_ONLY_LAYER Automatically create the model in first-person view at runtime and set it to FIRSTPERSON_ONLY_LAYER.</description>
     </item>
     
     <item>
-      <title>API revision history</title>
+      <title>API Change History</title>
       <link>https://dwango.github.io/en/vrm/univrm/api/univrm_api_history/</link>
       <pubDate>Mon, 21 May 2018 10:00:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_api_history/</guid>
-      <description> This section describes about the changes affecting the program.
-v0.36 Storage location of texture name Conforming to GLTF specification.
+      <description> This section describes about changes affecting the program.
+Please go to UniVRM/Wiki to get the latest information of the API update.
+v0.36 Texture Name Save Locations Changed Conforming to the GLTF specification.
 json.images[i].extra.name  After the change
-json.images[i].name  Storage location of BlendShape name Conforming to GLTF specification.
+json.images[i].name  BlendShape Name Save Locations Changed Conforming to the GLTF specification.
  &amp;ldquo;extras&amp;rdquo; is not allowed in target https://github.com/KhronosGroup/glTF/issues/1036#issuecomment-314078356  json.meshes[i].primitives[j].targets[k].extra.name  After the change
 json.meshes[i].primitives[j].extras.targetNames[k]  </description>
     </item>
@@ -76,18 +77,6 @@ json.meshes[i].primitives[j].extras.targetNames[k]  </description>
       <description>VRM T-Pose conforms to Humanoid of Unity of the first implementation of VRM.
         T-Pose example    Besides apparent parts such as body and head / leg, there are also rules on arm and finger:
  Palm faces downward Thumb is horizontally spread 45 degrees (a view from the top) on XZ plane  </description>
-    </item>
-    
-    <item>
-      <title>About coordinate system transformation of UniVRM</title>
-      <link>https://dwango.github.io/en/vrm/univrm/api/univrm_coordinate/</link>
-      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
-      
-      <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_coordinate/</guid>
-      <description>UniVRM automatically performs coordinate transformation with GLTF during import / export.
-VRM coordinate system Since VRM is an extension of GLTF, it conforms to the coordinate system of GLTF. It is OpenGL standard right-handed Y-UP coordinate system.
- Right: X+ Up: Y+ In front: Z-  Unity coordinate system Left-handed Y-UP coordinate system。
- Right:X+ Up:Y+ In front:Z+ (+- is inverted)  Transformation of each value Z-axis is inverted.</description>
     </item>
     
     <item>
@@ -157,13 +146,14 @@ Renderers The settings for controlling mesh rendering on/off in a first-person v
     </item>
     
     <item>
-      <title>Import VRM model at runtime</title>
+      <title>Import VRM Model at Runtime</title>
       <link>https://dwango.github.io/en/vrm/univrm/api/univrm_import_runtime/</link>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_import_runtime/</guid>
-      <description>The followings are the methods to import VRM model at runtime in Unity:
-Open VRM from file path var path=&amp;#34;sample.vrm&amp;#34;; var go=VRM.VRMImporter.LoadFromPath(path); Debug.LogFormat(&amp;#34;loaded {0}&amp;#34;, go.name); Open VRM asynchronously from file path var path=&amp;#34;sample.vrm&amp;#34;; VRMImporter.LoadVrmAsync(path, go =&amp;gt; { Debug.LogFormat(&amp;#34;loaded {0}&amp;#34;, go.name); }); Open VRM from byte string var path=&amp;#34;sample.vrm&amp;#34;; var bytes = File.ReadAllBytes(path); var go=VRMImporter.LoadFromBytes(bytes); Open VRM asynchronously from byte string VRMImporter.LoadVrmAsync(bytes, go =&amp;gt; { Debug.LogFormat(&amp;#34;loaded {0}&amp;#34;, go.name); }); Get the information form VRM #if UNITY_STANDALONE_WIN  var path = FileDialogForWindows.</description>
+      <description>Examples of importing the VRM model with the latest version can be found here.
+The followings are the methods to import a VRM model at runtime in Unity:
+Open VRM from a file path var path=&amp;#34;sample.vrm&amp;#34;; var go=VRM.VRMImporter.LoadFromPath(path); Debug.LogFormat(&amp;#34;loaded {0}&amp;#34;, go.name); Open VRM asynchronously from a file path var path=&amp;#34;sample.vrm&amp;#34;; VRMImporter.LoadVrmAsync(path, go =&amp;gt; { Debug.LogFormat(&amp;#34;loaded {0}&amp;#34;, go.name); }); Open VRM from a byte array var path=&amp;#34;sample.vrm&amp;#34;; var bytes = File.</description>
     </item>
     
     <item>
@@ -192,16 +182,16 @@ Version Specify the model version with character string.</description>
     </item>
     
     <item>
-      <title>Operate BlendShape</title>
-      <link>https://dwango.github.io/en/vrm/univrm/api/univrm_use_blendshape/</link>
+      <title>UniVRM Coordinate Transformations</title>
+      <link>https://dwango.github.io/en/vrm/univrm/api/univrm_coordinate/</link>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
-      <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_use_blendshape/</guid>
-      <description>Apply BlendShape from script var proxy=GetComponent&amp;lt;VRMBlendShapeProxy&amp;gt;(); // Call enum proxy.SetValue(BlendShapePreset.A, 1.0f); // Assign a value between 0 and 1  // Call string proxy.SetValue(&amp;#34;A&amp;#34;, 1.0f); Apply multiple BlendShapes at once For example,
-For Blink_L
- MeshA eye_L=100 MeshA eye_R=1  For Blink_R
- MeshA eye_L=1 MeshA eye_R=100  If both BlendShapes are defined and enabled as shown below, later only those items set before can be applied.
-proxy.SetValue(BlendShapePreset.Blink_L, 1.0f); proxy.</description>
+      <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_coordinate/</guid>
+      <description>UniVRM automatically performs the coordinate transformation with GLTF during import / export.
+VRM coordinate system Since VRM is an extension of GLTF, it conforms to the coordinate system of GLTF. It is right-handed Y-UP (OpenGL standard) coordinate system.
+ Right: X+ Up: Y+ In front: Z-  Unity coordinate system Left-handed Y-UP coordinate system。
+ Right:X+ Up:Y+ In front:Z+ (+- is inverted)  Transformation matrix Z-axis is inverted.
+Vector3 (Position, Normal, etc.</description>
     </item>
     
     <item>
@@ -226,6 +216,19 @@ Installation Download the latest unitypackage (UniVRM-0.XX) from UniVRM/releases
     </item>
     
     <item>
+      <title>Use BlendShape</title>
+      <link>https://dwango.github.io/en/vrm/univrm/api/univrm_use_blendshape/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_use_blendshape/</guid>
+      <description>Apply BlendShape from a script var proxy=GetComponent&amp;lt;VRMBlendShapeProxy&amp;gt;(); // Call enum proxy.SetValue(BlendShapePreset.A, 1.0f); // Assign a value between 0 and 1  // Call string proxy.SetValue(&amp;#34;A&amp;#34;, 1.0f); Apply multiple BlendShapes at once For example,
+For Blink_L
+ MeshA eye_L=100 MeshA eye_R=1  For Blink_R
+ MeshA eye_L=1 MeshA eye_R=100  If both BlendShapes are defined and enabled as shown below, later only those items set before can be applied.
+proxy.SetValue(BlendShapePreset.Blink_L, 1.</description>
+    </item>
+    
+    <item>
       <title>VRM specifications</title>
       <link>https://dwango.github.io/en/vrm/vrm_spec/</link>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
@@ -234,7 +237,7 @@ Installation Download the latest unitypackage (UniVRM-0.XX) from UniVRM/releases
       <description>VRM is based on glb format, which is a binary form of glTF 2.0. It is a model format for VR.
 File extension The file extension.vrmis used. It is compatible with.glb. If ModelFileName.vrm is changed to ModelFileName.glb, it can be loaded by GLTF-compatible applications (however, custom settings in VRM will not be shown).
 Json extension Extended asVRM Extensionin the JSON part of GLB.
-{ &amp;#34;extensionsUsed&amp;#34;: [ &amp;#34;VRM&amp;#34; ], &amp;#34;extensions&amp;#34;: [ &amp;#34;VRM&amp;#34;: { // The information of VRM extension  } ], // The information of general GLTF-2.</description>
+{ &amp;#34;extensionsUsed&amp;#34;: { &amp;#34;VRM&amp;#34; }, &amp;#34;extensions&amp;#34;: { &amp;#34;VRM&amp;#34;: { // The information of VRM extension  } }, // The information of general GLTF-2.</description>
     </item>
     
     <item>

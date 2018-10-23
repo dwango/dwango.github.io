@@ -8,13 +8,13 @@
   <meta http-equiv="Expires" content="0">
   <meta name="generator" content="Hugo 0.49" />
 
-  <meta property="og:title" content="How to use VRMFirstPerson - dwango on GitHub">
+  <meta property="og:title" content="How to Use VRMFirstPerson - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>How to use VRMFirstPerson - dwango on GitHub</title>
+  <title>How to Use VRMFirstPerson - dwango on GitHub</title>
 
   
   <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
@@ -72,10 +72,10 @@
 
     
 <div class="post">
-  <h1>How to use VRMFirstPerson</h1>
+  <h1>How to Use VRMFirstPerson</h1>
   <span class="post-date"> Tue, May 29, 2018 </span>
   <div class="share">
-    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="How to use VRMFirstPerson - dwango on GitHub" data-url="https://dwango.github.io/en/vrm/univrm/api/univrm_use_firstperson/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="How to Use VRMFirstPerson - dwango on GitHub" data-url="https://dwango.github.io/en/vrm/univrm/api/univrm_use_firstperson/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/en/vrm/univrm/api/univrm_use_firstperson/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2fen%2fvrm%2funivrm%2fapi%2funivrm_use_firstperson%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
   </div>
@@ -83,7 +83,7 @@
     <article id="content">
         <div class="toc"> <nav id="TableOfContents">
 <ul>
-<li><a href="#vrmfirstperson-setting-univrm-firstperson"><a href="../univrm_firstperson/">VRMFirstPerson setting</a></a></li>
+<li><a href="#vrmfirstperson-settings-univrm-firstperson"><a href="../univrm_firstperson/">VRMFirstPerson Settings</a></a></li>
 <li><a href="#specify-the-additional-render-layers-for-the-application">Specify the additional render layers for the application</a></li>
 <li><a href="#call-setup-function-at-runtime-and-set-layermask-in-camera">Call Setup function at runtime and set LayerMask in Camera</a></li>
 </ul>
@@ -91,7 +91,7 @@
         </div>
        
 
-<h1 id="vrmfirstperson-setting-univrm-firstperson"><a href="../univrm_firstperson/">VRMFirstPerson setting</a></h1>
+<h1 id="vrmfirstperson-settings-univrm-firstperson"><a href="../univrm_firstperson/">VRMFirstPerson Settings</a></h1>
 
 <p>VRMFirstPerson has the following settings for Renderer:</p>
 
@@ -108,25 +108,25 @@
 <tr>
 <td>Both</td>
 <td>default</td>
-<td>Specifying parts not necessarily separated between first-person view and third-person view.</td>
+<td>Specify parts that are not necessarily separated between first-person view and third-person view.</td>
 </tr>
 
 <tr>
 <td>ThirdPersonOnly</td>
 <td>THIRDPERSON_ONLY_LAYER</td>
-<td>Specifying parts not wanting to be rendered in first-person view.</td>
+<td>Specify parts that are not rendered in first-person view.</td>
 </tr>
 
 <tr>
 <td>FirstPersonOnly</td>
 <td>FIRSTPERSON_ONLY_LAYER</td>
-<td>Specifying parts not wanting to be rendered in third-person view. Headless model created automatically is used.</td>
+<td>Specify parts that are not rendered in third-person view. The auto-created headless model is used.</td>
 </tr>
 
 <tr>
 <td>Auto</td>
 <td>THIRDPERSON_ONLY_LAYER</td>
-<td>Automatically creating the model for first-person view at runtime and setting it to FIRSTPERSON_ONLY_LAYER.</td>
+<td>Automatically create the model in first-person view at runtime and set it to FIRSTPERSON_ONLY_LAYER.</td>
 </tr>
 </tbody>
 </table>
@@ -142,7 +142,7 @@
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> FIRSTPERSON_ONLY_LAYER = <span style="color:#ae81ff">9</span>;
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> THIRDPERSON_ONLY_LAYER = <span style="color:#ae81ff">10</span>;
 
-    <span style="color:#75715e">// omitted
+    <span style="color:#75715e">// The following parts are omitted
 </span><span style="color:#75715e"></span>}</code></pre></div>
 
 <table>
@@ -176,12 +176,13 @@
 {<span style="color:#a6e22e">
 </span><span style="color:#a6e22e">    [SerializeField]</span>
     Camera m_firstPersonCamera; <span style="color:#75715e">// HMD camera
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">
+</span><span style="color:#75715e"></span>    
+    <span style="color:#75715e">// Set a first-person mask (default | FIRSTPERSON_ONLY_LAYER, etc.) in HMD camera.
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">    [SerializeField]</span>
+    LayerMask m_firstPersonMask;<span style="color:#a6e22e">
+</span><span style="color:#a6e22e">
 </span><span style="color:#a6e22e">    [SerializeField]</span>
-    LayerMask m_firstPersonMask; <span style="color:#75715e">// Set the mask in HMD camera. default | FIRSTPERSON_ONLY_LAYER, etc.
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">
-</span><span style="color:#a6e22e">    [SerializeField]</span>
-    LayerMask m_otherMask; <span style="color:#75715e">// Set the mask in HMD camera. default | THIRDPERSON_ONLY_LAYER, etc.
+    LayerMask m_otherMask; <span style="color:#75715e">// Set other masks (default | THIRDPERSON_ONLY_LAYER, etc.) in HMD camera.
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">
 </span><span style="color:#a6e22e">    [SerializeField]</span>
     VRMFirstPerson m_firstPerson;

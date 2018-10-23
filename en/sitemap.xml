@@ -93,21 +93,6 @@
   </url>
   
   <url>
-    <loc>https://dwango.github.io/en/vrm/univrm/api/univrm_coordinate/</loc>
-    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://dwango.github.io/vrm/univrm/api/univrm_coordinate/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://dwango.github.io/en/vrm/univrm/api/univrm_coordinate/"
-                />
-  </url>
-  
-  <url>
     <loc>https://dwango.github.io/en/vrm/univrm/shaders/univrm_shaders/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -243,17 +228,17 @@
   </url>
   
   <url>
-    <loc>https://dwango.github.io/en/vrm/univrm/api/univrm_use_blendshape/</loc>
+    <loc>https://dwango.github.io/en/vrm/univrm/api/univrm_coordinate/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="https://dwango.github.io/vrm/univrm/api/univrm_use_blendshape/"
+                href="https://dwango.github.io/vrm/univrm/api/univrm_coordinate/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://dwango.github.io/en/vrm/univrm/api/univrm_use_blendshape/"
+                href="https://dwango.github.io/en/vrm/univrm/api/univrm_coordinate/"
                 />
   </url>
   
@@ -284,6 +269,21 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://dwango.github.io/en/vrm/univrm/univrm_workflow/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/en/vrm/univrm/api/univrm_use_blendshape/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://dwango.github.io/vrm/univrm/api/univrm_use_blendshape/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://dwango.github.io/en/vrm/univrm/api/univrm_use_blendshape/"
                 />
   </url>
   

@@ -96,7 +96,7 @@
 <li><a href="#gltf-2-0-mesh">GLTF-2.0: Mesh</a>
 <ul>
 <li><a href="#vertex-attribute">Vertex attribute</a></li>
-<li><a href="#morph-information">Morph information</a></li>
+<li><a href="#morph-target-information">Morph target information</a></li>
 </ul></li>
 <li><a href="#gltf-2-0-skinning-information">GLTF-2.0: Skinning information</a></li>
 <li><a href="#gltf-2-0-node">GLTF-2.0: Node</a></li>
@@ -209,14 +209,14 @@
 <p>Extended as<code>VRM Extension</code>in the JSON part of GLB.</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
-  <span style="color:#e6db74">&#34;extensionsUsed&#34;</span><span style="color:#f92672">:</span> [
+  <span style="color:#e6db74">&#34;extensionsUsed&#34;</span><span style="color:#f92672">:</span> {
     <span style="color:#e6db74">&#34;VRM&#34;</span>
-  ],
-  <span style="color:#e6db74">&#34;extensions&#34;</span><span style="color:#f92672">:</span> [
+  },
+  <span style="color:#e6db74">&#34;extensions&#34;</span><span style="color:#f92672">:</span> {
     <span style="color:#e6db74">&#34;VRM&#34;</span><span style="color:#f92672">:</span> {
       <span style="color:#75715e">// The information of VRM extension
 </span><span style="color:#75715e"></span>    }
-  ],
+  },
   <span style="color:#75715e">// The information of general GLTF-2.0
 </span><span style="color:#75715e"></span>}
 </code></pre></div>
@@ -236,7 +236,7 @@
 <h2 id="vrm-extension-vrm-version-etc">VRM extension: VRM version, etc.</h2>
 
 <ul>
-<li>From v0.36:<code>/extensions/VRM/exporterVersion</code></li>
+<li>Starting from v0.36:<code>/extensions/VRM/exporterVersion</code></li>
 </ul>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
@@ -344,33 +344,18 @@ Please refer to <a href="#vrmshader">Available shaders in VRM</a>.</p>
 
 <h4 id="vertex-attribute">Vertex attribute</h4>
 
-<p>The following vertex attributes are stored:</p>
+<ul>
+<li><p>GLTF-2.0 <code>/meshes/*/primitives/*/attributes</code></p>
 
 <ul>
-<li>Attribute
-
-<ul>
-<li>POSITION (vec3)</li>
-<li>NORMAL (vec3)</li>
-<li>TEXCOORD_0 (vec2)</li>
-<li>TANGENT (vec4) // TANGENT information is not saved in exported VRM model from v0.42. It can be obtained based on calculation of Normal and UV during import.</li>
-<li>JOINTS_0 (vec4)</li>
-<li>WEIGHTS_0 (vec4)</li>
+<li>TANGENT (vec4) // TANGENT information is not saved in the exported VRM model since v0.42. It can be obtained based on the calculation of Normal and UV during the import.</li>
 </ul></li>
 </ul>
 
-<h4 id="morph-information">Morph information</h4>
+<h4 id="morph-target-information">Morph target information</h4>
 
 <ul>
-<li><p>Morph target</p>
-
-<ul>
-<li>position(relative position)</li>
-<li>normal(vec3)</li>
-<li>tangent(vec3)</li>
-</ul></li>
-
-<li><p>Morph target names are saved in<code>/meshes/*/primitives/*/extras/targetNames</code></p></li>
+<li>Morph target names are saved in<code>/meshes/*/primitives/*/extras/targetNames</code></li>
 </ul>
 
 <h3 id="gltf-2-0-skinning-information">GLTF-2.0: Skinning information</h3>
@@ -846,7 +831,7 @@ function GetID(preset, name)
 }
 </code></pre></div>
 
-<p>When an avatar model operated by a user is rendered in first-person view (VR applications), the users may inadvertently see inner surfaces of the model’s head<sup class="footnote-ref" id="fnref:firstperson"><a href="#fn:firstperson">7</a></sup>. To address this problem, we can specify model&rsquo;s display states in first-person view.</p>
+<p>When the user-controlled avatar model is rendered in first-person view (VR applications), the user may inadvertently see inner surfaces of the model’s head<sup class="footnote-ref" id="fnref:firstperson"><a href="#fn:firstperson">7</a></sup>. To address this problem, we can specify model&rsquo;s display states in first-person view.</p>
 
 <h3 id="firstpersonbone-json-extensions-vrm-firstperson-firstpersonbone">firstPersonBone (json.extensions.VRM.firstPerson.firstPersonBone)</h3>
 
