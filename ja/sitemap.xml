@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://dwango.github.io/niconico/jikken-housou/akashic-content2/</loc>
+    <lastmod>2018-11-01T14:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://dwango.github.io/articles/frugalos/</loc>
     <lastmod>2018-10-26T14:00:00+09:00</lastmod>
   </url>
@@ -540,7 +545,7 @@
   
   <url>
     <loc>https://dwango.github.io/</loc>
-    <lastmod>2018-10-26T14:00:00+09:00</lastmod>
+    <lastmod>2018-11-01T14:00:00+09:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"

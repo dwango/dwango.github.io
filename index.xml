@@ -6,10 +6,19 @@
     <description>Recent content on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 26 Oct 2018 14:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 01 Nov 2018 14:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ツールを作ってみよう</title>
+      <link>https://dwango.github.io/niconico/jikken-housou/akashic-content2/</link>
+      <pubDate>Thu, 01 Nov 2018 14:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/niconico/jikken-housou/akashic-content2/</guid>
+      <description>本ページの内容 本ページは、2018年10月25日～2018年12月14日（結果発表は2019年01月26日）までかけて行われる（行われた）、</description>
+    </item>
     
     <item>
       <title>Rust製の分散オブジェクトストレージをOSSとして公開しました</title>
