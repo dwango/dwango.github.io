@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.49.2" />
+
+  <meta property="og:title" content="ゲームを作ってみよう - dwango on GitHub">
+
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  
+
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>ゲームを作ってみよう - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
+      <p class="lead">
+       
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a> </li>
+      <li><a href="/articles"> Articles </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/niconico"> niconico </a></li><li><a href="/vrm"> VRM </a></li><li><a href="https://nico.ms/job/"> Hiring </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p>
+      
+        <p style="display:inline-block;vertical-align:middle;">
+          Copyright &copy; DWANGO Co., Ltd.
+        </p>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+<div class="post">
+  <h1>ゲームを作ってみよう</h1>
+  <span class="post-date"> Tue, Nov 6, 2018 </span>
+  <div class="share">
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="ゲームを作ってみよう - dwango on GitHub" data-url="https://dwango.github.io/niconico/jikken-housou/akashic-content3/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/niconico/jikken-housou/akashic-content3/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2fniconico%2fjikken-housou%2fakashic-content3%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+  </div>
+  <div>
+    <article id="content">
+       
+
+<h2 id="本ページの内容">本ページの内容</h2>
+
+<p>本ページは、2018年10月25日～2018年12月14日（結果発表は2019年01月26日）までかけて行われる（行われた）、<a href="http://ch.nicovideo.jp/indies-game2019/blomaga/ar1687936">ニコニコ自作ゲームフェス新人賞　「実験放送ゲーム部門」</a>に合わせて制作された特集記事の第3回目です。</p>
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>ドワンゴの、主に実験放送のコンテンツ制作に携わっているエンジニアのツゲハラと申します。</p>
+
+<p>実験放送でニコニコ新市場を通して利用できるコンテンツ群（以後ニコニコ新市場対応コンテンツ）が、2018年10月25日より自分達で作れるようになりました。</p>
+
+<p>皆様がスムーズに制作に挑める助力になればと、制作ガイドとなりそうな記事を公開させていただいております。この記事は、この一連の記事の第3回になります。第2回同様、記事の対象はプログラミング経験者向きとなります。</p>
+
+<ul>
+<li>2018年10月25日: <a href="../akashic-content1/">泥棒バスターを改造してみよう</a></li>
+<li>2018年11月01日: <a href="../akashic-content2/">ツールを作ってみよう</a></li>
+<li>2018年11月08日: ゲームを作ってみよう（この記事です）</li>
+</ul>
+
+<p>ニコニコ新市場対応コンテンツについてのご不明点などがあれば、お気軽にお問合せください。</p>
+
+<ul>
+<li>公式Twitterカウント: <a href="https://twitter.com/akashic_talk">@akashic_talk</a></li>
+</ul>
+
+<h2 id="準備">準備</h2>
+
+<p><a href="../akashic-content1/">第1回</a>、<a href="../akashic-content2/">第2回</a>を参考に、Akashicの環境の用意と新規プロジェクトの作成を進めてください。
+解像度やFPSは前回と同様、640x360の30fpsで作成してください。</p>
+
+<p>ここから先の記事では、<code>c:\akashic\game</code>というフォルダに今回作成するゲームがあることを前提に記述を進めていきます。</p>
+
+<p>さて、ゲームを作るからには、まずは何のゲームを作るかを決めなくてはなりません。</p>
+
+<p>実験放送のゲームはランキングで動かす事ができるので、「スコア」が必要です。スコアを取り扱うからには「文字」を扱う必要もあります。
+また、ある程度短い時間で終わり、視聴者と一緒に遊べるようにするのが望ましいでしょう。</p>
+
+<p>演出を凝るとコード量が増えてしまうので、その辺りは妥協して進める事にします。
+スコアと制限時間のある、フォントを使った、出来る限り簡単なゲーム、というお題目で進めていきたいと思います。</p>
+
+<h2 id="フォントの準備">フォントの準備</h2>
+
+<p>スコアや時間の概念を扱う必要があるので、これらを画面に表示するためにはこれまで扱わなかった文字列を取り扱う必要があります。</p>
+
+<p>Akashicのサンプルには<code>DynamicFont</code>を扱う方法が載っているのですが、この<code>DynamicFont</code>を普通に扱ってもあまりゲームらしい表示になりません。</p>
+
+<ul>
+<li>Akashicのサンプル: <a href="https://akashic-games.github.io/tutorial/v2/6-otherdraw.html#%E6%96%87%E5%AD%97%E5%88%97%E3%81%AE%E8%A1%A8%E7%A4%BA">https://akashic-games.github.io/tutorial/v2/6-otherdraw.html#%E6%96%87%E5%AD%97%E5%88%97%E3%81%AE%E8%A1%A8%E7%A4%BA</a></li>
+</ul>
+
+<p>せっかくなので、ファミコンっぽい表示にするためにビットマップフォントというものを使いたいと思います。Akashicの公式サイトが用意している素材から「ビットマップフォント ダウンロード」を選択し、<code>font.zip</code>をダウンロードしてください。</p>
+
+<ul>
+<li>Akashicが提供している素材: <a href="https://akashic-games.github.io/asset/material.html">https://akashic-games.github.io/asset/material.html</a></li>
+</ul>
+
+<p>いくつかのフォントを入手できますが、映像の上に重ねる実験放送ゲームでも十分な視認性を持ちそうな<code>font16_1.png</code>を使いたいと思います。</p>
+
+<img src="https://dwango.github.io/images/akashic-content3/font16_1.png" alt="font16_1.png"  />
+
+
+<p><code>font16_1.png</code>を<code>image</code>フォルダに、<code>glyph_area_16.json</code>を<code>text</code>フォルダに配置し、CUIツールを起動して<code>c:\akashic\game</code>に<code>cd</code>コマンドで移動した後、以下のコマンドを実行してください。</p>
+
+<pre><code class="language-sh">akashic scan asset
+</code></pre>
+
+<p>これでフォント画像等の登録が完了します。</p>
+
+<p>ビットマップフォントを取り扱う公式のサンプルは以下になります。</p>
+
+<ul>
+<li>ビットマップフォントのサンプル: <a href="https://akashic-games.github.io/demo/?title=bitmap-font">https://akashic-games.github.io/demo/?title=bitmap-font</a></li>
+</ul>
+
+<p>サンプルで提供されるファイルのフォーマットがこちらのサンプルと少し違うので、若干のアレンジが必要です。最終的なコードは以下のようになります。</p>
+
+<pre><code class="language-js">function main(param) {
+	var scene = new g.Scene({game: g.game, assetIds: [&quot;font16_1&quot;, &quot;glyph_area_16&quot;]});
+
+	scene.loaded.add(function() {
+		// glyphとfontを指定
+		var glyph = JSON.parse(scene.assets[&quot;glyph_area_16&quot;].data);
+		var font = new g.BitmapFont({
+			src: scene.assets[&quot;font16_1&quot;],
+			map: glyph,
+			defaultGlyphWidth: 16,
+			defaultGlyphHeight: 16
+		});
+		// スコア表示用ラベルを配置
+		var scoreLabel = new g.Label({
+			scene: scene,
+			font: font,
+			fontSize: 16,
+			text: &quot;1234567890&quot;,
+			x: g.game.width - 16 * 10,  // 右端に10文字くらい表示できるように配置
+			y: 0
+		});
+		scene.append(scoreLabel);
+
+		// 時間表示用ラベルを配置
+		var timerLabel = new g.Label({
+			scene: scene,
+			font: font,
+			fontSize: 16,
+			text: &quot;1234567890&quot;,
+			x: 0,   // 左端に配置
+			y: 0
+		});
+		scene.append(timerLabel);
+	});
+
+	g.game.pushScene(scene);
+}
+
+module.exports = main;
+</code></pre>
+
+<p>順に見ていきましょう。</p>
+
+<p>まずは第2回でやったように、<code>Scene</code>で利用する<code>assetIds</code>を指定します。</p>
+
+<pre><code class="language-js">var scene = new g.Scene({game: g.game, assetIds: [&quot;font16_1&quot;, &quot;glyph_area_16&quot;]});
+</code></pre>
+
+<p>読み込んだ<code>assetId</code>を用いて、<code>glyph</code>（グリフ）というものを作成し、作成した<code>glyph</code>を用いて、<code>font</code>を生成します。この辺りの詳細な説明はこの記事では省略します。</p>
+
+<pre><code class="language-js">// glyphとfontを指定
+var glyph = JSON.parse(scene.assets[&quot;glyph_area_16&quot;].data);
+var font = new g.BitmapFont({
+	src: scene.assets[&quot;font16_1&quot;],
+	map: glyph,
+	defaultGlyphWidth: 16,
+	defaultGlyphHeight: 16
+});
+</code></pre>
+
+<p>あとはその<code>font</code>を利用して、ラベルを配置します。後で使うように、得点表示用のラベルと、時間表示用のラベルをそれぞれ右と左に配置するようにしました。</p>
+
+<pre><code class="language-js">// スコア表示用ラベルを配置
+var scoreLabel = new g.Label({
+	scene: scene,
+	font: font,
+	fontSize: 16,
+	text: &quot;1234567890&quot;,
+	x: g.game.width - 16 * 10,  // 右端に10文字くらい表示できるように配置
+	y: 0
+});
+scene.append(scoreLabel);
+ 
+// 時間表示用ラベルを配置
+var timerLabel = new g.Label({
+	scene: scene,
+	font: font,
+	fontSize: 16,
+	text: &quot;1234567890&quot;,
+	x: 0,   // 左端に配置
+	y: 0
+});
+scene.append(timerLabel);
+</code></pre>
+
+<p>ここまでのコードを書いて<code>akashic-sandbox</code>で実行すると、以下のような表示になっているのが確認できます。これで、フォントの利用準備は完了です。</p>
+
+<img src="https://dwango.github.io/images/akashic-content3/labels.png" alt="ラベルのみの表示"  />
+
+
+<h2 id="制限時間の処理">制限時間の処理</h2>
+
+<p>下準備も終わったので、ゲームを作っていくため、まずはゲームを作るためのガイドを参考にしましょう。</p>
+
+<ul>
+<li>ニコニコ新市場対応コンテンツ作成ガイド: <a href="https://akashic-games.github.io/guide/ranking.html">https://akashic-games.github.io/guide/ranking.html</a></li>
+</ul>
+
+<p>重要なのは「ランキング対応ゲーム」の項目です。スコアと制限時間は最低限対応しないとランキング対応に支障が出そうなので、ここから対応していく事にします。</p>
+
+<p>制限時間は設定された内容が外部から渡されます。これを扱うためのソースコードとして、ガイドには以下の内容が載っています。</p>
+
+<pre><code class="language-js">var scene = new g.Scene({ game: g.game });
+
+// 何も送られてこない時(ニコニコ新市場以外で起動された場合)は、この値がタイムリミットになる
+var gameTimeLimit = 60;
+
+scene.message.add(function (msg) {
+	if (msg.data &amp;&amp; msg.data.type === &quot;start&quot;) {
+		// 制限時間は `gameTimeLimit` 秒
+		gameTimeLimit = msg.data.parameters.gameTimeLimit;
+	}
+});
+
+scene.loaded.add(function () {
+	// 通常のゲームとしての初期化処理
+	// ...
+}
+</code></pre>
+
+<p>このコードを今回のコードに適用すると、アツマール等では60秒制限で、ランキングの時は外部から渡されるパラメータで動作するようになります。デフォルトを60秒のままにするか等は自由なので、適時変更してください。</p>
+
+<p>ただ、このゲームの制限時間は、「ダウンロード -&gt; タイトル表示 -&gt; チュートリアル表示 -&gt; ゲーム本体実行 -&gt; スコア発表」という、一般的なゲームでのゲーム本体実行部分のみの秒数を想定しています。</p>
+
+<p>今回のゲームは非常にシンプルなものなので、そのまま適用してしまうと尺が余ってしまうので、秒数を加算した上で適用するのが好ましいと言えます。実際に適用してみましょう。Scene生成直後の以下を加えます。</p>
+
+<pre><code class="language-js">var scene = new g.Scene({game: g.game, assetIds: [&quot;font16_1&quot;, &quot;glyph_area_16&quot;]});
+var gameTimelimit = 60; // デフォルトを60秒にする
+
+scene.message.add(function(msg) {
+	if (msg.data &amp;&amp; msg.data.type === &quot;start&quot; &amp;&amp; msg.data.parameters &amp;&amp; msg.data.parameters.gameTimeLimit) {
+		// 制限時間を通知するイベントを受信した時点で初期化する
+		// タイトル、チュートリアル、スコア発表などが無く尺があまるため、25秒多めにとる
+		gameTimeLimit = msg.data.parameters.gameTimeLimit + 25;
+	}
+});
+</code></pre>
+
+<p>あとは、この秒数が何秒残っているかを計算すればいいのですが、制限時間が途中で変更になることも加味して単純にこの値を減算するのではなく、「経過時間をカウントし、制限時間からそれを差し引いて表示する」という形で実装します。</p>
+
+<p>コード全体としては以下のようになります。</p>
+
+<pre><code class="language-js">function main(param) {
+	var scene = new g.Scene({game: g.game, assetIds: [&quot;font16_1&quot;, &quot;glyph_area_16&quot;]});
+	var gameTimeLimit = 60; // デフォルトを60秒にする
+	var frameCount = 0; // 経過時間をフレーム単位で記録
+
+	scene.message.add(function(msg) {
+		if (msg.data &amp;&amp; msg.data.type === &quot;start&quot; &amp;&amp; msg.data.parameters &amp;&amp; msg.data.parameters.gameTimeLimit) {
+			// 制限時間を通知するイベントを受信した時点で初期化する
+			// タイトル、チュートリアル、スコア発表などが無く尺があまるため、25秒多めにとる
+			gameTimeLimit = msg.data.parameters.gameTimeLimit + 25;
+		}
+	});
+
+	scene.loaded.add(function() {
+		// glyphとfontを指定
+		var glyph = JSON.parse(scene.assets[&quot;glyph_area_16&quot;].data);
+		var font = new g.BitmapFont({
+			src: scene.assets[&quot;font16_1&quot;],
+			map: glyph,
+			defaultGlyphWidth: 16,
+			defaultGlyphHeight: 16
+		});
+		// スコア表示用ラベルを配置
+		var scoreLabel = new g.Label({
+			scene: scene,
+			font: font,
+			fontSize: 16,
+			text: &quot;1234567890&quot;,
+			x: g.game.width - 16 * 10,  // 右端に10文字くらい表示できるように配置
+			y: 0
+		});
+		scene.append(scoreLabel);
+
+		// 時間表示用ラベルを配置
+		var timerLabel = new g.Label({
+			scene: scene,
+			font: font,
+			fontSize: 16,
+			text: &quot;&quot;,
+			x: 0,   // 左端に配置
+			y: 0
+		});
+		scene.append(timerLabel);
+
+		function updateTimerLabel() {
+			var s = countDown();
+			var text = s / 10 + (s % 10 === 0 ? &quot;.0&quot; : &quot;&quot;);
+			if (timerLabel.text != text) {
+				timerLabel.text = text;
+				timerLabel.invalidate();
+			}
+		}
+		function countDown() {
+			return Math.floor(gameTimeLimit * 10 - frameCount / g.game.fps * 10);
+		}
+
+		function updateHandler() {
+			// フレーム数を毎フレーム加算
+			++frameCount;
+			if (countDown() &lt;= 0) {
+				// TODO: 終了時処理
+				scene.update.remove(updateHandler); // タイムアウトになったら毎フレーム処理自体を止める
+			}
+			updateTimerLabel();
+		}
+		scene.update.add(updateHandler);
+	});
+
+	g.game.pushScene(scene);
+}
+
+module.exports = main;
+</code></pre>
+
+<p>まずは<code>scene</code>の<code>update</code>トリガーを利用して、毎フレーム処理を行う処理を作ります。</p>
+
+<p>経過時間の計算のためここでフレームカウントを加算し、ラベルを表示するという処理を書きます。ついで、タイムアウトになったら処理を止めるところも書いてしまいます。</p>
+
+<pre><code class="language-js">function updateHandler() {
+	// フレーム数を毎フレーム加算
+	++frameCount;
+	if (countDown() &lt;= 0) {
+		// TODO: 終了時処理
+		scene.update.remove(updateHandler); // タイムアウトになったら毎フレーム処理自体を止める
+	}
+	updateTimerLabel();
+}
+scene.update.add(updateHandler);
+</code></pre>
+
+<p>以下は残り時間をカウントする関数です。1秒単位の更新だと画面更新が少ないので、0.1秒単位で取り扱えるようにしました。</p>
+
+<pre><code class="language-js">function countDown() {
+	return Math.floor(gameTimeLimit * 10 - frameCount / g.game.fps * 10);
+}
+</code></pre>
+
+<p>以下はラベルの更新処理です。30fpsにつき0.1秒単位でしか更新されないので、テキストを事前生成して変化があったら更新にしています。また、「.0秒」を表示するために少し工夫をしています。</p>
+
+<pre><code class="language-js">function updateTimerLabel() {
+	var s = countDown();
+	var text = s / 10 + (s % 10 === 0 ? &quot;.0&quot; : &quot;&quot;);
+	if (timerLabel.text != text) {
+		timerLabel.text = text;
+		timerLabel.invalidate();
+	}
+}
+</code></pre>
+
+<p>画像としては前節と同じなので省略しますが、これで、制限時間の処理は完成です。</p>
+
+<h2 id="ゲーム本体の実装">ゲーム本体の実装</h2>
+
+<p>さて、いよいよゲーム本体です。フォントだけで作れるゲームにしたいので、以下のルールで作っていこうと思います。</p>
+
+<ul>
+<li>画面上の10か所の場所にABCDEのどれかが表示される</li>
+<li>空いている場所には1秒につきランダムで1文字追加される</li>
+<li>空きが一つもない時、文字をタップできる</li>
+<li>タップされた文字と同種の文字が消える</li>
+<li>同時に消した文字の数が多い程高得点</li>
+</ul>
+
+<p>ゲームですのでそれなりのコード量になります。全コードはこちら。</p>
+
+<pre><code class="language-js">function main(param) {
+	var scene = new g.Scene({game: g.game, assetIds: [&quot;font16_1&quot;, &quot;glyph_area_16&quot;]});
+	var gameTimeLimit = 60; // デフォルトを60秒にする
+	var frameCount = 0; // 経過時間をフレーム単位で記録
+
+	scene.message.add(function(msg) {
+		if (msg.data &amp;&amp; msg.data.type === &quot;start&quot; &amp;&amp; msg.data.parameters &amp;&amp; msg.data.parameters.gameTimeLimit) {
+			// 制限時間を通知するイベントを受信した時点で初期化する
+			// タイトル、チュートリアル、スコア発表などが無く尺があまるため、25秒多めにとる
+			gameTimeLimit = msg.data.parameters.gameTimeLimit + 25;
+		}
+	});
+
+	scene.loaded.add(function() {
+		// glyphとfontを指定
+		var glyph = JSON.parse(scene.assets[&quot;glyph_area_16&quot;].data);
+		var font = new g.BitmapFont({
+			src: scene.assets[&quot;font16_1&quot;],
+			map: glyph,
+			defaultGlyphWidth: 16,
+			defaultGlyphHeight: 16
+		});
+		// スコア表示用ラベルを配置
+		var scoreLabel = new g.Label({
+			scene: scene,
+			font: font,
+			fontSize: 16,
+			text: &quot;1234567890&quot;,
+			x: g.game.width - 16 * 10,  // 右端に10文字くらい表示できるように配置
+			y: 0
+		});
+		scene.append(scoreLabel);
+
+		// 時間表示用ラベルを配置
+		var timerLabel = new g.Label({
+			scene: scene,
+			font: font,
+			fontSize: 16,
+			text: &quot;&quot;,
+			x: 0,   // 左端に配置
+			y: 0
+		});
+		scene.append(timerLabel);
+
+		function updateTimerLabel() {
+			var s = countDown();
+			var text = s / 10 + (s % 10 === 0 ? &quot;.0&quot; : &quot;&quot;);
+			if (timerLabel.text != text) {
+				timerLabel.text = text;
+				timerLabel.invalidate();
+			}
+		}
+		function countDown() {
+			return Math.floor(gameTimeLimit * 10 - frameCount / g.game.fps * 10);
+		}
+		var places = [];
+		var placeContainer = new g.E({
+			scene: scene,
+			x: (g.game.width - 5 * 64) / 2,
+			y: 100
+		});
+		scene.append(placeContainer);
+
+		// ランダムに1文字選ぶ処理
+		function pickAlpha() {
+			switch (g.game.random.get(0, 4)) {
+				case 0:
+				return &quot;A&quot;;
+				case 1:
+				return &quot;B&quot;;
+				case 2:
+				return &quot;C&quot;;
+				case 3:
+				return &quot;D&quot;;
+				case 4:
+				return &quot;E&quot;;
+				default:
+				throw new Error(&quot;invalid random number&quot;);
+			}
+		}
+		function breakAlpha(e) {
+			for (var i = 0; i &lt; places.length; i++) {
+				// 一つでも空きスペースがあれば処理を中断
+				if (places[i].tag.text === &quot;&quot;) return;
+			}
+			var targetText = e.target.tag.text;
+			for (var i = 0; i &lt; places.length; i++) {
+				if (places[i].tag.text == targetText) {
+					// テキストが合致したら壊す
+					updatePlaceText(places[i], &quot;&quot;);
+				}
+			}
+		}
+		function updatePlaceText(place, text) {
+			// 内部のデータを更新する
+			place.tag.text = text;
+			// children[0]はLabelなので、Labelのtextも更新する
+			place.children[0].text = text;
+			place.children[0].invalidate();
+		}
+		// 置き場所を作る処理
+		function createPlace(index) {
+			var label = new g.Label({
+				scene: scene,
+				font: font,
+				fontSize: 48,
+				text: &quot;&quot;,
+				x: 8,
+				y: 8
+			});
+			var place = new g.FilledRect({
+				scene: scene,
+				x: index % 5 * 64,
+				y: Math.floor(index / 5) * 64,
+				width: 64,
+				height: 64,
+				tag: {
+					text: &quot;&quot;
+				},
+				cssColor: index % 2 === 0 ? &quot;#ccc&quot; : &quot;#ddd&quot;,
+				touchable: true
+			});
+			place.append(label);
+			place.pointDown.handle(breakAlpha);
+			return place;
+		}
+		// 10個の場所を作る
+		for (var i = 0; i &lt; 10; i++) {
+			var place = createPlace(i);
+			placeContainer.append(place);
+			places.push(place);
+		}
+		function visitAlpha() {
+			places.forEach(function(place) {
+				// テキストが空のもののみ更新をかける
+				if (place.tag.text === &quot;&quot;) {
+					updatePlaceText(place, pickAlpha());
+				}
+			});
+		}
+		function tryVisitAlpha() {
+			// 1秒に1回
+			if (frameCount % g.game.fps === 0) {
+				visitAlpha();
+			}
+		}
+
+		function updateHandler() {
+			// フレーム数を毎フレーム加算
+			++frameCount;
+			if (countDown() &lt;= 0) {
+				scene.update.remove(updateHandler); // タイムアウトになったら毎フレーム処理自体を止める
+			}
+			tryVisitAlpha();
+			updateTimerLabel();
+		}
+		scene.update.add(updateHandler);
+	});
+
+	g.game.pushScene(scene);
+}
+
+module.exports = main;
+</code></pre>
+
+<p>まずは画面上の10か所の場所に文字を表示する、という要件を満たすため、<code>place</code>という概念を導入します。</p>
+
+<p>以下のコードで、表示上の入れ物として<code>placeContainer</code>を、単純に<code>place</code>の配列を管理するため<code>places</code>という配列を作成しています。</p>
+
+<pre><code class="language-js">var places = [];
+var placeContainer = new g.E({
+	scene: scene,
+	x: (g.game.width - 5 * 64) / 2,
+	y: 100
+});
+scene.append(placeContainer);
+</code></pre>
+
+<p><code>place</code>は10個なので、for文で10の<code>place</code>を作成し、表示用のコンテナと配列にそれぞれ追加します。</p>
+
+<pre><code class="language-js">// 10個の場所を作る
+for (var i = 0; i &lt; 10; i++) {
+	var place = createPlace(i);
+	placeContainer.append(place);
+	places.push(place);
+}
+</code></pre>
+
+<p>次に実際に<code>place</code>を作成する関数を定義します。</p>
+
+<p>ここがこのゲームを構成する表示要素の本体になりますが、<code>place</code>は<code>FilledRect</code>で背景色を持ち、その中に<code>Label</code>で対応する文字を表示することで表現します。</p>
+
+<p>「タップされた文字と同種の文字が消える」という要件を満たすため、<code>FilledRect</code>は<code>tocuhable: true</code>の引数を与え、タッチも可能なエンティティとして作成しています。</p>
+
+<pre><code class="language-js">// 置き場所を作る処理
+function createPlace(index) {
+	var label = new g.Label({
+		scene: scene,
+		font: font,
+		fontSize: 48,
+		text: &quot;&quot;,
+		x: 8,
+		y: 8
+	});
+	var place = new g.FilledRect({
+		scene: scene,
+		x: index % 5 * 64,
+		y: Math.floor(index / 5) * 64,
+		width: 64,
+		height: 64,
+		tag: {
+			text: &quot;&quot;
+		},
+		cssColor: index % 2 === 0 ? &quot;#ccc&quot; : &quot;#ddd&quot;,
+		touchable: true
+	});
+	place.append(label);
+	place.pointDown.handle(breakAlpha);
+	return place;
+}
+</code></pre>
+
+<p>初期状態は空文字なので、このままだと<code>place</code>は空文字列が表示され続けてしまいます。「空いてる場所に1秒につきランダムで1文字表示される」という要件を実現する為、<code>update</code>の処理の中に毎フレーム<code>tryVisitAlpha</code>関数の呼び出し処理を入れます。</p>
+
+<p><code>tryVisitAlpha</code>で「1秒に1回」の要件を経過フレーム数を見る事で管理し、内部で呼び出す<code>visitAlpha</code>関数で「空いている場所」の判定をしつつ、<code>pickAlpha</code>関数で「ランダムで1文字」の処理を記述します。</p>
+
+<p>そうして選ばれた文字を表示に反映するため、<code>updatePlaceText</code>関数も用意します。要素が多いですが、以下でまとめてみていきます。</p>
+
+<pre><code class="language-js">// ランダムに1文字選ぶ処理
+function pickAlpha() {
+	switch (g.game.random.get(0, 4)) {
+		case 0:
+		return &quot;A&quot;;
+		case 1:
+		return &quot;B&quot;;
+		case 2:
+		return &quot;C&quot;;
+		case 3:
+		return &quot;D&quot;;
+		case 4:
+		return &quot;E&quot;;
+		default:
+		throw new Error(&quot;invalid random number&quot;);
+	}
+}
+// ～中略
+function updatePlaceText(place, text) {
+	// 内部のデータを更新する
+	place.tag.text = text;
+	// children[0]はLabelなので、Labelのtextも更新する
+	place.children[0].text = text;
+	place.children[0].invalidate();
+}
+// ～中略
+function visitAlpha() {
+	places.forEach(function(place) {
+		// テキストが空のもののみ更新をかける
+		if (place.tag.text === &quot;&quot;) {
+			updatePlaceText(place, pickAlpha());
+		}
+	});
+}
+function tryVisitAlpha() {
+	// 1秒に1回
+	if (frameCount % g.game.fps === 0) {
+		visitAlpha();
+	}
+}
+</code></pre>
+
+<p>こうして作られた<code>place</code>をタップすると、<code>breakAlpha</code>という関数が呼び出されます。</p>
+
+<p>要件は「空き1つもない時、文字をタップできる」なのでこの条件判定を行い、「タップされた文字と同種の文字が消える」を実現する為、もう一度for文で回して複数個をまとめて削除しています。</p>
+
+<pre><code class="language-js">function breakAlpha(e) {
+	for (var i = 0; i &lt; places.length; i++) {
+		// 一つでも空きスペースがあれば処理を中断
+		if (places[i].tag.text === &quot;&quot;) return;
+	}
+	var targetText = e.target.tag.text;
+	for (var i = 0; i &lt; places.length; i++) {
+		if (places[i].tag.text == targetText) {
+			// テキストが合致したら壊す
+			updatePlaceText(places[i], &quot;&quot;);
+		}
+	}
+}
+</code></pre>
+
+<p>これで、時間計算され、文字がランダムに表示され、同種の文字を同時消しするゲームらしきものが動くようになりました。</p>
+
+<img src="https://dwango.github.io/images/akashic-content3/break-place.png" alt="ゲームらしきもの"  />
+
+
+<h2 id="スコアの実装">スコアの実装</h2>
+
+<p>ゲームをゲームとして成立させるためには色々な条件があると思いますが、今回はランキングに対応させるので「スコア」の対応が必要です。</p>
+
+<p>要件は「同時に消した文字の数が多い程高得点」です。</p>
+
+<p>スコアの決め方はなかなか奥深いのですが、今回は簡単に基準スコアを10とし、同時消し数を掛け算する式で作ります。一つ消すごとにスコアが入る事にするので、2個消しの場合は1個消しの点数 + 2個消しの点数という形です。</p>
+
+<table>
+<thead>
+<tr>
+<th>同時消し数</th>
+<th>単体の点</th>
+<th>合計の点数</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1個</td>
+<td>10</td>
+<td>10</td>
+</tr>
+
+<tr>
+<td>2個</td>
+<td>20</td>
+<td>30</td>
+</tr>
+
+<tr>
+<td>3個</td>
+<td>30</td>
+<td>60</td>
+</tr>
+
+<tr>
+<td>4個</td>
+<td>40</td>
+<td>100</td>
+</tr>
+
+<tr>
+<td>5個</td>
+<td>50</td>
+<td>150</td>
+</tr>
+
+<tr>
+<td>6個</td>
+<td>60</td>
+<td>210</td>
+</tr>
+
+<tr>
+<td>7個</td>
+<td>70</td>
+<td>280</td>
+</tr>
+
+<tr>
+<td>8個</td>
+<td>80</td>
+<td>360</td>
+</tr>
+
+<tr>
+<td>9個</td>
+<td>90</td>
+<td>450</td>
+</tr>
+
+<tr>
+<td>10個</td>
+<td>100</td>
+<td>550</td>
+</tr>
+</tbody>
+</table>
+
+<p>表示されるものはランダムなのでそこまで戦略性はないですが、「多く表示されているものを消せば高得点」で「もう少し残すか今消すかは各自の判断」という感じになり、多少ゲーム性はある形になります。</p>
+
+<p>60秒だと理論上の限界として58回消せるので、31,900点が最高になりますが、それはありえないので3個消しを58回連続でやって3,480点とれたらそれなり、上手くやると4個消し5,800点くらいもありうる、くらいのバランスになるのではないでしょうか。</p>
+
+<p>もう少し凝るなら、某落ち物ゲームのように次に表示されるものなどを表示するなどすると上手い人のスコアがより伸びそうですが、サンプルなので簡単にいきましょう。</p>
+
+<p>スコア対応をするため、改めて<a href="https://akashic-games.github.io/guide/ranking.html">公式の文書</a>を眺めます。</p>
+
+<p>要約としては、<code>g.game.vars.gameState.score</code>にスコアが入っていればよいという事が書いてあります。</p>
+
+<p>スコアをここに格納し、先ほど作ったスコアのラベルに反映し、式の通りに計算すればよさそうです。</p>
+
+<p>コード全体は、こちらになります。</p>
+
+<pre><code class="language-js">function main(param) {
+	var scene = new g.Scene({game: g.game, assetIds: [&quot;font16_1&quot;, &quot;glyph_area_16&quot;]});
+	var gameTimeLimit = 60;	// デフォルトを60秒にする
+	var frameCount = 0;	// 経過時間をフレーム単位で記録
+	// ゲームスコアの初期化
+	g.game.vars.gameState = {
+		score: 0
+	};
+
+	scene.message.add(function(msg) {
+		if (msg.data &amp;&amp; msg.data.type === &quot;start&quot; &amp;&amp; msg.data.parameters &amp;&amp; msg.data.parameters.gameTimeLimit) {
+			// 制限時間を通知するイベントを受信した時点で初期化する
+			// タイトル、チュートリアル、スコア発表などが無く尺があまるため、25秒多めにとる
+			gameTimeLimit = msg.data.parameters.gameTimeLimit + 25;
+		}
+	});
+
+	scene.loaded.add(function() {
+		// glyphとfontを指定
+		var glyph = JSON.parse(scene.assets[&quot;glyph_area_16&quot;].data);
+		var font = new g.BitmapFont({
+			src: scene.assets[&quot;font16_1&quot;],
+			map: glyph,
+			defaultGlyphWidth: 16,
+			defaultGlyphHeight: 16
+		});
+		// スコア表示用ラベルを配置
+		var scoreLabel = new g.Label({
+			scene: scene,
+			font: font,
+			fontSize: 16,
+			text: &quot;&quot; + g.game.vars.gameState.score,
+			x: g.game.width - 16 * 10,	// 右端に10文字くらい表示できるように配置
+			y: 0
+		});
+		scene.append(scoreLabel);
+
+		// 時間表示用ラベルを配置
+		var timerLabel = new g.Label({
+			scene: scene,
+			font: font,
+			fontSize: 16,
+			text: &quot;&quot;,
+			x: 0,	// 左端に配置
+			y: 0
+		});
+		scene.append(timerLabel);
+
+		function updateTimerLabel() {
+			var s = countDown();
+			var text = s / 10 + (s % 10 === 0 ? &quot;.0&quot; : &quot;&quot;);
+			if (timerLabel.text != text) {
+				timerLabel.text = text;
+				timerLabel.invalidate();
+			}
+		}
+		function updateScoreLabel() {
+			scoreLabel.text = &quot;&quot; + g.game.vars.gameState.score;
+			scoreLabel.invalidate();
+		}
+		function countDown() {
+			return Math.floor(gameTimeLimit * 10 - frameCount / g.game.fps * 10);
+		}
+		var places = [];
+		var placeContainer = new g.E({
+			scene: scene,
+			x: (g.game.width - 5 * 64) / 2,
+			y: 100
+		});
+		scene.append(placeContainer);
+
+		// ランダムに1文字選ぶ処理
+		function pickAlpha() {
+			switch (g.game.random.get(0, 4)) {
+				case 0:
+				return &quot;A&quot;;
+				case 1:
+				return &quot;B&quot;;
+				case 2:
+				return &quot;C&quot;;
+				case 3:
+				return &quot;D&quot;;
+				case 4:
+				return &quot;E&quot;;
+				default:
+				throw new Error(&quot;invalid random number&quot;);
+			}
+		}
+		function calculateScore(bonus) {
+			return 10 * bonus;
+		}
+		function breakAlpha(e) {
+			for (var i = 0; i &lt; places.length; i++) {
+				// 一つでも空きスペースがあれば処理を中断
+				if (places[i].tag.text === &quot;&quot;) return;
+			}
+			var targetText = e.target.tag.text;
+			var bonusCount = 1;
+			for (var i = 0; i &lt; places.length; i++) {
+				if (places[i].tag.text == targetText) {
+					// テキストが合致したら壊す
+					updatePlaceText(places[i], &quot;&quot;);
+					// スコアを連鎖回数分加算
+					g.game.vars.gameState.score += calculateScore(bonusCount++);
+					updateScoreLabel();
+				}
+			}
+		}
+		function updatePlaceText(place, text) {
+			// 内部のデータを更新する
+			place.tag.text = text;
+			// children[0]はLabelなので、Labelのtextも更新する
+			place.children[0].text = text;
+			place.children[0].invalidate();
+		}
+		// 置き場所を作る処理
+		function createPlace(index) {
+			var label = new g.Label({
+				scene: scene,
+				font: font,
+				fontSize: 48,
+				text: &quot;&quot;,
+				x: 8,
+				y: 8
+			});
+			var place = new g.FilledRect({
+				scene: scene,
+				x: index % 5 * 64,
+				y: Math.floor(index / 5) * 64,
+				width: 64,
+				height: 64,
+				tag: {
+					text: &quot;&quot;
+				},
+				cssColor: index % 2 === 0 ? &quot;#ccc&quot; : &quot;#ddd&quot;,
+				touchable: true
+			});
+			place.append(label);
+			place.pointDown.handle(breakAlpha);
+			return place;
+		}
+		// 10個の場所を作る
+		for (var i = 0; i &lt; 10; i++) {
+			var place = createPlace(i);
+			placeContainer.append(place);
+			places.push(place);
+		}
+		function visitAlpha() {
+			places.forEach(function(place) {
+				// テキストが空のもののみ更新をかける
+				if (place.tag.text === &quot;&quot;) {
+					updatePlaceText(place, pickAlpha());
+				}
+			});
+		}
+		function tryVisitAlpha() {
+			// 1秒に1回
+			if (frameCount % g.game.fps === 0) {
+				visitAlpha();
+			}
+		}
+
+		function updateHandler() {
+			// フレーム数を毎フレーム加算
+			++frameCount;
+			if (countDown() &lt;= 0) {
+				scene.update.remove(updateHandler);	// タイムアウトになったら毎フレーム処理自体を止める
+				// 終了後はタップできないよう、テキストを空にしておく
+				places.forEach(function(place) {
+					updatePlaceText(place, &quot;&quot;);
+				});
+			}
+			tryVisitAlpha();
+			updateTimerLabel();
+		}
+		scene.update.add(updateHandler);
+	});
+
+	g.game.pushScene(scene);
+}
+
+module.exports = main;
+</code></pre>
+
+<p>まずはスコアの初期化処理です。0点からスタートにします。</p>
+
+<pre><code class="language-js">// ゲームスコアの初期化
+g.game.vars.gameState = {
+	score: 0
+};
+</code></pre>
+
+<p>スコア表示を更新する関数も作っておきます。これは毎フレーム呼び出すものでもないので、同値の場合に更新を省略する等の処理は省略しています。</p>
+
+<pre><code class="language-js">function updateScoreLabel() {
+	scoreLabel.text = &quot;&quot; + g.game.vars.gameState.score;
+	scoreLabel.invalidate();
+}
+</code></pre>
+
+<p>最後に、先ほど作成した<code>breakAlpha</code>関数の中で、文字の削除に成功した場合にスコア加算とラベルの更新を行います。</p>
+
+<p><code>calculateScore</code>というスコア計算用の関数も作っていますが、今回は数式がシンプルなので、コード量も少なめに済んでいます。</p>
+
+<pre><code class="language-js">
+function calculateScore(bonus) {
+	return 10 * bonus;
+}
+function breakAlpha(e) {
+	for (var i = 0; i &lt; places.length; i++) {
+		// 一つでも空きスペースがあれば処理を中断
+		if (places[i].tag.text === &quot;&quot;) return;
+	}
+	var targetText = e.target.tag.text;
+	var bonusCount = 1;
+	for (var i = 0; i &lt; places.length; i++) {
+		if (places[i].tag.text == targetText) {
+			// テキストが合致したら壊す
+			places[i].tag.updateText(&quot;&quot;);
+			// スコアを連鎖回数分加算
+			g.game.vars.gameState.score += calculateScore(bonusCount++);
+			updateScoreLabel();
+		}
+	}
+}
+</code></pre>
+
+<p>大分、それっぽくなったのではないでしょうか。</p>
+
+<img src="https://dwango.github.io/images/akashic-content3/break-place-with-score.png" alt="ゲーム"  />
+
+
+<h2 id="アツマールへの投稿">アツマールへの投稿</h2>
+
+<p>もっと作りこんでもよいのですが、今回はこの辺りでアツマールに投稿しようと思います。</p>
+
+<p>ゲームですのでランキングで実行することができるように指定します。</p>
+
+<p>改めて<a href="https://akashic-games.github.io/guide/ranking.html">公式の文書</a>を眺めると、<code>game.json</code>の<code>supportedModes</code>に<code>ranking</code>という文字列があればよいようです。</p>
+
+<p><code>supportedModes</code>が追加になっている以外はほぼ<a href="../akashic-content2/">第2回</a>と変わりませんが、今回の<code>game.json</code>はこちらになります。</p>
+
+<pre><code class="language-json">{
+	&quot;width&quot;: 640,
+	&quot;height&quot;: 360,
+	&quot;fps&quot;: 30,
+	&quot;main&quot;: &quot;./script/main.js&quot;,
+	&quot;assets&quot;: {
+		&quot;main&quot;: {
+			&quot;type&quot;: &quot;script&quot;,
+			&quot;path&quot;: &quot;script/main.js&quot;,
+			&quot;global&quot;: true
+		},
+		&quot;target&quot;: {
+			&quot;type&quot;: &quot;image&quot;,
+			&quot;width&quot;: 64,
+			&quot;height&quot;: 64,
+			&quot;path&quot;: &quot;image/target.png&quot;
+		},
+		&quot;font16_1&quot;: {
+			&quot;type&quot;: &quot;image&quot;,
+			&quot;width&quot;: 256,
+			&quot;height&quot;: 96,
+			&quot;path&quot;: &quot;image/font16_1.png&quot;
+		},
+		&quot;glyph_area_16&quot;: {
+			&quot;type&quot;: &quot;text&quot;,
+			&quot;path&quot;: &quot;text/glyph_area_16.json&quot;
+		}
+	},
+	&quot;environment&quot;: {
+		&quot;sandbox-runtime&quot;: &quot;2&quot;,
+		&quot;niconico&quot;: {
+			&quot;supportedModes&quot;: [
+				&quot;single&quot;,
+				&quot;ranking&quot;
+			]
+		}
+	}
+}
+</code></pre>
+
+<p>あとは<a href="../akashic-content2/">第2回</a>同様、アイコンなどアツマール投稿に必要な情報を集めて投稿し、ニコニコ新市場に登録申請をすれば出来上がりです。</p>
+
+<ul>
+<li><a href="https://game.nicovideo.jp/atsumaru/games/gm8808">https://game.nicovideo.jp/atsumaru/games/gm8808</a></li>
+</ul>
+
+<h2 id="今後について">今後について</h2>
+
+<p>今回は簡単？なゲームを作成しました。</p>
+
+<p>さすがにゲームを作るには、スコア表示等の最低限必要な要素があるのでコードの量が増えますが、一度定型化してしまえば制作の難易度はそこまで高くない事がご理解いただけると思います。</p>
+
+<p>タイトルを入れたい、スコア発表の場面を作りたい、BGMやSEを入れたい等色々とあるとは思いますが、3回の講座で早めぐりで紹介させていただいた今回の連載では取り扱えませんでした。</p>
+
+<p>今後は著者も交代制にしつつ、不定期連載で今回取り上げられなかった要素について触れていきます。講座の更新は、公式のTwitterアカウントで発表させていただきます。</p>
+
+<ul>
+<li>公式Twitterカウント: <a href="https://twitter.com/akashic_talk">@akashic_talk</a></li>
+</ul>
+
+<p>長い記事にお付き合いいただきありがとうございました。</p>
+
+<p>改造、ツール、ゲームを問わず、皆様の投稿をお待ちしております。</p>
+
+<hr />
+
+<p>本記事でご紹介したソースコードは、すべて以下のURLで公開されています。素材、ソースコードいずれも二次利用が可能ですので、ご活用ください。</p>
+
+<ul>
+<li>github: <a href="https://github.com/akashic-contents/char-break-game">https://github.com/akashic-contents/char-break-game</a></li>
+</ul>
+
+    </article>
+  </div>
+</div>
+
+    </div>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-109076308-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>
