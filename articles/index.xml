@@ -6,10 +6,19 @@
     <description>Recent content in Articles on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 26 Oct 2018 14:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 09 Nov 2018 18:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>革新的懇親会アイテム「プルタブフック」のご案内</title>
+      <link>https://dwango.github.io/articles/pull-tab-hook/</link>
+      <pubDate>Fri, 09 Nov 2018 18:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/pull-tab-hook/</guid>
+      <description>ドワンゴ 技術コミュニケーション室の塩谷（ @kwappa / kwappa@friends.nico ）です。 エンジニアにとって勉強会やカンファレンスに参加するのは学びであるとともに楽しみでもあり</description>
+    </item>
     
     <item>
       <title>Rust製の分散オブジェクトストレージをOSSとして公開しました</title>
