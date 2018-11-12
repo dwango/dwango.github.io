@@ -305,7 +305,7 @@
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/vrm/vrm_spec/</guid>
-      <description>glTF-2.0のバイナリ形式glbをベースにした、VR向けモデルフォーマットです。 拡張子 .vrmを使います。 gltfのバイナリ形式.glb</description>
+      <description>glTF-2.0のバイナリ形式glbをベースにした、VR向けモデルフォーマットです。 更新履歴 20181109: JsonShcemaのVector3のタイプが</description>
     </item>
     
     <item>

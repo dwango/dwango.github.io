@@ -176,13 +176,12 @@
 {<span style="color:#a6e22e">
 </span><span style="color:#a6e22e">    [SerializeField]</span>
     Camera m_firstPersonCamera; <span style="color:#75715e">// HMD camera
-</span><span style="color:#75715e"></span>    
-    <span style="color:#75715e">// Set a first-person mask (default | FIRSTPERSON_ONLY_LAYER, etc.) in HMD camera.
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">    [SerializeField]</span>
-    LayerMask m_firstPersonMask;<span style="color:#a6e22e">
-</span><span style="color:#a6e22e">
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">    
 </span><span style="color:#a6e22e">    [SerializeField]</span>
-    LayerMask m_otherMask; <span style="color:#75715e">// Set other masks (default | THIRDPERSON_ONLY_LAYER, etc.) in HMD camera.
+    LayerMask m_firstPersonMask; <span style="color:#75715e">// Set a first-person mask (default | FIRSTPERSON_ONLY_LAYER, etc.) in HMD camera
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">
+</span><span style="color:#a6e22e">    [SerializeField]</span>
+    LayerMask m_otherMask; <span style="color:#75715e">// Set other masks (default | THIRDPERSON_ONLY_LAYER, etc.) in HMD camera
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">
 </span><span style="color:#a6e22e">    [SerializeField]</span>
     VRMFirstPerson m_firstPerson;

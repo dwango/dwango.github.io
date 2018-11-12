@@ -235,9 +235,7 @@ proxy.SetValue(BlendShapePreset.Blink_L, 1.</description>
       
       <guid>https://dwango.github.io/en/vrm/vrm_spec/</guid>
       <description>VRM is based on glb format, which is a binary form of glTF 2.0. It is a model format for VR.
-File extension The file extension.vrmis used. It is compatible with.glb. If ModelFileName.vrm is changed to ModelFileName.glb, it can be loaded by GLTF-compatible applications (however, custom settings in VRM will not be shown).
-Json extension Extended asVRM Extensionin the JSON part of GLB.
-{ &amp;#34;extensionsUsed&amp;#34;: { &amp;#34;VRM&amp;#34; }, &amp;#34;extensions&amp;#34;: { &amp;#34;VRM&amp;#34;: { // The information of VRM extension  } }, // The information of general GLTF-2.</description>
+Update history  20181109: Corrected parts where JsonSchema&amp;rsquo;s Vector3 type is erroneously set to array  { &amp;quot;x&amp;quot;: { &amp;quot;type&amp;quot;: &amp;quot;number&amp;quot; }, &amp;quot;y&amp;quot;: { &amp;quot;type&amp;quot;: &amp;quot;number&amp;quot; }, &amp;quot;z&amp;quot;: { &amp;quot;type&amp;quot;: &amp;quot;number&amp;quot; } }  File extension The file extension.vrmis used. It is compatible with.glb. If ModelFileName.vrm is changed to ModelFileName.</description>
     </item>
     
     <item>
@@ -271,8 +269,8 @@ The node attached by spring bones When VRM is imported, components related to sp
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/vrm_about/</guid>
-      <description>What is VRM? In the past, when trying to handle 3D humanoid avatar (3D model) in Virtual Reality, Virtual YouTuber, etc., it was necessary to develop an unique system for applications and fine-tune 3D model data due to&amp;hellip;
- The output data is depend on how the creator makes the 3D model and what modeling tool is used
+      <description>What is VRM? In the past, when trying to handle the 3D humanoid avatar (3D model) in Virtual Reality, Virtual YouTuber, etc., it was necessary to develop an unique system for applications and fine-tune the 3D model data due to&amp;hellip;
+ The output data is depend on how creators make the 3D model and what modeling tools are used
  The coordinate system is different. The scale is different. The initial pose is different.</description>
     </item>
     
