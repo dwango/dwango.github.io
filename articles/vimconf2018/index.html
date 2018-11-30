@@ -113,15 +113,15 @@
 
 <p>mattnさんは昨年に引き続きのkeynoteとしての登壇です。
 前半はvim-jpというコミュニティが出来た流れと、なんのためのコミュニティなのか、というお話でした。
-その目的は英語に自身がない開発者、ドキュメントの日本語翻訳の補助などです。
-vim-jpによって追加されたものにはLamdaとjob/channelの改善とDirectX描画、カラー絵文字、<code>incserch</code>、Windowsでの<code>:terminal</code>機能があります。</p>
+その目的は英語に自信がない開発者、ドキュメントの日本語翻訳の補助などです。
+vim-jpによって追加されたものにはLambdaとjob/channelの改善とDirectX描画、カラー絵文字、<code>incsearch</code>、Windowsでの<code>:terminal</code>機能があります。</p>
 
 <p>後半はタイトルこそ&rdquo;What is the next feature?&ldquo;でしたが、我々はfuture tellerではない、コードを書くことで新たなfeatureを追加できるとし、この日のために準備してきたVimへのパッチを3つも披露してくださいました。
 これは何かを開発することでコミットしていくぞ、というエンジニアらしいもので尊敬の念を抱かずにはいられませんでした。</p>
 
 <h3 id="bram-moolenaar-vim-from-hjkl-to-a-platform-for-plugins-https-vimconf-org-2018-slides-vim-from-hjkl-to-a-platform-for-plugins-pdf"><a href="https://vimconf.org/2018/slides/Vim_From-hjkl-to-a-platform-for-plugins.pdf">Bram Moolenaar - Vim: From hjkl to a platform for plugins</a></h3>
 
-<p>待望のBramの発表はタイトルの通りPluginにフォーカスした話でした。
+<p>待望のBramさんの発表はタイトルの通りPluginにフォーカスした話でした。
 発表はViの話から始まりました。
 当時のViにはif命令や変数などはなかったそうです。(しかしmappingを使って迷路を解くことは出来たといいます。)
 Vim 4.0でautocommandが導入され、Vim 5.0でVim scriptのsyntax、if、while、式、変数が導入されたそうです。(4.0が1996年、5.0が1998年らしいです。)
@@ -130,18 +130,18 @@ Vim 4.0でautocommandが導入され、Vim 5.0でVim scriptのsyntax、if、whil
 そのために、Vim 6.0でPluginに対応し、Pluginによる進化が始まりました。
 次にPluginの実行速度改善のためにVim 7.0でPluginの一部ファイルの遅延読み込みであるautoloadが入ったとのこと。
 私がVimを使い始めたのは確かVim 7.3からだったので既に多くのPluginが存在していました。
-さらなる高速化のために、Pluginをマルチスレッドで読み込む、という案も紹介されていましたがBramも話していたように実現は非常に困難そうです。
+さらなる高速化のために、Pluginをマルチスレッドで読み込む、という案も紹介されていましたがBramさんも話していたように実現は非常に困難そうです。
 また、Vim scriptを中間表現にコンパイルして、パース処理を1回で済ませる、という案もありました。
 Vimは非常に便利なPluginが数多くあり、自分も97個ほどインストールしています。
 すると、大量のPluginをどのようにして管理するかが問題となります。
-これはBramも認識しており、Vim 8.0でPlugin管理を補助する機能が導入されてました。
+これはBramさんも認識しており、Vim 8.0でPlugin管理を補助する機能が導入されてました。
 これはみんなが求めているPlugin管理機能がそれぞれ異なっており、Pluginを管理するPluginを助ける機能を追加しよう、という方針になったそうです。</p>
 
-<p>さらに、Bram自身が最近行った、Pluginを作る上でどういう機能がほしいか？という投票結果の話もありました。
+<p>さらに、Bramさん自身が最近行った、Pluginを作る上でどういう機能がほしいか？という投票結果の話もありました。
 個人的にもpopup windowのサポートが非常に欲しいと思っています。
 ドキュメントの表示や、使用箇所の表示といった、現在はIDEが圧倒的優位に立っている機能もVimで太刀打ちできるようになるでしょう。
 彼の開発のスタンスとして、たくさんの機能を入れるには慎重で、みんなに求められる機能をしっかりと考えて追加したい、という話でした。
-これら開発の話をBram本人の口から聞けるのは非常に素晴らしい体験でした。</p>
+これら開発の話をBramさん本人の口から聞けるのは非常に素晴らしい体験でした。</p>
 
 <h3 id="daisuzu-migrating-plugins-to-standard-features-https-speakerdeck-com-daisuzu-migrating-plugins-to-standard-features"><a href="https://speakerdeck.com/daisuzu/migrating-plugins-to-standard-features">daisuzu - Migrating plugins to standard features</a></h3>
 
@@ -230,9 +230,9 @@ GUIの特徴を活かして、様々なものを描画するデモはターミ�
 他にもvim-jpに記事を追加したり、チケット販売を管理したりと、みんな仕事や趣味の傍らで活動をしました。
 しかし、当日が終わって、有志の方がまとめてくれた<a href="https://togetter.com/li/1291515">VimConf 2018 まとめ - Togetter</a>を振り返ったり、続々と集まってくる参加報告ブログを見ていると、楽しかった、やってよかったと感じられました。</p>
 
-<p>翌日にはVimthonという運営と一部のVim貢献者が集まってBram氏とワイワイするイベントを行いました。
-この記事はBram氏の向かいの席に座りながら書いています。
-そのときのBram氏の言葉を<a href="https://vimconf.wordpress.com/2018/11/25/vimconf-2018/">VimConf 2018 – VimConf official blog</a>から引用します。</p>
+<p>翌日にはVimthonという運営と一部のVim貢献者が集まってBramさんとワイワイするイベントを行いました。
+この記事はBramさんの向かいの席に座りながら書いています。
+そのときのBramさんの言葉を<a href="https://vimconf.wordpress.com/2018/11/25/vimconf-2018/">VimConf 2018 – VimConf official blog</a>から引用します。</p>
 
 <blockquote>
 <p>&ldquo;I am amazed to experience the professional level of this conference
