@@ -6,10 +6,19 @@
     <description>Recent content on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 09 Nov 2018 18:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 27 Nov 2018 13:59:36 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>VimConf 2018のスポンサーをしました</title>
+      <link>https://dwango.github.io/articles/vimconf2018/</link>
+      <pubDate>Tue, 27 Nov 2018 13:59:36 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/vimconf2018/</guid>
+      <description>はじめに こんにちは。 入社2年目のエンジニア、moppです。 2018/11/24にVimConf 2018が開催されました。 昨年のVimConf</description>
+    </item>
     
     <item>
       <title>革新的懇親会アイテム「プルタブフック」のご案内</title>
