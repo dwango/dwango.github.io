@@ -134,7 +134,7 @@
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/vrm/vrm_applications/</guid>
-      <description>投稿プラットフォーム ニコニ立体 3Dモデルデータ投稿サービス。VRMファイル投稿可能 キャラメイクツール Vカツ VRoid 配信ツール バーチャルキャスト VR</description>
+      <description>3Dキャラクター投稿プラットフォーム ニコニ立体 VRoid Hub キャラメイクツール Vカツ VRoid セシル変身アプリ 配信ツール バーチャルキャスト VR空間のスタジオを</description>
     </item>
     
     <item>
@@ -202,7 +202,7 @@ Known Implementations  TODO: List of known implementations, with links to each i
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/vrm/univrm/components/univrm_blendshape/</guid>
-      <description>VRMBlendShapeProxy 実行時のVRMBlendShapeProxyのインスペクタ。Editorをプレイ状態にすると表示されます 使い方は、 BlendShapeAv</description>
+      <description>UniVRM v0.45で導入された新機能はこちらをご覧ください。 VRMBlendShapeProxy 実行時のVRMBlendShapeProxyのインスペクタ。Editorをプレイ状態</description>
     </item>
     
     <item>

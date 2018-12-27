@@ -100,7 +100,7 @@ VRM/UnlitTransparentZWrite Alpha blending and ZWrite are available. It is assume
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/components/univrm_blendshape/</guid>
-      <description>VRMBlendShapeProxy The figure above is VRMBlendShapeProxy in the Inspector window at runtime. VRMBlendShapeProxy can be enabled by clicking the play button in edit mode How to use it: Set BlendShapeAvatar VRMBlendShapeProxy-&amp;gt;BlendShapeAvatar in the Inspector Change BlendShapeClip value between 0 and 1 at runtime (e.g. BLINK, JOY) BlendShapeAvatar Expressions can be created in the Inspector. Double click theBlend Shape Avatarbox or Click BlendShape directly here (the highlighted file) The Inspector of</description>
+      <description>New features introduced in UniVRM v0.45 can be found here VRMBlendShapeProxy The figure above is VRMBlendShapeProxy in the Inspector window at runtime. VRMBlendShapeProxy can be enabled by clicking the play button in edit mode How to use: Set BlendShapeAvatar VRMBlendShapeProxy-&amp;gt;BlendShapeAvatar in the Inspector Change BlendShapeClip value between 0 and 1 at runtime (e.g. BLINK, JOY) BlendShapeAvatar Expressions can be created in the Inspector. Double click theBlend Shape Avatarbox or Click</description>
     </item>
     
     <item>
@@ -256,11 +256,20 @@ The node attached by spring bones When VRM is imported, components related to sp
       
       <guid>https://dwango.github.io/en/vrm/vrm_applications/</guid>
       <description>3D model submission platform  Niconi 3D
- The website to which users can submit their 3D model data. Available for VRM file submission and download    Character maker  Vkatsu
+ VRoid Hub
+  Character maker  Vkatsu
  VRoid
+ SeshiruHenshin
   Live streaming tool  Virtual Cast
- A VR live communication application that allows users to communicate in a shared virtual space in real-time. VRM model is importable  VDRAW
- Hitogata</description>
+ A VR live communication application that allows users to communicate in a shared virtual space in real-time. VRM model is importable  Custom Cast
+ VDRAW
+ Hitogata
+ 3tene
+ Puppemoji
+ Wakaru
+ VirtualMotionCapture
+ FaceVTuber
+ Mayalive</description>
     </item>
     
     <item>
