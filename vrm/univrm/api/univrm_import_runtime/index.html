@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.48" />
+  <meta name="generator" content="Hugo 0.54.0" />
 
   <meta property="og:title" content="VRMモデルを実行時にインポートする - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -141,17 +141,17 @@ VRMImporter.LoadVrmAsync(path, go =&gt; {
             <span style="color:#75715e">// Byte列を得る
 </span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> bytes = File.ReadAllBytes(path);
 
-            <span style="color:#66d9ef">var</span> context = <span style="color:#66d9ef">new</span> VRMImporterContext(path);
+            <span style="color:#66d9ef">var</span> context = <span style="color:#66d9ef">new</span> VRMImporterContext();
 
             <span style="color:#75715e">// GLB形式をParseしてチャンクからJSONを取得しParseします
-</span><span style="color:#75715e"></span>            context.ParseVrm(bytes);
+</span><span style="color:#75715e"></span>            context.ParseGlb(bytes);
 
             <span style="color:#75715e">// metaを取得
 </span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> meta = context.ReadMeta();
             Debug.LogFormat(<span style="color:#e6db74">&#34;meta: title:{0}&#34;</span>, meta.Title);
 
             <span style="color:#75715e">// もしくはこちらでパースされたGLTF全体にアクセスできます
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> vrm = context.VRM;
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> vrm = context.GLTF;
 
             <span style="color:#75715e">// ParseしたJSONをもとにシーンを構築します
 </span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (m_loadAsync)
