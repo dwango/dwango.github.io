@@ -6,10 +6,19 @@
     <description>Recent content in Articles on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Thu, 27 Dec 2018 21:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 09 Feb 2019 15:33:55 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JANOG43 Report</title>
+      <link>https://dwango.github.io/articles/janog43-report/</link>
+      <pubDate>Sat, 09 Feb 2019 15:33:55 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/janog43-report/</guid>
+      <description>はじめに Dwango Cloud Service部 Networkセクションの北内です。 2019年1月22日〜25日に行われたJANOG43 Meetingに参加して</description>
+    </item>
     
     <item>
       <title>niconico 改善インターンを終えて</title>
