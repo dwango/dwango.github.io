@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.54.0" />
+  <meta name="generator" content="Hugo 0.48" />
 
   <meta property="og:title" content="Rust製の分散オブジェクトストレージをOSSとして公開しました - dwango on GitHub">
 
@@ -116,14 +116,14 @@
 
 <p>提供されている機能はシンプルで、利用者は通常、以下の三つのHTTP APIを通してFrugalosを操作することになります:</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># オブジェクトの新規保存・上書き</span>
-$ curl -X PUT -d <span style="color:#f92672">{</span>データ<span style="color:#f92672">}</span> http://localhost/v1/buckets/<span style="color:#f92672">{</span>バケツID<span style="color:#f92672">}</span>/objects/<span style="color:#f92672">{</span>オブジェクトID<span style="color:#f92672">}</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># オブジェクトの新規保存・上書き
+</span><span style="color:#75715e"></span>$ curl -X PUT -d <span style="color:#f92672">{</span>データ<span style="color:#f92672">}</span> http://localhost/v1/buckets/<span style="color:#f92672">{</span>バケツID<span style="color:#f92672">}</span>/objects/<span style="color:#f92672">{</span>オブジェクトID<span style="color:#f92672">}</span>
 
-<span style="color:#75715e"># オブジェクトの取得</span>
-$ curl -X GET http://localhost/v1/buckets/<span style="color:#f92672">{</span>バケツID<span style="color:#f92672">}</span>/objects/<span style="color:#f92672">{</span>オブジェクトID<span style="color:#f92672">}</span>
+<span style="color:#75715e"># オブジェクトの取得
+</span><span style="color:#75715e"></span>$ curl -X GET http://localhost/v1/buckets/<span style="color:#f92672">{</span>バケツID<span style="color:#f92672">}</span>/objects/<span style="color:#f92672">{</span>オブジェクトID<span style="color:#f92672">}</span>
 
-<span style="color:#75715e"># オブジェクトの削除</span>
-$ curl -X DELETE http://localhost/v1/buckets/<span style="color:#f92672">{</span>バケツID<span style="color:#f92672">}</span>/objects/<span style="color:#f92672">{</span>オブジェクトID<span style="color:#f92672">}</span></code></pre></div>
+<span style="color:#75715e"># オブジェクトの削除
+</span><span style="color:#75715e"></span>$ curl -X DELETE http://localhost/v1/buckets/<span style="color:#f92672">{</span>バケツID<span style="color:#f92672">}</span>/objects/<span style="color:#f92672">{</span>オブジェクトID<span style="color:#f92672">}</span></code></pre></div>
 
 <p><small>※&rdquo;バケツ&rdquo;はオブジェクト群の管理単位で、事前に生成しておく必要があります</small> <br />
 <small>※その他の利用可能なAPIに関しては<a href="https://github.com/frugalos/frugalos/wiki/REST-API">Wiki</a>を参照してください</small></p>
