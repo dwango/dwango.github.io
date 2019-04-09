@@ -93,19 +93,19 @@
 <li><a href="#設定項目">設定項目</a>
 <ul>
 <li><a href="#準備">準備</a></li>
-<li><a href="#basic">Basic</a>
+<li><a href="#rendering">Rendering</a>
 <ul>
 <li><a href="#rendering-type">Rendering Type</a></li>
 <li><a href="#cull-mode">Cull Mode</a></li>
 <li><a href="#alpha">Alpha</a></li>
-<li><a href="#color">Color</a></li>
 </ul></li>
+<li><a href="#color">Color</a></li>
 <li><a href="#lighting">Lighting</a>
 <ul>
-<li><a href="#shade-shift">Shade Shift</a></li>
-<li><a href="#shade-toony">Shade Toony</a></li>
-<li><a href="#shade-lightcolor-attenuation">Shade LightColor Attenuation</a></li>
-<li><a href="#shadow-receive-rate">Shadow Receive Rate</a></li>
+<li><a href="#shading-shift">Shading Shift</a></li>
+<li><a href="#shading-toony">Shading Toony</a></li>
+<li><a href="#shadow-receive-multiplier">Shadow Receive Multiplier</a></li>
+<li><a href="#lightcolor-attenuation">LightColor Attenuation</a></li>
 <li><a href="#rim-additive">Rim Additive</a></li>
 <li><a href="#emission">Emission</a></li>
 <li><a href="#normal-map">Normal Map</a></li>
@@ -124,7 +124,8 @@
         </div>
        
 
-<p><a href="../../univrm_install/#shader-preloadingの設定">Shader preloadingの設定</a></p>
+<p><a href="../../univrm_install/#shader-preloadingの設定">Shader preloadingの設定</a><br/>
+<a href="https://niconare.nicovideo.jp/watch/kn3485">MToonの使い方</a></p>
 
 <h1 id="mtoon-について">MToon について</h1>
 
@@ -152,10 +153,10 @@
 
 <ul>
 <li>目的のマテリアルを選択し、シェーダを <code>VRM/MToon</code> に変更</li>
-<li><code>Basic-&gt;Color-&gt;Lit&amp;Alpha</code> と <code>Basic-&gt;Color-&gt;Shade</code> に同じテクスチャを設定</li>
-<li><code>Basic-&gt;Color-&gt;Lit&amp;Alpha</code> は 白色、 <code>Basic-&gt;Color-&gt;Shade</code> は好きな陰色を設定</li>
-<li><code>Shade -&gt; Toony</code> は好きな値。主色と影色をパキッとさせたいときは <code>1</code></li>
-<li><code>Rim-&gt;Additive</code> はスフィアマップや MatCap と同等のテクスチャを設定</li>
+<li><code>Color-&gt;Lit Color, Alpha</code> と <code>Color-&gt;Shade Color</code> に同じテクスチャを設定</li>
+<li><code>Color-&gt;Lit Color, Alpha</code> は白色 <code>Color-&gt;Shade Color</code> は好きな陰色を設定</li>
+<li><code>Shading-&gt;Toony</code> は好きな値。主色と影色をパキッとさせたいときは <code>1</code></li>
+<li><code>Rim-&gt;Additive</code> は <code>Spheremap</code> や <code>MatCap</code> と同等のテクスチャを設定</li>
 <li><code>Outline-&gt;Width-&gt;Mode</code> は輪郭線を必要とするなら <code>WorldCoordinates</code> で、しないなら <code>None</code></li>
 <li><code>Outline-&gt;Width-&gt;Width</code> は 見た目上好きな値</li>
 </ul>
@@ -163,15 +164,15 @@
 <h2 id="普通のマテリアル">普通のマテリアル</h2>
 
 <ul>
-<li><code>Shade-&gt;Shift</code> は <code>0</code></li>
-<li><code>Shadow-&gt;ReceiveRate</code> は <code>1</code></li>
+<li><code>Shading Shift</code> は <code>0</code></li>
+<li><code>Shading Toony-&gt;Shadow Receive Multiplier</code> は <code>1</code></li>
 </ul>
 
 <h2 id="キャラクタの顔など-影があまりついてほしくないマテリアル">キャラクタの顔など、影があまりついてほしくないマテリアル</h2>
 
 <ul>
-<li><code>Shade-&gt;Shift</code> はマイナスの値</li>
-<li><code>Shadow-&gt;Receive Rate</code> は <code>0</code></li>
+<li><code>Shading Shift</code> はマイナスの値</li>
+<li><code>Shading Toony-&gt;Shadow Receive Multiplier</code> は <code>0</code></li>
 </ul>
 
 <h1 id="設定項目">設定項目</h1>
@@ -195,24 +196,24 @@
 </tbody>
 </table>
 
-<h2 id="basic">Basic</h2>
+<h2 id="rendering">Rendering</h2>
 
 <table>
 <thead>
 <tr>
-<th><img src="https://dwango.github.io/images/vrm/mtoon_inspector_basic.png" alt="MToon Basic"  />
+<th><img src="https://dwango.github.io/images/vrm/mtoon_inspector_rendering.png" alt="MToon Rendering"  />
 </th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td>Basic Inspector に含まれる項目.</td>
+<td>Rendering Inspector に含まれる項目.</td>
 </tr>
 </tbody>
 </table>
 
-<p>Basic 項目では主色と影色、および描画方法を設定します。</p>
+<p>Rendering 項目では主色と影色、および描画方法を設定します。</p>
 
 <h3 id="rendering-type">Rendering Type</h3>
 
@@ -227,12 +228,12 @@
 <li>Cutout
 
 <ul>
-<li>不透明ですが <code>Basic-&gt;Color-&gt;Lit&amp;Alpha</code> のアルファ値情報を参照して <code>Basic-&gt;Alpha-&gt;Cutoff</code> の値より小さな箇所の描画をスキップします。</li>
+<li>不透明ですが <code>Color-&gt;Lit Color, Alpha</code> のアルファ値情報を参照して <code>Color-&gt;Alpha-&gt;Cutoff</code> の値より小さな箇所の描画をスキップします。</li>
 </ul></li>
 <li>Transparent
 
 <ul>
-<li>半透明です。 <code>Basic-&gt;Color-&gt;Lit&amp;Alpha</code> のアルファ値どおりの不透明度になります。</li>
+<li>半透明です。<code>Color-&gt;Lit Color, Alpha</code> のアルファ値どおりの不透明度になります。</li>
 <li>デメリットとして輪郭線描画は正しく行われません。</li>
 </ul></li>
 </ul>
@@ -264,46 +265,46 @@
 <p><code>Rendering Type</code> が <code>Cutout</code> であるときだけ設定する必要があります。</p>
 
 <ul>
-<li>Cutoff
+<li>Cutoff (<code>Color-&gt;Alpha</code>)
 
 <ul>
 <li>描画するしないのしきい値を設定します。</li>
 </ul></li>
 </ul>
 
-<h3 id="color">Color</h3>
+<h2 id="color">Color</h2>
 
 <p>描画色を設定します。
 テクスチャと色は乗算されます。
-光が当たる主色は <code>Lit &amp; Alpha</code> に、光が当たらない陰色は <code>Shade</code> に設定します。
-また <code>Lit &amp; Alpha</code> のアルファ値には不透明度情報を設定します。</p>
+光が当たる主色は <code>Lit Color, Alpha</code> に、光が当たらない陰色は <code>Shade Color</code> に設定します。
+また <code>Lit Color, Alpha</code> のアルファ値には不透明度情報を設定します。</p>
 
 <h2 id="lighting">Lighting</h2>
 
-<h3 id="shade-shift">Shade Shift</h3>
+<h3 id="shading-shift">Shading Shift</h3>
 
 <p>光の当たり方に対して、主色と陰色のしきい値を調整します。
 <code>0</code> のとき普通のライティングになります。
 マイナス値にするとアニメ的な、主色の範囲が広いライティングになります。
-マイナス値のときはセルフシャドウを無効化する必要があるため、表示された警告に従い <code>Shadow-&gt;ReceiveRate</code> を <code>0</code> に設定する必要があります。</p>
+マイナス値のときはセルフシャドウを無効化する必要があるため、表示された警告に従い <code>Shadow Receive Multiplier</code> を <code>0</code> に設定する必要があります。</p>
 
-<h3 id="shade-toony">Shade Toony</h3>
+<h3 id="shading-toony">Shading Toony</h3>
 
-<p><code>Shade Shift</code> の項目における主色と陰色のしきい値付近を滑らかに変化させるか否かを設定します。
+<p><code>Shading Shift</code> の項目における主色と陰色のしきい値付近を滑らかに変化させるか否かを設定します。
 <code>0</code> のときは通常の Lambert モデルのような写実寄りの滑らかさになります。
 <code>1</code> のときはしきい値ではっきり主色と陰色が変化するアニメ調のライティングになります。</p>
 
-<h3 id="shade-lightcolor-attenuation">Shade LightColor Attenuation</h3>
-
-<p>光源の色の影響度を設定します。
-<code>0</code> のときは光源の色の影響を受けます。
-<code>1</code> のときは光源の色の影響を無効化し、光源の色の輝度だけを反映します。</p>
-
-<h3 id="shadow-receive-rate">Shadow Receive Rate</h3>
+<h3 id="shadow-receive-multiplier">Shadow Receive Multiplier</h3>
 
 <p>セルフシャドウや落影の影響度を設定します。
 <code>0</code> のときは影響を受けません。
 <code>1</code> のときは影響を受けます。</p>
+
+<h3 id="lightcolor-attenuation">LightColor Attenuation</h3>
+
+<p>光源の色の影響度を設定します。
+<code>0</code> のときは光源の色の影響を受けます。
+<code>1</code> のときは光源の色の影響を無効化し、光源の色の輝度だけを反映します。</p>
 
 <h3 id="rim-additive">Rim Additive</h3>
 

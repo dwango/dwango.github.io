@@ -93,19 +93,19 @@
 <li><a href="#setting-items">Setting items</a>
 <ul>
 <li><a href="#preliminary">Preliminary</a></li>
-<li><a href="#basic">Basic</a>
+<li><a href="#rendering">Rendering</a>
 <ul>
 <li><a href="#rendering-type">Rendering Type</a></li>
 <li><a href="#cull-mode">Cull Mode</a></li>
 <li><a href="#alpha">Alpha</a></li>
-<li><a href="#color">Color</a></li>
 </ul></li>
+<li><a href="#color">Color</a></li>
 <li><a href="#lighting">Lighting</a>
 <ul>
-<li><a href="#shade-shift">Shade Shift</a></li>
-<li><a href="#shade-toony">Shade Toony</a></li>
-<li><a href="#shade-lightcolor-attenuation">Shade LightColor Attenuation</a></li>
-<li><a href="#shadow-receive-rate">Shadow Receive Rate</a></li>
+<li><a href="#shading-shift">Shading Shift</a></li>
+<li><a href="#shading-toony">Shading Toony</a></li>
+<li><a href="#shadow-receive-multiplier">Shadow Receive Multiplier</a></li>
+<li><a href="#lightcolor-attenuation">LightColor Attenuation</a></li>
 <li><a href="#rim-additive">Rim Additive</a></li>
 <li><a href="#emission">Emission</a></li>
 <li><a href="#normal-map">Normal Map</a></li>
@@ -124,7 +124,8 @@
         </div>
        
 
-<p><a href="../../univrm_install/#shader-preloading-setting">Shader preloading setting</a></p>
+<p><a href="../../univrm_install/#shader-preloading-setting">Shader preloading setting</a><br>
+<a href="https://niconare.nicovideo.jp/watch/kn3485">How to use MToon</a></p>
 
 <h1 id="about-mtoon">About MToon</h1>
 
@@ -151,10 +152,10 @@
 
 <ul>
 <li>Select the target material and change the shader to <code>VRM/MToon</code></li>
-<li>Click the shader panel and set the same texture in <code>Basic-&gt;Color-&gt;Lit&amp;Alpha</code> and <code>Basic-&gt;Color-&gt;Shade</code></li>
-<li>Set white color in <code>Basic-&gt;Color-&gt;Lit&amp;Alpha</code> and set the preference shade color in <code>Basic-&gt;Color-&gt;Shade</code></li>
-<li>Set the preference value in <code>Shade-&gt;Toony</code>. Make the lit color and shade color sharp:<code>1</code></li>
-<li>Set the texture in <code>Rim-&gt;Additive</code> (equivalent to sphere map or Matcap)</li>
+<li>Click the shader panel and set the same texture in <code>Color-&gt;Lit Color, Alpha</code> and <code>Color-&gt;Shade Color</code></li>
+<li>Set white color in <code>Color-&gt;Lit Color, Alpha</code> and set the preference shade color in <code>Color-&gt;Shade Color</code></li>
+<li>Set the preference value in <code>Shading-&gt;Toony</code>. Make the lit color and shade color sharp:<code>1</code></li>
+<li>Set the texture in <code>Rim-&gt;Additive</code> (equivalent to <code>sphere map</code> or <code>Matcap</code>)</li>
 <li>If outline is necessary, select <code>WorldCoordinates</code> in <code>Outline-&gt;Width-&gt;Mode</code>. Select <code>None</code> if outline is not needed</li>
 <li>Set the value with good appearance in <code>Outline-&gt;Width-&gt;Width</code></li>
 </ul>
@@ -162,15 +163,15 @@
 <h2 id="general-material">General material</h2>
 
 <ul>
-<li>Choose <code>Shade-&gt;Shift</code> and set <code>0</code></li>
-<li>Choose <code>Shadow-&gt;ReceiveRate</code> and set <code>1</code></li>
+<li>Choose <code>Shading Shift</code> and set <code>0</code></li>
+<li>Choose <code>Shading Toony-&gt;Shadow Receive Multiplier</code> and set <code>1</code></li>
 </ul>
 
 <h2 id="set-materials-not-being-shadowed-too-much-such-as-the-character-s-face">Set materials not being shadowed too much such as the character&rsquo;s face</h2>
 
 <ul>
-<li>Choose <code>Shade-&gt;Shift</code> and set a negative value</li>
-<li>Choose <code>Shadow-&gt;Receive Rate</code> and set <code>0</code></li>
+<li>Choose <code>Shading Shift</code> and set a negative value</li>
+<li>Choose <code>Shading Toony-&gt;Shadow Receive Multiplier</code> and set <code>0</code></li>
 </ul>
 
 <h1 id="setting-items">Setting items</h1>
@@ -194,24 +195,24 @@
 </tbody>
 </table>
 
-<h2 id="basic">Basic</h2>
+<h2 id="rendering">Rendering</h2>
 
 <table>
 <thead>
 <tr>
-<th><img src="https://dwango.github.io/images/vrm/mtoon_inspector_basic.png" alt="MToon Basic"  />
+<th><img src="https://dwango.github.io/images/vrm/mtoon_inspector_rendering.png" alt="MToon Rendering"  />
 </th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td>The items included in the Basic Inspector</td>
+<td>The items included in the Rendering Inspector</td>
 </tr>
 </tbody>
 </table>
 
-<p>Set the Lit color, Shade color and rendering method in &ldquo;Basic&rdquo;.</p>
+<p>Set the rendering type and cull mode in <code>Rendering</code>.</p>
 
 <h3 id="rendering-type">Rendering Type</h3>
 
@@ -221,19 +222,19 @@
 <li>Opaque
 
 <ul>
-<li>For rendering performance, it is recommended to set &ldquo;Opaque&rdquo;.</li>
+<li>For rendering performance, it is recommended to set <code>Opaque</code>.</li>
 </ul></li>
 
 <li><p>Cutout</p>
 
 <ul>
-<li>Although it is opaque, it refers to the alpha value in <code>Basic-&gt;Color-&gt;Lit&amp;Alpha</code>. Therefore, it skips rendering for places having smaller value than <code>Basic-&gt;Alpha-&gt;Cutoff</code>.</li>
+<li>Although it is opaque, it refers to the alpha value in <code>Color-&gt;Lit Color, Alpha</code>. Therefore, it skips rendering for places having smaller value than <code>Color-&gt;Alpha-&gt;Cutoff</code>.</li>
 </ul></li>
 
 <li><p>Transparent</p>
 
 <ul>
-<li>The opacity based on the alpha value in <code>Basic-&gt;Color-&gt;Lit&amp;Alpha</code>.</li>
+<li>The opacity based on the alpha value in <code>Color-&gt;Lit Color, Alpha</code>.</li>
 <li>The downside is that outline rendering cannot be performed correctly.</li>
 </ul></li>
 </ul>
@@ -265,51 +266,51 @@
 <p>Required if choosing <code>Rendering Type-&gt;Cutout</code>.</p>
 
 <ul>
-<li>Cutoff
+<li>Cutoff (<code>Color-&gt;Alpha</code>)
 
 <ul>
 <li>Set the threshold value for not rendering.</li>
 </ul></li>
 </ul>
 
-<h3 id="color">Color</h3>
+<h2 id="color">Color</h2>
 
 <p>Set the rendering color.
 The texture and color are multiplied.
-Set the color hit by the light ray in <code>Lit &amp; Alpha</code> and set the color not hit by the light ray in <code>Shade</code>.<br />
-Also, set the opacity information for the alpha value of <code>Lit &amp; Alpha</code>.</p>
+Set the color hit by the light ray in <code>Lit Color, Alpha</code> and set the color not hit by the light ray in <code>Shade Color</code>.<br />
+Also, set the the alpha value in <code>Lit Color, Alpha</code> for opacity information.</p>
 
 <h2 id="lighting">Lighting</h2>
 
-<h3 id="shade-shift">Shade Shift</h3>
+<h3 id="shading-shift">Shading Shift</h3>
 
 <p>Adjust the threshold value of the lit color and shade color for how the light ray hits the object.
 When the value is <code>0</code>, it is the normal lighting.
 When the value is negative, it becomes the lighting with anime-like, wide range of lit color.
-It is necessary to disable the self-shadow with setting the value to <code>0</code> in <code>Shadow-&gt;ReceiveRate</code> according to the displayed warning message.</p>
+It is necessary to disable the self-shadow with setting the value to <code>0</code> in <code>Shadow Receive Multiplier</code> according to the displayed warning message.</p>
 
-<h3 id="shade-toony">Shade Toony</h3>
+<h3 id="shading-toony">Shading Toony</h3>
 
 <p>Set whether to smoothly change the lit color and shade color around the threshold value in <code>Shade Shift</code>.
 When the value is <code>0</code>, it becomes realistically smooth like a general Lambert model.
 When the value is <code>1</code>, it becomes animation-style lighting. The lit color and shade color change rapidly around the threshold value.</p>
 
-<h3 id="shade-lightcolor-attenuation">Shade LightColor Attenuation</h3>
-
-<p>Set the influence of the light source color.
-<code>0</code>: Affected by the light source color.
-<code>1</code>: Not affected by the light source color. It only reflects the luminance of the light source color.</p>
-
-<h3 id="shadow-receive-rate">Shadow Receive Rate</h3>
+<h3 id="shadow-receive-multiplier">Shadow Receive Multiplier</h3>
 
 <p>Set the influence of the self-shadow and shadow.
 <code>0</code>: Not affected.
 <code>1</code>: Affected.</p>
 
+<h3 id="lightcolor-attenuation">LightColor Attenuation</h3>
+
+<p>Set the influence of the light source color.
+<code>0</code>: Affected by the light source color.
+<code>1</code>: Not affected by the light source color. It only reflects the luminance of the light source color.</p>
+
 <h3 id="rim-additive">Rim Additive</h3>
 
 <p>Display additional light sources based on the relationship between the camera and the normal.
-In general it is called sphere map or Matcap.</p>
+In general it is called sphere map or matcap.</p>
 
 <h3 id="emission">Emission</h3>
 

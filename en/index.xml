@@ -163,8 +163,9 @@ Open VRM from a file path var path=&amp;#34;sample.vrm&amp;#34;; var go=VRM.VRMI
       
       <guid>https://dwango.github.io/en/vrm/univrm/shaders/mtoon/</guid>
       <description>Shader preloading setting
+How to use MToon
 About MToon MToon aims for making Japanese anime expressions. It is achieved by mixing Lit Color and Shade Color based on Lighting parameters and light source environment.
-        Apply MToon to the 3D modelAlicia    For users who want to have a quick setup Common items  Select the target material and change the shader to VRM/MToon Click the shader panel and set the same texture in Basic-&amp;gt;Color-&amp;gt;Lit&amp;amp;Alpha and Basic-&amp;gt;Color-&amp;gt;Shade Set white color in Basic-&amp;gt;Color-&amp;gt;Lit&amp;amp;Alpha and set the preference shade color in Basic-&amp;gt;Color-&amp;gt;Shade Set the preference value in Shade-&amp;gt;Toony.</description>
+        Apply MToon to the 3D modelAlicia    For users who want to have a quick setup Common items  Select the target material and change the shader to VRM/MToon Click the shader panel and set the same texture in Color-&amp;gt;Lit Color, Alpha and Color-&amp;gt;Shade Color Set white color in Color-&amp;gt;Lit Color, Alpha and set the preference shade color in Color-&amp;gt;Shade Color Set the preference value in Shading-&amp;gt;Toony.</description>
     </item>
     
     <item>
@@ -255,21 +256,20 @@ The node attached by spring bones When VRM is imported, components related to sp
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/vrm_applications/</guid>
-      <description>3D model submission platform  Niconi 3D
+      <description>3D model submission platform  The Seed Online
+ Niconi 3D
  VRoid Hub
   Character maker  Vkatsu
  VRoid
  SeshiruHenshin
   Live streaming tool  Virtual Cast
- A VR live communication application that allows users to communicate in a shared virtual space in real-time. VRM model is importable  Custom Cast
+ A VR live communication application that allows users to communicate in a shared virtual space in real-time. VRM model is importable.  Custom Cast
  VDRAW
  Hitogata
  3tene
  Puppemoji
  Wakaru
- VirtualMotionCapture
- FaceVTuber
- Mayalive</description>
+ VirtualMotionCapture</description>
     </item>
     
     <item>
