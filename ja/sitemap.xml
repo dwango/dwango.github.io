@@ -3,6 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://dwango.github.io/articles/</loc>
+    <lastmod>2019-04-29T20:00:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/</loc>
+    <lastmod>2019-04-29T20:00:00+09:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://dwango.github.io/en/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://dwango.github.io/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/articles/heart-technique-and-body-for-engineers/</loc>
+    <lastmod>2019-04-29T20:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://dwango.github.io/articles/janog43-report/</loc>
     <lastmod>2019-02-09T15:33:55+09:00</lastmod>
   </url>
@@ -533,12 +560,6 @@
   </url>
   
   <url>
-    <loc>https://dwango.github.io/articles/</loc>
-    <lastmod>2019-02-09T15:33:55+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://dwango.github.io/categories/</loc>
     <priority>0</priority>
     <xhtml:link
@@ -565,22 +586,6 @@
                 rel="alternate"
                 hreflang="ja"
                 href="https://dwango.github.io/tags/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://dwango.github.io/</loc>
-    <lastmod>2019-02-09T15:33:55+09:00</lastmod>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://dwango.github.io/en/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://dwango.github.io/"
                 />
   </url>
   

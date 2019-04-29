@@ -6,10 +6,19 @@
     <description>Recent content on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sat, 09 Feb 2019 15:33:55 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 29 Apr 2019 20:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>エンジニアの心技体</title>
+      <link>https://dwango.github.io/articles/heart-technique-and-body-for-engineers/</link>
+      <pubDate>Mon, 29 Apr 2019 20:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/heart-technique-and-body-for-engineers/</guid>
+      <description>ドワンゴ 技術コミュニケーション室の塩谷（ kwappa ) です。 2019年、ドワンゴには19名の新卒エンジニアが入社しました。一般研修やグループ会社との合</description>
+    </item>
     
     <item>
       <title>JANOG43 Report</title>
