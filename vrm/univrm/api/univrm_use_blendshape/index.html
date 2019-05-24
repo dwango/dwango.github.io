@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.55.3" />
+  <meta name="generator" content="Hugo 0.48" />
 
   <meta property="og:title" content="BlendShapeを操作する - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -110,8 +110,7 @@
 </span><span style="color:#75715e"></span>proxy.SetValue(BlendShapePreset.A, <span style="color:#ae81ff">1.0f</span>); <span style="color:#75715e">// 0から1で指定
 </span><span style="color:#75715e"></span>
 <span style="color:#75715e">// stringで呼び出し
-</span><span style="color:#75715e"></span>proxy.SetValue(<span style="color:#e6db74">&#34;A&#34;</span>, <span style="color:#ae81ff">1.0f</span>);
-</code></pre></div>
+</span><span style="color:#75715e"></span>proxy.SetValue(<span style="color:#e6db74">&#34;A&#34;</span>, <span style="color:#ae81ff">1.0f</span>);</code></pre></div>
 
 <h2 id="複数のblendshapeをまとめて適用する">複数のBlendShapeをまとめて適用する</h2>
 
@@ -134,15 +133,13 @@
 <p>で定義されている場合に両方を有効にする意図で下記のようにすると、後からセットしたものだけが適用されてしまいます。</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">proxy.SetValue(BlendShapePreset.Blink_L, <span style="color:#ae81ff">1.0f</span>);
-proxy.SetValue(BlendShapePreset.Blink_R, <span style="color:#ae81ff">1.0f</span>);
-</code></pre></div>
+proxy.SetValue(BlendShapePreset.Blink_R, <span style="color:#ae81ff">1.0f</span>);</code></pre></div>
 
 <p>この場合は、以下のようにできます。</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">proxy.SetValue(BlendShapePreset.Blink_L, <span style="color:#ae81ff">1.0f</span>, <span style="color:#66d9ef">false</span>); <span style="color:#75715e">// すぐに適用せずにたくわえる
 </span><span style="color:#75715e"></span>proxy.SetValue(BlendShapePreset.Blink_R, <span style="color:#ae81ff">1.0f</span>, <span style="color:#66d9ef">false</span>);
-proxy.Apply(); <span style="color:#75715e">// 蓄積した値をまとめて適用する
-</span></code></pre></div>
+proxy.Apply(); // <span style="color:#960050;background-color:#1e0010">蓄積した値をまとめて適用する</span></code></pre></div>
 
     </article>
   </div>

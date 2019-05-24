@@ -153,7 +153,7 @@ Renderers The settings for controlling mesh rendering on/off in a first-person v
       <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_import_runtime/</guid>
       <description>Examples of importing the VRM model with the latest version can be found here.
 The followings are the methods to import a VRM model at runtime in Unity:
-Open VRM from a file path var path=&amp;#34;sample.vrm&amp;#34;; var go=VRM.VRMImporter.LoadFromPath(path); Debug.LogFormat(&amp;#34;loaded {0}&amp;#34;, go.name);  Open VRM asynchronously from a file path var path=&amp;#34;sample.vrm&amp;#34;; VRMImporter.LoadVrmAsync(path, go =&amp;gt; { Debug.LogFormat(&amp;#34;loaded {0}&amp;#34;, go.name); });  Open VRM from a byte array var path=&amp;#34;sample.vrm&amp;#34;; var bytes = File.</description>
+Open VRM from a file path var path=&amp;#34;sample.vrm&amp;#34;; var go=VRM.VRMImporter.LoadFromPath(path); Debug.LogFormat(&amp;#34;loaded {0}&amp;#34;, go.name); Open VRM asynchronously from a file path var path=&amp;#34;sample.vrm&amp;#34;; VRMImporter.LoadVrmAsync(path, go =&amp;gt; { Debug.LogFormat(&amp;#34;loaded {0}&amp;#34;, go.name); }); Open VRM from a byte array var path=&amp;#34;sample.vrm&amp;#34;; var bytes = File.</description>
     </item>
     
     <item>
@@ -222,10 +222,11 @@ Installation Download the latest unitypackage (UniVRM-0.XX) from UniVRM/releases
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/en/vrm/univrm/api/univrm_use_blendshape/</guid>
-      <description>Apply BlendShape from a script var proxy=GetComponent&amp;lt;VRMBlendShapeProxy&amp;gt;(); // Call enum proxy.SetValue(BlendShapePreset.A, 1.0f); // Assign a value between 0 and 1  // Call string proxy.SetValue(&amp;#34;A&amp;#34;, 1.0f);  Apply multiple BlendShapes at once For example,
+      <description>Apply BlendShape from a script var proxy=GetComponent&amp;lt;VRMBlendShapeProxy&amp;gt;(); // Call enum proxy.SetValue(BlendShapePreset.A, 1.0f); // Assign a value between 0 and 1  // Call string proxy.SetValue(&amp;#34;A&amp;#34;, 1.0f); Apply multiple BlendShapes at once For example,
 For Blink_L
  MeshA eye_L=100 MeshA eye_R=1  For Blink_R
- MeshA eye_L=1 MeshA eye_R=100  If both BlendShapes are defined and enabled as shown below, later only those items set before can be applied.</description>
+ MeshA eye_L=1 MeshA eye_R=100  If both BlendShapes are defined and enabled as shown below, later only those items set before can be applied.
+proxy.SetValue(BlendShapePreset.Blink_L, 1.</description>
     </item>
     
     <item>

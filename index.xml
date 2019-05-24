@@ -6,10 +6,19 @@
     <description>Recent content on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 14 May 2019 16:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 21 May 2019 15:00:02 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>社内LT配信システムの紹介</title>
+      <link>https://dwango.github.io/articles/develop-lt-system/</link>
+      <pubDate>Tue, 21 May 2019 15:00:02 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/develop-lt-system/</guid>
+      <description>ドワンゴ 技術コミュニケーション室のsaka1です。 この記事では、社内で用いられているLightningTalk(LT)用のライブストリーミン</description>
+    </item>
     
     <item>
       <title>AV1リアルタイムハードウェアエンコーダを開発しました</title>

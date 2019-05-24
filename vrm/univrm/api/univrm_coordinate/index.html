@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.55.3" />
+  <meta name="generator" content="Hugo 0.48" />
 
   <meta property="og:title" content="UniVRMの座標系変換について - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -140,8 +140,7 @@ OpenGL標準の右手系Y-UP座標系です。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Vector3 ReverseZ(<span style="color:#66d9ef">this</span> Vector3 v)
 {
     <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Vector3(v.x, v.y, -v.z);
-}
-</code></pre></div>
+}</code></pre></div>
 
 <h3 id="quaternion-rotation">Quaternion(Rotation)</h3>
 
@@ -151,8 +150,7 @@ OpenGL標準の右手系Y-UP座標系です。</p>
     Vector3 axis;
     q.ToAngleAxis(<span style="color:#66d9ef">out</span> angle, <span style="color:#66d9ef">out</span> axis);
     <span style="color:#66d9ef">return</span> Quaternion.AngleAxis(-angle, ReverseZ(axis));
-}
-</code></pre></div>
+}</code></pre></div>
 
 <h3 id="matrix-bindmatrices">Matrix(BindMatrices)</h3>
 
@@ -166,8 +164,7 @@ OpenGL標準の右手系Y-UP座標系です。</p>
 </span><span style="color:#75715e"></span>    m.SetTRS(m.ExtractPosition().ReverseZ(), m.ExtractRotation().ReverseZ(), Vector3.one);
 <span style="color:#75715e">#endif
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> m;
-}
-</code></pre></div>
+}</code></pre></div>
 
     </article>
   </div>

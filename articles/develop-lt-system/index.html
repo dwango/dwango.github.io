@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.48" />
+
+  <meta property="og:title" content="社内LT配信システムの紹介 - dwango on GitHub">
+
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  
+
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>社内LT配信システムの紹介 - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
+      <p class="lead">
+       
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a> </li>
+      <li><a href="/articles"> Articles </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/niconico"> niconico </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://nico.ms/job/"> Hiring </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p>
+      
+        <p style="display:inline-block;vertical-align:middle;">
+          Copyright &copy; DWANGO Co., Ltd.
+        </p>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+<div class="post">
+  <h1>社内LT配信システムの紹介</h1>
+  <span class="post-date"> Tue, May 21, 2019 </span>
+  <div class="share">
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="社内LT配信システムの紹介 - dwango on GitHub" data-url="https://dwango.github.io/articles/develop-lt-system/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/develop-lt-system/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2fdevelop-lt-system%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+  </div>
+  <div>
+    <article id="content">
+       
+
+<p>ドワンゴ 技術コミュニケーション室のsaka1です。</p>
+
+<p>この記事では、社内で用いられているLightningTalk(LT)用のライブストリーミングシステムについて紹介したいと思います。
+LTは普段こんな感じで行われています。</p>
+
+<img src="https://dwango.github.io/images/develop-lt-system/photo-lt.jpg" alt="エンジニアのLT風景"  />
+
+
+<p>実は、社内ではLTの開催形式について見直しが行われつつあります。
+記事の執筆時点ではまだこのシステムは使われていますが、ライフサイクルとして末期かもしれません。
+せっかくなのでシステムがどういったものだったかについての記録を残したいと思い、記事を書くことにしました。</p>
+
+<p>記事ではまず、なぜシステム開発が必要だったかについて簡単に説明し、次にシステムの技術的詳細について紹介していきます。</p>
+
+<h2 id="lt運営にどういった課題があったか">LT運営にどういった課題があったか</h2>
+
+<p>エンジニア有志が参加するLT会はそれまでも定期開催されていたのですが、エンジニアの人数が増えるにつれて、
+一つの会議室に全員が物理的に集合してLTを開催するのは難しくなっていました。
+同じWebエンジニアであっても働くフロアやビルが違うという状況がある中、
+せめて発表はライブストリーミングの形で手軽に見たいよね、という要望がずっと出ていました。</p>
+
+<p>そこでLT運営チームは、<a href="https://live.nicovideo.jp/">ニコニコ生放送（ニコ生）</a>のdev版を使った配信を
+試してみたのですが……LTが社内ライブ配信されるのは便利だと分かったものの、課題が見つかりました。</p>
+
+<ul>
+<li>あくまで開発環境なので安定している保証がない
+
+<ul>
+<li>例えば次のリリースに向けたデプロイがされると、LT配信が壊れてしまう可能性がある</li>
+<li>かといってLTのために開発を止めるのは本末転倒になってしまう</li>
+</ul></li>
+</ul>
+
+<p>つまり、開発環境に開発以外のことを相乗りさせようとしているのが筋悪だということです。
+じゃあもう1つニコ生があればいいのか？ というとそれも難しそうでした。
+ニコ生は非常に多機能なシステムなので、LTのためだけにもう一つのdev環境を準備するのはとても現実的ではありません。</p>
+
+<p>困った上司はsaka1に「社内LT配信のシステム作ってよ！！」
+「映像が流れて、あとコメントも出せるといいな！！」と言ってきたのが開発の始まりです。</p>
+
+<h2 id="求められていたシステムはどんなものか">求められていたシステムはどんなものか？</h2>
+
+<p>改めて要件を整理すると、次のようなLT配信システムが求められていることが分かりました。</p>
+
+<ul>
+<li>LT現場のカメラ映像をPCブラウザから視聴できるページを作ること</li>
+<li>コメント（いわゆるニコニコ風の、画面オーバーレイ型の流れるコメントです）を流せること</li>
+<li>低コストで作ること
+
+<ul>
+<li>インフラにかかる費用を最小化したい（LTしてない時はリソース利用を止めたい）</li>
+<li>このシステム自体の開発にもあまり工数を割きたくない</li>
+</ul></li>
+</ul>
+
+<p>早い安いうまいを実現してくれという感じで困った要求ですが、これをなんとか具現化していくことになりました。</p>
+
+<h2 id="何を作らないことにしたか">何を作らないことにしたか</h2>
+
+<p>システムの構成について紹介する前に、何を <strong>しなかったか</strong> について述べさせてください。
+LT配信システムは通常のWebシステム開発ではしないような割り切りを入れています。一般論としてアンチパターンに近いものもあるかもしれません。</p>
+
+<ul>
+<li>中・大規模配信への対応をしない
+
+<ul>
+<li>社内向けなので同時配信数はどんなに多くても100〜200ぐらいという想定でした</li>
+<li>したがって複数ノードによる配信やCDNの利用は考慮外としました</li>
+</ul></li>
+<li>高可用性は考えない
+
+<ul>
+<li>冗長化などはしませんでした。たとえLTが見れなくなっても業務に支障は出ないためです</li>
+</ul></li>
+<li>データの永続化をしない
+
+<ul>
+<li>詳細は後述しますが、コメントはインメモリで保持します。例えばサーバを再起動すると揮発してしまいますが許容することにしました</li>
+<li>配信された映像の保存は配信機器側で行うことにしました</li>
+</ul></li>
+<li>UIはごく単純に
+
+<ul>
+<li>流すコメントは別で取ってくることにして、視聴画面には映像があるだけという作りにしました</li>
+</ul></li>
+</ul>
+
+<p>別の言い方をすると、今回の開発ではスコープをできる限り絞り込んだことによって、ごく単純な構成を手に入れているという側面があります。</p>
+
+<h2 id="具体的なシステム構成について">具体的なシステム構成について</h2>
+
+<p>とにかく手早く作ることを求められたので、既製品を最大限に流用することにしました。</p>
+
+<img src="https://dwango.github.io/images/develop-lt-system/lt-system.png" alt="LTシステム構成図"  />
+
+
+<p>システムはアプリケーションサーバと映像配信サーバから構成されます。
+アプリケーションサーバ……と言いつつ静的アセットの配信も行うサーバデーモンですが、<a href="http://sinatrarb.com/">Sinatra</a>で書かれています。
+クライアントにはJavaScriptで書かれた視聴アプリを配信し、
+クライアントは映像配信サーバをHLS受信します（ライブラリとしては<a href="https://github.com/video-dev/hls.js/">hls.js</a>を用いた普通のHLS配信です）。</p>
+
+<p>アプリケーションサーバはオンプレミスの仮想化環境に、映像配信サーバはAWSにあります。
+映像配信サーバは、LTが行われていない時にはインスタンス停止することで無駄な費用が発生するのを避けています。
+（意図したわけではないのですが）ハイブリッドクラウドでいいとこ取りをしようというような構成になってしまいました。</p>
+
+<p>以降、機能別にポイントを挙げていきます。</p>
+
+<h3 id="ライブストリーミング">ライブストリーミング</h3>
+
+<p>映像配信サーバには<a href="https://aws.amazon.com/marketplace/pp/B012BW3WB8">Wowza on AWS</a>を使うことにしました。
+ドワンゴはVOD/LIVEの映像ストリーミングを業務で扱っている会社ですので、
+内製の配信サーバやライブラリもあるのですが、今回はあえて市販品を使うことにしました。</p>
+
+<ul>
+<li>内製の配信サーバは明らかにオーバースペックで、利用するメリットがあまりない
+
+<ul>
+<li>社内LTで1000番組を同時配信！！ とかやらないので……</li>
+</ul></li>
+<li>WowzaはAMIの有償サブスクリプションで利用できるので、インスタンスを構成するコストが低い</li>
+</ul>
+
+<p>などの理由によります。Wowzaは基本的に扱いやすくいい子です。今回の用途には十分適合してくれました。</p>
+
+<h3 id="コメント">コメント</h3>
+
+<p>コメントについての問題は2つあり、コメントをクライアントでどう描画するかと、コメントをどこから取得してクライアントに流すかです。</p>
+
+<p>ニコニコ風の画面にオーバーレイする形で流れるコメントですが、実はコメントを正しく描画するのは簡単ではないことが知られています。
+筆者もあまりよく知らないのですが、いくつものルールを守らないと「らしく」ならないそうです。</p>
+
+<p>幸いなことに、社内には生放送向けコメント描画エンジンのJavaScriptライブラリが整備されていました。
+ライブラリはReactコンポーネントの形になっていたので、ニコ生の開発チームから使い方を聞いて組み込むと、
+あっさり本物の描画ができるようになりました。</p>
+
+<p>コメントの取得については、次のような仕組みをざっと作りました。</p>
+
+<ul>
+<li>SlackのLTチャンネルへの投稿をリアルタイムで吸い、アプリケーションサーバにPOSTするSlack Appを書く
+
+<ul>
+<li><a href="https://github.com/slack-ruby/slack-ruby-client">Rubyのgem</a>を使いReal Time Messaging APIから投稿を吸い上げるようにしました</li>
+</ul></li>
+<li>APIサーバは最新のコメント何件かをメモリに保持する</li>
+<li>クライアントはアプリケーションサーバをポーリングし、新着コメントが受信できたら表示する
+
+<ul>
+<li>新着分を認識するために、サーバ側でコメントにシーケンシャルなIDを採番して付けています</li>
+</ul></li>
+</ul>
+
+<p>非常に原始的な仕組みではあるものの、単純な実装で期待した挙動になってくれているようです。</p>
+
+<h3 id="その他-細かな工夫">その他、細かな工夫</h3>
+
+<h4 id="映像配信の設定チューニング">映像配信の設定チューニング</h4>
+
+<p>映像配信のトランスコード設定などは、ちょっとだけ調整しました。といっても、ほとんどがWowzaのデフォルトです。</p>
+
+<p>LTは動きが少なく文字などが多い傾向にあるため、ビットレートに対して解像度を大きくした方が画質が良く見えるようです。
+また、リアルタイム性を改善するため、HLSのセグメント長を多少縮めた気がします（配信の遅延が大きすぎると、現地組と映像視聴組でSlackの話題がずれるという問題がありました）。
+あとはABRを有効化しておきました（WowzaのUIをポチポチするだけです）</p>
+
+<h4 id="aws側の構成管理">AWS側の構成管理</h4>
+
+<p>AWS側の構成管理は<a href="https://www.terraform.io/">Terraform</a>を使っています。
+実際のところインスタンスが一つ立っているだけなのですが、AWSからの配信を社内限定にするために、
+アクセス元IPのホワイトリストの管理が必要だったりと、この規模でさえ適当に手構築するよりTerraformを使った方が便利だったように思います</p>
+
+<h4 id="管理機能">管理機能</h4>
+
+<p>アプリケーションサーバにはいわゆる管理機能がついています。具体的には映像配信サーバのインスタンス起動・終了をUIからできるようにしてあります</p>
+
+<h2 id="lt配信システムを導入してみてどうだったか">LT配信システムを導入してみてどうだったか</h2>
+
+<p>それなりに便利だと好評を得られました。……さらに、思いがけない副次的な利用が発生することもありました。
+このシステムは本来エンジニアのLTのために作られたわけですが、他にも例えばディレクターの発表会など、社内に向けて映像を発信したいという需要はそれなりにあったらしく、LTではない場面で活用されるケースも出てきています。</p>
+
+<h2 id="まとめ">まとめ</h2>
+
+<p>社内で用いられているLTライブストリーミングシステムについて紹介しました。
+Wowzaを立ててブラウザに映像配信という程度であればとても簡単にできるので、おすすめです。</p>
+
+    </article>
+  </div>
+</div>
+
+    </div>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-109076308-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>
