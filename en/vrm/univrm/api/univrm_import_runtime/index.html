@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.48" />
+  <meta name="generator" content="Hugo 0.55.6" />
 
   <meta property="og:title" content="Import VRM Model at Runtime - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -114,26 +114,30 @@
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
 <span style="color:#66d9ef">var</span> go=VRM.VRMImporter.LoadFromPath(path);
-Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);</code></pre></div>
+Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);
+</code></pre></div>
 
 <h2 id="open-vrm-asynchronously-from-a-file-path">Open VRM asynchronously from a file path</h2>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
 VRMImporter.LoadVrmAsync(path, go =&gt; {
     Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);
-});</code></pre></div>
+});
+</code></pre></div>
 
 <h2 id="open-vrm-from-a-byte-array">Open VRM from a byte array</h2>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
 <span style="color:#66d9ef">var</span> bytes = File.ReadAllBytes(path);
-<span style="color:#66d9ef">var</span> go=VRMImporter.LoadFromBytes(bytes);</code></pre></div>
+<span style="color:#66d9ef">var</span> go=VRMImporter.LoadFromBytes(bytes);
+</code></pre></div>
 
 <h2 id="open-vrm-asynchronously-from-a-byte-array">Open VRM asynchronously from a byte array</h2>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">VRMImporter.LoadVrmAsync(bytes, go =&gt; {
     Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);
-});</code></pre></div>
+});
+</code></pre></div>
 
 <h2 id="get-the-information-form-vrm">Get the information form VRM</h2>
 
@@ -178,14 +182,16 @@ VRMImporter.LoadVrmAsync(path, go =&gt; {
                 <span style="color:#75715e">// Run synchronously
 </span><span style="color:#75715e"></span>                VRMImporter.LoadFromBytes(context);
                 OnLoaded(context.Root);
-            }</code></pre></div>
+            }
+</code></pre></div>
 
 <h2 id="get-the-thumbnail-from-v0-37">Get the thumbnail (From v0.37)</h2>
 
 <p>A thumbnail texture can be created by passing arguments to ReadMeta.</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">    <span style="color:#66d9ef">var</span> meta = context.ReadMeta(<span style="color:#66d9ef">true</span>); <span style="color:#75715e">// Make a thumbnail texture
-</span><span style="color:#75715e"></span>    Texture2D thumbnail=meta.Thumbnail;</code></pre></div>
+</span><span style="color:#75715e"></span>    Texture2D thumbnail=meta.Thumbnail;
+</code></pre></div>
 
     </article>
   </div>

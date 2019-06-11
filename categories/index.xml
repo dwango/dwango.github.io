@@ -6,9 +6,28 @@
     <description>Recent content in Categories on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
+    <lastBuildDate>Tue, 04 Jun 2019 13:40:14 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>nicovideo</title>
+      <link>https://dwango.github.io/categories/nicovideo/</link>
+      <pubDate>Tue, 04 Jun 2019 13:40:14 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/categories/nicovideo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jikken-housou</title>
+      <link>https://dwango.github.io/categories/jikken-housou/</link>
+      <pubDate>Tue, 06 Nov 2018 16:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/categories/jikken-housou/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

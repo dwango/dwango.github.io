@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.48" />
+  <meta name="generator" content="Hugo 0.55.6" />
 
   <meta property="og:title" content="VRMモデルを実行時にインポートする - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -45,6 +45,7 @@
       <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
       <p class="lead">
        
+ 
       </p>
     </div>
 
@@ -114,26 +115,30 @@
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
 <span style="color:#66d9ef">var</span> go=VRM.VRMImporter.LoadFromPath(path);
-Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);</code></pre></div>
+Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);
+</code></pre></div>
 
 <h2 id="ファイルパスから非同期にvrmを開く">ファイルパスから非同期にVRMを開く</h2>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
 VRMImporter.LoadVrmAsync(path, go =&gt; {
     Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);
-});</code></pre></div>
+});
+</code></pre></div>
 
 <h2 id="バイト列からvrm開く">バイト列からVRM開く</h2>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
 <span style="color:#66d9ef">var</span> bytes = File.ReadAllBytes(path);
-<span style="color:#66d9ef">var</span> go=VRMImporter.LoadFromBytes(bytes);</code></pre></div>
+<span style="color:#66d9ef">var</span> go=VRMImporter.LoadFromBytes(bytes);
+</code></pre></div>
 
 <h2 id="バイト列から非同期にvrmを開く">バイト列から非同期にVRMを開く</h2>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">VRMImporter.LoadVrmAsync(bytes, go =&gt; {
     Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);
-});</code></pre></div>
+});
+</code></pre></div>
 
 <h2 id="vrmから情報を取り出す">VRMから情報を取り出す</h2>
 
@@ -178,14 +183,16 @@ VRMImporter.LoadVrmAsync(path, go =&gt; {
                 <span style="color:#75715e">// 同期的に実行する
 </span><span style="color:#75715e"></span>                VRMImporter.LoadFromBytes(context);
                 OnLoaded(context.Root);
-            }</code></pre></div>
+            }
+</code></pre></div>
 
 <h2 id="thumbnailを取得する-v0-37から">Thumbnailを取得する(v0.37から)</h2>
 
 <p>ReadMetaに引数を渡すことでThumbnailテクスチャを作成できます。</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">    <span style="color:#66d9ef">var</span> meta = context.ReadMeta(<span style="color:#66d9ef">true</span>); <span style="color:#75715e">// Thumbnailテクスチャを作成する
-</span><span style="color:#75715e"></span>    Texture2D thumbnail=meta.Thumbnail;</code></pre></div>
+</span><span style="color:#75715e"></span>    Texture2D thumbnail=meta.Thumbnail;
+</code></pre></div>
 
     </article>
   </div>

@@ -70,18 +70,18 @@ h2 {
 :root {
 }
 
-.Footer__footer___1oXll {
+.Footer__footer___3xXba {
   box-sizing: border-box;
   border-top: solid 1px #CCC;
   width: 100%;
   padding: 16px 0 16px;
 }
 
-.Footer__logoAndLink___3NY3n {
+.Footer__logoAndLink___3xuBb {
   text-align: left;
 }
 
-.Footer__logoArea___nTSYJ {
+.Footer__logoArea___21-q2 {
   box-sizing: border-box;
   display: inline-block;
   vertical-align: middle;
@@ -90,18 +90,18 @@ h2 {
   padding-right: 32px
 }
 
-.Footer__logoArea___nTSYJ svg {
+.Footer__logoArea___21-q2 svg {
     width: 120px;
     height: 21.22px;
   }
 
-.Footer__logoArea___nTSYJ path {
+.Footer__logoArea___21-q2 path {
     fill: #999;
   }
 
 @media(max-width: 640px) {
 
-.Footer__logoArea___nTSYJ {
+.Footer__logoArea___21-q2 {
     display: block;
     margin: 0 auto;
     width: 120px;
@@ -110,16 +110,16 @@ h2 {
 }
   }
 
-.Footer__logoLink___3mOhV {
+.Footer__logoLink___11D_Q {
   will-change: opacity;
   transition: opacity 0.3s ease
 }
 
-.Footer__logoLink___3mOhV:hover {
+.Footer__logoLink___11D_Q:hover {
    opacity: 0.6;
  }
 
-.Footer__links___K_b_5 {
+.Footer__links___udgsC {
   display: inline-block;
   vertical-align: middle;
   text-align: center;
@@ -128,28 +128,28 @@ h2 {
 
 @media(max-width: 640px) {
 
-.Footer__links___K_b_5 {
+.Footer__links___udgsC {
     display: block
 }
   }
 
-.Footer__links__item___WcQE1 {
+.Footer__links__item___EG-T6 {
   display: inline-block;
   padding: 8px;
   font-size: 12px;
 }
 
-.Footer__links__link___1YWkz, .Footer__links__link___1YWkz:hover, .Footer__links__link___1YWkz:visited, .Footer__links__link___1YWkz:active, .Footer__links__link___1YWkz:link {
+.Footer__links__link___197cQ, .Footer__links__link___197cQ:hover, .Footer__links__link___197cQ:visited, .Footer__links__link___197cQ:active, .Footer__links__link___197cQ:link {
     color: #999;
     text-decoration: none;
   }
 
-.Footer__links__link___1YWkz:hover {
+.Footer__links__link___197cQ:hover {
     color: #AAA;
     text-decoration: underline;
   }
 
-.Footer__bottomText___QZHtc {
+.Footer__bottomText___1IQdK {
   text-align: center;
   font-size: 12px;
   color: #999;
@@ -157,7 +157,7 @@ h2 {
 :root {
 }
 
-.Header__header___16wcQ {
+.Header__header___3KxzJ {
   background-color: #0075C2;
   padding: 64px 0 48px;
   width: 100%;
@@ -166,12 +166,12 @@ h2 {
 
 @media(max-width: 640px) {
 
-.Header__header___16wcQ {
+.Header__header___3KxzJ {
     padding: 32px 0 24px
 }
   }
 
-.Header__logoArea___3tJqE {
+.Header__logoArea___ZtU8c {
   display: block;
   width: 480px;
   margin: 0 auto
@@ -179,32 +179,32 @@ h2 {
 
 @media(max-width: 640px) {
 
-.Header__logoArea___3tJqE {
+.Header__logoArea___ZtU8c {
     width: 80%
 }
   }
 
-.Header__logoArea___3tJqE svg {
+.Header__logoArea___ZtU8c svg {
     width: 100%;
   }
 
-.Header__logoArea___3tJqE path {
+.Header__logoArea___ZtU8c path {
     fill: #FFF;
   }
 
-.Header__logoArea___3tJqE text {
+.Header__logoArea___ZtU8c text {
     fill: #FFF;
     font-family: 'Squada One', cursive;
   }
 
-.Header__logoArea__text___2NxPi {
+.Header__logoArea__text___-u-3n {
   width: 40%;
   color: #FFF;
   display: inline-block;
   font-size: 24px;
 }
 
-.Header__header__subText___24Cn1 {
+.Header__header__subText___wWMmz {
   font-family: 'Squada One', cursive;
   display: block;
   width: 640px;
@@ -218,7 +218,7 @@ h2 {
 
 @media(max-width: 640px) {
 
-.Header__header__subText___24Cn1 {
+.Header__header__subText___wWMmz {
     width: 90%;
     font-size: 14px;
     padding: 8px 0
@@ -228,11 +228,11 @@ h2 {
 :root {
 }
 
-.Orgs__container___fkJhr {
+.Orgs__container___2y_IN {
   padding-bottom: 32px;
 }
 
-.Orgs__header___2oiim {
+.Orgs__header___8X_aD {
   display: block;
   padding-top: 32px;
   font-size: 32px;
@@ -242,25 +242,25 @@ h2 {
 
 @media(max-width: 640px) {
 
-.Orgs__header___2oiim {
+.Orgs__header___8X_aD {
     padding-top: 16px;
     font-size: 24px
 }
   }
 
-.Orgs__organizations___2Cdv5 {
+.Orgs__organizations___2wAHn {
   text-align: center;
   padding-top: 16px
 }
 
 @media(max-width: 640px) {
 
-.Orgs__organizations___2Cdv5 {
+.Orgs__organizations___2wAHn {
     padding-top: 8px
 }
   }
 
-.Orgs__organizations__item___1D2b7 {
+.Orgs__organizations__item___1hlTW {
   vertical-align: top;
   display: inline-block;
   box-sizing: border-box;
@@ -271,20 +271,20 @@ h2 {
 
 @media(max-width: 640px) {
 
-.Orgs__organizations__item___1D2b7 {
+.Orgs__organizations__item___1hlTW {
     width: 33.33%
 }
   }
 
-.Orgs__linkArea___gz9St {
+.Orgs__linkArea___24wx1 {
   text-decoration: none
 }
 
-.Orgs__linkArea___gz9St:hover > .Orgs__avatarImage___WITe0, .Orgs__linkArea___gz9St:hover > .Orgs__name___1wx29 {
+.Orgs__linkArea___24wx1:hover > .Orgs__avatarImage___2P-UG, .Orgs__linkArea___24wx1:hover > .Orgs__name___1yafU {
     opacity: 0.6;
   }
 
-.Orgs__avatarImage___WITe0 {
+.Orgs__avatarImage___2P-UG {
   background-size: cover;
   background-position: center;
   color: #fff;
@@ -296,13 +296,13 @@ h2 {
   transition: opacity 0.3s ease
 }
 
-.Orgs__avatarImage___WITe0::after {
+.Orgs__avatarImage___2P-UG::after {
     content: '';
     display: block;
     padding-top: 100%;
   }
 
-.Orgs__name___1wx29 {
+.Orgs__name___1yafU {
   font-weight: bold;
   font-size: 14px;
   color: #666;
@@ -311,14 +311,14 @@ h2 {
   transition: opacity 0.3s ease;
 }
 
-.Orgs__repoCount___p2YlE {
+.Orgs__repoCount___2-7YK {
   padding-top: 2px;
   color: #999;
   font-family: 'Squada One', cursive;
   font-size: 14px;
 }
 
-.Orgs__description___1LC4A {
+.Orgs__description___74pqF {
   text-align: left;
   font-size: 12px;
   line-height: 1.5;
@@ -330,11 +330,11 @@ h2 {
 :root {
 }
 
-.Repos__container___tU5qy {
+.Repos__container___2RolD {
   padding-bottom: 32px;
 }
 
-.Repos__header___2KTZA {
+.Repos__header___3N3Bq {
   display: block;
   padding-top: 32px;
   font-size: 32px;
@@ -344,75 +344,75 @@ h2 {
 
 @media(max-width: 640px) {
 
-.Repos__header___2KTZA {
+.Repos__header___3N3Bq {
     padding-top: 16px;
     font-size: 24px
 }
   }
 
-.Repos__repositories___1CNj2 {
+.Repos__repositories___1ThzF {
   padding-top: 16px
 }
 
 @media(max-width: 640px) {
 
-.Repos__repositories___1CNj2 {
+.Repos__repositories___1ThzF {
     padding-top: 8px
 }
   }
 
-.Repos__repositories___1CNj2::after {
+.Repos__repositories___1ThzF::after {
     content: '';
     clear: both;
     display: block;
   }
 
-.Repos__repositories__item___rTKkJ {
+.Repos__repositories__item___2mf8Z {
   float: left;
   box-sizing: border-box;
   width: 25%;
   height: 200px;
   padding: 8px 1px;
   will-change: opacity;
-  -webkit-animation-name: Repos__appear____iav4;
-          animation-name: Repos__appear____iav4;
+  -webkit-animation-name: Repos__appear___39VSE;
+          animation-name: Repos__appear___39VSE;
   -webkit-animation-duration: 0.8s;
           animation-duration: 0.8s
 }
 
-.Repos__repositories__item___rTKkJ:nth-child(1), .Repos__repositories__item___rTKkJ:nth-child(2), .Repos__repositories__item___rTKkJ:nth-child(3) {
+.Repos__repositories__item___2mf8Z:nth-child(1), .Repos__repositories__item___2mf8Z:nth-child(2), .Repos__repositories__item___2mf8Z:nth-child(3) {
     width: 33.33%;
     height: 240px
   }
 
 @media(max-width: 640px) {
 
-.Repos__repositories__item___rTKkJ:nth-child(1), .Repos__repositories__item___rTKkJ:nth-child(2), .Repos__repositories__item___rTKkJ:nth-child(3) {
+.Repos__repositories__item___2mf8Z:nth-child(1), .Repos__repositories__item___2mf8Z:nth-child(2), .Repos__repositories__item___2mf8Z:nth-child(3) {
       width: 100%;
       height: 200px
   }
     }
 
-.Repos__repositories__item___rTKkJ:nth-child(1) .Repos__fullName___348I0, .Repos__repositories__item___rTKkJ:nth-child(2) .Repos__fullName___348I0, .Repos__repositories__item___rTKkJ:nth-child(3) .Repos__fullName___348I0 {
+.Repos__repositories__item___2mf8Z:nth-child(1) .Repos__fullName___3NKba, .Repos__repositories__item___2mf8Z:nth-child(2) .Repos__fullName___3NKba, .Repos__repositories__item___2mf8Z:nth-child(3) .Repos__fullName___3NKba {
       font-size: 16px
     }
 
 @media(max-width: 640px) {
 
-.Repos__repositories__item___rTKkJ:nth-child(1) .Repos__fullName___348I0, .Repos__repositories__item___rTKkJ:nth-child(2) .Repos__fullName___348I0, .Repos__repositories__item___rTKkJ:nth-child(3) .Repos__fullName___348I0 {
+.Repos__repositories__item___2mf8Z:nth-child(1) .Repos__fullName___3NKba, .Repos__repositories__item___2mf8Z:nth-child(2) .Repos__fullName___3NKba, .Repos__repositories__item___2mf8Z:nth-child(3) .Repos__fullName___3NKba {
         font-size: 14px
     }
       }
 
 @media(max-width: 640px) {
 
-.Repos__repositories__item___rTKkJ {
+.Repos__repositories__item___2mf8Z {
     width: 100%;
     padding: 8px 0
 }
   }
 
-@-webkit-keyframes Repos__appear____iav4 {
+@-webkit-keyframes Repos__appear___39VSE {
   0% {
     opacity: 0;
   }
@@ -421,7 +421,7 @@ h2 {
   }
 }
 
-@keyframes Repos__appear____iav4 {
+@keyframes Repos__appear___39VSE {
   0% {
     opacity: 0;
   }
@@ -430,7 +430,7 @@ h2 {
   }
 }
 
-.Repos__repositories__itemInner___2NLET {
+.Repos__repositories__itemInner___1yw0E {
   display: block;
   box-sizing: border-box;
   width: 100%;
@@ -443,33 +443,33 @@ h2 {
 
 @media(max-width: 640px) {
 
-.Repos__repositories__itemInner___2NLET {
+.Repos__repositories__itemInner___1yw0E {
     padding: 8px
 }
   }
 
-.Repos__fullName___348I0 {
+.Repos__fullName___3NKba {
   word-break: break-all;
   font-weight: bold;
   font-size: 14px;
   line-height: 1.25
 }
 
-.Repos__fullName___348I0, .Repos__fullName___348I0:hover, .Repos__fullName___348I0:visited, .Repos__fullName___348I0:active, .Repos__fullName___348I0:link {
+.Repos__fullName___3NKba, .Repos__fullName___3NKba:hover, .Repos__fullName___3NKba:visited, .Repos__fullName___3NKba:active, .Repos__fullName___3NKba:link {
     color: #666;
     text-decoration: none;
   }
 
-.Repos__fullName___348I0:hover {
+.Repos__fullName___3NKba:hover {
     color: #999;
     text-decoration: underline;
   }
 
-.Repos__infomation___2_nez {
+.Repos__infomation___1-0jT {
   padding-top: 2px;
 }
 
-.Repos__language___oWXoq {
+.Repos__language___mq9mB {
   display: inline-block;
   color: #999;
   font-family: 'Squada One', cursive;
@@ -477,17 +477,17 @@ h2 {
   margin-right: 8px;
 }
 
-.Repos__stargazersCount___3RNeO {
+.Repos__stargazersCount___29ISA {
   display: inline-block;
   color: #FF8F00;
   font-size: 12px
 }
 
-.Repos__stargazersCount___3RNeO svg {
+.Repos__stargazersCount___29ISA svg {
     vertical-align: top !important;
   }
 
-.Repos__homepageLink___2K-zT, .Repos__githubLink___3jZWQ {
+.Repos__homepageLink___1yGm3, .Repos__githubLink___1fQXB {
   display: inline-block;
   padding: 4px 8px;
   border-radius: 2px;
@@ -498,29 +498,29 @@ h2 {
   will-change: opacity
 }
 
-.Repos__homepageLink___2K-zT, .Repos__homepageLink___2K-zT:hover, .Repos__homepageLink___2K-zT:visited, .Repos__homepageLink___2K-zT:active, .Repos__homepageLink___2K-zT:link, .Repos__githubLink___3jZWQ, .Repos__githubLink___3jZWQ:hover, .Repos__githubLink___3jZWQ:visited, .Repos__githubLink___3jZWQ:active, .Repos__githubLink___3jZWQ:link {
+.Repos__homepageLink___1yGm3, .Repos__homepageLink___1yGm3:hover, .Repos__homepageLink___1yGm3:visited, .Repos__homepageLink___1yGm3:active, .Repos__homepageLink___1yGm3:link, .Repos__githubLink___1fQXB, .Repos__githubLink___1fQXB:hover, .Repos__githubLink___1fQXB:visited, .Repos__githubLink___1fQXB:active, .Repos__githubLink___1fQXB:link {
     color: #FFF;
     text-decoration: none;
   }
 
-.Repos__homepageLink___2K-zT:hover, .Repos__githubLink___3jZWQ:hover {
+.Repos__homepageLink___1yGm3:hover, .Repos__githubLink___1fQXB:hover {
     opacity: 0.6;
   }
 
-.Repos__homepageLink___2K-zT svg, .Repos__githubLink___3jZWQ svg {
+.Repos__homepageLink___1yGm3 svg, .Repos__githubLink___1fQXB svg {
     vertical-align: top !important;
     margin-right: 2px;
   }
 
-.Repos__homepageLink___2K-zT {
+.Repos__homepageLink___1yGm3 {
   background-color: #00BCD4;
 }
 
-.Repos__githubLink___3jZWQ {
+.Repos__githubLink___1fQXB {
   background-color: #FF4081;
 }
 
-.Repos__description___1g-c7 {
+.Repos__description___2dKbw {
   font-size: 12px;
   line-height: 1.5;
   max-height: 7.5em;
@@ -529,7 +529,7 @@ h2 {
   overflow: hidden;
 }
 
-.Repos__moreButton___1AoIa {
+.Repos__moreButton___2r7Pa {
   display: block;
   cursor: pointer;
   width: 80%;
@@ -546,14 +546,14 @@ h2 {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)
 }
 
-.Repos__moreButton___1AoIa:hover {
+.Repos__moreButton___2r7Pa:hover {
     opacity: 0.7;
   }
 
 :root {
 }
 
-.App__container___3GYYT {
+.App__container___iOvhW {
   box-sizing: border-box;
   width: 1024px;
   margin: 0 auto;
@@ -562,7 +562,7 @@ h2 {
 
 @media (max-width: 1024px) {
 
-.App__container___3GYYT {
+.App__container___iOvhW {
     width: 100%
 }
   }
