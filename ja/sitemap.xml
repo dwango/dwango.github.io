@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://dwango.github.io/categories/</loc>
-    <lastmod>2019-06-04T13:40:14+09:00</lastmod>
+    <lastmod>2019-06-25T13:40:14+09:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -20,7 +20,7 @@
   
   <url>
     <loc>https://dwango.github.io/</loc>
-    <lastmod>2019-06-04T13:40:14+09:00</lastmod>
+    <lastmod>2019-06-25T13:40:14+09:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -36,17 +36,17 @@
   
   <url>
     <loc>https://dwango.github.io/categories/nicovideo/</loc>
-    <lastmod>2019-06-04T13:40:14+09:00</lastmod>
+    <lastmod>2019-06-25T13:40:14+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://dwango.github.io/niconico/genre_ranking/ranking_rss/</loc>
-    <lastmod>2019-06-04T13:40:14+09:00</lastmod>
+    <loc>https://dwango.github.io/niconico/genre_ranking/ranking_log/</loc>
+    <lastmod>2019-06-25T13:40:14+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dwango.github.io/niconico/genre_ranking/ranking_log/</loc>
+    <loc>https://dwango.github.io/niconico/genre_ranking/ranking_rss/</loc>
     <lastmod>2019-06-04T13:40:14+09:00</lastmod>
   </url>
   

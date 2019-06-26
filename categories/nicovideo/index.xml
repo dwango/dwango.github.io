@@ -6,10 +6,19 @@
     <description>Recent content in nicovideo on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 04 Jun 2019 13:40:14 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 25 Jun 2019 13:40:14 +0900</lastBuildDate>
     
 	<atom:link href="https://dwango.github.io/categories/nicovideo/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>新ランキングでのランキング過去ログファイル利用方法</title>
+      <link>https://dwango.github.io/niconico/genre_ranking/ranking_log/</link>
+      <pubDate>Tue, 25 Jun 2019 13:40:14 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/niconico/genre_ranking/ranking_log/</guid>
+      <description>はじめに ニコニコ動画では、過去にどのような動画がランキングに掲載されていたかが分かる機能を提供しています。 これまではプレミアム会員専用機能と</description>
+    </item>
     
     <item>
       <title>新ランキングでのランキングRSS利用方法</title>
@@ -18,15 +27,6 @@
       
       <guid>https://dwango.github.io/niconico/genre_ranking/ranking_rss/</guid>
       <description>ジャンルランキングにおけるランキングRSSについて はじめに ニコニコ動画では、ランキングページをRSS形式で取得できる機能を提供しています。 2</description>
-    </item>
-    
-    <item>
-      <title>新ランキングでのランキング過去ログファイル利用方法</title>
-      <link>https://dwango.github.io/niconico/genre_ranking/ranking_log/</link>
-      <pubDate>Tue, 04 Jun 2019 13:40:14 +0900</pubDate>
-      
-      <guid>https://dwango.github.io/niconico/genre_ranking/ranking_log/</guid>
-      <description>はじめに ニコニコ動画では、過去にどのような動画がランキングに掲載されていたかが分かる機能を提供しています。 これまではプレミアム会員専用機能と</description>
     </item>
     
   </channel>
