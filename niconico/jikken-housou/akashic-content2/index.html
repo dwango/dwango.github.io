@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.58.0" />
 
   <meta property="og:title" content="ツールを作ってみよう - dwango on GitHub">
 
@@ -290,26 +290,26 @@ INFO: Done!
 <p><code>game.json</code> はテキストエディタ等で開く事ができます。テキストエディタをお持ちでない方は、<a href="https://code.visualstudio.com">Visual Studio Code</a>辺りをインストールしてから開く事をお勧めします。</p>
 
 <pre><code class="language-json">{
-    &quot;width&quot;: 640,
-    &quot;height&quot;: 360,
-    &quot;fps&quot;: 30,
-    &quot;main&quot;: &quot;./script/main.js&quot;,
-    &quot;assets&quot;: {
-        &quot;main&quot;: {
-            &quot;type&quot;: &quot;script&quot;,
-            &quot;path&quot;: &quot;script/main.js&quot;,
-            &quot;global&quot;: true
-        },
-        &quot;heart&quot;: {
-            &quot;type&quot;: &quot;image&quot;,
-            &quot;width&quot;: 64,
-            &quot;height&quot;: 64,
-            &quot;path&quot;: &quot;image/heart.png&quot;
-        }
-    },
-    &quot;environment&quot;: {
-        &quot;sandbox-runtime&quot;: &quot;2&quot;
-    }
+	&quot;width&quot;: 640,
+	&quot;height&quot;: 360,
+	&quot;fps&quot;: 30,
+	&quot;main&quot;: &quot;./script/main.js&quot;,
+	&quot;assets&quot;: {
+		&quot;main&quot;: {
+			&quot;type&quot;: &quot;script&quot;,
+			&quot;path&quot;: &quot;script/main.js&quot;,
+			&quot;global&quot;: true
+		},
+		&quot;heart&quot;: {
+			&quot;type&quot;: &quot;image&quot;,
+			&quot;width&quot;: 64,
+			&quot;height&quot;: 64,
+			&quot;path&quot;: &quot;image/heart.png&quot;
+		}
+	},
+	&quot;environment&quot;: {
+		&quot;sandbox-runtime&quot;: &quot;2&quot;
+	}
 }
 </code></pre>
 
@@ -318,24 +318,24 @@ INFO: Done!
 <p><code>script\main.js</code> を手元のテキストエディタで開いてください。<code>main.js</code>は現状以下の内容になっています。</p>
 
 <pre><code class="language-javascript">function main(param) {
-    var scene = new g.Scene({game: g.game});
-    scene.loaded.add(function() {
-        // 以下にゲームのロジックを記述します。
-        var rect = new g.FilledRect({
-            scene: scene,
-            cssColor: &quot;#ff0000&quot;,
-            width: 32,
-            height: 32
-        });
-        rect.update.add(function () {
-            // 以下のコードは毎フレーム実行されます。
-            rect.x++;
-            if (rect.x &gt; g.game.width) rect.x = 0;
-            rect.modified();
-        });
-        scene.append(rect);
-    });
-    g.game.pushScene(scene);
+	var scene = new g.Scene({game: g.game});
+	scene.loaded.add(function() {
+		// 以下にゲームのロジックを記述します。
+		var rect = new g.FilledRect({
+			scene: scene,
+			cssColor: &quot;#ff0000&quot;,
+			width: 32,
+			height: 32
+		});
+		rect.update.add(function () {
+			// 以下のコードは毎フレーム実行されます。
+			rect.x++;
+			if (rect.x &gt; g.game.width) rect.x = 0;
+			rect.modified();
+		});
+		scene.append(rect);
+	});
+	g.game.pushScene(scene);
 }
 module.exports = main;
 </code></pre>
@@ -385,8 +385,8 @@ g.game.pushScene(scene);
 
 <pre><code class="language-javascript">scene.append(rect);
 var sprite = new g.Sprite({
-    scene: scene,
-    src: scene.assets[&quot;heart&quot;]
+	scene: scene,
+	src: scene.assets[&quot;heart&quot;]
 });
 scene.append(sprite);
 </code></pre>
@@ -401,15 +401,15 @@ scene.append(sprite);
 <p><code>FilledRect</code>というエンティティを操作するサンプルコードが入っているためなので、消してしまいましょう。最終的には以下のコードになります。</p>
 
 <pre><code class="language-javascript">function main(param) {
-    var scene = new g.Scene({game: g.game, assetIds: [&quot;heart&quot;]});
-    scene.loaded.add(function() {
-        var sprite = new g.Sprite({
-            scene: scene,
-            src: scene.assets[&quot;heart&quot;]
-        });
-        scene.append(sprite);
-    });
-    g.game.pushScene(scene);
+	var scene = new g.Scene({game: g.game, assetIds: [&quot;heart&quot;]});
+	scene.loaded.add(function() {
+		var sprite = new g.Sprite({
+			scene: scene,
+			src: scene.assets[&quot;heart&quot;]
+		});
+		scene.append(sprite);
+	});
+	g.game.pushScene(scene);
 }
 module.exports = main;
 </code></pre>
@@ -441,32 +441,32 @@ module.exports = main;
 <p>要素が多いので、個別に説明する前にコード全体を見てから、この後で解説するようにしたいと思います。まずはコード全体を見てみましょう。</p>
 
 <pre><code class="language-javascript">function main(param) {
-    var scene = new g.Scene({game: g.game, assetIds: [&quot;heart&quot;]});
-    scene.loaded.add(function() {
-        var sprite = new g.Sprite({
-            scene: scene,
-            src: scene.assets[&quot;heart&quot;]
-        });
-        scene.append(sprite);
-        // -- 「入力を扱ってみる」で追加
-        // pointDownCaptureトリガーに関数を登録
-        scene.pointDownCapture.add(function(e) {
-            // heart変数にheart画像のSpriteを追加
-            var heart = new g.Sprite({
-                scene: scene,
-                src: scene.assets[&quot;heart&quot;]
-            });
-            // heartの位置をタッチされた場所にする。Akashicの基準座標は左上なので、タッチされた中心になるように微調整する
-            heart.moveTo(
-                e.point.x - heart.width / 2,
-                e.point.y - heart.height / 2
-            );
-            // 作成したheartスプライトをシーンに追加
-            scene.append(heart);
-        });
-        // ここまで「入力を扱ってみる」 --
-    });
-    g.game.pushScene(scene);
+	var scene = new g.Scene({game: g.game, assetIds: [&quot;heart&quot;]});
+	scene.loaded.add(function() {
+		var sprite = new g.Sprite({
+			scene: scene,
+			src: scene.assets[&quot;heart&quot;]
+		});
+		scene.append(sprite);
+		// -- 「入力を扱ってみる」で追加
+		// pointDownCaptureトリガーに関数を登録
+		scene.pointDownCapture.add(function(e) {
+			// heart変数にheart画像のSpriteを追加
+			var heart = new g.Sprite({
+				scene: scene,
+				src: scene.assets[&quot;heart&quot;]
+			});
+			// heartの位置をタッチされた場所にする。Akashicの基準座標は左上なので、タッチされた中心になるように微調整する
+			heart.moveTo(
+				e.point.x - heart.width / 2,
+				e.point.y - heart.height / 2
+			);
+			// 作成したheartスプライトをシーンに追加
+			scene.append(heart);
+		});
+		// ここまで「入力を扱ってみる」 --
+	});
+	g.game.pushScene(scene);
 }
 
 module.exports = main;
@@ -484,16 +484,16 @@ module.exports = main;
 <p>タッチされたら、<code>Sprite</code>を生成します。</p>
 
 <pre><code class="language-javascript">var heart = new g.Sprite({
-    scene: scene,
-    src: scene.assets[&quot;heart&quot;]
+	scene: scene,
+	src: scene.assets[&quot;heart&quot;]
 });
 </code></pre>
 
 <p><code>moveTo</code>メソッドで位置を調整し、この際イベントハンドラに渡ってくる変数<code>e</code>の中に入っている<code>point</code>変数から座標を計算しています。</p>
 
 <pre><code class="language-javascript">heart.moveTo(
-    e.point.x - heart.width / 2,
-    e.point.y - heart.height / 2
+	e.point.x - heart.width / 2,
+	e.point.y - heart.height / 2
 );
 </code></pre>
 
@@ -515,52 +515,52 @@ module.exports = main;
 <p>先にコードを見てみましょう。</p>
 
 <pre><code class="language-javascript">function main(param) {
-    var scene = new g.Scene({game: g.game, assetIds: [&quot;heart&quot;]});
-    scene.loaded.add(function() {
-        var sprite = new g.Sprite({
-            scene: scene,
-            src: scene.assets[&quot;heart&quot;]
-        });
-        scene.append(sprite);
-        // -- 「入力を扱ってみる」で追加
-        // pointDownCaptureトリガーに関数を登録
-        scene.pointDownCapture.add(function(e) {
-            // heart変数にheart画像のSpriteを追加
-            var heart = new g.Sprite({
-                scene: scene,
-                src: scene.assets[&quot;heart&quot;]
-            });
-            // heartの位置をタッチされた場所にする。Akashicの基準座標は左上なので、タッチされた中心になるように微調整する
-            heart.moveTo(
-                e.point.x - heart.width / 2,
-                e.point.y - heart.height / 2
-            );
-            // -- 「一定時間で削除する」で追加
-            // heartのtagという変数にcounterを格納
-            heart.tag = {
-                counter: 0
-            };
-            // 毎フレーム実行されるイベントであるupdateにイベントを登録
-            heart.update.add(function(e) {
-                // 毎フレームカウンタを追加
-                heart.tag.counter++;
-                if (heart.tag.counter &gt; 100) {
-                    // カウンタが100を超えていたら削除する
-                    heart.destroy();
-                } else if (heart.tag.counter &gt; 50) {
-                    // カウンタが50を超えていたら半透明にしていく
-                    heart.opacity = (100 - heart.tag.counter) / 50;
-                    // このエンティティが変更されたという通知
-                    heart.modified();
-                }
-            });
-            // ここまで「一定時間で削除する」で追加 --
-            // 作成したheartスプライトをシーンに追加
-            scene.append(heart);
-        });
-        // ここまで「入力を扱ってみる」 --
-    });
-    g.game.pushScene(scene);
+	var scene = new g.Scene({game: g.game, assetIds: [&quot;heart&quot;]});
+	scene.loaded.add(function() {
+		var sprite = new g.Sprite({
+			scene: scene,
+			src: scene.assets[&quot;heart&quot;]
+		});
+		scene.append(sprite);
+		// -- 「入力を扱ってみる」で追加
+		// pointDownCaptureトリガーに関数を登録
+		scene.pointDownCapture.add(function(e) {
+			// heart変数にheart画像のSpriteを追加
+			var heart = new g.Sprite({
+				scene: scene,
+				src: scene.assets[&quot;heart&quot;]
+			});
+			// heartの位置をタッチされた場所にする。Akashicの基準座標は左上なので、タッチされた中心になるように微調整する
+			heart.moveTo(
+				e.point.x - heart.width / 2,
+				e.point.y - heart.height / 2
+			);
+			// -- 「一定時間で削除する」で追加
+			// heartのtagという変数にcounterを格納
+			heart.tag = {
+				counter: 0
+			};
+			// 毎フレーム実行されるイベントであるupdateにイベントを登録
+			heart.update.add(function(e) {
+				// 毎フレームカウンタを追加
+				heart.tag.counter++;
+				if (heart.tag.counter &gt; 100) {
+					// カウンタが100を超えていたら削除する
+					heart.destroy();
+				} else if (heart.tag.counter &gt; 50) {
+					// カウンタが50を超えていたら半透明にしていく
+					heart.opacity = (100 - heart.tag.counter) / 50;
+					// このエンティティが変更されたという通知
+					heart.modified();
+				}
+			});
+			// ここまで「一定時間で削除する」で追加 --
+			// 作成したheartスプライトをシーンに追加
+			scene.append(heart);
+		});
+		// ここまで「入力を扱ってみる」 --
+	});
+	g.game.pushScene(scene);
 }
 
 module.exports = main;
@@ -571,7 +571,7 @@ module.exports = main;
 <p>エンティティごとに削除したいので、まずはエンティティ単位の変数にカウンタの値を入れています。</p>
 
 <pre><code class="language-javascript">heart.tag = {
-    counter: 0
+	counter: 0
 };
 </code></pre>
 
@@ -595,13 +595,13 @@ module.exports = main;
 <p>また、最初の50フレームは変化なくそのままで、50フレームからだんだん半透明にする事にしました。それをコードで表したのがこちらです。</p>
 
 <pre><code class="language-javascript">if (heart.tag.counter &gt; 100) {
-    // カウンタが100を超えていたら削除する
-    heart.destroy();
+	// カウンタが100を超えていたら削除する
+	heart.destroy();
 } else if (heart.tag.counter &gt; 50) {
-    // カウンタが50を超えていたら半透明にしていく
-    heart.opacity = (100 - heart.tag.counter) / 50;
-    // このエンティティが変更されたという通知
-    heart.modified();
+	// カウンタが50を超えていたら半透明にしていく
+	heart.opacity = (100 - heart.tag.counter) / 50;
+	// このエンティティが変更されたという通知
+	heart.modified();
 }
 </code></pre>
 
@@ -614,57 +614,57 @@ module.exports = main;
 <p>最後、左上に最初からいるハートが邪魔ですね。この辺りの仕上げはみなさんのお手元で実際にやっていただくのがいいと思いますが、私はこうしました。皆さんも工夫してみてください。</p>
 
 <pre><code class="language-javascript">function main(param) {
-    var scene = new g.Scene({game: g.game, assetIds: [&quot;heart&quot;]});
-    scene.loaded.add(function() {
-        function generateHeart(x, y) {
-            // heart変数にheart画像のSpriteを追加
-            var heart = new g.Sprite({
-                scene: scene,
-                src: scene.assets[&quot;heart&quot;]
-            });
-            // heartの位置をタッチされた場所にする。Akashicの基準座標は左上なので、タッチされた中心になるように微調整する
-            heart.moveTo(
-                x,
-                y
-            );
-            // heartのtagという変数にcounterを格納
-            heart.tag = {
-                counter: 0
-            };
-            // 毎フレーム実行されるイベントであるupdateにイベントを登録
-            heart.update.add(function(e) {
-                // 毎フレームカウンタを追加
-                heart.tag.counter++;
-                if (heart.tag.counter &gt; 100) {
-                    // カウンタが100を超えていたら削除する
-                    heart.destroy();
-                } else if (heart.tag.counter &gt; 50) {
-                    // カウンタが50を超えていたら半透明にしていく
-                    heart.opacity = (100 - heart.tag.counter) / 50;
-                    // このエンティティが変更されたという通知
-                    heart.modified();
-                }
-            });
-            // 作成したheartスプライトをシーンに追加
-            scene.append(heart);
-        }
-        // pointDownCaptureトリガーに関数を登録
-        scene.pointDownCapture.add(function(e) {
-            // タッチされたらハートを中心点に配置する
-            generateHeart(
-                e.point.x - scene.assets[&quot;heart&quot;].width / 2,
-                e.point.y - scene.assets[&quot;heart&quot;].height / 2
-            );
-        });
+	var scene = new g.Scene({game: g.game, assetIds: [&quot;heart&quot;]});
+	scene.loaded.add(function() {
+		function generateHeart(x, y) {
+			// heart変数にheart画像のSpriteを追加
+			var heart = new g.Sprite({
+				scene: scene,
+				src: scene.assets[&quot;heart&quot;]
+			});
+			// heartの位置をタッチされた場所にする。Akashicの基準座標は左上なので、タッチされた中心になるように微調整する
+			heart.moveTo(
+				x,
+				y
+			);
+			// heartのtagという変数にcounterを格納
+			heart.tag = {
+				counter: 0
+			};
+			// 毎フレーム実行されるイベントであるupdateにイベントを登録
+			heart.update.add(function(e) {
+				// 毎フレームカウンタを追加
+				heart.tag.counter++;
+				if (heart.tag.counter &gt; 100) {
+					// カウンタが100を超えていたら削除する
+					heart.destroy();
+				} else if (heart.tag.counter &gt; 50) {
+					// カウンタが50を超えていたら半透明にしていく
+					heart.opacity = (100 - heart.tag.counter) / 50;
+					// このエンティティが変更されたという通知
+					heart.modified();
+				}
+			});
+			// 作成したheartスプライトをシーンに追加
+			scene.append(heart);
+		}
+		// pointDownCaptureトリガーに関数を登録
+		scene.pointDownCapture.add(function(e) {
+			// タッチされたらハートを中心点に配置する
+			generateHeart(
+				e.point.x - scene.assets[&quot;heart&quot;].width / 2,
+				e.point.y - scene.assets[&quot;heart&quot;].height / 2
+			);
+		});
 
 
-        // 最初に中心にハートを出現させる
-        generateHeart(
-            g.game.width / 2 - scene.assets[&quot;heart&quot;].width / 2,
-            g.game.height / 2 - scene.assets[&quot;heart&quot;].height / 2
-        );
-    });
-    g.game.pushScene(scene);
+		// 最初に中心にハートを出現させる
+		generateHeart(
+			g.game.width / 2 - scene.assets[&quot;heart&quot;].width / 2,
+			g.game.height / 2 - scene.assets[&quot;heart&quot;].height / 2
+		);
+	});
+	g.game.pushScene(scene);
 }
 
 module.exports = main;
@@ -687,36 +687,36 @@ module.exports = main;
 <p>「ニコニコ新市場対応コンテンツ作成ガイド」に従い、<code>game.json</code>に以下の記述を加えます。これはツールなのでランキングには対応しませんので、<code>&quot;single&quot;</code>にのみ対応します。</p>
 
 <pre><code class="language-json">&quot;niconico&quot;: {
-    &quot;supportedModes&quot;: [&quot;single&quot;]
+	&quot;supportedModes&quot;: [&quot;single&quot;]
 }
 </code></pre>
 
 <p>最終的に、game.jsonは以下のようになっていると思います。</p>
 
 <pre><code class="language-json">{
-    &quot;width&quot;: 640,
-    &quot;height&quot;: 360,
-    &quot;fps&quot;: 30,
-    &quot;main&quot;: &quot;./script/main.js&quot;,
-    &quot;assets&quot;: {
-        &quot;main&quot;: {
-            &quot;type&quot;: &quot;script&quot;,
-            &quot;path&quot;: &quot;script/main.js&quot;,
-            &quot;global&quot;: true
-        },
-        &quot;heart&quot;: {
-            &quot;type&quot;: &quot;image&quot;,
-            &quot;width&quot;: 64,
-            &quot;height&quot;: 64,
-            &quot;path&quot;: &quot;image/heart.png&quot;
-        }
-    },
-    &quot;environment&quot;: {
-        &quot;sandbox-runtime&quot;: &quot;2&quot;,
-        &quot;niconico&quot;: {
-            &quot;supportedModes&quot;: [&quot;single&quot;]
-        }
-    }
+	&quot;width&quot;: 640,
+	&quot;height&quot;: 360,
+	&quot;fps&quot;: 30,
+	&quot;main&quot;: &quot;./script/main.js&quot;,
+	&quot;assets&quot;: {
+		&quot;main&quot;: {
+			&quot;type&quot;: &quot;script&quot;,
+			&quot;path&quot;: &quot;script/main.js&quot;,
+			&quot;global&quot;: true
+		},
+		&quot;heart&quot;: {
+			&quot;type&quot;: &quot;image&quot;,
+			&quot;width&quot;: 64,
+			&quot;height&quot;: 64,
+			&quot;path&quot;: &quot;image/heart.png&quot;
+		}
+	},
+	&quot;environment&quot;: {
+		&quot;sandbox-runtime&quot;: &quot;2&quot;,
+		&quot;niconico&quot;: {
+			&quot;supportedModes&quot;: [&quot;single&quot;]
+		}
+	}
 }
 </code></pre>
 

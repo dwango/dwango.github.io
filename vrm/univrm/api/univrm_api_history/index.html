@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.58.0" />
 
   <meta property="og:title" content="APIの変更履歴 - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -115,11 +115,12 @@
 
 <ul>
 <li>extraはextrasの間違い</li>
-<li>imageはnameを持っていた</li>
-</ul>
+
+<li><p>imageはnameを持っていた</p>
 
 <pre><code class="language-json">json.images[i].extra.name
-</code></pre>
+</code></pre></li>
+</ul>
 
 <p>変更後</p>
 
@@ -133,11 +134,12 @@
 <ul>
 <li>extraはextrasの間違い</li>
 <li>targetにextrasは不許可</li>
-<li><a href="https://github.com/KhronosGroup/glTF/issues/1036#issuecomment-314078356">https://github.com/KhronosGroup/glTF/issues/1036#issuecomment-314078356</a></li>
-</ul>
+
+<li><p><a href="https://github.com/KhronosGroup/glTF/issues/1036#issuecomment-314078356">https://github.com/KhronosGroup/glTF/issues/1036#issuecomment-314078356</a></p>
 
 <pre><code class="language-json">json.meshes[i].primitives[j].targets[k].extra.name
-</code></pre>
+</code></pre></li>
+</ul>
 
 <p>変更後</p>
 

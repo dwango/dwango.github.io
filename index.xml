@@ -17,7 +17,7 @@
       <pubDate>Tue, 25 Jun 2019 13:40:14 +0900</pubDate>
       
       <guid>https://dwango.github.io/niconico/genre_ranking/ranking_log/</guid>
-      <description>諸事情により、2019年7月5日から7月8日までのデイリー(daily)・全期間(total)過去ログファイルが公開されていません。 近日中に</description>
+      <description>はじめに ニコニコ動画では、過去にどのような動画がランキングに掲載されていたかが分かる機能を提供しています。 これまではプレミアム会員専用機能と</description>
     </item>
     
     <item>
@@ -273,6 +273,20 @@
     </item>
     
     <item>
+      <title>gltf VRM extension</title>
+      <link>https://dwango.github.io/vrm/vrm_extension/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/vrm/vrm_extension/</guid>
+      <description>Contributors  dwango  Status Draft
+Dependencies Written against the glTF 2.0 spec.
+Overview This extension defines Humanoid model for VR.
+ human bone definitions standard morphs secondary animation annotations mesh visibilities for first person view  glTF Schema Updates This extension adds:
+JSON Schema TODO: Links to the JSON schema for the new extension properties.
+Known Implementations  TODO: List of known implementations, with links to each if available.</description>
+    </item>
+    
+    <item>
       <title>GLTFについて</title>
       <link>https://dwango.github.io/vrm/gltf_about/</link>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
@@ -387,20 +401,6 @@
       
       <guid>https://dwango.github.io/vrm/vrm_spec/</guid>
       <description>glTF-2.0のバイナリ形式glbをベースにした、VR向けモデルフォーマットです。 更新履歴 20181109: JsonShcemaのVector3のタイプが</description>
-    </item>
-    
-    <item>
-      <title>gltf VRM extension</title>
-      <link>https://dwango.github.io/vrm/vrm_extension/</link>
-      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
-      
-      <guid>https://dwango.github.io/vrm/vrm_extension/</guid>
-      <description>Contributors  dwango  Status Draft
-Dependencies Written against the glTF 2.0 spec.
-Overview This extension defines Humanoid model for VR.
- human bone definitions standard morphs secondary animation annotations mesh visibilities for first person view  glTF Schema Updates This extension adds:
-JSON Schema TODO: Links to the JSON schema for the new extension properties.
-Known Implementations  TODO: List of known implementations, with links to each if available.</description>
     </item>
     
     <item>

@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://dwango.github.io/en/</loc>
+    <lastmod>2018-10-05T16:30:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://dwango.github.io/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://dwango.github.io/en/"
+                />
+  </url>
+  
+  <url>
     <loc>https://dwango.github.io/en/vrm/univrm/shaders/univrm_shaders_044/</loc>
     <lastmod>2018-10-05T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -14,22 +29,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://dwango.github.io/en/vrm/univrm/shaders/univrm_shaders_044/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://dwango.github.io/en/</loc>
-    <lastmod>2018-10-05T16:30:00+09:00</lastmod>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://dwango.github.io/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://dwango.github.io/en/"
                 />
   </url>
   
@@ -169,6 +168,21 @@
   </url>
   
   <url>
+    <loc>https://dwango.github.io/en/vrm/vrm_extension/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://dwango.github.io/vrm/vrm_extension/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://dwango.github.io/en/vrm/vrm_extension/"
+                />
+  </url>
+  
+  <url>
     <loc>https://dwango.github.io/en/vrm/how_to_make_vrm/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -214,21 +228,6 @@
   </url>
   
   <url>
-    <loc>https://dwango.github.io/en/vrm/univrm/shaders/mtoon/</loc>
-    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://dwango.github.io/vrm/univrm/shaders/mtoon/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://dwango.github.io/en/vrm/univrm/shaders/mtoon/"
-                />
-  </url>
-  
-  <url>
     <loc>https://dwango.github.io/en/vrm/univrm/components/univrm_meta/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -240,6 +239,21 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://dwango.github.io/en/vrm/univrm/components/univrm_meta/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://dwango.github.io/en/vrm/univrm/shaders/mtoon/</loc>
+    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://dwango.github.io/vrm/univrm/shaders/mtoon/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://dwango.github.io/en/vrm/univrm/shaders/mtoon/"
                 />
   </url>
   
@@ -379,23 +393,7 @@
   </url>
   
   <url>
-    <loc>https://dwango.github.io/en/vrm/vrm_extension/</loc>
-    <lastmod>2018-04-16T16:30:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://dwango.github.io/vrm/vrm_extension/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://dwango.github.io/en/vrm/vrm_extension/"
-                />
-  </url>
-  
-  <url>
     <loc>https://dwango.github.io/en/categories/</loc>
-    <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
@@ -410,7 +408,6 @@
   
   <url>
     <loc>https://dwango.github.io/en/tags/</loc>
-    <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"

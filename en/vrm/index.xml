@@ -44,7 +44,8 @@ Please go to UniVRM/Wiki to get the latest information of the API update.
 v0.36 Texture Name Save Locations Changed Conforming to the GLTF specification.
 json.images[i].extra.name  After the change
 json.images[i].name  BlendShape Name Save Locations Changed Conforming to the GLTF specification.
- &amp;ldquo;extras&amp;rdquo; is not allowed in target https://github.com/KhronosGroup/glTF/issues/1036#issuecomment-314078356  json.meshes[i].primitives[j].targets[k].extra.name  After the change
+ &amp;ldquo;extras&amp;rdquo; is not allowed in target https://github.com/KhronosGroup/glTF/issues/1036#issuecomment-314078356
+json.meshes[i].primitives[j].targets[k].extra.name   After the change
 json.meshes[i].primitives[j].extras.targetNames[k]  </description>
     </item>
     
@@ -127,6 +128,20 @@ Renderers The settings for controlling mesh rendering on/off in a first-person v
     </item>
     
     <item>
+      <title>gltf VRM extension</title>
+      <link>https://dwango.github.io/en/vrm/vrm_extension/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/vrm_extension/</guid>
+      <description>Contributors  dwango  Status Draft
+Dependencies Written against the glTF 2.0 spec.
+Overview This extension defines Humanoid model for VR.
+ human bone definitions standard morphs secondary animation annotations mesh visibilities for first-person view  glTF Schema Updates This extension adds:
+JSON Schema TODO: Links to the JSON schema for the new extension properties.
+Known Implementations  TODO: List of known implementations, with links to each if available.  Resources  TODO: Resources, if any.</description>
+    </item>
+    
+    <item>
       <title>How to make VRM file</title>
       <link>https://dwango.github.io/en/vrm/how_to_make_vrm/</link>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
@@ -157,18 +172,6 @@ Open VRM from a file path var path=&amp;#34;sample.vrm&amp;#34;;var go=VRM.VRMI
     </item>
     
     <item>
-      <title>MToon</title>
-      <link>https://dwango.github.io/en/vrm/univrm/shaders/mtoon/</link>
-      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
-      
-      <guid>https://dwango.github.io/en/vrm/univrm/shaders/mtoon/</guid>
-      <description>Shader preloading setting
-How to use MToon
-About MToon MToon aims for making Japanese anime expressions. It is achieved by mixing Lit Color and Shade Color based on Lighting parameters and light source environment.
-        Apply MToon to the 3D modelAlicia    For users who want to have a quick setup Common items  Select the target material and change the shader to VRM/MToon Click the shader panel and set the same texture in Color-&amp;gt;Lit Color, Alpha and Color-&amp;gt;Shade Color Set white color in Color-&amp;gt;Lit Color, Alpha and set the preference shade color in Color-&amp;gt;Shade Color Set the preference value in Shading-&amp;gt;Toony.</description>
-    </item>
-    
-    <item>
       <title>Model Information</title>
       <link>https://dwango.github.io/en/vrm/univrm/components/univrm_meta/</link>
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
@@ -180,6 +183,18 @@ Contact Information Enter the contact information of the author
 Reference Original / Related works of this avatar (URL), if any
 Thumbnail Register the thumbnail of the VRM model. A texture resolution about 2048x2048 is recommended.
 Version Specify the model version with character string.</description>
+    </item>
+    
+    <item>
+      <title>MToon</title>
+      <link>https://dwango.github.io/en/vrm/univrm/shaders/mtoon/</link>
+      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/en/vrm/univrm/shaders/mtoon/</guid>
+      <description>Shader preloading setting
+How to use MToon
+About MToon MToon aims for making Japanese anime expressions. It is achieved by mixing Lit Color and Shade Color based on Lighting parameters and light source environment.
+        Apply MToon to the 3D modelAlicia    For users who want to have a quick setup Common items  Select the target material and change the shader to VRM/MToon Click the shader panel and set the same texture in Color-&amp;gt;Lit Color, Alpha and Color-&amp;gt;Shade Color Set white color in Color-&amp;gt;Lit Color, Alpha and set the preference shade color in Color-&amp;gt;Shade Color Set the preference value in Shading-&amp;gt;Toony.</description>
     </item>
     
     <item>
@@ -235,7 +250,8 @@ For Blink_L
       
       <guid>https://dwango.github.io/en/vrm/vrm_spec/</guid>
       <description>VRM is based on glb format, which is a binary form of glTF 2.0. It is a model format for VR.
-Update history  20181109: Corrected parts where JsonSchema&amp;rsquo;s Vector3 type is erroneously set to array  { &amp;quot;x&amp;quot;: { &amp;quot;type&amp;quot;: &amp;quot;number&amp;quot; }, &amp;quot;y&amp;quot;: { &amp;quot;type&amp;quot;: &amp;quot;number&amp;quot; }, &amp;quot;z&amp;quot;: { &amp;quot;type&amp;quot;: &amp;quot;number&amp;quot; } }  File extension The file extension.vrmis used. It is compatible with.glb. If ModelFileName.vrm is changed to ModelFileName.</description>
+Update history  20181109: Corrected parts where JsonSchema&amp;rsquo;s Vector3 type is erroneously set to array
+{ &amp;quot;x&amp;quot;: { &amp;quot;type&amp;quot;: &amp;quot;number&amp;quot; }, &amp;quot;y&amp;quot;: { &amp;quot;type&amp;quot;: &amp;quot;number&amp;quot; }, &amp;quot;z&amp;quot;: { &amp;quot;type&amp;quot;: &amp;quot;number&amp;quot; } }   File extension The file extension.vrmis used. It is compatible with.glb. If ModelFileName.vrm is changed to ModelFileName.</description>
     </item>
     
     <item>
@@ -280,20 +296,6 @@ The node attached by spring bones When VRM is imported, components related to sp
       <description>What is VRM? In the past, when trying to handle the 3D humanoid avatar (3D model) in Virtual Reality, Virtual YouTuber, etc., it was necessary to develop an unique system for applications and fine-tune the 3D model data due to&amp;hellip;
  The output data is depend on how creators make the 3D model and what modeling tools are used
  The coordinate system is different. The scale is different. The initial pose is different.</description>
-    </item>
-    
-    <item>
-      <title>gltf VRM extension</title>
-      <link>https://dwango.github.io/en/vrm/vrm_extension/</link>
-      <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
-      
-      <guid>https://dwango.github.io/en/vrm/vrm_extension/</guid>
-      <description>Contributors  dwango  Status Draft
-Dependencies Written against the glTF 2.0 spec.
-Overview This extension defines Humanoid model for VR.
- human bone definitions standard morphs secondary animation annotations mesh visibilities for first-person view  glTF Schema Updates This extension adds:
-JSON Schema TODO: Links to the JSON schema for the new extension properties.
-Known Implementations  TODO: List of known implementations, with links to each if available.  Resources  TODO: Resources, if any.</description>
     </item>
     
   </channel>

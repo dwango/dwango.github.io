@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.58.0" />
 
   <meta property="og:title" content="ゲームを作ってみよう - dwango on GitHub">
 
@@ -152,41 +152,41 @@
 <p>サンプルで提供されるファイルのフォーマットがこちらのサンプルと少し違うので、若干のアレンジが必要です。最終的なコードは以下のようになります。</p>
 
 <pre><code class="language-js">function main(param) {
-    var scene = new g.Scene({game: g.game, assetIds: [&quot;font16_1&quot;, &quot;glyph_area_16&quot;]});
+	var scene = new g.Scene({game: g.game, assetIds: [&quot;font16_1&quot;, &quot;glyph_area_16&quot;]});
 
-    scene.loaded.add(function() {
-        // glyphとfontを指定
-        var glyph = JSON.parse(scene.assets[&quot;glyph_area_16&quot;].data);
-        var font = new g.BitmapFont({
-            src: scene.assets[&quot;font16_1&quot;],
-            map: glyph,
-            defaultGlyphWidth: 16,
-            defaultGlyphHeight: 16
-        });
-        // スコア表示用ラベルを配置
-        var scoreLabel = new g.Label({
-            scene: scene,
-            font: font,
-            fontSize: 16,
-            text: &quot;1234567890&quot;,
-            x: g.game.width - 16 * 10,  // 右端に10文字くらい表示できるように配置
-            y: 0
-        });
-        scene.append(scoreLabel);
+	scene.loaded.add(function() {
+		// glyphとfontを指定
+		var glyph = JSON.parse(scene.assets[&quot;glyph_area_16&quot;].data);
+		var font = new g.BitmapFont({
+			src: scene.assets[&quot;font16_1&quot;],
+			map: glyph,
+			defaultGlyphWidth: 16,
+			defaultGlyphHeight: 16
+		});
+		// スコア表示用ラベルを配置
+		var scoreLabel = new g.Label({
+			scene: scene,
+			font: font,
+			fontSize: 16,
+			text: &quot;1234567890&quot;,
+			x: g.game.width - 16 * 10,  // 右端に10文字くらい表示できるように配置
+			y: 0
+		});
+		scene.append(scoreLabel);
 
-        // 時間表示用ラベルを配置
-        var timerLabel = new g.Label({
-            scene: scene,
-            font: font,
-            fontSize: 16,
-            text: &quot;1234567890&quot;,
-            x: 0,   // 左端に配置
-            y: 0
-        });
-        scene.append(timerLabel);
-    });
+		// 時間表示用ラベルを配置
+		var timerLabel = new g.Label({
+			scene: scene,
+			font: font,
+			fontSize: 16,
+			text: &quot;1234567890&quot;,
+			x: 0,   // 左端に配置
+			y: 0
+		});
+		scene.append(timerLabel);
+	});
 
-    g.game.pushScene(scene);
+	g.game.pushScene(scene);
 }
 
 module.exports = main;
@@ -204,10 +204,10 @@ module.exports = main;
 <pre><code class="language-js">// glyphとfontを指定
 var glyph = JSON.parse(scene.assets[&quot;glyph_area_16&quot;].data);
 var font = new g.BitmapFont({
-    src: scene.assets[&quot;font16_1&quot;],
-    map: glyph,
-    defaultGlyphWidth: 16,
-    defaultGlyphHeight: 16
+	src: scene.assets[&quot;font16_1&quot;],
+	map: glyph,
+	defaultGlyphWidth: 16,
+	defaultGlyphHeight: 16
 });
 </code></pre>
 
@@ -215,23 +215,23 @@ var font = new g.BitmapFont({
 
 <pre><code class="language-js">// スコア表示用ラベルを配置
 var scoreLabel = new g.Label({
-    scene: scene,
-    font: font,
-    fontSize: 16,
-    text: &quot;1234567890&quot;,
-    x: g.game.width - 16 * 10,  // 右端に10文字くらい表示できるように配置
-    y: 0
+	scene: scene,
+	font: font,
+	fontSize: 16,
+	text: &quot;1234567890&quot;,
+	x: g.game.width - 16 * 10,  // 右端に10文字くらい表示できるように配置
+	y: 0
 });
 scene.append(scoreLabel);
  
 // 時間表示用ラベルを配置
 var timerLabel = new g.Label({
-    scene: scene,
-    font: font,
-    fontSize: 16,
-    text: &quot;1234567890&quot;,
-    x: 0,   // 左端に配置
-    y: 0
+	scene: scene,
+	font: font,
+	fontSize: 16,
+	text: &quot;1234567890&quot;,
+	x: 0,   // 左端に配置
+	y: 0
 });
 scene.append(timerLabel);
 </code></pre>
@@ -259,18 +259,18 @@ scene.append(timerLabel);
 var totalTimeLimit = 60;
 
 scene.message.add(function (msg) {
-    if (msg.data &amp;&amp; msg.data.type === &quot;start&quot;) {
-        // type: &quot;start&quot; でも parameters などが与えられないこともあるので存在を確認
-        if (msg.data.parameters &amp;&amp; msg.data.parameters.totalTimeLimit) {
-            // 制限時間は `totalTimeLimit` 秒
-            totalTimeLimit = msg.data.parameters.totalTimeLimit;
-        }
-    }
+	if (msg.data &amp;&amp; msg.data.type === &quot;start&quot;) {
+		// type: &quot;start&quot; でも parameters などが与えられないこともあるので存在を確認
+		if (msg.data.parameters &amp;&amp; msg.data.parameters.totalTimeLimit) {
+			// 制限時間は `totalTimeLimit` 秒
+			totalTimeLimit = msg.data.parameters.totalTimeLimit;
+		}
+	}
 });
 
 scene.loaded.add(function () {
-    // 通常のゲームとしての初期化処理
-    // ...
+	// 通常のゲームとしての初期化処理
+	// ...
 }
 </code></pre>
 
@@ -284,11 +284,11 @@ scene.loaded.add(function () {
 var gameTimelimit = 60; // デフォルトを60秒にする
 
 scene.message.add(function(msg) {
-    if (msg.data &amp;&amp; msg.data.type === &quot;start&quot; &amp;&amp; msg.data.parameters &amp;&amp; msg.data.parameters.totalTimeLimit) {
-        // 制限時間を通知するイベントを受信した時点で初期化する
-        // ゲームのローディング時間を考慮し、7秒短くする
-        gameTimeLimit = msg.data.parameters.totalTimeLimit - 7;
-    }
+	if (msg.data &amp;&amp; msg.data.type === &quot;start&quot; &amp;&amp; msg.data.parameters &amp;&amp; msg.data.parameters.totalTimeLimit) {
+		// 制限時間を通知するイベントを受信した時点で初期化する
+		// ゲームのローディング時間を考慮し、7秒短くする
+		gameTimeLimit = msg.data.parameters.totalTimeLimit - 7;
+	}
 });
 </code></pre>
 
@@ -297,74 +297,74 @@ scene.message.add(function(msg) {
 <p>コード全体としては以下のようになります。</p>
 
 <pre><code class="language-js">function main(param) {
-    var scene = new g.Scene({game: g.game, assetIds: [&quot;font16_1&quot;, &quot;glyph_area_16&quot;]});
-    var gameTimeLimit = 60; // デフォルトを60秒にする
-    var frameCount = 0; // 経過時間をフレーム単位で記録
+	var scene = new g.Scene({game: g.game, assetIds: [&quot;font16_1&quot;, &quot;glyph_area_16&quot;]});
+	var gameTimeLimit = 60; // デフォルトを60秒にする
+	var frameCount = 0; // 経過時間をフレーム単位で記録
 
-    scene.message.add(function(msg) {
-        if (msg.data &amp;&amp; msg.data.type === &quot;start&quot; &amp;&amp; msg.data.parameters &amp;&amp; msg.data.parameters.totalTimeLimit) {
-            // 制限時間を通知するイベントを受信した時点で初期化する
-            // ゲームのローディング時間を考慮し、7秒短くする
-            gameTimeLimit = msg.data.parameters.totalTimeLimit - 7;
-        }
-    });
+	scene.message.add(function(msg) {
+		if (msg.data &amp;&amp; msg.data.type === &quot;start&quot; &amp;&amp; msg.data.parameters &amp;&amp; msg.data.parameters.totalTimeLimit) {
+			// 制限時間を通知するイベントを受信した時点で初期化する
+			// ゲームのローディング時間を考慮し、7秒短くする
+			gameTimeLimit = msg.data.parameters.totalTimeLimit - 7;
+		}
+	});
 
-    scene.loaded.add(function() {
-        // glyphとfontを指定
-        var glyph = JSON.parse(scene.assets[&quot;glyph_area_16&quot;].data);
-        var font = new g.BitmapFont({
-            src: scene.assets[&quot;font16_1&quot;],
-            map: glyph,
-            defaultGlyphWidth: 16,
-            defaultGlyphHeight: 16
-        });
-        // スコア表示用ラベルを配置
-        var scoreLabel = new g.Label({
-            scene: scene,
-            font: font,
-            fontSize: 16,
-            text: &quot;1234567890&quot;,
-            x: g.game.width - 16 * 10,  // 右端に10文字くらい表示できるように配置
-            y: 0
-        });
-        scene.append(scoreLabel);
+	scene.loaded.add(function() {
+		// glyphとfontを指定
+		var glyph = JSON.parse(scene.assets[&quot;glyph_area_16&quot;].data);
+		var font = new g.BitmapFont({
+			src: scene.assets[&quot;font16_1&quot;],
+			map: glyph,
+			defaultGlyphWidth: 16,
+			defaultGlyphHeight: 16
+		});
+		// スコア表示用ラベルを配置
+		var scoreLabel = new g.Label({
+			scene: scene,
+			font: font,
+			fontSize: 16,
+			text: &quot;1234567890&quot;,
+			x: g.game.width - 16 * 10,  // 右端に10文字くらい表示できるように配置
+			y: 0
+		});
+		scene.append(scoreLabel);
 
-        // 時間表示用ラベルを配置
-        var timerLabel = new g.Label({
-            scene: scene,
-            font: font,
-            fontSize: 16,
-            text: &quot;&quot;,
-            x: 0,   // 左端に配置
-            y: 0
-        });
-        scene.append(timerLabel);
+		// 時間表示用ラベルを配置
+		var timerLabel = new g.Label({
+			scene: scene,
+			font: font,
+			fontSize: 16,
+			text: &quot;&quot;,
+			x: 0,   // 左端に配置
+			y: 0
+		});
+		scene.append(timerLabel);
 
-        function updateTimerLabel() {
-            var s = countDown();
-            var text = s / 10 + (s % 10 === 0 ? &quot;.0&quot; : &quot;&quot;);
-            if (timerLabel.text != text) {
-                timerLabel.text = text;
-                timerLabel.invalidate();
-            }
-        }
-        function countDown() {
-            return Math.floor(gameTimeLimit * 10 - frameCount / g.game.fps * 10);
-        }
+		function updateTimerLabel() {
+			var s = countDown();
+			var text = s / 10 + (s % 10 === 0 ? &quot;.0&quot; : &quot;&quot;);
+			if (timerLabel.text != text) {
+				timerLabel.text = text;
+				timerLabel.invalidate();
+			}
+		}
+		function countDown() {
+			return Math.floor(gameTimeLimit * 10 - frameCount / g.game.fps * 10);
+		}
 
-        function updateHandler() {
-            // フレーム数を毎フレーム加算
-            ++frameCount;
-            if (countDown() &lt;= 0) {
-                // TODO: 終了時処理
-                scene.update.remove(updateHandler); // タイムアウトになったら毎フレーム処理自体を止める
-            }
-            updateTimerLabel();
-        }
-        scene.update.add(updateHandler);
-    });
+		function updateHandler() {
+			// フレーム数を毎フレーム加算
+			++frameCount;
+			if (countDown() &lt;= 0) {
+				// TODO: 終了時処理
+				scene.update.remove(updateHandler); // タイムアウトになったら毎フレーム処理自体を止める
+			}
+			updateTimerLabel();
+		}
+		scene.update.add(updateHandler);
+	});
 
-    g.game.pushScene(scene);
+	g.game.pushScene(scene);
 }
 
 module.exports = main;
@@ -375,13 +375,13 @@ module.exports = main;
 <p>経過時間の計算のためここでフレームカウントを加算し、ラベルを表示するという処理を書きます。ついで、タイムアウトになったら処理を止めるところも書いてしまいます。</p>
 
 <pre><code class="language-js">function updateHandler() {
-    // フレーム数を毎フレーム加算
-    ++frameCount;
-    if (countDown() &lt;= 0) {
-        // TODO: 終了時処理
-        scene.update.remove(updateHandler); // タイムアウトになったら毎フレーム処理自体を止める
-    }
-    updateTimerLabel();
+	// フレーム数を毎フレーム加算
+	++frameCount;
+	if (countDown() &lt;= 0) {
+		// TODO: 終了時処理
+		scene.update.remove(updateHandler); // タイムアウトになったら毎フレーム処理自体を止める
+	}
+	updateTimerLabel();
 }
 scene.update.add(updateHandler);
 </code></pre>
@@ -389,19 +389,19 @@ scene.update.add(updateHandler);
 <p>以下は残り時間をカウントする関数です。1秒単位の更新だと画面更新が少ないので、0.1秒単位で取り扱えるようにしました。</p>
 
 <pre><code class="language-js">function countDown() {
-    return Math.floor(gameTimeLimit * 10 - frameCount / g.game.fps * 10);
+	return Math.floor(gameTimeLimit * 10 - frameCount / g.game.fps * 10);
 }
 </code></pre>
 
 <p>以下はラベルの更新処理です。30fpsにつき0.1秒単位でしか更新されないので、テキストを事前生成して変化があったら更新にしています。また、「.0秒」を表示するために少し工夫をしています。</p>
 
 <pre><code class="language-js">function updateTimerLabel() {
-    var s = countDown();
-    var text = s / 10 + (s % 10 === 0 ? &quot;.0&quot; : &quot;&quot;);
-    if (timerLabel.text != text) {
-        timerLabel.text = text;
-        timerLabel.invalidate();
-    }
+	var s = countDown();
+	var text = s / 10 + (s % 10 === 0 ? &quot;.0&quot; : &quot;&quot;);
+	if (timerLabel.text != text) {
+		timerLabel.text = text;
+		timerLabel.invalidate();
+	}
 }
 </code></pre>
 
@@ -422,165 +422,165 @@ scene.update.add(updateHandler);
 <p>ゲームですのでそれなりのコード量になります。全コードはこちら。</p>
 
 <pre><code class="language-js">function main(param) {
-    var scene = new g.Scene({game: g.game, assetIds: [&quot;font16_1&quot;, &quot;glyph_area_16&quot;]});
-    var gameTimeLimit = 60; // デフォルトを60秒にする
-    var frameCount = 0; // 経過時間をフレーム単位で記録
+	var scene = new g.Scene({game: g.game, assetIds: [&quot;font16_1&quot;, &quot;glyph_area_16&quot;]});
+	var gameTimeLimit = 60; // デフォルトを60秒にする
+	var frameCount = 0; // 経過時間をフレーム単位で記録
 
-    scene.message.add(function(msg) {
-        if (msg.data &amp;&amp; msg.data.type === &quot;start&quot; &amp;&amp; msg.data.parameters &amp;&amp; msg.data.parameters.gameTimeLimit) {
-            // 制限時間を通知するイベントを受信した時点で初期化する
-            // ゲームのローディング時間を考慮し、7秒短くする
-            gameTimeLimit = msg.data.parameters.totalTimeLimit - 7;
-        }
-    });
+	scene.message.add(function(msg) {
+		if (msg.data &amp;&amp; msg.data.type === &quot;start&quot; &amp;&amp; msg.data.parameters &amp;&amp; msg.data.parameters.gameTimeLimit) {
+			// 制限時間を通知するイベントを受信した時点で初期化する
+			// ゲームのローディング時間を考慮し、7秒短くする
+			gameTimeLimit = msg.data.parameters.totalTimeLimit - 7;
+		}
+	});
 
-    scene.loaded.add(function() {
-        // glyphとfontを指定
-        var glyph = JSON.parse(scene.assets[&quot;glyph_area_16&quot;].data);
-        var font = new g.BitmapFont({
-            src: scene.assets[&quot;font16_1&quot;],
-            map: glyph,
-            defaultGlyphWidth: 16,
-            defaultGlyphHeight: 16
-        });
-        // スコア表示用ラベルを配置
-        var scoreLabel = new g.Label({
-            scene: scene,
-            font: font,
-            fontSize: 16,
-            text: &quot;1234567890&quot;,
-            x: g.game.width - 16 * 10,  // 右端に10文字くらい表示できるように配置
-            y: 0
-        });
-        scene.append(scoreLabel);
+	scene.loaded.add(function() {
+		// glyphとfontを指定
+		var glyph = JSON.parse(scene.assets[&quot;glyph_area_16&quot;].data);
+		var font = new g.BitmapFont({
+			src: scene.assets[&quot;font16_1&quot;],
+			map: glyph,
+			defaultGlyphWidth: 16,
+			defaultGlyphHeight: 16
+		});
+		// スコア表示用ラベルを配置
+		var scoreLabel = new g.Label({
+			scene: scene,
+			font: font,
+			fontSize: 16,
+			text: &quot;1234567890&quot;,
+			x: g.game.width - 16 * 10,  // 右端に10文字くらい表示できるように配置
+			y: 0
+		});
+		scene.append(scoreLabel);
 
-        // 時間表示用ラベルを配置
-        var timerLabel = new g.Label({
-            scene: scene,
-            font: font,
-            fontSize: 16,
-            text: &quot;&quot;,
-            x: 0,   // 左端に配置
-            y: 0
-        });
-        scene.append(timerLabel);
+		// 時間表示用ラベルを配置
+		var timerLabel = new g.Label({
+			scene: scene,
+			font: font,
+			fontSize: 16,
+			text: &quot;&quot;,
+			x: 0,   // 左端に配置
+			y: 0
+		});
+		scene.append(timerLabel);
 
-        function updateTimerLabel() {
-            var s = countDown();
-            var text = s / 10 + (s % 10 === 0 ? &quot;.0&quot; : &quot;&quot;);
-            if (timerLabel.text != text) {
-                timerLabel.text = text;
-                timerLabel.invalidate();
-            }
-        }
-        function countDown() {
-            return Math.floor(gameTimeLimit * 10 - frameCount / g.game.fps * 10);
-        }
-        var places = [];
-        var placeContainer = new g.E({
-            scene: scene,
-            x: (g.game.width - 5 * 64) / 2,
-            y: 100
-        });
-        scene.append(placeContainer);
+		function updateTimerLabel() {
+			var s = countDown();
+			var text = s / 10 + (s % 10 === 0 ? &quot;.0&quot; : &quot;&quot;);
+			if (timerLabel.text != text) {
+				timerLabel.text = text;
+				timerLabel.invalidate();
+			}
+		}
+		function countDown() {
+			return Math.floor(gameTimeLimit * 10 - frameCount / g.game.fps * 10);
+		}
+		var places = [];
+		var placeContainer = new g.E({
+			scene: scene,
+			x: (g.game.width - 5 * 64) / 2,
+			y: 100
+		});
+		scene.append(placeContainer);
 
-        // ランダムに1文字選ぶ処理
-        function pickAlpha() {
-            switch (g.game.random.get(0, 4)) {
-                case 0:
-                return &quot;A&quot;;
-                case 1:
-                return &quot;B&quot;;
-                case 2:
-                return &quot;C&quot;;
-                case 3:
-                return &quot;D&quot;;
-                case 4:
-                return &quot;E&quot;;
-                default:
-                throw new Error(&quot;invalid random number&quot;);
-            }
-        }
-        function breakAlpha(e) {
-            for (var i = 0; i &lt; places.length; i++) {
-                // 一つでも空きスペースがあれば処理を中断
-                if (places[i].tag.text === &quot;&quot;) return;
-            }
-            var targetText = e.target.tag.text;
-            for (var i = 0; i &lt; places.length; i++) {
-                if (places[i].tag.text == targetText) {
-                    // テキストが合致したら壊す
-                    updatePlaceText(places[i], &quot;&quot;);
-                }
-            }
-        }
-        function updatePlaceText(place, text) {
-            // 内部のデータを更新する
-            place.tag.text = text;
-            // children[0]はLabelなので、Labelのtextも更新する
-            place.children[0].text = text;
-            place.children[0].invalidate();
-        }
-        // 置き場所を作る処理
-        function createPlace(index) {
-            var label = new g.Label({
-                scene: scene,
-                font: font,
-                fontSize: 48,
-                text: &quot;&quot;,
-                x: 8,
-                y: 8
-            });
-            var place = new g.FilledRect({
-                scene: scene,
-                x: index % 5 * 64,
-                y: Math.floor(index / 5) * 64,
-                width: 64,
-                height: 64,
-                tag: {
-                    text: &quot;&quot;
-                },
-                cssColor: index % 2 === 0 ? &quot;#ccc&quot; : &quot;#ddd&quot;,
-                touchable: true
-            });
-            place.append(label);
-            place.pointDown.handle(breakAlpha);
-            return place;
-        }
-        // 10個の場所を作る
-        for (var i = 0; i &lt; 10; i++) {
-            var place = createPlace(i);
-            placeContainer.append(place);
-            places.push(place);
-        }
-        function visitAlpha() {
-            places.forEach(function(place) {
-                // テキストが空のもののみ更新をかける
-                if (place.tag.text === &quot;&quot;) {
-                    updatePlaceText(place, pickAlpha());
-                }
-            });
-        }
-        function tryVisitAlpha() {
-            // 1秒に1回
-            if (frameCount % g.game.fps === 0) {
-                visitAlpha();
-            }
-        }
+		// ランダムに1文字選ぶ処理
+		function pickAlpha() {
+			switch (g.game.random.get(0, 4)) {
+				case 0:
+				return &quot;A&quot;;
+				case 1:
+				return &quot;B&quot;;
+				case 2:
+				return &quot;C&quot;;
+				case 3:
+				return &quot;D&quot;;
+				case 4:
+				return &quot;E&quot;;
+				default:
+				throw new Error(&quot;invalid random number&quot;);
+			}
+		}
+		function breakAlpha(e) {
+			for (var i = 0; i &lt; places.length; i++) {
+				// 一つでも空きスペースがあれば処理を中断
+				if (places[i].tag.text === &quot;&quot;) return;
+			}
+			var targetText = e.target.tag.text;
+			for (var i = 0; i &lt; places.length; i++) {
+				if (places[i].tag.text == targetText) {
+					// テキストが合致したら壊す
+					updatePlaceText(places[i], &quot;&quot;);
+				}
+			}
+		}
+		function updatePlaceText(place, text) {
+			// 内部のデータを更新する
+			place.tag.text = text;
+			// children[0]はLabelなので、Labelのtextも更新する
+			place.children[0].text = text;
+			place.children[0].invalidate();
+		}
+		// 置き場所を作る処理
+		function createPlace(index) {
+			var label = new g.Label({
+				scene: scene,
+				font: font,
+				fontSize: 48,
+				text: &quot;&quot;,
+				x: 8,
+				y: 8
+			});
+			var place = new g.FilledRect({
+				scene: scene,
+				x: index % 5 * 64,
+				y: Math.floor(index / 5) * 64,
+				width: 64,
+				height: 64,
+				tag: {
+					text: &quot;&quot;
+				},
+				cssColor: index % 2 === 0 ? &quot;#ccc&quot; : &quot;#ddd&quot;,
+				touchable: true
+			});
+			place.append(label);
+			place.pointDown.handle(breakAlpha);
+			return place;
+		}
+		// 10個の場所を作る
+		for (var i = 0; i &lt; 10; i++) {
+			var place = createPlace(i);
+			placeContainer.append(place);
+			places.push(place);
+		}
+		function visitAlpha() {
+			places.forEach(function(place) {
+				// テキストが空のもののみ更新をかける
+				if (place.tag.text === &quot;&quot;) {
+					updatePlaceText(place, pickAlpha());
+				}
+			});
+		}
+		function tryVisitAlpha() {
+			// 1秒に1回
+			if (frameCount % g.game.fps === 0) {
+				visitAlpha();
+			}
+		}
 
-        function updateHandler() {
-            // フレーム数を毎フレーム加算
-            ++frameCount;
-            if (countDown() &lt;= 0) {
-                scene.update.remove(updateHandler); // タイムアウトになったら毎フレーム処理自体を止める
-            }
-            tryVisitAlpha();
-            updateTimerLabel();
-        }
-        scene.update.add(updateHandler);
-    });
+		function updateHandler() {
+			// フレーム数を毎フレーム加算
+			++frameCount;
+			if (countDown() &lt;= 0) {
+				scene.update.remove(updateHandler); // タイムアウトになったら毎フレーム処理自体を止める
+			}
+			tryVisitAlpha();
+			updateTimerLabel();
+		}
+		scene.update.add(updateHandler);
+	});
 
-    g.game.pushScene(scene);
+	g.game.pushScene(scene);
 }
 
 module.exports = main;
@@ -592,9 +592,9 @@ module.exports = main;
 
 <pre><code class="language-js">var places = [];
 var placeContainer = new g.E({
-    scene: scene,
-    x: (g.game.width - 5 * 64) / 2,
-    y: 100
+	scene: scene,
+	x: (g.game.width - 5 * 64) / 2,
+	y: 100
 });
 scene.append(placeContainer);
 </code></pre>
@@ -603,9 +603,9 @@ scene.append(placeContainer);
 
 <pre><code class="language-js">// 10個の場所を作る
 for (var i = 0; i &lt; 10; i++) {
-    var place = createPlace(i);
-    placeContainer.append(place);
-    places.push(place);
+	var place = createPlace(i);
+	placeContainer.append(place);
+	places.push(place);
 }
 </code></pre>
 
@@ -617,29 +617,29 @@ for (var i = 0; i &lt; 10; i++) {
 
 <pre><code class="language-js">// 置き場所を作る処理
 function createPlace(index) {
-    var label = new g.Label({
-        scene: scene,
-        font: font,
-        fontSize: 48,
-        text: &quot;&quot;,
-        x: 8,
-        y: 8
-    });
-    var place = new g.FilledRect({
-        scene: scene,
-        x: index % 5 * 64,
-        y: Math.floor(index / 5) * 64,
-        width: 64,
-        height: 64,
-        tag: {
-            text: &quot;&quot;
-        },
-        cssColor: index % 2 === 0 ? &quot;#ccc&quot; : &quot;#ddd&quot;,
-        touchable: true
-    });
-    place.append(label);
-    place.pointDown.handle(breakAlpha);
-    return place;
+	var label = new g.Label({
+		scene: scene,
+		font: font,
+		fontSize: 48,
+		text: &quot;&quot;,
+		x: 8,
+		y: 8
+	});
+	var place = new g.FilledRect({
+		scene: scene,
+		x: index % 5 * 64,
+		y: Math.floor(index / 5) * 64,
+		width: 64,
+		height: 64,
+		tag: {
+			text: &quot;&quot;
+		},
+		cssColor: index % 2 === 0 ? &quot;#ccc&quot; : &quot;#ddd&quot;,
+		touchable: true
+	});
+	place.append(label);
+	place.pointDown.handle(breakAlpha);
+	return place;
 }
 </code></pre>
 
@@ -651,43 +651,43 @@ function createPlace(index) {
 
 <pre><code class="language-js">// ランダムに1文字選ぶ処理
 function pickAlpha() {
-    switch (g.game.random.get(0, 4)) {
-        case 0:
-        return &quot;A&quot;;
-        case 1:
-        return &quot;B&quot;;
-        case 2:
-        return &quot;C&quot;;
-        case 3:
-        return &quot;D&quot;;
-        case 4:
-        return &quot;E&quot;;
-        default:
-        throw new Error(&quot;invalid random number&quot;);
-    }
+	switch (g.game.random.get(0, 4)) {
+		case 0:
+		return &quot;A&quot;;
+		case 1:
+		return &quot;B&quot;;
+		case 2:
+		return &quot;C&quot;;
+		case 3:
+		return &quot;D&quot;;
+		case 4:
+		return &quot;E&quot;;
+		default:
+		throw new Error(&quot;invalid random number&quot;);
+	}
 }
 // ～中略
 function updatePlaceText(place, text) {
-    // 内部のデータを更新する
-    place.tag.text = text;
-    // children[0]はLabelなので、Labelのtextも更新する
-    place.children[0].text = text;
-    place.children[0].invalidate();
+	// 内部のデータを更新する
+	place.tag.text = text;
+	// children[0]はLabelなので、Labelのtextも更新する
+	place.children[0].text = text;
+	place.children[0].invalidate();
 }
 // ～中略
 function visitAlpha() {
-    places.forEach(function(place) {
-        // テキストが空のもののみ更新をかける
-        if (place.tag.text === &quot;&quot;) {
-            updatePlaceText(place, pickAlpha());
-        }
-    });
+	places.forEach(function(place) {
+		// テキストが空のもののみ更新をかける
+		if (place.tag.text === &quot;&quot;) {
+			updatePlaceText(place, pickAlpha());
+		}
+	});
 }
 function tryVisitAlpha() {
-    // 1秒に1回
-    if (frameCount % g.game.fps === 0) {
-        visitAlpha();
-    }
+	// 1秒に1回
+	if (frameCount % g.game.fps === 0) {
+		visitAlpha();
+	}
 }
 </code></pre>
 
@@ -696,17 +696,17 @@ function tryVisitAlpha() {
 <p>要件は「空き1つもない時、文字をタップできる」なのでこの条件判定を行い、「タップされた文字と同種の文字が消える」を実現する為、もう一度for文で回して複数個をまとめて削除しています。</p>
 
 <pre><code class="language-js">function breakAlpha(e) {
-    for (var i = 0; i &lt; places.length; i++) {
-        // 一つでも空きスペースがあれば処理を中断
-        if (places[i].tag.text === &quot;&quot;) return;
-    }
-    var targetText = e.target.tag.text;
-    for (var i = 0; i &lt; places.length; i++) {
-        if (places[i].tag.text == targetText) {
-            // テキストが合致したら壊す
-            updatePlaceText(places[i], &quot;&quot;);
-        }
-    }
+	for (var i = 0; i &lt; places.length; i++) {
+		// 一つでも空きスペースがあれば処理を中断
+		if (places[i].tag.text === &quot;&quot;) return;
+	}
+	var targetText = e.target.tag.text;
+	for (var i = 0; i &lt; places.length; i++) {
+		if (places[i].tag.text == targetText) {
+			// テキストが合致したら壊す
+			updatePlaceText(places[i], &quot;&quot;);
+		}
+	}
 }
 </code></pre>
 
@@ -810,184 +810,184 @@ function tryVisitAlpha() {
 <p>コード全体は、こちらになります。</p>
 
 <pre><code class="language-js">function main(param) {
-    var scene = new g.Scene({game: g.game, assetIds: [&quot;font16_1&quot;, &quot;glyph_area_16&quot;]});
-    var gameTimeLimit = 60; // デフォルトを60秒にする
-    var frameCount = 0; // 経過時間をフレーム単位で記録
-    // ゲームスコアの初期化
-    g.game.vars.gameState = {
-        score: 0
-    };
+	var scene = new g.Scene({game: g.game, assetIds: [&quot;font16_1&quot;, &quot;glyph_area_16&quot;]});
+	var gameTimeLimit = 60;	// デフォルトを60秒にする
+	var frameCount = 0;	// 経過時間をフレーム単位で記録
+	// ゲームスコアの初期化
+	g.game.vars.gameState = {
+		score: 0
+	};
 
-    scene.message.add(function(msg) {
-        if (msg.data &amp;&amp; msg.data.type === &quot;start&quot; &amp;&amp; msg.data.parameters &amp;&amp; msg.data.parameters.gameTimeLimit) {
-            // 制限時間を通知するイベントを受信した時点で初期化する
-            // ゲームのローディング時間を考慮し、7秒短くする
-            gameTimeLimit = msg.data.parameters.totalTimeLimit - 7;
-        }
-    });
+	scene.message.add(function(msg) {
+		if (msg.data &amp;&amp; msg.data.type === &quot;start&quot; &amp;&amp; msg.data.parameters &amp;&amp; msg.data.parameters.gameTimeLimit) {
+			// 制限時間を通知するイベントを受信した時点で初期化する
+			// ゲームのローディング時間を考慮し、7秒短くする
+			gameTimeLimit = msg.data.parameters.totalTimeLimit - 7;
+		}
+	});
 
-    scene.loaded.add(function() {
-        // glyphとfontを指定
-        var glyph = JSON.parse(scene.assets[&quot;glyph_area_16&quot;].data);
-        var font = new g.BitmapFont({
-            src: scene.assets[&quot;font16_1&quot;],
-            map: glyph,
-            defaultGlyphWidth: 16,
-            defaultGlyphHeight: 16
-        });
-        // スコア表示用ラベルを配置
-        var scoreLabel = new g.Label({
-            scene: scene,
-            font: font,
-            fontSize: 16,
-            text: &quot;&quot; + g.game.vars.gameState.score,
-            x: g.game.width - 16 * 10,  // 右端に10文字くらい表示できるように配置
-            y: 0
-        });
-        scene.append(scoreLabel);
+	scene.loaded.add(function() {
+		// glyphとfontを指定
+		var glyph = JSON.parse(scene.assets[&quot;glyph_area_16&quot;].data);
+		var font = new g.BitmapFont({
+			src: scene.assets[&quot;font16_1&quot;],
+			map: glyph,
+			defaultGlyphWidth: 16,
+			defaultGlyphHeight: 16
+		});
+		// スコア表示用ラベルを配置
+		var scoreLabel = new g.Label({
+			scene: scene,
+			font: font,
+			fontSize: 16,
+			text: &quot;&quot; + g.game.vars.gameState.score,
+			x: g.game.width - 16 * 10,	// 右端に10文字くらい表示できるように配置
+			y: 0
+		});
+		scene.append(scoreLabel);
 
-        // 時間表示用ラベルを配置
-        var timerLabel = new g.Label({
-            scene: scene,
-            font: font,
-            fontSize: 16,
-            text: &quot;&quot;,
-            x: 0,   // 左端に配置
-            y: 0
-        });
-        scene.append(timerLabel);
+		// 時間表示用ラベルを配置
+		var timerLabel = new g.Label({
+			scene: scene,
+			font: font,
+			fontSize: 16,
+			text: &quot;&quot;,
+			x: 0,	// 左端に配置
+			y: 0
+		});
+		scene.append(timerLabel);
 
-        function updateTimerLabel() {
-            var s = countDown();
-            var text = s / 10 + (s % 10 === 0 ? &quot;.0&quot; : &quot;&quot;);
-            if (timerLabel.text != text) {
-                timerLabel.text = text;
-                timerLabel.invalidate();
-            }
-        }
-        function updateScoreLabel() {
-            scoreLabel.text = &quot;&quot; + g.game.vars.gameState.score;
-            scoreLabel.invalidate();
-        }
-        function countDown() {
-            return Math.floor(gameTimeLimit * 10 - frameCount / g.game.fps * 10);
-        }
-        var places = [];
-        var placeContainer = new g.E({
-            scene: scene,
-            x: (g.game.width - 5 * 64) / 2,
-            y: 100
-        });
-        scene.append(placeContainer);
+		function updateTimerLabel() {
+			var s = countDown();
+			var text = s / 10 + (s % 10 === 0 ? &quot;.0&quot; : &quot;&quot;);
+			if (timerLabel.text != text) {
+				timerLabel.text = text;
+				timerLabel.invalidate();
+			}
+		}
+		function updateScoreLabel() {
+			scoreLabel.text = &quot;&quot; + g.game.vars.gameState.score;
+			scoreLabel.invalidate();
+		}
+		function countDown() {
+			return Math.floor(gameTimeLimit * 10 - frameCount / g.game.fps * 10);
+		}
+		var places = [];
+		var placeContainer = new g.E({
+			scene: scene,
+			x: (g.game.width - 5 * 64) / 2,
+			y: 100
+		});
+		scene.append(placeContainer);
 
-        // ランダムに1文字選ぶ処理
-        function pickAlpha() {
-            switch (g.game.random.get(0, 4)) {
-                case 0:
-                return &quot;A&quot;;
-                case 1:
-                return &quot;B&quot;;
-                case 2:
-                return &quot;C&quot;;
-                case 3:
-                return &quot;D&quot;;
-                case 4:
-                return &quot;E&quot;;
-                default:
-                throw new Error(&quot;invalid random number&quot;);
-            }
-        }
-        function calculateScore(bonus) {
-            return 10 * bonus;
-        }
-        function breakAlpha(e) {
-            for (var i = 0; i &lt; places.length; i++) {
-                // 一つでも空きスペースがあれば処理を中断
-                if (places[i].tag.text === &quot;&quot;) return;
-            }
-            var targetText = e.target.tag.text;
-            var bonusCount = 1;
-            for (var i = 0; i &lt; places.length; i++) {
-                if (places[i].tag.text == targetText) {
-                    // テキストが合致したら壊す
-                    updatePlaceText(places[i], &quot;&quot;);
-                    // スコアを連鎖回数分加算
-                    g.game.vars.gameState.score += calculateScore(bonusCount++);
-                    updateScoreLabel();
-                }
-            }
-        }
-        function updatePlaceText(place, text) {
-            // 内部のデータを更新する
-            place.tag.text = text;
-            // children[0]はLabelなので、Labelのtextも更新する
-            place.children[0].text = text;
-            place.children[0].invalidate();
-        }
-        // 置き場所を作る処理
-        function createPlace(index) {
-            var label = new g.Label({
-                scene: scene,
-                font: font,
-                fontSize: 48,
-                text: &quot;&quot;,
-                x: 8,
-                y: 8
-            });
-            var place = new g.FilledRect({
-                scene: scene,
-                x: index % 5 * 64,
-                y: Math.floor(index / 5) * 64,
-                width: 64,
-                height: 64,
-                tag: {
-                    text: &quot;&quot;
-                },
-                cssColor: index % 2 === 0 ? &quot;#ccc&quot; : &quot;#ddd&quot;,
-                touchable: true
-            });
-            place.append(label);
-            place.pointDown.handle(breakAlpha);
-            return place;
-        }
-        // 10個の場所を作る
-        for (var i = 0; i &lt; 10; i++) {
-            var place = createPlace(i);
-            placeContainer.append(place);
-            places.push(place);
-        }
-        function visitAlpha() {
-            places.forEach(function(place) {
-                // テキストが空のもののみ更新をかける
-                if (place.tag.text === &quot;&quot;) {
-                    updatePlaceText(place, pickAlpha());
-                }
-            });
-        }
-        function tryVisitAlpha() {
-            // 1秒に1回
-            if (frameCount % g.game.fps === 0) {
-                visitAlpha();
-            }
-        }
+		// ランダムに1文字選ぶ処理
+		function pickAlpha() {
+			switch (g.game.random.get(0, 4)) {
+				case 0:
+				return &quot;A&quot;;
+				case 1:
+				return &quot;B&quot;;
+				case 2:
+				return &quot;C&quot;;
+				case 3:
+				return &quot;D&quot;;
+				case 4:
+				return &quot;E&quot;;
+				default:
+				throw new Error(&quot;invalid random number&quot;);
+			}
+		}
+		function calculateScore(bonus) {
+			return 10 * bonus;
+		}
+		function breakAlpha(e) {
+			for (var i = 0; i &lt; places.length; i++) {
+				// 一つでも空きスペースがあれば処理を中断
+				if (places[i].tag.text === &quot;&quot;) return;
+			}
+			var targetText = e.target.tag.text;
+			var bonusCount = 1;
+			for (var i = 0; i &lt; places.length; i++) {
+				if (places[i].tag.text == targetText) {
+					// テキストが合致したら壊す
+					updatePlaceText(places[i], &quot;&quot;);
+					// スコアを連鎖回数分加算
+					g.game.vars.gameState.score += calculateScore(bonusCount++);
+					updateScoreLabel();
+				}
+			}
+		}
+		function updatePlaceText(place, text) {
+			// 内部のデータを更新する
+			place.tag.text = text;
+			// children[0]はLabelなので、Labelのtextも更新する
+			place.children[0].text = text;
+			place.children[0].invalidate();
+		}
+		// 置き場所を作る処理
+		function createPlace(index) {
+			var label = new g.Label({
+				scene: scene,
+				font: font,
+				fontSize: 48,
+				text: &quot;&quot;,
+				x: 8,
+				y: 8
+			});
+			var place = new g.FilledRect({
+				scene: scene,
+				x: index % 5 * 64,
+				y: Math.floor(index / 5) * 64,
+				width: 64,
+				height: 64,
+				tag: {
+					text: &quot;&quot;
+				},
+				cssColor: index % 2 === 0 ? &quot;#ccc&quot; : &quot;#ddd&quot;,
+				touchable: true
+			});
+			place.append(label);
+			place.pointDown.handle(breakAlpha);
+			return place;
+		}
+		// 10個の場所を作る
+		for (var i = 0; i &lt; 10; i++) {
+			var place = createPlace(i);
+			placeContainer.append(place);
+			places.push(place);
+		}
+		function visitAlpha() {
+			places.forEach(function(place) {
+				// テキストが空のもののみ更新をかける
+				if (place.tag.text === &quot;&quot;) {
+					updatePlaceText(place, pickAlpha());
+				}
+			});
+		}
+		function tryVisitAlpha() {
+			// 1秒に1回
+			if (frameCount % g.game.fps === 0) {
+				visitAlpha();
+			}
+		}
 
-        function updateHandler() {
-            // フレーム数を毎フレーム加算
-            ++frameCount;
-            if (countDown() &lt;= 0) {
-                scene.update.remove(updateHandler); // タイムアウトになったら毎フレーム処理自体を止める
-                // 終了後はタップできないよう、テキストを空にしておく
-                places.forEach(function(place) {
-                    updatePlaceText(place, &quot;&quot;);
-                });
-            }
-            tryVisitAlpha();
-            updateTimerLabel();
-        }
-        scene.update.add(updateHandler);
-    });
+		function updateHandler() {
+			// フレーム数を毎フレーム加算
+			++frameCount;
+			if (countDown() &lt;= 0) {
+				scene.update.remove(updateHandler);	// タイムアウトになったら毎フレーム処理自体を止める
+				// 終了後はタップできないよう、テキストを空にしておく
+				places.forEach(function(place) {
+					updatePlaceText(place, &quot;&quot;);
+				});
+			}
+			tryVisitAlpha();
+			updateTimerLabel();
+		}
+		scene.update.add(updateHandler);
+	});
 
-    g.game.pushScene(scene);
+	g.game.pushScene(scene);
 }
 
 module.exports = main;
@@ -997,15 +997,15 @@ module.exports = main;
 
 <pre><code class="language-js">// ゲームスコアの初期化
 g.game.vars.gameState = {
-    score: 0
+	score: 0
 };
 </code></pre>
 
 <p>スコア表示を更新する関数も作っておきます。これは毎フレーム呼び出すものでもないので、同値の場合に更新を省略する等の処理は省略しています。</p>
 
 <pre><code class="language-js">function updateScoreLabel() {
-    scoreLabel.text = &quot;&quot; + g.game.vars.gameState.score;
-    scoreLabel.invalidate();
+	scoreLabel.text = &quot;&quot; + g.game.vars.gameState.score;
+	scoreLabel.invalidate();
 }
 </code></pre>
 
@@ -1015,24 +1015,24 @@ g.game.vars.gameState = {
 
 <pre><code class="language-js">
 function calculateScore(bonus) {
-    return 10 * bonus;
+	return 10 * bonus;
 }
 function breakAlpha(e) {
-    for (var i = 0; i &lt; places.length; i++) {
-        // 一つでも空きスペースがあれば処理を中断
-        if (places[i].tag.text === &quot;&quot;) return;
-    }
-    var targetText = e.target.tag.text;
-    var bonusCount = 1;
-    for (var i = 0; i &lt; places.length; i++) {
-        if (places[i].tag.text == targetText) {
-            // テキストが合致したら壊す
-            places[i].tag.updateText(&quot;&quot;);
-            // スコアを連鎖回数分加算
-            g.game.vars.gameState.score += calculateScore(bonusCount++);
-            updateScoreLabel();
-        }
-    }
+	for (var i = 0; i &lt; places.length; i++) {
+		// 一つでも空きスペースがあれば処理を中断
+		if (places[i].tag.text === &quot;&quot;) return;
+	}
+	var targetText = e.target.tag.text;
+	var bonusCount = 1;
+	for (var i = 0; i &lt; places.length; i++) {
+		if (places[i].tag.text == targetText) {
+			// テキストが合致したら壊す
+			places[i].tag.updateText(&quot;&quot;);
+			// スコアを連鎖回数分加算
+			g.game.vars.gameState.score += calculateScore(bonusCount++);
+			updateScoreLabel();
+		}
+	}
 }
 </code></pre>
 
@@ -1052,42 +1052,42 @@ function breakAlpha(e) {
 <p><code>supportedModes</code>が追加になっている以外はほぼ<a href="../akashic-content2/">第2回</a>と変わりませんが、今回の<code>game.json</code>はこちらになります。</p>
 
 <pre><code class="language-json">{
-    &quot;width&quot;: 640,
-    &quot;height&quot;: 360,
-    &quot;fps&quot;: 30,
-    &quot;main&quot;: &quot;./script/main.js&quot;,
-    &quot;assets&quot;: {
-        &quot;main&quot;: {
-            &quot;type&quot;: &quot;script&quot;,
-            &quot;path&quot;: &quot;script/main.js&quot;,
-            &quot;global&quot;: true
-        },
-        &quot;target&quot;: {
-            &quot;type&quot;: &quot;image&quot;,
-            &quot;width&quot;: 64,
-            &quot;height&quot;: 64,
-            &quot;path&quot;: &quot;image/target.png&quot;
-        },
-        &quot;font16_1&quot;: {
-            &quot;type&quot;: &quot;image&quot;,
-            &quot;width&quot;: 256,
-            &quot;height&quot;: 96,
-            &quot;path&quot;: &quot;image/font16_1.png&quot;
-        },
-        &quot;glyph_area_16&quot;: {
-            &quot;type&quot;: &quot;text&quot;,
-            &quot;path&quot;: &quot;text/glyph_area_16.json&quot;
-        }
-    },
-    &quot;environment&quot;: {
-        &quot;sandbox-runtime&quot;: &quot;2&quot;,
-        &quot;niconico&quot;: {
-            &quot;supportedModes&quot;: [
-                &quot;single&quot;,
-                &quot;ranking&quot;
-            ]
-        }
-    }
+	&quot;width&quot;: 640,
+	&quot;height&quot;: 360,
+	&quot;fps&quot;: 30,
+	&quot;main&quot;: &quot;./script/main.js&quot;,
+	&quot;assets&quot;: {
+		&quot;main&quot;: {
+			&quot;type&quot;: &quot;script&quot;,
+			&quot;path&quot;: &quot;script/main.js&quot;,
+			&quot;global&quot;: true
+		},
+		&quot;target&quot;: {
+			&quot;type&quot;: &quot;image&quot;,
+			&quot;width&quot;: 64,
+			&quot;height&quot;: 64,
+			&quot;path&quot;: &quot;image/target.png&quot;
+		},
+		&quot;font16_1&quot;: {
+			&quot;type&quot;: &quot;image&quot;,
+			&quot;width&quot;: 256,
+			&quot;height&quot;: 96,
+			&quot;path&quot;: &quot;image/font16_1.png&quot;
+		},
+		&quot;glyph_area_16&quot;: {
+			&quot;type&quot;: &quot;text&quot;,
+			&quot;path&quot;: &quot;text/glyph_area_16.json&quot;
+		}
+	},
+	&quot;environment&quot;: {
+		&quot;sandbox-runtime&quot;: &quot;2&quot;,
+		&quot;niconico&quot;: {
+			&quot;supportedModes&quot;: [
+				&quot;single&quot;,
+				&quot;ranking&quot;
+			]
+		}
+	}
 }
 </code></pre>
 
