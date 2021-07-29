@@ -115,6 +115,7 @@
 <ul>
 <li><a href="#2019年9月27日-0時のデータが5時と同じ">2019年9月27日：0時のデータが5時と同じ</a></li>
 <li><a href="#2020年3月23日-0時のデータが5時と同じ">2020年3月23日：0時のデータが5時と同じ</a></li>
+<li><a href="#2021年7月30日-いいね-数フィールドを追加">2021年7月30日：「いいね！」数フィールドを追加</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -481,6 +482,14 @@
 </tr>
 
 <tr>
+<td>count.like</td>
+<td>いいね！数</td>
+<td>int</td>
+<td>NO</td>
+<td><code>8770</code></td>
+</tr>
+
+<tr>
 <td>count.comment</td>
 <td>コメント数</td>
 <td>int</td>
@@ -580,6 +589,11 @@
 再度生成を試みたのですが、生成が完了したのが午前5時すぎであり、このままでは「5時のデータより新しい状態のデータが0時のログになってしまう」ため、特例として午前5時のデータを午前0時のものとしてコピーすることにしました。<br />
 そのため、2020年3月23日のランキング過去ログファイルは、午前0時と午前5時で同じ内容になっています。</p>
 
+<h2 id="2021年7月30日-いいね-数フィールドを追加">2021年7月30日：「いいね！」数フィールドを追加</h2>
+
+<p>2021年7月30日の過去ランキングデータより、「いいね！」数をあらわす「count.like」カラムを追加しました。
+2021年7月29日以前のデータにはカラムがありませんのでご注意ください。</p>
+
     </article>
   </div>
 </div>
@@ -587,16 +601,5 @@
     </div>
 
     
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-109076308-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
   </body>
 </html>
