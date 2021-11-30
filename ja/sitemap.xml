@@ -1,8 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
+    <loc>https://dwango.github.io/articles/</loc>
+    <lastmod>2021-11-30T10:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://dwango.github.io/</loc>
+    <lastmod>2021-11-30T10:00:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://dwango.github.io/en/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://dwango.github.io/"
+                />
+  </url><url>
+    <loc>https://dwango.github.io/articles/hikamayo_rookie/</loc>
+    <lastmod>2021-11-30T10:00:00+09:00</lastmod>
+  </url><url>
     <loc>https://dwango.github.io/categories/</loc>
     <lastmod>2019-06-25T13:40:14+09:00</lastmod>
     <xhtml:link
@@ -15,119 +33,61 @@
                 hreflang="ja"
                 href="https://dwango.github.io/categories/"
                 />
-  </url>
-  
-  <url>
-    <loc>https://dwango.github.io/</loc>
-    <lastmod>2019-06-25T13:40:14+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://dwango.github.io/en/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://dwango.github.io/"
-                />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/categories/nicovideo/</loc>
     <lastmod>2019-06-25T13:40:14+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/niconico/genre_ranking/ranking_log/</loc>
     <lastmod>2019-06-25T13:40:14+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/niconico/genre_ranking/ranking_rss/</loc>
     <lastmod>2019-06-04T13:40:14+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/niconico/ranking_logs_in_genre_ranking/</loc>
     <lastmod>2019-06-04T13:40:14+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://dwango.github.io/articles/</loc>
-    <lastmod>2019-05-21T15:00:02+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/develop-lt-system/</loc>
     <lastmod>2019-05-21T15:00:02+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/av1hwencoder/</loc>
     <lastmod>2019-05-14T16:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/heart-technique-and-body-for-engineers/</loc>
     <lastmod>2019-04-29T20:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/janog43-report/</loc>
     <lastmod>2019-02-09T15:33:55+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/2018intern/</loc>
     <lastmod>2018-12-27T21:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/vimconf2018/</loc>
     <lastmod>2018-11-27T13:59:36+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/pull-tab-hook/</loc>
     <lastmod>2018-11-09T18:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/categories/jikken-housou/</loc>
     <lastmod>2018-11-06T16:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/niconico/jikken-housou/akashic-content3/</loc>
     <lastmod>2018-11-06T16:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/niconico/jikken-housou/akashic-content2/</loc>
     <lastmod>2018-11-01T14:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/frugalos/</loc>
     <lastmod>2018-10-26T14:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/niconico/jikken-housou/akashic-guide/</loc>
     <lastmod>2018-10-25T18:30:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/niconico/jikken-housou/akashic-content1/</loc>
     <lastmod>2018-10-25T18:30:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/educational-programmer-career/</loc>
     <lastmod>2018-10-23T15:27:31+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/univrm/shaders/univrm_shaders_044/</loc>
     <lastmod>2018-10-05T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -140,54 +100,34 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/univrm/shaders/univrm_shaders_044/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/trista-inside/</loc>
     <lastmod>2018-09-27T17:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/niconico/jikken-housou/comment-server/</loc>
     <lastmod>2018-09-20T17:30:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/web-frontend-performance-handbook/</loc>
     <lastmod>2018-09-14T12:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/niconico/</loc>
     <lastmod>2018-08-15T12:28:34+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/niconico/</loc>
     <lastmod>2018-08-14T15:44:12+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/niconico/jikken-housou/comment/</loc>
     <lastmod>2018-08-14T15:44:12+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/akashic/</loc>
     <lastmod>2018-08-03T15:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/moving-seminar-room/</loc>
     <lastmod>2018-06-21T16:01:23+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/wwdc2018/</loc>
     <lastmod>2018-06-14T16:30:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/univrm/api/univrm_use_firstperson/</loc>
     <lastmod>2018-05-29T10:00:00+09:00</lastmod>
     <xhtml:link
@@ -200,9 +140,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/univrm/api/univrm_use_firstperson/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/univrm/api/univrm_api_history/</loc>
     <lastmod>2018-05-21T10:00:00+09:00</lastmod>
     <xhtml:link
@@ -215,9 +153,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/univrm/api/univrm_api_history/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/univrm/univrm_faq/</loc>
     <lastmod>2018-05-09T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -230,9 +166,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/univrm/univrm_faq/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/univrm/api/univrm_use_blendshape/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -245,9 +179,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/univrm/api/univrm_use_blendshape/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/vrm_extension/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -260,9 +192,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/vrm_extension/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/gltf_about/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -275,9 +205,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/gltf_about/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/univrm/shaders/mtoon/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -290,9 +218,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/univrm/shaders/mtoon/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/univrm/shaders/univrm_shaders/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -305,9 +231,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/univrm/shaders/univrm_shaders/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/univrm/univrm_install/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -320,9 +244,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/univrm/univrm_install/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/univrm/api/univrm_coordinate/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -335,9 +257,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/univrm/api/univrm_coordinate/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/univrm/univrm_workflow/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -350,9 +270,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/univrm/univrm_workflow/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -365,9 +283,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/univrm/components/univrm_secondary/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -380,9 +296,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/univrm/components/univrm_secondary/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/vrm_tpose/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -395,9 +309,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/vrm_tpose/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/vrm_applications/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -410,9 +322,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/vrm_applications/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/how_to_make_vrm/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -425,9 +335,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/how_to_make_vrm/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/how_to_view_vrm/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -440,9 +348,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/how_to_view_vrm/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/univrm/api/univrm_import_runtime/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -455,9 +361,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/univrm/api/univrm_import_runtime/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/vrm_spec/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -470,9 +374,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/vrm_spec/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/vrm_about/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -485,9 +387,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/vrm_about/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/univrm/components/univrm_blendshape/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -500,9 +400,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/univrm/components/univrm_blendshape/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/univrm/components/univrm_meta/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -515,9 +413,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/univrm/components/univrm_meta/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/univrm/components/univrm_firstperson/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -530,9 +426,7 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/univrm/components/univrm_firstperson/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/vrm/univrm/components/univrm_lookat/</loc>
     <lastmod>2018-04-16T16:30:00+09:00</lastmod>
     <xhtml:link
@@ -545,69 +439,43 @@
                 hreflang="ja"
                 href="https://dwango.github.io/vrm/univrm/components/univrm_lookat/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/harekazectf2018/</loc>
     <lastmod>2018-04-09T18:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/shachiku-chan-vol3/</loc>
     <lastmod>2018-01-23T18:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/mastodon-database-index-2/</loc>
     <lastmod>2018-01-19T19:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/mastodon-database-index-1/</loc>
     <lastmod>2018-01-18T13:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/dc-expo-miku/</loc>
     <lastmod>2017-12-27T08:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/comicolorization/</loc>
     <lastmod>2017-12-26T14:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/engineers-resume/</loc>
     <lastmod>2017-12-24T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/rubyworld_conference_2017/</loc>
     <lastmod>2017-11-28T16:30:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/vimconf2017/</loc>
     <lastmod>2017-11-14T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/nicolive_docker_swarm/</loc>
     <lastmod>2017-11-06T13:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/nicovideo_remove_flapi/</loc>
     <lastmod>2017-11-03T08:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/articles/move_to_github_io/</loc>
     <lastmod>2017-10-31T18:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://dwango.github.io/tags/</loc>
     <xhtml:link
                 rel="alternate"
@@ -620,5 +488,4 @@
                 href="https://dwango.github.io/tags/"
                 />
   </url>
-  
 </urlset>

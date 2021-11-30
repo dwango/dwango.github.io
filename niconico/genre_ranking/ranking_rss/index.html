@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.87.0" />
 
   <meta property="og:title" content="新ランキングでのランキングRSS利用方法 - dwango on GitHub">
 
@@ -40,104 +40,74 @@
   <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
-      <p class="lead">
-       
- 
-      </p>
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="https://dwango.github.io/">Home</a> </li>
-      <li><a href="/articles"> Articles </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/niconico"> niconico </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://nico.ms/job/engineer"> Hiring </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> niconico 開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
     </ul>
 
-    <p>
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
       
-        <p style="display:inline-block;vertical-align:middle;">
-          Copyright &copy; DWANGO Co., Ltd.
-        </p>
+        Copyright &copy; DWANGO Co., Ltd.
       
     </p>
   </div>
 </div>
 
-    <div class="content container">
+    <main class="content container">
     
-<div class="post">
-  <h1>新ランキングでのランキングRSS利用方法</h1>
-  <span class="post-date"> Tue, Jun 4, 2019 </span>
-  <div class="share">
-    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="新ランキングでのランキングRSS利用方法 - dwango on GitHub" data-url="https://dwango.github.io/niconico/genre_ranking/ranking_rss/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/niconico/genre_ranking/ranking_rss/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2fniconico%2fgenre_ranking%2franking_rss%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-  </div>
-  <div>
-    
-    <article id="content">
-       
+  <div class="post">
+    <time class="content-date" datetime="2019-06-04 13:40:14 &#43;0900 JST" itemprop="datepublished"
+      >2019-06-04 Tue</time
+    >
+    <h1 class="article-title">新ランキングでのランキングRSS利用方法</h1>
 
-<p>ジャンルランキングにおけるランキングRSSについて</p>
-
+    <div>
+      
+      <article id="content"><p>ジャンルランキングにおけるランキングRSSについて</p>
 <h2 id="はじめに">はじめに</h2>
-
 <p>ニコニコ動画では、ランキングページをRSS形式で取得できる機能を提供しています。</p>
-
-<p>2019年6月の新ランキング提供開始にともない、RSSの内容・URLを変更いたします。<br />
+<p>2019年6月の新ランキング提供開始にともない、RSSの内容・URLを変更いたします。<br>
 つきましては、本記事を通して、新しいランキングRSSの技術情報を解説させていただきます。</p>
-
 <h4 id="このドキュメントの説明">このドキュメントの説明</h4>
-
-<p>本ドキュメントは、リリースに先立ち、ランキングRSSの情報を必要とするniconicoユーザー様に向けて、事前に技術情報を解説するものです。<br />
+<p>本ドキュメントは、リリースに先立ち、ランキングRSSの情報を必要とするniconicoユーザー様に向けて、事前に技術情報を解説するものです。<br>
 新しいランキングRSSは、ジャンルランキングのリリースと同時に利用可能になります。</p>
-
 <h2 id="ランキングrssの概要">ランキングRSSの概要</h2>
-
 <p>ランキングRSSを利用すると、ランキングページと同じ内容を、よりコンピュータで取り扱いやすいRSS形式で取得することができます。</p>
-
 <p>RSSで取得できるランキングは以下の通りです。</p>
-
 <ul>
-<li>期間
-
-<ul>
+<li>期間</li>
 <li>毎時</li>
 <li>24時間</li>
 <li>週間</li>
 <li>月間</li>
-</ul></li>
-<li>ジャンル
-
-<ul>
+<li>ジャンル</li>
 <li>ジャンルごとの総合</li>
 <li>人気のタグごと</li>
-</ul></li>
 </ul>
-
 <h4 id="注意事項">注意事項</h4>
-
 <ul>
 <li>RSSに記載されている日時は、すべて日本標準時(JST)です。</li>
-<li>本RSSは、広く利用していただくため、アクセスできるユーザーに制限を設けていません。<br />
-そのため、短時間に多量のアクセスを行った場合、正常にRSSを取得できなくなることがあります。<br />
+<li>本RSSは、広く利用していただくため、アクセスできるユーザーに制限を設けていません。<br>
+そのため、短時間に多量のアクセスを行った場合、正常にRSSを取得できなくなることがあります。<br>
 また、場合によっては本データの提供を中止させていただくこともあります。ご利用の際は、負荷へのご配慮をお願いいたします。</li>
 <li>新しいRSSの配信開始にともない、これまでのRSSはアクセスできなくなります。</li>
 <li>人気のタグ以外の、任意のタグによるランキングRSS発行には対応していません。</li>
 </ul>
-
 <h2 id="技術情報">技術情報</h2>
-
 <h4 id="エンドポイント">エンドポイント</h4>
-
 <p>新しいランキングRSSにアクセスするには、ランキングURLの末尾に <code>rss=2.0&amp;lang=ja-jp</code> を追加してアクセスします。</p>
-
-<p><a href="https://www.nicovideo.jp/ranking/genre/{ジャンル名}?tag={タグ名}&amp;term={集計期間}&amp;rss=2.0&amp;lang=ja-jp">https://www.nicovideo.jp/ranking/genre/{ジャンル名}?tag={タグ名}&amp;term={集計期間}&amp;rss=2.0&amp;lang=ja-jp</a></p>
-
+<p><a href="https://www.nicovideo.jp/ranking/genre/%7B">https://www.nicovideo.jp/ranking/genre/{</a>ジャンル名}?tag={タグ名}&amp;term={集計期間}&amp;rss=2.0&amp;lang=ja-jp</p>
 <h4 id="フォーマット">フォーマット</h4>
-
 <p>新しいランキングRSSは、以下のような形式です。</p>
-
-<pre><code class="language-RSS">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+<pre><code class="language-RSS" data-lang="RSS">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;rss version=&quot;2.0&quot; xmlns:atom=&quot;http://www.w3.org/2005/Atom&quot;&gt;
   &lt;channel&gt;
      
@@ -182,43 +152,96 @@
 ～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～
   &lt;/channel&gt;
 &lt;/rss&gt;
-</code></pre>
-
-<h2 id="faq">FAQ</h2>
-
+</code></pre><h2 id="faq">FAQ</h2>
 <p><strong>Q1. 新しいランキングRSSはいつから提供されますか？</strong></p>
-
 <p>新ランキングのリリースと同時に提供開始されます。（2019年6月中を予定しています）</p>
-
 <p><strong>Q2. これまでのRSSは引き続き取得できますか？</strong></p>
-
 <p>いいえ。新しいランキングは根本的に仕組みを変更したため、これまでのRSSで提供していた情報の一部（前回ランキング集計時との差分など）は内部的にも保存しておらず、ご提供できなくなってしまいました。
 したがって、新ランキングのリリースと同時に、これまでのRSSはアクセスできなくなります。</p>
-
 <p><strong>Q3. RSSに記載されている再生数やコメント数が、アクセスするたびに増加するのですが？</strong></p>
-
 <p>はい。
 これまでのランキングは、ランキング集計時の再生数・コメント数・マイリスト数がランキングページに表示されていて、実際の再生数・コメント数・マイリスト数とは異なる数値が表示されていました。</p>
-
-<p>新しいランキングでは、ランキングページやランキングRSSでも、リアルタイムに再生数・コメント数・マイリスト数が反映されるようになっています。<br />
+<p>新しいランキングでは、ランキングページやランキングRSSでも、リアルタイムに再生数・コメント数・マイリスト数が反映されるようになっています。<br>
 したがって、ある程度の時間をおいてRSSを取得しなおした場合、動画の再生数・コメント数・マイリスト数が変化している可能性があります。</p>
-
 <p><strong>Q4. 自作ランキングを作成するうえで、一定期間ごと・動画ごとの再生数・コメント数・マイリスト数の増加を調べたいです。どのようにすればよいですか？</strong></p>
-
 <p>そのような用途であれば、定期的に <a href="https://site.nicovideo.jp/search-api-docs/snapshot">スナップショット検索API v2</a> から調査したい動画のデータを取得し、期間ごとの数値の増加を比較してください。
 より集計しやすくするために、「検索キーワードなしでの取得」「ジャンルごとの絞り込み」オプションもご提供しております。</p>
-
 <h2 id="更新履歴">更新履歴</h2>
-
 <p><strong>2021年12月8日（予定）</strong></p>
-
 <p>動画のいいね数をdescription内に追加します。</p>
-
-    </article>
-  </div>
-</div>
-
+</article>
     </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+          
+            <a href="https://dwango.github.io//categories/nicovideo/">/nicovideo</a>
+          
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="新ランキングでのランキングRSS利用方法 - dwango on GitHub"
+          data-url="https://dwango.github.io/niconico/genre_ranking/ranking_rss/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/niconico/genre_ranking/ranking_rss/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2fniconico%2fgenre_ranking%2franking_rss%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </main>
+
+    
+      
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-LF3Z3TQ34F', { 'anonymize_ip': false });
+}
+</script>
 
     
   </body>

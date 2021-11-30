@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.87.0" />
 
   <meta property="og:title" content="UniVRMの座標系変換について - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -42,23 +42,22 @@
   <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
-      <p class="lead">
-       
- 
-      </p>
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="https://dwango.github.io/">Home</a> </li>
-      <li><a href="/articles"> Articles </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/niconico"> niconico </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://nico.ms/job/engineer"> Hiring </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> niconico 開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
     </ul>
 
-    <p>
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
       
-        <p style="display:inline-block;vertical-align:middle;">
-          Copyright &copy; DWANGO Co., Ltd.
-        </p>
+        Copyright &copy; DWANGO Co., Ltd.
       
     </p>
   </div>
@@ -92,74 +91,53 @@
   <div>
     <article id="content">
         <div class="toc"> <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#vrmの座標系">VRMの座標系</a></li>
-<li><a href="#unityの座標系">Unityの座標系</a></li>
-<li><a href="#各値の変換">各値の変換</a>
-<ul>
-<li><a href="#vector3-position-normalなど">Vector3(Position, Normalなど)</a></li>
-<li><a href="#quaternion-rotation">Quaternion(Rotation)</a></li>
-<li><a href="#matrix-bindmatrices">Matrix(BindMatrices)</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#vrmの座標系">VRMの座標系</a></li>
+    <li><a href="#unityの座標系">Unityの座標系</a></li>
+    <li><a href="#各値の変換">各値の変換</a>
+      <ul>
+        <li><a href="#vector3position-normalなど">Vector3(Position, Normalなど)</a></li>
+        <li><a href="#quaternionrotation">Quaternion(Rotation)</a></li>
+        <li><a href="#matrixbindmatrices">Matrix(BindMatrices)</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
         </div>
-       
-
-<p>UniVRMは、インポート・エクスポート時に自動でGLTFとの座標変換を実行しています。</p>
-
+       <p>UniVRMは、インポート・エクスポート時に自動でGLTFとの座標変換を実行しています。</p>
 <h2 id="vrmの座標系">VRMの座標系</h2>
-
 <p>VRMはGLTFの拡張なので、GLTFの座標系に準拠します。
 OpenGL標準の右手系Y-UP座標系です。</p>
-
 <ul>
 <li>右:X+</li>
 <li>上:Y+</li>
 <li>前:Z-</li>
 </ul>
-
 <h2 id="unityの座標系">Unityの座標系</h2>
-
 <p>左手系Y-UP座標系です。</p>
-
 <ul>
 <li>右:X+</li>
 <li>上:Y+</li>
 <li>前:Z+(+-が反転)</li>
 </ul>
-
 <h2 id="各値の変換">各値の変換</h2>
-
 <p>Z軸を反転します。</p>
-
-<h3 id="vector3-position-normalなど">Vector3(Position, Normalなど)</h3>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Vector3 ReverseZ(<span style="color:#66d9ef">this</span> Vector3 v)
+<h3 id="vector3position-normalなど">Vector3(Position, Normalなど)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Vector3 ReverseZ(<span style="color:#66d9ef">this</span> Vector3 v)
 {
     <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Vector3(v.x, v.y, -v.z);
-}
-</code></pre></div>
-
-<h3 id="quaternion-rotation">Quaternion(Rotation)</h3>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Quaternion ReverseZ(<span style="color:#66d9ef">this</span> Quaternion q)
+}</code></pre></div>
+<h3 id="quaternionrotation">Quaternion(Rotation)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Quaternion ReverseZ(<span style="color:#66d9ef">this</span> Quaternion q)
 {
     <span style="color:#66d9ef">float</span> angle;
     Vector3 axis;
     q.ToAngleAxis(<span style="color:#66d9ef">out</span> angle, <span style="color:#66d9ef">out</span> axis);
     <span style="color:#66d9ef">return</span> Quaternion.AngleAxis(-angle, ReverseZ(axis));
-}
-</code></pre></div>
-
-<h3 id="matrix-bindmatrices">Matrix(BindMatrices)</h3>
-
+}</code></pre></div>
+<h3 id="matrixbindmatrices">Matrix(BindMatrices)</h3>
 <p>スケール値が入っているとうまくいきません</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Matrix4x4 ReverseZ(<span style="color:#66d9ef">this</span> Matrix4x4 m)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Matrix4x4 ReverseZ(<span style="color:#66d9ef">this</span> Matrix4x4 m)
 {
 <span style="color:#75715e">#if UNITY_2017_1_OR_NEWER
 </span><span style="color:#75715e"></span>    m.SetTRS(m.GetColumn(<span style="color:#ae81ff">3</span>).ReverseZ(), m.rotation.ReverseZ(), Vector3.one);
@@ -167,8 +145,7 @@ OpenGL標準の右手系Y-UP座標系です。</p>
 </span><span style="color:#75715e"></span>    m.SetTRS(m.ExtractPosition().ReverseZ(), m.ExtractRotation().ReverseZ(), Vector3.one);
 <span style="color:#75715e">#endif
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> m;
-}
-</code></pre></div>
+}</code></pre></div>
 
     </article>
   </div>
@@ -182,5 +159,16 @@ OpenGL標準の右手系Y-UP座標系です。</p>
     </div>
 
     
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
   </body>
 </html>

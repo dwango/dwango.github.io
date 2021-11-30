@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.87.0" />
 
   <meta property="og:title" content="dwango.github.io を公開しました - dwango on GitHub">
 
@@ -40,60 +40,113 @@
   <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
-      <p class="lead">
-       
- 
-      </p>
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="https://dwango.github.io/">Home</a> </li>
-      <li><a href="/articles"> Articles </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/niconico"> niconico </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://nico.ms/job/engineer"> Hiring </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> niconico 開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
     </ul>
 
-    <p>
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
       
-        <p style="display:inline-block;vertical-align:middle;">
-          Copyright &copy; DWANGO Co., Ltd.
-        </p>
+        Copyright &copy; DWANGO Co., Ltd.
       
     </p>
   </div>
 </div>
 
-    <div class="content container">
+    <main class="content container">
     
-<div class="post">
-  <h1>dwango.github.io を公開しました</h1>
-  <span class="post-date"> Tue, Oct 31, 2017 </span>
-  <div class="share">
-    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="dwango.github.io を公開しました - dwango on GitHub" data-url="https://dwango.github.io/articles/move_to_github_io/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/move_to_github_io/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2fmove_to_github_io%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-  </div>
-  <div>
-    
-    <article id="content">
-       <p>ドワンゴ 技術コミュニケーション室の塩谷（ <a href="https://github.com/kwappa">@kwappa</a> / <a href="https://friends.nico/@kwappa">kwappa@friends.nico</a> ）です。</p>
+  <div class="post">
+    <time class="content-date" datetime="2017-10-31 18:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2017-10-31 Tue</time
+    >
+    <h1 class="article-title">dwango.github.io を公開しました</h1>
 
+    <div>
+      
+      <article id="content"><p>ドワンゴ 技術コミュニケーション室の塩谷（ <a href="https://github.com/kwappa">@kwappa</a> / <a href="https://friends.nico/@kwappa">kwappa@friends.nico</a> ）です。</p>
 <p>ドワンゴではエンジニアブログとして自社プロダクトである「ブロマガ」を使ってきました。しかし、もともとエンジニア向けに作ったものではないので、技術記事を書くには機能的に苦しい部分もありました。</p>
-
 <p>もっと記事を増やしていきたいという思いもあり、エンジニアが記事を書きやすいプラットフォームに一念発起して引っ越すことにしました。</p>
-
 <p>以前より、<a href="https://github.com/dwango">github.com/dwango</a>で公開しているOSSを紹介するためにGitHub Pagesを利用して<a href="https://dwango.github.io/oss">dwango on GitHub</a>というページを公開していたのですが、ここを活用してエンジニア向けのコンテンツを発信していこうと思っています。</p>
-
 <p>サイトの構築には<a href="https://gohugo.io/">Hugo</a>というGolang製のジェネレータを使っています。Markdownで書けること、<a href="https://github.com/alecthomas/chroma">Chroma</a>というSyntax Highlighterを同梱していること、<a href="https://themes.gohugo.io/">テーマが充実している</a>ことなどの理由で選定しました。</p>
-
 <p>ドワンゴ社内で用いている技術の活用事例などテクニカルなトピックはもちろんのこと、ドワンゴの社内やそこで働いているエンジニアをもっと身近に感じてもらえるような記事も増やしていく予定です。</p>
-
 <p>それでは、<a href="https://dwango.github.io/">dwango on GitHub</a>をよろしくお願いいたします。新着記事は<a href="https://dwango.github.io/articles/index.xml">RSS feed</a>などからチェックできます。また、記事の執筆に興味のあるエンジニアの方は<a href="https://nico.ms/job/">こちら</a>からご連絡ください。</p>
-
-    </article>
-  </div>
-</div>
-
+</article>
     </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="dwango.github.io を公開しました - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/move_to_github_io/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/move_to_github_io/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2fmove_to_github_io%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </main>
+
+    
+      
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-LF3Z3TQ34F', { 'anonymize_ip': false });
+}
+</script>
 
     
   </body>

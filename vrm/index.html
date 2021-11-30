@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.87.0" />
 
   <meta property="og:title" content="VRM - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -42,23 +42,22 @@
   <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
-      <p class="lead">
-       
- 
-      </p>
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="https://dwango.github.io/">Home</a> </li>
-      <li><a href="/articles"> Articles </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/niconico"> niconico </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://nico.ms/job/engineer"> Hiring </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> niconico 開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
     </ul>
 
-    <p>
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
       
-        <p style="display:inline-block;vertical-align:middle;">
-          Copyright &copy; DWANGO Co., Ltd.
-        </p>
+        Copyright &copy; DWANGO Co., Ltd.
       
     </p>
   </div>
@@ -76,106 +75,104 @@
 
 <div class="posts">
 
-    
+    <div class="article-img">
+  
+  <img src="https://dwango.github.io/images/vrm/vrm_topheader.png" alt="VRM - humanoid 3d avatar format for VR"  />
+  
+</div>
 
-<img src="https://dwango.github.io/images/vrm/vrm_topheader.png" alt="VRM - humanoid 3d avatar format for VR"  />
-
-
-<h1 id="vrm-vr向け3dアバターファイルフォーマット">VRM - VR向け3Dアバターファイルフォーマット -</h1>
-
+<h1 id="vrm---vr向け3dアバターファイルフォーマット--">VRM - VR向け3Dアバターファイルフォーマット -</h1>
 <p>「VRM」は<strong>VRアプリケーション向けの人型3Dアバター（3Dモデル）データを扱うためのファイルフォーマット</strong>です。<a href="https://www.khronos.org/gltf/">glTF2.0</a>をベースとしており、誰でも自由に利用することができます。また、<a href="https://unity3d.com/jp">Unity</a>向けのVRMファイルの読み書きを行うC#による標準実装（<a href="https://github.com/dwango/UniVRM">UniVRM</a>）がオープンソースで提供されます。</p>
-
-<hr />
-
+<hr>
 <h2 id="vrmについて">VRMについて</h2>
-
 <ul>
-<li><p><a href="./vrm_about/">「VRM」って何？どんなことができる？</a></p>
-
+<li>
+<p><a href="./vrm_about/">「VRM」って何？どんなことができる？</a></p>
 <ul>
-<li><a href="./vrm_about/#vrm-とは">VRMとは</a></li>
-<li><a href="./vrm_about/#vrmで何ができるの">VRMで何ができるの？</a></li>
-<li><a href="./vrm_about/#vrmの特徴">VRMの特徴</a></li>
-<li><a href="./vrm_about/#vrmファイルに設定できるライセンスデータ">VRMファイルに設定できるライセンスデータ</a></li>
-</ul></li>
-
-<li><p><a href="./how_to_make_vrm/">VRMファイルを作ってみたい</a></p>
-
-<ul>
-<li><a href="./how_to_make_vrm/#vrmファイルのつくりかた-既存3dモデルからのコンバート">VRMファイルのつくりかた（既存3Dモデルからのコンバート）</a></li>
-</ul></li>
-
-<li><p><a href="./how_to_view_vrm/">VRMファイルを眺めてみたい</a></p>
-
-<ul>
-<li><a href="./how_to_view_vrm/#vrmファイルの読み込みかた">VRMファイルの読み込みかた</a></li>
-<li><a href="./how_to_view_vrm/#vrmファイルの読み込みかた-簡易版">VRMファイルの読み込みかた（簡易版）</a></li>
-<li><a href="./how_to_view_vrm/#vrmファイルを投稿する-探す">VRMファイルを投稿する・探す</a></li>
-</ul></li>
-
-<li><p><a href="./vrm_applications/">VRMファイルが使えるアプリケーションは？</a></p>
-
-<ul>
-<li><a href="./vrm_applications/#3Dキャラクター投稿プラットフォーム">3Dキャラクター投稿プラットフォーム</a></li>
-<li><a href="./vrm_applications/#キャラメイクツール">キャラメイクツール</a></li>
-<li><a href="./vrm_applications/#配信ツール">配信ツール</a></li>
-<li><a href="./vrm_applications/#メタバース">メタバース</a></li>
-<li><a href="./vrm_applications/#ゲームなど">ゲームなど</a></li>
-<li><a href="./vrm_applications/#ビューア">ビューア</a></li>
-</ul></li>
+<li><a href="./vrm_about/#vrm-%E3%81%A8%E3%81%AF">VRMとは</a></li>
+<li><a href="./vrm_about/#vrm%E3%81%A7%E4%BD%95%E3%81%8C%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%AE">VRMで何ができるの？</a></li>
+<li><a href="./vrm_about/#vrm%E3%81%AE%E7%89%B9%E5%BE%B4">VRMの特徴</a></li>
+<li><a href="./vrm_about/#vrm%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AB%E8%A8%AD%E5%AE%9A%E3%81%A7%E3%81%8D%E3%82%8B%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9%E3%83%87%E3%83%BC%E3%82%BF">VRMファイルに設定できるライセンスデータ</a></li>
 </ul>
-
-<hr />
-
+</li>
+<li>
+<p><a href="./how_to_make_vrm/">VRMファイルを作ってみたい</a></p>
+<ul>
+<li><a href="./how_to_make_vrm/#vrm%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%81%A4%E3%81%8F%E3%82%8A%E3%81%8B%E3%81%9F-%E6%97%A2%E5%AD%983d%E3%83%A2%E3%83%87%E3%83%AB%E3%81%8B%E3%82%89%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%90%E3%83%BC%E3%83%88">VRMファイルのつくりかた（既存3Dモデルからのコンバート）</a></li>
+</ul>
+</li>
+<li>
+<p><a href="./how_to_view_vrm/">VRMファイルを眺めてみたい</a></p>
+<ul>
+<li><a href="./how_to_view_vrm/#vrm%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF%E3%81%8B%E3%81%9F">VRMファイルの読み込みかた</a></li>
+<li><a href="./how_to_view_vrm/#vrm%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF%E3%81%8B%E3%81%9F-%E7%B0%A1%E6%98%93%E7%89%88">VRMファイルの読み込みかた（簡易版）</a></li>
+<li><a href="./how_to_view_vrm/#vrm%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E6%8A%95%E7%A8%BF%E3%81%99%E3%82%8B-%E6%8E%A2%E3%81%99">VRMファイルを投稿する・探す</a></li>
+</ul>
+</li>
+<li>
+<p><a href="./vrm_applications/">VRMファイルが使えるアプリケーションは？</a></p>
+<ul>
+<li><a href="./vrm_applications/#3D%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%BC%E6%8A%95%E7%A8%BF%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0">3Dキャラクター投稿プラットフォーム</a></li>
+<li><a href="./vrm_applications/#%E3%82%AD%E3%83%A3%E3%83%A9%E3%83%A1%E3%82%A4%E3%82%AF%E3%83%84%E3%83%BC%E3%83%AB">キャラメイクツール</a></li>
+<li><a href="./vrm_applications/#%E9%85%8D%E4%BF%A1%E3%83%84%E3%83%BC%E3%83%AB">配信ツール</a></li>
+<li><a href="./vrm_applications/#%E3%83%A1%E3%82%BF%E3%83%90%E3%83%BC%E3%82%B9">メタバース</a></li>
+<li><a href="./vrm_applications/#%E3%82%B2%E3%83%BC%E3%83%A0%E3%81%AA%E3%81%A9">ゲームなど</a></li>
+<li><a href="./vrm_applications/#%E3%83%93%E3%83%A5%E3%83%BC%E3%82%A2">ビューア</a></li>
+</ul>
+</li>
+</ul>
+<hr>
 <h2 id="vrmフォーマット技術仕様">VRMフォーマット技術仕様</h2>
-
 <ul>
 <li><a href="./gltf_about/">GLTFとは</a></li>
 <li><a href="./vrm_spec/">VRM仕様</a>
-
 <ul>
 <li><a href="./vrm_tpose/">Tポーズについて</a></li>
-</ul></li>
 </ul>
-
-<hr />
-
-<h2 id="univrm-https-github-com-dwango-univrm-unity向けvrm標準実装-仕様"><a href="https://github.com/dwango/UniVRM">UniVRM</a>(Unity向けVRM標準実装)仕様</h2>
-
+</li>
+</ul>
+<hr>
+<h2 id="univrmhttpsgithubcomdwangounivrmunity向けvrm標準実装仕様"><a href="https://github.com/dwango/UniVRM">UniVRM</a>(Unity向けVRM標準実装)仕様</h2>
 <ul>
-<li><a href="https://github.com/dwango/UniVRM/releases">Download</a></li>
-<li><a href="./univrm/univrm_install/">UniVRMのインストール</a></li>
-
-<li><p><a href="./univrm/univrm_workflow/">UniVRMのワークフロー</a></p></li>
-
-<li><p>UniVRMのコンポーネント</p>
-
+<li>
+<p><a href="https://github.com/dwango/UniVRM/releases">Download</a></p>
+</li>
+<li>
+<p><a href="./univrm/univrm_install/">UniVRMのインストール</a></p>
+</li>
+<li>
+<p><a href="./univrm/univrm_workflow/">UniVRMのワークフロー</a></p>
+</li>
+<li>
+<p>UniVRMのコンポーネント</p>
 <ul>
 <li><a href="./univrm/components/univrm_meta/">モデル情報</a></li>
 <li><a href="./univrm/components/univrm_blendshape/">BlendShape</a></li>
 <li><a href="./univrm/components/univrm_firstperson/">一人称視点</a></li>
 <li><a href="./univrm/components/univrm_lookat/">視線制御</a></li>
 <li><a href="./univrm/components/univrm_secondary/">揺れモノ</a></li>
-</ul></li>
-
-<li><p><a href="./univrm/shaders/univrm_shaders/">UniVRMで使えるシェーダー</a></p>
-
+</ul>
+</li>
+<li>
+<p><a href="./univrm/shaders/univrm_shaders/">UniVRMで使えるシェーダー</a></p>
 <ul>
 <li><a href="./univrm/shaders/univrm_shaders_044/">UniVRM-0.44のマテリアル</a></li>
 <li><a href="./univrm/shaders/mtoon/">MToonの設定</a></li>
-</ul></li>
-
-<li><p>API</p>
-
+</ul>
+</li>
+<li>
+<p>API</p>
 <ul>
 <li><a href="./univrm/api/univrm_api_history/">変更履歴</a></li>
 <li><a href="./univrm/api/univrm_import_runtime/">実行時にVRMモデルをインポートする</a></li>
 <li><a href="./univrm/api/univrm_use_blendshape/">実行時にBlendShapeを操作する</a></li>
 <li><a href="./univrm/api/univrm_coordinate/">座標系の変換について</a></li>
 <li><a href="./univrm/api/univrm_use_firstperson/">一人称モードの使い方</a></li>
-</ul></li>
-
-<li><p><a href="./univrm/univrm_faq/">FAQ</a></p></li>
+</ul>
+</li>
+<li>
+<p><a href="./univrm/univrm_faq/">FAQ</a></p>
+</li>
 </ul>
 
 
@@ -184,5 +181,16 @@
     </div>
 
     
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
   </body>
 </html>

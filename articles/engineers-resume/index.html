@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.87.0" />
 
   <meta property="og:title" content="エンジニアが読みたくなる職務経歴書 - dwango on GitHub">
 
@@ -40,208 +40,196 @@
   <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
-      <p class="lead">
-       
- 
-      </p>
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="https://dwango.github.io/">Home</a> </li>
-      <li><a href="/articles"> Articles </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/niconico"> niconico </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://nico.ms/job/engineer"> Hiring </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> niconico 開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
     </ul>
 
-    <p>
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
       
-        <p style="display:inline-block;vertical-align:middle;">
-          Copyright &copy; DWANGO Co., Ltd.
-        </p>
+        Copyright &copy; DWANGO Co., Ltd.
       
     </p>
   </div>
 </div>
 
-    <div class="content container">
+    <main class="content container">
     
-<div class="post">
-  <h1>エンジニアが読みたくなる職務経歴書</h1>
-  <span class="post-date"> Sun, Dec 24, 2017 </span>
-  <div class="share">
-    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="エンジニアが読みたくなる職務経歴書 - dwango on GitHub" data-url="https://dwango.github.io/articles/engineers-resume/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/engineers-resume/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2fengineers-resume%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-  </div>
-  <div>
-    
-    <article id="content">
-       
+  <div class="post">
+    <time class="content-date" datetime="2017-12-24 00:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2017-12-24 Sun</time
+    >
+    <h1 class="article-title">エンジニアが読みたくなる職務経歴書</h1>
 
-<p>この記事は<a href="https://qiita.com/advent-calendar/2017/dwango">ドワンゴ Advent Calendar 2017</a> 24日目の記事です。メリークリスマス！</p>
-
-<hr />
-
+    <div>
+      
+      <article id="content"><p>この記事は<a href="https://qiita.com/advent-calendar/2017/dwango">ドワンゴ Advent Calendar 2017</a> 24日目の記事です。メリークリスマス！</p>
+<hr>
 <p>ドワンゴ 技術コミュニケーション室の塩谷（ <a href="https://github.com/kwappa">@kwappa</a> / <a href="https://friends.nico/@kwappa">kwappa@friends.nico</a> ）です。</p>
-
 <p>先日、技術コミュニケーション室のメンバーから「友人が転職を検討しているが、職務経歴書の書き方がわからず悩んでいる」という相談を受けました。ぼくは以前から職務経歴書についてはなんども書いたり喋ったりしてきたのですが、具体的な書き方やサンプルについてまとめたものはなかったので、この記事を書くことにしました。</p>
-
 <p>以下は、ぼくが以前から考えていることと、書類選考をするときに書いてあると嬉しいことをまとめたものです。会社としてオフィシャルに定めた基準ではないことをご了承ください。</p>
-
 <h1 id="転職に必要な書類">転職に必要な書類</h1>
-
 <p>中途採用に応募する場合、「履歴書」と「職務経歴書」が必要です。転職サービスを経由しての応募の場合、プラスして担当エージェントさんが書いた「推薦状」が添えられることもありますが、これは必須ではありません。</p>
-
 <p>ここでは履歴書と職務経歴書について、書き方や大事な点について説明します。</p>
-
 <h1 id="履歴書">履歴書</h1>
-
 <p>氏名・住所・連絡先と学歴・職歴が記載された書類です。必要な情報が過不足なく書いてあれば問題ありません。</p>
-
 <p>マイクロソフトのWebサイトからJIS規格のテンプレートが<a href="https://templates.office.com/ja-jp/%E5%B1%A5%E6%AD%B4%E6%9B%B8-JIS%E8%A6%8F%E6%A0%BC%EF%BC%89-TM90002025">ダウンロードできる</a>ので、この書式を参考にするとよいでしょう。</p>
-
 <p>この倍サイズで右側には賞罰・志望動機・通勤時間などを記入する欄があるものもありますが、それらは職務経歴書に書けば十分です。得意な学科を書く必要もありません。</p>
-
 <h1 id="職務経歴書">職務経歴書</h1>
-
 <p>これが一番大事な書類です。エンジニアとしてソフトウェア開発に携わってきたキャリアとそこで得た知識や経験、これからどんな仕事をしてなにを実現したいかを、読みやすく簡潔に書いてあるものが理想です。</p>
-
 <p>「職務経歴書　テンプレート」で検索すると書き方案内と一緒にWordのテンプレートが山ほどヒットしますが、そもそも表組みである必要すらありません。ぼくは現職に応募するとき、Markdownで書いてGitHub風のCSSを適用し、ブラウザからPDF出力して提出しました。</p>
-
 <p>先日<a href="https://codeiq.jp/magazine/2017/10/54844/">CodeIQのイベントで登壇</a>してきた内容を中心に、書くときのポイントをご紹介します。</p>
-
 <iframe allowfullscreen="allowfullscreen" frameborder="0" scrolling="no" src="https://niconare.nicovideo.jp/embed_works/kn2597" style="max-width: 100%;" width="485" height="413"><a href="https://niconare.nicovideo.jp/watch/kn2597" target="_blank">採用担当者が読みたくてたまらなくなる職務経歴書を書くために絶対に外せない3つのポイント / Kwappa さん - ニコナレ</a></iframe>
-
 <h2 id="職務経歴書の構成要素">職務経歴書の構成要素</h2>
-
 <p>職務経歴書に書いてほしいのは、大きく3つの要素に分類できます。</p>
-
 <ul>
 <li>職務経歴</li>
 <li>自己PR</li>
 <li>志望動機</li>
 </ul>
-
 <p>順にポイントを見ていきましょう。</p>
-
 <h3 id="職務経歴のポイント">職務経歴のポイント</h3>
-
 <p>職務経歴は、今まで何をしてきたか、その結果どんなことができるかを伝える「過去」の情報です。</p>
-
-<h4 id="まず概要-次に詳細">まず概要、次に詳細</h4>
-
+<h4 id="まず概要次に詳細">まず概要、次に詳細</h4>
 <p>プレゼンテーションの基本でもありますが、まずは職歴の概要を書きます。経験してきた開発領域、使える技術、普段のアウトプットが見えるもの（GitHubやブログ、リリースしたアプリなどのURL）、転職先でやりたいことなどを簡潔に書きましょう。</p>
-
 <p>次に、職歴に沿って詳細な記述をしていきます。ポイントを箇条書きにしてみましょう。</p>
-
 <h4 id="新しいものから古いものへ">新しいものから古いものへ</h4>
-
 <p>職歴から知りたいのは、直近何をしていたかです。ですから職歴は日時の降順でソートし、新しいものを先に書きましょう。20世紀に何をしていたかよりは、昨日何をしていたに興味があります。</p>
-
-<h4 id="キーワードは絞って-正確に">キーワードは絞って、正確に</h4>
-
+<h4 id="キーワードは絞って正確に">キーワードは絞って、正確に</h4>
 <p>開発に使った言語、データベース、フレームワークやミドルウェアなどは重要なものに絞って、正確に書きましょう。</p>
-
 <ul>
 <li>バージョンを書く</li>
 </ul>
-
 <p>例えばJavaだと、1.4と8ではだいぶ様子が違いますよね。</p>
-
 <ul>
 <li>重要なものだけ書く</li>
 </ul>
-
 <p>開発PCがWindows7だった、開発ツールはEclipseだった、などは重要な情報でしょうか？</p>
-
 <ul>
 <li>正確に書く</li>
 </ul>
-
 <p>よくある間違い : JAVA、Javascript、JQueryなど。こういう間違いがあるだけでだいぶ印象がよろしくなくなるので、ちょっと時間をかけて見直しましょう。</p>
-
 <h4 id="具体的に">具体的に</h4>
-
 <p>チームの規模やそこで果たした役割、困難だったことや成果を上げたことなどをできるだけ具体的に書きましょう。すべての職歴・プロジェクトについてみっしり書く必要はありませんが、特に苦労した点・成果を上げた点についてはしっかり書いておくと、面接のときに聞くポイントにもなります。</p>
-
 <h3 id="自己prのポイント">自己PRのポイント</h3>
-
 <p>自己PRは、自分にはどんな技術や経験があり、開発チームにどんな貢献ができるかを伝える「現在」の情報です。</p>
-
-<h4 id="ウソをつかず-自信を持って">ウソをつかず、自信を持って</h4>
-
+<h4 id="ウソをつかず自信を持って">ウソをつかず、自信を持って</h4>
 <p>開発経験が浅い場合でも、ソフトウェア開発の現場ではなんらかの問題に直面し、それを自分の能力と努力で解決してきたはずです。ウソをついてはいけませんが（いずれバレます）、自信を持ってアピールを書きましょう。</p>
-
 <h4 id="アンチパターン">アンチパターン</h4>
-
 <p>以前からこの話題になると必ず紹介している自己PRのアンチパターンが以下の3つです。</p>
-
 <ul>
 <li>奴隷の鎖自慢</li>
 </ul>
-
 <p>長時間勤務や連勤のアピールは逆効果です。問題を根性ではなく技術で解決する人と一緒に働きたいですよね？</p>
-
 <ul>
 <li>コミュ力自慢</li>
 </ul>
-
 <p>かなりポピュラーな記述ですが、いったい「誰との」コミュニケーション能力なのかを書いてあることはあまりありません。ふわっと「コミュ力」と書くぐらいだったら、ほかのアピール項目を探しましょう。</p>
-
 <ul>
 <li>サブリーダー自慢</li>
 </ul>
-
 <p>いまだに「サブリーダー」というポジションを実際に見たことはないのですが、自己PRではよく見かけます。いったいどんなポジションでどんな役割と責任があるのかを具体的に書けないならやめておきましょう。</p>
-
 <h3 id="志望動機">志望動機</h3>
-
 <p>志望動機は、転職先でどんな貢献をし、どんなことを実現したいかを伝える「未来」の情報です。</p>
-
 <h4 id="やりたいことの表明を">やりたいことの表明を</h4>
-
 <p>転職してやりたいことを表明するのが「志望動機」です。選考の有利不利を気にしすぎて萎縮せずに、取り組みたい事業、突き詰めたい技術、目指すキャリアや人物像などをどう実現していきたいかを書いてください。</p>
-
 <h4 id="最低限の事業調査を">最低限の事業調査を</h4>
-
 <p>必ずしも応募する会社の事業やサービスの大ファンやヘビーユーザーである必要はありませんが、最低限どんなことをやっており、選べるならどんな事業やサービスに関わりたいか、ぐらいは調査し考えておきましょう。職務経歴書に書いてなければ、面接の時にはたいてい聞かれるはずです。</p>
-
 <h1 id="その他のポイント">その他のポイント</h1>
-
 <p>職務経歴書についてはここまで紹介して来たポイントを押さえて書くと、グッと引き締まった内容になるでしょう。ここからはその他の細かいけど気を使ってあるとよいポイントについて触れていきます。</p>
-
 <h2 id="書類のフォーマットはpdfで">書類のフォーマットはPDFで</h2>
-
 <p>内容が必要十分であればそれでよいのですが、「PDFで、1ファイルにまとめて」あると、読むときも印刷するときも非常に助かります。</p>
-
 <p>ときどき「推薦文Word、履歴書Excel、職務経歴書Word」などというエンジニアにとっては非常に厳しい3ファイルが届いたりすると、なかなか厳しい気持ちになります。先日は履歴書Excelにマクロが書かれていてギョッとしたりしました。</p>
-
 <h2 id="各種アカウントを書きましょう">各種アカウントを書きましょう</h2>
-
 <p>必須ではありませんが、GitHubやQiita、Speaker DeckやSlideShareなど、普段の活動がわかるようにアカウントが書いてあると、入社後マッチするチームやプロダクトがイメージしやすくなります。</p>
-
 <p>また、TwitterやFacebookなどSNSのアカウントもいずれバレる可能性が高いので、自己紹介の一環として書いちゃうといいと思います。</p>
-
 <h2 id="サンプル">サンプル</h2>
-
 <p>一例として、ぼくが<a href="https://kwappa.github.io/logs/resume/">github.ioで公開している職務経歴書</a>を紹介します。これは2014年に入社したときの書類をベースに、その後の経歴を書き足したものです。もし次に転職するとしたら、これに志望動機を書き足せばすぐ提出できるようにしてあります（…が、今見るともうちょっとメンテが必要なことに気づいてしまいました。随時アップデートしていきます）。</p>
-
 <p>Wordで不自由な表組みを頑張るより、手慣れたMarkdownを使った箇条書きで、軽やかな書類を書いてもいいんだよ、という後押しになれば幸いです。</p>
-
 <p>また、今月たいへんすばらしい職務経歴書でのご応募をいただきました。現在選考中なのですが、サンプルとして紹介させていただきたい！と思うほどだったので、もしご縁があったとしたらお願いしてみようと思っています。</p>
-
 <h1 id="まとめ">まとめ</h1>
-
 <ul>
 <li>エンジニアが読みたくなる職務経歴書についてご紹介しました</li>
 <li>ドワンゴではご応募いただいた書類はすべてエンジニアが見ています</li>
 <li>ご応募は<a href="http://nico.ms/job/">こちら</a>から！</li>
 </ul>
-
-    </article>
-  </div>
-</div>
-
+</article>
     </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="エンジニアが読みたくなる職務経歴書 - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/engineers-resume/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/engineers-resume/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2fengineers-resume%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </main>
+
+    
+      
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-LF3Z3TQ34F', { 'anonymize_ip': false });
+}
+</script>
 
     
   </body>

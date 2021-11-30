@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.87.0" />
 
   <meta property="og:title" content="niconico 改善インターンを終えて - dwango on GitHub">
 
@@ -40,320 +40,364 @@
   <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
-      <p class="lead">
-       
- 
-      </p>
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="https://dwango.github.io/">Home</a> </li>
-      <li><a href="/articles"> Articles </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/niconico"> niconico </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://nico.ms/job/engineer"> Hiring </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> niconico 開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
     </ul>
 
-    <p>
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
       
-        <p style="display:inline-block;vertical-align:middle;">
-          Copyright &copy; DWANGO Co., Ltd.
-        </p>
+        Copyright &copy; DWANGO Co., Ltd.
       
     </p>
   </div>
 </div>
 
-    <div class="content container">
+    <main class="content container">
     
-<div class="post">
-  <h1>niconico 改善インターンを終えて</h1>
-  <span class="post-date"> Thu, Dec 27, 2018 </span>
-  <div class="share">
-    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="niconico 改善インターンを終えて - dwango on GitHub" data-url="https://dwango.github.io/articles/2018intern/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/2018intern/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2f2018intern%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-  </div>
-  <div>
-    
-    <article id="content">
-       
+  <div class="post">
+    <time class="content-date" datetime="2018-12-27 21:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2018-12-27 Thu</time
+    >
+    <h1 class="article-title">niconico 改善インターンを終えて</h1>
 
-<p>ドワンゴ 技術コミュニケーション室の<a href="https://twitter.com/_kuriko">小枝</a>です。</p>
-
+    <div>
+      
+      <article id="content"><p>ドワンゴ 技術コミュニケーション室の<a href="https://twitter.com/_kuriko">小枝</a>です。</p>
 <p>2018年度のエンジニア向けインターンシップは、niconico改善インターン、研究開発インターン、ドワンゴ.LT for Studentの3つのテーマで開催しました。</p>
-
 <p>本記事ではniconico改善インターンにて学生さんに取り組んでいただいたことを簡単にご紹介いたします。</p>
-
 <p><a href="https://internship.dwango.co.jp/2018/engineer/">ドワンゴエンジニアインターンシップ2018</a></p>
+<p><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2018intern/cours1_front.JPG" alt="第1クールメンバー" width="40%" />
+  
+</div>
 
-<p><img src="https://dwango.github.io/images/2018intern/cours1_front.JPG" alt="第1クールメンバー" width="40%" />
-
-<img src="https://dwango.github.io/images/2018intern/cours2_front.JPG" alt="第2クールメンバー" width="40%" />
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2018intern/cours2_front.JPG" alt="第2クールメンバー" width="40%" />
+  
+</div>
 </p>
-
 <h1 id="インターンシップ概要">インターンシップ概要</h1>
-
 <p>2018年は、niconicoにおいて意見交換会や改善報告会を大切にした年であったことから、インターンシップのテーマも、既存のniconicoサービスの改善をテーマにし募集し、就業型のインターンとして実施しました。期間、メンバーは次の通りです。</p>
-
 <ul>
 <li>第1クール(8月中旬～)：yoshimuraさん、sh4869さん、ndmxjpさん、pakutomaさんの4名</li>
 <li>第2クール(9月上旬～)：Mizuneさん、nwtgckさんの2名</li>
 </ul>
-
 <h1 id="インターンシップの成果">インターンシップの成果</h1>
-
-<h2 id="実験放送-https-dic-nicovideo-jp-a-実験放送-に追っかけ再生機能を実装"><a href="https://dic.nicovideo.jp/a/実験放送">実験放送</a>に追っかけ再生機能を実装</h2>
-
+<h2 id="実験放送httpsdicnicovideojpa実験放送に追っかけ再生機能を実装"><a href="https://dic.nicovideo.jp/a/%E5%AE%9F%E9%A8%93%E6%94%BE%E9%80%81">実験放送</a>に追っかけ再生機能を実装</h2>
 <h3 id="yoshimuraさん">yoshimuraさん</h3>
-
 <p>yoshimuraさんには実験放送チームのWebフロントエンジニアとして、実験放送プレーヤー上での追っかけ再生（タイムシフトの倍速再生）にチャレンジしていただきました。</p>
-
-<img src="https://dwango.github.io/images/2018intern/okkake0.png" alt="再生速度" width="40%" />
-
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2018intern/okkake0.png" alt="再生速度" width="40%" />
+  
+</div>
 
 <p>追っかけ再生機能を求めるユーザーは多かったものの、配信サーバーチームとの連携が必要な上、技術的にも難しい課題でした。</p>
-
 <p>まずはvideoタグの再生速度のパラメータ <code>playbackRate</code> の値を2倍に、そしてバックエンドの配信システムに動画ファイルをリクエストする速度を2倍にしていただきました。
-これでひとまずChromeでは動きました、……しかしそう簡単には問屋が卸しません。<br />
+これでひとまずChromeでは動きました、……しかしそう簡単には問屋が卸しません。<br>
 他のサポート対象ブラウザで動かない、再生中に動画の生合成が取れなくなる、コメントが正常に流れないなど、テストすればするだけ新しい問題が見つかってしまいました。</p>
-
-<p>この時点で残り期間が1週間と数日でした。インターン期間中になんとかひと段落はつけたく、試行錯誤の末に再生速度を2倍のみに絞るなど&rdquo;選択と集中&rdquo;を行い、問題の単純化を計りました。
+<p>この時点で残り期間が1週間と数日でした。インターン期間中になんとかひと段落はつけたく、試行錯誤の末に再生速度を2倍のみに絞るなど&quot;選択と集中&quot;を行い、問題の単純化を計りました。
 対応範囲を限定したことにより解決すべき問題は絞られ、無事インターン最終日には<a href="https://dic.nicovideo.jp/a/%E5%AE%9F%E9%A8%93%E6%94%BE%E9%80%81">実験放送</a>上で試験運用（仮リリース）することができました。（<a href="http://blog.nicovideo.jp/niconews/89193.html">10月4日に本番リリース済み</a>）</p>
-
-<img src="https://dwango.github.io/images/2018intern/okkake1.png" alt="追っかけ再生UI" width="40%" />
-
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2018intern/okkake1.png" alt="追っかけ再生UI" width="40%" />
+  
+</div>
 
 <h2 id="akasic-engineを利用したコメント描画の試作">Akasic Engineを利用したコメント描画の試作</h2>
-
-<h3 id="sh4869さん-github-https-github-com-sh4869">sh4869さん（<a href="https://github.com/sh4869">GitHub</a>）</h3>
-
+<h3 id="sh4869さんgithubhttpsgithubcomsh4869">sh4869さん（<a href="https://github.com/sh4869">GitHub</a>）</h3>
 <p>sh4869さんもyoshimuraさんと同じく実験放送チームのWebフロントエンジニアとして、Akasic Engineを使用した、コメント描画の試作にチャレンジしていただきました。</p>
-
 <p>※ <a href="https://dwango.github.io/articles/akashic">Akashic Engine</a> は、ニコキャスや実験放送に使われているHTML5インタラクティブコンテンツフレームワークです。</p>
-
 <p>コメント機能はniconicoの生命線であるが故に、複雑な仕様や細かい調整技法がたくさん詰まっています。
 またコメントの描画ロジックは衝突判定や速度管理、動的な表示件数の制御など、ある種のゲーム開発に似た思考、技術が必要になるという、正しい挙動を理解するだけでも一苦労という極めて難しい課題でしたが、初週にはプロトタイプ版を作成いただき、最終週にはプロダクション版の実装と性能検証まで進めることができました。</p>
-
 <table>
 <thead>
 <tr>
-<th align="center"><img src="https://dwango.github.io/images/2018intern/acr1.png" alt="性能検証" width="70%" />
+<th style="text-align:center"><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2018intern/acr1.png" alt="性能検証" width="70%" />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center">コメントフォント生成時の性能検証</td>
+<td style="text-align:center">コメントフォント生成時の性能検証</td>
 </tr>
 </tbody>
 </table>
-
 <p>性能検証段階では動作環境やコメントの多さや種類、CPU使用率やメモリ使用率など、様々な観点の比較が必要でした。
 そもそも3週間前にはプロトタイプすら存在していなかった課題なので、チームにとっては十分すぎる助けになりました。</p>
-
 <table>
 <thead>
 <tr>
-<th align="center"><script type="application/javascript" src="https://embed.nicovideo.jp/watch/so34351771/script?w=720&h=480"></script>
+<th style="text-align:center"><script type="application/javascript" src="https://embed.nicovideo.jp/watch/so34351771/script?w=720&h=480"></script>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center"><a href="https://www.nicovideo.jp/watch/1545733023">コメント描画比較（左: 旧 / 右: 新）</a></td>
+<td style="text-align:center"><a href="https://www.nicovideo.jp/watch/1545733023">コメント描画比較（左: 旧 / 右: 新）</a></td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="新サービスリリース前のラストスパート">新サービスリリース前のラストスパート</h2>
-
-<h3 id="ndmxjpさん-github-https-github-com-ndmxjp">ndmxjpさん（<a href="https://github.com/ndmxjp">GitHub</a>)</h3>
-
+<h3 id="ndmxjpさんgithubhttpsgithubcomndmxjp">ndmxjpさん（<a href="https://github.com/ndmxjp">GitHub</a>)</h3>
 <p>ndmxjpさんは<a href="http://blog.nicovideo.jp/niconews/84511.html">iOS版nicocasアプリ</a>のリリースを目前に控えたnicocas iOSチームに配属されました。
 リリース直前のため新しい機能追加タスクなどは少なく、品質検証やテスト追加などの品質向上系のタスクが多くなります。ndmxjpさんには、レコメンド機能や連続再生周りのテストの拡充を担当いただきました。</p>
-
 <table>
 <thead>
 <tr>
-<th align="center"><img src="https://dwango.github.io/images/2018intern/exios1.png" alt="レコメンド機能周りのテスト" width="60%" />
+<th style="text-align:center"><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2018intern/exios1.png" alt="レコメンド機能周りのテスト" width="60%" />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center">レコメンド機能</td>
+<td style="text-align:center">レコメンド機能</td>
 </tr>
 </tbody>
 </table>
-
 <p>テストと聞くと地味で退屈な作業と思う方は多いかもしれませんが、テストはどのプロダクトでも必要になる重要な工程です。またテストの書き方を知っているか否かで、設計やコードの品質も大きく変わってきます。
-テストを書くには、まずコードがTestableに（テストしやすく）設計されていることが重要です。簡単な例としてはDIパターンやFactory Methodパターンなどを使うことにより、モック(テスト用のダミーインスタンス)を注入可能な設計にすることができます。<br />
+テストを書くには、まずコードがTestableに（テストしやすく）設計されていることが重要です。簡単な例としてはDIパターンやFactory Methodパターンなどを使うことにより、モック(テスト用のダミーインスタンス)を注入可能な設計にすることができます。<br>
 今回はTestableに書かれている部分とそうでない部分の両方があったため、Testableな設計の大切さを実務を通して体験していただきました。</p>
-
 <p>またテストを書く際に重要なこととして、テストの可視性があります。
 機能が複雑なほど、そしてテストのカバレッジ（網羅性）が高いほど、テストの量は膨大になります。膨大なテストを書くと網羅性を担保しにくくなり、担保している仕様も解りづらくなります。
 今回担当していただいた機能も十分に複雑だったため、テストコードを読めば仕様がわかるような、<strong>読んで理解できるテスト</strong>を心がけていただきました。</p>
-
 <p>ちょうどインターン期間中に<a href="http://blog.nicovideo.jp/niconews/84511.html">リリース</a>が行われました。
 リリース直後にユーザーさんからの嬉しいコメントをいただけるなど、Web企業ならではの貴重な瞬間に立ち会って頂くことができました。</p>
-
-<img src="https://dwango.github.io/images/2018intern/exios2.png" alt="ユーザーからの声" width="50%" />
-
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2018intern/exios2.png" alt="ユーザーからの声" width="50%" />
+  
+</div>
 
 <h2 id="niconico-androidアプリ総合トップ画面のリニューアル">niconico Androidアプリ総合トップ画面のリニューアル</h2>
-
-<h3 id="pakutomaさん-github-https-github-com-pakutoma-twitter-https-twitter-com-pakutoma">pakutomaさん (<a href="https://github.com/pakutoma">GitHub</a>/<a href="https://twitter.com/pakutoma">Twitter</a>)</h3>
-
+<h3 id="pakutomaさん-githubhttpsgithubcompakutomatwitterhttpstwittercompakutoma">pakutomaさん (<a href="https://github.com/pakutoma">GitHub</a>/<a href="https://twitter.com/pakutoma">Twitter</a>)</h3>
 <p>pakutomaさんにはniconico Androidアプリチームでの開発を担当いただきました。
 Androidアプリチームでは、<a href="https://play.google.com/store/apps/details?id=jp.nicovideo.android&amp;hl=ja">niconico Androidアプリ</a> 総合トップ画面の大規模なリニューアルを計画していましたので、pakutomaさんにもリニューアルに向けたいくつかのタスクにチャレンジしていただきました。</p>
-
-<h4 id="本日のおすすめ-へのデザイン適用">&ldquo;本日のおすすめ&rdquo;へのデザイン適用</h4>
-
+<h4 id="本日のおすすめへのデザイン適用">&ldquo;本日のおすすめ&quot;へのデザイン適用</h4>
 <p>表示する要素が多く複雑なデザインで、出てくる疑問点などをデザイナーさんに確認しながら開発を進めていただきました。また動作仕様も複雑で、用意していたデザインと動作の整合性が取れなくなることもあり、ディレクターの方とも何度も調整を重ねながらの開発にも取り組んでいただきました。</p>
-
 <table>
 <thead>
 <tr>
-<th align="center"><img src="https://dwango.github.io/images/2018intern/nicoand1.png" alt="本日のおすすめ枠 レイアウト画面" width="40%" />
+<th style="text-align:center"><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2018intern/nicoand1.png" alt="本日のおすすめ枠 レイアウト画面" width="40%" />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center">本日のおすすめ枠 レイアウト画面</td>
+<td style="text-align:center">本日のおすすめ枠 レイアウト画面</td>
 </tr>
 </tbody>
 </table>
-
 <h4 id="pull-to-refreshの実装">Pull to refreshの実装</h4>
-
-<p>いわゆる「画面を引っ張って更新」を行う機能です。実装自体は単純でしたが、他機能のエラー処理や初回読み込み時との整合性が取れないといったことやまたマージした際に、同時に追加されていたヘッダー関連の変更との不整合が起こるといったことも発生しました。<br />
+<p>いわゆる「画面を引っ張って更新」を行う機能です。実装自体は単純でしたが、他機能のエラー処理や初回読み込み時との整合性が取れないといったことやまたマージした際に、同時に追加されていたヘッダー関連の変更との不整合が起こるといったことも発生しました。<br>
 今回のインターンでは1人での開発ではなく、実際のチームにジョインしての開発であったので、チームの社員も一緒になって修正する等、チームならではの開発推進を体験いただきました。</p>
-
 <table>
 <thead>
 <tr>
-<th align="center"><img src="https://dwango.github.io/images/2018intern/nicoand2.png" alt="pull to refresh ビフォーアフター" width="70%" />
+<th style="text-align:center"><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2018intern/nicoand2.png" alt="pull to refresh ビフォーアフター" width="70%" />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center">Pull to Refresh ビフォーアフター</td>
+<td style="text-align:center">Pull to Refresh ビフォーアフター</td>
 </tr>
 </tbody>
 </table>
-
 <p>最終日の成果発表では、「デイリーミーティングやGitのマージ作業などでチーム開発を体感できた」「Slackが浸透しておりチーム内の連携がスムーズだった」「チーム作業のスピード感が体感できた」「某アニメのような雰囲気の環境だった」「自分が普段使っているアプリの開発に携われて嬉しかった」といった感想を発表いただき、1か月間で良い就業経験をしていただけたのではないかと思います。</p>
-
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">エンジニアのインターンに「ドワンゴはNEW GAME!みたいな職場で感動しました」と言われたので、やはりエンジニアをバ美肉化しなければ...</p>&mdash; くりたしげたか（Re）🌰ニコニコ代表の人 (@sigekun) <a href="https://twitter.com/sigekun/status/1037585828115955712?ref_src=twsrc%5Etfw">September 6, 2018</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-
 <h2 id="niconico-iosアプリ総合トップ画面のリニューアル">niconico iOSアプリ総合トップ画面のリニューアル</h2>
-
-<h3 id="mizuneさん-github-https-github-com-mizune">Mizuneさん（<a href="https://github.com/Mizune">GitHub</a>)</h3>
-
+<h3 id="mizuneさんgithubhttpsgithubcommizune">Mizuneさん（<a href="https://github.com/Mizune">GitHub</a>)</h3>
 <p>Mizuneさんにはniconico iOSアプリチームでiOSアプリの開発に挑戦していただきました。
 iOSアプリチームもAndroidチームと同じく、総合トップ画面のリニューアルを計画しており、pakutomaさんと同じくiOS版の本日のおすすめ枠のリニューアルのタスクを担当いただきました。</p>
-
 <table>
 <thead>
 <tr>
-<th align="center"><img src="https://dwango.github.io/images/2018intern/nicoios1.png" alt="本日のおすすめ枠レイアウト" width="40%" />
+<th style="text-align:center"><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2018intern/nicoios1.png" alt="本日のおすすめ枠レイアウト" width="40%" />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center">本日のおすすめ枠 レイアウトデザイン</td>
+<td style="text-align:center">本日のおすすめ枠 レイアウトデザイン</td>
 </tr>
 </tbody>
 </table>
-
-<p>諸事情により第2週目からインターン開始となる逆境に加え、Mizuneさんの技術領域的にはiOSよりもAndroid方面の方が強く、iOSの開発経験は薄いなかでiOSの開発に取り組んでいただきましたが、スマートフォンエンジニアとしての嗅覚と持ち前の吸収力によって、最終日には試験環境で動く状態まで作り上げていただきました。<br />
+<p>諸事情により第2週目からインターン開始となる逆境に加え、Mizuneさんの技術領域的にはiOSよりもAndroid方面の方が強く、iOSの開発経験は薄いなかでiOSの開発に取り組んでいただきましたが、スマートフォンエンジニアとしての嗅覚と持ち前の吸収力によって、最終日には試験環境で動く状態まで作り上げていただきました。<br>
 最終日の成果報告会では、「充実したドキュメントやテスト、手厚いレビュー体制などの後押しを受けて、学習しながら着実に開発を進められた」「日々自分が使っているアプリの開発に携われた」「ドワンゴという会社を中に入って知ることができた」などが良い体験になったと発表していただきました。</p>
-
 <table>
 <thead>
 <tr>
-<th align="center"><img src="https://dwango.github.io/images/2018intern/nicoios2.png" alt="本日のおすすめ枠完成形" width="40%" />
+<th style="text-align:center"><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2018intern/nicoios2.png" alt="本日のおすすめ枠完成形" width="40%" />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center">本日のおすすめ枠 完成形</td>
+<td style="text-align:center">本日のおすすめ枠 完成形</td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="nicocasギフト機能の改良">nicocasギフト機能の改良</h2>
-
-<h3 id="nwtgckさん-github-https-github-com-nwtgck">nwtgckさん（<a href="https://github.com/nwtgck">GitHub</a>）</h3>
-
+<h3 id="nwtgckさんgithubhttpsgithubcomnwtgck">nwtgckさん（<a href="https://github.com/nwtgck">GitHub</a>）</h3>
 <p>nwtgckさんはニコニ広告チームに配属されました。
 ニコニ広告チームはニコニ広告の開発/運用を始め、nicocasのギフト機能の開発担当チームとなっています。
 今回nwtgckさんには、ギフト機能に在庫管理、自動入荷の機能を追加するという課題にチャレンジしていただきました。</p>
-
 <p>従来のギフト機能は購入数制限がなかったことから、安価なギフトが大量購入されて画面が見えなくなる、使われる品目に偏りがある際には単調でつまらなくなる、という問題を抱えていました。
 この問題を解決するために、各ギフトに在庫と自動入荷の概念を導入することになりました。</p>
-
 <table>
 <thead>
 <tr>
-<th align="center"><img src="https://dwango.github.io/images/2018intern/gift0.png" alt="ギフト購入/入荷ロジック" width="70%" />
+<th style="text-align:center"><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2018intern/gift0.png" alt="ギフト購入/入荷ロジック" width="70%" />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center">ギフト購入/入荷ロジック</td>
+<td style="text-align:center">ギフト購入/入荷ロジック</td>
 </tr>
 </tbody>
 </table>
-
 <p>しかしいざ設計してみると、在庫管理では再入荷と購入のタイミングで不整合が発生する可能性があり、自動入荷では各放送でギフト単位にスケジューラを動かすとシステムに負荷がかかるという懸念がありました。
 試行錯誤を重ね、在庫はRedis上で売上数として管理、自動入荷は時間経過による売上数データの失効を利用する形で設計し直したことで、前述の問題を解決することができました。</p>
-
 <table>
 <thead>
 <tr>
-<th align="center"><img src="https://dwango.github.io/images/2018intern/gift2.png" alt="ギフト売り切れ状態" width="80%" />
+<th style="text-align:center"><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2018intern/gift2.png" alt="ギフト売り切れ状態" width="80%" />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center">ギフト売り切れ状態</td>
+<td style="text-align:center">ギフト売り切れ状態</td>
 </tr>
 </tbody>
 </table>
-
 <p>ユーザーさんのポイントを扱うデリケートな機能であり、かつ並列処理的な思考やパフォーマンスの考慮が必要という難しい課題でしたが、無事にインターン期間内に開発は終わり、ちょうど最終日の成果発表会の直前に機能リリースが完了しました。</p>
-
 <h1 id="まとめ">まとめ</h1>
-
 <p>今回は<strong>改善</strong>という、今年のniconicoが掲げる大きなテーマを取り入れて、就業型のインターンを実施する運びになりました。
 インターン後の感想として、自分が欲しかった機能を自分で作ることができて嬉しかったという声も多かったです。
 新規サービス開発のような華々しさはないかもしれませんが、ユーザーさんのためを思って開発し、ユーザーさんからダイレクトに反応が返ってくる喜びを体験していただけたのではないでしょうか。</p>
-
-<img src="https://dwango.github.io/images/2018intern/cafe.jpg" alt="nicocafe" width="40%" />
-
-
-    </article>
-  </div>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2018intern/cafe.jpg" alt="nicocafe" width="40%" />
+  
 </div>
 
+</article>
     </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="niconico 改善インターンを終えて - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/2018intern/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/2018intern/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2f2018intern%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </main>
+
+    
+      
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-LF3Z3TQ34F', { 'anonymize_ip': false });
+}
+</script>
 
     
   </body>

@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.87.0" />
 
   <meta property="og:title" content="Import VRM Model at Runtime - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -42,22 +42,22 @@
   <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
-      <p class="lead">
-       
-      </p>
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="https://dwango.github.io/">Home</a> </li>
-      <li><a href="/articles"> Articles </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/niconico"> niconico </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://nico.ms/job/engineer"> Hiring </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> niconico 開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
     </ul>
 
-    <p>
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
       
-        <p style="display:inline-block;vertical-align:middle;">
-          Copyright &copy; DWANGO Co., Ltd.
-        </p>
+        Copyright &copy; DWANGO Co., Ltd.
       
     </p>
   </div>
@@ -91,57 +91,37 @@
   <div>
     <article id="content">
         <div class="toc"> <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#open-vrm-from-a-file-path">Open VRM from a file path</a></li>
-<li><a href="#open-vrm-asynchronously-from-a-file-path">Open VRM asynchronously from a file path</a></li>
-<li><a href="#open-vrm-from-a-byte-array">Open VRM from a byte array</a></li>
-<li><a href="#open-vrm-asynchronously-from-a-byte-array">Open VRM asynchronously from a byte array</a></li>
-<li><a href="#get-the-information-form-vrm">Get the information form VRM</a></li>
-<li><a href="#get-the-thumbnail-from-v0-37">Get the thumbnail (From v0.37)</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#open-vrm-from-a-file-path">Open VRM from a file path</a></li>
+    <li><a href="#open-vrm-asynchronously-from-a-file-path">Open VRM asynchronously from a file path</a></li>
+    <li><a href="#open-vrm-from-a-byte-array">Open VRM from a byte array</a></li>
+    <li><a href="#open-vrm-asynchronously-from-a-byte-array">Open VRM asynchronously from a byte array</a></li>
+    <li><a href="#get-the-information-form-vrm">Get the information form VRM</a></li>
+    <li><a href="#get-the-thumbnail-from-v037">Get the thumbnail (From v0.37)</a></li>
+  </ul>
 </nav>
         </div>
-       
-
-<p>Examples of importing the VRM model with the latest version <a href="https://github.com/dwango/UniVRM/wiki/Runtime-import%28en%29">can be found here</a>.</p>
-
+       <p>Examples of importing the VRM model with the latest version <a href="https://github.com/dwango/UniVRM/wiki/Runtime-import%28en%29">can be found here</a>.</p>
 <p>The followings are the methods to import a VRM model at runtime in Unity:</p>
-
 <h2 id="open-vrm-from-a-file-path">Open VRM from a file path</h2>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
 <span style="color:#66d9ef">var</span> go=VRM.VRMImporter.LoadFromPath(path);
-Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);
-</code></pre></div>
-
+Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);</code></pre></div>
 <h2 id="open-vrm-asynchronously-from-a-file-path">Open VRM asynchronously from a file path</h2>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
 VRMImporter.LoadVrmAsync(path, go =&gt; {
     Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);
-});
-</code></pre></div>
-
+});</code></pre></div>
 <h2 id="open-vrm-from-a-byte-array">Open VRM from a byte array</h2>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
 <span style="color:#66d9ef">var</span> bytes = File.ReadAllBytes(path);
-<span style="color:#66d9ef">var</span> go=VRMImporter.LoadFromBytes(bytes);
-</code></pre></div>
-
+<span style="color:#66d9ef">var</span> go=VRMImporter.LoadFromBytes(bytes);</code></pre></div>
 <h2 id="open-vrm-asynchronously-from-a-byte-array">Open VRM asynchronously from a byte array</h2>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">VRMImporter.LoadVrmAsync(bytes, go =&gt; {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">VRMImporter.LoadVrmAsync(bytes, go =&gt; {
     Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);
-});
-</code></pre></div>
-
+});</code></pre></div>
 <h2 id="get-the-information-form-vrm">Get the information form VRM</h2>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#75715e">#if UNITY_STANDALONE_WIN
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#75715e">#if UNITY_STANDALONE_WIN
 </span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> path = FileDialogForWindows.FileDialog(<span style="color:#e6db74">&#34;open VRM&#34;</span>, <span style="color:#e6db74">&#34;.vrm&#34;</span>);
 <span style="color:#75715e">#else
 </span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> path = Application.dataPath + <span style="color:#e6db74">&#34;/default.vrm&#34;</span>;
@@ -182,16 +162,11 @@ VRMImporter.LoadVrmAsync(path, go =&gt; {
                 <span style="color:#75715e">// Run synchronously
 </span><span style="color:#75715e"></span>                VRMImporter.LoadFromBytes(context);
                 OnLoaded(context.Root);
-            }
-</code></pre></div>
-
-<h2 id="get-the-thumbnail-from-v0-37">Get the thumbnail (From v0.37)</h2>
-
+            }</code></pre></div>
+<h2 id="get-the-thumbnail-from-v037">Get the thumbnail (From v0.37)</h2>
 <p>A thumbnail texture can be created by passing arguments to ReadMeta.</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">    <span style="color:#66d9ef">var</span> meta = context.ReadMeta(<span style="color:#66d9ef">true</span>); <span style="color:#75715e">// Make a thumbnail texture
-</span><span style="color:#75715e"></span>    Texture2D thumbnail=meta.Thumbnail;
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">    <span style="color:#66d9ef">var</span> meta = context.ReadMeta(<span style="color:#66d9ef">true</span>); <span style="color:#75715e">// Make a thumbnail texture
+</span><span style="color:#75715e"></span>    Texture2D thumbnail=meta.Thumbnail;</code></pre></div>
 
     </article>
   </div>
@@ -205,5 +180,16 @@ VRMImporter.LoadVrmAsync(path, go =&gt; {
     </div>
 
     
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
   </body>
 </html>

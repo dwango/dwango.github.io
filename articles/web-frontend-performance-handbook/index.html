@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.87.0" />
 
   <meta property="og:title" content="Webフロントエンド パフォーマンス改善ハンドブックを公開しました - dwango on GitHub">
 
@@ -40,113 +40,84 @@
   <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
-      <p class="lead">
-       
- 
-      </p>
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="https://dwango.github.io/">Home</a> </li>
-      <li><a href="/articles"> Articles </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/niconico"> niconico </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://nico.ms/job/engineer"> Hiring </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> niconico 開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
     </ul>
 
-    <p>
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
       
-        <p style="display:inline-block;vertical-align:middle;">
-          Copyright &copy; DWANGO Co., Ltd.
-        </p>
+        Copyright &copy; DWANGO Co., Ltd.
       
     </p>
   </div>
 </div>
 
-    <div class="content container">
+    <main class="content container">
     
-<div class="post">
-  <h1>Webフロントエンド パフォーマンス改善ハンドブックを公開しました</h1>
-  <span class="post-date"> Fri, Sep 14, 2018 </span>
-  <div class="share">
-    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Webフロントエンド パフォーマンス改善ハンドブックを公開しました - dwango on GitHub" data-url="https://dwango.github.io/articles/web-frontend-performance-handbook/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/web-frontend-performance-handbook/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2fweb-frontend-performance-handbook%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-  </div>
-  <div>
-    
-    <article id="content">
-       
+  <div class="post">
+    <time class="content-date" datetime="2018-09-14 12:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2018-09-14 Fri</time
+    >
+    <h1 class="article-title">Webフロントエンド パフォーマンス改善ハンドブックを公開しました</h1>
 
-<h1 id="パフォーマンス改善ハンドブック-https-dwango-js-github-io-performance-handbook"><a href="https://dwango-js.github.io/performance-handbook/">パフォーマンス改善ハンドブック</a></h1>
-
+    <div>
+      
+      <article id="content"><h1 id="パフォーマンス改善ハンドブックhttpsdwango-jsgithubioperformance-handbook"><a href="https://dwango-js.github.io/performance-handbook/">パフォーマンス改善ハンドブック</a></h1>
 <p>ウェブページにおけるパフォーマンスに関する問題の見つけ方や考え方の事例をまとめた
 <a href="https://dwango-js.github.io/performance-handbook/">Webフロントエンド パフォーマンス改善ハンドブック</a>を公開しました。</p>
-
 <ul>
 <li>URL: <a href="https://dwango-js.github.io/performance-handbook/">https://dwango-js.github.io/performance-handbook/</a></li>
 </ul>
-
 <p>このハンドブックでは過去に行ったWebフロントエンドのパフォーマンス改善の事例を中心に紹介しています。
 注意点としてWebフロントエンドは常に変化しているため、現在の最適な解決方法を提案するものではありません。</p>
-
 <p>また、アプリケーションによっても最適な解決方法は異なります。
 今回の事例ではViewライブラリに<a href="https://reactjs.org/">React</a>を用い、映像再生プレイヤーなどある程度複雑な機能を持ったウェブアプリケーションのWebフロントエンドを扱います。</p>
-
 <p>具体的には<a href="http://live.nicovideo.jp/">ニコニコ生放送</a>（以下「生放送」）で行った事例を中心に書かれています。
 開発と平行して行われていたため、React 15から16の間に書かれたものが混在しています。
 また、<a href="https://reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html">React 16.5では新しいProfiler</a>も搭載されたため、ランタイムのパフォーマンス計測方法は紹介したもの以外にもあります。</p>
-
 <p>このハンドブックではどのようにして問題を発見して、何をすれば解決するのかを見つけるという点を重視しています。
 紹介している解決方法はただの一例でしかないため、別の解決方法も存在します。
 たとえば、今回の事例ではできるだけ元の機能を維持して修正していますが、デザインを変更して根本的に変えてしまうことも正しいはずです。</p>
-
 <p>機能とパフォーマンスには相関がある場合もあります。そこにはトレードオフの関係があります。
 そのようなトレードオフについての考え方の一例として<a href="https://dwango-js.github.io/performance-handbook/watching/tradeoff/">軽量化のトレードオフの検証</a>などもハンドブックに含まれています。</p>
-
 <h2 id="読み方">読み方</h2>
-
 <p>このハンドブックでは大きく分けて次の2種類について扱っています。</p>
-
 <ul>
 <li><a href="https://dwango-js.github.io/performance-handbook/watching/">視聴中のパフォーマンス改善</a>（ランタイム）</li>
 <li><a href="https://dwango-js.github.io/performance-handbook/startup/">ページロードのパフォーマンス改善</a>（ロードタイム）</li>
 </ul>
-
-<h3 id="視聴中のパフォーマンス改善-https-dwango-js-github-io-performance-handbook-watching"><a href="https://dwango-js.github.io/performance-handbook/watching/">視聴中のパフォーマンス改善</a></h3>
-
+<h3 id="視聴中のパフォーマンス改善httpsdwango-jsgithubioperformance-handbookwatching"><a href="https://dwango-js.github.io/performance-handbook/watching/">視聴中のパフォーマンス改善</a></h3>
 <p><a href="https://dwango-js.github.io/performance-handbook/watching/">視聴中のパフォーマンス改善</a>はランタイムにおけるパフォーマンス改善について書いたものです。
 ランタイムとはページ上のUIの反応速度や画面の更新などウェブページの実行時の動作のことをいいます。</p>
-
 <p>ランタイムのパフォーマンスは操作したときにスムーズに動くかなど操作感に影響を与えます。
 また、動画再生やゲームなどはユーザーが何も操作していないも常に描画を更新しています。
 そのため、ランタイムのパフォーマンスが安定して良くないと映像がカクカクしたように見えるなど<a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AC%E3%83%BC%E3%83%88">フレームレート</a>（FPS）の低下を引き起こします。</p>
-
 <p>またアプリケーションによってランタイムの性質は大きく異なります。
 このハンドブックでは<a href="https://reactjs.org/">React</a>を使って開発されている<a href="http://live.nicovideo.jp/">ニコニコ生放送</a>の視聴ページを例に、ランタイムのパフォーマンス計測や改善について扱っています。</p>
-
-<h3 id="ページロードのパフォーマンス改善-https-dwango-js-github-io-performance-handbook-startup"><a href="https://dwango-js.github.io/performance-handbook/startup/">ページロードのパフォーマンス改善</a></h3>
-
+<h3 id="ページロードのパフォーマンス改善httpsdwango-jsgithubioperformance-handbookstartup"><a href="https://dwango-js.github.io/performance-handbook/startup/">ページロードのパフォーマンス改善</a></h3>
 <p><a href="https://dwango-js.github.io/performance-handbook/startup/">ページロードのパフォーマンス改善</a>はURLにアクセスしてページが表示されるまでのパフォーマンス改善について書かれたものです。
 ページロードに関してはすでにさまざまな解説や書籍が存在するので、その中のファイルサイズについてを中心に扱っています。</p>
-
 <p>ウェブアプリケーションを開発していると、動作自体には影響がないためJavaScriptやCSSなどのファイルサイズを見落としがちです。そのようなファイルサイズの問題をどのように見つけるか改善のアプローチについてを扱っています。</p>
-
 <h2 id="目次">目次</h2>
-
 <p>このハンドブックの目次です。</p>
-
 <p>将来変更される場合がありますので、最新のものはハンドブック側の目次を参照してください。</p>
-
 <ul>
 <li><a href="https://dwango-js.github.io/performance-handbook/">はじめに</a></li>
 <li><a href="https://dwango-js.github.io/performance-handbook/watching/">視聴中のパフォーマンス改善</a>
-
 <ul>
 <li><a href="https://dwango-js.github.io/performance-handbook/watching/metrics/">指標の作成</a></li>
 <li><a href="https://dwango-js.github.io/performance-handbook/watching/how-to-measure/">パフォーマンスの計測の仕方</a></li>
 <li><a href="https://dwango-js.github.io/performance-handbook/watching/no-perf/">パフォーマンスにおける無駄</a></li>
 <li><a href="https://dwango-js.github.io/performance-handbook/watching/fix/">パフォーマンス修正の事例</a>
-
 <ul>
 <li><a href="https://dwango-js.github.io/performance-handbook/watching/fix-reflow-componentDidUpdate/">更新ごとの無駄なReflowが発生する問題の修正</a></li>
 <li><a href="https://dwango-js.github.io/performance-handbook/watching/fix-fullscreen/">フルスクリーン時に描画コストの問題の修正</a></li>
@@ -157,35 +128,97 @@
 <li><a href="https://dwango-js.github.io/performance-handbook/watching/fix-interval/">定期的に動いてる無駄なものを停止する</a></li>
 <li><a href="https://dwango-js.github.io/performance-handbook/watching/fix-new-function/">毎回関数を作ってpropsに設定する問題の修正</a></li>
 <li><a href="https://dwango-js.github.io/performance-handbook/watching/fix-mousemove/">マウスを動かすと再描画する問題の修正</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="https://dwango-js.github.io/performance-handbook/watching/tradeoff/">軽量化のトレードオフの検証</a></li>
 <li><a href="https://dwango-js.github.io/performance-handbook/watching/fix-library/">ライブラリを改善する</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="https://dwango-js.github.io/performance-handbook/startup/">ページロードのパフォーマンス改善</a>
-
 <ul>
 <li><a href="https://dwango-js.github.io/performance-handbook/startup/stats/">継続的なパフォーマンス計測</a></li>
 <li><a href="https://dwango-js.github.io/performance-handbook/startup/reduce-bundle/">パッケージはBundleを配布しない</a></li>
-<li><a href="https://dwango-js.github.io/performance-handbook/startup/module-field/">&ldquo;module&rdquo;フィールド対応</a></li>
+<li><a href="https://dwango-js.github.io/performance-handbook/startup/module-field/">&ldquo;module&quot;フィールド対応</a></li>
 <li><a href="https://dwango-js.github.io/performance-handbook/startup/reduce-size/">ファイルサイズを減らす</a></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="おわりに">おわりに</h2>
-
 <p>ウェブアプリケーション自体が継続的に開発されている場合、パフォーマンス改善も基本的におわりはありません。
 このハンドブックが解決方法ではなく問題の見つけ方を重視しているのは、パフォーマンスは継続的に改善して続ける必要があるためです。このハンドブックが何かの参考になれば幸いです。</p>
-
 <ul>
 <li>サイト: <a href="https://dwango-js.github.io/performance-handbook/">Webフロントエンド パフォーマンス改善ハンドブック</a></li>
 <li>リポジトリ: <a href="https://github.com/dwango-js/performance-handbook">https://github.com/dwango-js/performance-handbook</a></li>
 </ul>
-
-    </article>
-  </div>
-</div>
-
+</article>
     </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="Webフロントエンド パフォーマンス改善ハンドブックを公開しました - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/web-frontend-performance-handbook/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/web-frontend-performance-handbook/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2fweb-frontend-performance-handbook%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </main>
+
+    
+      
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-LF3Z3TQ34F', { 'anonymize_ip': false });
+}
+</script>
 
     
   </body>

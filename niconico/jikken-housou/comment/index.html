@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.87.0" />
 
   <meta property="og:title" content="実験放送の構成 - コメント編 - dwango on GitHub">
 
@@ -40,171 +40,137 @@
   <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
-      <p class="lead">
-       
- 
-      </p>
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="https://dwango.github.io/">Home</a> </li>
-      <li><a href="/articles"> Articles </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/niconico"> niconico </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://nico.ms/job/engineer"> Hiring </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> niconico 開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
     </ul>
 
-    <p>
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
       
-        <p style="display:inline-block;vertical-align:middle;">
-          Copyright &copy; DWANGO Co., Ltd.
-        </p>
+        Copyright &copy; DWANGO Co., Ltd.
       
     </p>
   </div>
 </div>
 
-    <div class="content container">
+    <main class="content container">
     
-<div class="post">
-  <h1>実験放送の構成 - コメント編</h1>
-  <span class="post-date"> Tue, Aug 14, 2018 </span>
-  <div class="share">
-    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="実験放送の構成 - コメント編 - dwango on GitHub" data-url="https://dwango.github.io/niconico/jikken-housou/comment/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/niconico/jikken-housou/comment/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2fniconico%2fjikken-housou%2fcomment%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-  </div>
-  <div>
-    
-    <article id="content">
-       
+  <div class="post">
+    <time class="content-date" datetime="2018-08-14 15:44:12 &#43;0900 JST" itemprop="datepublished"
+      >2018-08-14 Tue</time
+    >
+    <h1 class="article-title">実験放送の構成 - コメント編</h1>
 
-<h1 id="本ドキュメントの内容はすでに廃止されています">本ドキュメントの内容はすでに廃止されています。</h1>
-
-<p><strong>2019年4月11日をもちまして、実験放送は終了いたしました。</strong> ご意見・ご協力いただき、ありがとうございました。<br />
+    <div>
+      
+      <article id="content"><h1 id="本ドキュメントの内容はすでに廃止されています">本ドキュメントの内容はすでに廃止されています。</h1>
+<p><strong>2019年4月11日をもちまして、実験放送は終了いたしました。</strong> ご意見・ご協力いただき、ありがとうございました。<br>
 本ドキュメントは参考のために残しておりますが、解説されているコメントサーバーはすでに使用終了しております。</p>
-
 <h1 id="本ページの内容">本ページの内容</h1>
-
 <p>本ページでは、実験放送のコメント周りの構成について解説します。</p>
-
 <p>主に、以下のような方を対象としています。</p>
-
 <ul>
 <li>ニコニコ生放送で利用されるコメビュ等のツール制作者の方々</li>
 <li>実験放送で立ち見が無くなっているという噂を確かめたい技術者の方々</li>
 </ul>
-
 <h1 id="立ち見のない構成">立ち見のない構成</h1>
-
 <p>これまでのニコニコ生放送では、生放送には500人ごとのスペースが存在し、アリーナと呼ばれるスペースや、立ち見と呼ばれるスペースに分かれる構成をとっていました。</p>
-
 <p>ニコニコ大百科等にも色々と記述があります。</p>
-
 <ul>
 <li><a href="http://dic.nicovideo.jp/a/%E3%83%8B%E3%82%B3%E9%81%93%E9%A4%A8">ニコ道館</a></li>
 <li><a href="http://dic.nicovideo.jp/a/%E3%82%A2%E3%83%AA%E3%83%BC%E3%83%8A%28%E3%83%8B%E3%82%B3%E3%83%8B%E3%82%B3%E7%94%9F%E6%94%BE%E9%80%81%29">アリーナ</a></li>
 </ul>
-
 <p>大ざっぱに図説すると、以下のようにスペース分けをされる事になります。</p>
-
-<img src="https://dwango.github.io/images/jikken-housou/partition.png" alt="部屋割り"  />
-
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/jikken-housou/partition.png" alt="部屋割り"  />
+  
+</div>
 
 <p>生放送上のコメントには、大きく二つの問題があります。</p>
-
 <ol>
 <li>多くの視聴者が同じコメントを参照するとサーバ負荷が高くなりすぎる</li>
 <li>コメント流量が多すぎると、通信並びに画面上のコメントが多くなりすぎる</li>
 </ol>
-
 <p>スペースを分ける事でコメント流量を保ち、サーバ負荷を抑え、かつそれぞれのスペースのコメントを共有する機構を入れることで放送の一体感も保ち続ける、ニコニコ生放送を長く支えた構成でした。</p>
-
 <p>一方で、アリーナ以外のユーザは放送者にコメントを届ける事ができない（放送者がコメビュ等を使えば回避可能）等の問題もありました。</p>
-
 <p>実験放送では、試験的に本構成の変更に取り組んでいます。</p>
-
 <p>コメントを管理する主体としてスレッドというものを利用しているのですが、ニコニコ生放送ではスペースを分けた場合はこのスレッドが分かれるのに対して、実験放送では放送者も視聴者もスペースを分けず、参照するスレッドを単一にしています。</p>
-
-<img src="https://dwango.github.io/images/jikken-housou/delete-partition.png" alt="部屋割り無し"  />
-
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/jikken-housou/delete-partition.png" alt="部屋割り無し"  />
+  
+</div>
 
 <p>しかしこの変更をそのまま適用してしまうと、これまでユーザの皆さんが培ってきた文化であるコメビュ等との互換性が崩れてしまいます。</p>
-
 <p>そこで、アリーナ（より正確にはアリーナ最前列のスレッド）を生かしつつ、アリーナのコメントを新しいコメントサーバのスレッドにimportする形で運用しています。</p>
-
-<img src="https://dwango.github.io/images/jikken-housou/delete-partition-with-import.png" alt="部屋割りが無くimportがある"  />
-
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/jikken-housou/delete-partition-with-import.png" alt="部屋割りが無くimportがある"  />
+  
+</div>
 
 <p>これにより、放送を見ている全てのユーザに同じコメントが届けられ、また、どの視聴者からのコメントも放送者に届くようになっています。</p>
-
 <p>問題の一つ目、サーバ負荷の問題については、コメントサーバを新しいものにすることで問題を解決しています。このコメントサーバについての詳しい情報は本記事では割愛します。</p>
-
 <p>問題の二つ目、コメント流量の問題の解決については次項で書いていきます。</p>
-
 <h1 id="api経由でのコメント投稿">API経由でのコメント投稿</h1>
-
 <p>既存のニコニコ生放送では、コメント投稿はスペースを管理するコメントサーバに対して直接行われていました。</p>
-
-<img src="https://dwango.github.io/images/jikken-housou/post-comment.png" alt="ニコ生のコメント投稿"  />
-
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/jikken-housou/post-comment.png" alt="ニコ生のコメント投稿"  />
+  
+</div>
 
 <p>実験放送では、一層APIを挟む構成にしています。</p>
-
-<img src="https://dwango.github.io/images/jikken-housou/post-comment-by-api.png" alt="実験放送のコメント投稿"  />
-
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/jikken-housou/post-comment-by-api.png" alt="実験放送のコメント投稿"  />
+  
+</div>
 
 <p>少し登場人物が増えて遅そうに見えますが、これらが比較的高速に実行されるように実装されています（図面上は簡略化していますが、実際にはアリーナから新しいスレッドへのimport処理がもう一つ入っています）。</p>
-
 <p>全てのユーザはAPI経由でコメント投稿のリクエストを行い、APIはQueueに積み込んで処理を終えます。</p>
-
 <p>Queueに積み込まれたコメントを高速に処理するバッチが番組ごとに動作しており、それがスレッドへの反映処理を担っています。</p>
-
 <p>この構成によって、直接投稿されては難しい前項で触れたコメント流量問題の解決を実現しています。</p>
-
 <p>しかし流量を制御してしまうだけだと、後で全コメントのダウンロードなどが難しくなるため、実験放送ではもう一工夫を加えています。</p>
-
-<img src="https://dwango.github.io/images/jikken-housou/post-controllable-comment.png" alt="流量制御されるコメント"  />
-
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/jikken-housou/post-controllable-comment.png" alt="流量制御されるコメント"  />
+  
+</div>
 
 <p>Queueを管理するミドルウェアが、Queueに積み込まれたコメントの内、閾値以上のコメントを別のQueueに移動させる処理を担っています。</p>
-
 <p>別のQueueに移されたコメントは別のバッチによってゆっくりと別のスレッドへ流し込まれます。この別のスレッドを、実験放送ではstoreスレッドと呼称しています。</p>
-
 <h1 id="コメント以外のメッセージ">コメント以外のメッセージ</h1>
-
 <p>コメントとは直接関係がないのですが、実験放送のスレッドは通常のスレッド、storeスレッド以外にもう一つ、xというサフィックスを持つスレッドがあります。</p>
-
 <p>xというサフィックスを持つスレッドにはコメントとは異なる書式で、以下のような特殊なメッセージが流れます。</p>
-
 <ul>
 <li>テロップ</li>
 <li>運営コメント</li>
 <li>番組情報変更通知</li>
 </ul>
-
 <p>これらのメッセージについての詳しい情報は、また別の機会に解説させていただきます。</p>
-
 <h1 id="開発者向けの情報">開発者向けの情報</h1>
-
 <p>ニコニコは、いわゆるコメビュをはじめとした、数多くの周辺ツールに支えられてきました。</p>
-
 <p>周辺ツールはニコニコ生放送の仕組みに影響を受けるため、実験放送ではなるべく影響が出ないようアリーナスレッドを維持する等の注意を払っていますが、それでも完全な対応のためには新しい構成の情報が必要です。</p>
-
 <p>特に、以下の3つが必要になります。</p>
-
 <ul>
 <li>スレッド情報を取得するAPIの情報</li>
 <li>コメントを投稿するAPIの情報</li>
 <li>実験放送であることを識別するための方法</li>
 </ul>
-
 <h2 id="スレッド情報を取得するapi">スレッド情報を取得するAPI</h2>
-
 <p>実験放送のコメントはアリーナに流れるため、特に対応をしなくても実験放送のコメントをツールで取得することはできます。</p>
-
 <p>これに加えて、storeスレッドにアクセスすることができれば、全コメントを取得することもできるようになります。</p>
-
 <p>本項では、storeスレッドを含む実験放送のスレッド情報を取得するAPIの情報を記します。</p>
-
 <table>
 <thead>
 <tr>
@@ -213,20 +179,17 @@
 <th>備考</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>URL</td>
 <td><code>https://api.cas.nicovideo.jp/v1/services/live/programs/{programId}/threads</code></td>
 <td></td>
 </tr>
-
 <tr>
 <td>メソッド</td>
 <td>GET</td>
 <td></td>
 </tr>
-
 <tr>
 <td>Cookie</td>
 <td>user_session</td>
@@ -234,11 +197,8 @@
 </tr>
 </tbody>
 </table>
-
 <p><code>programId</code> の部分に <code>lvXXXXX</code> の情報を入れれば、スレッド情報を取得することが出来ます。</p>
-
 <p>以下が本APIで得られる値のサンプルです。</p>
-
 <pre><code>{
   &quot;meta&quot;: {
     &quot;status&quot;: 200
@@ -266,26 +226,15 @@
     }
   }
 }
-</code></pre>
-
-<p><code>messageServer</code> には、接続のための基本情報が格納されています。</p>
-
+</code></pre><p><code>messageServer</code> には、接続のための基本情報が格納されています。</p>
 <p><code>threads</code> 以下に、そのスレッドの名称と、そのスレッドに接続するための <code>threadKey</code> という情報が格納されています。コメントを取る場合には <code>chat</code> スレッドに、一定流量以上のコメントを取る場合には <code>store</code> スレッドに接続する必要があります。</p>
-
 <p><code>control</code> というスレッドにはコメント以外のメッセージが格納されています。</p>
-
 <p>コメントサーバは、ニコニコ生放送で現在利用されているアプリケーションと互換性のある内容になっているので、従来同様にXMLSocketで接続することで、実際のコメントデータ等を取得することができます。</p>
-
 <p>XMLSocketはFlashで広く採用されたプロトコルですが、2018年08月現在ではWebSocketの方を推奨していますので、WebSocketに接続するとより安定した動作が期待できます。接続のための技術文書公開については検討中で、進展があればこちらの文書も更新してリンクを記載する予定です。</p>
-
 <h2 id="コメントを投稿するapi">コメントを投稿するAPI</h2>
-
 <p>コメント投稿の機能を持っているツールもあります。</p>
-
 <p>アリーナに投稿すれば問題なく実験放送上に反映されますが、正しい経路でのコメント投稿処理を実装するためにはAPIの情報が必要です。</p>
-
 <p>本項では、実験放送のコメント投稿APIについて記します。</p>
-
 <table>
 <thead>
 <tr>
@@ -294,26 +243,22 @@
 <th>備考</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>URL</td>
 <td><code>https://api.cas.nicovideo.jp/v1/services/live/programs/{programId}/comments</code></td>
 <td></td>
 </tr>
-
 <tr>
 <td>メソッド</td>
 <td>POST</td>
 <td></td>
 </tr>
-
 <tr>
 <td>Cookie</td>
 <td>user_session</td>
 <td>ニコニコのログイン情報を指定。コミュニティ限定番組にコメント投稿する場合に必須</td>
 </tr>
-
 <tr>
 <td>Content-Type</td>
 <td>application/json</td>
@@ -321,26 +266,17 @@
 </tr>
 </tbody>
 </table>
-
 <p>リクエストBODYには、JSONで以下のような内容を入力する必要があります。</p>
-
 <pre><code>{
   &quot;message&quot;: &quot;あいうえお&quot;,
   &quot;command&quot;: &quot;184 ue red&quot;,
   &quot;vpos&quot;: &quot;0&quot;
 }
-</code></pre>
-
-<p><code>message</code> にはコメント本文を格納し、 <code>command</code> には各種コマンドを格納してください。</p>
-
+</code></pre><p><code>message</code> にはコメント本文を格納し、 <code>command</code> には各種コマンドを格納してください。</p>
 <p><code>vpos</code> はそのコメントの位置です。これも従来のものと同様の仕様になっています。</p>
-
 <p>なお、本APIを利用して投稿する場合には、アプリやWebで実際に映像を見ている必要がある点にご注意ください。ツールのみを起動してコメント投稿をする場合には、投稿に失敗する可能性があります。</p>
-
 <h2 id="実験放送であることの識別">実験放送であることの識別</h2>
-
 <p>実験放送であるかどうかは、タグに実験放送が含まれているかどうかで識別できますが、以下のAPIを利用することもできます。</p>
-
 <table>
 <thead>
 <tr>
@@ -349,14 +285,12 @@
 <th>備考</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>URL</td>
 <td><code>https://api.cas.nicovideo.jp/v1/services/live/programs/{programId}</code></td>
 <td></td>
 </tr>
-
 <tr>
 <td>メソッド</td>
 <td>GET</td>
@@ -364,16 +298,81 @@
 </tr>
 </tbody>
 </table>
-
 <p>こちらのAPIから取得できる <code>programType</code> という情報が <code>cas</code> であれば、実験放送の番組という形になります。</p>
-
 <p>基本的にはタグのままで問題ないのですが、実験放送というタグが将来に渡ってつく保証はないため、正式なAPIから判別できるようにする場合にはこちらをご利用ください。</p>
-
-    </article>
-  </div>
-</div>
-
+</article>
     </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+          
+            <a href="https://dwango.github.io//categories/jikken-housou/">/jikken-housou</a>
+          
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="実験放送の構成 - コメント編 - dwango on GitHub"
+          data-url="https://dwango.github.io/niconico/jikken-housou/comment/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/niconico/jikken-housou/comment/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2fniconico%2fjikken-housou%2fcomment%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </main>
+
+    
+      
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-LF3Z3TQ34F', { 'anonymize_ip': false });
+}
+</script>
 
     
   </body>

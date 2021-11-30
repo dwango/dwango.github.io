@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Articles on dwango on GitHub</title>
@@ -6,10 +6,15 @@
     <description>Recent content in Articles on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 21 May 2019 15:00:02 +0900</lastBuildDate>
-    
-	<atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Tue, 30 Nov 2021 10:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ドワンゴ21新卒がフルリモートでの入社から機能をリリースするまで</title>
+      <link>https://dwango.github.io/articles/hikamayo_rookie/</link>
+      <pubDate>Tue, 30 Nov 2021 10:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/hikamayo_rookie/</guid>
+      <description>はじめに 2021年新卒エンジニアのHikamayoです。 先日、僕が入社して初めて開発に関わった機能がリリースされました。 ニコニコ動画で、自分</description>
+    </item>
     
     <item>
       <title>社内LT配信システムの紹介</title>

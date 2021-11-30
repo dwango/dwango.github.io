@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.87.0" />
 
   <meta property="og:title" content="「VRM」って何？どんなことができる？ - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -42,23 +42,22 @@
   <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
-      <p class="lead">
-       
- 
-      </p>
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="https://dwango.github.io/">Home</a> </li>
-      <li><a href="/articles"> Articles </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/niconico"> niconico </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://nico.ms/job/engineer"> Hiring </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> niconico 開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
     </ul>
 
-    <p>
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
       
-        <p style="display:inline-block;vertical-align:middle;">
-          Copyright &copy; DWANGO Co., Ltd.
-        </p>
+        Copyright &copy; DWANGO Co., Ltd.
       
     </p>
   </div>
@@ -92,79 +91,58 @@
   <div>
     <article id="content">
         <div class="toc"> <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#vrm-とは">「VRM」とは</a></li>
-<li><a href="#vrmで何ができるの">VRMで何ができるの？</a></li>
-<li><a href="#vrmの特徴">VRMの特徴</a></li>
-<li><a href="#vrmファイルに設定できるライセンスデータ">VRMファイルに設定できるライセンスデータ</a>
-<ul>
-<li><a href="#アバターの人格に関する許諾範囲-personation-charaterization-permission">アバターの人格に関する許諾範囲(Personation / Charaterization Permission)</a>
-<ul>
-<li><a href="#アバターに人格を与えることの許諾範囲-a-person-who-can-perform-with-this-avatar">アバターに人格を与えることの許諾範囲(A person who can perform with this avatar)</a></li>
-<li><a href="#このアバターを用いて暴力表現を演じることの許可-violent-acts-using-this-avatar">このアバターを用いて暴力表現を演じることの許可(Violent acts using this avatar)</a></li>
-<li><a href="#このアバターを用いて性的表現を演じることの許可-sexuality-acts-using-this-avatar">このアバターを用いて性的表現を演じることの許可(Sexuality acts using this avatar)</a></li>
-<li><a href="#商用利用の許可-for-commercial-use">商用利用の許可(For commercial use)</a></li>
-<li><a href="#その他のライセンス条件-other-license-url">その他のライセンス条件(Other License Url)</a></li>
-</ul></li>
-<li><a href="#再配布-改変に関する許諾範囲-redistribution-modifications-license">再配布・改変に関する許諾範囲(Redistribution / Modifications License)</a>
-<ul>
-<li><a href="#ライセンスタイプ-license-type">ライセンスタイプ(License Type)</a></li>
-<li><a href="#その他ライセンス条件-other-license-url">その他ライセンス条件(Other License Url)</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#vrmとは">「VRM」とは</a></li>
+    <li><a href="#vrmで何ができるの">VRMで何ができるの？</a></li>
+    <li><a href="#vrmの特徴">VRMの特徴</a></li>
+    <li><a href="#vrmファイルに設定できるライセンスデータ">VRMファイルに設定できるライセンスデータ</a>
+      <ul>
+        <li><a href="#アバターの人格に関する許諾範囲personation--charaterization-permission">アバターの人格に関する許諾範囲(Personation / Charaterization Permission)</a></li>
+        <li><a href="#再配布改変に関する許諾範囲redistribution--modifications-license">再配布・改変に関する許諾範囲(Redistribution / Modifications License)</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
         </div>
-       
-
-<h2 id="vrm-とは">「VRM」とは</h2>
-
-<p>VR(Virtual Reality)やVTuberなどにおいて<strong>「キャラクターや人型のアバター（の3Dモデル）」</strong>を取り扱おうとした場合、従来はアプリケーションごと・3Dモデルデータごとに独自のシステムを開発したり細かく調整したりする必要がありました。</p>
-
+       <h2 id="vrmとは">「VRM」とは</h2>
+<p>VR(Virtual Reality)やVTuberなどにおいて**「キャラクターや人型のアバター（の3Dモデル）」**を取り扱おうとした場合、従来はアプリケーションごと・3Dモデルデータごとに独自のシステムを開発したり細かく調整したりする必要がありました。</p>
 <p>というのも…</p>
-
 <ul>
 <li>3Dモデルを作成したクリエイターや使用したモデリングツールによって「作法」が違いデータの状況がひとつひとつ異なっている
-
 <ul>
 <li>座標系が異なっていたり、スケールが異なっていたり、初期姿勢が異なっていたり、表情の表現方法が異なっていたり…</li>
 <li>もちろん、骨（ボーン）の入れ方も状況によって異なっていたり</li>
-</ul></li>
+</ul>
+</li>
 <li>3Dモデルデータを取り扱うフォーマットは、各社各様で仕様が必要以上に複雑であったり、必要な情報が足りなかったりしている
-
 <ul>
 <li>対応ソフトが多い「FBXファイル」はアプリケーションごとに読めたり読めなかったり。どのアプリケーションのどのバージョンで出力したFBXなのか…というのを気にしたかたも多いと思います</li>
-</ul></li>
+</ul>
+</li>
 <li>3Dモデルデータを「アバターとして使用する」という観点で見ると、必要な情報が整備されていない
-
 <ul>
 <li>たとえば一人称視点を実現するための視点の位置はどこか、一人称視点から表示するためには頭部の表示を消さなければならないが、具体的にはどこを消すのか、など</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>VRでのアバター表現が急速に盛り上がるなか、こういった状況が続くとアプリケーション開発者にとっても、3Dモデルクリエイターにとっても二度手間三度手間になってしまいます。
 この状況を改善するために</p>
-
 <ul>
 <li>「人型のキャラクターやアバター」において</li>
 <li>細かいモデルデータの差違を吸収・統一し</li>
 <li>アプリケーション側の取り扱いを簡単にする</li>
 </ul>
-
 <p><strong>「VRM」は、このような特徴のある「プラットフォーム非依存の3Dアバターファイルフォーマット」を提案する</strong>ものです。</p>
-
-<hr />
-
+<hr>
 <h2 id="vrmで何ができるの">VRMで何ができるの？</h2>
-
-<p><img src="https://dwango.github.io/images/vrm/vrm_app.png" alt="VRM applications"  />
+<p><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/vrm/vrm_app.png" alt="VRM applications"  />
+  
+</div>
 
 <strong>VRM対応アプリケーションで同じアバター（3Dモデル）データを使うことができます。</strong>
 対応アプリケーションが揃うと、こんな未来になるはず…</p>
-
 <ul>
 <li>VRM対応のキャラクタ製作ツールで自分のアバターをつくる</li>
 <li>自分のアバターで生放送をしていたら、友達も生放送をはじめたので友達の放送に凸しに行った</li>
@@ -172,87 +150,60 @@
 <li>ゲームに飽きたのでVR世界のチャットへ移動。同じアバターで友達と遊ぶ</li>
 <li>翌日はVR勉強会にVR参加。もちろんアバターはいつもの姿で</li>
 </ul>
-
 <p><strong>「自分の」アバター（3Dモデルデータ）を「VRM」で取り扱うことで、いろいろなVRM対応アプリケーションやゲームで相互に行き来できるようになります。</strong></p>
-
 <p>生放送、動画作成、ゲーム、チャット…。いまは複数のVR世界が分断されています。この分断されたVR世界をつなぐための第一歩、それがVRMなのです。</p>
-
-<hr />
-
+<hr>
 <h2 id="vrmの特徴">VRMの特徴</h2>
-
 <p>VRMでは「人型」の「キャラクター・アバター」を取り扱うことができます。<strong>UnityでVRMファイルを読み書きする標準実装が提供されます</strong>が、<strong>フォーマット自体はプラットフォーム非依存</strong>であり他エンジンや環境でも取り扱うことが可能です。</p>
-
 <ul>
 <li>プラットフォーム非依存で人型のキャラクター3Dモデルデータを取り扱うことが可能</li>
 <li>3D標準フォーマット glTF2.0をベースとして、人型モデルを取り扱うための制約と拡張を加えたフォーマット。標準フォーマットをベースとしているため実装も容易</li>
 <li>テクスチャやマテリアルなどすべてのデータを含めて１ファイルにまとまる。ファイル一つで取り扱い可能</li>
 <li>スケール（1.00 = 1m）・座標系と向き（Y-up, -Z方向向き）・骨の構造（Unity Humanoid準拠構成, Tスタンス, 各骨にローカルの回転などを入れない）などについて標準の構成が決められておりモデリングツールによる差違の影響を受けない</li>
 <li>Blend Shapeやマテリアルの透明度など「キャラクターの表情」を取り扱うためにはさまざまな技法が使われるが、その技法の差違をVRM側で吸収し統一したAPIで操作できる</li>
-<li>VRでのアバター利用のための、<strong>「一人称視点再現のための情報」</strong>に対応。</li>
+<li>VRでのアバター利用のための、**「一人称視点再現のための情報」**に対応。</li>
 <li>キャラクターの髪の毛などについて、物理エンジンに依存しない「揺れ物」標準実装を用意、設定可能に</li>
 <li>標準実装としてのマテリアル（シェーダ）を用意。標準的なPBRだけでなくトゥーンシェーディングやUnlitレンダリングを設定可能</li>
 <li>タイトル・作者名などのメタ情報だけでなく、サムネイルや<strong>VR時代に即した、アバターに特化したライセンス情報</strong>も内包可能</li>
 </ul>
-
 <p>VRMは複数アプリケーション間で相互利用されることが想定される、VR時代の3Dアバターフォーマットです。たとえば「ネットワークに相互接続されたアバターによるVRコミュニケーション」を考えた場合、<strong>自分のアバターデータを「他の人から自分の姿が見えるように」他のユーザへ送信する</strong>、ということも行われることになります。
 この場合、従来の考え方に基づく「再配布」規定だけでは対応できない場面が考えられます。そのため、VRMでは</p>
-
 <ul>
 <li>モデルデータ自体に対しての改変・再配布規定（Creative Commonsなどから設定可能）</li>
 </ul>
-
 <p>のほかに</p>
-
 <ul>
 <li>モデルデータを使用して「人格を演じる」ことについての許諾規定</li>
 </ul>
-
 <p>を<strong>ファイルに設定できる</strong>など、VR時代を想定したフォーマットとなっています。</p>
-
-<hr />
-
+<hr>
 <h2 id="vrmファイルに設定できるライセンスデータ">VRMファイルに設定できるライセンスデータ</h2>
-
-<h3 id="アバターの人格に関する許諾範囲-personation-charaterization-permission">アバターの人格に関する許諾範囲(Personation / Charaterization Permission)</h3>
-
-<h4 id="アバターに人格を与えることの許諾範囲-a-person-who-can-perform-with-this-avatar">アバターに人格を与えることの許諾範囲(A person who can perform with this avatar)</h4>
-
+<h3 id="アバターの人格に関する許諾範囲personation--charaterization-permission">アバターの人格に関する許諾範囲(Personation / Charaterization Permission)</h3>
+<h4 id="アバターに人格を与えることの許諾範囲a-person-who-can-perform-with-this-avatar">アバターに人格を与えることの許諾範囲(A person who can perform with this avatar)</h4>
 <ul>
 <li>アバターを操作することはアバター作者にのみ許される(Only Author)</li>
 <li>明確に許可された人限定(Explictly Licensed Person)</li>
 <li>全員に許可(Everyone)</li>
 </ul>
-
-<h4 id="このアバターを用いて暴力表現を演じることの許可-violent-acts-using-this-avatar">このアバターを用いて暴力表現を演じることの許可(Violent acts using this avatar)</h4>
-
+<h4 id="このアバターを用いて暴力表現を演じることの許可violent-acts-using-this-avatar">このアバターを用いて暴力表現を演じることの許可(Violent acts using this avatar)</h4>
 <ul>
 <li>不許可(Disallow)</li>
 <li>許可(Allow)</li>
 </ul>
-
-<h4 id="このアバターを用いて性的表現を演じることの許可-sexuality-acts-using-this-avatar">このアバターを用いて性的表現を演じることの許可(Sexuality acts using this avatar)</h4>
-
+<h4 id="このアバターを用いて性的表現を演じることの許可sexuality-acts-using-this-avatar">このアバターを用いて性的表現を演じることの許可(Sexuality acts using this avatar)</h4>
 <ul>
 <li>不許可(Disallow)</li>
 <li>許可(Allow)</li>
 </ul>
-
-<h4 id="商用利用の許可-for-commercial-use">商用利用の許可(For commercial use)</h4>
-
+<h4 id="商用利用の許可for-commercial-use">商用利用の許可(For commercial use)</h4>
 <ul>
 <li>不許可(Disallow)</li>
 <li>許可(Allow)</li>
 </ul>
-
-<h4 id="その他のライセンス条件-other-license-url">その他のライセンス条件(Other License Url)</h4>
-
+<h4 id="その他のライセンス条件other-license-url">その他のライセンス条件(Other License Url)</h4>
 <p>上記許諾条件以外のライセンス条件がある場合はそのライセンス文書へのURLを記述</p>
-
-<h3 id="再配布-改変に関する許諾範囲-redistribution-modifications-license">再配布・改変に関する許諾範囲(Redistribution / Modifications License)</h3>
-
-<h4 id="ライセンスタイプ-license-type">ライセンスタイプ(License Type)</h4>
-
+<h3 id="再配布改変に関する許諾範囲redistribution--modifications-license">再配布・改変に関する許諾範囲(Redistribution / Modifications License)</h3>
+<h4 id="ライセンスタイプlicense-type">ライセンスタイプ(License Type)</h4>
 <ul>
 <li>再配布禁止(Redistribution Prohibited)</li>
 <li><a href="https://creativecommons.org/publicdomain/zero/1.0/deed.ja">著作権放棄(CC0)</a></li>
@@ -264,9 +215,7 @@
 <li><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja">Creative Commons CC BY NC NDライセンス(CC_BY_NC_ND)</a></li>
 <li>その他(Other)</li>
 </ul>
-
-<h4 id="その他ライセンス条件-other-license-url">その他ライセンス条件(Other License Url)</h4>
-
+<h4 id="その他ライセンス条件other-license-url">その他ライセンス条件(Other License Url)</h4>
 <p>上記許諾条件以外のライセンス条件がある場合はそのライセンス文書へのURLを記述</p>
 
     </article>
@@ -281,5 +230,16 @@
     </div>
 
     
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
   </body>
 </html>

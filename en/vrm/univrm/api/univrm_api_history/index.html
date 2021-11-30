@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.87.0" />
 
   <meta property="og:title" content="API Change History - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -42,22 +42,22 @@
   <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
-      <p class="lead">
-       
-      </p>
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="https://dwango.github.io/">Home</a> </li>
-      <li><a href="/articles"> Articles </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/niconico"> niconico </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://nico.ms/job/engineer"> Hiring </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> niconico 開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
     </ul>
 
-    <p>
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
       
-        <p style="display:inline-block;vertical-align:middle;">
-          Copyright &copy; DWANGO Co., Ltd.
-        </p>
+        Copyright &copy; DWANGO Co., Ltd.
       
     </p>
   </div>
@@ -91,53 +91,30 @@
   <div>
     <article id="content">
         <div class="toc"> <nav id="TableOfContents">
-<ul>
-<li><a href="#v0-36">v0.36</a>
-<ul>
-<li><a href="#texture-name-save-locations-changed">Texture Name Save Locations Changed</a></li>
-<li><a href="#blendshape-name-save-locations-changed">BlendShape Name Save Locations Changed</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#texture-name-save-locations-changed">Texture Name Save Locations Changed</a></li>
+    <li><a href="#blendshape-name-save-locations-changed">BlendShape Name Save Locations Changed</a></li>
+  </ul>
 </nav>
         </div>
-       
-
-<p>This section describes about changes affecting the program.</p>
-
+       <p>This section describes about changes affecting the program.</p>
 <p>Please go to <a href="https://github.com/dwango/UniVRM/wiki">UniVRM/Wiki</a> to get the latest information of the API update.</p>
-
-<h1 id="v0-36">v0.36</h1>
-
+<h1 id="v036">v0.36</h1>
 <h2 id="texture-name-save-locations-changed">Texture Name Save Locations Changed</h2>
-
 <p>Conforming to the GLTF specification.</p>
-
-<pre><code class="language-json">json.images[i].extra.name
-</code></pre>
-
-<p>After the change</p>
-
-<pre><code class="language-json">json.images[i].name
-</code></pre>
-
-<h2 id="blendshape-name-save-locations-changed">BlendShape Name Save Locations Changed</h2>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">json.images</span>[<span style="color:#960050;background-color:#1e0010">i</span>]<span style="color:#960050;background-color:#1e0010">.extra.name</span>
+</code></pre></div><p>After the change</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">json.images</span>[<span style="color:#960050;background-color:#1e0010">i</span>]<span style="color:#960050;background-color:#1e0010">.name</span>
+</code></pre></div><h2 id="blendshape-name-save-locations-changed">BlendShape Name Save Locations Changed</h2>
 <p>Conforming to the GLTF specification.</p>
-
 <ul>
 <li>&ldquo;extras&rdquo; is not allowed in target</li>
-
-<li><p><a href="https://github.com/KhronosGroup/glTF/issues/1036#issuecomment-314078356">https://github.com/KhronosGroup/glTF/issues/1036#issuecomment-314078356</a></p>
-
-<pre><code class="language-json">json.meshes[i].primitives[j].targets[k].extra.name
-</code></pre></li>
+<li><a href="https://github.com/KhronosGroup/glTF/issues/1036#issuecomment-314078356">https://github.com/KhronosGroup/glTF/issues/1036#issuecomment-314078356</a></li>
 </ul>
-
-<p>After the change</p>
-
-<pre><code class="language-json">json.meshes[i].primitives[j].extras.targetNames[k]
-</code></pre>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">json.meshes</span>[<span style="color:#960050;background-color:#1e0010">i</span>]<span style="color:#960050;background-color:#1e0010">.primitives</span>[<span style="color:#960050;background-color:#1e0010">j</span>]<span style="color:#960050;background-color:#1e0010">.targets</span>[<span style="color:#960050;background-color:#1e0010">k</span>]<span style="color:#960050;background-color:#1e0010">.extra.name</span>
+</code></pre></div><p>After the change</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">json.meshes</span>[<span style="color:#960050;background-color:#1e0010">i</span>]<span style="color:#960050;background-color:#1e0010">.primitives</span>[<span style="color:#960050;background-color:#1e0010">j</span>]<span style="color:#960050;background-color:#1e0010">.extras.targetNames</span>[<span style="color:#960050;background-color:#1e0010">k</span>]
+</code></pre></div>
     </article>
   </div>
 </div>
@@ -150,5 +127,16 @@
     </div>
 
     
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
   </body>
 </html>

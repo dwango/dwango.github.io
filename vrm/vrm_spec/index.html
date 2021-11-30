@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.87.0" />
 
   <meta property="og:title" content="VRM仕様 - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -42,23 +42,22 @@
   <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
-      <p class="lead">
-       
- 
-      </p>
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="https://dwango.github.io/">Home</a> </li>
-      <li><a href="/articles"> Articles </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/niconico"> niconico </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://nico.ms/job/engineer"> Hiring </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> niconico 開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
     </ul>
 
-    <p>
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
       
-        <p style="display:inline-block;vertical-align:middle;">
-          Copyright &copy; DWANGO Co., Ltd.
-        </p>
+        Copyright &copy; DWANGO Co., Ltd.
       
     </p>
   </div>
@@ -92,153 +91,116 @@
   <div>
     <article id="content">
         <div class="toc"> <nav id="TableOfContents">
-<ul>
-<li><a href="#更新履歴">更新履歴</a></li>
-<li><a href="#拡張子">拡張子</a></li>
-<li><a href="#json拡張">Json拡張</a></li>
-<li><a href="#vrm拡張-vrmバージョンなど">VRM拡張: VRMバージョンなど</a></li>
-<li><a href="#保存できる要素">保存できる要素</a>
-<ul>
-<li><a href="#gltf-2-0-texture">GLTF-2.0: Texture</a></li>
-<li><a href="#gltf-2-0-material-json-extensions-vrm-materialproperties">GLTF-2.0: Material(json.extensions.VRM.materialProperties)</a></li>
-<li><a href="#vrm拡張-extensions-vrm-materialproperties">VRM拡張: <code>/extensions/VRM/materialProperties</code></a></li>
-<li><a href="#gltf-2-0-mesh">GLTF-2.0: Mesh</a>
-<ul>
-<li><a href="#頂点属性">頂点属性</a></li>
-<li><a href="#モーフターゲット情報">モーフターゲット情報</a></li>
-</ul></li>
-<li><a href="#gltf-2-0-スキニング情報">GLTF-2.0: スキニング情報</a></li>
-<li><a href="#gltf-2-0-node">GLTF-2.0: Node</a></li>
-</ul></li>
-<li><a href="#保存する値に対する規約">保存する値に対する規約</a>
-<ul>
-<li><a href="#gltf2の規約">GLTF2の規約</a></li>
-<li><a href="#vrmの規約">VRMの規約</a></li>
-</ul></li>
-<li><a href="#vrmが提供するシェーダー">VRMが提供するシェーダー</a>
-<ul>
-<li><a href="#unlit系">Unlit系</a></li>
-<li><a href="#mtoon">MToon</a></li>
-</ul></li>
-<li><a href="#vrm拡張-モデルのボーンマッピング-json-extensions-vrm-humanoid">VRM拡張: モデルのボーンマッピング(json.extensions.VRM.humanoid)</a>
-<ul>
-<li><a href="#定義しているボーン">定義しているボーン</a></li>
-</ul></li>
-<li><a href="#vrm拡張-モデル情報-json-extensions-vrm-meta">VRM拡張: モデル情報(json.extensions.VRM.meta)</a>
-<ul>
-<li><a href="#情報">情報</a>
-<ul>
-<li><a href="#タイトル-title">タイトル(Title)</a></li>
-<li><a href="#作者-author">作者(Author)</a></li>
-<li><a href="#連絡先-contact-information">連絡先(Contact Information)</a></li>
-<li><a href="#参照-reference">参照(Reference)</a></li>
-<li><a href="#サムネイル-thumbnail">サムネイル(Thumbnail)</a></li>
-<li><a href="#バージョン">バージョン</a></li>
-</ul></li>
-<li><a href="#使用許諾-ライセンス情報">使用許諾・ライセンス情報</a>
-<ul>
-<li><a href="#アバターの人格に関する許諾範囲">アバターの人格に関する許諾範囲</a>
-<ul>
-<li><a href="#アバターに人格を与えることの許諾範囲-json-extensions-vrm-meta-allowedusername">アバターに人格を与えることの許諾範囲(json.extensions.VRM.meta.allowedUserName)</a></li>
-<li><a href="#このアバターを用いて暴力表現を演じることの許可-json-extensions-vrm-meta-violentussagename">このアバターを用いて暴力表現を演じることの許可(json.extensions.VRM.meta.violentUssageName)</a></li>
-<li><a href="#このアバターを用いて性的表現を演じることの許可-json-extensions-vrm-meta-sexualussagename">このアバターを用いて性的表現を演じることの許可(json.extensions.VRM.meta.sexualUssageName)</a></li>
-<li><a href="#商用利用の許可-json-extensions-vrm-meta-commercialussagename">商用利用の許可(json.extensions.VRM.meta.commercialUssageName)</a></li>
-<li><a href="#その他のライセンス条件-json-extensions-vrm-meta-otherpermissionurl">その他のライセンス条件(json.extensions.VRM.meta.otherPermissionUrl)</a></li>
-</ul></li>
-<li><a href="#再配布-改変に関する許諾範囲">再配布・改変に関する許諾範囲</a>
-<ul>
-<li><a href="#ライセンスタイプ-json-extensions-vrm-meta-licensename">ライセンスタイプ(json.extensions.VRM.meta.licenseName)</a></li>
-<li><a href="#その他ライセンス条件-json-extensions-vrm-meta-otherlicenseurl">その他ライセンス条件(json.extensions.VRM.meta.otherLicenseUrl)</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><a href="#vrm拡張-モーフ設定-json-extensions-vrm-blendshapemaster">VRM拡張: モーフ設定(json.extensions.VRM.blendShapeMaster)</a>
-<ul>
-<li><a href="#ブレンドシェイプグループ-json-extensions-vrm-blendshapemaster-blendshapegroups">ブレンドシェイプグループ(json.extensions.VRM.blendShapeMaster.blendShapeGroups)</a>
-<ul>
-<li><a href="#名前">名前</a></li>
-<li><a href="#事前定義名">事前定義名</a></li>
-<li><a href="#ブレンドシェイプの名前の識別名">ブレンドシェイプの名前の識別名</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#vrm拡張-一人称設定-json-extensions-vrm-firstperson">VRM拡張: 一人称設定(json.extensions.VRM.firstPerson)</a>
-<ul>
-<li><a href="#firstpersonbone-json-extensions-vrm-firstperson-firstpersonbone">firstPersonBone(json.extensions.VRM.firstPerson.firstPersonBone)</a></li>
-<li><a href="#firstpersonboneoffset-json-extensions-vrm-firstperson-firstpersonboneoffset">firstPersonBoneOffset(json.extensions.VRM.firstPerson.firstPersonBoneOffset)</a></li>
-<li><a href="#meshannotations-json-extensions-vrm-firstperson-meshannotations">meshAnnotations(json.extensions.VRM.firstPerson.meshAnnotations)</a></li>
-<li><a href="#視線設定">視線設定</a>
-<ul>
-<li><a href="#目線タイプ-json-extensions-vrm-firstperson-lookattypename">目線タイプ(json.extensions.VRM.firstPerson.lookAtTypeName)</a></li>
-<li><a href="#角度調整">角度調整</a>
-<ul>
-<li><a href="#json-extensions-vrm-firstperson-lookathorizontalinner">json.extensions.VRM.firstPerson.lookAtHorizontalInner</a></li>
-<li><a href="#json-extensions-vrm-firstperson-lookathorizontalouter">json.extensions.VRM.firstPerson.lookAtHorizontalOuter</a></li>
-<li><a href="#json-extensions-vrm-firstperson-lookatverticaldown">json.extensions.VRM.firstPerson.lookAtVerticalDown</a></li>
-<li><a href="#json-extensions-vrm-firstperson-lookatverticalup">json.extensions.VRM.firstPerson.lookAtVerticalUp</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><a href="#vrm拡張-揺れモノ設定-json-extensions-vrm-secondaryanimation">VRM拡張: 揺れモノ設定(json.extensions.VRM.secondaryAnimation)</a>
-<ul>
-<li><a href="#揺れるボーン-secondaryanimation-bonegroups">揺れるボーン(secondaryAnimation.boneGroups)</a>
-<ul>
-<li><a href="#揺れるボーンの根元のボーン-json-extensions-vrm-secondaryanimation-bonegroups-0-bones">揺れるボーンの根元のボーン(json.extensions.VRM.secondaryAnimation.boneGroups[0].bones)</a></li>
-<li><a href="#揺れるボーンと衝突する当たり判定-json-extensions-vrm-secondaryanimation-bonegroups-0-collidergroups">揺れるボーンと衝突する当たり判定(json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups)</a></li>
-<li><a href="#パラメーター">パラメーター</a>
-<ul>
-<li><a href="#center-json-extensions-vrm-secondaryanimation-bonegroups-0-center">center(json.extensions.VRM.secondaryAnimation.boneGroups[0].center)</a></li>
-<li><a href="#dragforce-json-extensions-vrm-secondaryanimation-bonegroups-0-dragforce">dragForce(json.extensions.VRM.secondaryAnimation.boneGroups[0].dragForce)</a></li>
-<li><a href="#gravitydir-json-extensions-vrm-secondaryanimation-bonegroups-0-gravitydir">gravityDir(json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityDir)</a></li>
-<li><a href="#gravitypower-json-extensions-vrm-secondaryanimation-bonegroups-0-gravitypower">gravityPower(json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityPower)</a></li>
-<li><a href="#hitradius-json-extensions-vrm-secondaryanimation-bonegroups-0-hitradius">hitRadius(json.extensions.VRM.secondaryAnimation.boneGroups[0].hitRadius)</a></li>
-<li><a href="#stiffness-json-extensions-vrm-secondaryanimation-bonegroups-0-stiffiness">stiffness(json.extensions.VRM.secondaryAnimation.boneGroups[0].stiffiness)</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#揺れモノ当たり判定設定-json-extensions-vrm-secondaryanimation-collidergroups">揺れモノ当たり判定設定(json.extensions.VRM.secondaryAnimation.colliderGroups)</a>
-<ul>
-<li><a href="#ノード-json-extensions-vrm-secondaryanimation-collidergroups-0-node">ノード(json.extensions.VRM.secondaryAnimation.colliderGroups[0].node)</a></li>
-<li><a href="#ローカル座標-json-extensions-vrm-secondaryanimation-collidergroups-0-colliders-1-offset">ローカル座標(json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].offset)</a></li>
-<li><a href="#半径-json-extensions-vrm-secondaryanimation-collidergroups-0-colliders-1-radius">半径(json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].radius)</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#gltf-20-texture">GLTF-2.0: Texture</a></li>
+    <li><a href="#gltf-20-materialjsonextensionsvrmmaterialproperties">GLTF-2.0: Material(json.extensions.VRM.materialProperties)</a></li>
+    <li><a href="#vrm拡張-extensionsvrmmaterialproperties">VRM拡張: <code>/extensions/VRM/materialProperties</code></a></li>
+    <li><a href="#gltf-20-mesh">GLTF-2.0: Mesh</a>
+      <ul>
+        <li><a href="#頂点属性">頂点属性</a></li>
+        <li><a href="#モーフターゲット情報">モーフターゲット情報</a></li>
+      </ul>
+    </li>
+    <li><a href="#gltf-20-スキニング情報">GLTF-2.0: スキニング情報</a></li>
+    <li><a href="#gltf-20-node">GLTF-2.0: Node</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#gltf2の規約">GLTF2の規約</a></li>
+    <li><a href="#vrmの規約">VRMの規約</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#unlit系">Unlit系</a></li>
+    <li><a href="#mtoon">MToon</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#定義しているボーン">定義しているボーン</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#情報">情報</a>
+      <ul>
+        <li><a href="#タイトルtitle">タイトル(Title)</a></li>
+        <li><a href="#作者author">作者(Author)</a></li>
+        <li><a href="#連絡先contact-information">連絡先(Contact Information)</a></li>
+        <li><a href="#参照reference">参照(Reference)</a></li>
+        <li><a href="#サムネイルthumbnail">サムネイル(Thumbnail)</a></li>
+        <li><a href="#バージョン">バージョン</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用許諾ライセンス情報">使用許諾・ライセンス情報</a>
+      <ul>
+        <li><a href="#アバターの人格に関する許諾範囲">アバターの人格に関する許諾範囲</a></li>
+        <li><a href="#再配布改変に関する許諾範囲">再配布・改変に関する許諾範囲</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#ブレンドシェイプグループjsonextensionsvrmblendshapemasterblendshapegroups">ブレンドシェイプグループ(json.extensions.VRM.blendShapeMaster.blendShapeGroups)</a>
+      <ul>
+        <li><a href="#名前">名前</a></li>
+        <li><a href="#事前定義名">事前定義名</a></li>
+        <li><a href="#ブレンドシェイプの名前の識別名">ブレンドシェイプの名前の識別名</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#firstpersonbonejsonextensionsvrmfirstpersonfirstpersonbone">firstPersonBone(json.extensions.VRM.firstPerson.firstPersonBone)</a></li>
+    <li><a href="#firstpersonboneoffsetjsonextensionsvrmfirstpersonfirstpersonboneoffset">firstPersonBoneOffset(json.extensions.VRM.firstPerson.firstPersonBoneOffset)</a></li>
+    <li><a href="#meshannotationsjsonextensionsvrmfirstpersonmeshannotations">meshAnnotations(json.extensions.VRM.firstPerson.meshAnnotations)</a></li>
+    <li><a href="#視線設定">視線設定</a>
+      <ul>
+        <li><a href="#目線タイプjsonextensionsvrmfirstpersonlookattypename">目線タイプ(json.extensions.VRM.firstPerson.lookAtTypeName)</a></li>
+        <li><a href="#角度調整">角度調整</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#揺れるボーンsecondaryanimationbonegroups">揺れるボーン(secondaryAnimation.boneGroups)</a>
+      <ul>
+        <li><a href="#揺れるボーンの根元のボーンjsonextensionsvrmsecondaryanimationbonegroups0bones">揺れるボーンの根元のボーン(json.extensions.VRM.secondaryAnimation.boneGroups[0].bones)</a></li>
+        <li><a href="#揺れるボーンと衝突する当たり判定jsonextensionsvrmsecondaryanimationbonegroups0collidergroups">揺れるボーンと衝突する当たり判定(json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups)</a></li>
+        <li><a href="#パラメーター">パラメーター</a></li>
+      </ul>
+    </li>
+    <li><a href="#揺れモノ当たり判定設定jsonextensionsvrmsecondaryanimationcollidergroups">揺れモノ当たり判定設定(json.extensions.VRM.secondaryAnimation.colliderGroups)</a>
+      <ul>
+        <li><a href="#ノードjsonextensionsvrmsecondaryanimationcollidergroups0node">ノード(json.extensions.VRM.secondaryAnimation.colliderGroups[0].node)</a></li>
+        <li><a href="#ローカル座標jsonextensionsvrmsecondaryanimationcollidergroups0colliders1offset">ローカル座標(json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].offset)</a></li>
+        <li><a href="#半径jsonextensionsvrmsecondaryanimationcollidergroups0colliders1radius">半径(json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].radius)</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
         </div>
-       
-
-<hr />
-
+       <hr>
 <p><a href="https://github.com/KhronosGroup/glTF/blob/master/specification/2.0/README.md">glTF-2.0</a>のバイナリ形式glbをベースにした、VR向けモデルフォーマットです。</p>
-
 <h1 id="更新履歴">更新履歴</h1>
-
 <ul>
-<li><p>20181109: JsonShcemaの<code>Vector3</code>のタイプが誤って <code>array</code> になっていた部分を修正</p>
-
-<pre><code class="language-js">{
-&quot;x&quot;: {
-    &quot;type&quot;: &quot;number&quot;
-},
-&quot;y&quot;: {
-    &quot;type&quot;: &quot;number&quot;
-},
-&quot;z&quot;: {
-    &quot;type&quot;: &quot;number&quot;
-}
-}
-</code></pre></li>
+<li>20181109: JsonShcemaの<code>Vector3</code>のタイプが誤って <code>array</code> になっていた部分を修正</li>
 </ul>
-
-<h1 id="拡張子">拡張子</h1>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
+    <span style="color:#e6db74">&#34;x&#34;</span><span style="color:#f92672">:</span> {
+        <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;number&#34;</span>
+    },
+    <span style="color:#e6db74">&#34;y&#34;</span><span style="color:#f92672">:</span> {
+        <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;number&#34;</span>
+    },
+    <span style="color:#e6db74">&#34;z&#34;</span><span style="color:#f92672">:</span> {
+        <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;number&#34;</span>
+    }
+}
+</code></pre></div><h1 id="拡張子">拡張子</h1>
 <p><code>.vrm</code>を使います。
 gltfのバイナリ形式<code>.glb</code>と互換性があるので、拡張子を<code>.glb</code>に変更するとGLTF対応のアプリケーションで読み込むことができます(VRM独自の追加情報は無くなります)。</p>
-
 <h1 id="json拡張">Json拡張</h1>
-
 <p>GLBのJSON部に<code>VRM Extension</code>として拡張しています。</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
   <span style="color:#e6db74">&#34;extensionsUsed&#34;</span><span style="color:#f92672">:</span> {
     <span style="color:#e6db74">&#34;VRM&#34;</span>
   },
@@ -248,28 +210,20 @@ gltfのバイナリ形式<code>.glb</code>と互換性があるので、拡張�
 </span><span style="color:#75715e"></span>    }
   },
   <span style="color:#75715e">// 通常のGLTF-2.0の情報
-</span><span style="color:#75715e"></span>}
-</code></pre></div>
-
+</span><span style="color:#75715e"></span>}</code></pre></div>
 <p>仕様のJsonSchemaを作成しました</p>
-
 <ul>
 <li><a href="https://github.com/dwango/UniVRM/tree/master/specification/0.0/schema">https://github.com/dwango/UniVRM/tree/master/specification/0.0/schema</a></li>
 </ul>
-
 <p>GLTF-2.0のJsonSchema</p>
-
 <ul>
 <li><a href="https://github.com/KhronosGroup/glTF/tree/master/specification/2.0/schema">https://github.com/KhronosGroup/glTF/tree/master/specification/2.0/schema</a></li>
 </ul>
-
 <h1 id="vrm拡張-vrmバージョンなど">VRM拡張: VRMバージョンなど</h1>
-
 <ul>
 <li><code>/extensions/VRM/exporterVersion</code>はv0.36から</li>
 </ul>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
     <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;vrm&#34;</span>,
     <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;VRM extension is for 3d humanoid avatars (and models) in VR applications.&#34;</span>,
     <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;object&#34;</span>,
@@ -300,40 +254,27 @@ gltfのバイナリ形式<code>.glb</code>と互換性があるので、拡張�
             }
         }
     }
-}
-</code></pre></div>
-
+}</code></pre></div>
 <h1 id="保存できる要素">保存できる要素</h1>
-
 <p>人間型モデル一体分の情報を保存します。</p>
-
-<h2 id="gltf-2-0-texture">GLTF-2.0: Texture</h2>
-
+<h2 id="gltf-20-texture">GLTF-2.0: Texture</h2>
 <ul>
 <li>GLTF-2.0の<code>/textures/</code></li>
 </ul>
-
 <p>VRM拡張はありません。</p>
-
-<h2 id="gltf-2-0-material-json-extensions-vrm-materialproperties">GLTF-2.0: Material(json.extensions.VRM.materialProperties)</h2>
-
+<h2 id="gltf-20-materialjsonextensionsvrmmaterialproperties">GLTF-2.0: Material(json.extensions.VRM.materialProperties)</h2>
 <ul>
 <li>GLTF-2.0の<code>/materials/</code></li>
 </ul>
-
 <p>GLTFのマテリアルにフォールバックした情報を保存しています(拡張子をGLBに変更した場合に使われる)。</p>
-
-<h2 id="vrm拡張-extensions-vrm-materialproperties">VRM拡張: <code>/extensions/VRM/materialProperties</code></h2>
-
+<h2 id="vrm拡張-extensionsvrmmaterialproperties">VRM拡張: <code>/extensions/VRM/materialProperties</code></h2>
 <p>VRM独自のマテリアル情報を保存しています。
 現状、Unityに必要な項目を保存しています。
 選択可能なShaderは、<a href="#vrmshader">VRMが提供するシェーダー</a>を参照してください。</p>
-
 <ul>
 <li><a href="https://github.com/dwango/UniVRM/blob/master/specification/0.0/schema/vrm.material.schema.json">https://github.com/dwango/UniVRM/blob/master/specification/0.0/schema/vrm.material.schema.json</a></li>
 </ul>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
     <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;vrm.material&#34;</span>,
     <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;object&#34;</span>,
     <span style="color:#e6db74">&#34;properties&#34;</span><span style="color:#f92672">:</span> {
@@ -362,118 +303,85 @@ gltfのバイナリ形式<code>.glb</code>と互換性があるので、拡張�
             <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;object&#34;</span>
         }
     }
-}
-</code></pre></div>
-
-<h2 id="gltf-2-0-mesh">GLTF-2.0: Mesh</h2>
-
+}</code></pre></div>
+<h2 id="gltf-20-mesh">GLTF-2.0: Mesh</h2>
 <ul>
 <li>GLTF-2.0の<code>/meshes/</code></li>
 </ul>
-
 <p>VRM拡張はありません。</p>
-
 <h3 id="頂点属性">頂点属性</h3>
-
 <ul>
-<li><p>GLTF-2.0の<code>/meshes/*/primitives/*/attributes</code></p>
-
+<li>
+<p>GLTF-2.0の<code>/meshes/*/primitives/*/attributes</code></p>
 <ul>
 <li>TANGENT (vec4) // v0.42から保存するのをやめて、import時にnormalとuvから計算するようにしています。</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="モーフターゲット情報">モーフターゲット情報</h3>
-
 <ul>
 <li><code>/meshes/*/primitives/*/extras/targetNames</code></li>
 </ul>
-
 <p>にMoprhTargetの名称を記録しています。</p>
-
-<h2 id="gltf-2-0-スキニング情報">GLTF-2.0: スキニング情報</h2>
-
+<h2 id="gltf-20-スキニング情報">GLTF-2.0: スキニング情報</h2>
 <ul>
 <li>GLTF-2.0の<code>/skins/</code></li>
 </ul>
-
 <p>VRM拡張はありません。</p>
-
-<h2 id="gltf-2-0-node">GLTF-2.0: Node</h2>
-
+<h2 id="gltf-20-node">GLTF-2.0: Node</h2>
 <ul>
 <li>GLTF-2.0の<code>/nodes/</code></li>
 </ul>
-
 <p>VRM拡張はありません。</p>
-
 <ul>
 <li>node
-
 <ul>
 <li>name</li>
 <li>position(vec3)</li>
 <li>rotation(quaternion)</li>
 <li>scale(vec3)</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h1 id="保存する値に対する規約">保存する値に対する規約</h1>
-
 <h2 id="gltf2の規約">GLTF2の規約</h2>
-
 <p>GLTF2の規約に準拠します。
 特に重要な項目です。</p>
-
 <ul>
 <li>メートル単位</li>
-<li>右手Y-UP座標系<sup class="footnote-ref" id="fnref:OpenGLCoord"><a href="#fn:OpenGLCoord">1</a></sup></li>
+<li>右手Y-UP座標系<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></li>
 </ul>
-
 <h2 id="vrmの規約">VRMの規約</h2>
-
 <p>人間型モデルに特化して互換性を高めるために、以下の制約を課します。</p>
-
 <ul>
 <li>モデルは原点に位置する</li>
-<li>モデルは-Z向き<sup class="footnote-ref" id="fnref:OpenGLCoord"><a href="#fn:OpenGLCoord">1</a></sup></li>
-<li>モデルのヒエラルキーはY-UP<sup class="footnote-ref" id="fnref:ZUP"><a href="#fn:ZUP">2</a></sup></li>
-<li>モデルのメッシュはY-UP<sup class="footnote-ref" id="fnref:ZUP"><a href="#fn:ZUP">2</a></sup></li>
+<li>モデルは-Z向き<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></li>
+<li>モデルのヒエラルキーはY-UP<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></li>
+<li>モデルのメッシュはY-UP<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></li>
 <li>モデルのヒエラルキーはT-Pose</li>
 <li>モデルのメッシュはT-Pose</li>
 <li>ボーンに回転を入れない</li>
 <li>ボーンにスケールを入れない</li>
-<li>ヘッドボーンは真正面を向いている<sup class="footnote-ref" id="fnref:LookAt"><a href="#fn:LookAt">3</a></sup></li>
+<li>ヘッドボーンは真正面を向いている<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></li>
 </ul>
-
 <p><a name="vrmshader"></a></p>
-
 <h1 id="vrmが提供するシェーダー">VRMが提供するシェーダー</h1>
-
 <p>セル調のキャラクタモデルの運用を想定して以下のシェーダーを用意しています。</p>
-
 <h2 id="unlit系">Unlit系</h2>
-
 <p>ライティング・シェーディングせずにテクスチャ色をそのまま表示します。
 半透明の扱い別に４種類を用意しています。</p>
-
 <ul>
 <li>UnlitTexture(不透明)</li>
 <li>UnlitCutout(透明度が閾値以下の部分を透明とする)</li>
-<li>UnlitTransparent(アルファブレンド。ZWriteしない)<sup class="footnote-ref" id="fnref:Transparent"><a href="#fn:Transparent">4</a></sup></li>
-<li>UnlitTransparentZWrite(アルファブレンド。ZWriteする)<sup class="footnote-ref" id="fnref:TransparentZWrite"><a href="#fn:TransparentZWrite">5</a></sup></li>
+<li>UnlitTransparent(アルファブレンド。ZWriteしない)<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></li>
+<li>UnlitTransparentZWrite(アルファブレンド。ZWriteする)<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></li>
 </ul>
-
 <h2 id="mtoon">MToon</h2>
-
 <p>セルシェーディング、輪郭線に対応したシェーダー。
 Unlitよりもきめ細かく設定できます。</p>
-
-<h1 id="vrm拡張-モデルのボーンマッピング-json-extensions-vrm-humanoid">VRM拡張: モデルのボーンマッピング(json.extensions.VRM.humanoid)</h1>
-
+<h1 id="vrm拡張-モデルのボーンマッピングjsonextensionsvrmhumanoid">VRM拡張: モデルのボーンマッピング(json.extensions.VRM.humanoid)</h1>
 <p>NodeとHumanoidで定義される標準ボーンの対応表です。</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
     <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;vrm.humanoid.bone&#34;</span>,
     <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;object&#34;</span>,
     <span style="color:#e6db74">&#34;properties&#34;</span><span style="color:#f92672">:</span> {
@@ -507,49 +415,69 @@ Unlitよりもきめ細かく設定できます。</p>
             <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;number&#34;</span>
         }
     }
-}
-</code></pre></div>
-
+}</code></pre></div>
 <h2 id="定義しているボーン">定義しているボーン</h2>
-
 <ul>
-<li>hips</li>
-<li>spine</li>
-<li>chest</li>
-<li>upperChest<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">6</a></sup></li>
-<li>neck</li>
-<li>head</li>
-
-<li><p>Left/Right eye<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">6</a></sup></p></li>
-
-<li><p>Left/Right upperArm</p></li>
-
-<li><p>Left/Right lowerArm</p></li>
-
-<li><p>Left/Right hand</p></li>
-
-<li><p>Left/Right upperLeg</p></li>
-
-<li><p>Left/Right lowerLeg</p></li>
-
-<li><p>Left/Right foot</p></li>
-
-<li><p>Left/Right toe<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">6</a></sup></p></li>
-
-<li><p>Left/Right thumb proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">6</a></sup></p></li>
-
-<li><p>Left/Right index proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">6</a></sup></p></li>
-
-<li><p>Left/Right middle proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">6</a></sup></p></li>
-
-<li><p>Left/Right ring proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">6</a></sup></p></li>
-
-<li><p>Left/Right little proximal, intermediate, distal<sup class="footnote-ref" id="fnref:notrequired"><a href="#fn:notrequired">6</a></sup></p></li>
+<li>
+<p>hips</p>
+</li>
+<li>
+<p>spine</p>
+</li>
+<li>
+<p>chest</p>
+</li>
+<li>
+<p>upperChest<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
+</li>
+<li>
+<p>neck</p>
+</li>
+<li>
+<p>head</p>
+</li>
+<li>
+<p>Left/Right eye<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
+</li>
+<li>
+<p>Left/Right upperArm</p>
+</li>
+<li>
+<p>Left/Right lowerArm</p>
+</li>
+<li>
+<p>Left/Right hand</p>
+</li>
+<li>
+<p>Left/Right upperLeg</p>
+</li>
+<li>
+<p>Left/Right lowerLeg</p>
+</li>
+<li>
+<p>Left/Right foot</p>
+</li>
+<li>
+<p>Left/Right toe<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
+</li>
+<li>
+<p>Left/Right thumb proximal, intermediate, distal<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
+</li>
+<li>
+<p>Left/Right index proximal, intermediate, distal<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
+</li>
+<li>
+<p>Left/Right middle proximal, intermediate, distal<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
+</li>
+<li>
+<p>Left/Right ring proximal, intermediate, distal<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
+</li>
+<li>
+<p>Left/Right little proximal, intermediate, distal<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
+</li>
 </ul>
-
-<h1 id="vrm拡張-モデル情報-json-extensions-vrm-meta">VRM拡張: モデル情報(json.extensions.VRM.meta)</h1>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
+<h1 id="vrm拡張-モデル情報jsonextensionsvrmmeta">VRM拡張: モデル情報(json.extensions.VRM.meta)</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
     <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;vrm.meta&#34;</span>,
     <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;object&#34;</span>,
     <span style="color:#e6db74">&#34;properties&#34;</span><span style="color:#f92672">:</span> {
@@ -611,94 +539,56 @@ Unlitよりもきめ細かく設定できます。</p>
             <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;string&#34;</span>
         }
     }
-}
-</code></pre></div>
-
+}</code></pre></div>
 <h2 id="情報">情報</h2>
-
-<h3 id="タイトル-title">タイトル(Title)</h3>
-
+<h3 id="タイトルtitle">タイトル(Title)</h3>
 <p>アバターモデルの名前を設定します</p>
-
-<h3 id="作者-author">作者(Author)</h3>
-
+<h3 id="作者author">作者(Author)</h3>
 <p>モデルの作者の名前を記述します</p>
-
-<h3 id="連絡先-contact-information">連絡先(Contact Information)</h3>
-
+<h3 id="連絡先contact-information">連絡先(Contact Information)</h3>
 <p>モデルの作者への連絡先を記述します</p>
-
-<h3 id="参照-reference">参照(Reference)</h3>
-
+<h3 id="参照reference">参照(Reference)</h3>
 <p>何か「親作品」に相当するものがある場合は参照URLなどを記述します</p>
-
-<h3 id="サムネイル-thumbnail">サムネイル(Thumbnail)</h3>
-
+<h3 id="サムネイルthumbnail">サムネイル(Thumbnail)</h3>
 <p>アバターモデルのサムネイルを登録します。2048x2048程度の解像度テクスチャを推奨します。meta情報内ではtexture番号を指定します。</p>
-
 <h3 id="バージョン">バージョン</h3>
-
 <p>モデルの作成バージョンです。</p>
-
-<h2 id="使用許諾-ライセンス情報">使用許諾・ライセンス情報</h2>
-
+<h2 id="使用許諾ライセンス情報">使用許諾・ライセンス情報</h2>
 <p>License</p>
-
 <h3 id="アバターの人格に関する許諾範囲">アバターの人格に関する許諾範囲</h3>
-
 <p>Personation / Charaterization Permission</p>
-
-<h4 id="アバターに人格を与えることの許諾範囲-json-extensions-vrm-meta-allowedusername">アバターに人格を与えることの許諾範囲(json.extensions.VRM.meta.allowedUserName)</h4>
-
+<h4 id="アバターに人格を与えることの許諾範囲jsonextensionsvrmmetaallowedusername">アバターに人格を与えることの許諾範囲(json.extensions.VRM.meta.allowedUserName)</h4>
 <p>A person who can perform with this avatar</p>
-
 <ul>
 <li>アバターを操作することはアバター作者にのみ許される(Only Author)</li>
 <li>明確に許可された人限定(Explictly Licensed Person)</li>
 <li>全員に許可(Everyone)</li>
 </ul>
-
-<h4 id="このアバターを用いて暴力表現を演じることの許可-json-extensions-vrm-meta-violentussagename">このアバターを用いて暴力表現を演じることの許可(json.extensions.VRM.meta.violentUssageName)</h4>
-
+<h4 id="このアバターを用いて暴力表現を演じることの許可jsonextensionsvrmmetaviolentussagename">このアバターを用いて暴力表現を演じることの許可(json.extensions.VRM.meta.violentUssageName)</h4>
 <p>Violent acts using this avatar</p>
-
 <ul>
 <li>不許可(Disallow)</li>
 <li>許可(Allow)</li>
 </ul>
-
-<h4 id="このアバターを用いて性的表現を演じることの許可-json-extensions-vrm-meta-sexualussagename">このアバターを用いて性的表現を演じることの許可(json.extensions.VRM.meta.sexualUssageName)</h4>
-
+<h4 id="このアバターを用いて性的表現を演じることの許可jsonextensionsvrmmetasexualussagename">このアバターを用いて性的表現を演じることの許可(json.extensions.VRM.meta.sexualUssageName)</h4>
 <p>Sexuality acts using this avatar</p>
-
 <ul>
 <li>不許可(Disallow)</li>
 <li>許可(Allow)</li>
 </ul>
-
-<h4 id="商用利用の許可-json-extensions-vrm-meta-commercialussagename">商用利用の許可(json.extensions.VRM.meta.commercialUssageName)</h4>
-
+<h4 id="商用利用の許可jsonextensionsvrmmetacommercialussagename">商用利用の許可(json.extensions.VRM.meta.commercialUssageName)</h4>
 <p>For commercial use</p>
-
 <ul>
 <li>不許可(Disallow)</li>
 <li>許可(Allow)</li>
 </ul>
-
-<h4 id="その他のライセンス条件-json-extensions-vrm-meta-otherpermissionurl">その他のライセンス条件(json.extensions.VRM.meta.otherPermissionUrl)</h4>
-
+<h4 id="その他のライセンス条件jsonextensionsvrmmetaotherpermissionurl">その他のライセンス条件(json.extensions.VRM.meta.otherPermissionUrl)</h4>
 <p>Other License Url</p>
-
 <p>上記許諾条件以外のライセンス条件がある場合はそのライセンス文書へのURLを記述</p>
-
-<h3 id="再配布-改変に関する許諾範囲">再配布・改変に関する許諾範囲</h3>
-
+<h3 id="再配布改変に関する許諾範囲">再配布・改変に関する許諾範囲</h3>
 <p>Redistribution / Modifications License</p>
-
-<h4 id="ライセンスタイプ-json-extensions-vrm-meta-licensename">ライセンスタイプ(json.extensions.VRM.meta.licenseName)</h4>
-
+<h4 id="ライセンスタイプjsonextensionsvrmmetalicensename">ライセンスタイプ(json.extensions.VRM.meta.licenseName)</h4>
 <p>License Type</p>
-
 <ul>
 <li>再配布禁止(Redistribution Prohibited)</li>
 <li><a href="https://creativecommons.org/publicdomain/zero/1.0/deed.ja">著作権放棄(CC0)</a></li>
@@ -710,18 +600,12 @@ Unlitよりもきめ細かく設定できます。</p>
 <li><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja">Creative Commons CC BY NC NDライセンス(CC_BY_NC_ND)</a></li>
 <li>その他(Other)</li>
 </ul>
-
-<h4 id="その他ライセンス条件-json-extensions-vrm-meta-otherlicenseurl">その他ライセンス条件(json.extensions.VRM.meta.otherLicenseUrl)</h4>
-
+<h4 id="その他ライセンス条件jsonextensionsvrmmetaotherlicenseurl">その他ライセンス条件(json.extensions.VRM.meta.otherLicenseUrl)</h4>
 <p>Other License Url</p>
-
 <p>上記許諾条件以外のライセンス条件がある場合はそのライセンス文書へのURLを記述</p>
-
-<h1 id="vrm拡張-モーフ設定-json-extensions-vrm-blendshapemaster">VRM拡張: モーフ設定(json.extensions.VRM.blendShapeMaster)</h1>
-
+<h1 id="vrm拡張-モーフ設定jsonextensionsvrmblendshapemaster">VRM拡張: モーフ設定(json.extensions.VRM.blendShapeMaster)</h1>
 <p>BlendShapeをグループ化するBlendShapeGroupの配列を設定します。</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
     <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;vrm.blendshape&#34;</span>,
     <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;object&#34;</span>,
     <span style="color:#e6db74">&#34;properties&#34;</span><span style="color:#f92672">:</span> {
@@ -732,12 +616,9 @@ Unlitよりもきめ細かく設定できます。</p>
             }
         }
     }
-}
-</code></pre></div>
-
-<h2 id="ブレンドシェイプグループ-json-extensions-vrm-blendshapemaster-blendshapegroups">ブレンドシェイプグループ(json.extensions.VRM.blendShapeMaster.blendShapeGroups)</h2>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
+}</code></pre></div>
+<h2 id="ブレンドシェイプグループjsonextensionsvrmblendshapemasterblendshapegroups">ブレンドシェイプグループ(json.extensions.VRM.blendShapeMaster.blendShapeGroups)</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
     <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;vrm.blendshape.group&#34;</span>,
     <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;object&#34;</span>,
     <span style="color:#e6db74">&#34;properties&#34;</span><span style="color:#f92672">:</span> {
@@ -765,10 +646,8 @@ Unlitよりもきめ細かく設定できます。</p>
             }
         }
     }
-}
-</code></pre></div>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
+}</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
     <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;vrm.blendshape.bind&#34;</span>,
     <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;object&#34;</span>,
     <span style="color:#e6db74">&#34;properties&#34;</span><span style="color:#f92672">:</span> {
@@ -782,10 +661,8 @@ Unlitよりもきめ細かく設定できます。</p>
             <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;number&#34;</span>
         }
     }
-}
-</code></pre></div>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
+}</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
     <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;vrm.blendshape.materialbind&#34;</span>,
     <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;object&#34;</span>,
     <span style="color:#e6db74">&#34;properties&#34;</span><span style="color:#f92672">:</span> {
@@ -802,23 +679,15 @@ Unlitよりもきめ細かく設定できます。</p>
             }
         }
     }
-}
-</code></pre></div>
-
+}</code></pre></div>
 <h3 id="名前">名前</h3>
-
 <p>名前です。事前定義名と同じ(大文字)を推奨します</p>
-
 <h3 id="事前定義名">事前定義名</h3>
-
 <p>待機状態の表情</p>
-
 <ul>
 <li>Neutral</li>
 </ul>
-
 <p>リップシンク</p>
-
 <ul>
 <li>A</li>
 <li>I</li>
@@ -826,43 +695,32 @@ Unlitよりもきめ細かく設定できます。</p>
 <li>E</li>
 <li>O</li>
 </ul>
-
 <p>瞬き</p>
-
 <ul>
 <li>Blink</li>
 <li>Blink_L</li>
 <li>Blink_R</li>
 </ul>
-
 <p>喜怒哀楽</p>
-
 <ul>
 <li>Fun</li>
 <li>Angry</li>
 <li>Sorrow</li>
 <li>Joy</li>
 </ul>
-
 <p>視線制御</p>
-
 <ul>
 <li>LookUp</li>
 <li>LookDown</li>
 <li>LookLeft</li>
 <li>LookRight</li>
 </ul>
-
 <p>その他</p>
-
 <ul>
 <li>Unknown</li>
 </ul>
-
 <h3 id="ブレンドシェイプの名前の識別名">ブレンドシェイプの名前の識別名</h3>
-
 <p>システムからブレンドシェイプを一意に認識する文字列IDを以下のロジックで決定します。</p>
-
 <pre><code>// 疑似コード
 function GetID(preset, name)
 {
@@ -875,15 +733,11 @@ function GetID(preset, name)
       return name.ToUpper();
   }
 }
-</code></pre>
-
-<ul>
+</code></pre><ul>
 <li>ブレンドシェイプIDがユニークになるようにPresetとNameを設定する</li>
 </ul>
-
-<h1 id="vrm拡張-一人称設定-json-extensions-vrm-firstperson">VRM拡張: 一人称設定(json.extensions.VRM.firstPerson)</h1>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
+<h1 id="vrm拡張-一人称設定jsonextensionsvrmfirstperson">VRM拡張: 一人称設定(json.extensions.VRM.firstPerson)</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
     <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;vrm.firstperson&#34;</span>,
     <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;object&#34;</span>,
     <span style="color:#e6db74">&#34;properties&#34;</span><span style="color:#f92672">:</span> {
@@ -931,63 +785,40 @@ function GetID(preset, name)
             <span style="color:#e6db74">&#34;$ref&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;vrm.firstperson.degreemap.schema.json&#34;</span>
         }
     }
-}
-</code></pre></div>
-
-<p>一人称視点のアバターを描画する場合、自モデルの頭部の中が見えてしまうという問題が生じます<sup class="footnote-ref" id="fnref:firstperson"><a href="#fn:firstperson">7</a></sup>。
+}</code></pre></div>
+<p>一人称視点のアバターを描画する場合、自モデルの頭部の中が見えてしまうという問題が生じます<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup>。
 これに対応するために、一人称時の表示状態を指定できます。</p>
-
-<h2 id="firstpersonbone-json-extensions-vrm-firstperson-firstpersonbone">firstPersonBone(json.extensions.VRM.firstPerson.firstPersonBone)</h2>
-
+<h2 id="firstpersonbonejsonextensionsvrmfirstpersonfirstpersonbone">firstPersonBone(json.extensions.VRM.firstPerson.firstPersonBone)</h2>
 <p>一人称時に描画を切り替えるべきボーンを指定します。通常<code>Head</code>です。</p>
-
-<h2 id="firstpersonboneoffset-json-extensions-vrm-firstperson-firstpersonboneoffset">firstPersonBoneOffset(json.extensions.VRM.firstPerson.firstPersonBoneOffset)</h2>
-
+<h2 id="firstpersonboneoffsetjsonextensionsvrmfirstpersonfirstpersonboneoffset">firstPersonBoneOffset(json.extensions.VRM.firstPerson.firstPersonBoneOffset)</h2>
 <p>一人時のヘッドセットの目標位置。
 頭ボーンからヘッドセットへのオフセットを加味することを想定している。</p>
-
-<h2 id="meshannotations-json-extensions-vrm-firstperson-meshannotations">meshAnnotations(json.extensions.VRM.firstPerson.meshAnnotations)</h2>
-
+<h2 id="meshannotationsjsonextensionsvrmfirstpersonmeshannotations">meshAnnotations(json.extensions.VRM.firstPerson.meshAnnotations)</h2>
 <p>各メッシュに対して一人称時とそれ以外で表示・非表示を切り替えることができます。
 以下の設定があります。</p>
-
 <ul>
-<li>Auto: firstPersonBoneとその子孫に対するボーンWeightを持つポリゴンを自動で非表示にする<sup class="footnote-ref" id="fnref:firstPersonAuto"><a href="#fn:firstPersonAuto">8</a></sup></li>
+<li>Auto: firstPersonBoneとその子孫に対するボーンWeightを持つポリゴンを自動で非表示にする<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup></li>
 <li>FirstPersonOnly: 一人称のみ表示</li>
 <li>ThirdPersonOnly: 三人称のみ表示(頭など一人称時に非表示にするメッシュに指定する)</li>
 <li>Both: 特に表示切替をしない</li>
 </ul>
-
 <h2 id="視線設定">視線設定</h2>
-
 <p>ターゲットの方向を向くようにキャラクタの視線を制御します。</p>
-
-<h3 id="目線タイプ-json-extensions-vrm-firstperson-lookattypename">目線タイプ(json.extensions.VRM.firstPerson.lookAtTypeName)</h3>
-
+<h3 id="目線タイプjsonextensionsvrmfirstpersonlookattypename">目線タイプ(json.extensions.VRM.firstPerson.lookAtTypeName)</h3>
 <ul>
 <li>Bone: ボーンにより目線を操作します。</li>
 <li>BlendShape: BlendShapeにより目線を操作します。BlendShapePreset.LookUp, LookDown, LookLeft, LookRightを使います。</li>
 </ul>
-
 <h3 id="角度調整">角度調整</h3>
-
 <p>頭と目標物の角度差を目ボーンに適用する場合の角度を調整します。</p>
-
-<h4 id="json-extensions-vrm-firstperson-lookathorizontalinner">json.extensions.VRM.firstPerson.lookAtHorizontalInner</h4>
-
-<h4 id="json-extensions-vrm-firstperson-lookathorizontalouter">json.extensions.VRM.firstPerson.lookAtHorizontalOuter</h4>
-
-<h4 id="json-extensions-vrm-firstperson-lookatverticaldown">json.extensions.VRM.firstPerson.lookAtVerticalDown</h4>
-
-<h4 id="json-extensions-vrm-firstperson-lookatverticalup">json.extensions.VRM.firstPerson.lookAtVerticalUp</h4>
-
-<h1 id="vrm拡張-揺れモノ設定-json-extensions-vrm-secondaryanimation">VRM拡張: 揺れモノ設定(json.extensions.VRM.secondaryAnimation)</h1>
-
+<h4 id="jsonextensionsvrmfirstpersonlookathorizontalinner">json.extensions.VRM.firstPerson.lookAtHorizontalInner</h4>
+<h4 id="jsonextensionsvrmfirstpersonlookathorizontalouter">json.extensions.VRM.firstPerson.lookAtHorizontalOuter</h4>
+<h4 id="jsonextensionsvrmfirstpersonlookatverticaldown">json.extensions.VRM.firstPerson.lookAtVerticalDown</h4>
+<h4 id="jsonextensionsvrmfirstpersonlookatverticalup">json.extensions.VRM.firstPerson.lookAtVerticalUp</h4>
+<h1 id="vrm拡張-揺れモノ設定jsonextensionsvrmsecondaryanimation">VRM拡張: 揺れモノ設定(json.extensions.VRM.secondaryAnimation)</h1>
 <p>尻尾や髪の毛などのひも状のオブジェクトの自動アニメーションの設定です。</p>
-
-<h2 id="揺れるボーン-secondaryanimation-bonegroups">揺れるボーン(secondaryAnimation.boneGroups)</h2>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
+<h2 id="揺れるボーンsecondaryanimationbonegroups">揺れるボーン(secondaryAnimation.boneGroups)</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
     <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;vrm.secondaryanimation&#34;</span>,
     <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;object&#34;</span>,
     <span style="color:#e6db74">&#34;properties&#34;</span><span style="color:#f92672">:</span> {
@@ -1004,10 +835,8 @@ function GetID(preset, name)
             }
         }
     }
-}
-</code></pre></div>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
+}</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
     <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;vrm.secondaryanimation.spring&#34;</span>,
     <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;object&#34;</span>,
     <span style="color:#e6db74">&#34;properties&#34;</span><span style="color:#f92672">:</span> {
@@ -1065,49 +894,28 @@ function GetID(preset, name)
             }
         }
     }
-}
-</code></pre></div>
-
-<h3 id="揺れるボーンの根元のボーン-json-extensions-vrm-secondaryanimation-bonegroups-0-bones">揺れるボーンの根元のボーン(json.extensions.VRM.secondaryAnimation.boneGroups[0].bones)</h3>
-
+}</code></pre></div>
+<h3 id="揺れるボーンの根元のボーンjsonextensionsvrmsecondaryanimationbonegroups0bones">揺れるボーンの根元のボーン(json.extensions.VRM.secondaryAnimation.boneGroups[0].bones)</h3>
 <p>揺れモノの根元のボーンのノードインデックスを指定します。</p>
-
-<h3 id="揺れるボーンと衝突する当たり判定-json-extensions-vrm-secondaryanimation-bonegroups-0-collidergroups">揺れるボーンと衝突する当たり判定(json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups)</h3>
-
+<h3 id="揺れるボーンと衝突する当たり判定jsonextensionsvrmsecondaryanimationbonegroups0collidergroups">揺れるボーンと衝突する当たり判定(json.extensions.VRM.secondaryAnimation.boneGroups[0].colliderGroups)</h3>
 <p>揺れモノに対する衝突判定グループのインデックスを指定します。</p>
-
 <h3 id="パラメーター">パラメーター</h3>
-
-<h4 id="center-json-extensions-vrm-secondaryanimation-bonegroups-0-center">center(json.extensions.VRM.secondaryAnimation.boneGroups[0].center)</h4>
-
+<h4 id="centerjsonextensionsvrmsecondaryanimationbonegroups0center">center(json.extensions.VRM.secondaryAnimation.boneGroups[0].center)</h4>
 <p>world原点以外の、揺れモノの基準点を設定できます。
 ワープで移動するUIを実装した場合に、ワープ移動で揺れモノを揺らしたくない場合にワープで移動する親ノードを指定できます。</p>
-
-<h4 id="dragforce-json-extensions-vrm-secondaryanimation-bonegroups-0-dragforce">dragForce(json.extensions.VRM.secondaryAnimation.boneGroups[0].dragForce)</h4>
-
+<h4 id="dragforcejsonextensionsvrmsecondaryanimationbonegroups0dragforce">dragForce(json.extensions.VRM.secondaryAnimation.boneGroups[0].dragForce)</h4>
 <p>自動アニメーションの抵抗(減速)です。</p>
-
-<h4 id="gravitydir-json-extensions-vrm-secondaryanimation-bonegroups-0-gravitydir">gravityDir(json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityDir)</h4>
-
+<h4 id="gravitydirjsonextensionsvrmsecondaryanimationbonegroups0gravitydir">gravityDir(json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityDir)</h4>
 <p>重力の方向です。(0, -1, 0)にすると重力に、(1, 0, 0)にすると風のように作用します。</p>
-
-<h4 id="gravitypower-json-extensions-vrm-secondaryanimation-bonegroups-0-gravitypower">gravityPower(json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityPower)</h4>
-
+<h4 id="gravitypowerjsonextensionsvrmsecondaryanimationbonegroups0gravitypower">gravityPower(json.extensions.VRM.secondaryAnimation.boneGroups[0].gravityPower)</h4>
 <p>重力の強さです。</p>
-
-<h4 id="hitradius-json-extensions-vrm-secondaryanimation-bonegroups-0-hitradius">hitRadius(json.extensions.VRM.secondaryAnimation.boneGroups[0].hitRadius)</h4>
-
+<h4 id="hitradiusjsonextensionsvrmsecondaryanimationbonegroups0hitradius">hitRadius(json.extensions.VRM.secondaryAnimation.boneGroups[0].hitRadius)</h4>
 <p>Colliderとの当たり判定の半径です</p>
-
-<h4 id="stiffness-json-extensions-vrm-secondaryanimation-bonegroups-0-stiffiness">stiffness(json.extensions.VRM.secondaryAnimation.boneGroups[0].stiffiness)</h4>
-
+<h4 id="stiffnessjsonextensionsvrmsecondaryanimationbonegroups0stiffiness">stiffness(json.extensions.VRM.secondaryAnimation.boneGroups[0].stiffiness)</h4>
 <p>揺れモノの復元力(初期姿勢に戻る力)です</p>
-
-<h2 id="揺れモノ当たり判定設定-json-extensions-vrm-secondaryanimation-collidergroups">揺れモノ当たり判定設定(json.extensions.VRM.secondaryAnimation.colliderGroups)</h2>
-
+<h2 id="揺れモノ当たり判定設定jsonextensionsvrmsecondaryanimationcollidergroups">揺れモノ当たり判定設定(json.extensions.VRM.secondaryAnimation.colliderGroups)</h2>
 <p>揺れモノと衝突する球を設定します。</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
     <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;vrm.secondaryanimation.collidergroup&#34;</span>,
     <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;object&#34;</span>,
     <span style="color:#e6db74">&#34;properties&#34;</span><span style="color:#f92672">:</span> {
@@ -1143,43 +951,42 @@ function GetID(preset, name)
             }
         }
     }
-}
-</code></pre></div>
-
-<h3 id="ノード-json-extensions-vrm-secondaryanimation-collidergroups-0-node">ノード(json.extensions.VRM.secondaryAnimation.colliderGroups[0].node)</h3>
-
+}</code></pre></div>
+<h3 id="ノードjsonextensionsvrmsecondaryanimationcollidergroups0node">ノード(json.extensions.VRM.secondaryAnimation.colliderGroups[0].node)</h3>
 <p>当たり判定を設置するノードです。</p>
-
-<h3 id="ローカル座標-json-extensions-vrm-secondaryanimation-collidergroups-0-colliders-1-offset">ローカル座標(json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].offset)</h3>
-
+<h3 id="ローカル座標jsonextensionsvrmsecondaryanimationcollidergroups0colliders1offset">ローカル座標(json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].offset)</h3>
 <p>当たり判定のノードからのローカル座標です。</p>
-
-<h3 id="半径-json-extensions-vrm-secondaryanimation-collidergroups-0-colliders-1-radius">半径(json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].radius)</h3>
-
+<h3 id="半径jsonextensionsvrmsecondaryanimationcollidergroups0colliders1radius">半径(json.extensions.VRM.secondaryAnimation.colliderGroups[0].colliders[1].radius)</h3>
 <p>当たり判定の半径です。</p>
-<div class="footnotes">
-
-<hr />
-
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:OpenGLCoord">OpenGL座標系。+Xが右、+Yが上、+Zが手前です。
- <a class="footnote-return" href="#fnref:OpenGLCoord"><sup>[return]</sup></a></li>
-<li id="fn:ZUP">Blenderや3ds MaxなどのZ-UPのモデラーに由来するモデルでヒエラルキーの途中でx軸-90度の回転を入れてZ-UPが入れ子になっている場合があります。
- <a class="footnote-return" href="#fnref:ZUP"><sup>[return]</sup></a></li>
-<li id="fn:LookAt">視線制御はT-Pose時のヘッドの向きを基準に目標物の方向を計算します。
- <a class="footnote-return" href="#fnref:LookAt"><sup>[return]</sup></a></li>
-<li id="fn:Transparent">煙や頬の色など実体の無いオブジェクト向けです。
- <a class="footnote-return" href="#fnref:Transparent"><sup>[return]</sup></a></li>
-<li id="fn:TransparentZWrite">半透明の衣装や、髪の先が半透明など実体のあるオブジェクト向けです。
- <a class="footnote-return" href="#fnref:TransparentZWrite"><sup>[return]</sup></a></li>
-<li id="fn:notrequired">無くても問題ありません。
- <a class="footnote-return" href="#fnref:notrequired"><sup>[return]</sup></a></li>
-<li id="fn:firstperson">バックフェースカリングや近平面である程度対処できますが、口の中が作りこんであるモデルの歯茎が意図せずに見えてしまうなど不十分な場合があります。
- <a class="footnote-return" href="#fnref:firstperson"><sup>[return]</sup></a></li>
-<li id="fn:firstPersonAuto">実行時に自動で非表示部分を削除したモデルを生成します。
- <a class="footnote-return" href="#fnref:firstPersonAuto"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p>OpenGL座標系。+Xが右、+Yが上、+Zが手前です。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>Blenderや3ds MaxなどのZ-UPのモデラーに由来するモデルでヒエラルキーの途中でx軸-90度の回転を入れてZ-UPが入れ子になっている場合があります。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>視線制御はT-Pose時のヘッドの向きを基準に目標物の方向を計算します。&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p>煙や頬の色など実体の無いオブジェクト向けです。&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5" role="doc-endnote">
+<p>半透明の衣装や、髪の先が半透明など実体のあるオブジェクト向けです。&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6" role="doc-endnote">
+<p>無くても問題ありません。&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:7" role="doc-endnote">
+<p>バックフェースカリングや近平面である程度対処できますが、口の中が作りこんであるモデルの歯茎が意図せずに見えてしまうなど不十分な場合があります。&#160;<a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:8" role="doc-endnote">
+<p>実行時に自動で非表示部分を削除したモデルを生成します。&#160;<a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
     </article>
   </div>
@@ -1193,5 +1000,16 @@ function GetID(preset, name)
     </div>
 
     
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
   </body>
 </html>

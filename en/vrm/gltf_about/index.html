@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.87.0" />
 
   <meta property="og:title" content="About GLTF - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -42,22 +42,22 @@
   <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
-      <p class="lead">
-       
-      </p>
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="https://dwango.github.io/">Home</a> </li>
-      <li><a href="/articles"> Articles </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/niconico"> niconico </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://nico.ms/job/engineer"> Hiring </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> niconico 開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
     </ul>
 
-    <p>
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
       
-        <p style="display:inline-block;vertical-align:middle;">
-          Copyright &copy; DWANGO Co., Ltd.
-        </p>
+        Copyright &copy; DWANGO Co., Ltd.
       
     </p>
   </div>
@@ -91,138 +91,109 @@
   <div>
     <article id="content">
         <div class="toc"> <nav id="TableOfContents">
-<ul>
-<li><a href="#what-kind-of-information-can-be-recorded-by-gltf">What kind of information can be recorded by glTF?</a></li>
-<li><a href="#gltf-format-outline">glTF format outline</a></li>
-<li><a href="#glb-format">glb format</a>
-<ul>
-<li><a href="#example-of-parsing-with-python3">Example of parsing with python3</a></li>
-</ul></li>
-<li><a href="#vrm-extension">VRM extension</a></li>
-</ul>
+  <ul>
+    <li><a href="#example-of-parsing-with-python3">Example of parsing with python3</a></li>
+  </ul>
 </nav>
         </div>
-       
-
-<p>glTF is a 3D format created by Khronos Group, which is developing openGL specifications. glTF 2.0 was released in 2017. VRM is based on glTF 2.0.</p>
-
+       <p>glTF is a 3D format created by Khronos Group, which is developing openGL specifications. glTF 2.0 was released in 2017. VRM is based on glTF 2.0.</p>
 <ul>
 <li><a href="https://github.com/KhronosGroup/glTF">https://github.com/KhronosGroup/glTF</a></li>
 </ul>
-
 <h1 id="what-kind-of-information-can-be-recorded-by-gltf">What kind of information can be recorded by glTF?</h1>
-
 <ul>
 <li>Mesh (Vertex array、index array)
-
 <ul>
 <li>Morph target</li>
 <li>Skinning (4weight)</li>
-</ul></li>
+</ul>
+</li>
 <li>Texture</li>
 <li>Material (PBR)</li>
 <li>Scene</li>
-<li>Animation<sup class="footnote-ref" id="fnref:vrm-not-supported"><a href="#fn:vrm-not-supported">1</a></sup></li>
-<li>Camera<sup class="footnote-ref" id="fnref:vrm-not-supported"><a href="#fn:vrm-not-supported">1</a></sup></li>
-<li>Light source<sup class="footnote-ref" id="fnref:vrm-not-supported"><a href="#fn:vrm-not-supported">1</a></sup></li>
+<li>Animation<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></li>
+<li>Camera<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></li>
+<li>Light source<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></li>
 </ul>
-
 <p>An entire 3D scene can be recorded.</p>
-
 <ul>
 <li>OpenGL right-handed, Y-UP coordinate system</li>
 <li>Meter (unit)</li>
 <li>Little endian</li>
 </ul>
-
 <h1 id="gltf-format-outline">glTF format outline</h1>
-
-<p>glTF format comprises two parts: a JSON scene description part and a binary part that records images and vertex arrays. External binary data can be accessed by referencing Url or path. For glb format, it combines a JSON part and a binary part into one file. The binary data can be accessed via the offset into the buffer (byteOffset). For a program, it is easier to handle the glb format which is no need to access external files<sup class="footnote-ref" id="fnref:VRM-glb"><a href="#fn:VRM-glb">2</a></sup>.</p>
-
+<p>glTF format comprises two parts: a JSON scene description part and a binary part that records images and vertex arrays. External binary data can be accessed by referencing Url or path. For glb format, it combines a JSON part and a binary part into one file. The binary data can be accessed via the offset into the buffer (byteOffset). For a program, it is easier to handle the glb format which is no need to access external files<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
 <h1 id="glb-format">glb format</h1>
-
 <p>A structure that has<code>Header part + Chunk parts</code>.
 More specifically, it is<code>Header part + JSON CHUNk + BINARY CHUNK</code>.</p>
-
 <p>Header part</p>
-
 <table>
 <thead>
 <tr>
-<th align="left">Length</th>
-<th align="left">Content</th>
-<th align="left">Type</th>
-<th align="left">Value</th>
+<th style="text-align:left">Length</th>
+<th style="text-align:left">Content</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Value</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">4</td>
-<td align="left"></td>
-<td align="left">ascii</td>
-<td align="left">&ldquo;glTF&rdquo;</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">ascii</td>
+<td style="text-align:left">&ldquo;glTF&rdquo;</td>
 </tr>
-
 <tr>
-<td align="left">4</td>
-<td align="left">glTF version</td>
-<td align="left">int32</td>
-<td align="left">2</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">glTF version</td>
+<td style="text-align:left">int32</td>
+<td style="text-align:left">2</td>
 </tr>
-
 <tr>
-<td align="left">4</td>
-<td align="left">file size</td>
-<td align="left">int32</td>
-<td align="left"></td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">file size</td>
+<td style="text-align:left">int32</td>
+<td style="text-align:left"></td>
 </tr>
 </tbody>
 </table>
-
 <p>Chunk part</p>
-
 <table>
 <thead>
 <tr>
-<th align="left">Length</th>
-<th align="left">Content</th>
-<th align="left">Type</th>
-<th align="left">Value</th>
+<th style="text-align:left">Length</th>
+<th style="text-align:left">Content</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Value</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">4</td>
-<td align="left">chunk size</td>
-<td align="left">int32</td>
-<td align="left"></td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">chunk size</td>
+<td style="text-align:left">int32</td>
+<td></td>
 </tr>
-
 <tr>
-<td align="left">4</td>
-<td align="left">chunk type</td>
-<td align="left">ascii</td>
-<td align="left">&ldquo;JSON&rdquo; or &ldquo;BIN\x00&rdquo;</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">chunk type</td>
+<td style="text-align:left">ascii</td>
+<td style="text-align:left">&ldquo;JSON&rdquo; or &ldquo;BIN\x00&rdquo;</td>
 </tr>
-
 <tr>
-<td align="left">chunk size</td>
-<td align="left">chunk body</td>
-<td align="left">byte array</td>
-<td align="left"></td>
+<td style="text-align:left">chunk size</td>
+<td style="text-align:left">chunk body</td>
+<td style="text-align:left">byte array</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="example-of-parsing-with-python3">Example of parsing with python3</h2>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> struct
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> struct
 <span style="color:#f92672">import</span> json
 
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Reader</span>:
-    <span style="color:#66d9ef">def</span> __init__(self, data: bytes)<span style="color:#f92672">-&gt;</span>None:
+    <span style="color:#66d9ef">def</span> __init__(self, data: bytes)<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">None</span>:
         self<span style="color:#f92672">.</span>data <span style="color:#f92672">=</span> data
         self<span style="color:#f92672">.</span>pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
 
@@ -246,19 +217,19 @@ More specifically, it is<code>Header part + JSON CHUNk + BINARY CHUNK</code>.</p
     reader <span style="color:#f92672">=</span> Reader(data)
     magic <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span>read_str(<span style="color:#ae81ff">4</span>)
     <span style="color:#66d9ef">if</span>  magic <span style="color:#f92672">!=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;glTF&#39;</span>:
-        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(f<span style="color:#e6db74">&#39;magic not found: #{magic}&#39;</span>)
+        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;magic not found: #</span><span style="color:#e6db74">{</span>magic<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
 
     version <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span>read_uint()
     <span style="color:#66d9ef">if</span> version <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span>:
-        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(f<span style="color:#e6db74">&#39;version:#{version} is not 2&#39;</span>)
+        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;version:#</span><span style="color:#e6db74">{</span>version<span style="color:#e6db74">}</span><span style="color:#e6db74"> is not 2&#39;</span>)
 
     size <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span>read_uint()
     size <span style="color:#f92672">-=</span> <span style="color:#ae81ff">12</span>
 
-    json_str <span style="color:#f92672">=</span> None
-    body <span style="color:#f92672">=</span> None
+    json_str <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+    body <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
     <span style="color:#66d9ef">while</span> size <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
-        <span style="color:#75715e">#print(size)</span>
+        <span style="color:#75715e">#print(size)</span>
 
         chunk_size <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span>read_uint()
         size <span style="color:#f92672">-=</span> <span style="color:#ae81ff">4</span>
@@ -274,32 +245,29 @@ More specifically, it is<code>Header part + JSON CHUNk + BINARY CHUNK</code>.</p
         <span style="color:#66d9ef">elif</span> chunk_type <span style="color:#f92672">==</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;JSON&#39;</span>:
             json_str <span style="color:#f92672">=</span> chunk_data
         <span style="color:#66d9ef">else</span>:
-            <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(f<span style="color:#e6db74">&#39;unknown chunk_type: {chunk_type}&#39;</span>)
+            <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;unknown chunk_type: </span><span style="color:#e6db74">{</span>chunk_type<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
 
     <span style="color:#66d9ef">return</span> json<span style="color:#f92672">.</span>loads(json_str), body
 
 
 <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;AliciaSolid.vrm&#39;</span>, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> f:
     parsed, body <span style="color:#f92672">=</span> parse_glb(f<span style="color:#f92672">.</span>read())</code></pre></div>
-
 <h1 id="vrm-extension">VRM extension</h1>
-
 <p>Information of VRM extension is stored in<code>json['extensions']['VRM']</code>.</p>
-
 <ul>
 <li><a href="../vrm_spec/">VRM specifications</a></li>
 </ul>
-<div class="footnotes">
-
-<hr />
-
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:vrm-not-supported">Not supported in VRM
- <a class="footnote-return" href="#fnref:vrm-not-supported"><sup>[return]</sup></a></li>
-<li id="fn:VRM-glb">glb is adopted in VRM.
- <a class="footnote-return" href="#fnref:VRM-glb"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p>Not supported in VRM&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>glb is adopted in VRM.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
     </article>
   </div>
@@ -313,5 +281,16 @@ More specifically, it is<code>Header part + JSON CHUNk + BINARY CHUNK</code>.</p
     </div>
 
     
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
   </body>
 </html>

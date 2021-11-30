@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.87.0" />
 
   <meta property="og:title" content="How to view VRM file - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -42,22 +42,22 @@
   <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
-      <p class="lead">
-       
-      </p>
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="https://dwango.github.io/">Home</a> </li>
-      <li><a href="/articles"> Articles </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/niconico"> niconico </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://nico.ms/job/engineer"> Hiring </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> niconico 開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
     </ul>
 
-    <p>
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
       
-        <p style="display:inline-block;vertical-align:middle;">
-          Copyright &copy; DWANGO Co., Ltd.
-        </p>
+        Copyright &copy; DWANGO Co., Ltd.
       
     </p>
   </div>
@@ -91,73 +91,72 @@
   <div>
     <article id="content">
         <div class="toc"> <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#import-vrm-file-into-vrm-viewer">Import VRM file into VRM Viewer</a></li>
-<li><a href="#import-vrm-file-into-unity-project">Import VRM file into Unity Project</a>
-<ul>
-<li><a href="#1-create-an-empty-project-in-unity">1. Create an empty project in Unity</a></li>
-<li><a href="#2-import-univrm-package-into-the-created-project">2. Import UniVRM package into the created project</a></li>
-<li><a href="#3-import-vrm-file-into-unity">3. Import VRM file into Unity</a></li>
-</ul></li>
-<li><a href="#import-vrm-file-into-3d-builder">Import VRM file into 3D Builder</a></li>
-<li><a href="#upload-download-vrm-file">Upload / Download VRM file</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#import-vrm-file-into-vrm-viewer">Import VRM file into VRM Viewer</a></li>
+    <li><a href="#import-vrm-file-into-unity-project">Import VRM file into Unity Project</a>
+      <ul>
+        <li><a href="#1-create-an-empty-project-in-unity">1. Create an empty project in Unity</a></li>
+        <li><a href="#2-import-univrm-package-into-the-created-project">2. Import UniVRM package into the created project</a></li>
+        <li><a href="#3-import-vrm-file-into-unity">3. Import VRM file into Unity</a></li>
+      </ul>
+    </li>
+    <li><a href="#import-vrm-file-into-3d-builder">Import VRM file into 3D Builder</a></li>
+    <li><a href="#upload--download-vrm-file">Upload / Download VRM file</a></li>
+  </ul>
 </nav>
         </div>
-       
-
-<h2 id="import-vrm-file-into-vrm-viewer">Import VRM file into VRM Viewer</h2>
-
+       <h2 id="import-vrm-file-into-vrm-viewer">Import VRM file into VRM Viewer</h2>
 <p>Download VRM Viewer from <a href="https://github.com/dwango/UniVRMTest/releases">UniVRMTest/releases</a>. Next, run the program and click<code>VRM Model</code>. Then, select a VRM model available on your computer. The VRM model can be shown in the scene.</p>
-
 <h2 id="import-vrm-file-into-unity-project">Import VRM file into Unity Project</h2>
-
 <p>Importing VRM file by this way is a little tedious but you can see the information of a VRM model:</p>
-
 <h3 id="1-create-an-empty-project-in-unity">1. Create an empty project in Unity</h3>
-
-<img src="https://dwango.github.io/images/vrm/unity_new_project.png"   />
-
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/vrm/unity_new_project.png"   />
+  
+</div>
 
 <p>Create a new project at the start page (<code>New -&gt; Create project</code>).</p>
-
 <h3 id="2-import-univrm-package-into-the-created-project">2. Import UniVRM package into the created project</h3>
-
-<img src="https://dwango.github.io/images/vrm/package_import.png" alt="package_import"  />
-
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/vrm/package_import.png" alt="package_import"  />
+  
+</div>
 
 <p>Download the latest unitypackage (UniVRM-0.XX) from <a href="https://github.com/dwango/UniVRM/releases">UniVRM/releases</a> and import it into the current project (<code>Assets -&gt; Import Package -&gt; Custom Package</code>). The path of imported files is<code>../Assets/VRM</code>. <strong>It is recommended to delete existing VRM folder included VRM in advance before package import</strong>.</p>
-
 <h3 id="3-import-vrm-file-into-unity">3. Import VRM file into Unity</h3>
-
-<img src="https://dwango.github.io/images/vrm/vrm_prefab_en.png"   />
-
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/vrm/vrm_prefab_en.png"   />
+  
+</div>
 
 <p><strong>Drag and drop VRM file (~.vrm) into Assets folder</strong>. The <strong>prefab</strong> file of the imported VRM model data can be automatically generated.</p>
-
-<img src="https://dwango.github.io/images/vrm/alicia_scene2.png"   />
-
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/vrm/alicia_scene2.png"   />
+  
+</div>
 
 <p><strong>Drag and drop the prefab file under the scene in the Hierarchy window</strong>. The model data can be visualized as shown in the following image:</p>
-
-<img src="https://dwango.github.io/images/vrm/vrm_settings.png"   />
-
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/vrm/vrm_settings.png"   />
+  
+</div>
 
 <p><strong>The VRM model&rsquo;s information will be shown in the Inspector window</strong> once the GameObject of the model data in<code>Hierarchy</code>is selected.</p>
-
 <h2 id="import-vrm-file-into-3d-builder">Import VRM file into 3D Builder</h2>
-
-<img src="https://dwango.github.io/images/vrm/alicia_3dbuilder.png"   />
-
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/vrm/alicia_3dbuilder.png"   />
+  
+</div>
 
 <p><strong>Another simple way to visualize a VRM model or check whether a VRM file is viable is using Windows 3D Builder</strong>. Please change file extension from ~. vrm to ~.glb. However, custom settings for VRM model will not be reflected.</p>
-
-<h2 id="upload-download-vrm-file">Upload / Download VRM file</h2>
-
-<p>Currently you can submit your VRM files to <a href="http://3d.nicovideo.jp/">Nikoni 3D</a> or <a href="https://hub.vroid.com/">VRoid Hub</a>. For Nikoni 3D, the submitted VRM file <a href="https://3d.nicovideo.jp/search?word_type=tag&amp;word=VRM">can be found here</a>. Please check license information and try out those VRM models.
+<h2 id="upload--download-vrm-file">Upload / Download VRM file</h2>
+<p>Currently you can submit your VRM files to <a href="http://3d.nicovideo.jp/">Nikoni 3D</a> or <a href="https://hub.vroid.com/">VRoid Hub</a>. For Nikoni 3D, the submitted VRM file <a href="https://3d.nicovideo.jp/search?word_type=tag&amp;word=VRM">can be found here</a>. Please check license information and try out those VRM models. 
 Also, when uploading a VRM file to Nikoni 3D, there is an option「バーチャルキャスト連携」(virtual cast cooperation) which can let users use the VRM model in <a href="https://virtualcast.jp/">Virtual Cast</a>.</p>
 
     </article>
@@ -172,5 +171,16 @@ Also, when uploading a VRM file to Nikoni 3D, there is an option「バーチャ�
     </div>
 
     
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
   </body>
 </html>

@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-	
-	<sitemap>
-	   	<loc>https://dwango.github.io/en/sitemap.xml</loc>
-		
-	   	<lastmod>2018-10-05T16:30:00+09:00</lastmod>
-		
-	</sitemap>
-	
-	<sitemap>
-	   	<loc>https://dwango.github.io/ja/sitemap.xml</loc>
-		
-	   	<lastmod>2019-06-25T13:40:14+09:00</lastmod>
-		
-	</sitemap>
-	
+  
+  <sitemap>
+    <loc>https://dwango.github.io/en/sitemap.xml</loc>
+    
+      <lastmod>2018-10-05T16:30:00+09:00</lastmod>
+    
+  </sitemap>
+  
+  <sitemap>
+    <loc>https://dwango.github.io/ja/sitemap.xml</loc>
+    
+      <lastmod>2021-11-30T10:00:00+09:00</lastmod>
+    
+  </sitemap>
+  
 </sitemapindex>

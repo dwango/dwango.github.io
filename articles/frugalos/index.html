@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.87.0" />
 
   <meta property="og:title" content="Rust製の分散オブジェクトストレージをOSSとして公開しました - dwango on GitHub">
 
@@ -40,85 +40,73 @@
   <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
-      <p class="lead">
-       
- 
-      </p>
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="https://dwango.github.io/">Home</a> </li>
-      <li><a href="/articles"> Articles </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/niconico"> niconico </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://nico.ms/job/engineer"> Hiring </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> niconico 開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
     </ul>
 
-    <p>
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
       
-        <p style="display:inline-block;vertical-align:middle;">
-          Copyright &copy; DWANGO Co., Ltd.
-        </p>
+        Copyright &copy; DWANGO Co., Ltd.
       
     </p>
   </div>
 </div>
 
-    <div class="content container">
+    <main class="content container">
     
-<div class="post">
-  <h1>Rust製の分散オブジェクトストレージをOSSとして公開しました</h1>
-  <span class="post-date"> Fri, Oct 26, 2018 </span>
-  <div class="share">
-    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Rust製の分散オブジェクトストレージをOSSとして公開しました - dwango on GitHub" data-url="https://dwango.github.io/articles/frugalos/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/frugalos/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2ffrugalos%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-  </div>
-  <div>
-    
-    <article id="content">
-       
+  <div class="post">
+    <time class="content-date" datetime="2018-10-26 14:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2018-10-26 Fri</time
+    >
+    <h1 class="article-title">Rust製の分散オブジェクトストレージをOSSとして公開しました</h1>
 
-<h2 id="はじめに">はじめに</h2>
-
+    <div>
+      
+      <article id="content"><h2 id="はじめに">はじめに</h2>
 <p>ドワンゴでは<a href="https://www.nicovideo.jp/">niconico</a>の配信系サービスのバックエンドで利用するために、<strong>Frugalos</strong>という名前の分散オブジェクトストレージを開発しているのですが、この度OSSとして公開することとなりましたので、この場を借りて軽く紹介させて貰います。</p>
-
 <table>
 <thead>
 <tr>
-<th align="center"><img src="https://dwango.github.io/images/frugalos/frugalos-logo.png" alt="frugalos"  />
+<th style="text-align:center"><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/frugalos/frugalos-logo.png" alt="frugalos"  />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center"><a href="https://github.com/frugalos">https://github.com/frugalos</a></td>
+<td style="text-align:center"><a href="https://github.com/frugalos">https://github.com/frugalos</a></td>
 </tr>
 </tbody>
 </table>
-
 <p>Frugalosは<a href="https://www.rust-lang.org/ja-JP/">Rust</a>で実装されており、現時点では以下のリポジトリが公開されています:</p>
-
 <ul>
-<li><a href="https://github.com/frugalos/frugalos">frugalos</a>: 分散オブジェクトストレージ本体</li>
-<li><a href="https://github.com/frugalos/libfrugalos">libfrugalos</a>: 関連ツールがFrugalosを利用する際のAPIを提供</li>
-<li><a href="https://github.com/frugalos/raftlog">raftlog</a>: 分散合意アルゴリズムである<a href="https://raft.github.io/">Raft</a>の実装</li>
+<li></li>
+<li></li>
+<li></li>
 <li><a href="https://github.com/frugalos/raftlog_protobuf">raftlog_protobuf</a>: raftlogへの<a href="https://developers.google.com/protocol-buffers/">Protocol Buffers</a>サポートの追加</li>
-<li><a href="https://github.com/frugalos/cannyls">cannyls</a>: 大容量HDD向けのローカルストレージ</li>
-<li><a href="https://github.com/frugalos/cannyls_rpc">cannyls_rpc</a>: cannylsへのRPC機能の追加</li>
-<li><a href="https://github.com/frugalos/kanils">kanils</a>: cannyls用のコマンドラインツール</li>
-<li><a href="https://github.com/frugalos/ecpool">ecpool</a>: ErasureCoding特化のスレッドプール</li>
-<li><a href="https://github.com/frugalos/liberasurecode">liberasurecode</a>: C言語で実装されている<a href="https://github.com/openstack/liberasurecode">openstack/liberasurecode</a>のRustラッパー</li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
 </ul>
-
-<h2 id="frugalos-って何">&ldquo;Frugalos&rdquo;って何？</h2>
-
-<p>&ldquo;<strong>Frugal</strong> <strong>o</strong>bject <strong>s</strong>torage&rdquo;の略です。</p>
-
-<p>&ldquo;frugal&rdquo;は日本語では「倹約な」や「節約する」といった意味となり、「読み書き性能を犠牲にせずに、膨大な数のBLOB（<strong>B</strong>inary <strong>L</strong>arge <strong>OB</strong>ject）を、<strong>容量効率良く</strong>保持する」ことを目指して開発されている<a href="https://ja.wikipedia.org/wiki/%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8">オブジェクトストレージ</a>です。</p>
-
+<h2 id="frugalosって何">&ldquo;Frugalos&quot;って何？</h2>
+<p>&ldquo;<strong>Frugal</strong> <strong>o</strong>bject <strong>s</strong>torage&quot;の略です。</p>
+<p>&ldquo;frugal&quot;は日本語では「倹約な」や「節約する」といった意味となり、「読み書き性能を犠牲にせずに、膨大な数のBLOB（<strong>B</strong>inary <strong>L</strong>arge <strong>OB</strong>ject）を、<strong>容量効率良く</strong>保持する」ことを目指して開発されている<a href="https://ja.wikipedia.org/wiki/%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8">オブジェクトストレージ</a>です。</p>
 <p>提供されている機能はシンプルで、利用者は通常、以下の三つのHTTP APIを通してFrugalosを操作することになります:</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># オブジェクトの新規保存・上書き</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># オブジェクトの新規保存・上書き</span>
 $ curl -X PUT -d <span style="color:#f92672">{</span>データ<span style="color:#f92672">}</span> http://localhost/v1/buckets/<span style="color:#f92672">{</span>バケツID<span style="color:#f92672">}</span>/objects/<span style="color:#f92672">{</span>オブジェクトID<span style="color:#f92672">}</span>
 
 <span style="color:#75715e"># オブジェクトの取得</span>
@@ -126,410 +114,335 @@ $ curl -X GET http://localhost/v1/buckets/<span style="color:#f92672">{</span>�
 
 <span style="color:#75715e"># オブジェクトの削除</span>
 $ curl -X DELETE http://localhost/v1/buckets/<span style="color:#f92672">{</span>バケツID<span style="color:#f92672">}</span>/objects/<span style="color:#f92672">{</span>オブジェクトID<span style="color:#f92672">}</span></code></pre></div>
-
-<p><small>※&rdquo;バケツ&rdquo;はオブジェクト群の管理単位で、事前に生成しておく必要があります</small> <br />
+<p><small>※&ldquo;バケツ&quot;はオブジェクト群の管理単位で、事前に生成しておく必要があります</small> <br />
 <small>※その他の利用可能なAPIに関しては<a href="https://github.com/frugalos/frugalos/wiki/REST-API">Wiki</a>を参照してください</small></p>
-
 <h2 id="どこで使われているの">どこで使われているの？</h2>
-
 <p>ニコニコ生放送の新配信システムで、タイムシフト番組の録画・配信用ストレージとして使用されており、今年の七月からユーザ向けの運用が始まっています。<br />
 参考（ニコニコインフォ）: <a href="http://blog.nicovideo.jp/niconews/80407.html">【ユーザー生放送】タイムシフトが新配信システムに対応しました </a></p>
-
 <p>現時点での規模感としては、１PiB超のデータを３００個以上のHDDに分散して保持しており、ピーク時には１秒間で３GiB程度の読み書き要求を捌いています:</p>
-
 <table>
 <thead>
 <tr>
-<th align="center"><img src="https://dwango.github.io/images/frugalos/peak-summary.png" alt="ピーク時の主要メトリクス"  />
+<th style="text-align:center"><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/frugalos/peak-summary.png" alt="ピーク時の主要メトリクス"  />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center">ある日のGrafanaダッシュボード</td>
+<td style="text-align:center">ある日のGrafanaダッシュボード</td>
 </tr>
 </tbody>
 </table>
-
 <p>将来的には、投稿動画の保存・配信用途に使用する計画もあるのですが、そちらは現在は鋭意開発中となっています。<br />
 <small>※ 現時点では、動画用途ではFrugalosとは別の、SSDベースの分散ストレージが使用されています</small></p>
-
 <h2 id="なぜ開発したのか">なぜ開発したのか</h2>
-
 <h4 id="背景-新配信システム移行に伴う要求ストレージサイズの増加">背景: 新配信システム移行に伴う要求ストレージサイズの増加</h4>
-
 <p>niconicoでは、日々たくさんの動画の投稿や生放送の配信が行われています。</p>
-
 <p>もともと、それらを保存するために必要とされるストレージサイズは小さなものではなかったのですが、近年進めている新配信システム（そのバックエンド部分は<strong>DMC</strong>と呼称されることもあります）への移行に伴い、旧配信システムの頃に比べて、要求ストレージサイズが一桁以上大きなものとなった、という背景があります。</p>
-
 <p>新配信システムで要求サイズが増大する要因としては、以下のようなものが挙げられます:</p>
-
 <ul>
 <li>動画・生放送の高画質化:
-
 <ul>
 <li>新配信システムでは、動画・生放送の高画質化を進めています</li>
 <li>ユーザ生放送を例にすれば、旧配信システムでは配信ビットレート（上り）の最大値が<strong>480Kbps</strong>だったのが、新配信システムでは<strong>6Mbps</strong>となっています</li>
 <li>つまり、新配信システムではユーザ生放送のタイムシフトを保存するために、旧配信システムに比べて１０倍以上のストレージが必要となることになります（実際にはここまで単純な比較は行えないのですが、おおよその感触を掴む助けにはなるのではないかと思います）</li>
-</ul></li>
+</ul>
+</li>
 <li>映像・音声の複数品質への変換:
-
 <ul>
 <li>新配信システムでは、マルチデバイスや視聴者の多様なネットワーク環境に対応するために、同じソースを複数の品質に変換しています</li>
 <li>そのため、この変換数分だけ、追加のストレージが要求されることになりました</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>また、生放送のタイムシフトには（原則として）視聴期限が存在するため古いデータを削除することが可能なのですが、動画に関しては基本的に永遠に保持し続ける必要があるため、今後も要求ストレージサイズは増加の一途を辿ることが予想されます。</p>
-
 <h4 id="要求-hddの使用とerasure-codingによる冗長化">要求: HDDの使用とErasure Codingによる冗長化</h4>
-
 <p>この「ストレージサイズの大幅な増加」に対処するために、新配信システムの動画・生放送用ストレージに対しては、以下のような要求が（Frugalosの開発が決まる前から）挙がっていました:</p>
-
 <ul>
 <li>HDDを使いたい:
-
 <ul>
 <li>容量当たりのコストがSSDに比べて低いため</li>
-</ul></li>
+</ul>
+</li>
 <li>容量効率に優れたErasure Codingによる冗長化を行いたい:
-
 <ul>
 <li>一般的な、複製による冗長化では、容量的なオーバヘッドが無視できなかったため</li>
 <li>Erasure Codingの仕組みについての詳述は避けますが、機能的には「RAID6を一般化したもの」と考えて貰えれば、この記事を読む上では問題ありません</li>
 <li>RAID6とは異なり、データ分割の際のブロック数とパリティ数に任意の値が指定可能で、例えば「データブロック数は<strong>6</strong>で、パリティ数は<strong>3</strong>」といった設定にすれば、<strong>サイズ的なオーバヘッドを1.5倍に抑えたまま、3台までの故障に耐えられる</strong>ようになります
-
 <ul>
 <li>分割後のブロックおよびパリティは、それぞれ別のサーバの別のHDDに保存されます</li>
-</ul></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
+</li>
+</ul>
 <p>そのため、当初はErasure Codingに対応したOSSの分散ストレージの採用を検討していたのですが、
 その性能検証を進めていくにつれて、次で取り上げる問題に直面することとなりました。</p>
-
-<h4 id="動画-生放送用ストレージのワークロードの特徴と難しさ">動画・生放送用ストレージのワークロードの特徴と難しさ</h4>
-
+<h4 id="動画生放送用ストレージのワークロードの特徴と難しさ">動画・生放送用ストレージのワークロードの特徴と難しさ</h4>
 <p>「ストレージサイズが巨大」ということに加えて、動画や生放送タイムシフトのワークロードには、以下のような特徴が存在します:</p>
-
 <ul>
 <li>アクセスパターンに局所性が期待できない:
-
 <ul>
 <li>ニコニコ動画には大量の動画が存在しますが、一部の動画を除いて、大半のユーザは別々の動画を視聴しています</li>
 <li>ユーザ生放送のタイムシフトでも同様の傾向があり、番組数は多いですが、複数ユーザが同時に同じ番組を視聴していることは稀です</li>
 <li>そのため、一部の視聴が集中する動画・番組を除き、キャッシュヒット率はとても低いものとなります</li>
-</ul></li>
+</ul>
+</li>
 <li>レイテンシが（視聴体験を損なわない程度には）安定して低い必要がある:
-
 <ul>
 <li>例えば、ストレージの読み込みレイテンシが大きいと、動画の視聴を開始したりシークする際に長時間待たされることになってしまいます</li>
 <li>また、視聴途中でデータの読み込みに時間が掛かってしまうと、映像や音声がそこで途切れてしまうかもしれません</li>
 <li>それを避けるために、ストレージの性能評価の際には「読み込み処理の99%は一秒以内に完了すること」といった制限を設けていました</li>
-</ul></li>
+</ul>
+</li>
 <li>ストレージに対して読み書き両方の性能（スループット）が要求される:
-
 <ul>
 <li>動画と生放送タイムシフトの両方とも（例えば書き込みに特化したアーカイブストレージのようには）読み書きどちらかだけの性能に最適化することができない、といった難しさもあります</li>
 <li>動画の場合:
-
 <ul>
 <li>新規投稿動画の保存用の書き込みが必要</li>
 <li>動画視聴用の読み込みが必要（こちらの方が比重は高い）</li>
-</ul></li>
+</ul>
+</li>
 <li>生放送タイムシフトの場合:
-
 <ul>
 <li>生放送の録画用の書き込みが必要（こちらの方が比重は高い）</li>
 <li>タイムシフト視聴用の読み込みが必要</li>
-</ul></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
+</li>
+</ul>
 <p>まとめると「読み書き両方のランダムなディスクアクセス」が発生し、「そこそこのレイテンシおよびスループット」が要求される、ということになりますが、これを達成するのはそう簡単ではないことがOSS製品の性能検証を進めるにつれて分かってきました。</p>
-
 <p>ただでさえHDDはシーク速度が遅く、ランダムアクセスに弱いです。そこにErasure Codingによるデータ分割が加わると、ストレージ全体では<code>分割数 + パリティ数</code>倍のディスクアクセスが必要になってしまいます。</p>
-
 <p>またErasure Codingでは、読み込み時に、分割されたデータブロック群を集めて元のデータを再構築する必要があります。その場合、対象データの読み込みレイテンシは「一番読み込みに時間が掛かったブロックのレイテンシ」に律速されることになります。つまり、ストレージ内の各ディスクのI/Oレイテンシのバラつきに対して、より敏感になってしまい、安定した低レイテンシを達成するのが難しくなります。</p>
-
 <p>こういった要因が重なり、残念ながら、検証を進めていた既存の分散ストレージでは要求性能を満たすことができませんでした。</p>
-
 <h4 id="hddの限界性能の検証とfrugalosの開発開始">HDDの限界性能の検証とFrugalosの開発開始</h4>
-
 <p>「既存ストレージをniconicoのワークロードに当てはめて使用する」というアプローチが行き詰ってしまったので、次は方向性を変えて「HDDを最大限に活用できたとしたら、期待する性能が達成可能なのか」を検証することになりました（もしこれが無理なら、そもそもの選択が間違っていたことになります）。</p>
-
-<p>この時に作成したプロトタイプは、現在Frugalosのローカルストレージとして使用されている<a href="https://github.com/frugalos/cannyls">CannyLS</a>の前身となるのですが、以下のような特徴を備えていました:</p>
-
+<p>この時に作成したプロトタイプは、現在Frugalosのローカルストレージとして使用されている<a href="%E5%A4%A7%E5%AE%B9%E9%87%8FHDD%E5%90%91%E3%81%91%E3%81%AE%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8">CannyLS</a>の前身となるのですが、以下のような特徴を備えていました:</p>
 <ul>
 <li>PUT/GET/DELETE操作を備えたローカルオブジェクトストレージ</li>
 <li>各操作で必要なディスクアクセス（シーク）回数に厳密な上限がある:
-
 <ul>
 <li>PUTなら二回、GET/DELETEなら一回</li>
 <li>レイテンシおよびスループット低下を防ぐために、インデックスやメタデータは全てメモリ上に保持</li>
-</ul></li>
+</ul>
+</li>
 <li>ダイレクトI/Oを使用して、OSのキャッシュ層（ページキャッシュ）はバイパス:
-
 <ul>
 <li>ページキャッシュが存在すると、不確実性が増え、レイテンシのバラつきが大きくなってしまう可能性があるため</li>
 <li>また、基本的にランダムアクセスを想定しているため、キャッシュの意義は薄い</li>
-</ul></li>
+</ul>
+</li>
 <li>オブジェクトサイズとしては、数百KiB～数MiBを想定:
-
 <ul>
 <li>あまり巨大なオブジェクトが扱われると、それに対するディスクI/Oが他の操作を長時間ブロックし、レイテンシのブレが大きくなってしまうため</li>
 <li>逆にあまり小さ過ぎると、ディスクのシークコストが相対的に高くなり、今度はスループットが低下してしまいます</li>
-</ul></li>
+</ul>
+</li>
 <li>メモリのGCの影響を回避するために、プログラミング言語にはGCの無いRustを選択</li>
 </ul>
-
 <p>つまり、HDDを高速化するために何か特別な機構を追加した、というよりは、ランダムアクセスは必ず発生するものと諦めた上で無駄を極限まで削ぎ落とした形になります。</p>
-
-<p>当時の検証結果ではないのですが、参考のために、<a href="https://github.com/frugalos/cannyls">CannyLS</a>の<a href="https://github.com/frugalos/cannyls/wiki/Benchmark">ベンチマーク結果</a>の一部を載せておきます。</p>
-
+<p>当時の検証結果ではないのですが、参考のために、<a href="%E5%A4%A7%E5%AE%B9%E9%87%8FHDD%E5%90%91%E3%81%91%E3%81%AE%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8">CannyLS</a>の<a href="https://github.com/frugalos/cannyls/wiki/Benchmark">ベンチマーク結果</a>の一部を載せておきます。</p>
 <table>
 <thead>
 <tr>
-<th align="center"><img src="https://dwango.github.io/images/frugalos/put-latency.png" alt="PUTレイテンシ"  />
+<th style="text-align:center"><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/frugalos/put-latency.png" alt="PUTレイテンシ"  />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center"><a href="https://github.com/frugalos/cannyls/wiki/Benchmark">https://github.com/frugalos/cannyls/wiki/Benchmark</a> より一部結果を抜粋</td>
+<td style="text-align:center"><a href="https://github.com/frugalos/cannyls/wiki/Benchmark">https://github.com/frugalos/cannyls/wiki/Benchmark</a> より一部結果を抜粋</td>
 </tr>
 </tbody>
 </table>
-
 <p>このベンチマークではHDDに対して「サイズが1MiBのオブジェクト（CannyLS用語では<a href="https://github.com/frugalos/cannyls/wiki/Terminology#lump">&ldquo;lump&rdquo;</a>）を、合計1TiB分だけPUT（保存）する」といった処理を実行しています（X軸は何番目のPUTかを、Y軸は各PUTに要した時間を、示しています）。</p>
-
 <p>左の図はCannyLS、中央は「一オブジェクトを一ファイル」としたファイルシステム（XFS）、右の図は<a href="https://rocksdb.org/">RocksDB</a>という組み込みKVS、をストレージとして使用した結果になります。右二つに関しては、HDD用に特別な最適化が行われている訳ではないためあくまでも参考結果に過ぎませんが、それでもCannyLSの場合には（ある程度）一貫して安定した低レイテンシが維持されていることが見て取れるのではないかと思います。</p>
-
 <p>この単体HDDでの検証結果を、niconicoが要求するワークロードに照らし合わせてみたところ、どうやらHDDの性能を最大限活用できれば、要求性能も満たせそうだということが分かりました。<br />
 <small>※ なおここで触れたもの以外にも、ローカルストレージ部分には様々な工夫が施されている(e.g., ディスクI/Oの使用効率を高めるための<a href="https://github.com/frugalos/cannyls/wiki/I-O-Scheduling-based-on-Request-Deadlines">デッドラインベースのI/Oスケジューリング</a>)ため、興味のある人は<a href="https://github.com/frugalos/cannyls/wiki">CannyLSのWiki</a>を参照して貰えればと思います</small></p>
-
 <p>これで原理上は、HDDでも大丈夫そうだということが判明したため、次はこのプロトタイプにErasure Codingを用いた分散・冗長化層を追加し、分散オブジェクトストレージとして最低限の機能を備えた状態にしました。さらに、それをバックエンドとして利用した簡易的な動画の配信サーバを実装し、実際の投稿・視聴パターンを模したベンチマークを実施してみましたが、ここでも期待通りの性能が出ていることが確認できました。</p>
-
 <p>この段階で性能面での懸念点は解消でき、一通りの見通しが立ったため、分散オブジェクトストレージの開発が正式に始まり、今に至ります。</p>
-
 <h2 id="配信バックエンド全体の中での立ち位置">配信バックエンド全体の中での立ち位置</h2>
-
 <p>Frugalosの立ち位置を明確にするために、タイムシフトの録画および視聴時のストリームの流れを示した図を掲載しておきます:</p>
-
 <table>
 <thead>
 <tr>
-<th align="center"><img src="https://dwango.github.io/images/frugalos/overall-view.png" alt="タイムシフト録画・視聴時のストリームの流れ"  />
+<th style="text-align:center"><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/frugalos/overall-view.png" alt="タイムシフト録画・視聴時のストリームの流れ"  />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center">タイムシフト録画・視聴時のストリームの流れ</td>
+<td style="text-align:center">タイムシフト録画・視聴時のストリームの流れ</td>
 </tr>
 </tbody>
 </table>
-
 <p>実はFrugalosは「ストレージミドルウェアのためのミドルウェア」といったような立ち位置で使用されることを想定しています。</p>
-
 <p>Frugalosは性能（HDDの活用効率）や可用性、スケーラビリティには優れていますが、提供している機能は最低限で制限も少なくないため、動画ファイルやタイムシフトストリームをそのまま格納する用途には向いていません。</p>
-
 <p>例えば、制限の一つとして「巨大なオブジェクト（e.g., 数百MiB）は保存できない」といったものが挙げられます。公式生放送の場合には、長いものでは24時間を超える番組があり、そのストリームサイズは数十GiB単位となるのですが、当然このストリーム全体をそのまま一つのオブジェクトとして、Frugalosに保存することはできません。</p>
-
 <p>そのため（それだけが理由ではないですが）上の図でも、生放送ストリームは、トランスコーダノード上でチャンクという小さなオブジェクトに分割された上で、Frugalosに保存されるようになっています。</p>
-
 <p>同様に、視聴時にそのチャンク群から実際のタイムシフトストリームを復元することもエッジノードの責務となっています。
 また公式生放送番組では、同じタイムシフト番組に対して視聴が集中することが良くあるのですが、そういったアクセス集中に対応するためのキャッシュの仕組みも、Frugalosではなくエッジノードが備える形となっています。</p>
-
 <p>つまり、一般に「分散ストレージ」という言葉で想起されるような機能は、Frugalos単体では提供されておらず、
 その前段にある別の層と組み合わせて初めて、実際に有益な、ストレージとしての機能が利用可能になります。</p>
-
 <p>新配信システムのバックエンドにおける、このFrugalosの前段に位置する層に関して、今回は詳しく触れることはありませんが、
 機会があればまたどこかで詳しく紹介させて貰うかもしれません。</p>
-
 <h2 id="技術的な特徴">技術的な特徴</h2>
-
 <p>興味のある方がいるかもしれないので、Frugalosの技術的特徴を簡単に列挙しておきます:</p>
-
 <ul>
 <li>ほぼ完全にRust製:
-
 <ul>
 <li><a href="https://crates.io/crates/futures">futures</a>を用いた大規模サーバの非同期実装
-
 <ul>
 <li>非同期タスクやI/Oの実行には<a href="https://github.com/dwango/fibers-rs">fibers</a>を使用</li>
-</ul></li>
+</ul>
+</li>
 <li>外部のデータベース等に依存しているといったこともなく、シングルバイナリで自己完結</li>
 <li>開発者の一人がErlangが好きなこともあり、コードベースはアクターモデルに近いものとなっている</li>
-</ul></li>
+</ul>
+</li>
 <li>Erasure Codingによる冗長化:
-
 <ul>
 <li>残念ながら現状はCライブラリのラッパーを使っており、ここだけがRustではない</li>
-</ul></li>
+</ul>
+</li>
 <li><a href="https://raft.github.io/">Raft</a>を最大限に活用:
-
 <ul>
 <li>Raftは分散合意アルゴリズムの一つであり、近年、分散系ミドルウェアでの採用が進んでいる</li>
 <li>スケーラビリティを担保するために「一つの分散ストレージ内に数百～数千個の小さなRaftクラスタが存在する」という（おそらく）結構変わったRaftの使い方をしている</li>
 <li>また、それとは別に「分散ストレージ全体の構成管理」という目的でも別のRaftクラスタを使用</li>
-<li>Raft実装である<a href="https://github.com/frugalos/raftlog">raftlog</a>ライブラリも、<a href="https://crates.io/crates/futures">futures</a>を採用しており完全に非同期な実装</li>
-</ul></li>
+<li>Raft実装である<a href="%E5%88%86%E6%95%A3%E5%90%88%E6%84%8F%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E3%81%A7%E3%81%82%E3%82%8B%5BRaft%5D%E3%81%AE%E5%AE%9F%E8%A3%85">raftlog</a>ライブラリも、<a href="https://crates.io/crates/futures">futures</a>を採用しており完全に非同期な実装</li>
+</ul>
+</li>
 <li>HDD特化のローカルストレージ:
-
 <ul>
 <li>上で触れた通り「安定した低レイテンシ」をHDD上で達成するために、いろいろと頑張っている</li>
 <li>詳細は<a href="https://github.com/frugalos/cannyls/wiki">CannyLSのWiki</a>を参照</li>
-</ul></li>
+</ul>
+</li>
 <li>メトリクスや分散トレース:
-
 <ul>
 <li>メトリクス収集は<a href="https://prometheus.io/">Prometheus</a>で、分散トレースは<a href="https://www.jaegertracing.io/">Jaeger</a>で実現</li>
 <li>ただし分散トレースの方は、まだ対応が部分的なので、これから拡充予定</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>なお、Frugalosのアーキテクチャや実装の詳細に関して<a href="https://github.com/frugalos/frugalos/wiki">GitHubのWiki</a>に記載していく予定ですので、今後はそちらを参照して貰えればと思います（今はほとんど空ですが&hellip;）。</p>
-
 <h2 id="苦労話">苦労話</h2>
-
 <p>せっかくの機会なので、開発・運用で苦労した点をいくつか紹介させて貰います。<br />
 <small>※ 蛇足的な内容なので、各トピックに興味がない人は、読み飛ばしを推奨します</small></p>
-
 <h4 id="rustでの非同期サーバ実装手法が確立されていなかった">Rustでの非同期サーバ実装手法が確立されていなかった</h4>
-
 <p>そもそも開発当初は<a href="https://crates.io/crates/futures">futures</a>すら登場していなかったので、ネイティブスレッドや<a href="https://crates.io/crates/eventual">eventual</a>、<a href="https://crates.io/crates/rotor">rotor</a>等を使って、Rustでの非同期I/Oの実装方法を模索していました。</p>
-
 <p>その後、<a href="https://crates.io/crates/futures">futures</a>がリリースされた以降は、コードを<a href="https://crates.io/crates/futures">futures</a>を使用するように書き換えていった訳ですが、その当時はまだ<a href="https://crates.io/crates/tokio">tokio</a>も十分に使える状態ではなく、似たような機能を提供する<a href="https://github.com/dwango/fibers-rs">fibers</a>を自分達で実装していたりしました。</p>
-
 <p><a href="https://crates.io/crates/futures">futures</a>の使用が確定した後も、それを効率的に利用するためのイディオムが固まるまでには長い時間を要し、非同期I/Oが絡む部分のコードは何度も全面的に書き直すことになりました。</p>
-
 <p>今では、知見もだいぶ溜まり、<a href="https://crates.io/crates/futures">futures</a>関連部分のコードが（対応する同期版の実装に比べて）かなり冗長になることを除けば、概ね満足のいく設計・実装が出来るようになりましたが、ここに至るまでにはだいぶ回り道をしてしまいました。</p>
-
 <p>そのため、Rustで非同期処理を記述しやすくするための<a href="https://github.com/rust-lang/rfcs/blob/master/text/2394-async_await.md">async/await構文</a>が導入される予定の<a href="https://blog.rust-lang.org/2018/07/27/what-is-rust-2018.html">2018エディション</a>は、とても楽しみにしています！
 （おそらく、2018エディションリリース後のどこかで、また大幅なコードの書き直しが発生するとは思いますが&hellip;）</p>
-
 <h4 id="稼働中の分散システムのデバッグが困難">稼働中の分散システムのデバッグが困難</h4>
-
 <p>niconicoの新配信システムでは、Erlangが主要な開発言語として使われているのですが、Erlangの場合は本番運用中に何か問題が発生した際に、稼働中のErlangVMにアタッチして、各種情報を収集したり、トレースを取ったり、あるいはVM上で直接任意の関数を実行したり、といったことが簡単に行えます。</p>
-
 <p>それに慣れてしまっていたということもあり、Rustで実装された稼働中のサーバのデバッグを行うのが、当初はだいぶ困難でした。
 当然、Rustでは「一度起動したサーバにアタッチする」といったことは（少なくとも気軽には）行えないですし、ログは出力していましたが、今回の規模の分散システムでは、ログだけで、問題ないしその兆候を特定するのは、かなり骨の折れる作業でした。そもそも必要なログが出力されておらず、プログラムの修正・再デプロイ・問題再現待機、を繰り返したことも何度もあります。</p>
-
 <p>これを改善するために、Frugalosの開発中盤では、ひたすら<a href="https://prometheus.io/">Prometheus</a>メトリクスを仕込む作業を行っていた時期がありました。
 現在では、ローカルストレージや内部RPC部分も含めて、合計で71種類のメトリクスが収集されていますが、これによりクラスタ全体の状況把握や異常検知がかなり行いやすくなりました。</p>
-
 <p>また<a href="https://www.jaegertracing.io/">Jaeger</a>による分散トレースも部分的に導入されており、これによっていくつかレイテンシ上のボトルネックが解消できました（以下の図はHLS視聴時のトレースの例）。</p>
-
 <table>
 <thead>
 <tr>
-<th align="center"><img src="https://dwango.github.io/images/frugalos/jaeger.png" alt="Jaegerによるトレース例"  />
+<th style="text-align:center"><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/frugalos/jaeger.png" alt="Jaegerによるトレース例"  />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center">JaegerによるHLS視聴リクエスト処理のトレース例</td>
+<td style="text-align:center">JaegerによるHLS視聴リクエスト処理のトレース例</td>
 </tr>
 </tbody>
 </table>
-
 <p>それ以外に、デバッグ用のAPIも機会を見つけて実装してはいるのですが、これはまだ十分な数が揃っているとは言い難い状況です。</p>
-
 <h4 id="jemallocのメモリ使い過ぎ問題">jemallocのメモリ使い過ぎ問題</h4>
-
 <p>Rustではjemallocというメモリアロケータがデフォルトで使用されているのですが、これが原因でFrugalosのメモリ使用量が実際よりも大幅に多く見えてしまう、という問題に遭遇したことがありました。</p>
-
 <p>以下の図は、Frugalosの起動後から一カ月半が経過するまでの期間を切り取って、そのメモリ使用量を示したものになりますが、
 frugalosプロセスのメモリ使用量が山のような形状を取って推移していることが分かります（この期間中、オブジェクトの保存数自体には大きな変動がありませんでした）:</p>
-
 <table>
 <thead>
 <tr>
-<th align="center"><img src="https://dwango.github.io/images/frugalos/memory.png" alt="メモリ使用量"  />
+<th style="text-align:center"><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/frugalos/memory.png" alt="メモリ使用量"  />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center">frugalosプロセスのメモリ使用量の推移</td>
+<td style="text-align:center">frugalosプロセスのメモリ使用量の推移</td>
 </tr>
 </tbody>
 </table>
-
 <p>このピーク時のメモリ使用量は、どう考えても予測量よりも多いものであり、ピークを過ぎて下降し始めるまでは、メモリリークでも発生しているのではないかと肝を冷やしたものです。</p>
-
 <p>結局現時点でも詳細な理由は判明していないのですが、<a href="https://crates.io/crates/jemalloc-ctl">jemalloc-ctl</a>を使ってjemallocの統計情報をダンプしてしたところ、必要量よりも多めにメモリを（アロケータ用に）確保していそうだということが判明したため、<a href="https://github.com/jemalloc/jemalloc/blob/dev/TUNING.md">jemallocのチューニングガイド</a>を参考に、メモリ使用量を抑えるようなオプションを環境変数で指定するようにしたところ、上の図のような山を描くことはなくなりました。</p>
-
 <h4 id="c言語のライブラリ部分でセグメンテーションフォールトが発生">C言語のライブラリ部分でセグメンテーションフォールトが発生</h4>
-
 <p>Erasure Coding部分に関してはC言語で実装されたライブラリを採用している、という話は上でも書きましたが、このライブラリ部分でセグメンテーションフォールトが発生したためにプログラムがクラッシュしてしまう問題に、何度か遭遇しました。</p>
-
 <p>一番困ったのは、特定のパラメータでErasure Codingのエンコーダを生成した場合に、初期化や通常のエンコード・デコードは成功するけれど、欠損したデータの復元を行おうとした場合にだけ、セグメンテーションフォールトが発生する、といった問題でした。</p>
-
 <p>結局、これ自体はRustコードでのバリデーションを強化することで対処を行ったのですが、長期間稼働するサーバでの予期せぬ実行時エラーの怖さを再認識しました。</p>
-
 <h4 id="serdeが非同期シリアライズに非対応">serdeが非同期シリアライズに非対応</h4>
-
 <p>Rustには<a href="https://crates.io/crates/serde">serde</a>という便利なシリアライゼーションライブラリが存在するため、当初はFrugalosの内部通信用に、serdeとHTTPを組み合わせたRPCを使用していました。</p>
-
 <p>ただserdeは、非同期的なシリアライズ・デシリアライズに対応しておらず、これがサイズの大きいメッセージ（e.g., オブジェクトデータ、Raftのスナップショット、要素数が多いRaftのログエントリ配列）を送受信する機会が多いFrugalosでは問題となることが、次第に分かってきました。
 こういったメッセージをserdeを使って同期的にシリアライズ・デシリアライズしてしまうと、その間、該当非同期タスクを実行しているスケジューラスレッドの実行がブロックしてしまうことになりますが、それが累積してシステム全体の大幅な遅延に繋がってしまうことがあったのです。このブロック問題を解消するだけであれば、serde部分だけを別のスレッドプール上で実行すれば回避可能ではあるのですが、serdeが非同期処理に対応していないために、非同期I/Oと組み合わせるためには、シリアライズ・デシリアライズのための一時バッファが必要となり、余計なアロケーションとメモリコピーが一回増えてしまう、という別の問題もありました。</p>
-
 <p>このような問題に対処するために、内部RPC部分は最終的には非同期処理に対応した独自のもので置き換えることになりました
 （ただし、将来的にはgRPCの採用も検討したいと考えています）。</p>
-
 <h3 id="分散システムあるある">分散システムあるある</h3>
-
 <p>ある程度の規模の分散システムを運用した経験がある方であれば分かるのではないかと思いますが、
 そういったシステムを長期間運用しているとマシンやディスクの故障は日常的に発生します。</p>
-
 <p>実はFrugalosのユーザリリースの前には、録画だけを行う試験運用期間が半年以上あったのですが、
 その間に故障周りの問題には一通り遭遇したのではないかと思います。</p>
-
 <p>当然、事前に故障を想定した設計はしていたのですが、想定外の状況であったり、あるいは単に実装漏れによって、
 クラスタ全体の停止やスローダウンに繋がるような状況に陥ったことも何度かあります。</p>
-
 <p>以下はその一例を挙げておきます:</p>
-
 <ul>
 <li>マシン停止の検知漏れ:
-
 <ul>
 <li>マシンの停止やプロセスダウン自体は適切に処理されるようになっていたのですが、その検知方法に漏れがあり、該当マシン（上のプロセス）に対する内部RPCのメッセージ群が「送信待機」の状態で溜まってしまい、タイムアウトが頻発する、といった問題がありました</li>
-</ul></li>
+</ul>
+</li>
 <li>HDDの読み書き速度が極端に遅くなる:
-
 <ul>
 <li>これは設計段階から想定してはいたのですが、ローカル環境での再現が難しかったこともあり、実際の運用中にHDDの速度低下が発生した際には、それに影響されて（予想外に）遅くなってしまう箇所がいくつかあることが判明しました</li>
 <li>なお、この問題に対処するために<a href="https://github.com/dwango/mizumochi">mizumochi</a>というツールを開発し、ローカルでも手軽にディスクの速度低下を模倣可能なようにしました</li>
-</ul></li>
+</ul>
+</li>
 <li>メモリがスワップアウトしたマシンに引き摺られて、他のマシンのメモリ使用量も増加:
-
 <ul>
 <li>故障等により、一定期間切り離されていたマシン（上のfrugalosプロセス）を再起動すると、Raftによる同期処理が実行されます</li>
 <li>上でも少し触れましたが、Frugalosではストレージクラスタ内の多数のRaftクラスタが存在しているため、この同期処理も複数Raftクラスタによって並行的に行われることになるのですが、その際の並行度が高すぎて（ネットワーク速度に対してCPU処理が追い着かずに）該当マシンのメモリが不足しスワップアウトが発生することがありました</li>
 <li>再起動マシンにだけ問題が閉じているのであればまだ良いのですが、そのスワップアウトが発生したマシンに対する別のマシンからの内部RPCも詰まってしまい、送信側キューにメッセージが溜まり続け、そちらのメモリも徐々に逼迫していく、という連鎖的な問題に繋がってしまいました（結局この時は、同期中の再起動プロセスを強制終了することで対処しました）</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>幸い、ユーザリリース後は安定して動作してくれていますが「適切な耐障害性を備えていること」の網羅的な検証手段の確立は、
 まだ重要な課題として残っています。</p>
-
 <h2 id="おわりに">おわりに</h2>
-
 <p>Frugalosはコードを公開して、今後はOSSとして開発していくこととなりましたが、
 まだまだ足りていないものは無数にあるので、これから徐々に整備していけたらと考えています。</p>
-
 <p>例えば簡単に思いつくだけでも、以下のような試したいことが残っています:</p>
-
 <ul>
 <li>消費メモリサイズを節約するために簡潔データ構造の導入</li>
 <li>ローカルストレージのアロケータの改善やデフラグ機能の実装</li>
@@ -537,20 +450,82 @@ frugalosプロセスのメモリ使用量が山のような形状を取って推
 <li>内部通信のgRPC化</li>
 <li>カオスエンジニアリングの拡充</li>
 <li>POSIX準拠のファイルシステムインタフェースの実装
-
 <ul>
 <li>他にもS3やストリーミング配信に特化したインタフェースもあると便利</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>もしこの辺りの技術分野や、Frugalosのようなプロダクトを生み出せる環境で働くことに興味がある方がいましたら、是非<a href="http://dwango.co.jp/recruit/">採用ページ</a>からの応募をご検討頂ければと思います。
 もちろん、OSSとして公開されたリポジトリへのコントリビュートも歓迎です！</p>
-
-    </article>
-  </div>
-</div>
-
+</article>
     </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="Rust製の分散オブジェクトストレージをOSSとして公開しました - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/frugalos/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/frugalos/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2ffrugalos%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </main>
+
+    
+      
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-LF3Z3TQ34F', { 'anonymize_ip': false });
+}
+</script>
 
     
   </body>

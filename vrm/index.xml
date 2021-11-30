@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>VRM on dwango on GitHub</title>
@@ -6,11 +6,7 @@
     <description>Recent content in VRM on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 16 Apr 2018 16:30:00 +0900</lastBuildDate>
-    
-	<atom:link href="https://dwango.github.io/vrm/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 16 Apr 2018 16:30:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/vrm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>UniVRM-0.44のマテリアル</title>
       <link>https://dwango.github.io/vrm/univrm/shaders/univrm_shaders_044/</link>
@@ -67,7 +63,7 @@ Dependencies Written against the glTF 2.0 spec.
 Overview This extension defines Humanoid model for VR.
  human bone definitions standard morphs secondary animation annotations mesh visibilities for first person view  glTF Schema Updates This extension adds:
 JSON Schema TODO: Links to the JSON schema for the new extension properties.
-Known Implementations  TODO: List of known implementations, with links to each if available.</description>
+Known Implementations  TODO: List of known implementations, with links to each if available.  Resources  TODO: Resources, if any.</description>
     </item>
     
     <item>
@@ -193,7 +189,7 @@ Known Implementations  TODO: List of known implementations, with links to each i
       <pubDate>Mon, 16 Apr 2018 16:30:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/vrm/vrm_about/</guid>
-      <description>「VRM」とは VR(Virtual Reality)やVTuberなどにおいて「キャラクターや人型のアバター（の3Dモデル）」を取り扱おうとした場合、従来はアプ</description>
+      <description>「VRM」とは VR(Virtual Reality)やVTuberなどにおいて**「キャラクターや人型のアバター（の3Dモデル）」**を取り扱おうとした場合、従</description>
     </item>
     
     <item>

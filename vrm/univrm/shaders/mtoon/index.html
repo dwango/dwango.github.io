@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.87.0" />
 
   <meta property="og:title" content="MToon - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -42,23 +42,22 @@
   <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
-      <p class="lead">
-       
- 
-      </p>
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="https://dwango.github.io/">Home</a> </li>
-      <li><a href="/articles"> Articles </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/niconico"> niconico </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://nico.ms/job/engineer"> Hiring </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> niconico 開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
     </ul>
 
-    <p>
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
       
-        <p style="display:inline-block;vertical-align:middle;">
-          Copyright &copy; DWANGO Co., Ltd.
-        </p>
+        Copyright &copy; DWANGO Co., Ltd.
       
     </p>
   </div>
@@ -92,75 +91,69 @@
   <div>
     <article id="content">
         <div class="toc"> <nav id="TableOfContents">
-<ul>
-<li><a href="#mtoon-について">MToon について</a></li>
-<li><a href="#手早く設定したい人向け">手早く設定したい人向け</a>
-<ul>
-<li><a href="#共通項目">共通項目</a></li>
-<li><a href="#普通のマテリアル">普通のマテリアル</a></li>
-<li><a href="#キャラクタの顔など-影があまりついてほしくないマテリアル">キャラクタの顔など、影があまりついてほしくないマテリアル</a></li>
-</ul></li>
-<li><a href="#設定項目">設定項目</a>
-<ul>
-<li><a href="#準備">準備</a></li>
-<li><a href="#rendering">Rendering</a>
-<ul>
-<li><a href="#rendering-type">Rendering Type</a></li>
-<li><a href="#cull-mode">Cull Mode</a></li>
-<li><a href="#alpha">Alpha</a></li>
-</ul></li>
-<li><a href="#color">Color</a></li>
-<li><a href="#lighting">Lighting</a>
-<ul>
-<li><a href="#shading-shift">Shading Shift</a></li>
-<li><a href="#shading-toony">Shading Toony</a></li>
-<li><a href="#shadow-receive-multiplier">Shadow Receive Multiplier</a></li>
-<li><a href="#lightcolor-attenuation">LightColor Attenuation</a></li>
-<li><a href="#rim-additive">Rim Additive</a></li>
-<li><a href="#emission">Emission</a></li>
-<li><a href="#normal-map">Normal Map</a></li>
-</ul></li>
-<li><a href="#outline">Outline</a>
-<ul>
-<li><a href="#width-mode">Width Mode</a></li>
-<li><a href="#width">Width</a></li>
-<li><a href="#color-mode">Color Mode</a></li>
-<li><a href="#color-1">Color</a></li>
-<li><a href="#color-lighting-mix">Color Lighting Mix</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#共通項目">共通項目</a></li>
+    <li><a href="#普通のマテリアル">普通のマテリアル</a></li>
+    <li><a href="#キャラクタの顔など影があまりついてほしくないマテリアル">キャラクタの顔など、影があまりついてほしくないマテリアル</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#準備">準備</a></li>
+    <li><a href="#rendering">Rendering</a>
+      <ul>
+        <li><a href="#rendering-type">Rendering Type</a></li>
+        <li><a href="#cull-mode">Cull Mode</a></li>
+        <li><a href="#alpha">Alpha</a></li>
+      </ul>
+    </li>
+    <li><a href="#color">Color</a></li>
+    <li><a href="#lighting">Lighting</a>
+      <ul>
+        <li><a href="#shading-shift">Shading Shift</a></li>
+        <li><a href="#shading-toony">Shading Toony</a></li>
+        <li><a href="#shadow-receive-multiplier">Shadow Receive Multiplier</a></li>
+        <li><a href="#lightcolor-attenuation">LightColor Attenuation</a></li>
+        <li><a href="#rim-additive">Rim Additive</a></li>
+        <li><a href="#emission">Emission</a></li>
+        <li><a href="#normal-map">Normal Map</a></li>
+      </ul>
+    </li>
+    <li><a href="#outline">Outline</a>
+      <ul>
+        <li><a href="#width-mode">Width Mode</a></li>
+        <li><a href="#width">Width</a></li>
+        <li><a href="#color-mode">Color Mode</a></li>
+        <li><a href="#color-1">Color</a></li>
+        <li><a href="#color-lighting-mix">Color Lighting Mix</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
         </div>
-       
-
-<p><a href="../../univrm_install/#shader-preloadingの設定">Shader preloadingの設定</a><br/>
+       <p><a href="../../univrm_install/#shader-preloading%E3%81%AE%E8%A8%AD%E5%AE%9A">Shader preloadingの設定</a><br/>
 <a href="https://niconare.nicovideo.jp/watch/kn3485">MToonの使い方</a></p>
-
 <h1 id="mtoon-について">MToon について</h1>
-
 <p>MToon は日本のアニメ的表現をすることを目標としています。
 主色 (Lit Color) と陰色 (Shade Color) の 2 色を、Lighting パラメータや光源環境に応じて混合することでそれを実現します。</p>
-
 <table>
 <thead>
 <tr>
-<th><img src="https://dwango.github.io/images/vrm/mtoon_about.png" alt="alicia MToon"  />
+<th><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/vrm/mtoon_about.png" alt="alicia MToon"  />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>MToon を適用したニコニ立体ちゃん</td>
 </tr>
 </tbody>
 </table>
-
 <h1 id="手早く設定したい人向け">手早く設定したい人向け</h1>
-
 <h2 id="共通項目">共通項目</h2>
-
 <ul>
 <li>目的のマテリアルを選択し、シェーダを <code>VRM/MToon</code> に変更</li>
 <li><code>Color-&gt;Lit Color, Alpha</code> と <code>Color-&gt;Shade Color</code> に同じテクスチャを設定</li>
@@ -170,216 +163,173 @@
 <li><code>Outline-&gt;Width-&gt;Mode</code> は輪郭線を必要とするなら <code>WorldCoordinates</code> で、しないなら <code>None</code></li>
 <li><code>Outline-&gt;Width-&gt;Width</code> は 見た目上好きな値</li>
 </ul>
-
 <h2 id="普通のマテリアル">普通のマテリアル</h2>
-
 <ul>
 <li><code>Shading Shift</code> は <code>0</code></li>
 <li><code>Shading Toony-&gt;Shadow Receive Multiplier</code> は <code>1</code></li>
 </ul>
-
-<h2 id="キャラクタの顔など-影があまりついてほしくないマテリアル">キャラクタの顔など、影があまりついてほしくないマテリアル</h2>
-
+<h2 id="キャラクタの顔など影があまりついてほしくないマテリアル">キャラクタの顔など、影があまりついてほしくないマテリアル</h2>
 <ul>
 <li><code>Shading Shift</code> はマイナスの値</li>
 <li><code>Shading Toony-&gt;Shadow Receive Multiplier</code> は <code>0</code></li>
 </ul>
-
 <h1 id="設定項目">設定項目</h1>
-
 <h2 id="準備">準備</h2>
-
 <p>目的のマテリアルを選択し、シェーダを <code>VRM/MToon</code> に変更します。</p>
-
 <table>
 <thead>
 <tr>
-<th><img src="https://dwango.github.io/images/vrm/set_mtoon.png" alt="select MToon"  />
+<th><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/vrm/set_mtoon.png" alt="select MToon"  />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Material の Shader を VRM/MToon に変更.</td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="rendering">Rendering</h2>
-
 <table>
 <thead>
 <tr>
-<th><img src="https://dwango.github.io/images/vrm/mtoon_inspector_rendering.png" alt="MToon Rendering"  />
+<th><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/vrm/mtoon_inspector_rendering.png" alt="MToon Rendering"  />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Rendering Inspector に含まれる項目.</td>
 </tr>
 </tbody>
 </table>
-
 <p>Rendering 項目では主色と影色、および描画方法を設定します。</p>
-
 <h3 id="rendering-type">Rendering Type</h3>
-
 <p>マテリアルが不透明か半透明かどうかを設定します。</p>
-
 <ul>
 <li>Opaque
-
 <ul>
 <li>不透明です。基本的には Opaque を設定することを推奨します。</li>
-</ul></li>
+</ul>
+</li>
 <li>Cutout
-
 <ul>
 <li>不透明ですが <code>Color-&gt;Lit Color, Alpha</code> のアルファ値情報を参照して <code>Color-&gt;Alpha-&gt;Cutoff</code> の値より小さな箇所の描画をスキップします。</li>
-</ul></li>
+</ul>
+</li>
 <li>Transparent
-
 <ul>
 <li>半透明です。<code>Color-&gt;Lit Color, Alpha</code> のアルファ値どおりの不透明度になります。</li>
 <li>デメリットとして輪郭線描画は正しく行われません。</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="cull-mode">Cull Mode</h3>
-
 <p>ポリゴンのどちら側の面を描画するかを設定します。</p>
-
 <ul>
 <li>Back
-
 <ul>
 <li>表側を描画します。基本的にはこの Back を選択します。</li>
-</ul></li>
+</ul>
+</li>
 <li>Front
-
 <ul>
 <li>裏側を描画します。</li>
-</ul></li>
+</ul>
+</li>
 <li>None
-
 <ul>
 <li>両面を描画します。</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="alpha">Alpha</h3>
-
 <p><code>Rendering Type</code> が <code>Cutout</code> であるときだけ設定する必要があります。</p>
-
 <ul>
 <li>Cutoff (<code>Color-&gt;Alpha</code>)
-
 <ul>
 <li>描画するしないのしきい値を設定します。</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="color">Color</h2>
-
 <p>描画色を設定します。
 テクスチャと色は乗算されます。
 光が当たる主色は <code>Lit Color, Alpha</code> に、光が当たらない陰色は <code>Shade Color</code> に設定します。
 また <code>Lit Color, Alpha</code> のアルファ値には不透明度情報を設定します。</p>
-
 <h2 id="lighting">Lighting</h2>
-
 <h3 id="shading-shift">Shading Shift</h3>
-
 <p>光の当たり方に対して、主色と陰色のしきい値を調整します。
 <code>0</code> のとき普通のライティングになります。
 マイナス値にするとアニメ的な、主色の範囲が広いライティングになります。
 マイナス値のときはセルフシャドウを無効化する必要があるため、表示された警告に従い <code>Shadow Receive Multiplier</code> を <code>0</code> に設定する必要があります。</p>
-
 <h3 id="shading-toony">Shading Toony</h3>
-
 <p><code>Shading Shift</code> の項目における主色と陰色のしきい値付近を滑らかに変化させるか否かを設定します。
 <code>0</code> のときは通常の Lambert モデルのような写実寄りの滑らかさになります。
 <code>1</code> のときはしきい値ではっきり主色と陰色が変化するアニメ調のライティングになります。</p>
-
 <h3 id="shadow-receive-multiplier">Shadow Receive Multiplier</h3>
-
 <p>セルフシャドウや落影の影響度を設定します。
 <code>0</code> のときは影響を受けません。
 <code>1</code> のときは影響を受けます。</p>
-
 <h3 id="lightcolor-attenuation">LightColor Attenuation</h3>
-
 <p>光源の色の影響度を設定します。
 <code>0</code> のときは光源の色の影響を受けます。
 <code>1</code> のときは光源の色の影響を無効化し、光源の色の輝度だけを反映します。</p>
-
 <h3 id="rim-additive">Rim Additive</h3>
-
 <p>カメラと法線の関係による追加光源を表現します。
 一般にはスフィアマップや MatCap と呼ばれます。</p>
-
 <h3 id="emission">Emission</h3>
-
 <p>光源環境によらず一定な色を設定します。</p>
-
 <h3 id="normal-map">Normal Map</h3>
-
 <p>法線マップを設定します。
 右側の値は法線マップの強さを設定します。</p>
-
 <h2 id="outline">Outline</h2>
-
 <p>輪郭線を設定します。</p>
-
 <h3 id="width-mode">Width Mode</h3>
-
 <ul>
 <li>None
-
 <ul>
 <li>輪郭線を描画しません</li>
-</ul></li>
+</ul>
+</li>
 <li>WorldCoordinates
-
 <ul>
 <li>世界に対して一定の幅の輪郭線を描画します</li>
-</ul></li>
+</ul>
+</li>
 <li>ScreenCoordinates
-
 <ul>
 <li>スクリーンに対して一定の幅の輪郭線を描画します</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="width">Width</h3>
-
 <p>輪郭線の幅を設定します。
 <code>Width Mode</code> が <code>WorldCoordinates</code> のとき単位はメートルです。</p>
-
 <h3 id="color-mode">Color Mode</h3>
-
 <ul>
 <li>FixedColor
-
 <ul>
 <li>固定色で描画します</li>
-</ul></li>
+</ul>
+</li>
 <li>MixedLighting
-
 <ul>
 <li>ライティングの影響を乗算します</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="color-1">Color</h3>
-
 <p>輪郭線の色を設定します。</p>
-
 <h3 id="color-lighting-mix">Color Lighting Mix</h3>
-
 <p><code>Color Mode</code> が <code>MixedLighting</code> のとき、その乗算係数を設定します。</p>
 
     </article>
@@ -394,5 +344,16 @@
     </div>
 
     
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
   </body>
 </html>

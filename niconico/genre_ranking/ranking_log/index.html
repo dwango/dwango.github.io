@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.87.0" />
 
   <meta property="og:title" content="新ランキングでのランキング過去ログファイル利用方法 - dwango on GitHub">
 
@@ -40,182 +40,134 @@
   <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
-      <p class="lead">
-       
- 
-      </p>
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="https://dwango.github.io/">Home</a> </li>
-      <li><a href="/articles"> Articles </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/niconico"> niconico </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://nico.ms/job/engineer"> Hiring </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> niconico 開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
     </ul>
 
-    <p>
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
       
-        <p style="display:inline-block;vertical-align:middle;">
-          Copyright &copy; DWANGO Co., Ltd.
-        </p>
+        Copyright &copy; DWANGO Co., Ltd.
       
     </p>
   </div>
 </div>
 
-    <div class="content container">
+    <main class="content container">
     
-<div class="post">
-  <h1>新ランキングでのランキング過去ログファイル利用方法</h1>
-  <span class="post-date"> Tue, Jun 25, 2019 </span>
-  <div class="share">
-    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="新ランキングでのランキング過去ログファイル利用方法 - dwango on GitHub" data-url="https://dwango.github.io/niconico/genre_ranking/ranking_log/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/niconico/genre_ranking/ranking_log/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2fniconico%2fgenre_ranking%2franking_log%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-  </div>
-  <div>
-    
-      <aside>
-      <h1>目次</h1>
-      <nav id="TableOfContents">
-<ul>
-<li><a href="#はじめに">はじめに</a></li>
-<li><a href="#このドキュメントの説明">このドキュメントの説明</a>
-<ul>
-<li>
-<ul>
-<li><a href="#利用規約">利用規約</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#ランキング過去ログファイルの概要">ランキング過去ログファイルの概要</a>
-<ul>
-<li><a href="#注意事項">注意事項</a></li>
-<li><a href="#技術情報">技術情報</a>
-<ul>
-<li><a href="#エンドポイント">エンドポイント</a>
-<ul>
-<li><a href="#ランキング過去ログファイルの取得用エンドポイント">ランキング過去ログファイルの取得用エンドポイント</a></li>
-<li><a href="#取得するランキングの種類">取得するランキングの種類</a></li>
-<li><a href="#取得したい日付">取得したい日付</a>
-<ul>
-<li><a href="#午前5時のログファイル">午前5時のログファイル</a></li>
-</ul></li>
-<li><a href="#ログファイルの種類">ログファイルの種類</a></li>
-<li><a href="#アクセス例">アクセス例</a></li>
-</ul></li>
-<li><a href="#ログファイルのデータフォーマット">ログファイルのデータフォーマット</a>
-<ul>
-<li><a href="#file-name-list-json">file_name_list.json</a></li>
-<li><a href="#ジャンル-json-および-ジャンル-01から始まる連番-json">{ジャンル}.json および {ジャンル}_{01から始まる連番}.json</a></li>
-</ul></li>
-<li><a href="#ファイルサンプル">ファイルサンプル</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#faq">FAQ</a></li>
-<li><a href="#補足">補足</a>
-<ul>
-<li><a href="#2019年9月27日-0時のデータが5時と同じ">2019年9月27日：0時のデータが5時と同じ</a></li>
-<li><a href="#2020年3月23日-0時のデータが5時と同じ">2020年3月23日：0時のデータが5時と同じ</a></li>
-<li><a href="#2021年7月30日-いいね-数フィールドを追加">2021年7月30日：「いいね！」数フィールドを追加</a></li>
-</ul></li>
-</ul>
+  <div class="post">
+    <time class="content-date" datetime="2019-06-25 13:40:14 &#43;0900 JST" itemprop="datepublished"
+      >2019-06-25 Tue</time
+    >
+    <h1 class="article-title">新ランキングでのランキング過去ログファイル利用方法</h1>
+
+    <div>
+      
+        <aside>
+          <h2>目次</h2>
+          <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#利用規約">利用規約</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#注意事項">注意事項</a></li>
+    <li><a href="#技術情報">技術情報</a>
+      <ul>
+        <li><a href="#エンドポイント">エンドポイント</a></li>
+        <li><a href="#ログファイルのデータフォーマット">ログファイルのデータフォーマット</a></li>
+        <li><a href="#ファイルサンプル">ファイルサンプル</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#2019年9月27日0時のデータが5時と同じ">2019年9月27日：0時のデータが5時と同じ</a></li>
+    <li><a href="#2020年3月23日0時のデータが5時と同じ">2020年3月23日：0時のデータが5時と同じ</a></li>
+    <li><a href="#2021年7月30日いいね数フィールドを追加">2021年7月30日：「いいね！」数フィールドを追加</a></li>
+  </ul>
 </nav>
-      </aside>
-    
-    <article id="content">
-       
-
-<h1 id="はじめに">はじめに</h1>
-
+        </aside>
+        <hr />
+      
+      <article id="content"><h1 id="はじめに">はじめに</h1>
 <p>ニコニコ動画では、過去にどのような動画がランキングに掲載されていたかが分かる機能を提供しています。</p>
-
-<p>これまではプレミアム会員専用機能として、ブラウザ上で過去のランキングを閲覧できる機能を提供してまいりましたが、<br />
+<p>これまではプレミアム会員専用機能として、ブラウザ上で過去のランキングを閲覧できる機能を提供してまいりましたが、<br>
 2019年6月中に導入される予定の <a href="https://blog.nicovideo.jp/niconews/103407.html">新ランキング（ジャンルランキング）</a> にあわせて、ファイルとしてご提供する方式に変更させていただきます。</p>
-
 <p>つきましては、本記事を通して、ランキング過去ログファイルの技術情報について、事前に説明させていただきます。</p>
-
 <h1 id="このドキュメントの説明">このドキュメントの説明</h1>
-
-<p>本ドキュメントは、リリースに先立ち、ランキング過去ログの情報を必要とするniconicoユーザー様に向けて、事前に技術情報を解説するものです。<br />
-ジャンルランキングの過去ログファイルは、ジャンルランキングのリリースと同時に利用可能になります。<br />
+<p>本ドキュメントは、リリースに先立ち、ランキング過去ログの情報を必要とするniconicoユーザー様に向けて、事前に技術情報を解説するものです。<br>
+ジャンルランキングの過去ログファイルは、ジャンルランキングのリリースと同時に利用可能になります。<br>
 利用を希望される方は、利用規約に同意いただいたうえで、このページに記載されている方法をもとにログファイルを取得してください。</p>
-
 <h3 id="利用規約">利用規約</h3>
-
 <div class="eula" style="height: 300px; overflow: scroll; border: solid #d5d5d5">
 <pre>
 「ジャンルランキング 過去ランキングlogファイル」利用規約
-
-株式会社ドワンゴ（以下｢当社｣といいます）が提供する｢ジャンルランキング 過去ランキングlogファイル｣（以下、「本件データ」といいます）の利用者（以下、「利用者」といいます）は、本件データを利用するに当たって、必ず「ジャンルランキング 過去ランキングlogファイル」利用規約（以下、「本利用規約」といいます）の内容に同意していただく必要があります。なお、利用者が未成年者の場合、必ず法定代理人（親権者等）の同意を得たうえで本件データをご利用ください。当社は、未成年者が本件データを利用したことをもって、法定代理人（親権者等）の同意を得たものとみなします。
-
-第1条（許諾）
+<p>株式会社ドワンゴ（以下｢当社｣といいます）が提供する｢ジャンルランキング 過去ランキングlogファイル｣（以下、「本件データ」といいます）の利用者（以下、「利用者」といいます）は、本件データを利用するに当たって、必ず「ジャンルランキング 過去ランキングlogファイル」利用規約（以下、「本利用規約」といいます）の内容に同意していただく必要があります。なお、利用者が未成年者の場合、必ず法定代理人（親権者等）の同意を得たうえで本件データをご利用ください。当社は、未成年者が本件データを利用したことをもって、法定代理人（親権者等）の同意を得たものとみなします。</p>
+<p>第1条（許諾）
 1.当社は、利用者に対し、本件データを利用することを許諾します。
 2.本件データの利用をするに当たり、利用者は、当社に対して、利用者が反社会勢力（暴力団、暴力団員、暴力団準構成員、暴力団関係企業、総会屋等、社会運動標榜ゴロ、政治活動標榜ゴロ、特殊知能暴力集団、反社会的勢力共生者、又はその他これらに準ずる者をいいます。以下同じです）に該当しないことを表明し、且つ将来にわたっても該当しないことを確約します。
-3.当社は、利用者が本利用規約に反した場合、利用者に催告なく、本条第１項に定める利用許諾を取り消すことができるものとします。
-
-第２条（本件データに係る権利）
-本件データに関する著作権等の権利は、当社又は当社に本件データの利用に関する権利を許諾した第三者に帰属するものとします。利用者は、著作権等の権利を第三者に譲渡、賃貸、サブライセンスその他の処分をしてはならないものとします。
-
-第３条（禁止事項）
+3.当社は、利用者が本利用規約に反した場合、利用者に催告なく、本条第１項に定める利用許諾を取り消すことができるものとします。</p>
+<p>第２条（本件データに係る権利）
+本件データに関する著作権等の権利は、当社又は当社に本件データの利用に関する権利を許諾した第三者に帰属するものとします。利用者は、著作権等の権利を第三者に譲渡、賃貸、サブライセンスその他の処分をしてはならないものとします。</p>
+<p>第３条（禁止事項）
 利用者は、本件データの利用に際して、故意・過失の有無にかかわらず、自ら又は第三者をして、以下の各号に該当する行為を行ってはならないものとする。
 (1) 本件データの直接販売等、商用目的による利用。
 (2) 第三者の権利（著作権、その他知的財産権、名誉、プライバシー、信用等を含むがこれに限られません）を侵害する行為。
 (3) 本件データを複製、改変、翻訳、第三者へ頒布、送信（自動公衆送信、送信可能化を含む）する行為。
 (4) 未成年者が法定代理人（親権者）の同意を得ずに、本件データを利用すること
 (5) 公序良俗に反する行為（反社会的活動及びその宣伝活動も含む）。
-(6) その他本利用規約に違反し又は抵触する行為。
-
-第４条（非保証）
-当社は、利用者に対して、本件データの正確性、合法性、道徳性、最新性、適切性等について保証しません。
-
-第５条（免責）
+(6) その他本利用規約に違反し又は抵触する行為。</p>
+<p>第４条（非保証）
+当社は、利用者に対して、本件データの正確性、合法性、道徳性、最新性、適切性等について保証しません。</p>
+<p>第５条（免責）
 1.当社は、本件データの利用に起因して利用者が被った損害につき、一切責任を負いません。
 2.本件データに関連して、利用者と他の利用者又は第三者との間において生じた紛争については、当事者において解決するものとし、当社は一切責任を負いません。
-3. 本件データの提供は、当社の都合により変更又は中止する場合があります。当社が、提供する本件データの内容の変更又は提供の中止を行ったことに起因して利用者が損害を被ったとしても一切責任を負いません。
-
-第６条（一般条項）
-1. 本利用規約の内容は、当社の都合により、変更・追加・訂正されることがあります。その場合、当社は原則として、変更する旨、変更内容及び効力発生時期を「ジャンルランキング 過去ランキングlogファイルのダウンロードページ」上に通知又は公表する方法により利用者に周知し、利用者は、本利用規約等の変更後に本件データを利用したことをもって、変更後の利用条件に同意したものとみなします。
-2. 本利用規約に定める条項の一部が強行法規への抵触その他の理由により無効とされた場合であっても、当該無効とされた条項以外の他の条項は有効に存続するものとします。この場合、当該無効とされた条項は、当初に意図された経済的目的が可能な限り達成できる有効な条項に当然に置き換えられるものとし、利用者は予め同意するものとします
-3. 利用者は、当社の書面による事前の同意なく、本利用規約上の地位又は本利用規約に基づく権利若しくは義務につき、第三者に対し、譲渡、移転、担保設定、その他の処分をすることができません。
-4. 当社は、本件データの提供に関する事業の全部又は一部を他社に譲渡した場合には、当該事業譲渡に伴い本利用規約上の地位、本利用規約に基づく当社の権利及び義務を当該事業譲渡の譲受人に譲渡することができるものとし、利用者は、かかる譲渡につき予め同意するものとします。
-5. 本利用規約は、日本法を準拠法とし、同法に基づいて解釈されます。本利用規約及び利用者による本件データの利用に起因又は関連して生じた一切の紛争･問題については、東京地方裁判所を第一審の専属的合意管轄裁判所とします。本利用規約は全て日本語により表示され、日本語のみにより解釈されます。
-</pre>
+3. 本件データの提供は、当社の都合により変更又は中止する場合があります。当社が、提供する本件データの内容の変更又は提供の中止を行ったことに起因して利用者が損害を被ったとしても一切責任を負いません。</p>
+<p>第６条（一般条項）</p>
+<ol>
+<li>本利用規約の内容は、当社の都合により、変更・追加・訂正されることがあります。その場合、当社は原則として、変更する旨、変更内容及び効力発生時期を「ジャンルランキング 過去ランキングlogファイルのダウンロードページ」上に通知又は公表する方法により利用者に周知し、利用者は、本利用規約等の変更後に本件データを利用したことをもって、変更後の利用条件に同意したものとみなします。</li>
+<li>本利用規約に定める条項の一部が強行法規への抵触その他の理由により無効とされた場合であっても、当該無効とされた条項以外の他の条項は有効に存続するものとします。この場合、当該無効とされた条項は、当初に意図された経済的目的が可能な限り達成できる有効な条項に当然に置き換えられるものとし、利用者は予め同意するものとします</li>
+<li>利用者は、当社の書面による事前の同意なく、本利用規約上の地位又は本利用規約に基づく権利若しくは義務につき、第三者に対し、譲渡、移転、担保設定、その他の処分をすることができません。</li>
+<li>当社は、本件データの提供に関する事業の全部又は一部を他社に譲渡した場合には、当該事業譲渡に伴い本利用規約上の地位、本利用規約に基づく当社の権利及び義務を当該事業譲渡の譲受人に譲渡することができるものとし、利用者は、かかる譲渡につき予め同意するものとします。</li>
+<li>本利用規約は、日本法を準拠法とし、同法に基づいて解釈されます。本利用規約及び利用者による本件データの利用に起因又は関連して生じた一切の紛争･問題については、東京地方裁判所を第一審の専属的合意管轄裁判所とします。本利用規約は全て日本語により表示され、日本語のみにより解釈されます。
+</pre></li>
+</ol>
 </div>
-
 <h1 id="ランキング過去ログファイルの概要">ランキング過去ログファイルの概要</h1>
-
 <p>ランキング過去ログファイルを利用していただくと、以下の情報を取得することができます。</p>
-
 <ul>
 <li>ある日に存在していた「ジャンル」と、「ジャンルごとの人気のタグ」の一覧。また、その日の「ジャンル」または「人気のタグ」の過去ランキングデータへのアクセスURL</li>
 <li>ある日の全ジャンル・ジャンル別・人気のタグ別のランキング</li>
 </ul>
-
-<p>過去ランキングlogファイルは、毎日0:00(JST)に生成を開始します。<br />
+<p>過去ランキングlogファイルは、毎日0:00(JST)に生成を開始します。<br>
 ファイルに格納されている情報は0:00時点のものですが、実際にアクセスできるようになるまでしばらく（15分ほど）かかることがあります。</p>
-
 <h2 id="注意事項">注意事項</h2>
-
 <ul>
 <li>日時データおよび本ガイドに記載されている日時は、すべて日本標準時(JST)です。</li>
-<li>本データファイルは、広く利用していただくため、アクセスできるユーザーに制限を設けていません。<br />
-そのため、短時間に多量のアクセスを行った場合、正常にlogファイルにアクセスできなくなることがあります。<br />
+<li>本データファイルは、広く利用していただくため、アクセスできるユーザーに制限を設けていません。<br>
+そのため、短時間に多量のアクセスを行った場合、正常にlogファイルにアクセスできなくなることがあります。<br>
 また、場合によっては本データの提供を中止させていただくこともあります。ご利用の際は、負荷へのご配慮をお願いいたします。</li>
 </ul>
-
 <h2 id="技術情報">技術情報</h2>
-
 <h3 id="エンドポイント">エンドポイント</h3>
-
 <h4 id="ランキング過去ログファイルの取得用エンドポイント">ランキング過去ログファイルの取得用エンドポイント</h4>
-
 <p>ランキング過去ログファイルを取得するには、以下の形でURLにアクセスします。</p>
-
-<p><a href="https://dcdn.cdn.nimg.jp/nicovideo/old-ranking/{取得するランキングの種類}/{取得したい日付}/{ログファイルの種類">https://dcdn.cdn.nimg.jp/nicovideo/old-ranking/{取得するランキングの種類}/{取得したい日付}/{ログファイルの種類</a>}</p>
-
+<p><a href="https://dcdn.cdn.nimg.jp/nicovideo/old-ranking/%7B">https://dcdn.cdn.nimg.jp/nicovideo/old-ranking/{</a>取得するランキングの種類}/{取得したい日付}/{ログファイルの種類}</p>
 <h4 id="取得するランキングの種類">取得するランキングの種類</h4>
-
 <p><code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>total</code> の4種類。</p>
-
 <table>
 <thead>
 <tr>
@@ -223,37 +175,29 @@
 <th>説明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>daily</td>
 <td>集計期間が24時間のランキングを取得する場合に指定</td>
 </tr>
-
 <tr>
 <td>weekly</td>
 <td>集計期間が週間のランキングを取得する場合に指定</td>
 </tr>
-
 <tr>
 <td>monthly</td>
 <td>集計期間が月刊のランキングを取得する場合に指定</td>
 </tr>
-
 <tr>
 <td>total</td>
 <td>集計期間が全期間のランキングを取得する場合に指定</td>
 </tr>
 </tbody>
 </table>
-
 <h4 id="取得したい日付">取得したい日付</h4>
-
-<p>yyyy-mm-dd形式で表記。<br />
+<p>yyyy-mm-dd形式で表記。<br>
 例: 2019年6月30日の場合、 <code>2019-06-30</code> と指定する。</p>
-
 <p>ただし、ランキングの種類に応じて、以下の制約がある。</p>
-
 <table>
 <thead>
 <tr>
@@ -261,46 +205,35 @@
 <th>制約</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>daily</td>
 <td>2019-06-12 以降、任意の日付を指定可能</td>
 </tr>
-
 <tr>
 <td>weekly</td>
 <td>2019-06-17 以降、毎週月曜日のみ指定可能</td>
 </tr>
-
 <tr>
 <td>monthly</td>
 <td>2019-07-01 以降、毎月1日（初日）のみ指定可能</td>
 </tr>
-
 <tr>
 <td>total</td>
 <td>2019-06-12 以降、任意の日付を指定可能</td>
 </tr>
 </tbody>
 </table>
-
 <h5 id="午前5時のログファイル">午前5時のログファイル</h5>
-
-<p>可能な場合、午前0時に生成されるランキング過去ログファイルに加えて、24時間ランキング（<code>daily</code>）および全期間ランキング（<code>total</code>）のみ、午前5時にもランキング過去ログファイルを生成します。<br />
+<p>可能な場合、午前0時に生成されるランキング過去ログファイルに加えて、24時間ランキング（<code>daily</code>）および全期間ランキング（<code>total</code>）のみ、午前5時にもランキング過去ログファイルを生成します。<br>
 午前5時に生成されるランキング過去ログファイルを利用すると、スナップショット検索API(v2)の集計開始時刻がおよそ5時であることから、ランキング過去ログファイルとスナップショット検索APIのつきあわせを行った際の精度を向上させることができます。</p>
-
-<p>yyyy-mm-dd_05形式で表記。<br />
+<p>yyyy-mm-dd_05形式で表記。<br>
 例: 2019年6月30日の場合、 <code>2019-06-30_05</code> と指定する。</p>
-
-<p>※ スナップショット検索API(v2)によって取得できるデータとの差違がないことを保証するものではありません。<br />
+<p>※ スナップショット検索API(v2)によって取得できるデータとの差違がないことを保証するものではありません。<br>
 ※ 午前0時のログと違い、午前5時のログはかならずしも生成を保証しません。 たとえばメンテナンスや障害発生時に、午前5時のログは生成されない可能性があります。</p>
-
 <h4 id="ログファイルの種類">ログファイルの種類</h4>
-
-<p>ジャンルランキングでは、ランキング集計対象である「ジャンル」と「人気のタグ」が、将来的に変更される可能性があります。<br />
+<p>ジャンルランキングでは、ランキング集計対象である「ジャンル」と「人気のタグ」が、将来的に変更される可能性があります。<br>
 そこで、ランキング自体のファイルとは別に、「任意の日付において集計対象であった、ジャンルと人気のタグの一覧」を取得することができます。</p>
-
 <table>
 <thead>
 <tr>
@@ -309,20 +242,17 @@
 <th>ファイル名の例</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>file_name_list.json</td>
 <td>その日に集計対象だったジャンルとタグの一覧が記載されているファイル</td>
 <td><code>file_name_list.json</code> のみ</td>
 </tr>
-
 <tr>
 <td>{ジャンル}.json</td>
 <td>ジャンルのランキングが記載されているファイル</td>
 <td><code>entertainment.json</code> や <code>cooking.json</code> など</td>
 </tr>
-
 <tr>
 <td>{ジャンル}_{01から始まる連番}.json</td>
 <td>ジャンル別の、人気のタグのランキングが記載されているファイル</td>
@@ -330,63 +260,33 @@
 </tr>
 </tbody>
 </table>
-
 <h4 id="アクセス例">アクセス例</h4>
-
 <p>例1. <strong>2019年6月26日</strong> の、 <strong>全ジャンル総合</strong> の <strong>24時間ランキング</strong> を取得したい</p>
-
 <ul>
-<li>まず、該当の日に存在したジャンル名一覧を取得する。
-
-<ul>
+<li>まず、該当の日に存在したジャンル名一覧を取得する。</li>
 <li><a href="https://dcdn.cdn.nimg.jp/nicovideo/old-ranking/daily/2019-06-26/file_name_list.json">https://dcdn.cdn.nimg.jp/nicovideo/old-ranking/daily/2019-06-26/file_name_list.json</a></li>
-</ul></li>
-<li>「全ジャンル」のファイルパスを探し、それをもとに全ジャンルの24時間ランキングにアクセスする。
-
-<ul>
+<li>「全ジャンル」のファイルパスを探し、それをもとに全ジャンルの24時間ランキングにアクセスする。</li>
 <li><a href="https://dcdn.cdn.nimg.jp/nicovideo/old-ranking/daily/2019-06-26/all.json">https://dcdn.cdn.nimg.jp/nicovideo/old-ranking/daily/2019-06-26/all.json</a></li>
-</ul></li>
 </ul>
-
 <p>例2. <strong>2019年6月17日（月曜）から2019年6月23日（日曜）まで</strong> の、 <strong>動物</strong> の <strong>ウィークリーランキング</strong> を取得したい</p>
-
 <ul>
 <li>2019年6月17日（月曜）から2019年6月23日（日曜）までの週間ランキングは、その翌日である2019年6月24日（月曜）に生成される。</li>
-<li>まず、該当の日に存在したジャンル名一覧を取得する。
-
-<ul>
+<li>まず、該当の日に存在したジャンル名一覧を取得する。</li>
 <li><a href="https://dcdn.cdn.nimg.jp/nicovideo/old-ranking/weekly/2019-06-24/file_name_list.json">https://dcdn.cdn.nimg.jp/nicovideo/old-ranking/weekly/2019-06-24/file_name_list.json</a></li>
-</ul></li>
-<li>「動物」のファイルパスを探し、それをもとに動物ジャンルの24時間ランキングにアクセスする。
-
-<ul>
+<li>「動物」のファイルパスを探し、それをもとに動物ジャンルの24時間ランキングにアクセスする。</li>
 <li><a href="https://dcdn.cdn.nimg.jp/nicovideo/old-ranking/weekly/2019-06-24/animal.json">https://dcdn.cdn.nimg.jp/nicovideo/old-ranking/weekly/2019-06-24/animal.json</a></li>
-</ul></li>
 </ul>
-
 <p>例3. <strong>2019年6月26日</strong> の、 <strong>エンターテイメント</strong> ジャンルの人気のタグである、 <strong>バーチャル</strong> タグの <strong>24時間ランキング</strong> を取得したい</p>
-
 <ul>
-<li>まず、該当の日に存在したジャンル名一覧と、それぞれの人気のタグ一覧を取得する。
-
-<ul>
+<li>まず、該当の日に存在したジャンル名一覧と、それぞれの人気のタグ一覧を取得する。</li>
 <li><a href="https://dcdn.cdn.nimg.jp/nicovideo/old-ranking/daily/2019-06-26/file_name_list.json">https://dcdn.cdn.nimg.jp/nicovideo/old-ranking/daily/2019-06-26/file_name_list.json</a></li>
-</ul></li>
-<li>「エンターテイメント」ジャンルに「バーチャル」が存在することを確認する。「バーチャル」のファイルパスを探し、それをもとにバーチャルタグの24時間ランキングにアクセスする。
-
-<ul>
+<li>「エンターテイメント」ジャンルに「バーチャル」が存在することを確認する。「バーチャル」のファイルパスを探し、それをもとにバーチャルタグの24時間ランキングにアクセスする。</li>
 <li><a href="https://dcdn.cdn.nimg.jp/nicovideo/old-ranking/daily/2019-06-26/entertainment_01.json">https://dcdn.cdn.nimg.jp/nicovideo/old-ranking/daily/2019-06-26/entertainment_01.json</a></li>
-</ul></li>
 </ul>
-
 <p>※ 上記URLはアクセス手法を示すための例示であり、 <code>entertainment_01.json</code> が常に <code>バーチャル</code> タグを示すことを保証するものではありません。</p>
-
 <h3 id="ログファイルのデータフォーマット">ログファイルのデータフォーマット</h3>
-
-<h4 id="file-name-list-json">file_name_list.json</h4>
-
+<h4 id="file_name_listjson">file_name_list.json</h4>
 <p>「ジャンル」と、「ジャンルごとの人気のタグ」の一覧ファイル（file_name_list.json）のフォーマットは以下の通りです。</p>
-
 <table>
 <thead>
 <tr>
@@ -397,7 +297,6 @@
 <th>例</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>genre</td>
@@ -406,7 +305,6 @@
 <td>YES</td>
 <td><code>全ジャンル</code> や <code>エンターテイメント</code> など</td>
 </tr>
-
 <tr>
 <td>tag</td>
 <td>人気のタグ名</td>
@@ -414,7 +312,6 @@
 <td>NO</td>
 <td><code>歌ってみた</code>や <code>もっと評価されるべき</code> など<br>人気のタグではなく、ジャンル名そのものを示すときはnullが入る</td>
 </tr>
-
 <tr>
 <td>file</td>
 <td>ファイルへのパス</td>
@@ -424,11 +321,8 @@
 </tr>
 </tbody>
 </table>
-
-<h4 id="ジャンル-json-および-ジャンル-01から始まる連番-json">{ジャンル}.json および {ジャンル}_{01から始まる連番}.json</h4>
-
+<h4 id="ジャンルjson-および-ジャンル_01から始まる連番json">{ジャンル}.json および {ジャンル}_{01から始まる連番}.json</h4>
 <p>ランキング過去ログファイル（{ジャンル}.json  や {ジャンル}_{01から始まる連番}.json）のフォーマットは以下の通りです。</p>
-
 <table>
 <thead>
 <tr>
@@ -439,7 +333,6 @@
 <th>例</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>id</td>
@@ -448,7 +341,6 @@
 <td>NO</td>
 <td><code>sm9</code></td>
 </tr>
-
 <tr>
 <td>title</td>
 <td>動画タイトル</td>
@@ -456,7 +348,6 @@
 <td>NO</td>
 <td><code>新・豪血寺一族 -煩悩解放 - レッツゴー！陰陽師</code></td>
 </tr>
-
 <tr>
 <td>registeredAt</td>
 <td>投稿日時</td>
@@ -464,7 +355,6 @@
 <td>NO</td>
 <td><code>2007-03-06T00:33:00+09:00</code></td>
 </tr>
-
 <tr>
 <td>count</td>
 <td>再生数・コメント数などが格納されたオブジェクト</td>
@@ -472,7 +362,6 @@
 <td>(N/A)</td>
 <td>(N/A)</td>
 </tr>
-
 <tr>
 <td>count.view</td>
 <td>再生数</td>
@@ -480,7 +369,6 @@
 <td>NO</td>
 <td><code>17981514</code></td>
 </tr>
-
 <tr>
 <td>count.like</td>
 <td>いいね！数</td>
@@ -488,7 +376,6 @@
 <td>NO</td>
 <td><code>8770</code></td>
 </tr>
-
 <tr>
 <td>count.comment</td>
 <td>コメント数</td>
@@ -496,7 +383,6 @@
 <td>NO</td>
 <td><code>4827749</code></td>
 </tr>
-
 <tr>
 <td>count.mylist</td>
 <td>マイリスト数</td>
@@ -504,7 +390,6 @@
 <td>NO</td>
 <td><code>176308</code></td>
 </tr>
-
 <tr>
 <td>thumbnail</td>
 <td>サムネイルURLが格納されたオブジェクト</td>
@@ -512,7 +397,6 @@
 <td>(N/A)</td>
 <td>(N/A)</td>
 </tr>
-
 <tr>
 <td>thumbnail.url</td>
 <td>通常サイズのサムネイルURL</td>
@@ -520,7 +404,6 @@
 <td>YES</td>
 <td><code>http://tn.smilevideo.jp/smile?i=9</code></td>
 </tr>
-
 <tr>
 <td>thumbnail.middleUrl</td>
 <td>中サイズのサムネイル URL</td>
@@ -528,7 +411,6 @@
 <td>YES</td>
 <td>null（存在しないこともあります）</td>
 </tr>
-
 <tr>
 <td>thumbnail.largeUrl</td>
 <td>大サイズのサムネイル URL</td>
@@ -538,67 +420,112 @@
 </tr>
 </tbody>
 </table>
-
 <h3 id="ファイルサンプル">ファイルサンプル</h3>
-
 <p>以下のファイルはデータフォーマットの参考用であり、実際のランキングデータとは異なります。</p>
-
-<p><strong>「ジャンル」と、「ジャンルごとの人気のタグ」の一覧ファイルのサンプル</strong><br />
+<p><strong>「ジャンル」と、「ジャンルごとの人気のタグ」の一覧ファイルのサンプル</strong><br>
 <a href="/niconico/genre_ranking/file_name_list.json">サンプル用 file_name_list.json</a></p>
-
-<p><strong>ランキング過去ログファイル のサンプル</strong><br />
-<a href="/niconico/genre_ranking/entertainment.json">サンプル用 entertainment.json</a><br />
+<p><strong>ランキング過去ログファイル のサンプル</strong><br>
+<a href="/niconico/genre_ranking/entertainment.json">サンプル用 entertainment.json</a><br>
 <a href="/niconico/genre_ranking/entertainment_01.json">サンプル用 entertainment_01.json</a></p>
-
 <h1 id="faq">FAQ</h1>
-
 <p><strong>Q1. 取得できるランキング過去ログファイルには、順位の数値が含まれていません。なぜですか？</strong></p>
-
 <p>視聴環境ごとにランキング順位が異なる可能性があるため、ランキングのスコアの並び順だけを提供しています。</p>
-
-<p>スマートフォンなどの一部環境では、プラットフォームの規約上、ユーザーさんに閲覧していただくことができない動画が存在します。<br />
-そういった環境では、表示できない動画のぶんを詰めて、ランキング順位を表示しています。<br />
-つまり、「PC版動画ランキングの24時間総合1位」と「スマートフォンブラウザ版動画ランキングの24時間総合1位」「Nintendo Switch版動画ランキングの24時間総合1位」がすべて違う動画である可能性もあるのです。<br />
+<p>スマートフォンなどの一部環境では、プラットフォームの規約上、ユーザーさんに閲覧していただくことができない動画が存在します。<br>
+そういった環境では、表示できない動画のぶんを詰めて、ランキング順位を表示しています。<br>
+つまり、「PC版動画ランキングの24時間総合1位」と「スマートフォンブラウザ版動画ランキングの24時間総合1位」「Nintendo Switch版動画ランキングの24時間総合1位」がすべて違う動画である可能性もあるのです。<br>
 そういった背景から、ランキング過去ログファイルに順位の数値を含めることは適切ではないと考えています。</p>
-
 <p>なお、過去ログファイル内の動画の並び順はランキングスコアに基づいています（順不同ではありません）。</p>
-
 <p><strong>Q2. 人気のタグごとのランキングのファイル名は、なぜ連番なのですか？ タグ名のほうが分かりやすいのですが。</strong></p>
-
 <p>人気のタグの名前にはURLとして表現できない・紛らわしい文字が採用される可能性があるため、連番の数値にさせていただきました。</p>
-
 <p><strong>Q3. 人気のタグごとのランキングのファイルのURLは、ずっと同じURLですか？</strong></p>
-
 <p>いいえ。<code>{ジャンル}_{01から始まる連番}.json</code> の連番は、人気のタグの人気順に割り振られます。人気のタグごとにURLが固定されているわけではありません。</p>
-
 <p>たとえば、ある日に「バーチャル」が <code>entertainment_01.json</code> だったとしても、その後もずっと「バーチャル」タグのランキングが <code>entertainment_01.json</code> で生成されるとは限りません。</p>
-
 <h1 id="補足">補足</h1>
-
 <p>運用上発生した、非正規なデータについて補足します。</p>
-
-<h2 id="2019年9月27日-0時のデータが5時と同じ">2019年9月27日：0時のデータが5時と同じ</h2>
-
-<p>2019年9月27日の午前0時の過去ランキングデータについて、正しく生成することができませんでした。<br />
-再度生成を試みたのですが、生成が完了したのが午前5時すぎであり、このままでは「5時のデータより新しい状態のデータが0時のログになってしまう」ため、特例として午前5時のデータを午前0時のものとしてコピーすることにしました。<br />
+<h2 id="2019年9月27日0時のデータが5時と同じ">2019年9月27日：0時のデータが5時と同じ</h2>
+<p>2019年9月27日の午前0時の過去ランキングデータについて、正しく生成することができませんでした。<br>
+再度生成を試みたのですが、生成が完了したのが午前5時すぎであり、このままでは「5時のデータより新しい状態のデータが0時のログになってしまう」ため、特例として午前5時のデータを午前0時のものとしてコピーすることにしました。<br>
 そのため、2019年9月27日のランキング過去ログファイルは、午前0時と午前5時で同じ内容になっています。</p>
-
-<h2 id="2020年3月23日-0時のデータが5時と同じ">2020年3月23日：0時のデータが5時と同じ</h2>
-
-<p>2020年3月23日の午前0時の過去ランキングデータについて、正しく生成することができませんでした。<br />
-再度生成を試みたのですが、生成が完了したのが午前5時すぎであり、このままでは「5時のデータより新しい状態のデータが0時のログになってしまう」ため、特例として午前5時のデータを午前0時のものとしてコピーすることにしました。<br />
+<h2 id="2020年3月23日0時のデータが5時と同じ">2020年3月23日：0時のデータが5時と同じ</h2>
+<p>2020年3月23日の午前0時の過去ランキングデータについて、正しく生成することができませんでした。<br>
+再度生成を試みたのですが、生成が完了したのが午前5時すぎであり、このままでは「5時のデータより新しい状態のデータが0時のログになってしまう」ため、特例として午前5時のデータを午前0時のものとしてコピーすることにしました。<br>
 そのため、2020年3月23日のランキング過去ログファイルは、午前0時と午前5時で同じ内容になっています。</p>
-
-<h2 id="2021年7月30日-いいね-数フィールドを追加">2021年7月30日：「いいね！」数フィールドを追加</h2>
-
+<h2 id="2021年7月30日いいね数フィールドを追加">2021年7月30日：「いいね！」数フィールドを追加</h2>
 <p>2021年7月30日の過去ランキングデータより、「いいね！」数をあらわす「count.like」カラムを追加しました。
 2021年7月29日以前のデータにはカラムがありませんのでご注意ください。</p>
-
-    </article>
-  </div>
-</div>
-
+</article>
     </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+          
+            <a href="https://dwango.github.io//categories/nicovideo/">/nicovideo</a>
+          
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="新ランキングでのランキング過去ログファイル利用方法 - dwango on GitHub"
+          data-url="https://dwango.github.io/niconico/genre_ranking/ranking_log/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/niconico/genre_ranking/ranking_log/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2fniconico%2fgenre_ranking%2franking_log%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </main>
+
+    
+      
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-LF3Z3TQ34F', { 'anonymize_ip': false });
+}
+</script>
 
     
   </body>

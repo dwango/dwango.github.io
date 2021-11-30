@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.87.0" />
 
   <meta property="og:title" content="白黒漫画にDeep Learningで着色する ～参照画像を使って～ - dwango on GitHub">
 
@@ -40,263 +40,304 @@
   <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
-      <p class="lead">
-       
- 
-      </p>
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="https://dwango.github.io/">Home</a> </li>
-      <li><a href="/articles"> Articles </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/niconico"> niconico </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://nico.ms/job/engineer"> Hiring </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> niconico 開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
     </ul>
 
-    <p>
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
       
-        <p style="display:inline-block;vertical-align:middle;">
-          Copyright &copy; DWANGO Co., Ltd.
-        </p>
+        Copyright &copy; DWANGO Co., Ltd.
       
     </p>
   </div>
 </div>
 
-    <div class="content container">
+    <main class="content container">
     
-<div class="post">
-  <h1>白黒漫画にDeep Learningで着色する ～参照画像を使って～</h1>
-  <span class="post-date"> Tue, Dec 26, 2017 </span>
-  <div class="share">
-    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="白黒漫画にDeep Learningで着色する ～参照画像を使って～ - dwango on GitHub" data-url="https://dwango.github.io/articles/comicolorization/" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <a href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/comicolorization/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2fcomicolorization%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId" width="61" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-  </div>
-  <div>
-    
-    <article id="content">
-       
+  <div class="post">
+    <time class="content-date" datetime="2017-12-26 14:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2017-12-26 Tue</time
+    >
+    <h1 class="article-title">白黒漫画にDeep Learningで着色する ～参照画像を使って～</h1>
 
-<p>この記事はドワンゴアドベントカレンダー26日目(延長戦!)の記事です。</p>
-
+    <div>
+      
+      <article id="content"><p>この記事はドワンゴアドベントカレンダー26日目(延長戦!)の記事です。</p>
 <p>私は、Dwango Media Villageで研究を行なっている古澤です。Dwango Media Villageは、ドワンゴの機械学習系の研究とその応用を行なっているチームです。</p>
-
 <p>今回紹介するのは白黒漫画にDeep Learningで着色する研究です。さらに、応用としてプロジェクタを用いて実世界のイラストにも着色結果を投影できるようにしました。</p>
-
-<img src="https://dwango.github.io/images/comicolorization/teaser.png" alt="teaser"  />
-
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/comicolorization/teaser.png" alt="teaser"  />
+  
+</div>
 
 <h2 id="出来ること一覧">出来ること一覧</h2>
-
 <p>本記事では、以下の2つの事柄がどのようなテクニックを元に可能になったかのおはなしを書いていきます。</p>
-
 <ul>
 <li>Deep Learningで白黒漫画１タイトル＋参照画像を入力とした白黒漫画の自動着色</li>
 <li>Deep Learning+Jetsonで実世界に描かれたイラストの色塗り(自動着色結果のプロジェクション) <span style="color: red; ">動画あり!</span></li>
 </ul>
-
 <h2 id="comicolorization">Comicolorization</h2>
-
 <p>最近、タイのバンコクで行われたSIGGRAPH Asia 2017という学会にて<a href="https://sa2017.siggraph.org/attendees/technical-briefs?view=session&amp;sid=100">Comicolorization</a>という研究について発表を行いました。この研究は、白黒漫画と参照画像を入力としてDeep Learningで着色された漫画を生成する研究です。</p>
-
 <p>今回は、Comicolorizationの手法の説明に加え、ターゲットドメインを漫画から手描きの線画イラストに変え、Comicolorizationで予測された着色結果を投影する応用を行ったので、紹介します。まずは、Comicolorizationを使って実世界のあらゆる線画を着色している様子をご覧ください。</p>
-
 <table>
 <thead>
 <tr>
 <th><script type="application/javascript" src="https://embed.nicovideo.jp/watch/1514196011/script?w=640&h=360"></script><noscript><a href="http://www.nicovideo.jp/watch/1514196011">白黒漫画の色塗りをDeep Learningで予測する ～参照画像を使って～</a></noscript></th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Comicolozationによる着色デモの様子。</td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="comicolorizationのしくみ">Comicolorizationのしくみ</h2>
-
 <p>自然画像については、白黒写真から色を復元する研究<a href="http://hi.cs.waseda.ac.jp/~iizuka/projects/colorization/ja/">[1]</a> があり、Comicolorizationは、それを漫画に特化させて拡張したものです。この先行研究では、カラー自然画像をグレースケール化することで、「疑似白黒写真」を作ります。この「疑似白黒写真」と元の「カラー写真」のペアを用いて、学習を行います。</p>
-
 <p>ネットワーク図は以下のようになっています。</p>
-
 <table>
 <thead>
 <tr>
-<th><img src="https://dwango.github.io/images/comicolorization/ltbc_network.png" alt="ltbc_network"  />
+<th><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/comicolorization/ltbc_network.png" alt="ltbc_network"  />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>白黒写真から色を復元する研究<a href="http://hi.cs.waseda.ac.jp/~iizuka/projects/colorization/ja/">[1]</a>のネットワークモデル。</td>
 </tr>
 </tbody>
 </table>
-
 <p>4つのネットワークから構成されており、画像全体から抽出した大域特徴ベクトルと、より小さな画像領域から抽出した局所特徴ベクトルを結合層で一つのベクトルに結合し、最後の着色を行うネットワークに入力しています。</p>
-
 <p>さて、まずはこの手法をそのまま今回のターゲットドメインである白黒漫画に近い、手描きイラストに適応させてみました。</p>
-
 <table>
 <thead>
 <tr>
-<th><img src="https://dwango.github.io/images/comicolorization/ltbc_result.png" alt="ltbc_result"  />
+<th><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/comicolorization/ltbc_result.png" alt="ltbc_result"  />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>写真の色復元の手法でイラストを色塗りした場合。</td>
 </tr>
 </tbody>
 </table>
-
 <p>結果は、淡い色使いばかりが使われた色塗り結果になってしまいました。このように先行研究のネットワークをそのまま手描きのイラストや漫画に適用しただけでは、同じような淡い色合いが使われてしまうのです。私たちの論文では複数の結果を載せているので、そちらを見ていただけるとこのイラストに限らずどのイラストでも同じような結果になってしまうことがわかります。</p>
-
 <p>この現象が起こる原因は、写真は自然物なのに対し、イラストは創作物だからです。イラストや漫画は、「同じパーツ」であっても、描く人によって「塗られる色」が異なります。例えば、同じ「髪の毛」であっても、あの漫画では「金髪」だし、別のあの漫画では「赤髪」ですね。一方で、写真に写っているオブジェクトは色が一意に連想しやすいです。森なら緑、海や空なら青と言われて違和感を抱くことは少ないと思います。このドメインの違いにより、学習器は、イラストを見ても何色に塗ればいいのかわからない状態になっていたのです。</p>
-
 <p>そこで、Comicolorizationでは、学習器への色予測のヒントとして参照画像を与えることにしました。パレット、と呼ぶ参照画像中で使われている色の有無を示すベクトルを学習時に与えます。学習のデータセットのペアは、ニコニコ静画に投稿された手描きイラストのうちの約16万枚を活用させていただきました。</p>
-
 <p>さらにこのデータセットから、漫画の特徴を取り出すのに向いている画像に絞って学習を行なっています。1つ目に、漫画のキャラクタには赤髪や碧眼など鮮やかな色が用いられることが多く、その特徴をうまく学習するように、彩度の高いもののみで学習させました。彩度の高さの指標には、HSV空間中のSの値を用いました。2つ目に、漫画ではキャラクタが登場するイラストが多いので、キャラクタの各パーツをより良く塗れるようにするため、キャラクタの登場するイラストのみで学習させました。キャラクタが登場するイラストの識別は、lbpcascade_animeface<a href="https://github.com/nagadomi/lbpcascade_animeface">[2]</a>を用いて顔検出できたものという基準で行いました。</p>
-
 <p>漫画の着色の仕方を学習するために本来は、カラー漫画が大量にあればよかったのですが学習データセットとして利用できるカラー漫画は少ないです。そこで、代わりにイラストで学習したわけです。写真の時とは異なり、白黒漫画は線画として描かれているものなので、カラーイラストから白黒線画を作る際には、グレースケール化ではなく、二値化を用いました。Comicolorizationのネットワーク全体は以下のようになっています。</p>
-
 <table>
 <thead>
 <tr>
-<th><img src="https://dwango.github.io/images/comicolorization/ourmethod_network.png" alt="ourmethod_network"  />
+<th><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/comicolorization/ourmethod_network.png" alt="ourmethod_network"  />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Comicolorizationのネットワーク図。</td>
 </tr>
 </tbody>
 </table>
-
 <p>先ほどの白黒写真の色復元の研究で用いられたネットワークモデルの結合層に、パレットを追加しています。</p>
-
 <p>では、Comicolorizationを用いた先ほどのイラストの色塗り結果を見てましょう。</p>
-
 <table>
 <thead>
 <tr>
-<th><img src="https://dwango.github.io/images/comicolorization/ourmethod_result.png" alt="ourmethod_result"  />
+<th><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/comicolorization/ourmethod_result.png" alt="ourmethod_result"  />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Comicolorizationで色塗りした場合。</td>
 </tr>
 </tbody>
 </table>
-
 <p>着色結果の赤い装飾品に金髪、程よい頬の赤味や肌色などに注目してください。参照画像と同様の色合いで、かつ鮮やかな色合いで色が塗られていますね。参照画像が着色されたキャラクタと異なる画像(異なるポーズ・キャラクタ)であるにもかかわらず、同様の色味が用いられているところもポイントです。</p>
-
 <p>実は、ベースラインの写真の色復元の研究のネットワークモデルに対して、参照画像を使う以外に、大きく２つの改良をしています。1つはAdversarial lossを追加し、もう1つはクラス分類タスクを漫画・イラストドメインのラベルに変更しています。また、漫画の「1ページ」には「複数のコマ」が含まれているので、複数のイラストが枠線で区切られているような構成になっており、単一のイラストとは異なる特徴もありますね。Comicolorizationでは漫画1作品、つまり複数のページとキャラに対する参照画像を入力することで、カラー漫画作品1つが出来上がるような工夫として、自動コマ分割や超解像度合成など、アプリケーションとしての工夫も含まれています。ですが、今回は、プロジェクションにも関連する重要な部分であるネットワークモデルに関する参照画像の利用についてのみ書いています。</p>
-
-<p>Comicolorizationのシステム詳細が気になる方は、コードや論文をご覧いただけると幸いです。<br />
+<p>Comicolorizationのシステム詳細が気になる方は、コードや論文をご覧いただけると幸いです。<br>
 どなたでもご覧いただけるようになっています。</p>
-
 <h2 id="comicolorizationに関するリンク">Comicolorizationに関するリンク</h2>
-
 <ul>
-<li>ソースコード: <a href="https://github.com/DwangoMediaVillage/Comicolorization">https://github.com/DwangoMediaVillage/Comicolorization</a><br /></li>
-<li>arXiv: <a href="https://arxiv.org/abs/1706.06759">https://arxiv.org/abs/1706.06759</a><br /></li>
-<li>まとめページ: <a href="https://nico-opendata.jp/ja/casestudy/comicolorization/index.html">https://nico-opendata.jp/ja/casestudy/comicolorization/index.html</a><br /></li>
-<li>ACM Digital Library: <a href="https://dl.acm.org/citation.cfm?id=3149430">https://dl.acm.org/citation.cfm?id=3149430</a><br /></li>
+<li>ソースコード: <a href="https://github.com/DwangoMediaVillage/Comicolorization">https://github.com/DwangoMediaVillage/Comicolorization</a></li>
+<li>arXiv: <a href="https://arxiv.org/abs/1706.06759">https://arxiv.org/abs/1706.06759</a></li>
+<li>まとめページ: <a href="https://nico-opendata.jp/ja/casestudy/comicolorization/index.html">https://nico-opendata.jp/ja/casestudy/comicolorization/index.html</a></li>
+<li>ACM Digital Library: <a href="https://dl.acm.org/citation.cfm?id=3149430">https://dl.acm.org/citation.cfm?id=3149430</a></li>
 <li>SIGGRAPH Asia 2017: <a href="https://sa2017.siggraph.org/attendees/technical-briefs?view=session&amp;sid=100">https://sa2017.siggraph.org/attendees/technical-briefs?view=session&amp;sid=100</a></li>
 </ul>
-
 <h2 id="プロジェクションのしくみ">プロジェクションのしくみ</h2>
-
 <p>SIGGRAPH Asia 2017では、着色結果の出力画像を得るところまでの内容を発表しました。今回は、応用事例として、JetsonというNVIDIAが開発しているGPU計算が可能な小型のハードデバイスを用いて、PC上だけでなく、実世界のイラストや漫画の着色にも挑戦しました。</p>
-
 <table>
 <thead>
 <tr>
-<th><img src="https://dwango.github.io/images/comicolorization/jetson.png" alt="jetson"  />
+<th><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/comicolorization/jetson.png" alt="jetson"  />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>使用したJetsonの様子。片手で持てるサイズと重さでした。</td>
 </tr>
 </tbody>
 </table>
-
 <p>Jetsonの開発者キットのキャリアボードには、カメラが備え付けられています。そこで、Jetsonとプロジェクタを一体型のコントローラーとして、持ち運びながら様々なものに投影することが出来るようにしました。</p>
-
 <table>
 <thead>
 <tr>
-<th><img src="https://dwango.github.io/images/comicolorization/controler.png" alt="controler"  />
+<th><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/comicolorization/controler.png" alt="controler"  />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>投影に用いたコントローラーの様子。</td>
 </tr>
 </tbody>
 </table>
-
 <p>一般的にプロジェションマッピングでは、最初にキャリブレーションを行います。 キャリブレーションは、投影したい「画像」を投影したい面の中の特定の「領域」に画像を表示させるための位置合わせのために行います。私たちが普段会議室などで見ているプロジェクタの画像はモニタいっぱいに画像が表示されていますが、プロジェクションマッピングでは、特定の領域のみに画像が表示されるように、プロジェクタ全画面に表示させる画像中のどこに投影したい画像を埋め込むのか計算する必要があるわけです。今回は、Jetsonで投影面を撮影した画像を使って、カメラ画像中の座標をプロジェクタの座標へ変換するようにキャリブレーションを行いました。</p>
-
 <table>
 <thead>
 <tr>
-<th><img src="https://dwango.github.io/images/comicolorization/projection_calibration.png" alt="projection_calibration"  />
+<th><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/comicolorization/projection_calibration.png" alt="projection_calibration"  />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>キャリブレーションの概念図。</td>
 </tr>
 </tbody>
 </table>
-
 <p>キャリブレーションを行った後は、Jetsonで撮影、撮影画像を入力としてComicolozationモデルで自動着色、着色結果を投影というループを繰り返し行うことで、実世界でも目の前に描かれた線画が次々に色が塗られているように見せています。</p>
-
 <table>
 <thead>
 <tr>
-<th><img src="https://dwango.github.io/images/comicolorization/projection.png" alt="projection"  />
+<th><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/comicolorization/projection.png" alt="projection"  />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>撮影から投影までのループの概念図。</td>
 </tr>
 </tbody>
 </table>
-
 <p>ここまでで、実世界の本や漫画、自分で描いたイラストなどをあらゆるものに色塗りをすることが出来ました。持ち運びができるJetsonと自動着色ができるComicolorizationならではの遊び方です。個人的に面白かった点は、自動的に着色結果が更新されていく様子を見ながらお絵かきが出来る点です。Comicolorizationはニコニコ静画に投稿されている皆様の綺麗で可愛らしくて上手なイラストを元に学習がされているので、自分の絵が可愛く上手に描けた時の方が色塗りがうまくいっている気がするのです。絵の良しあしは数値化するのがまた別の研究になりそうですが、少なくとも動画も含めたように、人であることが認識され始めると塗られていることがはっきりしていく様子を確認できます。私は可愛いイラストやかっこいいイラストは好きなのですが、描くのが得意ではないので、上手に自分の絵がうまく塗られていくと名絵師さんに一歩でも近づけているのではないかと思ってワクワクしながら色塗り結果を見つつ、絵を描いていました。みんなで合作の絵を描いていくのも、楽しかったです。</p>
-
 <h2 id="おわりに">おわりに</h2>
-
 <p>今回、延長戦に無理やり食い込む形にはなりましたが初めてアドベントカレンダーに参加することが出来ました。論文の執筆や発表準備と並行しながらバタバタしながらも年内に、”コミカラ”をアナウンスできる機会をこのように与えていただけてよかったと思っています。今、Deep Learningで手描きの自動着色ネタは盛り上がっています。同じテーマのサービスや研究が続々と登場しました。自動着色のほかにも、線画自体を自動生成する研究や、ハイライトの自動付けなど、様々な手描きイラストやアニメーション関連の制作支援をDeep Learningで行う技術が増えています。イラストやアニメーションのプロではなくとも、イラストやアニメが大好きな自分の様な人がもっとそれらを楽しむことのできる技術が次々に生まれていくことは、とても嬉しいことです。これからも自分もどこか少しでもその一端に携われる人でありたいと思っています。</p>
-
-    </article>
-  </div>
-</div>
-
+</article>
     </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="白黒漫画にDeep Learningで着色する ～参照画像を使って～ - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/comicolorization/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/comicolorization/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2fcomicolorization%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </main>
+
+    
+      
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-LF3Z3TQ34F', { 'anonymize_ip': false });
+}
+</script>
 
     
   </body>

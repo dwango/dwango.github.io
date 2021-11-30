@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.87.0" />
 
   <meta property="og:title" content="VRMSpringBone - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -42,22 +42,22 @@
   <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://dwango.github.io/"><h1>dwango on GitHub</h1></a>
-      <p class="lead">
-       
-      </p>
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="https://dwango.github.io/">Home</a> </li>
-      <li><a href="/articles"> Articles </a></li><li><a href="https://dwango.github.io/oss"> OSS </a></li><li><a href="/niconico"> niconico </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://nico.ms/job/engineer"> Hiring </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> niconico 開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
     </ul>
 
-    <p>
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
       
-        <p style="display:inline-block;vertical-align:middle;">
-          Copyright &copy; DWANGO Co., Ltd.
-        </p>
+        Copyright &copy; DWANGO Co., Ltd.
       
     </p>
   </div>
@@ -91,118 +91,110 @@
   <div>
     <article id="content">
         <div class="toc"> <nav id="TableOfContents">
-<ul>
-<li><a href="#the-node-attached-by-spring-bones">The node attached by spring bones</a></li>
-<li><a href="#vrmspringbone">VRMSpringBone</a></li>
-<li><a href="#option-vrmspringbonecollidergroup-collision-detection">[Option] VRMSpringBoneColliderGroup (Collision detection)</a>
-<ul>
-<li><a href="#set-multiple-collision-detections-in-one-vrmspringbonecollidergroup">Set multiple collision detections in one VRMSpringBoneColliderGroup</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#set-multiple-collision-detections-in-one-vrmspringbonecollidergroup">Set multiple collision detections in one VRMSpringBoneColliderGroup</a></li>
+  </ul>
 </nav>
         </div>
-       
-
-<p>Spring bone setting.</p>
-
+       <p>Spring bone setting.</p>
 <h1 id="the-node-attached-by-spring-bones">The node attached by spring bones</h1>
-
 <p>When VRM is imported, components related to spring bones are attached as follows:</p>
-
 <ul>
 <li>VRMSpringBone is attached to the node<code>secondary</code>.</li>
 <li>VRMSpringBoneColliderGroup is restored to the node previously attached during the export.</li>
 </ul>
-
 <table>
 <thead>
 <tr>
-<th><img src="https://dwango.github.io/images/vrm/vrm_settings.png"   />
+<th><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/vrm/vrm_settings.png"   />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Please check<code>secondary</code>in the Hierarchy window if you cannot find VRMSpringBone</td>
 </tr>
 </tbody>
 </table>
-
 <h1 id="vrmspringbone">VRMSpringBone</h1>
-
 <p>The setting for making objects swaying such as tail, hair, clothes and so on. Please set the parent GameObject of an object in<code>Root Bones</code>. Drag an object (e.g.<code>hair1_L</code>) to the<code>Element X</code>box (e.g.<code>Element 0</code>). The number of elements can be changed in<code>Size</code>.</p>
-
 <table>
 <thead>
 <tr>
-<th><img src="https://dwango.github.io/images/vrm/VRMSpringBone.png" alt="lookat"  />
+<th><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/vrm/VRMSpringBone.png" alt="lookat"  />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Example: Set the hair and ribbon in<code>Root Bones</code></td>
 </tr>
 </tbody>
 </table>
-
 <p>That&rsquo;s it. The specified objects will perform swaying movements.</p>
-
 <h1 id="option-vrmspringbonecollidergroup-collision-detection">[Option] VRMSpringBoneColliderGroup (Collision detection)</h1>
-
 <p>The collision detection mechanism can be added to prevent swaying objects from penetrating user-specified parts.</p>
-
 <table>
 <thead>
 <tr>
-<th><img src="https://dwango.github.io/images/vrm/collider.png" alt="collider"  />
+<th><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/vrm/collider.png" alt="collider"  />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Add the collision detection mechanism on the head (VRMSpringBoneColliderGroup)</td>
 </tr>
 </tbody>
 </table>
-
 <p>For example, attach VRMSpringBoneColliderGroup script to<code>head</code>and drag<code>head</code>to the<code>Element 0</code>box in<code>Collider Groups</code>. You can change its offset and radius value by double clicking the<code>Element</code>box in<code>Collider Groups</code>.</p>
-
 <table>
 <thead>
 <tr>
-<th><img src="https://dwango.github.io/images/vrm/set_collider.png" alt="set_collider"  />
+<th><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/vrm/set_collider.png" alt="set_collider"  />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Attach and set<code>head</code>in<code>Collider Groups</code></td>
 </tr>
 </tbody>
 </table>
-
 <table>
 <thead>
 <tr>
-<th><img src="https://dwango.github.io/images/vrm/spring_gizmo.png" alt="gizmo"  />
+<th><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/vrm/spring_gizmo.png" alt="gizmo"  />
+  
+</div>
 </th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Gizmo at runtime (check<code>Draw Gizmo</code>in the Inspector of VRMSpringBone)</td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="set-multiple-collision-detections-in-one-vrmspringbonecollidergroup">Set multiple collision detections in one VRMSpringBoneColliderGroup</h2>
-
 <p>Though the default is only set for one collision detection (the range of a sphere ball), users can change the setting to multiple detections (multiple balls) by changing the value of<code>Size</code>.</p>
 
     </article>
@@ -217,5 +209,16 @@
     </div>
 
     
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
   </body>
 </html>
