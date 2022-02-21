@@ -84,7 +84,7 @@
 これまではそれらをすべて「S3標準」（以下Standard）のストレージクラスに保存していました。</p>
 <p>以前からストレージクラスを変更することでコストダウンが可能なことは知っていたのですが、ずっと実施して来ませんでした。
 ストレージクラスの機能に柔軟性が足りなかったことや、サービスの展開によりデータの使用傾向が大きく変化していた時期だったからです。
-しかし、2021年にはIntelligent-Tieringという柔軟なストレージクラスが発表され、同9月に機能も<a href="https://aws.amazon.com/jp/blogs/aws/amazon-s3-intelligent-tiering-further-automating-cost-savings-for-short-lived-and-small-objects/">アップグレード</a>されたことや、モバイル事業のデータ利用傾向もある程度安定してきたことから、ストレージクラスの移行実施を検討しました。</p>
+しかし、2018年にはIntelligent-Tieringという柔軟なストレージクラスが発表され、2021年9月に機能も<a href="https://aws.amazon.com/jp/blogs/aws/amazon-s3-intelligent-tiering-further-automating-cost-savings-for-short-lived-and-small-objects/">アップデート</a>されたことや、モバイル事業のデータ利用傾向もある程度安定してきたことから、ストレージクラスの移行実施を検討しました。</p>
 <p>本ブログでは実施に際して、何を考慮しなければいけないか、注意点や躓きポイント、実施した結果などをご紹介していきます。</p>
 <h2 id="ストレージクラスとは">ストレージクラスとは？</h2>
 <p>一般的に、データによって重要度やアクセスの必要性、アクセス頻度が違うと思います。
@@ -360,7 +360,9 @@ CloudWatchで1日1回取得されていますので、S3のメトリクスから
     ]
 }
 </code></pre></div><p>なんと、コンソールから行ったライフサイクルの設定には<strong>Prefixが入ってない</strong>のです
-どうやらAPIのversionがv2になったときのバグ？があるようで、<strong>コンソールから設定をしても正常に動作しない</strong>ようです。</p>
+どうやらAPIのversionがv2になったときのバグ？があるようで、<strong>コンソールから設定をしても正常に動作しない</strong>ようです。
+(<strong>2022-02-17 追記</strong>:こちら、現在はコンソールから設定しても問題なく動作するようです。
+また、get/put-bucket-lifecycle-configuration で設定した際のprefixの追記は必要なく、getしたものと同じjsonで設定できました。)</p>
 <p>そこで、Prefixを自分で追加設定して、今度は設定をAPIからputすることにしました。そのために、上記ライフサイクルの設定をjsonファイルに記載します。そしてAPIから以下のコマンドを実行しました。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3api put-bucket-lifecycle-configuration  <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  --bucket sample-bucket  <span style="color:#ae81ff">\
