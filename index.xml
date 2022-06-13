@@ -6,7 +6,16 @@
     <description>Recent content on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 11 Apr 2022 12:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Jun 2022 00:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ニコニコ生放送のBackend For FrontendsをKubernetesに移行した知見を公開します</title>
+      <link>https://dwango.github.io/articles/nicolive-kubernetes-migration-handbook-2022/</link>
+      <pubDate>Mon, 13 Jun 2022 00:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/nicolive-kubernetes-migration-handbook-2022/</guid>
+      <description>こんにちは。生放送フロントエンドシステムセクションのHimenon(GitHub/Twitter)です。 ニコニコ生放送のWEBフロントエンド</description>
+    </item>
+    
     <item>
       <title>ニコニコの就業型インターンに参加してきました!</title>
       <link>https://dwango.github.io/articles/2021-intern/</link>
