@@ -133,7 +133,7 @@ PC Web 以外のプラットフォームでは、WebView に加え、音声再�
 <h3 id="2-導入先サービス特有のテスト不足">2. 導入先サービス特有のテスト不足</h3>
 <p>エンジンは、構成するモジュールの機能ごとに Unit テストが組み込まれています。
 一方で、サービスに組み込む単位、ある程度大きな画面演出やゲームなどを実行する場合は、開発者が実際に動作させる必要がありました。</p>
-<p>しかし、サービスで利用される画面演出やゲームは、概して「数秒〜数分の時間をかけて」「繰り返し順不同に」API 呼び出すことで実現されるものです。
+<p>しかし、サービスで利用される画面演出やゲームは、概して「数秒〜数分の時間をかけて」「繰り返し順不同に」API を呼び出すことで実現されるものです。
 画面演出を数回行うテストで合格しても、導入先サービスの数千〜数万回繰り返す運用で合格するとは限りません。
 これらの組み合わせで起き得る事象は無数にあり、有意なものを厳選して網羅することは困難でした。</p>
 <p>一例として、超会議イベントのひとつ<a href="https://chokaigi.jp/2022/plan/quiz.html">超クイズ</a>でエンジンが使われたとき、
@@ -160,7 +160,7 @@ PC Web 以外のプラットフォームでは、WebView に加え、音声再�
 <h3 id="利用技術">利用技術</h3>
 <p>いわゆる <strong>reftest (Reference Test)</strong> を使用します。リファレンス HTML とテスト HTML を比較し、期待する結果となることを確認します。
 動作環境に依存した HTML Canvas のレンダリング結果も比較できるため、今回の目的となるリグレッションテストとして有用です。</p>
-<p>テスト設定やシナリオデータや応じて reftest を行う部位は、内製ツールとして実装することとしました。</p>
+<p>テスト設定やシナリオデータに応じて reftest を行う部位は、内製ツールとして実装することとしました。</p>
 <p>Android については Android Emulator を Appium で操作します。
 記事執筆時点で iOS は導入計画中ですが、Android と同様に実現できるよう技術を選定しました。</p>
 <table>
@@ -189,7 +189,7 @@ PC Web 以外のプラットフォームでは、WebView に加え、音声再�
 </tr>
 <tr>
 <td style="text-align:left"><a href="https://ejs-co.translate.goog/?_x_tr_sl=en&amp;_x_tr_tl=ja&amp;_x_tr_hl=ja&amp;_x_tr_pto=sc">EJS</a></td>
-<td style="text-align:left">検証結果をHTML形式で出力するために利用しているテンプレートエンジン。</td>
+<td style="text-align:left">検証結果を HTML 形式で出力するために利用しているテンプレートエンジン。</td>
 </tr>
 <tr>
 <td style="text-align:left">Jenkins</td>
@@ -218,14 +218,14 @@ iOS/Android などの環境依存のものに依存せず、容易に分離で�
 </div>
 
 <p>Android のテストを行う場合は、テスト実行環境に Android Virtual Device(AVD) を作成し、Android Emulator 上でアプリケーションを実行します。</p>
-<p>シナリオデータを解釈して実行するシナリオランナーの他に、スクリーンショット撮影タイミングをバインド・受信する <code>ContentOutputReciver</code> なるサーバを用意しています。</p>
+<p>シナリオデータを解釈して実行するシナリオランナーの他に、スクリーンショット撮影タイミングをバインド・受信する <code>ContentOutputReceiver</code> なるサーバを用意しています。</p>
 <div class="article-img">
   
-  <img src="https://dwango.github.io/images/2022-10_akashic_reftest/reftest_android_reciver.png" alt="ツール構成2"  />
+  <img src="https://dwango.github.io/images/2022-10_akashic_reftest/reftest_android_receiver.png" alt="ツール構成2"  />
   
 </div>
 
-<p>シナリオデータは、その名の通りテストの期待する結果を再現するためものです。一般的なゲームではランダムシードやユーザ入力イベントなどを記録する必要があるでしょう。
+<p>シナリオデータは、その名の通りテストの期待する結果を再現するためのものです。一般的なゲームではランダムシードやユーザ入力イベントなどを記録する必要があるでしょう。
 エンジンにはニコニコ生放送の追っかけ再生やタイムシフト再生で使われる「リプレイデータ」を出力する機能があるため、
 これをシナリオデータとして流用することにしました。</p>
 <p>また、テスト用の拡張として、必要な場面でスクリーンショットを撮影できるようリプレイデータにコマンドを追加しました。
@@ -244,7 +244,7 @@ iOS/Android などの環境依存のものに依存せず、容易に分離で�
 これにより、複雑な再現手順をシナリオに落とし込む手間を省いてテストに組み込むことができます。</p>
 <h3 id="導入後の運用事例1-メモリリークによる描画問題の検出">導入後の運用事例1: メモリリークによる描画問題の検出</h3>
 <p>前掲の「長時間動作のメモリリークにより描画が行われなくなる」問題に reftest を導入してみました。
-reftest は Android / PC Web など環境ごとに以下の HTML を出力します。</p>
+reftest は Android/PC Web など環境ごとに以下の HTML を出力します。</p>
 <div class="article-img">
   
   <img src="https://dwango.github.io/images/2022-10_akashic_reftest/reftest_result_ng.png" alt="reftest NG"  />
