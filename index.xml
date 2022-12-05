@@ -6,7 +6,16 @@
     <description>Recent content on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 31 Oct 2022 12:00:11 +0900</lastBuildDate><atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 05 Dec 2022 12:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sass製SVG爆速表示ライブラリのご紹介</title>
+      <link>https://dwango.github.io/articles/2022-12_nicolive_svg/</link>
+      <pubDate>Mon, 05 Dec 2022 12:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/2022-12_nicolive_svg/</guid>
+      <description>こんにちは。ニコニコ生放送生放送フロントエンドシステムセクションのmisuken(GitHub/Twitter)です。 今回は10月に公開した</description>
+    </item>
+    
     <item>
       <title>reftest を導入しプロダクト品質改善の土台を整えた話</title>
       <link>https://dwango.github.io/articles/2022-10_akashic_reftest/</link>
