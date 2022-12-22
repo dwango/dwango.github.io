@@ -6,7 +6,16 @@
     <description>Recent content in Articles on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 05 Dec 2022 12:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 23 Dec 2022 00:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>社内発表で『AIによる画像生成勉強会』を開催しました！</title>
+      <link>https://dwango.github.io/articles/2022-12_aiart/</link>
+      <pubDate>Fri, 23 Dec 2022 00:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/2022-12_aiart/</guid>
+      <description>この記事は『ドワンゴ Advent Calendar 2022』 23日目の記事です。 社内発表で『AIによる画像生成勉強会』を開催しました こんにちは、動画コアシステムセクシ</description>
+    </item>
+    
     <item>
       <title>Sass製SVG爆速表示ライブラリのご紹介</title>
       <link>https://dwango.github.io/articles/2022-12_nicolive_svg/</link>

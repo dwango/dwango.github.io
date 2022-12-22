@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.87.0" />
+
+  <meta property="og:title" content="社内発表で『AIによる画像生成勉強会』を開催しました！ - dwango on GitHub">
+
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  
+
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>社内発表で『AIによる画像生成勉強会』を開催しました！ - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> ニコニコ開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://blog.nnn.dev/"> 教育サービス開発者ブログ </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
+      
+        Copyright &copy; DWANGO Co., Ltd.
+      
+    </p>
+  </div>
+</div>
+
+    <main class="content container">
+    
+  <div class="post">
+    <time class="content-date" datetime="2022-12-23 00:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2022-12-23 Fri</time
+    >
+    <h1 class="article-title">社内発表で『AIによる画像生成勉強会』を開催しました！</h1>
+
+    <div>
+      
+        <aside>
+          <h2>目次</h2>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#この記事の要点">この記事の要点</a></li>
+    <li><a href="#本稿で対象にしないこと">本稿で対象にしないこと</a></li>
+    <li><a href="#利用する画像生成ai">利用する画像生成AI</a></li>
+    <li><a href="#画像生成aiでできること">画像生成AIでできること</a></li>
+    <li><a href="#text-to-imageでキャラクターを描いてみる">Text to Imageでキャラクターを描いてみる</a>
+      <ul>
+        <li><a href="#stable-diffusionの場合">Stable diffusionの場合</a></li>
+        <li><a href="#novelai-diffusionの場合">NovelAI Diffusionの場合</a></li>
+        <li><a href="#まとめtext-to-imageの使い所">まとめ：Text to Imageの使い所</a></li>
+      </ul>
+    </li>
+    <li><a href="#image-to-imageでカラーラフを仕上げてみる">Image to Imageでカラーラフを仕上げてみる</a>
+      <ul>
+        <li><a href="#stable-diffusionの場合-1">Stable diffusionの場合</a></li>
+        <li><a href="#novelai-diffusionの場合-1">NovelAI Diffusionの場合</a></li>
+        <li><a href="#まとめimage-to-imageの使い所">まとめ：Image to Imageの使い所</a></li>
+      </ul>
+    </li>
+    <li><a href="#画像生成aiを制作に生かす方法の考察">画像生成AIを制作に生かす方法の考察</a>
+      <ul>
+        <li><a href="#作品づくりでの活用tips">作品づくりでの活用Tips</a></li>
+        <li><a href="#画像生成aiが現状で苦手なこと">画像生成AIが現状で苦手なこと</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </aside>
+        <hr />
+      
+      <article id="content"><p>この記事は『<a href="https://qiita.com/advent-calendar/2022/dwango">ドワンゴ Advent Calendar 2022</a>』 23日目の記事です。</p>
+<h1 id="社内発表でaiによる画像生成勉強会を開催しました">社内発表で『AIによる画像生成勉強会』を開催しました</h1>
+<p>こんにちは、動画コアシステムセクションの<a href="https://scrapbox.io/kadoyau/kadoyau">kadoyau</a>です。
+自分の趣味であるお絵描きにソフトウェアを生かす技術探求が本稿のテーマです。</p>
+<p>2022年8月ごろからTwitterで画像生成AIを使った作品が話題になりました。
+画像生成AIの研究の歴史を知らずに外から見ると、生成されたイラストは大変インパクトがある結果に思えました。
+しかし、Twitterで話題になることはえてして誇張されがちです。
+これらの技術がどこに限界点があるのか実際にやってみなければわからないと考え、画像生成AIを創作に活用するという観点で試行錯誤していました。</p>
+<p>その試行錯誤を社内発表した一部を本稿で公開いたします。 未来を考える参考になれば幸いです。
+（10月時点での発表内容です。画像生成AIは目まぐるしく進歩しており、現在の状況とは異なることがあります）</p>
+<h2 id="この記事の要点">この記事の要点</h2>
+<ul>
+<li>絵を描いたことがない人でも、キャラクターイラストの「ぱっと見良い1枚絵」を作れるようになりました
+<ul>
+<li>ただし、成果物のコントロールは時間がかかりました</li>
+<li>漫画やCG集のような複数枚で一貫したキャラクターが要求される作品や、自分がイメージしている自由自在な構図を出すことは現状困難です</li>
+</ul>
+</li>
+<li>実際のイラストを作成する試行錯誤のプロセスを公開します
+<ul>
+<li>どのような制作スタイルでも活用できる（効率化・上達の助けになる）余地があると個人的に感じました</li>
+<li>モデルはStable Diffusion v1.4およびNovel AI Diffusionを利用しました</li>
+</ul>
+</li>
+</ul>
+<h2 id="本稿で対象にしないこと">本稿で対象にしないこと</h2>
+<ul>
+<li>原理の説明は割愛します。詳しく学びたい方は<a href="https://ja.stateofaiguides.com/20221012-stable-diffusion/">Stable Diffusion を基礎から理解したい人向け論文攻略ガイド【無料記事】</a>が解説と文献リストとしておすすめです</li>
+<li>試行錯誤の過程の共有ですので、実際に自分で画像生成AIを動かしたことがある方は、得るものは少ないでしょう</li>
+<li>著作権の問題は複雑かつ判例もあまりないようですので、専門家の解説をご参照ください
+<ul>
+<li><a href="https://storialaw.jp/blog/8820">Midjourney、Stable Diffusion、mimicなどの画像自動生成AIと著作権 | STORIA法律事務所</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="利用する画像生成ai">利用する画像生成AI</h2>
+<p>本稿では次のモデルとサービスを利用します。</p>
+<ul>
+<li>Stable Diffusion v1.4（モデル）
+<ul>
+<li>2022年8月22日 Stability AI社がオープンソースのモデルStable diffusionが<a href="https://stability.ai/blog/stable-diffusion-public-release">public release</a>したモデルです
+<ul>
+<li><a href="https://twitter.com/search?q=stablediffusion%20until%3A2022-08-22%20min_faves%3A1000%20since%3A2020-09-03&amp;src=typed_query&amp;f=image">当時の作例</a></li>
+</ul>
+</li>
+<li>Stable Diffusionは多くの派生モデルを産んでいる大元なのでベンチマークとして採用しました</li>
+</ul>
+</li>
+<li>NovelAI Diffusion（Webサービス）
+<ul>
+<li>2022年9月25日 小説投稿サービスNovel AIの一部として公開されたキャラクター特化画像生成AIサービス
+<ul>
+<li><a href="https://twitter.com/search?q=novelai%20until%3A2022-10-25%20min_faves%3A1000%20since%3A2020-09-25&amp;src=typed_query&amp;f=image">当時の作例</a></li>
+</ul>
+</li>
+<li>NovelAI Diffusionはキャラクター生成の品質が高いWebサービスで、キャラクターに特化した場合の例として選択しました</li>
+</ul>
+</li>
+</ul>
+<p>上述のサービスの他に、Dalle-2、ERNIE-ViLG、TrinArtなどさまざまな画像生成AIがありますが、作風、UI、できることなど実際には触らないとわからないことだらけです。</p>
+<h2 id="画像生成aiでできること">画像生成AIでできること</h2>
+<p>画像生成AIの出力結果を紹介する前に、ざっくりとできることを知っておくと良いです。</p>
+<ul>
+<li>Text to Image
+<ul>
+<li>文章から画像を生成します</li>
+<li>文章（プロンプト）→画像</li>
+</ul>
+</li>
+<li>Image to Image
+<ul>
+<li>画像をベースとして修正することや、AIに大幅にイマジネーションを働かせてもらえます</li>
+<li>文章（プロンプト）+  画像→画像</li>
+<li><a href="https://twitter.com/yt_haruka/status/1582888586021548032">イマジネーションを働かせた作例</a></li>
+</ul>
+</li>
+<li>inpainting
+<ul>
+<li>画像 + 文章→画像</li>
+<li>画像の一部だけ書き換える</li>
+<li><a href="https://www.youtube.com/watch?v=qTgPSKKjfVg&amp;t=23s">参考</a></li>
+</ul>
+</li>
+<li>outpainting
+<ul>
+<li>画像から存在しないところを生成します</li>
+<li>画像→画像</li>
+<li><a href="https://openai.com/blog/dall-e-introducing-outpainting/">参考</a></li>
+</ul>
+</li>
+</ul>
+<p>本稿ではText to ImageとImage to Imageを実際に利用します。</p>
+<h2 id="text-to-imageでキャラクターを描いてみる">Text to Imageでキャラクターを描いてみる</h2>
+<p>試みとして、ニコニ立体のマスコット・キャラクターである<a href="https://3d.nicovideo.jp/alicia/">アリシア・ソリッド</a>ちゃんを画像生成することにします。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2022-12_aiart/alicia.webp" alt="アリシア・ソリッド" width="512" />
+  
+</div>
+
+<p>このキャラクターデザインを再現するのを挑戦してみます。
+アリシアちゃんを見て、次のような特徴が思い浮かびました。</p>
+<ul>
+<li>金髪のロングヘアー</li>
+<li>黒いリボン</li>
+<li>青い目</li>
+<li>白と水色のボーダーのロングソックスを履いている</li>
+<li>巨大なペンをもっている</li>
+<li>上着は特殊で言葉が思い付かない&hellip;</li>
+</ul>
+<p>これらの単語を組み合わせて次のようなプロンプトを作成します。</p>
+<pre><code>Blonde-haired, blue-eyed girl with a huge pen and a big black ribbon on her head. She wears a white mini skirt and a light blue and white striped knee socks.
+</code></pre><p>このようなプロンプトを使って画像を生成すると、次のような結果になりました。</p>
+<h3 id="stable-diffusionの場合">Stable diffusionの場合</h3>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2022-12_aiart/sd_1.webp" alt="アリシア・ソリッド？" width="512" />
+  
+</div>
+
+<p>&hellip;Twitterでみたようなよくできたキャラクターイラストには全くなりませんでした！
+プロンプトに&quot;anime&quot;を加えると、アニメ調になりました。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2022-12_aiart/sd_2.webp" alt="アニメ調になった" width="500px" />
+  
+</div>
+
+<h3 id="novelai-diffusionの場合">NovelAI Diffusionの場合</h3>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2022-12_aiart/nai_1.webp" alt="NovelAI Diffusionの場合" width="512" />
+  
+</div>
+
+<p>キャラクターに特化したNovelAI Diffusionでは同じプロンプトでもこれだけ結果が変わります。</p>
+<h3 id="まとめtext-to-imageの使い所">まとめ：Text to Imageの使い所</h3>
+<p>Text to Imageを使ってアリシア・ソリッドちゃんを描こうと試みた結果、次のことがわかりました。</p>
+<ul>
+<li>想像したイラストをプロンプトで正確に指定するのは困難
+<ul>
+<li>人間相手でも難しいので、当たり前といえば当たり前の結果に</li>
+<li>補足
+<ul>
+<li>ただし、有名キャラクターは比較的出やすいようです</li>
+<li>プロンプトを追及することでクオリティアップができます。語順やネガティブプロンプトといったテクニックが多々ありますが追求には時間がかかるので割愛します</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>具体的なイメージがないものには有効そう
+<ul>
+<li>アイデア出し、模索</li>
+<li>例
+<ul>
+<li>金髪キャラ</li>
+<li>甲冑を着たキャラクター</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>しかし、作品作りでは、ある程度具体的に指定したいことがあります。例えばこんなときです。</p>
+<ul>
+<li>構図、レイアウトや色を指定したい</li>
+<li>Text to Imageで作った画像をもとに、細部を変えたい</li>
+</ul>
+<p>そのようなとき、画像で指定できれば便利です。それを実現できるのがImage to Imageです。</p>
+<h2 id="image-to-imageでカラーラフを仕上げてみる">Image to Imageでカラーラフを仕上げてみる</h2>
+<p>以下のようにカラーラフを用意します。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2022-12_aiart/rough_1.webp" alt="カラーラフ" width="256px" />
+  
+</div>
+
+<p>これを画像生成AIを使って完成させてみます。
+イメージ通りになることを期待するように、キャラクターを表す単語を検討します。</p>
+<ul>
+<li>青い瞳</li>
+<li>長い茶髪</li>
+<li>赤と白のストライプの水着</li>
+</ul>
+<p>単語から以下のようなプロンプトを用意し、生成します。</p>
+<pre><code>A girl with blue eyes and long brown hair. She wears a red and white striped swimsuit.
+</code></pre><h3 id="stable-diffusionの場合-1">Stable diffusionの場合</h3>
+<p>strengthというStable Diffusionのパラメーターは高いほど入力した画像よりプロンプトが重視されます（AIが自由にかくということです）。
+どの程度きくのか確かめるため、いくつかのパラメータで出力結果を眺めます。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2022-12_aiart/sd_3.webp" alt="strengthを変化させたときの生成画像" width="1052" />
+  
+</div>
+
+<p>いずれにしてもそのままで使える品質のものは生成されませんでした。
+特に腕の生成品質が低いように見えます。これは元のデータセットである<a href="https://arxiv.org/abs/2210.08402">LAION-5B</a>の品質がさほど高くないことに起因しているらしいです。
+プロンプトの工夫の余地がありますが、それをつめるためには時間がかかります。
+そこで、生成された画像の一部を利用してコラージュ（羅生門）する方針に切り替えました。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2022-12_aiart/sd_4.webp" alt="髪の毛をコラージュする" width="800px" />
+  
+</div>
+
+<p>コラージュした画像を元に、再度画像を生成して取れるパーツを探していきます。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2022-12_aiart/sd_5.webp" alt="さらにコラージュ" width="1000" />
+  
+</div>
+
+<p>背景も生成します。次のような背景を作成したいです。</p>
+<ul>
+<li>青空・海・砂浜があり</li>
+<li>キャラが真ん中に立つから、両脇に木
+これから以下のようにプロンプトをつくり、画像を生成します。</li>
+</ul>
+<pre><code>tropical paradise beach, beautiful magical palm trees on both sides. blue sky and azure sea water. sun illuminates the coast beach and the ocean, cinematic view, epic sky, detailed, concept art, low angle, high detail（略）
+</code></pre><p>そして生成した画像をまたコラージュします。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2022-12_aiart/sd_6.webp" alt="コラージュ後" width="800px" />
+  
+</div>
+
+<p>雑に撮影処理をして、完成とします。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2022-12_aiart/sd_7.webp" alt="撮影処理後" width="800px" />
+  
+</div>
+
+<p>完成までは遠いですが、この程度のビジュアルでもたたき台としては使えることがあります。</p>
+<h3 id="novelai-diffusionの場合-1">NovelAI Diffusionの場合</h3>
+<p>キャラクターが得意なNovelAI Diffusionは、同様のプロンプトでもキャラクターが明らかに高品質に出力されます。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2022-12_aiart/nai_2.webp" alt="NovelAI Diffusionの生成した画像" width="1000px" />
+  
+</div>
+
+<p>そのまま使えると判断できたため、今回はコラージュをする必要はありませんでした。</p>
+<p>同様に背景を作成し、撮影処理をします。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2022-12_aiart/nai_3.webp" alt="撮影処理後" width="1000px" />
+  
+</div>
+
+<p>制作時間はラフを描く時間を除いてStable Diffusionの場合が1時間程度、Novel AI Diffusionの場合が15分程度でした。試行錯誤する過程が多ければ多いほど時間がかかってしまいますね。
+また、慣れればもっと早くできます。</p>
+<h3 id="まとめimage-to-imageの使い所">まとめ：Image to Imageの使い所</h3>
+<ul>
+<li>カラーラフを元に画像を生成し、気に入ったところをコラージュすることで画像を生成できました</li>
+<li>image-to-imageを繰り返すことで絵をクオリティアップできることがわかりました
+<ul>
+<li>この路線を真面目に追求したワークフローが提案されています
+<ul>
+<li><a href="https://note.com/abubu_nounanka/n/n3a0431d2c47a">より思い通りの画像を作る！img2img＆フォトバッシュ複合ワークフローについて StableDiffusion ｜abubu nounanka｜note</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>AIのモデルによって最適なワークフローは変わりそうです</li>
+</ul>
+<h2 id="画像生成aiを制作に生かす方法の考察">画像生成AIを制作に生かす方法の考察</h2>
+<h3 id="作品づくりでの活用tips">作品づくりでの活用Tips</h3>
+<ul>
+<li>既存概念の合成
+<ul>
+<li>例：<a href="https://twitter.com/msts_stu/status/1579791527140003845">https://twitter.com/msts_stu/status/1579791527140003845</a></li>
+</ul>
+</li>
+<li>キャラクターのバリエーション出し
+<ul>
+<li>例：<a href="https://twitter.com/fladdict/status/1583662971880108032">https://twitter.com/fladdict/status/1583662971880108032</a></li>
+</ul>
+</li>
+<li>Image to Imageで写真からアイデアを出してもらう
+<ul>
+<li><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2022-12_aiart/nai_photo.webp" alt="写真から生成" width="800px" />
+  
+</div>
+</li>
+<li>写真にプロンプトを追加したものですが、AIは写真をいい感じに解釈してくれます</li>
+</ul>
+</li>
+<li>自分の絵を添削してAIの表現をまねる
+<ul>
+<li>自分の絵をimage-to-imageで変換</li>
+</ul>
+</li>
+<li>AI生成した良さそうな表現を取り入れて自分で加筆
+<ul>
+<li>Novel AIは最近流行りの画風を出す傾向がある性質を利用</li>
+<li>例：<a href="https://twitter.com/emokakimasu/status/1580114588468531200">https://twitter.com/emokakimasu/status/1580114588468531200</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="画像生成aiが現状で苦手なこと">画像生成AIが現状で苦手なこと</h3>
+<ul>
+<li>手先、足先をうまく描けない
+<ul>
+<li>私も苦手ですが、AIの場合は指が複数になったりします</li>
+</ul>
+</li>
+<li>3次元形状の一貫性が崩れる
+<ul>
+<li>物体が重なっている場合、後ろの物体の3次元形状がよく破綻します</li>
+</ul>
+</li>
+<li>画風の指定は難しい
+<ul>
+<li>Image to Imageでラフを完成させるという用途の時に、AIの絵柄に寄せられてしまいます</li>
+</ul>
+</li>
+<li>同じキャラクターの別の構図を描くのは難しい
+<ul>
+<li><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2022-12_aiart/nai_difficult.webp" alt="同一のキャラクターが出ない" width="500px" />
+  
+</div>
+</li>
+<li>似せて出力しようとしても、画風や制服の意匠が変わってしまいます</li>
+</ul>
+</li>
+<li>小物の細かい絵を一発で出すことはできない</li>
+</ul>
+<p>画像生成AIの得意・不得意が理解できれば幸いです。</p>
+<hr>
+<p>株式会社ドワンゴでは、様々なサービス、コンテンツを一緒につくるメンバーを募集しています。
+ドワンゴに興味がある。または応募しようか迷っている方がいれば、気軽に応募してみてください。</p>
+<ul>
+<li><a href="https://dwango.snar.jp/index.aspx">新卒採用はこちら</a></li>
+<li><a href="https://hrmos.co/pages/dwango">キャリア採用はこちら</a></li>
+</ul>
+</article>
+    </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="社内発表で『AIによる画像生成勉強会』を開催しました！ - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/2022-12_aiart/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/2022-12_aiart/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2f2022-12_aiart%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </main>
+
+    
+      
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-LF3Z3TQ34F', { 'anonymize_ip': false });
+}
+</script>
+
+    
+  </body>
+</html>
