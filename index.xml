@@ -6,7 +6,16 @@
     <description>Recent content on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 23 Dec 2022 00:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Feb 2023 00:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Service WorkerとCache APIによるWebサーバーの負荷軽減とテスト実装について-前編</title>
+      <link>https://dwango.github.io/articles/2023-02_nicoaudition_sw-1/</link>
+      <pubDate>Mon, 27 Feb 2023 00:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/2023-02_nicoaudition_sw-1/</guid>
+      <description>こんにちは。ニコニコQセクションのhajime-san(GitHub/Twitter)です。 当記事では所属部署で開発に携わっている「ニコニコ</description>
+    </item>
+    
     <item>
       <title>社内発表で『AIによる画像生成勉強会』を開催しました！</title>
       <link>https://dwango.github.io/articles/2022-12_aiart/</link>
