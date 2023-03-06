@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="Service WorkerとCache APIによるWebサーバーの負荷軽減とテスト実装について-前編 - dwango on GitHub">
 
-  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+  <meta property="og:image" content="https://dwango.github.io/images/2023-02_nicoaudition_sw-1/thumb.webp">
 
   
 
@@ -177,7 +177,7 @@ Webサーバーからのレスポンスを一定期間保存し、キャッシ�
 <code>&lt;iframe src=&quot;https://audition.nicovideo.jp&quot;&gt;</code>
 (実際は<code>https://audition.nicovideo.jp/index.html</code>にリライトされてリクエストしている想定)という<code>iframe</code>が設置されていて
 <code>https://audition.nicovideo.jp/service-worker.js</code>（スコープは <code>{ scope: &quot;./&quot; }</code> とします）
-がユーザーのブラウザに登録され、この<code>Service Worker</code>がページコントロール可能にあるとき、
+がユーザーのブラウザに登録され、この<code>Service Worker</code>が<a href="../2023-03_nicoaudition_sw-2/#%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB">ページコントロール</a>可能にあるとき、
 そこから<code>https://audition.nicovideo.jp/api/foo</code>のようなリクエストが発生した場合にリクエストをフックすることが出来ます。</p>
 <p>仮に<code>https://blog.nicovideo.jp/script.js</code>から<code>https://audition.nicovideo.jp/api/foo</code>にリクエストを投げるような事があったとしても、スコープの違いによりこちらのリクエストは<code>https://audition.nicovideo.jp/service-worker.js</code>として登録された<code>Service Worker</code>にはフックされません。
 <div class="article-img">
@@ -266,7 +266,7 @@ Webサーバーからのレスポンスを一定期間保存し、キャッシ�
 <h2 id="感想">感想</h2>
 <p>本稿の課題と直接関連はないのですが、<code>Service Worker</code>によってヒットしたキャッシュはレイテンシーを大幅に短縮する副次的な効果も生み出しています。
 また、今振り返るとどの程度のリクエスト削減が可能なのか試算を提示するなどは、今後意識出来ると良いなと思いました。
-ここまでの<code>Service Worker</code>の実装内容およびその仕様を踏まえた上で、<code>Service Worker</code>スクリプトに対するテストについて次回の記事でお話しさせていただきます。</p>
+ここまでの<code>Service Worker</code>の実装内容およびその仕様を踏まえた上で、<code>Service Worker</code>スクリプトに対するテストについて<a href="../2023-03_nicoaudition_sw-2/">次回の記事</a>でお話しさせていただきます。</p>
 <hr>
 <p>株式会社ドワンゴでは、様々なサービス、コンテンツを一緒につくるメンバーを募集しています。
 ドワンゴに興味がある。または応募しようか迷っている方がいれば、気軽に応募してみてください。</p>

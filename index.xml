@@ -6,7 +6,16 @@
     <description>Recent content on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 27 Feb 2023 00:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Mar 2023 00:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Service WorkerとCache APIによるWebサーバーの負荷軽減とテスト実装について-後編</title>
+      <link>https://dwango.github.io/articles/2023-03_nicoaudition_sw-2/</link>
+      <pubDate>Mon, 06 Mar 2023 00:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/2023-03_nicoaudition_sw-2/</guid>
+      <description>ニコニコQセクションのhajime-san(GitHub/Twitter)です。 本記事は、Service WorkerとCache APIによる</description>
+    </item>
+    
     <item>
       <title>Service WorkerとCache APIによるWebサーバーの負荷軽減とテスト実装について-前編</title>
       <link>https://dwango.github.io/articles/2023-02_nicoaudition_sw-1/</link>
