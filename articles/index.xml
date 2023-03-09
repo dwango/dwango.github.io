@@ -6,7 +6,16 @@
     <description>Recent content in Articles on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 06 Mar 2023 00:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Mar 2023 00:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ニコニコ動画のコメントサーバーを引っ越した時の話</title>
+      <link>https://dwango.github.io/articles/2023-03_nvcore_komesaba_moving/</link>
+      <pubDate>Thu, 09 Mar 2023 00:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/2023-03_nvcore_komesaba_moving/</guid>
+      <description>こんにちは。ニコニコ動画開発の多胡です。 今回は PHPerKaigi2023 向けの記事として、2021年に実施したニコニコ動画のコメントサーバーをお引越しした時のことを</description>
+    </item>
+    
     <item>
       <title>Service WorkerとCache APIによるWebサーバーの負荷軽減とテスト実装について-後編</title>
       <link>https://dwango.github.io/articles/2023-03_nicoaudition_sw-2/</link>
