@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.87.0" />
+
+  <meta property="og:title" content="ニコニコの就業型インターンでサーバーサイドの開発に参加してきました！ - dwango on GitHub">
+
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  
+
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>ニコニコの就業型インターンでサーバーサイドの開発に参加してきました！ - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> ニコニコ開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://blog.nnn.dev/"> 教育サービス開発者ブログ </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
+      
+        Copyright &copy; DWANGO Co., Ltd.
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+  <div class="post">
+    <time class="content-date" datetime="2023-07-10 00:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2023-07-10 Mon</time
+    >
+    <h1 class="article-title">ニコニコの就業型インターンでサーバーサイドの開発に参加してきました！</h1>
+
+    <div>
+      
+        <aside>
+          <h2>目次</h2>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#どんなシステムを開発したのか">どんなシステムを開発したのか</a></li>
+    <li><a href="#システムの概要設計">システムの概要設計</a></li>
+    <li><a href="#動画形式の変換について">動画形式の変換について</a></li>
+  </ul>
+</nav>
+        </aside>
+        <hr />
+      
+      <article id="content"><h1 id="はじめに">はじめに</h1>
+<p>はじめまして！同志社大学大学院 理工学研究科に所属しています、修士2年のbe3（@Blossomrail）です。</p>
+<p>私は、2023年の1月~3月までの期間、ドワンゴのインターンシップでサーバーサイド領域の開発に参加させていただきました。</p>
+<p><a href="https://dwango.snar.jp/jobboard/detail.aspx?id=6EN5NILF57M">このリンクは2023年度のインターンシップ募集ページ</a>になりますが、私はこちらの2022年度のインターンシップに参加させていただきました。</p>
+<p>本記事の内容は、以下の通りです。</p>
+<ul>
+<li>DMS開発部について</li>
+<li>インターンシップ中の業務について</li>
+<li>インターンシップを通して学び得たこと</li>
+<li>大学院生活との両立について</li>
+</ul>
+<p>主な対象読者は、サーバーサイド領域におけるソフトウェア開発に興味がある学生や、メディア配信サービスの構築に興味がある学生になるかと思います。</p>
+<p>また、上記に該当している一方で、研究とインターンシップの両立が気になっている大学院生にとって参考になるかもしれません。</p>
+<h1 id="dms開発部について">DMS開発部について</h1>
+<p>私の業務内容をお伝えする前に、まずは私がインターン生として配属されたDMS開発部についてお伝えしたいと思います。</p>
+<p>DMS開発部は、ドワンゴのメディア配信を支え続けているDWANGO Media Cluster（以下、DMC）を、パブリッククラウドの使用に適した設計で新たなシステムDWANGO Media Services（以下、DMS）にリプレイスするための部署です。</p>
+<p>従来のDMCでは、運用が始まって6~7年間が経過して、さまざまな課題を抱えることになりました。</p>
+<p>全てではないですが、いくつか例を以下に挙げます。</p>
+<ul>
+<li>オンプレ運用によるメンテナンスやデプロイの手間</li>
+<li>モノリス設計システムの肥大化による機能追加の難しさ</li>
+</ul>
+<p>そこで、DMSとして再構築し直すことで、以下のようなメリットを生み出すことを検討しました。</p>
+<ul>
+<li>パブリッククラウドを活用した運用コストの緩和</li>
+<li>マイクロサービスアーキテクチャの採用による機能拡張性の向上</li>
+</ul>
+<p>私がこの話をマネージャーの久保田さんからお聞きした時、サービスが開始してから何年も経ちユーザも多いニコニコ系サービスのメディア配信基盤を刷新するのは途方もない計画のように感じました。</p>
+<p>しかし、これは大変なミッションであると感じたと共に、そんなチームに配属していただいて開発業務に携わる機会を頂けたことをとても嬉しく思ったのを覚えています。</p>
+<p>より詳しく知りたい方は、<a href="https://www.wantedly.com/companies/dwango/post_articles/466059">こちらの記事</a>を読んでみてください。</p>
+<p>私を3ヶ月間支えて下さったマネージャーである久保田さんがDMS開発部についてお話されています。</p>
+<h1 id="インターンシップ中の業務について">インターンシップ中の業務について</h1>
+<h2 id="どんなシステムを開発したのか">どんなシステムを開発したのか</h2>
+<p>それでは、私が配属されたDMS開発部とそのミッションについてお伝えできたということで、次に私がDMS開発部にて取り組んだ業務内容についてお伝えしたいと思います。</p>
+<p>私がインターンシップ中に取り組んだ業務は、DMSもしくはDMCが保有する動画を社内システムへ中継するAPIサーバー（以下、MovieRelay）の構築です。</p>
+<p>MovieRelayの主な機能要件は以下の通りです。</p>
+<ul>
+<li>社内システムからのリクエストに対して、動画や動画情報（json）をレスポンス
+<ul>
+<li>リクエストで指定された動画IDや動画品質に応じたコンテンツ(動画/動画情報)をDMSもしくはDMCから取得</li>
+<li>DMSにおけるコンテンツの有無に応じて、DMCにコンテンツを問い合わせ</li>
+<li>もしくは、DMCにおけるコンテンツの有無に応じて、DMSにコンテンツを問い合わせ（設定値次第で逆順も可な仕様）</li>
+</ul>
+</li>
+<li>DMSのレスポンスから取得した動画形式をHLSから内部用動画フォーマットへ変換</li>
+</ul>
+<p>上記の機能要件を図にすると、以下のようになります。
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2023-06_dms_intern_blog/sequence.png" alt="sequence"  />
+  
+</div>
+</p>
+<p>今後、DMC（旧システム）からDMS（新システム）への移行が段階的に行われる予定で、その過程で一部の動画はDMSにその他の動画はDMCにあるという状況が発生することがあります。</p>
+<p>そのため、DMCかDMSのどちらかに問い合わせた後に、コンテンツがなかった場合にもう一方のシステムに問い合わせる必要があります。
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2023-06_dms_intern_blog/found_notfound.png" alt="found_notfound"  />
+  
+</div>
+</p>
+<h2 id="システムの概要設計">システムの概要設計</h2>
+<p>次に、上記で示した機能要件を満たすようなMovieRelayを構築するにあたって、まずはシステムの概要設計から行うことになりました。</p>
+<p>本システムに求められるAPI仕様は予め定義されていたため、そのAPI仕様をどのように満たせば良いのかを様々な社内資料を参考に考えて、以下の内容についてドキュメント化しました。</p>
+<ul>
+<li>MovieRelayがDMS、DMCのAPIをどのように利用すれば良いのか</li>
+<li>HLSから内部用動画フォーマットへの変換はどのように行うのか</li>
+</ul>
+<p>また、システム内における処理と構成要素についても考える必要があり、MovieRelayの内部での処理を整理し、処理の種類に応じてシステムの構成要素に切り分けました。</p>
+<p>マネージャーの久保田さんとの相談やDMS開発部の方々からのレビューを経て、最終的には以下のような構成になりました。
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2023-06_dms_intern_blog/architecture.png" alt="architecture"  />
+  
+</div>
+</p>
+<p>各構成要素の役割は以下の通りです。</p>
+<ul>
+<li>relay: 社内システムに対してAPIを提供し、コンテンツの有無に応じて、DMSとDMCに問い合わせ</li>
+<li>DMS interface: DMSのAPIと通信し、動画や動画情報を取得してrelayへ返す</li>
+<li>DMC interface: DMCのAPIと通信し、動画や動画情報を取得してrelayへ返す</li>
+<li>converter: DMS interfaceが取得したHLS動画を内部用動画フォーマットに変換</li>
+</ul>
+<h2 id="動画形式の変換について">動画形式の変換について</h2>
+<p>本システムの特徴である動画形式の変換について述べたいと思います。</p>
+<p>前述の通り、MovieRelayは動画の形式をHLSから内部用動画フォーマットへ変換する必要があります。</p>
+<p>HLSは、HTTP Live Streamingの略称で、動画のオンデマンド配信とライブ配信の両方が可能なストリーミングプロトコルの一つです。</p>
+<p>また、正確にはHLSはファイル形式ではなくプロトコルであり、HLSを内部用動画フォーマットに変換するということは、HLSという規格に従ったファイル形式（m3u8ファイルやtsファイルなど）から対象のフォーマットへ変換するということになります。</p>
+<p>MovieRelayでは、HLSのファイルを入力すると内部用動画フォーマットを出力するコマンドをGo側で実行して、コマンドの出力結果をHTTPレスポンスに渡す形で実装しました。</p>
+<p>具体的には、os/execパッケージを利用して以下のような実装を行いました。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">cmd</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">exec</span>.<span style="color:#a6e22e">CommandContext</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#e6db74">&#34;convert-cmd&#34;</span>, <span style="color:#a6e22e">args</span>) <span style="color:#75715e">// コマンドの指定
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">cmd</span>.<span style="color:#a6e22e">Stdout</span> = <span style="color:#a6e22e">responseWriter</span> <span style="color:#75715e">// 出力先を標準出力からHTTPレスポンスに変更（io.Writer）
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">cmd</span>.<span style="color:#a6e22e">Run</span>() <span style="color:#75715e">// コマンドの実行
+</span></code></pre></div><p>簡単な実装ではありますが、ここでポイントとなる部分は2行目で、標準出力に出力される内容（変換結果）をHTTPレスポンスに出力するよう変更することです。</p>
+<p>ここで示している変数responseWriterは、io.Writerを満たすHTTPレスポンスの構造体で、関数の引数として外部から受け取るものとして想定しています。</p>
+<p>動画の変換結果を安易に[]byte型で受け取り関数の戻り値として返そうとすると、HTTPレスポンスとして変換結果をネットワークに送り出す前に、変換結果を一度メモリに載せることになってしまいます。（初めにそういう実装をしてしまいました&hellip;。）</p>
+<p>ローカル環境で実行している分には動作に支障はありませんが、MovieRelayは業務システムとして今後運用されていくため、複数のリクエストを並行して捌くことが考えられ、また動画の尺や画質次第では、大きいファイルを扱う可能性も出てきます。</p>
+<p>そのため、こうした実装をしてしまうと、メモリがひっ迫した結果、パフォーマンスの低下やプログラムのクラッシュなどの問題が発生してしまう可能性があります。</p>
+<p>そこで、io.Writerというインタフェースを介して、コマンドの実行結果をHTTPレスポンスとして送出しました。</p>
+<p>io.Writerという低レベルなインタフェースで共通化されていることで、出力先を簡単に変更できるところがGoの良いところだと実感できました。</p>
+<h1 id="インターンシップの感想">インターンシップの感想</h1>
+<p>業務システムの設計・開発を通して、実践的なソフトウェア開発を味わえる有意義なインターンシップだったと感じています。</p>
+<p>何か特定の技術について学びが得られることよりも、目標とするシステムを構築する上で技術的なアプローチの良し悪しを考えることの重要性について学べたことが、今回のインターンシップでの一番の成果だったのではないかと思います。</p>
+<p>プロダクションレベルの開発業務に携わることで、プロフェッショナルな開発者としての姿勢や仕事への取り組み方を学ぶことができました。</p>
+<p>また、システムのパフォーマンス、コードの耐変更性や可読性などを意識した実装を経験することができました。</p>
+<p>これにより、実際のプロジェクトにおけるベストプラクティスを学ぶことができ、自分のコーディングスキルを向上させることができたと感じています。</p>
+<p>また、MovieRelayは業務に欠かせないシステムであるため、設計や開発の中でDMS開発部の皆さんから様々なアドバイスやご指摘をいただきました。</p>
+<p>何度もPull Requestを更新して自身の実力不足を痛感し、社員さんに度々レビューをお願いした時は申し訳なく感じることもありましたが、チームとの協力を通じて高品質な成果物を提供することの重要性も実感できたと思います。</p>
+<p>その他にも多くのことを経験できましたが、長くなるので簡単にまとめると以下になります。</p>
+<ul>
+<li>設計を通して経験できたこと
+<ul>
+<li>機能要件の整理</li>
+<li>概要設計</li>
+<li>システムの構成</li>
+</ul>
+</li>
+<li>実装を通して経験できたこと
+<ul>
+<li>goroutineを用いた非同期処理</li>
+<li>メモリの使用を意識した実装</li>
+<li>interfaceを用いた共通化</li>
+</ul>
+</li>
+<li>開発を通して経験できた技術
+<ul>
+<li>Go</li>
+<li>HLS</li>
+<li>gRPC</li>
+</ul>
+</li>
+</ul>
+<h1 id="大学院生活との両立">大学院生活との両立</h1>
+<p>ここでは、大学院生である私が大学院生活とドワンゴでのインターンシップをどのように両立していたかについて述べたいと思います。</p>
+<p>まず、ドワンゴでの勤務頻度は以下になります。</p>
+<ul>
+<li>1月：週3回、1日8時間勤務</li>
+<li>2月, 3月：週3~4回、1日8時間勤務</li>
+</ul>
+<p>基本的に週3日が多かったのですが、2月と3月は大学院の授業がなく研究室での業務が落ち着いている時期だったので、週4日勤務をさせていただく週もありました。</p>
+<p>研究や研究室での予定で忙しいことが多い大学院生にとって、上記のような勤務頻度はあまり見かけないかもしれません。</p>
+<p>こうした勤務頻度でインターンシップに参加できた理由としては、私の趣味がプログラミング関連だったため、元々技術書を読むことや個人開発をすることに充てていた時間がインターンシップの時間に置き換わっただけであることが大きいと思います。</p>
+<p>そのため、平日はインターンシップと研究に時間を使い、土日はさらに研究にまとまった時間を充てるといったような生活を送っていました。</p>
+<p>また、私が所属したDMS開発部では、大まかな勤務曜日や時間だけを予め伝えておき、詳細な日時については毎週末に共有するといった形を取らせていただいていました。</p>
+<p>勤務日時の更新間隔を短く設けていただけたお陰で、研究や研究室の予定の都合による急な勤務日時の変更にも対応しやすいことが大変助かりました。</p>
+<h1 id="おわりに">おわりに</h1>
+<p>本インターンシップは、システム開発の現場に飛び込み、エンジニアとしての成長に素晴らしい機会でした！</p>
+<p>本記事を通して、ドワンゴやドワンゴのインターンシップに興味を持っていただければ幸いです。</p>
+</article>
+    </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="ニコニコの就業型インターンでサーバーサイドの開発に参加してきました！ - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/2023-06_dms_intern_blog/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/2023-06_dms_intern_blog/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2f2023-06_dms_intern_blog%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

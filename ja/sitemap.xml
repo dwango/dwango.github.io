@@ -3,10 +3,10 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://dwango.github.io/articles/</loc>
-    <lastmod>2023-06-30T12:00:00+09:00</lastmod>
+    <lastmod>2023-07-10T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://dwango.github.io/</loc>
-    <lastmod>2023-06-30T12:00:00+09:00</lastmod>
+    <lastmod>2023-07-10T00:00:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -17,6 +17,9 @@
                 hreflang="ja"
                 href="https://dwango.github.io/"
                 />
+  </url><url>
+    <loc>https://dwango.github.io/articles/2023-06_dms_intern_blog/</loc>
+    <lastmod>2023-07-10T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://dwango.github.io/articles/chokaigi2023_talk/</loc>
     <lastmod>2023-06-30T12:00:00+09:00</lastmod>

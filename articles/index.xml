@@ -6,7 +6,16 @@
     <description>Recent content in Articles on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 30 Jun 2023 12:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Jul 2023 00:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ニコニコの就業型インターンでサーバーサイドの開発に参加してきました！</title>
+      <link>https://dwango.github.io/articles/2023-06_dms_intern_blog/</link>
+      <pubDate>Mon, 10 Jul 2023 00:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/2023-06_dms_intern_blog/</guid>
+      <description>はじめに はじめまして！同志社大学大学院 理工学研究科に所属しています、修士2年のbe3（@Blossomrail）です。 私は、2023年の1月</description>
+    </item>
+    
     <item>
       <title>ニコニコ超会議2023でCTOと若手エンジニアがドワンゴについて語りました！</title>
       <link>https://dwango.github.io/articles/chokaigi2023_talk/</link>
