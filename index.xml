@@ -6,7 +6,16 @@
     <description>Recent content on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 10 Jul 2023 00:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Jul 2023 12:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>型安全なURL生成ライブラリ url-from を公開しました</title>
+      <link>https://dwango.github.io/articles/2023-07_nicolive_url-from/</link>
+      <pubDate>Tue, 25 Jul 2023 12:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/2023-07_nicolive_url-from/</guid>
+      <description>こんにちは。ニコニコ生放送生放送フロントエンドシステムセクションのmisuken(GitHub/Twitter)です。 今回は最近公開したur</description>
+    </item>
+    
     <item>
       <title>ニコニコの就業型インターンでサーバーサイドの開発に参加してきました！</title>
       <link>https://dwango.github.io/articles/2023-06_dms_intern_blog/</link>
