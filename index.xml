@@ -6,7 +6,16 @@
     <description>Recent content on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 25 Jul 2023 12:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 23 Aug 2023 11:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ニコニコ動画iOSアプリ 改善の歴史</title>
+      <link>https://dwango.github.io/articles/2023-08_nicoiphone_kaizen_history/</link>
+      <pubDate>Wed, 23 Aug 2023 11:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/2023-08_nicoiphone_kaizen_history/</guid>
+      <description>はじめに こんにちは。ニコニコ開発部で、動画スマホアプリ開発を担当している秋元です。 私たちのチームでは、いくつかのスマホアプリを開発しています</description>
+    </item>
+    
     <item>
       <title>型安全なURL生成ライブラリ url-from を公開しました</title>
       <link>https://dwango.github.io/articles/2023-07_nicolive_url-from/</link>
