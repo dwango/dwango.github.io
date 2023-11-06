@@ -6,7 +6,16 @@
     <description>Recent content in Articles on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 02 Oct 2023 12:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Nov 2023 12:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>仕様と実装から読み解くHTMLのloading属性</title>
+      <link>https://dwango.github.io/articles/html-loading-attribute/</link>
+      <pubDate>Mon, 06 Nov 2023 12:00:00 +0900</pubDate>
+      
+      <guid>https://dwango.github.io/articles/html-loading-attribute/</guid>
+      <description>こんにちは。ニコニコQセクションのHajime-san(GitHub)です。 本稿では、HTMLのloading属性の仕様とブラウザの実装を解</description>
+    </item>
+    
     <item>
       <title>共通通知システムを刷新しました</title>
       <link>https://dwango.github.io/articles/2023-10_push_sytem/</link>
@@ -67,7 +76,7 @@
       <pubDate>Mon, 06 Mar 2023 00:00:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/articles/2023-03_nicoaudition_sw-2/</guid>
-      <description>ニコニコQセクションのhajime-san(GitHub/Twitter)です。 本記事は、Service WorkerとCache APIによる</description>
+      <description>ニコニコQセクションのHajime-san(GitHub)です。 本記事は、Service WorkerとCache APIによるWebサーバーの</description>
     </item>
     
     <item>
@@ -76,7 +85,7 @@
       <pubDate>Mon, 27 Feb 2023 00:00:00 +0900</pubDate>
       
       <guid>https://dwango.github.io/articles/2023-02_nicoaudition_sw-1/</guid>
-      <description>こんにちは。ニコニコQセクションのhajime-san(GitHub/Twitter)です。 当記事では所属部署で開発に携わっている「ニコニコ</description>
+      <description>こんにちは。ニコニコQセクションのHajime-san(GitHub)です。 当記事では所属部署で開発に携わっている「ニコニコオーディション」</description>
     </item>
     
     <item>
