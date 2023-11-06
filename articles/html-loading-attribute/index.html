@@ -104,7 +104,7 @@
       <article id="content"><p>こんにちは。ニコニコQセクションのHajime-san(<a href="https://github.com/Hajime-san">GitHub</a>)です。</p>
 <p>本稿では、HTMLのloading属性の仕様とブラウザの実装を解いていきます。これにより、ブラウザからのコンテンツ配信の最適化を支える判断材料の1つとなれば幸いです。</p>
 <h2 id="執筆の動機">執筆の動機</h2>
-<p>筆者が開発に携わっているサービスである<a href="../2023-03_nicoaudition_sw-1">ニコニコオーディション</a>が間接的に利用している社内ファミリーサービスについて、ふと自分のスマートフォンで見てみたところページの初期表示に時間がかかるように感じました。
+<p>筆者が開発に携わっているサービスである<a href="../2023-02_nicoaudition_sw-1">ニコニコオーディション</a>が間接的に利用している社内ファミリーサービスについて、ふと自分のスマートフォンで見てみたところページの初期表示に時間がかかるように感じました。
 オーディションシステムはiframe要素によって社内ファミリーサービスなどに専用のUIを埋め込むことが可能になっており、iframe要素のloading属性を用いた「遅延読み込み」（以下、遅延読み込みはloading属性によるもの）が効果的なのではないかと考えました。</p>
 <p>まずは、実際に<code>loading=&quot;lazy&quot;</code>を適用して読み込みが後回しにされるのかと確認しようとしたところ、遅延読み込みでない即時の読み込みとなり、直感に反するように思えたことが執筆の動機です。</p>
 <h2 id="遅延読み込みの歴史">遅延読み込みの歴史</h2>
@@ -114,7 +114,7 @@
 <h2 id="遅延読み込みがlcp高速化に及ぼしうる可能性について">遅延読み込みがLCP高速化に及ぼしうる可能性について</h2>
 <p>HTMLのimg要素に代表されるサブリソースは、詳細を簡略して記述すると、ブラウザがHTMLをパース中に当該サブリソースへHTTPリクエストを発行<sup id="ref1"><a href="#note1">[1]</a></sup>し、レンダリングまでを行うことを通常のフローと仮定します。
 この時、<code>loading=&quot;lazy&quot;</code>と指定することによる遅延読み込みは、前述のフローの実行に必要なクライアントの計算資源が節約可能になります。</p>
-<p>これにより、<a href="https://web.dev/i18n/en/lcp/">Largest Contentful Paint</a> (以下、LCP)を高速化できる可能性があります。</p>
+<p>これにより、<a href="https://web.dev/articles/lcp/">Largest Contentful Paint</a> (以下、LCP)を高速化できる可能性があります。</p>
 <h2 id="仕様">仕様</h2>
 <p>遅延読み込みについて、まずはHTMLの<a href="https://html.spec.whatwg.org/commit-snapshots/ad94bbee3be952bb35f3536f358394a954544c0a/#lazy-loading-attributes">仕様</a>から見ていきます。
 簡潔に書かれており物量も多くないものの、その中で下記に重要な点を掻い摘んで取り上げます。</p>
@@ -145,13 +145,13 @@
 <td>img</td>
 <td>ネットワークレイテンシーに応じて<code>1250px</code>から<code>8000px</code>の間で5段階に変容</td>
 <td><a href="https://source.chromium.org/chromium/chromium/src/+/refs/tags/114.0.5735.248:third_party/blink/renderer/core/frame/settings.json5;l=963-995">settings.json5</a><br/><a href="https://source.chromium.org/chromium/chromium/src/+/refs/tags/114.0.5735.248:third_party/blink/renderer/core/html/lazy_load_image_observer.cc">lazy_load_image_observer.cc</a></td>
-<td><a href="https://web.dev/browser-level-image-lazy-loading/">Browser-level image lazy loading for the web</a></td>
+<td><a href="https://web.dev/articles/browser-level-image-lazy-loading/">Browser-level image lazy loading for the web</a></td>
 </tr>
 <tr>
 <td>iframe</td>
 <td>ネットワークレイテンシーに応じて<code>2500px</code>から<code>8000px</code>の間で5段階に変容</td>
 <td><a href="https://source.chromium.org/chromium/chromium/src/+/refs/tags/114.0.5735.248:third_party/blink/renderer/core/frame/settings.json5;l=929-961">settings.json5</a><br/><a href="https://source.chromium.org/chromium/chromium/src/+/refs/tags/114.0.5735.248:third_party/blink/renderer/core/html/lazy_load_frame_observer.cc">lazy_load_frame_observer.cc</a></td>
-<td><a href="https://web.dev/i18n/en/iframe-lazy-loading/">It&rsquo;s time to lazy-load offscreen iframes!</a></td>
+<td><a href="https://web.dev/articles/iframe-lazy-loading/">It&rsquo;s time to lazy-load offscreen iframes!</a></td>
 </tr>
 </tbody>
 </table>
@@ -215,7 +215,7 @@
 iframe要素は指定されたURLをドキュメント内に配置する要素であり、iframe要素から更にサブリソースの読み込みが発生するケースは多いです。<br>
 これにより、iframe要素は通常、表示に時間のかかる可能性が高い要素と言えます。</p>
 <p>Blinkの実装は、クライアントのネットワークレイテンシーを判別して少し早い段階から読み込みを開始し、
-ビューポートに入った際には画像の表示を終えている状態にしたいという意図が<a href="https://web.dev/i18n/en/browser-level-image-lazy-loading/#distance-from-viewport-thresholds">こちらに書かれて</a>あります。<br>
+ビューポートに入った際には画像の表示を終えている状態にしたいという意図が<a href="https://web.dev/articles/browser-level-image-lazy-loading#distance-from-viewport_thresholds">こちらに書かれて</a>あります。<br>
 iframe要素の場合はimg要素より大きい<code>rootMargin</code>の値の設定が設定されているのが見受けられ、まさに先述のiframe要素の特性を考慮した実装でないかと考えられます。</p>
 <p>WebKitのiframe要素の実装では特に<code>rootMargin</code>の値が設定されておらず、ビューポートの下端は対象のiframe要素と交差したら読み込みが開始される実装になっています。
 明確な意図が記述された文書を見つけられなかったものの、これはiframe要素により発生するサブリソースの読み込みを、可能な限り抑制しようとしている、と受け取ることも不可能ではないと言えます。</p>
@@ -224,7 +224,7 @@ iframe要素の場合はimg要素より大きい<code>rootMargin</code>の値の
 <p>以前より遅延読み込みの利用に関しては、主に以下のようなセオリーが流布しており、本稿でも主張は変わりません。</p>
 <ul>
 <li>ページのAbove the fold<sup id="ref4"><a href="#note4">[4]</a></sup>に位置するものに関しては、LCPを悪化させる可能性が高いので遅延読み込みを避ける</li>
-<li>遅延読み込みによる表示がユーザー操作によるスクロールに間に合わない場合を加味して、<a href="https://web.dev/i18n/en/cls/">レイアウトシフト</a>を避けるための<code>width</code>および<code>height</code>属性の値の指定を考慮する</li>
+<li>遅延読み込みによる表示がユーザー操作によるスクロールに間に合わない場合を加味して、<a href="https://web.dev/articles/cls/">レイアウトシフト</a>を避けるための<code>width</code>および<code>height</code>属性の値の指定を考慮する</li>
 </ul>
 <p>加えて、先ほど紹介したブラウザの実装を踏まえると、サポート対象とするブラウザが限定されている場合は、より細かなパフォーマンスチューニングを実施できる可能性があります。</p>
 <h2 id="ユースケースを紹介">ユースケースを紹介</h2>
@@ -252,7 +252,7 @@ iframe要素の場合はimg要素より大きい<code>rootMargin</code>の値の
 <li>この変更によってHTMLの最初に現れるimgおよびiframe要素は<code>loading=&quot;lazy&quot;</code>を付与しない実装になった</li>
 </ul>
 </li>
-<li><a href="https://web.dev/lcp-lazy-loading/">https://web.dev/lcp-lazy-loading/</a>
+<li><a href="https://web.dev/articles/lcp-lazy-loading/">https://web.dev/articles/lcp-lazy-loading/</a>
 <ul>
 <li>WordPress標準テーマの遅延読み込みによるパフォーマンスへの効果の検証</li>
 </ul>
@@ -266,8 +266,8 @@ iframe要素の場合はimg要素より大きい<code>rootMargin</code>の値の
 <h2 id="まとめ">まとめ</h2>
 <p>Webサイトのパフォーマンス最適化の一手として、遅延読み込みがモダンブラウザに実装されてしばらく経ちました。遅延読み込みのための<code>rootMargin</code>の値は実装依存であり、Blink<sup id="ref7"><a href="#note7">[7]</a></sup>やGecko<sup id="ref3"><a href="#note3">[3]</a></sup>では幾度か変更されています。今後、世界のネットワーク事情によって将来的に変更される可能性もあります。</p>
 <p>本稿で取り上げた仕様や実装を1つのポインタとし、適宜最適な実装を行えるとよいでしょう。</p>
-<p><small id="note1">[1]: モダンブラウザによる<a href="https://web.dev/preload-scanner/">preload scanner</a>が実行されていると仮定しています。<a href="#ref1">↩</a></small><br/>
-<small id="note2">[2]: <a href="https://web.dev/browser-level-image-lazy-loading/#are-there-plans-to-automatically-lazy-load-images-in-chrome">loading=&ldquo;auto&quot;に関する説明</a><br/>
+<p><small id="note1">[1]: モダンブラウザによる<a href="https://web.dev/articles/preload-scanner/">preload scanner</a>が実行されていると仮定しています。<a href="#ref1">↩</a></small><br/>
+<small id="note2">[2]: <a href="https://web.dev/articles/browser-level-image-lazy-loading/#are-there-plans-to-automatically-lazy-load-images-in-chrome">loading=&ldquo;auto&quot;に関する説明</a><br/>
 BlinkではM100で廃止された<a href="https://support.google.com/chrome/answer/2392284?hl=ja&amp;sjid=15546078161588008177-AP">Lite mode</a>向けに<code>auto</code>を実装していた<br/>
 現在は<code>auto</code>を指定すると<code>eager</code>に倒される: <a href="https://source.chromium.org/chromium/chromium/src/+/114.0.5735.248:third_party/blink/renderer/platform/loader/fetch/loading_attribute_value.h;l=11;drc=fbc5089498940a1716ceec317d6281556049e0da">loading_attribute_value.h</a><br/>
 <a href="https://source.chromium.org/chromium/chromium/src/+/refs/tags/114.0.5735.248:third_party/blink/renderer/core/html/html_image_element.cc;l=344-350?ss=chromium%2Fchromium%2Fsrc">html_image_element.cc</a>
