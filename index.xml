@@ -6,7 +6,16 @@
     <description>Recent content on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 06 Nov 2023 12:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2023年新卒エンジニア研修</title>
+      <link>https://dwango.github.io/articles/2023-12_engineer_kensyu_23/</link>
+      <pubDate>Mon, 18 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://dwango.github.io/articles/2023-12_engineer_kensyu_23/</guid>
+      <description>はじめに 2023年新卒エンジニアの武智です。 今回は2023年新卒エンジニアが3ヶ月間共通で受けた研修について、研修の内容と感想を記事にしよう</description>
+    </item>
+    
     <item>
       <title>仕様と実装から読み解くHTMLのloading属性</title>
       <link>https://dwango.github.io/articles/html-loading-attribute/</link>
