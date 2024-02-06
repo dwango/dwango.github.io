@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="ja" lang="ja" >
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.122.0">
+
+  <meta property="og:title" content="楕円曲線暗号方式の強度について - dwango on GitHub">
+
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  <meta name="twitter:card" content="summary">
+  
+
+
+  
+  
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)']]                  
+    }
+  };
+</script>
+
+  
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>楕円曲線暗号方式の強度について - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> ニコニコ開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://blog.nnn.dev/"> 教育サービス開発者ブログ </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
+      
+        Copyright &copy; DWANGO Co., Ltd.
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+  <div class="post">
+    <time class="content-date" datetime="2024-02-06 16:12:09 &#43;0900 JST" itemprop="datepublished"
+      >2024-02-06 Tue</time
+    >
+    <h1 class="article-title">楕円曲線暗号方式の強度について</h1>
+
+    <div>
+      
+      <article id="content"><p>※本ブログは2024/2に執筆されています。そのため、アップデートによってここに記載されている内容が現状と乖離する可能性があります。</p>
+<h1 id="はじめに">はじめに</h1>
+<p>こんにちは! ドワンゴでエンジニアをやっている小林と申します。競技プログラミングを趣味にしています。</p>
+<p>今回は業務には関係ありませんが、個人的に興味のあるトピックであるセキュリティーについて執筆します。</p>
+<p>対象読者: 以下のどれかを満たす人</p>
+<ul>
+<li>AtCoder で青色〜黄色以上、あるいは意欲のある水色以上</li>
+<li>暗号理論に興味のある人</li>
+<li>数学が好きな人</li>
+</ul>
+<p>また、簡単な群論の知識を仮定します。(<a href="https://ja.wikipedia.org/wiki/%E7%BE%A4_(%E6%95%B0%E5%AD%A6)">群</a>の定義など)</p>
+<h1 id="まとめ">まとめ</h1>
+<ul>
+<li>セキュリティーの強さはセキュリティーレベルと呼ばれる尺度で測ることができます。 \(k\) ビットセキュリティーはおよそ \(2^k\) 回の計算を要するレベルです。</li>
+<li>\(n\) ビットの楕円曲線暗号方式は \(n/2\) ビットのセキュリティーを提供します。 \(n \ge 224\) であれば 112 ビットセキュリティー以上が提供されるので 2024 年現在安全です。特によく見かける Ed25519 や ecdsa-sha2-nistp256 あたりは 128 ビットのセキュリティーを提供するので安全です。</li>
+</ul>
+<h1 id="事前知識">事前知識</h1>
+<h2 id="セキュリティーレベルとは">セキュリティーレベルとは</h2>
+<p><a href="https://en.wikipedia.org/wiki/Security_level">https://en.wikipedia.org/wiki/Security_level</a> から引用します。</p>
+<blockquote>
+<p>In cryptography, security level is a measure of the strength that a cryptographic primitive — such as a cipher or hash function — achieves. Security level is usually expressed as a number of &ldquo;bits of security&rdquo; (also security strength), where n-bit security means that the attacker would have to perform 2^n operations to break it, but other methods have been proposed that more closely model the costs for an attacker. This allows for convenient comparison between algorithms and is useful when combining multiple primitives in a hybrid cryptosystem, so there is no clear weakest link. For example, AES-128 (key size 128 bits) is designed to offer a 128-bit security level, which is considered roughly equivalent to a RSA using 3072-bit key.</p>
+</blockquote>
+<p>翻訳すると以下のようになります。</p>
+<blockquote>
+<p>暗号学において、<strong>セキュリティーレベル</strong>とは、暗号やハッシュ関数といった暗号プリミティブが達成する強さの尺度である。セキュリティーレベルは通常「〇〇ビットセキュリティー」(あるいはセキュリティーの強さが〇〇ビット)と表現され、 \(n\) ビットセキュリティーというのは攻撃者がそれを破るために \(2^n\) 回の操作を要するであろうということを意味する。しかし攻撃者にとってのコストをより厳密にモデルするような他の方法も提案されている。このセキュリティーレベルの概念により、複数のアルゴリズムの便利な比較ができ、ハイブリッドな暗号システムで複数の暗号プリミティブを組み合わせるがゆえに明らかな最弱の繋がり (訳注: 一番の弱点) がない際に有用である。例えば、AES-128 (鍵のサイズが 128 ビット) は 128 ビットのセキュリティーを提供するように設計され、このセキュリティーレベルはおよそ 3072 ビットの鍵を使う RSA と等価であるとみなされている。</p>
+</blockquote>
+<p>競プロの人向けに書くと、要するに計算量が \(2^n\) であれば \(n\) ビットセキュリティーが担保されています。2030 年まで使用されているものは 112 ビットセキュリティーが達成されていればよく、言い換えると \(2^{112}\) ステップの計算は 2030 年までは人類には不可能と思われています。</p>
+<h2 id="離散対数問題">離散対数問題</h2>
+<p><a href="https://ja.wikipedia.org/wiki/%E7%BE%A4_(%E6%95%B0%E5%AD%A6)">群</a> \(G\) および \(G\) の要素 \(g, h\) が与えられた時、 \(g^x = h\) という方程式を解かせる問題を<a href="https://ja.wikipedia.org/wiki/%E9%9B%A2%E6%95%A3%E5%AF%BE%E6%95%B0">離散対数問題</a>と呼びます。</p>
+<ul>
+<li>例: \(3^x \equiv 56306 \pmod{65537}\) である。x は何か? (答え: 47 など)</li>
+<li>例: <a href="https://github.com/koba-e964.keys">以下の ssh-ed25519 公開鍵</a>に対応する指数は何か?
+<pre tabindex="0"><code>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJVH04Oyf0Y7FrilmJMVENUBS6SMfyrhQ6L4lGGuBYsj
+</code></pre></li>
+</ul>
+<h3 id="楕円曲線暗号方式">楕円曲線暗号方式</h3>
+<p>楕円曲線を使う暗号プリミティブを総称して楕円曲線暗号方式と呼びます。</p>
+<p>単純化したデータは以下の通りです。</p>
+<ul>
+<li>\(p\): 素数。楕円曲線が定義される有限体の位数。</li>
+<li>\(y^2 \equiv x^3+ax+b \pmod p\): 楕円曲線の方程式。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>これを満たす \(x,y\) の集合を G と呼ぶ。G は群である。</li>
+<li>\(|G|\): \(G\) に含まれる要素の個数であり、\(G\) の<strong>位数</strong>と呼ばれる。多くの場合、素数であるか、素数を小さな整数倍したものである。</li>
+</ul>
+<p>普段使われている <a href="https://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%89%E3%83%AF%E3%83%BC%E3%82%BA%E6%9B%B2%E7%B7%9A%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E7%BD%B2%E5%90%8D%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0">Ed25519</a> は、位数が \(2^{256}\) 程度の群を使用しています。<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> また、もう一つよく使われる方式である ecdsa-sha2-nistp256 という方式は、NIST P-256 と呼ばれる曲線を使用しています。こちらも位数が \(2^{256}\) 程度の群を使用しています。</p>
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>パラメーター</th>
+<th>位数</th>
+<th>ソース</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Curve25519</td>
+<td>\(p=2^{255}-19, y^2 = x^3+486662x^2+x\)</td>
+<td>\(8(2^{252} + 27742317777372353535851937790883648493)\)</td>
+<td><a href="https://cr.yp.to/ecdh.html">cr.yp.to</a></td>
+</tr>
+<tr>
+<td>NIST P-256</td>
+<td>\(p=2^{256} - 2^{224} + 2^{192} + 2^{96} - 1, y^2=x^3-3x+(\ldots)\)</td>
+<td>\(2^{256} - 2^{224} + 2^{192} - 89188191075325690597107910205041859247\)</td>
+<td><a href="https://csrc.nist.gov/files/pubs/fips/186-2/final/docs/fips186-2.pdf">FIPS</a></td>
+</tr>
+</tbody>
+</table>
+<p>基本的に楕円曲線暗号方式は楕円曲線を群とみなしたものの上の離散対数問題の安全性に依存しています。</p>
+<h1 id="攻撃手法">攻撃手法</h1>
+<p>基本的に大きさ \(2^{n}\) 程度の群における離散対数問題は \(n/2\) ビットセキュリティーを提供します。これは \(x\) の総当たり (\(O(2^n)\) ステップ) よりも高速に離散対数を求める手法が存在するということです。その説明のために、攻撃手法を見ていきます。AtCoder でのレベル感はおよそ青色〜黄色と思われます。</p>
+<h2 id="baby-step-giant-step">Baby-Step Giant-step</h2>
+<p><a href="https://atcoder.jp/contests/abc270/tasks/abc270_g">ABC270 の G 問題</a> で出題されたのが記憶に新しいです。</p>
+<ol>
+<li>\(M := 2^{n/2}\) とする。 \(g^{M}, g^{2M}, g^{3M}, \ldots, g^{(M-1)M}\) を計算しておき、マッピング \(S\) を \(g^{M} \mapsto M, g^{2M} \mapsto 2M, \ldots\) という方式で作っておく。</li>
+<li>\(t := g, g^2, \ldots, g^{M-1}\) に対して \(ht^{-1}\) が \(S\) に含まれるかを調べる。 \(S\) に \(h(g^{i})^{-1}\) が含まれており対応する値が \(v\) であったならば、 \(h(g^{i})^{-1} = g^v\) であるから \(h = g^{v+i}\) であり、求めるべき離散対数は \(v+i\) である。</li>
+</ol>
+<p>これは \(O(M) = O(2^{n/2})\) 時間、 \(O(2^{n/2})\) 空間で動作します。 (ただし、マッピングからの値の取得が \(O(1)\) 時間でできることを仮定します。)</p>
+<h2 id="ポラードのロー法">ポラードのロー法</h2>
+<p><a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%AD%E3%82%A4%E3%83%89%E3%81%AE%E5%BE%AA%E7%92%B0%E6%A4%9C%E5%87%BA%E6%B3%95#:~:text=%E3%83%95%E3%83%AD%E3%82%A4%E3%83%89%E3%81%AE%E5%BE%AA%E7%92%B0%E6%A4%9C%E5%87%BA%E6%B3%95%EF%BC%88%E8%8B%B1%3A%20Floyd's%20cycle%2Dfinding,1967%E5%B9%B4%E3%81%AB%E7%99%BA%E6%98%8E%E3%81%97%E3%81%9F%E3%80%82">Floyd の循環検出法</a>を使います。これは以下のようなアルゴリズムです。</p>
+<ul>
+<li>入力: 関数 \(f : G \to G, a \in G\)</li>
+<li>出力: \(f^i(a) = f^j(a)\) となる \(i \neq j\)</li>
+<li>アルゴリズム:
+<ol>
+<li>\(x := a, y := a\) とする。</li>
+<li>\(x \leftarrow f(x), y \leftarrow f(f(y))\) とする。</li>
+<li>\(x = y\) となるまで上を繰り返す。サイクルがあれば必ず \(x = y\) となる時が来るので、それまでに 2. を k 回実行していたら \((k, 2k)\) を返す。</li>
+</ol>
+</li>
+</ul>
+<p>これの空間計算量は O(1) です。 \(f : G \to G\) をランダムな関数とすると、誕生日のパラドックスから \(O(\sqrt{|G|})\) 回程度で \(f^i(a) = f^j(a)\) となる \(i \neq j\) が見つかることが期待できます。</p>
+<p><a href="https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm_for_logarithms">Wikipedia の例</a>では、以下の関数を使っています。</p>
+<ul>
+<li>\(G\) を 3 つの部分集合 \(S_0, S_1, S_2\) の和として分割する。これらの部分集合は共通部分を持たない。(実装するときはハッシュ関数などを使う。)</li>
+<li>\(x \in S_0\) のとき \(f(x) = hx\)</li>
+<li>\(x \in S_1\) のとき \(f(x) = x^2\)</li>
+<li>\(x \in S_2\) のとき \(f(x) = gx\)</li>
+</ul>
+<p>これで \(f^i(a) = f^j(a)\) となる \(i, j\) が見つかった際、上のルールから \(f^i(a) = g^sh^t, f^j(a) = g^uh^v\) となる \(s,t,u,v\) が見つかっているはずですが、\(s \neq u, t \neq v\) であることが期待できるのでその差分から離散対数が計算できます。(式変形すると \(h^{v-t} = g^{s-u}\) なので \(x=(s-u) / (v-t) \bmod |G|\) が答えです。)</p>
+<p>ループにハマるまでの回数の期待値が \(O(\sqrt{|G|})\) であるため、
+これは \(O(2^{n/2})\) 時間、 \(O(1)\) 空間で動作します。</p>
+<h1 id="想定質問集">想定質問集</h1>
+<h2 id="112-ビットセキュリティーで良い根拠は何ですか">112 ビットセキュリティーで良い根拠は何ですか?</h2>
+<p><a href="https://www.cryptrec.go.jp/list/cryptrec-ls-0003-2022r1.pdf">https://www.cryptrec.go.jp/list/cryptrec-ls-0003-2022r1.pdf</a> の 表 5 (p.16) を参照します。
+ここで「112 ビットセキュリティ」の行と「2022～2030」の列が交わるところを見ると、「移行完遂期間」とあります。移行完遂期間であれば使用は問題ありませんので、2030 年までは大丈夫です。</p>
+<h2 id="楕円曲線暗号方式にはこれより良い攻撃手法はないのですか">楕円曲線暗号方式にはこれより良い攻撃手法はないのですか?</h2>
+<p><strong>一般の</strong>パラメーターにはまだ見つかっていません。特殊な形のパラメーターには見つかっており、以下はそういった例です。</p>
+<ul>
+<li>位数が \(p\) の場合: additive transfer という手法で \(ax \equiv b \pmod p\) を解くことに帰着できます。これは mod 逆元で簡単に解けるので、こういったパラメーターは全く使い物になりません。</li>
+<li>位数が \(p-1\) の場合: multiplicative transfer という手法で \(a^x \equiv b \pmod p\) を解くことに帰着されます。これも離散対数問題ですが、有限体上での離散対数問題なので汎用的な攻撃手法より高速に解けます。p が 256 ビットの整数だとおよそ 47 ビットのセキュリティーに相当するレベルとなり、これは普通に人類が解けるレベルです。</li>
+</ul>
+<h2 id="ed25519-などの楕円曲線暗号方式の解読には総当たりで-2256-回の操作が必要だと聞きましたこれは誤りなのですか">Ed25519 などの楕円曲線暗号方式の解読には、総当たりで \(2^{256}\) 回の操作が必要だと聞きました。これは誤りなのですか?</h2>
+<p>はい。この記事で見たように、もっと高速に解けるので誤りです。
+こういった説明は時々見かけますが、よくて勘違い、悪くて優良誤認表示になってしまうでしょうね。</p>
+<h2 id="でも-2256-と-2128-は何が違うのですか-どのみち解けないのだから一緒じゃないですか">でも \(2^{256}\) と \(2^{128}\) は何が違うのですか? どのみち解けないのだから一緒じゃないですか?</h2>
+<p>今は一緒かもしれませんが将来差が出てきます。
+同じく <a href="https://www.cryptrec.go.jp/list/cryptrec-ls-0003-2022r1.pdf">https://www.cryptrec.go.jp/list/cryptrec-ls-0003-2022r1.pdf</a> の 表 5 (p.16) を参照します。
+「128 ビットセキュリティ」の行を見ると、「2041～2050」まで問題ないことがわかるので、2050 年以降に差が出てきます。</p>
+<h2 id="rsa-暗号方式はオワコンですか-今私は-ssh-の鍵として-ssh-rsa-の鍵を使っているのですが新しく作り直した方がいいでしょうか">RSA 暗号方式はオワコンですか? 今私は SSH の鍵として ssh-rsa の鍵を使っているのですが、新しく作り直した方がいいでしょうか?</h2>
+<p>いいえ。わざわざ新しく作り直す必要はありません。</p>
+<p>しかし個人的には、もし鍵を新規で作るのであれば ssh-rsa ではなく ssh-ed25519 などの鍵を作ることを推奨します。その理由は以下の通りです。</p>
+<ul>
+<li>鍵の扱いやすさ: 128 ビットセキュリティーを達成するために、RSA だと 3072 ビットの鍵が必要ですが、ssh-ed25519 であれば 256 ビットで済みます。12 倍の差があります。(これは公開鍵の話であり、秘密鍵だとさらに差が広がります。)</li>
+<li>実装の簡単さ: RSA を安全に実装するのは難しいです。多くの実装は演算のために多倍長整数を使っていますが、これは <a href="https://pkg.go.dev/vuln/GO-2023-2375">Go 言語で問題とみなされ</a>修正されました。最近も<a href="https://qiita.com/tnakagawa/items/d87fd8459ec9e1ce6844">脆弱な実装が見つかりました</a>。RSA はその単純さから多くの場所で教えられていますが、その有用性が過大評価されていると感じます。</li>
+</ul>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>実際には \(x^2\) の項があっても問題なく、そういう曲線も存在します。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>厳密には Ed25519 は楕円曲線ではなく twisted Edwards curve とよばれる曲線を使っていますが、ほとんど楕円曲線と同値です。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+</article>
+    </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="楕円曲線暗号方式の強度について - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/2024-02_security_level/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/2024-02_security_level/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2f2024-02_security_level%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

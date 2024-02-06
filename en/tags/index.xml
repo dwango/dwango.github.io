@@ -5,6 +5,7 @@
     <link>https://dwango.github.io/en/tags/</link>
     <description>Recent content in Tags on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja</language><atom:link href="https://dwango.github.io/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <atom:link href="https://dwango.github.io/en/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

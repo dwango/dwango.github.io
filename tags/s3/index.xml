@@ -6,15 +6,14 @@
     <description>Recent content in S3 on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Wed, 16 Feb 2022 12:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/tags/s3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 Feb 2022 12:00:00 +0900</lastBuildDate>
+    <atom:link href="https://dwango.github.io/tags/s3/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>S3のコストダウンを実施してみた</title>
       <link>https://dwango.github.io/articles/reduce-s3-cost/</link>
       <pubDate>Wed, 16 Feb 2022 12:00:00 +0900</pubDate>
-      
       <guid>https://dwango.github.io/articles/reduce-s3-cost/</guid>
       <description>※本ブログは2022/2に執筆されています。そのため、アップデートによって内容が現在と異なる可能性があります。 はじめに モバイル事業本部プロダ</description>
     </item>
-    
   </channel>
 </rss>

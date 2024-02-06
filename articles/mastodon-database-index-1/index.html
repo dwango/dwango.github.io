@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.87.0" />
+  <meta name="generator" content="Hugo 0.122.0">
 
   <meta property="og:title" content="とあるクエリを2万倍速にした話 -データベースの気持ちになる- 前編 - dwango on GitHub">
 
@@ -16,6 +16,9 @@
   <meta name="twitter:card" content="summary">
   
 
+
+  
+  
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -117,10 +120,10 @@
 <p>サーバサイドの内部構成はRuby on Rails、Sidekiq、Node.js、それらのバックエンドとしてRedisとPostgreSQLを使用しています。</p>
 <h1 id="今回問題になったクエリ">今回問題になったクエリ</h1>
 <p>さて、今回問題になったクエリは下記の通りです。</p>
-<pre><code>SELECT  &quot;notifications&quot;.&quot;id&quot;, &quot;notifications&quot;.&quot;updated_at&quot;, &quot;notifications&quot;.&quot;activity_type&quot;, &quot;notifications&quot;.&quot;activity_id&quot; 
-FROM &quot;notifications&quot; WHERE &quot;notifications&quot;.&quot;account_id&quot; = $1 
-AND &quot;notifications&quot;.&quot;activity_type&quot; IN ('Mention', 'Status', 'Follow', 'Favourite')
-ORDER BY &quot;notifications&quot;.&quot;id&quot; DESC LIMIT $2;
+<pre tabindex="0"><code>SELECT  &#34;notifications&#34;.&#34;id&#34;, &#34;notifications&#34;.&#34;updated_at&#34;, &#34;notifications&#34;.&#34;activity_type&#34;, &#34;notifications&#34;.&#34;activity_id&#34; 
+FROM &#34;notifications&#34; WHERE &#34;notifications&#34;.&#34;account_id&#34; = $1 
+AND &#34;notifications&#34;.&#34;activity_type&#34; IN (&#39;Mention&#39;, &#39;Status&#39;, &#39;Follow&#39;, &#39;Favourite&#39;)
+ORDER BY &#34;notifications&#34;.&#34;id&#34; DESC LIMIT $2;
 </code></pre><p>マストドンにおけるnotificationsテーブルは被フォロー、返信など各ユーザに対しての通知が格納されているテーブルで、
 friends.nicoではこのnotificationsテーブルが非常に巨大になる利用傾向となっています。</p>
 <p>これによりDBに負荷がかかる、あるいはユーザがページを開いてからReactで非同期取得しているため通知内容が表示されるまでの時間が長い、といった問題点がありました。</p>
@@ -143,14 +146,14 @@ friends.nicoではこのnotificationsテーブルが非常に巨大になる利�
 また、ANALYZEオプションを付けることにより、その実行計画を実際に実行した結果かかった時間などを一緒に表示してくれます。</p>
 <p><strong>ANALYZEオプションは実際に文を実行するため、INSERT、UPDATE、DELETEなどの内容を操作する文である場合、その結果がDBに反映されてしまいますので、必ずトランザクション内で実行し、COMMITせずにROLLBACKしてください。　参照:<a href="https://www.postgresql.jp/document/9.6/html/sql-explain.html">PostgreSQL日本語訳マニュアル EXPLAIN</a></strong></p>
 <p>下記は、本番環境のDBスナップショットから作成した検証用DBにおいて、新しいindexを張る前の実行計画です。</p>
-<pre><code>mastodon-production=&gt; explain analyze SELECT  &quot;notifications&quot;.&quot;id&quot;, &quot;notifications&quot;.&quot;updated_at&quot;, &quot;notifications&quot;.&quot;activity_type&quot;, &quot;notifications&quot;.&quot;activity_id&quot; FROM &quot;notifications&quot; WHERE &quot;notifications&quot;.&quot;account_id&quot; = $1 AND &quot;notifications&quot;.&quot;activity_type&quot; IN ('Mention', 'Status', 'Follow', 'Favourite') ORDER BY &quot;notifications&quot;.&quot;id&quot; DESC LIMIT 20;
+<pre tabindex="0"><code>mastodon-production=&gt; explain analyze SELECT  &#34;notifications&#34;.&#34;id&#34;, &#34;notifications&#34;.&#34;updated_at&#34;, &#34;notifications&#34;.&#34;activity_type&#34;, &#34;notifications&#34;.&#34;activity_id&#34; FROM &#34;notifications&#34; WHERE &#34;notifications&#34;.&#34;account_id&#34; = $1 AND &#34;notifications&#34;.&#34;activity_type&#34; IN (&#39;Mention&#39;, &#39;Status&#39;, &#39;Follow&#39;, &#39;Favourite&#39;) ORDER BY &#34;notifications&#34;.&#34;id&#34; DESC LIMIT 20;
                                                                                           QUERY PLAN                                                        
                                   
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  Limit  (cost=0.56..4347.50 rows=20 width=33) (actual time=56.979..1990.931 rows=20 loops=1)
    -&gt;  Index Scan using index_notifications_on_id_and_account_id_and_activity_type on notifications  (cost=0.56..494247.53 rows=2274 width=33) (actual time=56.975..1990.906 rows=20 loops=1)
          Index Cond: (account_id = $1)
-         Filter: ((activity_type)::text = ANY ('{Mention,Status,Follow,Favourite}'::text[]))
+         Filter: ((activity_type)::text = ANY (&#39;{Mention,Status,Follow,Favourite}&#39;::text[]))
  Planning time: 0.145 ms
  Execution time: 1990.972 ms
 (6 rows)
@@ -238,7 +241,7 @@ friends.nicoではこのnotificationsテーブルが非常に巨大になる利�
 <td>取得するレコードをindexを参照して決める際の条件(変数で隠されていますが今回はint)</td>
 </tr>
 <tr>
-<td>Filter: ((activity_type)::text = ANY ('{Mention,Status,Follow,Favourite}'::text[]))</td>
+<td>Filter: ((activity_type)::text = ANY (&rsquo;{Mention,Status,Follow,Favourite}&rsquo;::text[]))</td>
 <td>レコードを取得した後に条件に合わない行を除外する</td>
 </tr>
 <tr>
@@ -270,12 +273,12 @@ BETWEENなどを用いた範囲検索やIN演算子を用いた複数指定は�
 <code>CREATE INDEX CONCURRENTLY new_index ON notifications (account_id, id DESC)</code>という文に行き着き、
 これをRailsの書き方で書いたものが#6108のPullRequestというわけです。</p>
 <p>indexを貼った後の実行計画は下記の通りです。</p>
-<pre><code>                                                                        QUERY PLAN                                                                        
+<pre tabindex="0"><code>                                                                        QUERY PLAN                                                                        
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
  Limit  (cost=0.56..80.72 rows=20 width=33) (actual time=0.030..0.073 rows=20 loops=1)
    -&gt;  Index Scan using new_index on notifications  (cost=0.56..9114.20 rows=2274 width=33) (actual time=0.028..0.062 rows=20 loops=1)
          Index Cond: (account_id = $1)
-         Filter: ((activity_type)::text = ANY ('{Mention,Status,Follow,Favourite}'::text[]))
+         Filter: ((activity_type)::text = ANY (&#39;{Mention,Status,Follow,Favourite}&#39;::text[]))
  Planning time: 0.153 ms
  Execution time: 0.099 ms
 (6 rows)
@@ -340,7 +343,7 @@ BETWEENなどを用いた範囲検索やIN演算子を用いた複数指定は�
     </div>
 
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

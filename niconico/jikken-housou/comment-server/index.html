@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.87.0" />
+  <meta name="generator" content="Hugo 0.122.0">
 
   <meta property="og:title" content="実験放送の構成 - コメントサーバー編 - dwango on GitHub">
 
@@ -16,6 +16,9 @@
   <meta name="twitter:card" content="summary">
   
 
+
+  
+  
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -158,30 +161,30 @@
 <h2 id="http-https-getでのアクセス例">HTTP, HTTPS GETでのアクセス例</h2>
 <p>ニコニコ動画のコメントをHTTP GETにより、XML、JSON形式でそれぞれ取得する例です。</p>
 <p>URLのパスの1つ目により、応答フォーマットを指定します。</p>
-<pre><code class="language-bash:HTTP" data-lang="bash:HTTP">$ curl &quot;http://nmsg.nicovideo.jp/api/thread?version=20061206&amp;thread=1204908901&quot;
-$ curl &quot;http://nmsg.nicovideo.jp/api.json/thread?version=20061206&amp;thread=1204908901&quot;
+<pre tabindex="0"><code class="language-bash:HTTP" data-lang="bash:HTTP">$ curl &#34;http://nmsg.nicovideo.jp/api/thread?version=20061206&amp;thread=1204908901&#34;
+$ curl &#34;http://nmsg.nicovideo.jp/api.json/thread?version=20061206&amp;thread=1204908901&#34;
 </code></pre><h2 id="http-https-postでのアクセス例">HTTP, HTTPS POSTでのアクセス例</h2>
 <p>ニコニコ動画のコメントをHTTP POSTにより、XML、JSON形式でそれぞれ取得する例です。</p>
-<pre><code class="language-bash:HTTP" data-lang="bash:HTTP">$ curl --data &quot;&lt;thread version='20061206' thread='1204908901'/&gt;&quot; -H &quot;Content-Type: application/xml&quot; &quot;http://nmsg.nicovideo.jp/api/&quot;
-$ curl --data '{&quot;thread&quot;:{&quot;version&quot;:20061206,&quot;thread&quot;:&quot;1204908901&quot;}}' -H &quot;Content-Type: application/json&quot; &quot;http://nmsg.nicovideo.jp/api.json/&quot;
+<pre tabindex="0"><code class="language-bash:HTTP" data-lang="bash:HTTP">$ curl --data &#34;&lt;thread version=&#39;20061206&#39; thread=&#39;1204908901&#39;/&gt;&#34; -H &#34;Content-Type: application/xml&#34; &#34;http://nmsg.nicovideo.jp/api/&#34;
+$ curl --data &#39;{&#34;thread&#34;:{&#34;version&#34;:20061206,&#34;thread&#34;:&#34;1204908901&#34;}}&#39; -H &#34;Content-Type: application/json&#34; &#34;http://nmsg.nicovideo.jp/api.json/&#34;
 </code></pre><h2 id="websocketでのアクセス例">WebSocketでのアクセス例</h2>
 <p>実験放送のコメントをWebSocketにより、取得する例です。</p>
 <p>最初の応答のthreadにより購読の成功を確認できます。</p>
 <p>接続は維持されており、新規コメントが投稿されるとサーバーから送信されてきます。</p>
 <p>途中の経路で無通信による切断が行われる可能性があるため、定期的にPINGフレームや空のテキストフレームを送信したりすることで、スレッド購読中であれば接続を維持することが可能です。</p>
-<pre><code class="language-bash:WebSocket" data-lang="bash:WebSocket">$ wsdump -s &quot;msg.nicovideo.jp#json&quot; -t  '{&quot;thread&quot;:{&quot;version&quot;:20061206,&quot;thread&quot;:&quot;NXlv315303232&quot;,&quot;service&quot;:&quot;LIVE&quot;}}' &quot;ws://nmsg.nicovideo.jp:2580/websocket&quot;
+<pre tabindex="0"><code class="language-bash:WebSocket" data-lang="bash:WebSocket">$ wsdump -s &#34;msg.nicovideo.jp#json&#34; -t  &#39;{&#34;thread&#34;:{&#34;version&#34;:20061206,&#34;thread&#34;:&#34;NXlv315303232&#34;,&#34;service&#34;:&#34;LIVE&#34;}}&#39; &#34;ws://nmsg.nicovideo.jp:2580/websocket&#34;
 Press Ctrl+C to quit
 
-&lt; {&quot;thread&quot;: {&quot;resultcode&quot;: 0, &quot;thread&quot;: &quot;NXlv315303232&quot;, &quot;service&quot;: &quot;LIVE&quot;, &quot;server_time&quot;: 1535627056, &quot;last_res&quot;: 711, &quot;ticket&quot;: &quot;0x1b93b447&quot;, &quot;revision&quot;: 1}}
-&lt; {&quot;chat&quot;: {&quot;thread&quot;: &quot;NXlv315303232&quot;, &quot;no&quot;: 712, &quot;vpos&quot;: 385700, &quot;date&quot;: 1535627057, &quot;date_usec&quot;: 974542, &quot;premium&quot;: 2, &quot;anonymity&quot;: 1, &quot;user_id&quot;: &quot;sy5SJPxX5uj_hLNJgBtIMDxr9hw&quot;, &quot;mail&quot;: &quot;184&quot;, &quot;service&quot;: &quot;LIVE&quot;, &quot;content&quot;: &quot;\/disconnect&quot;}}
+&lt; {&#34;thread&#34;: {&#34;resultcode&#34;: 0, &#34;thread&#34;: &#34;NXlv315303232&#34;, &#34;service&#34;: &#34;LIVE&#34;, &#34;server_time&#34;: 1535627056, &#34;last_res&#34;: 711, &#34;ticket&#34;: &#34;0x1b93b447&#34;, &#34;revision&#34;: 1}}
+&lt; {&#34;chat&#34;: {&#34;thread&#34;: &#34;NXlv315303232&#34;, &#34;no&#34;: 712, &#34;vpos&#34;: 385700, &#34;date&#34;: 1535627057, &#34;date_usec&#34;: 974542, &#34;premium&#34;: 2, &#34;anonymity&#34;: 1, &#34;user_id&#34;: &#34;sy5SJPxX5uj_hLNJgBtIMDxr9hw&#34;, &#34;mail&#34;: &#34;184&#34;, &#34;service&#34;: &#34;LIVE&#34;, &#34;content&#34;: &#34;\/disconnect&#34;}}
 </code></pre><h2 id="xmlsocketでのアクセス例">XMLSocketでのアクセス例</h2>
 <p>実験放送のコメントをXMLSocketにより、取得する例です。</p>
 <p>接続は維持されており、新規コメントが投稿されるとサーバーから送信されてきます。</p>
-<pre><code class="language-bash:XMLSocket" data-lang="bash:XMLSocket">$ (echo -en &quot;&lt;thread version='20061206' thread='NXlv315303232'/&gt;\x00&quot; ; sleep 100) | nc nmsg.nicovideo.jp 2805
+<pre tabindex="0"><code class="language-bash:XMLSocket" data-lang="bash:XMLSocket">$ (echo -en &#34;&lt;thread version=&#39;20061206&#39; thread=&#39;NXlv315303232&#39;/&gt;\x00&#34; ; sleep 100) | nc nmsg.nicovideo.jp 2805
 </code></pre><h2 id="複数命令の利用例">複数命令の利用例</h2>
 <p>JSON, XMLのフォーマットでは、それぞれarrayとpacket要素で包むことにより、APIを一度にアクセスすることが可能です。</p>
-<pre><code class="language-bash:WebSocket" data-lang="bash:WebSocket">$ wsdump -s &quot;msg.nicovideo.jp#json&quot; -t  '[{&quot;thread&quot;:{&quot;version&quot;:20061206,&quot;thread&quot;:&quot;NXlv315303232&quot;,&quot;service&quot;:&quot;LIVE&quot;}},{&quot;thread&quot;:{&quot;version&quot;:20061206,&quot;thread&quot;:&quot;NXlv315303232x&quot;,&quot;service&quot;:&quot;LIVE&quot;}}]' &quot;ws://nmsg.nicovideo.jp:2580/websocket&quot;
-</code></pre><pre><code class="language-bash:XMLSocket" data-lang="bash:XMLSocket">$ (echo -en &quot;&lt;packet&gt;&lt;thread version='20061206' thread='NXlv315303232'/&gt;&lt;thread version='20061206' thread='NXlv315303232x'/&gt;&lt;/packet&gt;\x00&quot; ; sleep 100) | nc nmsg.nicovideo.jp 2805
+<pre tabindex="0"><code class="language-bash:WebSocket" data-lang="bash:WebSocket">$ wsdump -s &#34;msg.nicovideo.jp#json&#34; -t  &#39;[{&#34;thread&#34;:{&#34;version&#34;:20061206,&#34;thread&#34;:&#34;NXlv315303232&#34;,&#34;service&#34;:&#34;LIVE&#34;}},{&#34;thread&#34;:{&#34;version&#34;:20061206,&#34;thread&#34;:&#34;NXlv315303232x&#34;,&#34;service&#34;:&#34;LIVE&#34;}}]&#39; &#34;ws://nmsg.nicovideo.jp:2580/websocket&#34;
+</code></pre><pre tabindex="0"><code class="language-bash:XMLSocket" data-lang="bash:XMLSocket">$ (echo -en &#34;&lt;packet&gt;&lt;thread version=&#39;20061206&#39; thread=&#39;NXlv315303232&#39;/&gt;&lt;thread version=&#39;20061206&#39; thread=&#39;NXlv315303232x&#39;/&gt;&lt;/packet&gt;\x00&#34; ; sleep 100) | nc nmsg.nicovideo.jp 2805
 </code></pre><h1 id="実験放送のコメントサーバーのポート説明">実験放送のコメントサーバーのポート説明</h1>
 <p>実験放送コメントサーバの接続先は下表のようになっております。</p>
 <p>汎用ポートとは、serviceを指定する必要のあるもので、WebSocketのアクセス例を参考にしてください。</p>
@@ -316,7 +319,7 @@ Press Ctrl+C to quit
     </div>
 
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

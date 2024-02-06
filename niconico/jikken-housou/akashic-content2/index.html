@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.87.0" />
+  <meta name="generator" content="Hugo 0.122.0">
 
   <meta property="og:title" content="ツールを作ってみよう - dwango on GitHub">
 
@@ -16,6 +16,9 @@
   <meta name="twitter:card" content="summary">
   
 
+
+  
+  
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -101,15 +104,15 @@
 </ul>
 <p>まずは、第1回同様、CUIツールを起動します。</p>
 <p>適当な作業場所のフォルダに<code>cd</code>コマンドで移ってください。仮に<code>c:\akashic</code>というところに移るものとします。以下のようなコマンドになります。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">c:
-cd <span style="color:#ae81ff">\a</span>kashic
-</code></pre></div><p>ここに、今回のゲーム用のフォルダを用意したいと思います。以下のコマンドを実行してください。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">mkdir tool
-cd tool
-</code></pre></div><p><code>mkdir</code>で<code>tool</code>というフォルダを作り、<code>cd</code>で作業場所フォルダを作成した新しいフォルダにしたので、このフォルダでAkashicのセットアップしてみたいと思います。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>c:
+</span></span><span style="display:flex;"><span>cd <span style="color:#ae81ff">\a</span>kashic
+</span></span></code></pre></div><p>ここに、今回のゲーム用のフォルダを用意したいと思います。以下のコマンドを実行してください。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>mkdir tool
+</span></span><span style="display:flex;"><span>cd tool
+</span></span></code></pre></div><p><code>mkdir</code>で<code>tool</code>というフォルダを作り、<code>cd</code>で作業場所フォルダを作成した新しいフォルダにしたので、このフォルダでAkashicのセットアップしてみたいと思います。</p>
 <p>以下のコマンドを実行してください（実行には、第１回でインストールした<code>@akashic/akashic-cli</code>というツールが必要です。まだの人は <code>npm i -g @akashic/akashic-cli</code> などでインストールしてから実行してください）。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">akashic init
-</code></pre></div><p>このコマンドを実行すると、対話型のインターフェースで色々聞かれると思いますが、それぞれ以下のように入力してEnterを押してください。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>akashic init
+</span></span></code></pre></div><p>このコマンドを実行すると、対話型のインターフェースで色々聞かれると思いますが、それぞれ以下のように入力してEnterを押してください。</p>
 <table>
 <thead>
 <tr>
@@ -139,8 +142,8 @@ cd tool
 <p><code>width</code>は横幅、<code>height</code>は縦幅で、今回は放送で利用するツールを作りたいので、ニコニコ生放送の一般的な解像度である16:9でツールを作成します。この解像度比率にしておけば、映像とぴったり合ったサイズのコンテンツを作成できます。</p>
 <p><code>width</code>や<code>height</code>に表示されている<code>(320)</code>や<code>fps</code>の<code>(30)</code>はデフォルト値を意味しているので、<code>fps</code>はそのままEnterを押してもらう事で30fpsになります。</p>
 <p>この状態で一度<code>akashic-sandbox</code>を実行してみましょう。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">akashic-sandbox
-</code></pre></div><p>http://localhost:3000 にアクセスすると、赤い四角が延々と右に行くだけのゲーム？が実行出来ていると思います。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>akashic-sandbox
+</span></span></code></pre></div><p>http://localhost:3000 にアクセスすると、赤い四角が延々と右に行くだけのゲーム？が実行出来ていると思います。</p>
 <div class="article-img">
   
   <img src="https://dwango.github.io/images/akashic-content2/akashic-rect.png" alt="赤い四角"  />
@@ -201,9 +204,9 @@ cd tool
 </table>
 <p>※<code>.gitkeep</code>、<code>.eslint.json</code>というファイルも作成されていますが、環境によっては表示されないこともあるため割愛しています。</p>
 <p>なお、<a href="https://www.typescriptlang.org">TypeScript</a>で書きたいという方は、以下のコマンドを利用してセットアップする事もできます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">akashic init -t typescript
-npm i
-</code></pre></div><p>本記事では、JavaScriptのまま記述を続けますが、以下の理由でTypeScriptの採用も検討の余地があると思います。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>akashic init -t typescript
+</span></span><span style="display:flex;"><span>npm i
+</span></span></code></pre></div><p>本記事では、JavaScriptのまま記述を続けますが、以下の理由でTypeScriptの採用も検討の余地があると思います。</p>
 <ul>
 <li>Visual Studio Code + TypeScriptで書くと、Akashic Engineの型を推測しながら記述できる</li>
 <li>AkashicはECMAScript 5th editionで書く必要があり、<code>let</code>や<code>const</code>等を利用して動かなくなる問題を防ぐ事ができる</li>
@@ -223,59 +226,59 @@ npm i
 <li><a href="https://akashic-games.github.io/tutorial/v2/2-basic.html#%E7%94%BB%E5%83%8F%E3%82%92%E6%89%B1%E3%81%86">https://akashic-games.github.io/tutorial/v2/2-basic.html#%E7%94%BB%E5%83%8F%E3%82%92%E6%89%B1%E3%81%86</a></li>
 </ul>
 <p>まず、このファイルを<code>image</code>フォルダに配置します。<code>c:\akashic\tool\image\heart.png</code>というファイルがある状態にした上で、CUIツールをcdなどで<code>c:\akashic\tool</code>に移動させた後、以下のコマンドを実行してください。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">akashic scan asset
-</code></pre></div><p>以下のような表示が出れば成功です。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">C:<span style="color:#ae81ff">\a</span>kashic<span style="color:#ae81ff">\t</span>ool&gt;akashic scan asset
-INFO: Added/updated the declaration <span style="color:#66d9ef">for</span> heart <span style="color:#f92672">(</span>image/heart.png<span style="color:#f92672">)</span>
-INFO: Done!
-</code></pre></div><p>この時に<code>game.json</code>の中身を覗いてみると、<code>assets</code>というものの中に<code>heart</code>というリソースが追加されている様子がなんとなく見てとれます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>akashic scan asset
+</span></span></code></pre></div><p>以下のような表示が出れば成功です。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>C:<span style="color:#ae81ff">\a</span>kashic<span style="color:#ae81ff">\t</span>ool&gt;akashic scan asset
+</span></span><span style="display:flex;"><span>INFO: Added/updated the declaration <span style="color:#66d9ef">for</span> heart <span style="color:#f92672">(</span>image/heart.png<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>INFO: Done!
+</span></span></code></pre></div><p>この時に<code>game.json</code>の中身を覗いてみると、<code>assets</code>というものの中に<code>heart</code>というリソースが追加されている様子がなんとなく見てとれます。</p>
 <p><code>game.json</code> はテキストエディタ等で開く事ができます。テキストエディタをお持ちでない方は、<a href="https://code.visualstudio.com">Visual Studio Code</a>辺りをインストールしてから開く事をお勧めします。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-	<span style="color:#f92672">&#34;width&#34;</span>: <span style="color:#ae81ff">640</span>,
-	<span style="color:#f92672">&#34;height&#34;</span>: <span style="color:#ae81ff">360</span>,
-	<span style="color:#f92672">&#34;fps&#34;</span>: <span style="color:#ae81ff">30</span>,
-	<span style="color:#f92672">&#34;main&#34;</span>: <span style="color:#e6db74">&#34;./script/main.js&#34;</span>,
-	<span style="color:#f92672">&#34;assets&#34;</span>: {
-		<span style="color:#f92672">&#34;main&#34;</span>: {
-			<span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;script&#34;</span>,
-			<span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;script/main.js&#34;</span>,
-			<span style="color:#f92672">&#34;global&#34;</span>: <span style="color:#66d9ef">true</span>
-		},
-		<span style="color:#f92672">&#34;heart&#34;</span>: {
-			<span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;image&#34;</span>,
-			<span style="color:#f92672">&#34;width&#34;</span>: <span style="color:#ae81ff">64</span>,
-			<span style="color:#f92672">&#34;height&#34;</span>: <span style="color:#ae81ff">64</span>,
-			<span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;image/heart.png&#34;</span>
-		}
-	},
-	<span style="color:#f92672">&#34;environment&#34;</span>: {
-		<span style="color:#f92672">&#34;sandbox-runtime&#34;</span>: <span style="color:#e6db74">&#34;2&#34;</span>
-	}
-}
-</code></pre></div><p>これで画像の利用準備が整いました！いよいよAkashicの対応コードを書いてみたいと思います。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;width&#34;</span>: <span style="color:#ae81ff">640</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;height&#34;</span>: <span style="color:#ae81ff">360</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;fps&#34;</span>: <span style="color:#ae81ff">30</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;main&#34;</span>: <span style="color:#e6db74">&#34;./script/main.js&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;assets&#34;</span>: {
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&#34;main&#34;</span>: {
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;script&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;script/main.js&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;global&#34;</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&#34;heart&#34;</span>: {
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;image&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;width&#34;</span>: <span style="color:#ae81ff">64</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;height&#34;</span>: <span style="color:#ae81ff">64</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;image/heart.png&#34;</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;environment&#34;</span>: {
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&#34;sandbox-runtime&#34;</span>: <span style="color:#e6db74">&#34;2&#34;</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>これで画像の利用準備が整いました！いよいよAkashicの対応コードを書いてみたいと思います。</p>
 <p><code>script\main.js</code> を手元のテキストエディタで開いてください。<code>main.js</code>は現状以下の内容になっています。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">main</span>(<span style="color:#a6e22e">param</span>) {
-	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>});
-	<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">loaded</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>() {
-		<span style="color:#75715e">// 以下にゲームのロジックを記述します。
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">rect</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">FilledRect</span>({
-			<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
-			<span style="color:#a6e22e">cssColor</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#ff0000&#34;</span>,
-			<span style="color:#a6e22e">width</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">32</span>,
-			<span style="color:#a6e22e">height</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">32</span>
-		});
-		<span style="color:#a6e22e">rect</span>.<span style="color:#a6e22e">update</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span> () {
-			<span style="color:#75715e">// 以下のコードは毎フレーム実行されます。
-</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">rect</span>.<span style="color:#a6e22e">x</span><span style="color:#f92672">++</span>;
-			<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">rect</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">width</span>) <span style="color:#a6e22e">rect</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-			<span style="color:#a6e22e">rect</span>.<span style="color:#a6e22e">modified</span>();
-		});
-		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">rect</span>);
-	});
-	<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">pushScene</span>(<span style="color:#a6e22e">scene</span>);
-}
-<span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">main</span>;
-</code></pre></div><p>ここまではプログラミング未経験の方でも読める内容でしたが、いよいよソースコードも登場しましたので、ここから経験者でないと難しい内容になってきます。具体的には、以下のような説明を省略し、Akashic固有の部分のみ記述します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">main</span>(<span style="color:#a6e22e">param</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>});
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">loaded</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 以下にゲームのロジックを記述します。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">rect</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">FilledRect</span>({
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">cssColor</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#ff0000&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">width</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">32</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">height</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">32</span>
+</span></span><span style="display:flex;"><span>		});
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">rect</span>.<span style="color:#a6e22e">update</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 以下のコードは毎フレーム実行されます。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">rect</span>.<span style="color:#a6e22e">x</span><span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">rect</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">width</span>) <span style="color:#a6e22e">rect</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">rect</span>.<span style="color:#a6e22e">modified</span>();
+</span></span><span style="display:flex;"><span>		});
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">rect</span>);
+</span></span><span style="display:flex;"><span>	});
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">pushScene</span>(<span style="color:#a6e22e">scene</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">main</span>;
+</span></span></code></pre></div><p>ここまではプログラミング未経験の方でも読める内容でしたが、いよいよソースコードも登場しましたので、ここから経験者でないと難しい内容になってきます。具体的には、以下のような説明を省略し、Akashic固有の部分のみ記述します。</p>
 <ul>
 <li>変数、関数、配列、クラス</li>
 <li><code>new</code>、<code>++</code>等の演算子</li>
@@ -288,24 +291,24 @@ INFO: Done!
 </blockquote>
 <p>エンティティを描画するには、まずシーンが必要です。</p>
 <p>先ほどのコードでは以下のようにシーンを作成しています。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>});
-<span style="color:#75715e">// ～ 中略 ～
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">pushScene</span>(<span style="color:#a6e22e">scene</span>);
-</code></pre></div><p><code>scene</code>変数に<code>g.Scene</code>というエンティティのインスタンスを格納し、最後にゲームに対して<code>scene</code>変数を追加しています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>});
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ～ 中略 ～
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">pushScene</span>(<span style="color:#a6e22e">scene</span>);
+</span></span></code></pre></div><p><code>scene</code>変数に<code>g.Scene</code>というエンティティのインスタンスを格納し、最後にゲームに対して<code>scene</code>変数を追加しています。</p>
 <p>このシーンに、先ほど追加した<code>heart</code>という画像を追加してあげましょう。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>, <span style="color:#a6e22e">assetIds</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;heart&#34;</span>]});
-</code></pre></div><p><code>g.Scene</code>初期化時に<code>assetIds</code>というパラメータを<code>&quot;heart&quot;</code>という文字列が含まれている配列で渡します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>, <span style="color:#a6e22e">assetIds</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;heart&#34;</span>]});
+</span></span></code></pre></div><p><code>g.Scene</code>初期化時に<code>assetIds</code>というパラメータを<code>&quot;heart&quot;</code>という文字列が含まれている配列で渡します。</p>
 <p>この<code>heart</code>という文字列が先ほどの画像に紐付くという定義が、<code>game.json</code>に記述されていますので、これで画像を登場させる準備が整いました。</p>
 <p>これから、このハート画像を登場させるコードをサンプルのコードにある以下のコードの下に記述していきます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">rect</span>);
-</code></pre></div><p><code>Sprite</code>というエンティティを利用するコードを追加します。<code>Sprite</code>は画像を扱う際にもっとも基本となるエンティティです。（一番上の行は、ここから追加するという事を意味しているだけですので、追加しないでください）</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">rect</span>);
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sprite</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
-	<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
-	<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>]
-});
-<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">sprite</span>);
-</code></pre></div><p>コードを書き換えたら、また<code>akashic-sandbox</code>を実行して確認してみましょう。以下のような表示になるはずです。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">rect</span>);
+</span></span></code></pre></div><p><code>Sprite</code>というエンティティを利用するコードを追加します。<code>Sprite</code>は画像を扱う際にもっとも基本となるエンティティです。（一番上の行は、ここから追加するという事を意味しているだけですので、追加しないでください）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">rect</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sprite</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>]
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">sprite</span>);
+</span></span></code></pre></div><p>コードを書き換えたら、また<code>akashic-sandbox</code>を実行して確認してみましょう。以下のような表示になるはずです。</p>
 <div class="article-img">
   
   <img src="https://dwango.github.io/images/akashic-content2/heart-and-akashic-rect.png" alt="ハートと赤い四角"  />
@@ -314,19 +317,19 @@ INFO: Done!
 
 <p>無事ハートが登場しました！・・しかしちょっと後ろの赤い四角が邪魔ですね。</p>
 <p><code>FilledRect</code>というエンティティを操作するサンプルコードが入っているためなので、消してしまいましょう。最終的には以下のコードになります。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">main</span>(<span style="color:#a6e22e">param</span>) {
-	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>, <span style="color:#a6e22e">assetIds</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;heart&#34;</span>]});
-	<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">loaded</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>() {
-		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sprite</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
-			<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
-			<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>]
-		});
-		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">sprite</span>);
-	});
-	<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">pushScene</span>(<span style="color:#a6e22e">scene</span>);
-}
-<span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">main</span>;
-</code></pre></div><p>これで、画像が一枚登場して何も動かないだけのツール？になりました。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">main</span>(<span style="color:#a6e22e">param</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>, <span style="color:#a6e22e">assetIds</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;heart&#34;</span>]});
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">loaded</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sprite</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>]
+</span></span><span style="display:flex;"><span>		});
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">sprite</span>);
+</span></span><span style="display:flex;"><span>	});
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">pushScene</span>(<span style="color:#a6e22e">scene</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">main</span>;
+</span></span></code></pre></div><p>これで、画像が一枚登場して何も動かないだけのツール？になりました。</p>
 <p>この節で登場したエンティティの詳しい説明は、公式のリファレンスを参照してください。</p>
 <ul>
 <li><code>FilledRect</code>: <a href="https://akashic-games.github.io/reference/akashic-engine-v2/classes/_lib_main_d_.g.filledrect.html">https://akashic-games.github.io/reference/akashic-engine-v2/classes/_lib_main_d_.g.filledrect.html</a></li>
@@ -342,51 +345,51 @@ INFO: Done!
 <li>リファレンス: <a href="https://akashic-games.github.io/reference/akashic-engine-v2/classes/_lib_main_d_.g.scene.html#pointdowncapture">https://akashic-games.github.io/reference/akashic-engine-v2/classes/_lib_main_d_.g.scene.html#pointdowncapture</a></li>
 </ul>
 <p>要素が多いので、個別に説明する前にコード全体を見てから、この後で解説するようにしたいと思います。まずはコード全体を見てみましょう。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">main</span>(<span style="color:#a6e22e">param</span>) {
-	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>, <span style="color:#a6e22e">assetIds</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;heart&#34;</span>]});
-	<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">loaded</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>() {
-		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sprite</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
-			<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
-			<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>]
-		});
-		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">sprite</span>);
-		<span style="color:#75715e">// -- 「入力を扱ってみる」で追加
-</span><span style="color:#75715e"></span>		<span style="color:#75715e">// pointDownCaptureトリガーに関数を登録
-</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">pointDownCapture</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
-			<span style="color:#75715e">// heart変数にheart画像のSpriteを追加
-</span><span style="color:#75715e"></span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">heart</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
-				<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
-				<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>]
-			});
-			<span style="color:#75715e">// heartの位置をタッチされた場所にする。Akashicの基準座標は左上なので、タッチされた中心になるように微調整する
-</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">moveTo</span>(
-				<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>,
-				<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
-			);
-			<span style="color:#75715e">// 作成したheartスプライトをシーンに追加
-</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">heart</span>);
-		});
-		<span style="color:#75715e">// ここまで「入力を扱ってみる」 --
-</span><span style="color:#75715e"></span>	});
-	<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">pushScene</span>(<span style="color:#a6e22e">scene</span>);
-}
-
-<span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">main</span>;
-</code></pre></div><p><code>-- 「入力を扱ってみる」で追加</code>と書かれているところが該当コードで、コード内にコメントも書いておきました。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">main</span>(<span style="color:#a6e22e">param</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>, <span style="color:#a6e22e">assetIds</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;heart&#34;</span>]});
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">loaded</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sprite</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>]
+</span></span><span style="display:flex;"><span>		});
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">sprite</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// -- 「入力を扱ってみる」で追加
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#75715e">// pointDownCaptureトリガーに関数を登録
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">pointDownCapture</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// heart変数にheart画像のSpriteを追加
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">heart</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>]
+</span></span><span style="display:flex;"><span>			});
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// heartの位置をタッチされた場所にする。Akashicの基準座標は左上なので、タッチされた中心になるように微調整する
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">moveTo</span>(
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>			);
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 作成したheartスプライトをシーンに追加
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">heart</span>);
+</span></span><span style="display:flex;"><span>		});
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// ここまで「入力を扱ってみる」 --
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	});
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">pushScene</span>(<span style="color:#a6e22e">scene</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">main</span>;
+</span></span></code></pre></div><p><code>-- 「入力を扱ってみる」で追加</code>と書かれているところが該当コードで、コード内にコメントも書いておきました。</p>
 <p>要点を解説していきます。</p>
 <p><code>pointDownCapture</code>トリガーの<code>add</code>メソッドでイベントハンドラを登録し、</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">pointDownCapture</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
-</code></pre></div><p>タッチされたら、<code>Sprite</code>を生成します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">heart</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
-	<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
-	<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>]
-});
-</code></pre></div><p><code>moveTo</code>メソッドで位置を調整し、この際イベントハンドラに渡ってくる変数<code>e</code>の中に入っている<code>point</code>変数から座標を計算しています。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">moveTo</span>(
-	<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>,
-	<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
-);
-</code></pre></div><p>コメントにも記載があるように、Akashicの座標は左上を起点としているため、<code>point</code>変数の値をそのまま利用していますと、思ったより右下に配置されてしまいます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">pointDownCapture</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+</span></span></code></pre></div><p>タッチされたら、<code>Sprite</code>を生成します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">heart</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>]
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p><code>moveTo</code>メソッドで位置を調整し、この際イベントハンドラに渡ってくる変数<code>e</code>の中に入っている<code>point</code>変数から座標を計算しています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">moveTo</span>(
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><p>コメントにも記載があるように、Akashicの座標は左上を起点としているため、<code>point</code>変数の値をそのまま利用していますと、思ったより右下に配置されてしまいます。</p>
 <p>タッチされたポイントの中心に置くように、<code>Sprite</code>のサイズを基に位置を微調整し、最後に調整済の<code>Sprite</code>をシーンに追加しています。</p>
 <p>実行し、タッチをするとSpriteが増えてこのような絵面のツール？が実行できているかと思います。</p>
 <div class="article-img">
@@ -399,140 +402,140 @@ INFO: Done!
 <p>これで完成、としてもいいのですが、さすがにこのまま放送で使うと画面がハートで埋まってしまいます。</p>
 <p>放送画面をデコるツール、という事にしてもいいのですが、もう少し踏み込んで一定時間で削除する機能を入れたいと思います。</p>
 <p>先にコードを見てみましょう。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">main</span>(<span style="color:#a6e22e">param</span>) {
-	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>, <span style="color:#a6e22e">assetIds</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;heart&#34;</span>]});
-	<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">loaded</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>() {
-		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sprite</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
-			<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
-			<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>]
-		});
-		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">sprite</span>);
-		<span style="color:#75715e">// -- 「入力を扱ってみる」で追加
-</span><span style="color:#75715e"></span>		<span style="color:#75715e">// pointDownCaptureトリガーに関数を登録
-</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">pointDownCapture</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
-			<span style="color:#75715e">// heart変数にheart画像のSpriteを追加
-</span><span style="color:#75715e"></span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">heart</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
-				<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
-				<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>]
-			});
-			<span style="color:#75715e">// heartの位置をタッチされた場所にする。Akashicの基準座標は左上なので、タッチされた中心になるように微調整する
-</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">moveTo</span>(
-				<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>,
-				<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
-			);
-			<span style="color:#75715e">// -- 「一定時間で削除する」で追加
-</span><span style="color:#75715e"></span>			<span style="color:#75715e">// heartのtagという変数にcounterを格納
-</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span> <span style="color:#f92672">=</span> {
-				<span style="color:#a6e22e">counter</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
-			};
-			<span style="color:#75715e">// 毎フレーム実行されるイベントであるupdateにイベントを登録
-</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">update</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
-				<span style="color:#75715e">// 毎フレームカウンタを追加
-</span><span style="color:#75715e"></span>				<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span><span style="color:#f92672">++</span>;
-				<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>) {
-					<span style="color:#75715e">// カウンタが100を超えていたら削除する
-</span><span style="color:#75715e"></span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">destroy</span>();
-				} <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">50</span>) {
-					<span style="color:#75715e">// カウンタが50を超えていたら半透明にしていく
-</span><span style="color:#75715e"></span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">opacity</span> <span style="color:#f92672">=</span> (<span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">50</span>;
-					<span style="color:#75715e">// このエンティティが変更されたという通知
-</span><span style="color:#75715e"></span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">modified</span>();
-				}
-			});
-			<span style="color:#75715e">// ここまで「一定時間で削除する」で追加 --
-</span><span style="color:#75715e"></span>			<span style="color:#75715e">// 作成したheartスプライトをシーンに追加
-</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">heart</span>);
-		});
-		<span style="color:#75715e">// ここまで「入力を扱ってみる」 --
-</span><span style="color:#75715e"></span>	});
-	<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">pushScene</span>(<span style="color:#a6e22e">scene</span>);
-}
-
-<span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">main</span>;
-</code></pre></div><p><code>-- 「一定時間で削除する」で追加</code>以降が追加分です。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">main</span>(<span style="color:#a6e22e">param</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>, <span style="color:#a6e22e">assetIds</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;heart&#34;</span>]});
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">loaded</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sprite</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>]
+</span></span><span style="display:flex;"><span>		});
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">sprite</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// -- 「入力を扱ってみる」で追加
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#75715e">// pointDownCaptureトリガーに関数を登録
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">pointDownCapture</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// heart変数にheart画像のSpriteを追加
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">heart</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>]
+</span></span><span style="display:flex;"><span>			});
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// heartの位置をタッチされた場所にする。Akashicの基準座標は左上なので、タッチされた中心になるように微調整する
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">moveTo</span>(
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>			);
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// -- 「一定時間で削除する」で追加
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#75715e">// heartのtagという変数にcounterを格納
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">counter</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>			};
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 毎フレーム実行されるイベントであるupdateにイベントを登録
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">update</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>				<span style="color:#75715e">// 毎フレームカウンタを追加
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>				<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span><span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>) {
+</span></span><span style="display:flex;"><span>					<span style="color:#75715e">// カウンタが100を超えていたら削除する
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">destroy</span>();
+</span></span><span style="display:flex;"><span>				} <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">50</span>) {
+</span></span><span style="display:flex;"><span>					<span style="color:#75715e">// カウンタが50を超えていたら半透明にしていく
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">opacity</span> <span style="color:#f92672">=</span> (<span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">50</span>;
+</span></span><span style="display:flex;"><span>					<span style="color:#75715e">// このエンティティが変更されたという通知
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">modified</span>();
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>			});
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// ここまで「一定時間で削除する」で追加 --
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#75715e">// 作成したheartスプライトをシーンに追加
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">heart</span>);
+</span></span><span style="display:flex;"><span>		});
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// ここまで「入力を扱ってみる」 --
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	});
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">pushScene</span>(<span style="color:#a6e22e">scene</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">main</span>;
+</span></span></code></pre></div><p><code>-- 「一定時間で削除する」で追加</code>以降が追加分です。</p>
 <p>エンティティごとに削除したいので、まずはエンティティ単位の変数にカウンタの値を入れています。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span> <span style="color:#f92672">=</span> {
-	<span style="color:#a6e22e">counter</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
-};
-</code></pre></div><p>エンティティ単位の変数を確保する方法は色々とあるのですが、TypeScriptなどを利用して型を厳密に定義した場合でも運用しやすいよう、今回は<code>tag</code>というところにオブジェクトを入れ、そのオブジェクトの変数に<code>counter</code>という値を持たせる形にしました。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">counter</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>エンティティ単位の変数を確保する方法は色々とあるのですが、TypeScriptなどを利用して型を厳密に定義した場合でも運用しやすいよう、今回は<code>tag</code>というところにオブジェクトを入れ、そのオブジェクトの変数に<code>counter</code>という値を持たせる形にしました。</p>
 <p><code>tag</code>についてはリファレンスにも記載があるので、必要に応じてそちらも参照してください。</p>
 <ul>
 <li><a href="https://akashic-games.github.io/reference/akashic-engine-v2/classes/_lib_main_d_.g.e.html#tag">https://akashic-games.github.io/reference/akashic-engine-v2/classes/_lib_main_d_.g.e.html#tag</a></li>
 </ul>
 <p>次に、毎フレーム実行されるイベントを利用する為、<code>update</code>というトリガーにイベントハンドラを登録しています。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">update</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
-</code></pre></div><p>この<code>update</code>トリガーは、赤い四角を右に動かしていたサンプルコードも使っていたトリガーです。このトリガーに登録されたイベントハンドラは、毎フレーム実行されます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">update</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+</span></span></code></pre></div><p>この<code>update</code>トリガーは、赤い四角を右に動かしていたサンプルコードも使っていたトリガーです。このトリガーに登録されたイベントハンドラは、毎フレーム実行されます。</p>
 <p>3秒ちょっとで消える事にしました。100フレームを30fpsで考えると3.3秒なので、100フレーム辺りで制御しようと思います。</p>
 <p>また、最初の50フレームは変化なくそのままで、50フレームからだんだん半透明にする事にしました。それをコードで表したのがこちらです。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>) {
-	<span style="color:#75715e">// カウンタが100を超えていたら削除する
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">destroy</span>();
-} <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">50</span>) {
-	<span style="color:#75715e">// カウンタが50を超えていたら半透明にしていく
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">opacity</span> <span style="color:#f92672">=</span> (<span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">50</span>;
-	<span style="color:#75715e">// このエンティティが変更されたという通知
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">modified</span>();
-}
-</code></pre></div><p>100フレームを超えていたら<code>destroy</code>を呼び出しています。Akashicのエンティティを削除する方法は<code>remove</code>と<code>destroy</code>の二つがあるのですが、<code>remove</code>だけだとイベントハンドラ等は解除されないので、<code>destroy</code>で存在ごと消滅させています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// カウンタが100を超えていたら削除する
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">destroy</span>();
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">50</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// カウンタが50を超えていたら半透明にしていく
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">opacity</span> <span style="color:#f92672">=</span> (<span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">50</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// このエンティティが変更されたという通知
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">modified</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>100フレームを超えていたら<code>destroy</code>を呼び出しています。Akashicのエンティティを削除する方法は<code>remove</code>と<code>destroy</code>の二つがあるのですが、<code>remove</code>だけだとイベントハンドラ等は解除されないので、<code>destroy</code>で存在ごと消滅させています。</p>
 <p>50フレームを超えていたら、<code>opacity</code>というプロパティを操作して、透明度を操作しています。<code>opacity</code>は<code>0</code>～<code>1.0</code>で透明度を指定するので、式でだんだん透明度を上げていく形にしました。</p>
 <p>最後の<code>modified</code>はAkashicで「このエンティティが変更された」という宣言をするためのメソッドです。このメソッドを呼び出さないと、プロパティの変更が正しく画面に反映されないため、<code>opacity</code>の変更を描画するために呼び出しています。</p>
 <p>最後、左上に最初からいるハートが邪魔ですね。この辺りの仕上げはみなさんのお手元で実際にやっていただくのがいいと思いますが、私はこうしました。皆さんも工夫してみてください。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">main</span>(<span style="color:#a6e22e">param</span>) {
-	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>, <span style="color:#a6e22e">assetIds</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;heart&#34;</span>]});
-	<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">loaded</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>() {
-		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">generateHeart</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>) {
-			<span style="color:#75715e">// heart変数にheart画像のSpriteを追加
-</span><span style="color:#75715e"></span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">heart</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
-				<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
-				<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>]
-			});
-			<span style="color:#75715e">// heartの位置をタッチされた場所にする。Akashicの基準座標は左上なので、タッチされた中心になるように微調整する
-</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">moveTo</span>(
-				<span style="color:#a6e22e">x</span>,
-				<span style="color:#a6e22e">y</span>
-			);
-			<span style="color:#75715e">// heartのtagという変数にcounterを格納
-</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span> <span style="color:#f92672">=</span> {
-				<span style="color:#a6e22e">counter</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
-			};
-			<span style="color:#75715e">// 毎フレーム実行されるイベントであるupdateにイベントを登録
-</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">update</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
-				<span style="color:#75715e">// 毎フレームカウンタを追加
-</span><span style="color:#75715e"></span>				<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span><span style="color:#f92672">++</span>;
-				<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>) {
-					<span style="color:#75715e">// カウンタが100を超えていたら削除する
-</span><span style="color:#75715e"></span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">destroy</span>();
-				} <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">50</span>) {
-					<span style="color:#75715e">// カウンタが50を超えていたら半透明にしていく
-</span><span style="color:#75715e"></span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">opacity</span> <span style="color:#f92672">=</span> (<span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">50</span>;
-					<span style="color:#75715e">// このエンティティが変更されたという通知
-</span><span style="color:#75715e"></span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">modified</span>();
-				}
-			});
-			<span style="color:#75715e">// 作成したheartスプライトをシーンに追加
-</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">heart</span>);
-		}
-		<span style="color:#75715e">// pointDownCaptureトリガーに関数を登録
-</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">pointDownCapture</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
-			<span style="color:#75715e">// タッチされたらハートを中心点に配置する
-</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">generateHeart</span>(
-				<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>].<span style="color:#a6e22e">width</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>,
-				<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>].<span style="color:#a6e22e">height</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
-			);
-		});
-
-
-		<span style="color:#75715e">// 最初に中心にハートを出現させる
-</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">generateHeart</span>(
-			<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>].<span style="color:#a6e22e">width</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>,
-			<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>].<span style="color:#a6e22e">height</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
-		);
-	});
-	<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">pushScene</span>(<span style="color:#a6e22e">scene</span>);
-}
-
-<span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">main</span>;
-</code></pre></div><p>以下は完成体を実行している様子です。放送者が画面中央にいる事を想像しながら見ると、ツールっぽくなっているのではないでしょうか。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">main</span>(<span style="color:#a6e22e">param</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>, <span style="color:#a6e22e">assetIds</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;heart&#34;</span>]});
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">loaded</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">generateHeart</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// heart変数にheart画像のSpriteを追加
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">heart</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>]
+</span></span><span style="display:flex;"><span>			});
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// heartの位置をタッチされた場所にする。Akashicの基準座標は左上なので、タッチされた中心になるように微調整する
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">moveTo</span>(
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">x</span>,
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">y</span>
+</span></span><span style="display:flex;"><span>			);
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// heartのtagという変数にcounterを格納
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">counter</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>			};
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 毎フレーム実行されるイベントであるupdateにイベントを登録
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">update</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>				<span style="color:#75715e">// 毎フレームカウンタを追加
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>				<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span><span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>) {
+</span></span><span style="display:flex;"><span>					<span style="color:#75715e">// カウンタが100を超えていたら削除する
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">destroy</span>();
+</span></span><span style="display:flex;"><span>				} <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">50</span>) {
+</span></span><span style="display:flex;"><span>					<span style="color:#75715e">// カウンタが50を超えていたら半透明にしていく
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">opacity</span> <span style="color:#f92672">=</span> (<span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">50</span>;
+</span></span><span style="display:flex;"><span>					<span style="color:#75715e">// このエンティティが変更されたという通知
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">modified</span>();
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>			});
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 作成したheartスプライトをシーンに追加
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">heart</span>);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// pointDownCaptureトリガーに関数を登録
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">pointDownCapture</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// タッチされたらハートを中心点に配置する
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">generateHeart</span>(
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>].<span style="color:#a6e22e">width</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>].<span style="color:#a6e22e">height</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>			);
+</span></span><span style="display:flex;"><span>		});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 最初に中心にハートを出現させる
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">generateHeart</span>(
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>].<span style="color:#a6e22e">width</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>].<span style="color:#a6e22e">height</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>		);
+</span></span><span style="display:flex;"><span>	});
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">pushScene</span>(<span style="color:#a6e22e">scene</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">main</span>;
+</span></span></code></pre></div><p>以下は完成体を実行している様子です。放送者が画面中央にいる事を想像しながら見ると、ツールっぽくなっているのではないでしょうか。</p>
 <div class="article-img">
   
   <img src="https://dwango.github.io/images/akashic-content2/heart-final.png" alt="最終的なハートツール"  />
@@ -546,38 +549,38 @@ INFO: Done!
 <li>ニコニコ新市場対応コンテンツの投稿方法; <a href="https://akashic-games.github.io/guide/export-atsumaru.html">https://akashic-games.github.io/guide/export-atsumaru.html</a></li>
 </ul>
 <p>「ニコニコ新市場対応コンテンツ作成ガイド」に従い、<code>game.json</code>に以下の記述を加えます。これはツールなのでランキングには対応しませんので、<code>&quot;single&quot;</code>にのみ対応します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;niconico&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
-	<span style="color:#f92672">&#34;supportedModes&#34;</span>: [<span style="color:#e6db74">&#34;single&#34;</span>]
-}
-</code></pre></div><p>最終的に、game.jsonは以下のようになっていると思います。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-	<span style="color:#f92672">&#34;width&#34;</span>: <span style="color:#ae81ff">640</span>,
-	<span style="color:#f92672">&#34;height&#34;</span>: <span style="color:#ae81ff">360</span>,
-	<span style="color:#f92672">&#34;fps&#34;</span>: <span style="color:#ae81ff">30</span>,
-	<span style="color:#f92672">&#34;main&#34;</span>: <span style="color:#e6db74">&#34;./script/main.js&#34;</span>,
-	<span style="color:#f92672">&#34;assets&#34;</span>: {
-		<span style="color:#f92672">&#34;main&#34;</span>: {
-			<span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;script&#34;</span>,
-			<span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;script/main.js&#34;</span>,
-			<span style="color:#f92672">&#34;global&#34;</span>: <span style="color:#66d9ef">true</span>
-		},
-		<span style="color:#f92672">&#34;heart&#34;</span>: {
-			<span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;image&#34;</span>,
-			<span style="color:#f92672">&#34;width&#34;</span>: <span style="color:#ae81ff">64</span>,
-			<span style="color:#f92672">&#34;height&#34;</span>: <span style="color:#ae81ff">64</span>,
-			<span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;image/heart.png&#34;</span>
-		}
-	},
-	<span style="color:#f92672">&#34;environment&#34;</span>: {
-		<span style="color:#f92672">&#34;sandbox-runtime&#34;</span>: <span style="color:#e6db74">&#34;2&#34;</span>,
-		<span style="color:#f92672">&#34;niconico&#34;</span>: {
-			<span style="color:#f92672">&#34;supportedModes&#34;</span>: [<span style="color:#e6db74">&#34;single&#34;</span>]
-		}
-	}
-}
-</code></pre></div><p>続いて、「ニコニコ新市場対応コンテンツの投稿方法」に従い、以下のコマンドをCUIツールから実行します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">akashic export html --output atsumaru.zip --atsumaru
-</code></pre></div><p>あとはRPGアツマールのページに行き、「ゲーム投稿」を押して、ZIPファイルをアップロードします。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#e6db74">&#34;niconico&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;supportedModes&#34;</span>: [<span style="color:#e6db74">&#34;single&#34;</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>最終的に、game.jsonは以下のようになっていると思います。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;width&#34;</span>: <span style="color:#ae81ff">640</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;height&#34;</span>: <span style="color:#ae81ff">360</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;fps&#34;</span>: <span style="color:#ae81ff">30</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;main&#34;</span>: <span style="color:#e6db74">&#34;./script/main.js&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;assets&#34;</span>: {
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&#34;main&#34;</span>: {
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;script&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;script/main.js&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;global&#34;</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&#34;heart&#34;</span>: {
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;image&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;width&#34;</span>: <span style="color:#ae81ff">64</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;height&#34;</span>: <span style="color:#ae81ff">64</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;image/heart.png&#34;</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;environment&#34;</span>: {
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&#34;sandbox-runtime&#34;</span>: <span style="color:#e6db74">&#34;2&#34;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&#34;niconico&#34;</span>: {
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;supportedModes&#34;</span>: [<span style="color:#e6db74">&#34;single&#34;</span>]
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>続いて、「ニコニコ新市場対応コンテンツの投稿方法」に従い、以下のコマンドをCUIツールから実行します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>akashic export html --output atsumaru.zip --atsumaru
+</span></span></code></pre></div><p>あとはRPGアツマールのページに行き、「ゲーム投稿」を押して、ZIPファイルをアップロードします。</p>
 <p>ゲーム名、アイコン、ジャンル、紹介文が最低限必要です。アイコンは<code>320x320</code>がおすすめです。この辺りを適当に入力して、公開すると、アツマールへの投稿が完了します。</p>
 <ul>
 <li><a href="https://game.nicovideo.jp/atsumaru/games/gm8700">https://game.nicovideo.jp/atsumaru/games/gm8700</a></li>
@@ -708,7 +711,7 @@ INFO: Done!
     </div>
 
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

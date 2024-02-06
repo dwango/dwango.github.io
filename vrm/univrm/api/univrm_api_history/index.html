@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.87.0" />
+  <meta name="generator" content="Hugo 0.122.0">
 
   <meta property="og:title" content="APIの変更履歴 - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -106,20 +106,20 @@
 <li>extraはextrasの間違い</li>
 <li>imageはnameを持っていた</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">json.images</span>[<span style="color:#960050;background-color:#1e0010">i</span>]<span style="color:#960050;background-color:#1e0010">.extra.name</span>
-</code></pre></div><p>変更後</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">json.images</span>[<span style="color:#960050;background-color:#1e0010">i</span>]<span style="color:#960050;background-color:#1e0010">.name</span>
-</code></pre></div><h2 id="ブレンドシェイプ名の格納位置の修正">ブレンドシェイプ名の格納位置の修正</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">json.images</span>[<span style="color:#960050;background-color:#1e0010">i</span>]<span style="color:#960050;background-color:#1e0010">.extra.name</span>
+</span></span></code></pre></div><p>変更後</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">json.images</span>[<span style="color:#960050;background-color:#1e0010">i</span>]<span style="color:#960050;background-color:#1e0010">.name</span>
+</span></span></code></pre></div><h2 id="ブレンドシェイプ名の格納位置の修正">ブレンドシェイプ名の格納位置の修正</h2>
 <p>GLTFの仕様に準拠しました。</p>
 <ul>
 <li>extraはextrasの間違い</li>
 <li>targetにextrasは不許可</li>
 <li><a href="https://github.com/KhronosGroup/glTF/issues/1036#issuecomment-314078356">https://github.com/KhronosGroup/glTF/issues/1036#issuecomment-314078356</a></li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">json.meshes</span>[<span style="color:#960050;background-color:#1e0010">i</span>]<span style="color:#960050;background-color:#1e0010">.primitives</span>[<span style="color:#960050;background-color:#1e0010">j</span>]<span style="color:#960050;background-color:#1e0010">.targets</span>[<span style="color:#960050;background-color:#1e0010">k</span>]<span style="color:#960050;background-color:#1e0010">.extra.name</span>
-</code></pre></div><p>変更後</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">json.meshes</span>[<span style="color:#960050;background-color:#1e0010">i</span>]<span style="color:#960050;background-color:#1e0010">.primitives</span>[<span style="color:#960050;background-color:#1e0010">j</span>]<span style="color:#960050;background-color:#1e0010">.extras.targetNames</span>[<span style="color:#960050;background-color:#1e0010">k</span>]
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">json.meshes</span>[<span style="color:#960050;background-color:#1e0010">i</span>]<span style="color:#960050;background-color:#1e0010">.primitives</span>[<span style="color:#960050;background-color:#1e0010">j</span>]<span style="color:#960050;background-color:#1e0010">.targets</span>[<span style="color:#960050;background-color:#1e0010">k</span>]<span style="color:#960050;background-color:#1e0010">.extra.name</span>
+</span></span></code></pre></div><p>変更後</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">json.meshes</span>[<span style="color:#960050;background-color:#1e0010">i</span>]<span style="color:#960050;background-color:#1e0010">.primitives</span>[<span style="color:#960050;background-color:#1e0010">j</span>]<span style="color:#960050;background-color:#1e0010">.extras.targetNames</span>[<span style="color:#960050;background-color:#1e0010">k</span>]
+</span></span></code></pre></div>
     </article>
   </div>
 </div>
@@ -132,7 +132,7 @@
     </div>
 
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

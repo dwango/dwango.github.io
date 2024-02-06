@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.87.0" />
+  <meta name="generator" content="Hugo 0.122.0">
 
   <meta property="og:title" content="Use BlendShape - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -98,13 +98,13 @@
 </nav>
         </div>
        <h2 id="apply-blendshape-from-a-script">Apply BlendShape from a script</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> proxy=GetComponent&lt;VRMBlendShapeProxy&gt;();
-
-<span style="color:#75715e">// Call enum 
-</span><span style="color:#75715e"></span>proxy.SetValue(BlendShapePreset.A, <span style="color:#ae81ff">1.0f</span>); <span style="color:#75715e">// Assign a value between 0 and 1
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">// Call string
-</span><span style="color:#75715e"></span>proxy.SetValue(<span style="color:#e6db74">&#34;A&#34;</span>, <span style="color:#ae81ff">1.0f</span>);</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> proxy=GetComponent&lt;VRMBlendShapeProxy&gt;();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Call enum </span>
+</span></span><span style="display:flex;"><span>proxy.SetValue(BlendShapePreset.A, <span style="color:#ae81ff">1.0f</span>); <span style="color:#75715e">// Assign a value between 0 and 1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Call string</span>
+</span></span><span style="display:flex;"><span>proxy.SetValue(<span style="color:#e6db74">&#34;A&#34;</span>, <span style="color:#ae81ff">1.0f</span>);</span></span></code></pre></div>
 <h2 id="apply-multiple-blendshapes-at-once">Apply multiple BlendShapes at once</h2>
 <p>For example,</p>
 <p>For Blink_L</p>
@@ -118,14 +118,14 @@
 <li>MeshA eye_R=100</li>
 </ul>
 <p>If both BlendShapes are defined and enabled as shown below, later only those items set before can be applied.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">proxy.SetValue(BlendShapePreset.Blink_L, <span style="color:#ae81ff">1.0f</span>);
-proxy.SetValue(BlendShapePreset.Blink_R, <span style="color:#ae81ff">1.0f</span>);</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span>proxy.SetValue(BlendShapePreset.Blink_L, <span style="color:#ae81ff">1.0f</span>);
+</span></span><span style="display:flex;"><span>proxy.SetValue(BlendShapePreset.Blink_R, <span style="color:#ae81ff">1.0f</span>);</span></span></code></pre></div>
 <p>In this case, the following codes are workable:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#75715e">// Keep the value and wait for Apply function
-</span><span style="color:#75715e"></span>proxy.SetValue(BlendShapePreset.Blink_L, <span style="color:#ae81ff">1.0f</span>, <span style="color:#66d9ef">false</span>);
-proxy.SetValue(BlendShapePreset.Blink_R, <span style="color:#ae81ff">1.0f</span>, <span style="color:#66d9ef">false</span>);
-<span style="color:#75715e">// Apply all the BlendShapes at once
-</span><span style="color:#75715e"></span>proxy.Apply();</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#75715e">// Keep the value and wait for Apply function</span>
+</span></span><span style="display:flex;"><span>proxy.SetValue(BlendShapePreset.Blink_L, <span style="color:#ae81ff">1.0f</span>, <span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>proxy.SetValue(BlendShapePreset.Blink_R, <span style="color:#ae81ff">1.0f</span>, <span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Apply all the BlendShapes at once</span>
+</span></span><span style="display:flex;"><span>proxy.Apply();</span></span></code></pre></div>
 
     </article>
   </div>
@@ -139,7 +139,7 @@ proxy.SetValue(BlendShapePreset.Blink_R, <span style="color:#ae81ff">1.0f</span>
     </div>
 
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

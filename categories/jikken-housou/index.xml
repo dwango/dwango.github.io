@@ -6,60 +6,49 @@
     <description>Recent content in jikken-housou on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 06 Nov 2018 16:00:00 +0900</lastBuildDate><atom:link href="https://dwango.github.io/categories/jikken-housou/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Nov 2018 16:00:00 +0900</lastBuildDate>
+    <atom:link href="https://dwango.github.io/categories/jikken-housou/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ゲームを作ってみよう</title>
       <link>https://dwango.github.io/niconico/jikken-housou/akashic-content3/</link>
       <pubDate>Tue, 06 Nov 2018 16:00:00 +0900</pubDate>
-      
       <guid>https://dwango.github.io/niconico/jikken-housou/akashic-content3/</guid>
       <description>この文書は 2018 年当時のものです。 最新のニコ生ゲーム作成については https://akashic-games.github.io/shin-ichiba/ をご参照ください。 本ページの内容 本ページは、2018年10月25日～2018</description>
     </item>
-    
     <item>
       <title>ツールを作ってみよう</title>
       <link>https://dwango.github.io/niconico/jikken-housou/akashic-content2/</link>
       <pubDate>Thu, 01 Nov 2018 14:00:00 +0900</pubDate>
-      
       <guid>https://dwango.github.io/niconico/jikken-housou/akashic-content2/</guid>
       <description>この文書は 2018 年当時のものです。 最新のニコ生ゲーム作成については https://akashic-games.github.io/shin-ichiba/ をご参照ください。 本ページの内容 本ページは、2018年10月25日～2018</description>
     </item>
-    
     <item>
       <title>ニコニコ新市場対応コンテンツ制作ガイド</title>
       <link>https://dwango.github.io/niconico/jikken-housou/akashic-guide/</link>
       <pubDate>Thu, 25 Oct 2018 18:30:00 +0900</pubDate>
-      
       <guid>https://dwango.github.io/niconico/jikken-housou/akashic-guide/</guid>
       <description>この文書は 2018 年当時のものです。 最新のニコ生ゲーム作成については https://akashic-games.github.io/shin-ichiba/ をご参照ください。 本ページの内容 本ページでは、2018年10月25日より可能</description>
     </item>
-    
     <item>
       <title>泥棒バスターを改造してみよう</title>
       <link>https://dwango.github.io/niconico/jikken-housou/akashic-content1/</link>
       <pubDate>Thu, 25 Oct 2018 18:30:00 +0900</pubDate>
-      
       <guid>https://dwango.github.io/niconico/jikken-housou/akashic-content1/</guid>
       <description>この文書は 2018 年当時のものです。 最新のニコ生ゲーム作成については https://akashic-games.github.io/shin-ichiba/ をご参照ください。 本ページの内容 本ページは、2018年10月25日～2018</description>
     </item>
-    
     <item>
       <title>実験放送の構成 - コメントサーバー編</title>
       <link>https://dwango.github.io/niconico/jikken-housou/comment-server/</link>
       <pubDate>Thu, 20 Sep 2018 17:30:00 +0900</pubDate>
-      
       <guid>https://dwango.github.io/niconico/jikken-housou/comment-server/</guid>
       <description>本ドキュメントの内容はすでに廃止されています。 2019年4月11日をもちまして、実験放送は終了いたしました。 ご意見・ご協力いただき、ありがと</description>
     </item>
-    
     <item>
       <title>実験放送の構成 - コメント編</title>
       <link>https://dwango.github.io/niconico/jikken-housou/comment/</link>
       <pubDate>Tue, 14 Aug 2018 15:44:12 +0900</pubDate>
-      
       <guid>https://dwango.github.io/niconico/jikken-housou/comment/</guid>
       <description>本ドキュメントの内容はすでに廃止されています。 2019年4月11日をもちまして、実験放送は終了いたしました。 ご意見・ご協力いただき、ありがと</description>
     </item>
-    
   </channel>
 </rss>

@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.87.0" />
+  <meta name="generator" content="Hugo 0.122.0">
 
   <meta property="og:title" content="reftest を導入しプロダクト品質改善の土台を整えた話 - dwango on GitHub">
 
@@ -16,6 +16,9 @@
   <meta name="twitter:card" content="summary">
   
 
+
+  
+  
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -232,15 +235,15 @@ iOS/Android などの環境依存のものに依存せず、容易に分離で�
 これをシナリオデータとして流用することにしました。</p>
 <p>また、テスト用の拡張として、必要な場面でスクリーンショットを撮影できるようリプレイデータにコマンドを追加しました。
 実際のデータは複雑かつ冗長なため、以下に擬似コードで表します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">[
-  { <span style="color:#f92672">&#34;frame&#34;</span>: <span style="color:#ae81ff">100</span>, <span style="color:#f92672">&#34;event&#34;</span>: { <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;Point Down&#34;</span>, <span style="color:#f92672">&#34;note&#34;</span>: <span style="color:#e6db74">&#34;クリック・タップでタイトルへ画面遷移できること&#34;</span> } },
-  { <span style="color:#f92672">&#34;frame&#34;</span>: <span style="color:#ae81ff">200</span>, <span style="color:#f92672">&#34;event&#34;</span>: { <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;Screenshot&#34;</span>, <span style="color:#f92672">&#34;note&#34;</span>: <span style="color:#e6db74">&#34;タイトルシーンのキャプチャ&#34;</span> } },
-  { <span style="color:#f92672">&#34;frame&#34;</span>: <span style="color:#ae81ff">300</span>, <span style="color:#f92672">&#34;event&#34;</span>: { <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;Point Down&#34;</span>, <span style="color:#f92672">&#34;note&#34;</span>: <span style="color:#e6db74">&#34;クリック・タップでオープニングデモへ画面遷移できること&#34;</span> } },
-  { <span style="color:#f92672">&#34;frame&#34;</span>: <span style="color:#ae81ff">400</span>, <span style="color:#f92672">&#34;event&#34;</span>: { <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;Screenshot&#34;</span>, <span style="color:#f92672">&#34;note&#34;</span>: <span style="color:#e6db74">&#34;オープニングデモのキャプチャ&#34;</span> } },
-  { <span style="color:#f92672">&#34;frame&#34;</span>: <span style="color:#ae81ff">500</span>, <span style="color:#f92672">&#34;event&#34;</span>: { <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;Point Down&#34;</span>, <span style="color:#f92672">&#34;note&#34;</span>: <span style="color:#e6db74">&#34;クリック・タップでメニューセレクトへ画面遷移できること&#34;</span> } },
-  { <span style="color:#f92672">&#34;frame&#34;</span>: <span style="color:#ae81ff">600</span>, <span style="color:#f92672">&#34;event&#34;</span>: { <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;Screenshot&#34;</span>, <span style="color:#f92672">&#34;note&#34;</span>: <span style="color:#e6db74">&#34;メニューセレクトのキャプチャ&#34;</span> } }
-]
-</code></pre></div><p>上記の要領で、必要な導入先サービスのテスト設定を作成し、実際に画面演出やゲームを動作させてシナリオデータを出力します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>[
+</span></span><span style="display:flex;"><span>  { <span style="color:#f92672">&#34;frame&#34;</span>: <span style="color:#ae81ff">100</span>, <span style="color:#f92672">&#34;event&#34;</span>: { <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;Point Down&#34;</span>, <span style="color:#f92672">&#34;note&#34;</span>: <span style="color:#e6db74">&#34;クリック・タップでタイトルへ画面遷移できること&#34;</span> } },
+</span></span><span style="display:flex;"><span>  { <span style="color:#f92672">&#34;frame&#34;</span>: <span style="color:#ae81ff">200</span>, <span style="color:#f92672">&#34;event&#34;</span>: { <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;Screenshot&#34;</span>, <span style="color:#f92672">&#34;note&#34;</span>: <span style="color:#e6db74">&#34;タイトルシーンのキャプチャ&#34;</span> } },
+</span></span><span style="display:flex;"><span>  { <span style="color:#f92672">&#34;frame&#34;</span>: <span style="color:#ae81ff">300</span>, <span style="color:#f92672">&#34;event&#34;</span>: { <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;Point Down&#34;</span>, <span style="color:#f92672">&#34;note&#34;</span>: <span style="color:#e6db74">&#34;クリック・タップでオープニングデモへ画面遷移できること&#34;</span> } },
+</span></span><span style="display:flex;"><span>  { <span style="color:#f92672">&#34;frame&#34;</span>: <span style="color:#ae81ff">400</span>, <span style="color:#f92672">&#34;event&#34;</span>: { <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;Screenshot&#34;</span>, <span style="color:#f92672">&#34;note&#34;</span>: <span style="color:#e6db74">&#34;オープニングデモのキャプチャ&#34;</span> } },
+</span></span><span style="display:flex;"><span>  { <span style="color:#f92672">&#34;frame&#34;</span>: <span style="color:#ae81ff">500</span>, <span style="color:#f92672">&#34;event&#34;</span>: { <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;Point Down&#34;</span>, <span style="color:#f92672">&#34;note&#34;</span>: <span style="color:#e6db74">&#34;クリック・タップでメニューセレクトへ画面遷移できること&#34;</span> } },
+</span></span><span style="display:flex;"><span>  { <span style="color:#f92672">&#34;frame&#34;</span>: <span style="color:#ae81ff">600</span>, <span style="color:#f92672">&#34;event&#34;</span>: { <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;Screenshot&#34;</span>, <span style="color:#f92672">&#34;note&#34;</span>: <span style="color:#e6db74">&#34;メニューセレクトのキャプチャ&#34;</span> } }
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div><p>上記の要領で、必要な導入先サービスのテスト設定を作成し、実際に画面演出やゲームを動作させてシナリオデータを出力します。</p>
 <p>検討時点から、<strong>シナリオデータを容易に作成し組み込めること</strong>には特に配慮しました。
 導入先サービス固有のリプレイデータをそのままシナリオとして転用するためです。
 これにより、複雑な再現手順をシナリオに落とし込む手間を省いてテストに組み込むことができます。</p>
@@ -378,7 +381,7 @@ reftest は Android/PC Web など環境ごとに以下の HTML を出力しま�
     </div>
 
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

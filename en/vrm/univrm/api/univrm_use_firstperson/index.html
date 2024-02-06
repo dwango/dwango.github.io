@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.87.0" />
+  <meta name="generator" content="Hugo 0.122.0">
 
   <meta property="og:title" content="How to Use VRMFirstPerson - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -128,13 +128,13 @@
 <p>By calling <strong>VRMFirstPerson.Setup</strong> at runtime, the layer settings described above can be performed. Please call the function explicitly from outside.</p>
 <h1 id="specify-the-additional-render-layers-for-the-application">Specify the additional render layers for the application</h1>
 <p>The following layers are defined as constant:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">VRMFirstPerson</span> : MonoBehaviour
-{
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> FIRSTPERSON_ONLY_LAYER = <span style="color:#ae81ff">9</span>;
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> THIRDPERSON_ONLY_LAYER = <span style="color:#ae81ff">10</span>;
-
-    <span style="color:#75715e">// The following parts are omitted
-</span><span style="color:#75715e"></span>}</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">VRMFirstPerson</span> : MonoBehaviour
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> FIRSTPERSON_ONLY_LAYER = <span style="color:#ae81ff">9</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> THIRDPERSON_ONLY_LAYER = <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// The following parts are omitted</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -157,47 +157,47 @@
 <li>Call VRMFirstPerson.Setup</li>
 <li>Set LayerMask for first-person camera view and other camera views</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">using</span> System.Collections;
-<span style="color:#66d9ef">using</span> System.Collections.Generic;
-<span style="color:#66d9ef">using</span> UnityEngine;
-<span style="color:#66d9ef">using</span> VRM;
-
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SetupExample</span> : MonoBehaviour
-{
-<span style="color:#a6e22e">    [SerializeField]</span>
-    Camera m_firstPersonCamera; <span style="color:#75715e">// HMD camera
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">    
-</span><span style="color:#a6e22e">    [SerializeField]</span>
-    LayerMask m_firstPersonMask; <span style="color:#75715e">// Set a first-person mask (default | FIRSTPERSON_ONLY_LAYER, etc.) in HMD camera
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">
-</span><span style="color:#a6e22e">    [SerializeField]</span>
-    LayerMask m_otherMask; <span style="color:#75715e">// Set other masks (default | THIRDPERSON_ONLY_LAYER, etc.) in HMD camera
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">
-</span><span style="color:#a6e22e">    [SerializeField]</span>
-    VRMFirstPerson m_firstPerson;
-
-    <span style="color:#66d9ef">void</span> Reset()
-    {
-        m_firstPerson = GameObject.FindObjectOfType&lt;VRMFirstPerson&gt;();
-    }
-
-    <span style="color:#66d9ef">void</span> Start()
-    {
-        <span style="color:#66d9ef">foreach</span> (<span style="color:#66d9ef">var</span> camera <span style="color:#66d9ef">in</span> GameObject.FindObjectsOfType&lt;Camera&gt;())
-        {
-            camera.cullingMask = (camera == m_firstPersonCamera)
-                ? m_firstPersonMask
-                : m_otherMask
-                ;
-        }
-
-        <span style="color:#75715e">// VRMFirstPerson initialization
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (m_firstPerson != <span style="color:#66d9ef">null</span>)
-        {
-            m_firstPerson.Setup();
-        }
-    }
-}</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">using</span> System.Collections;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> System.Collections.Generic;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> UnityEngine;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> VRM;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SetupExample</span> : MonoBehaviour
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [SerializeField]</span>
+</span></span><span style="display:flex;"><span>    Camera m_firstPersonCamera; <span style="color:#75715e">// HMD camera</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">    
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [SerializeField]</span>
+</span></span><span style="display:flex;"><span>    LayerMask m_firstPersonMask; <span style="color:#75715e">// Set a first-person mask (default | FIRSTPERSON_ONLY_LAYER, etc.) in HMD camera</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [SerializeField]</span>
+</span></span><span style="display:flex;"><span>    LayerMask m_otherMask; <span style="color:#75715e">// Set other masks (default | THIRDPERSON_ONLY_LAYER, etc.) in HMD camera</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [SerializeField]</span>
+</span></span><span style="display:flex;"><span>    VRMFirstPerson m_firstPerson;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> Reset()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        m_firstPerson = GameObject.FindObjectOfType&lt;VRMFirstPerson&gt;();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> Start()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">foreach</span> (<span style="color:#66d9ef">var</span> camera <span style="color:#66d9ef">in</span> GameObject.FindObjectsOfType&lt;Camera&gt;())
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            camera.cullingMask = (camera == m_firstPersonCamera)
+</span></span><span style="display:flex;"><span>                ? m_firstPersonMask
+</span></span><span style="display:flex;"><span>                : m_otherMask
+</span></span><span style="display:flex;"><span>                ;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// VRMFirstPerson initialization</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (m_firstPerson != <span style="color:#66d9ef">null</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            m_firstPerson.Setup();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 
     </article>
   </div>
@@ -211,7 +211,7 @@
     </div>
 
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

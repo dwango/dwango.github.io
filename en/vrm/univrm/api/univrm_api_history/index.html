@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.87.0" />
+  <meta name="generator" content="Hugo 0.122.0">
 
   <meta property="og:title" content="API Change History - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -102,19 +102,19 @@
 <h1 id="v036">v0.36</h1>
 <h2 id="texture-name-save-locations-changed">Texture Name Save Locations Changed</h2>
 <p>Conforming to the GLTF specification.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">json.images</span>[<span style="color:#960050;background-color:#1e0010">i</span>]<span style="color:#960050;background-color:#1e0010">.extra.name</span>
-</code></pre></div><p>After the change</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">json.images</span>[<span style="color:#960050;background-color:#1e0010">i</span>]<span style="color:#960050;background-color:#1e0010">.name</span>
-</code></pre></div><h2 id="blendshape-name-save-locations-changed">BlendShape Name Save Locations Changed</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">json.images</span>[<span style="color:#960050;background-color:#1e0010">i</span>]<span style="color:#960050;background-color:#1e0010">.extra.name</span>
+</span></span></code></pre></div><p>After the change</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">json.images</span>[<span style="color:#960050;background-color:#1e0010">i</span>]<span style="color:#960050;background-color:#1e0010">.name</span>
+</span></span></code></pre></div><h2 id="blendshape-name-save-locations-changed">BlendShape Name Save Locations Changed</h2>
 <p>Conforming to the GLTF specification.</p>
 <ul>
 <li>&ldquo;extras&rdquo; is not allowed in target</li>
 <li><a href="https://github.com/KhronosGroup/glTF/issues/1036#issuecomment-314078356">https://github.com/KhronosGroup/glTF/issues/1036#issuecomment-314078356</a></li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">json.meshes</span>[<span style="color:#960050;background-color:#1e0010">i</span>]<span style="color:#960050;background-color:#1e0010">.primitives</span>[<span style="color:#960050;background-color:#1e0010">j</span>]<span style="color:#960050;background-color:#1e0010">.targets</span>[<span style="color:#960050;background-color:#1e0010">k</span>]<span style="color:#960050;background-color:#1e0010">.extra.name</span>
-</code></pre></div><p>After the change</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">json.meshes</span>[<span style="color:#960050;background-color:#1e0010">i</span>]<span style="color:#960050;background-color:#1e0010">.primitives</span>[<span style="color:#960050;background-color:#1e0010">j</span>]<span style="color:#960050;background-color:#1e0010">.extras.targetNames</span>[<span style="color:#960050;background-color:#1e0010">k</span>]
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">json.meshes</span>[<span style="color:#960050;background-color:#1e0010">i</span>]<span style="color:#960050;background-color:#1e0010">.primitives</span>[<span style="color:#960050;background-color:#1e0010">j</span>]<span style="color:#960050;background-color:#1e0010">.targets</span>[<span style="color:#960050;background-color:#1e0010">k</span>]<span style="color:#960050;background-color:#1e0010">.extra.name</span>
+</span></span></code></pre></div><p>After the change</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">json.meshes</span>[<span style="color:#960050;background-color:#1e0010">i</span>]<span style="color:#960050;background-color:#1e0010">.primitives</span>[<span style="color:#960050;background-color:#1e0010">j</span>]<span style="color:#960050;background-color:#1e0010">.extras.targetNames</span>[<span style="color:#960050;background-color:#1e0010">k</span>]
+</span></span></code></pre></div>
     </article>
   </div>
 </div>
@@ -127,7 +127,7 @@
     </div>
 
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

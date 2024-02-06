@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.87.0" />
+  <meta name="generator" content="Hugo 0.122.0">
 
   <meta property="og:title" content="Import VRM Model at Runtime - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -104,69 +104,69 @@
        <p>Examples of importing the VRM model with the latest version <a href="https://github.com/dwango/UniVRM/wiki/Runtime-import%28en%29">can be found here</a>.</p>
 <p>The followings are the methods to import a VRM model at runtime in Unity:</p>
 <h2 id="open-vrm-from-a-file-path">Open VRM from a file path</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
-<span style="color:#66d9ef">var</span> go=VRM.VRMImporter.LoadFromPath(path);
-Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> go=VRM.VRMImporter.LoadFromPath(path);
+</span></span><span style="display:flex;"><span>Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);</span></span></code></pre></div>
 <h2 id="open-vrm-asynchronously-from-a-file-path">Open VRM asynchronously from a file path</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
-VRMImporter.LoadVrmAsync(path, go =&gt; {
-    Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);
-});</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
+</span></span><span style="display:flex;"><span>VRMImporter.LoadVrmAsync(path, go =&gt; {
+</span></span><span style="display:flex;"><span>    Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);
+</span></span><span style="display:flex;"><span>});</span></span></code></pre></div>
 <h2 id="open-vrm-from-a-byte-array">Open VRM from a byte array</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
-<span style="color:#66d9ef">var</span> bytes = File.ReadAllBytes(path);
-<span style="color:#66d9ef">var</span> go=VRMImporter.LoadFromBytes(bytes);</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> bytes = File.ReadAllBytes(path);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> go=VRMImporter.LoadFromBytes(bytes);</span></span></code></pre></div>
 <h2 id="open-vrm-asynchronously-from-a-byte-array">Open VRM asynchronously from a byte array</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">VRMImporter.LoadVrmAsync(bytes, go =&gt; {
-    Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);
-});</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span>VRMImporter.LoadVrmAsync(bytes, go =&gt; {
+</span></span><span style="display:flex;"><span>    Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);
+</span></span><span style="display:flex;"><span>});</span></span></code></pre></div>
 <h2 id="get-the-information-form-vrm">Get the information form VRM</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#75715e">#if UNITY_STANDALONE_WIN
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> path = FileDialogForWindows.FileDialog(<span style="color:#e6db74">&#34;open VRM&#34;</span>, <span style="color:#e6db74">&#34;.vrm&#34;</span>);
-<span style="color:#75715e">#else
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> path = Application.dataPath + <span style="color:#e6db74">&#34;/default.vrm&#34;</span>;
-<span style="color:#75715e">#endif
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">string</span>.IsNullOrEmpty(path))
-            {
-                <span style="color:#66d9ef">return</span>;
-            }
-
-            <span style="color:#75715e">// Get a byte array
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> bytes = File.ReadAllBytes(path);
-
-            <span style="color:#66d9ef">var</span> context = <span style="color:#66d9ef">new</span> VRMImporterContext();
-
-            <span style="color:#75715e">// Get JSON in GLB format and parse it
-</span><span style="color:#75715e"></span>            context.ParseGlb(bytes);
-
-            <span style="color:#75715e">// Get the meta
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> meta = context.ReadMeta();
-            Debug.LogFormat(<span style="color:#e6db74">&#34;meta: title:{0}&#34;</span>, meta.Title);
-
-            <span style="color:#75715e">// You can access the entire parsed GLTF here
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> vrm = context.GLTF;
-
-            <span style="color:#75715e">// Convert the parsed JSON to the Scene Object
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (m_loadAsync)
-            {
-                <span style="color:#75715e">// Run asynchronously
-</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">var</span> now = Time.time;
-                VRMImporter.LoadVrmAsync(context, go=&gt; {
-                    <span style="color:#66d9ef">var</span> delta = Time.time - now;
-                    Debug.LogFormat(<span style="color:#e6db74">&#34;LoadVrmAsync {0:0.0} seconds&#34;</span>, delta);
-                    OnLoaded(go);
-                });
-            }
-            <span style="color:#66d9ef">else</span>
-            {
-                <span style="color:#75715e">// Run synchronously
-</span><span style="color:#75715e"></span>                VRMImporter.LoadFromBytes(context);
-                OnLoaded(context.Root);
-            }</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#75715e">#if</span> UNITY_STANDALONE_WIN
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">var</span> path = FileDialogForWindows.FileDialog(<span style="color:#e6db74">&#34;open VRM&#34;</span>, <span style="color:#e6db74">&#34;.vrm&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#else</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">var</span> path = Application.dataPath + <span style="color:#e6db74">&#34;/default.vrm&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">string</span>.IsNullOrEmpty(path))
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Get a byte array</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">var</span> bytes = File.ReadAllBytes(path);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">var</span> context = <span style="color:#66d9ef">new</span> VRMImporterContext();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Get JSON in GLB format and parse it</span>
+</span></span><span style="display:flex;"><span>            context.ParseGlb(bytes);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Get the meta</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">var</span> meta = context.ReadMeta();
+</span></span><span style="display:flex;"><span>            Debug.LogFormat(<span style="color:#e6db74">&#34;meta: title:{0}&#34;</span>, meta.Title);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// You can access the entire parsed GLTF here</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">var</span> vrm = context.GLTF;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Convert the parsed JSON to the Scene Object</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (m_loadAsync)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// Run asynchronously</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">var</span> now = Time.time;
+</span></span><span style="display:flex;"><span>                VRMImporter.LoadVrmAsync(context, go=&gt; {
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">var</span> delta = Time.time - now;
+</span></span><span style="display:flex;"><span>                    Debug.LogFormat(<span style="color:#e6db74">&#34;LoadVrmAsync {0:0.0} seconds&#34;</span>, delta);
+</span></span><span style="display:flex;"><span>                    OnLoaded(go);
+</span></span><span style="display:flex;"><span>                });
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// Run synchronously</span>
+</span></span><span style="display:flex;"><span>                VRMImporter.LoadFromBytes(context);
+</span></span><span style="display:flex;"><span>                OnLoaded(context.Root);
+</span></span><span style="display:flex;"><span>            }</span></span></code></pre></div>
 <h2 id="get-the-thumbnail-from-v037">Get the thumbnail (From v0.37)</h2>
 <p>A thumbnail texture can be created by passing arguments to ReadMeta.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">    <span style="color:#66d9ef">var</span> meta = context.ReadMeta(<span style="color:#66d9ef">true</span>); <span style="color:#75715e">// Make a thumbnail texture
-</span><span style="color:#75715e"></span>    Texture2D thumbnail=meta.Thumbnail;</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> meta = context.ReadMeta(<span style="color:#66d9ef">true</span>); <span style="color:#75715e">// Make a thumbnail texture</span>
+</span></span><span style="display:flex;"><span>    Texture2D thumbnail=meta.Thumbnail;</span></span></code></pre></div>
 
     </article>
   </div>
@@ -180,7 +180,7 @@ VRMImporter.LoadVrmAsync(path, go =&gt; {
     </div>
 
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

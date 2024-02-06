@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.87.0" />
+  <meta name="generator" content="Hugo 0.122.0">
 
   <meta property="og:title" content="ニコニコの就業型インターンでサーバーサイドの開発に参加してきました！ - dwango on GitHub">
 
@@ -16,6 +16,9 @@
   <meta name="twitter:card" content="summary">
   
 
+
+  
+  
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -175,10 +178,10 @@
 <p>また、正確にはHLSはファイル形式ではなくプロトコルであり、HLSを内部用動画フォーマットに変換するということは、HLSという規格に従ったファイル形式（m3u8ファイルやtsファイルなど）から対象のフォーマットへ変換するということになります。</p>
 <p>MovieRelayでは、HLSのファイルを入力すると内部用動画フォーマットを出力するコマンドをGo側で実行して、コマンドの出力結果をHTTPレスポンスに渡す形で実装しました。</p>
 <p>具体的には、os/execパッケージを利用して以下のような実装を行いました。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">cmd</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">exec</span>.<span style="color:#a6e22e">CommandContext</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#e6db74">&#34;convert-cmd&#34;</span>, <span style="color:#a6e22e">args</span>) <span style="color:#75715e">// コマンドの指定
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">cmd</span>.<span style="color:#a6e22e">Stdout</span> = <span style="color:#a6e22e">responseWriter</span> <span style="color:#75715e">// 出力先を標準出力からHTTPレスポンスに変更（io.Writer）
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">cmd</span>.<span style="color:#a6e22e">Run</span>() <span style="color:#75715e">// コマンドの実行
-</span></code></pre></div><p>簡単な実装ではありますが、ここでポイントとなる部分は2行目で、標準出力に出力される内容（変換結果）をHTTPレスポンスに出力するよう変更することです。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">cmd</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">exec</span>.<span style="color:#a6e22e">CommandContext</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#e6db74">&#34;convert-cmd&#34;</span>, <span style="color:#a6e22e">args</span>) <span style="color:#75715e">// コマンドの指定
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">cmd</span>.<span style="color:#a6e22e">Stdout</span> = <span style="color:#a6e22e">responseWriter</span> <span style="color:#75715e">// 出力先を標準出力からHTTPレスポンスに変更（io.Writer）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">cmd</span>.<span style="color:#a6e22e">Run</span>() <span style="color:#75715e">// コマンドの実行
+</span></span></span></code></pre></div><p>簡単な実装ではありますが、ここでポイントとなる部分は2行目で、標準出力に出力される内容（変換結果）をHTTPレスポンスに出力するよう変更することです。</p>
 <p>ここで示している変数responseWriterは、io.Writerを満たすHTTPレスポンスの構造体で、関数の引数として外部から受け取るものとして想定しています。</p>
 <p>動画の変換結果を安易に[]byte型で受け取り関数の戻り値として返そうとすると、HTTPレスポンスとして変換結果をネットワークに送り出す前に、変換結果を一度メモリに載せることになってしまいます。（初めにそういう実装をしてしまいました&hellip;。）</p>
 <p>ローカル環境で実行している分には動作に支障はありませんが、MovieRelayは業務システムとして今後運用されていくため、複数のリクエストを並行して捌くことが考えられ、また動画の尺や画質次第では、大きいファイルを扱う可能性も出てきます。</p>
@@ -291,7 +294,7 @@
     </div>
 
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

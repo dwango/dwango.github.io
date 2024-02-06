@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.87.0" />
+  <meta name="generator" content="Hugo 0.122.0">
 
   <meta property="og:title" content="VRMモデルを実行時にインポートする - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -104,69 +104,69 @@
        <p>最新バージョンは<a href="https://github.com/dwango/UniVRM/wiki/Runtime-import">こちら</a>をご覧ください。</p>
 <p>Unityで実行時にモデルをインポートする方法です。</p>
 <h2 id="ファイルパスからvrmを開く">ファイルパスからVRMを開く</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
-<span style="color:#66d9ef">var</span> go=VRM.VRMImporter.LoadFromPath(path);
-Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> go=VRM.VRMImporter.LoadFromPath(path);
+</span></span><span style="display:flex;"><span>Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);</span></span></code></pre></div>
 <h2 id="ファイルパスから非同期にvrmを開く">ファイルパスから非同期にVRMを開く</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
-VRMImporter.LoadVrmAsync(path, go =&gt; {
-    Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);
-});</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
+</span></span><span style="display:flex;"><span>VRMImporter.LoadVrmAsync(path, go =&gt; {
+</span></span><span style="display:flex;"><span>    Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);
+</span></span><span style="display:flex;"><span>});</span></span></code></pre></div>
 <h2 id="バイト列からvrm開く">バイト列からVRM開く</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
-<span style="color:#66d9ef">var</span> bytes = File.ReadAllBytes(path);
-<span style="color:#66d9ef">var</span> go=VRMImporter.LoadFromBytes(bytes);</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> path=<span style="color:#e6db74">&#34;sample.vrm&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> bytes = File.ReadAllBytes(path);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> go=VRMImporter.LoadFromBytes(bytes);</span></span></code></pre></div>
 <h2 id="バイト列から非同期にvrmを開く">バイト列から非同期にVRMを開く</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">VRMImporter.LoadVrmAsync(bytes, go =&gt; {
-    Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);
-});</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span>VRMImporter.LoadVrmAsync(bytes, go =&gt; {
+</span></span><span style="display:flex;"><span>    Debug.LogFormat(<span style="color:#e6db74">&#34;loaded {0}&#34;</span>, go.name);
+</span></span><span style="display:flex;"><span>});</span></span></code></pre></div>
 <h2 id="vrmから情報を取り出す">VRMから情報を取り出す</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#75715e">#if UNITY_STANDALONE_WIN
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> path = FileDialogForWindows.FileDialog(<span style="color:#e6db74">&#34;open VRM&#34;</span>, <span style="color:#e6db74">&#34;.vrm&#34;</span>);
-<span style="color:#75715e">#else
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> path = Application.dataPath + <span style="color:#e6db74">&#34;/default.vrm&#34;</span>;
-<span style="color:#75715e">#endif
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">string</span>.IsNullOrEmpty(path))
-            {
-                <span style="color:#66d9ef">return</span>;
-            }
-
-            <span style="color:#75715e">// Byte列を得る
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> bytes = File.ReadAllBytes(path);
-
-            <span style="color:#66d9ef">var</span> context = <span style="color:#66d9ef">new</span> VRMImporterContext();
-
-            <span style="color:#75715e">// GLB形式をParseしてチャンクからJSONを取得しParseします
-</span><span style="color:#75715e"></span>            context.ParseGlb(bytes);
-
-            <span style="color:#75715e">// metaを取得
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> meta = context.ReadMeta();
-            Debug.LogFormat(<span style="color:#e6db74">&#34;meta: title:{0}&#34;</span>, meta.Title);
-
-            <span style="color:#75715e">// もしくはこちらでパースされたGLTF全体にアクセスできます
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> vrm = context.GLTF;
-
-            <span style="color:#75715e">// ParseしたJSONをもとにシーンを構築します
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (m_loadAsync)
-            {
-                <span style="color:#75715e">// 非同期に実行する
-</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">var</span> now = Time.time;
-                VRMImporter.LoadVrmAsync(context, go=&gt; {
-                    <span style="color:#66d9ef">var</span> delta = Time.time - now;
-                    Debug.LogFormat(<span style="color:#e6db74">&#34;LoadVrmAsync {0:0.0} seconds&#34;</span>, delta);
-                    OnLoaded(go);
-                });
-            }
-            <span style="color:#66d9ef">else</span>
-            {
-                <span style="color:#75715e">// 同期的に実行する
-</span><span style="color:#75715e"></span>                VRMImporter.LoadFromBytes(context);
-                OnLoaded(context.Root);
-            }</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#75715e">#if</span> UNITY_STANDALONE_WIN
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">var</span> path = FileDialogForWindows.FileDialog(<span style="color:#e6db74">&#34;open VRM&#34;</span>, <span style="color:#e6db74">&#34;.vrm&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#else</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">var</span> path = Application.dataPath + <span style="color:#e6db74">&#34;/default.vrm&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">string</span>.IsNullOrEmpty(path))
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Byte列を得る</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">var</span> bytes = File.ReadAllBytes(path);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">var</span> context = <span style="color:#66d9ef">new</span> VRMImporterContext();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// GLB形式をParseしてチャンクからJSONを取得しParseします</span>
+</span></span><span style="display:flex;"><span>            context.ParseGlb(bytes);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// metaを取得</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">var</span> meta = context.ReadMeta();
+</span></span><span style="display:flex;"><span>            Debug.LogFormat(<span style="color:#e6db74">&#34;meta: title:{0}&#34;</span>, meta.Title);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// もしくはこちらでパースされたGLTF全体にアクセスできます</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">var</span> vrm = context.GLTF;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// ParseしたJSONをもとにシーンを構築します</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (m_loadAsync)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 非同期に実行する</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">var</span> now = Time.time;
+</span></span><span style="display:flex;"><span>                VRMImporter.LoadVrmAsync(context, go=&gt; {
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">var</span> delta = Time.time - now;
+</span></span><span style="display:flex;"><span>                    Debug.LogFormat(<span style="color:#e6db74">&#34;LoadVrmAsync {0:0.0} seconds&#34;</span>, delta);
+</span></span><span style="display:flex;"><span>                    OnLoaded(go);
+</span></span><span style="display:flex;"><span>                });
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 同期的に実行する</span>
+</span></span><span style="display:flex;"><span>                VRMImporter.LoadFromBytes(context);
+</span></span><span style="display:flex;"><span>                OnLoaded(context.Root);
+</span></span><span style="display:flex;"><span>            }</span></span></code></pre></div>
 <h2 id="thumbnailを取得するv037から">Thumbnailを取得する(v0.37から)</h2>
 <p>ReadMetaに引数を渡すことでThumbnailテクスチャを作成できます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">    <span style="color:#66d9ef">var</span> meta = context.ReadMeta(<span style="color:#66d9ef">true</span>); <span style="color:#75715e">// Thumbnailテクスチャを作成する
-</span><span style="color:#75715e"></span>    Texture2D thumbnail=meta.Thumbnail;</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> meta = context.ReadMeta(<span style="color:#66d9ef">true</span>); <span style="color:#75715e">// Thumbnailテクスチャを作成する</span>
+</span></span><span style="display:flex;"><span>    Texture2D thumbnail=meta.Thumbnail;</span></span></code></pre></div>
 
     </article>
   </div>
@@ -180,7 +180,7 @@ VRMImporter.LoadVrmAsync(path, go =&gt; {
     </div>
 
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

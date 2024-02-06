@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.87.0" />
+  <meta name="generator" content="Hugo 0.122.0">
 
   <meta property="og:title" content="S3のコストダウンを実施してみた - dwango on GitHub">
 
@@ -16,6 +16,9 @@
   <meta name="twitter:card" content="summary">
   
 
+
+  
+  
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -320,56 +323,56 @@ CloudWatchで1日1回取得されていますので、S3のメトリクスから
 <p>ということで、調査開始。
 こちらがライフサイクル設定をAPIから取得した内容になります。</p>
 <p><code>$ aws s3api get-bucket-lifecycle-configuration --bucket sample-bucket</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-    <span style="color:#f92672">&#34;Rules&#34;</span>: [
-        {
-            <span style="color:#f92672">&#34;ID&#34;</span>: <span style="color:#e6db74">&#34;lifecycle&#34;</span>,
-            <span style="color:#f92672">&#34;Filter&#34;</span>: {},
-            <span style="color:#f92672">&#34;Status&#34;</span>: <span style="color:#e6db74">&#34;Enabled&#34;</span>,
-            <span style="color:#f92672">&#34;Transitions&#34;</span>: [
-                {
-                    <span style="color:#f92672">&#34;Days&#34;</span>: <span style="color:#ae81ff">30</span>,
-                    <span style="color:#f92672">&#34;StorageClass&#34;</span>: <span style="color:#e6db74">&#34;STANDARD_IA&#34;</span>
-                },
-                {
-                    <span style="color:#f92672">&#34;Days&#34;</span>: <span style="color:#ae81ff">150</span>,
-                    <span style="color:#f92672">&#34;StorageClass&#34;</span>: <span style="color:#e6db74">&#34;GLACIER_IR&#34;</span>
-                }
-            ]
-        }
-    ]
-}
-</code></pre></div><p>ソリューションアーキテクトの方とも相談しながら調査を進めたところ、どうやらCLIから設定した場合には正常に動作するライフサイクルが設定できるということがわかりました。正常に動くライフサイクルの設定をAPIで取得した結果がこちらです。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-    <span style="color:#f92672">&#34;Rules&#34;</span>: [
-        {
-            <span style="color:#f92672">&#34;ID&#34;</span>: <span style="color:#e6db74">&#34;lifecycle&#34;</span>,
-            <span style="color:#f92672">&#34;Filter&#34;</span>: {
-                <span style="color:#f92672">&#34;Prefix&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
-            },
-            <span style="color:#f92672">&#34;Status&#34;</span>: <span style="color:#e6db74">&#34;Enabled&#34;</span>,
-            <span style="color:#f92672">&#34;Transitions&#34;</span>: [
-                {
-                    <span style="color:#f92672">&#34;Days&#34;</span>: <span style="color:#ae81ff">30</span>,
-                    <span style="color:#f92672">&#34;StorageClass&#34;</span>: <span style="color:#e6db74">&#34;STANDARD_IA&#34;</span>
-                },
-                {
-                    <span style="color:#f92672">&#34;Days&#34;</span>: <span style="color:#ae81ff">150</span>,
-                    <span style="color:#f92672">&#34;StorageClass&#34;</span>: <span style="color:#e6db74">&#34;GLACIER_IR&#34;</span>
-                }
-            ]
-        }
-    ]
-}
-</code></pre></div><p>なんと、コンソールから行ったライフサイクルの設定には<strong>Prefixが入ってない</strong>のです
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Rules&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;ID&#34;</span>: <span style="color:#e6db74">&#34;lifecycle&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Filter&#34;</span>: {},
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Status&#34;</span>: <span style="color:#e6db74">&#34;Enabled&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Transitions&#34;</span>: [
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;Days&#34;</span>: <span style="color:#ae81ff">30</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;StorageClass&#34;</span>: <span style="color:#e6db74">&#34;STANDARD_IA&#34;</span>
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;Days&#34;</span>: <span style="color:#ae81ff">150</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;StorageClass&#34;</span>: <span style="color:#e6db74">&#34;GLACIER_IR&#34;</span>
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>ソリューションアーキテクトの方とも相談しながら調査を進めたところ、どうやらCLIから設定した場合には正常に動作するライフサイクルが設定できるということがわかりました。正常に動くライフサイクルの設定をAPIで取得した結果がこちらです。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Rules&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;ID&#34;</span>: <span style="color:#e6db74">&#34;lifecycle&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Filter&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;Prefix&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Status&#34;</span>: <span style="color:#e6db74">&#34;Enabled&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Transitions&#34;</span>: [
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;Days&#34;</span>: <span style="color:#ae81ff">30</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;StorageClass&#34;</span>: <span style="color:#e6db74">&#34;STANDARD_IA&#34;</span>
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;Days&#34;</span>: <span style="color:#ae81ff">150</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;StorageClass&#34;</span>: <span style="color:#e6db74">&#34;GLACIER_IR&#34;</span>
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>なんと、コンソールから行ったライフサイクルの設定には<strong>Prefixが入ってない</strong>のです
 どうやらAPIのversionがv2になったときのバグ？があるようで、<strong>コンソールから設定をしても正常に動作しない</strong>ようです。
 (<strong>2022-02-17 追記</strong>:こちら、現在はコンソールから設定しても問題なく動作するようです。
 また、get/put-bucket-lifecycle-configuration で設定した際のprefixの追記は必要なく、getしたものと同じjsonで設定できました。)</p>
 <p>そこで、Prefixを自分で追加設定して、今度は設定をAPIからputすることにしました。そのために、上記ライフサイクルの設定をjsonファイルに記載します。そしてAPIから以下のコマンドを実行しました。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws s3api put-bucket-lifecycle-configuration  <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --bucket sample-bucket  <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  --lifecycle-configuration file://sample-bucket.json
-</code></pre></div><p>何もエラーはなく、成功したようです。コンソールから見ても何も変化はありませんでしたが、再度APIからGETするときっちりPrefixが設定されていました。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ aws s3api put-bucket-lifecycle-configuration  <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --bucket sample-bucket  <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --lifecycle-configuration file://sample-bucket.json
+</span></span></code></pre></div><p>何もエラーはなく、成功したようです。コンソールから見ても何も変化はありませんでしたが、再度APIからGETするときっちりPrefixが設定されていました。</p>
 <h3 id="また翌日">また翌日</h3>
 <p>恐る恐るコンソールを確認すると・・・</p>
 <p>無事動作していました！！
@@ -486,7 +489,7 @@ CloudWatchで1日1回取得されていますので、S3のメトリクスから
     </div>
 
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

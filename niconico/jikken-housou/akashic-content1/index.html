@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.87.0" />
+  <meta name="generator" content="Hugo 0.122.0">
 
   <meta property="og:title" content="泥棒バスターを改造してみよう - dwango on GitHub">
 
@@ -16,6 +16,9 @@
   <meta name="twitter:card" content="summary">
   
 
+
+  
+  
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -228,8 +231,8 @@
 </div>
 
 <p>ここで、おもむろに以下の文字を入力し、Enterキーを押してください。「Akashic Sandboxというツールをインストールする」というような意味で、先ほどインストールしたnode.jsに含まれるnpmというものを使ってインストールしています。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm install -g @akashic/akashic-sandbox
-</code></pre></div><p>長々と様々なログが表示されたあと、以下のような表示が出れば完了です。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>npm install -g @akashic/akashic-sandbox
+</span></span></code></pre></div><p>長々と様々なログが表示されたあと、以下のような表示が出れば完了です。</p>
 <div class="article-img">
   
   <img src="https://dwango.github.io/images/akashic-content1/akashic-sandbox-install.png" alt="Akashic Sandboxのインストール"  />
@@ -237,8 +240,8 @@
 </div>
 
 <p>もう一つ、以下のコマンドも実行してください。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm install -g @akashic/akashic-cli
-</code></pre></div><p>似たような表示が出れば、これにてインストール作業は完了です！</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>npm install -g @akashic/akashic-cli
+</span></span></code></pre></div><p>似たような表示が出れば、これにてインストール作業は完了です！</p>
 <h2 id="ソースの用意">ソースの用意</h2>
 <p>開発の準備は整いましたが、今回のテーマは「改造」ですので、元ネタが必要です。次に元ネタを持ってきましょう。</p>
 <p>今回利用するゲームは「泥棒バスター」というゲームです。アツマールにも登録されているので、まだやったことの無い人は、一度やってみてください。</p>
@@ -295,8 +298,8 @@
 
 <p>まずはダウンロードしたものを実行してみましょう。</p>
 <p>先ほどのCUIツールを起動して、以下のようなコマンドを実行してください。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cd C:<span style="color:#ae81ff">\U</span>sers<span style="color:#ae81ff">\t</span>oyokazu_tsugehara<span style="color:#ae81ff">\D</span>ownloads<span style="color:#ae81ff">\g</span>ame<span style="color:#ae81ff">\g</span>ame
-</code></pre></div><p>cdの後は環境によって違います。「ダウンロードした場所\game\game」という感じのものです。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>cd C:<span style="color:#ae81ff">\U</span>sers<span style="color:#ae81ff">\t</span>oyokazu_tsugehara<span style="color:#ae81ff">\D</span>ownloads<span style="color:#ae81ff">\g</span>ame<span style="color:#ae81ff">\g</span>ame
+</span></span></code></pre></div><p>cdの後は環境によって違います。「ダウンロードした場所\game\game」という感じのものです。</p>
 <p>本文章上は場所の区切りを示す記号が<code>\</code>（バックスラッシュ）に見えていますが、多くの環境では<code>￥</code>（円記号）のような表示になっていると思います。これは日本語キーボードでは<code>￥</code>の場所のキー、英語キーボードでは<code>\</code>の場所のキーを入力すると、環境に応じて表示が変わる文字として扱われるもので、どちらも正常です。以後、<code>￥</code>に見える環境では<code>\</code>を<code>￥</code>に読み替えてください。</p>
 <p>「cd 」と、cdの後の半角スペースまで入力してから、エクスプローラからドラッグすると間違えなくて済みます。</p>
 <div class="article-img">
@@ -320,8 +323,8 @@
 </div>
 
 <p>これで、ゲームをダウンロードした場所で作業している事になるので、以下のコマンドを実行してください。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">akashic-sandbox
-</code></pre></div><p>実行すると下図の表示が出ています。 <code>localhost</code> の <code>3000</code> 番ポートでこのゲーム用のサーバを起動したので、 <code>http://localhost:3000</code> にブラウザでアクセスしてください、という趣旨のメッセージが表示されています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>akashic-sandbox
+</span></span></code></pre></div><p>実行すると下図の表示が出ています。 <code>localhost</code> の <code>3000</code> 番ポートでこのゲーム用のサーバを起動したので、 <code>http://localhost:3000</code> にブラウザでアクセスしてください、という趣旨のメッセージが表示されています。</p>
 <div class="article-img">
   
   <img src="https://dwango.github.io/images/akashic-content1/akashic-sandbox-launched.png" alt="Akashic Sandboxの起動"  />
@@ -465,7 +468,7 @@
     </div>
 
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

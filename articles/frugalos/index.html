@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.87.0" />
+  <meta name="generator" content="Hugo 0.122.0">
 
   <meta property="og:title" content="Rust製の分散オブジェクトストレージをOSSとして公開しました - dwango on GitHub">
 
@@ -16,6 +16,9 @@
   <meta name="twitter:card" content="summary">
   
 
+
+  
+  
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -108,14 +111,14 @@
 <p>&ldquo;<strong>Frugal</strong> <strong>o</strong>bject <strong>s</strong>torage&quot;の略です。</p>
 <p>&ldquo;frugal&quot;は日本語では「倹約な」や「節約する」といった意味となり、「読み書き性能を犠牲にせずに、膨大な数のBLOB（<strong>B</strong>inary <strong>L</strong>arge <strong>OB</strong>ject）を、<strong>容量効率良く</strong>保持する」ことを目指して開発されている<a href="https://ja.wikipedia.org/wiki/%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8">オブジェクトストレージ</a>です。</p>
 <p>提供されている機能はシンプルで、利用者は通常、以下の三つのHTTP APIを通してFrugalosを操作することになります:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># オブジェクトの新規保存・上書き</span>
-$ curl -X PUT -d <span style="color:#f92672">{</span>データ<span style="color:#f92672">}</span> http://localhost/v1/buckets/<span style="color:#f92672">{</span>バケツID<span style="color:#f92672">}</span>/objects/<span style="color:#f92672">{</span>オブジェクトID<span style="color:#f92672">}</span>
-
-<span style="color:#75715e"># オブジェクトの取得</span>
-$ curl -X GET http://localhost/v1/buckets/<span style="color:#f92672">{</span>バケツID<span style="color:#f92672">}</span>/objects/<span style="color:#f92672">{</span>オブジェクトID<span style="color:#f92672">}</span>
-
-<span style="color:#75715e"># オブジェクトの削除</span>
-$ curl -X DELETE http://localhost/v1/buckets/<span style="color:#f92672">{</span>バケツID<span style="color:#f92672">}</span>/objects/<span style="color:#f92672">{</span>オブジェクトID<span style="color:#f92672">}</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># オブジェクトの新規保存・上書き</span>
+</span></span><span style="display:flex;"><span>$ curl -X PUT -d <span style="color:#f92672">{</span>データ<span style="color:#f92672">}</span> http://localhost/v1/buckets/<span style="color:#f92672">{</span>バケツID<span style="color:#f92672">}</span>/objects/<span style="color:#f92672">{</span>オブジェクトID<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># オブジェクトの取得</span>
+</span></span><span style="display:flex;"><span>$ curl -X GET http://localhost/v1/buckets/<span style="color:#f92672">{</span>バケツID<span style="color:#f92672">}</span>/objects/<span style="color:#f92672">{</span>オブジェクトID<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># オブジェクトの削除</span>
+</span></span><span style="display:flex;"><span>$ curl -X DELETE http://localhost/v1/buckets/<span style="color:#f92672">{</span>バケツID<span style="color:#f92672">}</span>/objects/<span style="color:#f92672">{</span>オブジェクトID<span style="color:#f92672">}</span></span></span></code></pre></div>
 <p><small>※&ldquo;バケツ&quot;はオブジェクト群の管理単位で、事前に生成しておく必要があります</small> <br />
 <small>※その他の利用可能なAPIに関しては<a href="https://github.com/frugalos/frugalos/wiki/REST-API">Wiki</a>を参照してください</small></p>
 <h2 id="どこで使われているの">どこで使われているの？</h2>
@@ -517,7 +520,7 @@ frugalosプロセスのメモリ使用量が山のような形状を取って推
     </div>
 
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

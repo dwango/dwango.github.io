@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.87.0" />
+  <meta name="generator" content="Hugo 0.122.0">
 
   <meta property="og:title" content="実験放送の構成 - コメント編 - dwango on GitHub">
 
@@ -16,6 +16,9 @@
   <meta name="twitter:card" content="summary">
   
 
+
+  
+  
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -201,29 +204,29 @@
 </table>
 <p><code>programId</code> の部分に <code>lvXXXXX</code> の情報を入れれば、スレッド情報を取得することが出来ます。</p>
 <p>以下が本APIで得られる値のサンプルです。</p>
-<pre><code>{
-  &quot;meta&quot;: {
-    &quot;status&quot;: 200
+<pre tabindex="0"><code>{
+  &#34;meta&#34;: {
+    &#34;status&#34;: 200
   },
-  &quot;data&quot;: {
-    &quot;messageServer&quot;: {
-      &quot;wss&quot;: &quot;wss://example.nmsg.jp:1234/websocket&quot;,
-      &quot;ws&quot;: &quot;ws://example.nmsg.jp:5678/websocket&quot;,
-      &quot;https&quot;: &quot;https://example.nmsg.jp:2345/api&quot;,
-      &quot;http&quot;: &quot;http://example.nmsg.jp:6789/api&quot;,
-      &quot;version&quot;: 20061206,
-      &quot;service&quot;: &quot;LIVE&quot;,
-      &quot;url&quot;: &quot;xmlsocket://example.nmsg.jp:2525&quot;,
-      &quot;protocolVersion&quot;: 20061206
+  &#34;data&#34;: {
+    &#34;messageServer&#34;: {
+      &#34;wss&#34;: &#34;wss://example.nmsg.jp:1234/websocket&#34;,
+      &#34;ws&#34;: &#34;ws://example.nmsg.jp:5678/websocket&#34;,
+      &#34;https&#34;: &#34;https://example.nmsg.jp:2345/api&#34;,
+      &#34;http&#34;: &#34;http://example.nmsg.jp:6789/api&#34;,
+      &#34;version&#34;: 20061206,
+      &#34;service&#34;: &#34;LIVE&#34;,
+      &#34;url&#34;: &#34;xmlsocket://example.nmsg.jp:2525&#34;,
+      &#34;protocolVersion&#34;: 20061206
     },
-    &quot;threads&quot;: {
-      &quot;chat&quot;: &quot;NXlv12345&quot;,
-      &quot;control&quot;: &quot;NXlv12345x&quot;,
-      &quot;store&quot;: &quot;NXlv12345store&quot;,
-      &quot;keys&quot;: {
-        &quot;chatThreadKey&quot;: &quot;1584332150.~1~h7Gc1VE1uNEP5bc_Btk_019Y-ABCDEFG123456&quot;,
-        &quot;controlThreadKey&quot;: &quot;1584332150.~1~h7Gc1VE1uNEP5bc_Btk_019Y-ABCDEFG123456&quot;,
-        &quot;storeThreadKey&quot;: &quot;1584332150.~1~h7Gc1VE1uNEP5bc_Btk_019Y-ABCDEFG123456&quot;
+    &#34;threads&#34;: {
+      &#34;chat&#34;: &#34;NXlv12345&#34;,
+      &#34;control&#34;: &#34;NXlv12345x&#34;,
+      &#34;store&#34;: &#34;NXlv12345store&#34;,
+      &#34;keys&#34;: {
+        &#34;chatThreadKey&#34;: &#34;1584332150.~1~h7Gc1VE1uNEP5bc_Btk_019Y-ABCDEFG123456&#34;,
+        &#34;controlThreadKey&#34;: &#34;1584332150.~1~h7Gc1VE1uNEP5bc_Btk_019Y-ABCDEFG123456&#34;,
+        &#34;storeThreadKey&#34;: &#34;1584332150.~1~h7Gc1VE1uNEP5bc_Btk_019Y-ABCDEFG123456&#34;
       }
     }
   }
@@ -269,10 +272,10 @@
 </tbody>
 </table>
 <p>リクエストBODYには、JSONで以下のような内容を入力する必要があります。</p>
-<pre><code>{
-  &quot;message&quot;: &quot;あいうえお&quot;,
-  &quot;command&quot;: &quot;184 ue red&quot;,
-  &quot;vpos&quot;: &quot;0&quot;
+<pre tabindex="0"><code>{
+  &#34;message&#34;: &#34;あいうえお&#34;,
+  &#34;command&#34;: &#34;184 ue red&#34;,
+  &#34;vpos&#34;: &#34;0&#34;
 }
 </code></pre><p><code>message</code> にはコメント本文を格納し、 <code>command</code> には各種コマンドを格納してください。</p>
 <p><code>vpos</code> はそのコメントの位置です。これも従来のものと同様の仕様になっています。</p>
@@ -364,7 +367,7 @@
     </div>
 
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

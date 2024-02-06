@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.87.0" />
+  <meta name="generator" content="Hugo 0.122.0">
 
   <meta property="og:title" content="Service WorkerとCache APIによるWebサーバーの負荷軽減とテスト実装について-前編 - dwango on GitHub">
 
@@ -16,6 +16,9 @@
   <meta name="twitter:card" content="summary">
   
 
+
+  
+  
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -190,8 +193,8 @@ Webサーバーからのレスポンスを一定期間保存し、キャッシ�
 </p>
 <h4 id="今日日おおよそのブラウザhttpscaniusecomserviceworkersでサポートされていること">今日日、<a href="https://caniuse.com/serviceworkers">おおよそのブラウザ</a>でサポートされていること</h4>
 <p>仮にユーザーが<code>Service Worker</code>をサポートしていないブラウザを使用している場合でも</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">if</span>(<span style="color:#e6db74">&#39;serviceWorker&#39;</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">navigator</span> <span style="color:#f92672">===</span> <span style="color:#66d9ef">false</span>) <span style="color:#66d9ef">return</span>
-</code></pre></div><p>のようなチェックを挟むことで登録に際してエラーが起きることは無いですし、
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(<span style="color:#e6db74">&#39;serviceWorker&#39;</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">navigator</span> <span style="color:#f92672">===</span> <span style="color:#66d9ef">false</span>) <span style="color:#66d9ef">return</span>
+</span></span></code></pre></div><p>のようなチェックを挟むことで登録に際してエラーが起きることは無いですし、
 そもそもそのブラウザを利用しているのはかなり稀なケースであると言えるので、ここをカバーすることは意識しないこととしました。</p>
 <h4 id="service-workerスクリプトの更新に関して"><code>Service Worker</code>スクリプトの更新に関して</h4>
 <p>メインのスクリプトと同じく、<code>Service Worker</code>スクリプトの実装に変更を追加してデプロイするとなった際に、こちらの中身も同時に更新されることが期待されます。</p>
@@ -207,10 +210,10 @@ Webサーバーからのレスポンスを一定期間保存し、キャッシ�
 <li><a href="https://nhiroki.jp/2018/02/15/service-worker-install-and-update-scripts#%E6%96%B0%E3%81%97%E3%81%84-service-worker-%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%81%8C%E5%AE%9F%E9%9A%9B%E3%81%AB%E4%BD%BF%E3%82%8F%E3%82%8C%E3%82%8B%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0">新しい Service Worker スクリプトが実際に使われるタイミング</a></li>
 </ul>
 <p>さらに、ユーザーがタブを開いたままでもスクリプトの更新があった際にリロードしたら確実に更新してほしい場合、<code>activate</code>イベントへ遷移させるため、<code>install</code>イベント内に下記のコードを実装します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;install&#39;</span>, (<span style="color:#a6e22e">event</span>) <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">waitUntil</span>(<span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">skipWaiting</span>());
-});
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;install&#39;</span>, (<span style="color:#a6e22e">event</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">waitUntil</span>(<span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">skipWaiting</span>());
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><ul>
 <li><a href="https://nhiroki.jp/2015/07/05/service-worker-registration#registration-%E3%81%A8-serviceworker-%E3%81%AE%E7%8A%B6%E6%85%8B%E9%81%B7%E7%A7%BB">Registration と ServiceWorker の状態遷移</a></li>
 </ul>
 <h4 id="cachestorageの更新に関して">CacheStorageの更新に関して</h4>
@@ -218,25 +221,25 @@ Webサーバーからのレスポンスを一定期間保存し、キャッシ�
 こちらはビルド時のタイムスタンプを文字列の接尾辞として一意の値となるようにすることで、常に<code>最新のcacheName</code>を参照しながら動作するようにしました。</p>
 <p>デプロイによって<code>cacheName</code>が更新された際、ユーザーの操作するブラウザの<a href="https://developer.mozilla.org/ja/docs/Web/API/CacheStorage">CacheStorage</a>に<code>更新前のcacheName</code>に紐づくキャッシュが残っている可能性があり、もう参照されないデータであるので確実に消去したいです。
 こちらは<code>Service Worker</code>の<code>activate</code>イベント内にて、<code>更新前のcacheName</code>に紐づくキャッシュ削除処理を実装しつつ、ページコントロールを有効にします。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;activate&#39;</span>, (<span style="color:#a6e22e">event</span>) <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cachesToKeep</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;prefix/${BUILD_TIME_TIMESTAMP}&#39;</span>];
-  <span style="color:#75715e">// 更新前のcacheNameに紐ずくキャッシュ削除処理
-</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">waitUntil</span>(
-    <span style="color:#a6e22e">caches</span>.<span style="color:#a6e22e">keys</span>().<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">keyList</span>) <span style="color:#f92672">=&gt;</span>
-      <span style="color:#a6e22e">Promise</span>.<span style="color:#a6e22e">all</span>(
-        <span style="color:#a6e22e">keyList</span>.<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">key</span>) <span style="color:#f92672">=&gt;</span> {
-          <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">cachesToKeep</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#a6e22e">key</span>)) {
-            <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">caches</span>.<span style="color:#66d9ef">delete</span>(<span style="color:#a6e22e">key</span>);
-          }
-        })
-      )
-    )
-  );
-
-  <span style="color:#75715e">// ページコントロールを有効にする
-</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">waitUntil</span>(<span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">clients</span>.<span style="color:#a6e22e">claim</span>());
-});
-</code></pre></div><p>つまるところ、「ユーザーがタブを開きっぱなしでもリロードがあれば最新スクリプトに入れ替える」および「最新スクリプトに入れ替わった際、古いキャッシュを削除する」を期待する場合、
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;activate&#39;</span>, (<span style="color:#a6e22e">event</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cachesToKeep</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;prefix/${BUILD_TIME_TIMESTAMP}&#39;</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 更新前のcacheNameに紐ずくキャッシュ削除処理
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">waitUntil</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">caches</span>.<span style="color:#a6e22e">keys</span>().<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">keyList</span>) <span style="color:#f92672">=&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">Promise</span>.<span style="color:#a6e22e">all</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">keyList</span>.<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">key</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">cachesToKeep</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#a6e22e">key</span>)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">caches</span>.<span style="color:#66d9ef">delete</span>(<span style="color:#a6e22e">key</span>);
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>      )
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ページコントロールを有効にする
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">waitUntil</span>(<span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">clients</span>.<span style="color:#a6e22e">claim</span>());
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>つまるところ、「ユーザーがタブを開きっぱなしでもリロードがあれば最新スクリプトに入れ替える」および「最新スクリプトに入れ替わった際、古いキャッシュを削除する」を期待する場合、
 <strong>installイベント内の記述</strong>と<strong>activateイベント内の記述</strong>は双方揃って初めて機能することとなります。</p>
 <ul>
 <li><a href="https://nhiroki.jp/2015/04/18/service-worker-claim#%E3%81%BE%E3%81%A0%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E7%8A%B6%E6%85%8B%E3%81%AB%E3%81%99%E3%82%8B">Service Worker の claim()</a></li>
@@ -334,7 +337,7 @@ Webサーバーからのレスポンスを一定期間保存し、キャッシ�
     </div>
 
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

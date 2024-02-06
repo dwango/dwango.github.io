@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.87.0" />
+  <meta name="generator" content="Hugo 0.122.0">
 
   <meta property="og:title" content="GLTFについて - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -113,8 +113,8 @@ VRMはglTF2.0をベースとしたフォーマットとなっています。</p>
 <li>マテリアル(PBR)</li>
 <li>シーン</li>
 <li>アニメーション<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></li>
-<li>カメラ<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></li>
-<li>光源<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></li>
+<li>カメラ<sup id="fnref1:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></li>
+<li>光源<sup id="fnref2:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></li>
 </ul>
 <p>3Dのシーン全体を記録できます。</p>
 <ul>
@@ -194,85 +194,85 @@ glb形式ではJSON部とバイナリ部をひとつのファイルにまとめ�
 </tbody>
 </table>
 <h2 id="python3によるパース例">python3によるパース例</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> struct
-<span style="color:#f92672">import</span> json
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Reader</span>:
-    <span style="color:#66d9ef">def</span> __init__(self, data: bytes)<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">None</span>:
-        self<span style="color:#f92672">.</span>data <span style="color:#f92672">=</span> data
-        self<span style="color:#f92672">.</span>pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">read_str</span>(self, size):
-        result <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>data[self<span style="color:#f92672">.</span>pos: self<span style="color:#f92672">.</span>pos <span style="color:#f92672">+</span> size]
-        self<span style="color:#f92672">.</span>pos <span style="color:#f92672">+=</span> size
-        <span style="color:#66d9ef">return</span> result<span style="color:#f92672">.</span>strip()
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">read</span>(self, size):
-        result <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>data[self<span style="color:#f92672">.</span>pos: self<span style="color:#f92672">.</span>pos <span style="color:#f92672">+</span> size]
-        self<span style="color:#f92672">.</span>pos <span style="color:#f92672">+=</span> size
-        <span style="color:#66d9ef">return</span> result
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">read_uint</span>(self):
-        result <span style="color:#f92672">=</span> struct<span style="color:#f92672">.</span>unpack(<span style="color:#e6db74">&#39;I&#39;</span>, self<span style="color:#f92672">.</span>data[self<span style="color:#f92672">.</span>pos:self<span style="color:#f92672">.</span>pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">4</span>])[<span style="color:#ae81ff">0</span>]
-        self<span style="color:#f92672">.</span>pos <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4</span>
-        <span style="color:#66d9ef">return</span> result
-
-
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">parse_glb</span>(data: bytes):
-    reader <span style="color:#f92672">=</span> Reader(data)
-    magic <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span>read_str(<span style="color:#ae81ff">4</span>)
-    <span style="color:#66d9ef">if</span>  magic <span style="color:#f92672">!=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;glTF&#39;</span>:
-        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;magic not found: #</span><span style="color:#e6db74">{</span>magic<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
-
-    version <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span>read_uint()
-    <span style="color:#66d9ef">if</span> version <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span>:
-        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;version:#</span><span style="color:#e6db74">{</span>version<span style="color:#e6db74">}</span><span style="color:#e6db74"> is not 2&#39;</span>)
-
-    size <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span>read_uint()
-    size <span style="color:#f92672">-=</span> <span style="color:#ae81ff">12</span>
-
-    json_str <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
-    body <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
-    <span style="color:#66d9ef">while</span> size <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
-        <span style="color:#75715e">#print(size)</span>
-
-        chunk_size <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span>read_uint()
-        size <span style="color:#f92672">-=</span> <span style="color:#ae81ff">4</span>
-
-        chunk_type <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span>read_str(<span style="color:#ae81ff">4</span>)
-        size <span style="color:#f92672">-=</span> <span style="color:#ae81ff">4</span>
-
-        chunk_data <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span>read(chunk_size)
-        size <span style="color:#f92672">-=</span> chunk_size
-
-        <span style="color:#66d9ef">if</span> chunk_type <span style="color:#f92672">==</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;BIN</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#39;</span>:
-            body <span style="color:#f92672">=</span> chunk_data
-        <span style="color:#66d9ef">elif</span> chunk_type <span style="color:#f92672">==</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;JSON&#39;</span>:
-            json_str <span style="color:#f92672">=</span> chunk_data
-        <span style="color:#66d9ef">else</span>:
-            <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;unknown chunk_type: </span><span style="color:#e6db74">{</span>chunk_type<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
-
-    <span style="color:#66d9ef">return</span> json<span style="color:#f92672">.</span>loads(json_str), body
-
-
-<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;AliciaSolid.vrm&#39;</span>, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> f:
-    parsed, body <span style="color:#f92672">=</span> parse_glb(f<span style="color:#f92672">.</span>read())</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> struct
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Reader</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, data: bytes)<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>data <span style="color:#f92672">=</span> data
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">read_str</span>(self, size):
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>data[self<span style="color:#f92672">.</span>pos: self<span style="color:#f92672">.</span>pos <span style="color:#f92672">+</span> size]
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>pos <span style="color:#f92672">+=</span> size
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> result<span style="color:#f92672">.</span>strip()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">read</span>(self, size):
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>data[self<span style="color:#f92672">.</span>pos: self<span style="color:#f92672">.</span>pos <span style="color:#f92672">+</span> size]
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>pos <span style="color:#f92672">+=</span> size
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> result
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">read_uint</span>(self):
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> struct<span style="color:#f92672">.</span>unpack(<span style="color:#e6db74">&#39;I&#39;</span>, self<span style="color:#f92672">.</span>data[self<span style="color:#f92672">.</span>pos:self<span style="color:#f92672">.</span>pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">4</span>])[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>pos <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> result
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">parse_glb</span>(data: bytes):
+</span></span><span style="display:flex;"><span>    reader <span style="color:#f92672">=</span> Reader(data)
+</span></span><span style="display:flex;"><span>    magic <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span>read_str(<span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>  magic <span style="color:#f92672">!=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;glTF&#39;</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;magic not found: #</span><span style="color:#e6db74">{</span>magic<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    version <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span>read_uint()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> version <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;version:#</span><span style="color:#e6db74">{</span>version<span style="color:#e6db74">}</span><span style="color:#e6db74"> is not 2&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    size <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span>read_uint()
+</span></span><span style="display:flex;"><span>    size <span style="color:#f92672">-=</span> <span style="color:#ae81ff">12</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    json_str <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>    body <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> size <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#print(size)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        chunk_size <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span>read_uint()
+</span></span><span style="display:flex;"><span>        size <span style="color:#f92672">-=</span> <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        chunk_type <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span>read_str(<span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>        size <span style="color:#f92672">-=</span> <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        chunk_data <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span>read(chunk_size)
+</span></span><span style="display:flex;"><span>        size <span style="color:#f92672">-=</span> chunk_size
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> chunk_type <span style="color:#f92672">==</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;BIN</span><span style="color:#ae81ff">\x00</span><span style="color:#e6db74">&#39;</span>:
+</span></span><span style="display:flex;"><span>            body <span style="color:#f92672">=</span> chunk_data
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">elif</span> chunk_type <span style="color:#f92672">==</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;JSON&#39;</span>:
+</span></span><span style="display:flex;"><span>            json_str <span style="color:#f92672">=</span> chunk_data
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;unknown chunk_type: </span><span style="color:#e6db74">{</span>chunk_type<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> json<span style="color:#f92672">.</span>loads(json_str), body
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;AliciaSolid.vrm&#39;</span>, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>    parsed, body <span style="color:#f92672">=</span> parse_glb(f<span style="color:#f92672">.</span>read())</span></span></code></pre></div>
 <h1 id="vrmによる拡張情報">VRMによる拡張情報</h1>
 <p>JSONの<code>json['extensions']['VRM']</code>以下に格納されています。</p>
 <ul>
 <li><a href="../vrm_spec/">VRM仕様</a></li>
 </ul>
-<section class="footnotes" role="doc-endnotes">
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
-<p>VRMではサポートしていません&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:1">
+<p>VRMではサポートしていません&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref2:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:2" role="doc-endnote">
+<li id="fn:2">
 <p>VRMではglbを採用しています。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
 
     </article>
   </div>
@@ -286,7 +286,7 @@ glb形式ではJSON部とバイナリ部をひとつのファイルにまとめ�
     </div>
 
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

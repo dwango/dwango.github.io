@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.87.0" />
+  <meta name="generator" content="Hugo 0.122.0">
 
   <meta property="og:title" content="Sass製SVG爆速表示ライブラリのご紹介 - dwango on GitHub">
 
@@ -16,6 +16,9 @@
   <meta name="twitter:card" content="summary">
   
 
+
+  
+  
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -81,27 +84,27 @@
 <p><a href="https://github.com/gilbarbara/react-inlinesvg">react-inlinesvg</a>は<code>&lt;img&gt;</code>のように<code>src</code>にURLを渡して表示するタイプのライブラリです。
 SVG要素がDOMに展開されるため、CSSからスタイルを適用できます。</p>
 <p><a href="https://github.com/gilbarbara/react-inlinesvg">react-inlinesvg</a>のREADMEに書いてある使用例。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;react&#39;</span>;
-<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">SVG</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;react-inlinesvg&#39;</span>;
-
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">App() {</span>
-  <span style="color:#66d9ef">return</span> (
-    &lt;<span style="color:#f92672">main</span>&gt;
-      &lt;<span style="color:#f92672">SVG</span>
-        <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.svgporn.com/logos/react.svg&#34;</span>
-        <span style="color:#a6e22e">width</span><span style="color:#f92672">=</span>{<span style="color:#ae81ff">128</span>}
-        <span style="color:#a6e22e">height</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;auto&#34;</span>
-        <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;React&#34;</span>
-      /&gt;
-    &lt;/<span style="color:#f92672">main</span>&gt;
-  );
-}
-</code></pre></div><p>実際の実装ではSVG名で簡単に使えるように、<a href="https://github.com/gilbarbara/react-inlinesvg">react-inlinesvg</a>をラップしたコンポーネントを生成できるようにしていました。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createSvgComponent</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nicolive/react-svg&#34;</span>;
-
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">CheckIcon</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createSvgComponent</span>(<span style="color:#e6db74">&#34;CheckIcon&#34;</span>);
-<span style="color:#75715e">// &lt;CheckIcon /&gt;
-</span></code></pre></div><p>しかし、ニコニコ生放送では開発が進むに連れて複雑な表示要件が多くなり、既存の作り方ではSVG周りで面倒に感じる場面が多くなってきました。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;react&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">SVG</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;react-inlinesvg&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">App() {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">main</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">SVG</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.svgporn.com/logos/react.svg&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">width</span><span style="color:#f92672">=</span>{<span style="color:#ae81ff">128</span>}
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">height</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;auto&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;React&#34;</span>
+</span></span><span style="display:flex;"><span>      /&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">main</span>&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>実際の実装ではSVG名で簡単に使えるように、<a href="https://github.com/gilbarbara/react-inlinesvg">react-inlinesvg</a>をラップしたコンポーネントを生成できるようにしていました。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createSvgComponent</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nicolive/react-svg&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">CheckIcon</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createSvgComponent</span>(<span style="color:#e6db74">&#34;CheckIcon&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// &lt;CheckIcon /&gt;
+</span></span></span></code></pre></div><p>しかし、ニコニコ生放送では開発が進むに連れて複雑な表示要件が多くなり、既存の作り方ではSVG周りで面倒に感じる場面が多くなってきました。</p>
 <ul>
 <li>状態によって数種類のアイコンが切り替わる場合</li>
 <li>深い位置のアイコンの部分だけ違うコンポーネントをいくつも用意したい場合</li>
@@ -194,39 +197,39 @@ SVG要素がDOMに展開されるため、CSSからスタイルを適用でき�
 <h3 id="smart-svgの使用感"><a href="https://github.com/misuken-now/smart-svg">smart-svg</a>の使用感</h3>
 <p><a href="https://github.com/misuken-now/smart-svg">smart-svg</a>はSassで完結しており、mixinを呼び出すだけでスマートにSVGを表示できます。
 Sassを入れればReactに限らずあらゆる場面で使用でき、パフォーマンスが非常に良く、スムーズに表示されます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#66d9ef">@use</span> <span style="color:#e6db74">&#34;smart-svg&#34;</span>;
-
-<span style="color:#75715e">// 元の色のSVG
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">.icon</span> {
-    <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> smart-svg</span><span style="color:#f92672">.</span><span style="color:#a6e22e">show</span>(<span style="color:#e6db74">&#34;https://cdn.svgporn.com/logos/react.svg&#34;</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">em</span>);
-}
-
-<span style="color:#75715e">// 任意の色のSVG
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">.color-icon</span> {
-    <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> smart-svg</span><span style="color:#f92672">.</span><span style="color:#a6e22e">show</span>(<span style="color:#e6db74">&#34;https://cdn.svgporn.com/logos/react.svg&#34;</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">em</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">red</span>);
-}
-
-<span style="color:#75715e">// 疑似要素へのSVG
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">.button</span> {
-    <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">::before</span> {
-        <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> smart-svg</span><span style="color:#f92672">.</span><span style="color:#a6e22e">show-with-pseudo</span>(<span style="color:#e6db74">&#34;https://cdn.svgporn.com/logos/react.svg&#34;</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">em</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">blue</span>);
-    }
-}
-</code></pre></div><p>丸や四角の形状をサポートしているので、デザイナーが手薄なチームや個人開発ではより役立ちます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#66d9ef">@use</span> <span style="color:#e6db74">&#34;smart-svg&#34;</span>;
-
-<span style="color:#75715e">// 丸い形状のSVG
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">.circle-icon</span> {
-    <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> smart-svg</span><span style="color:#f92672">.</span><span style="color:#a6e22e">show-circle</span>(<span style="color:#e6db74">&#34;https://cdn.svgporn.com/logos/react.svg&#34;</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">em</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">silver</span>);
-}
-
-<span style="color:#75715e">// 四角い形状のSVG
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">.square-icon</span> {
-    <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> smart-svg</span><span style="color:#f92672">.</span><span style="color:#a6e22e">show-square</span>(<span style="color:#e6db74">&#34;https://cdn.svgporn.com/logos/react.svg&#34;</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">em</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">silver</span>);
-}
-
-<span style="color:#75715e">// 形状の追加は疑似要素に対応できないので、&lt;span&gt;や&lt;button&gt;要素に使用すると良いでしょう
-</span></code></pre></div><p><a href="https://github.com/misuken-now/smart-svg">smart-svg</a>はCSSが適用前のSVGが表示されるタイミングは存在しないため、レイアウトシフトの心配もありません。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scss" data-lang="scss"><span style="display:flex;"><span><span style="color:#66d9ef">@use</span> <span style="color:#e6db74">&#34;smart-svg&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 元の色のSVG
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">.icon</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> smart-svg</span><span style="color:#f92672">.</span><span style="color:#a6e22e">show</span>(<span style="color:#e6db74">&#34;https://cdn.svgporn.com/logos/react.svg&#34;</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">em</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 任意の色のSVG
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">.color-icon</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> smart-svg</span><span style="color:#f92672">.</span><span style="color:#a6e22e">show</span>(<span style="color:#e6db74">&#34;https://cdn.svgporn.com/logos/react.svg&#34;</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">em</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">red</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 疑似要素へのSVG
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">.button</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">::before</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> smart-svg</span><span style="color:#f92672">.</span><span style="color:#a6e22e">show-with-pseudo</span>(<span style="color:#e6db74">&#34;https://cdn.svgporn.com/logos/react.svg&#34;</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">em</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">blue</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>丸や四角の形状をサポートしているので、デザイナーが手薄なチームや個人開発ではより役立ちます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scss" data-lang="scss"><span style="display:flex;"><span><span style="color:#66d9ef">@use</span> <span style="color:#e6db74">&#34;smart-svg&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 丸い形状のSVG
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">.circle-icon</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> smart-svg</span><span style="color:#f92672">.</span><span style="color:#a6e22e">show-circle</span>(<span style="color:#e6db74">&#34;https://cdn.svgporn.com/logos/react.svg&#34;</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">em</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">silver</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 四角い形状のSVG
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">.square-icon</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> smart-svg</span><span style="color:#f92672">.</span><span style="color:#a6e22e">show-square</span>(<span style="color:#e6db74">&#34;https://cdn.svgporn.com/logos/react.svg&#34;</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">em</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">silver</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 形状の追加は疑似要素に対応できないので、&lt;span&gt;や&lt;button&gt;要素に使用すると良いでしょう
+</span></span></span></code></pre></div><p><a href="https://github.com/misuken-now/smart-svg">smart-svg</a>はCSSが適用前のSVGが表示されるタイミングは存在しないため、レイアウトシフトの心配もありません。</p>
 <h3 id="react-sass-inlinesvgの使用感"><a href="https://github.com/misuken-now/react-sass-inlinesvg">react-sass-inlinesvg</a>の使用感</h3>
 <p><a href="https://github.com/misuken-now/react-sass-inlinesvg">react-sass-inlinesvg</a>はReactとSassを連携して使用するため、最初に<a href="https://github.com/misuken-now/react-sass-inlinesvg#setup">簡単なセットアップ</a>を済ませる必要がありますが、
 セットアップでSVGのパスと名前をマッピングすることにより以下のメリットを得られます。(マッピング情報を自動生成するスクリプトを書くと、より便利になります)</p>
@@ -237,48 +240,48 @@ Sassを入れればReactに限らずあらゆる場面で使用でき、パフ�
 </ul>
 <p><a href="https://github.com/misuken-now/smart-svg">smart-svg</a>と同様にパフォーマンスも良いのでサクサク表示されます。</p>
 <p>使い方は簡単で、SassからもJSXからも使用したいSVGを指定できます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;react&#34;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">SVG</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;path/to/atoms/svg/Svg&#34;</span>;
-<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">classNames</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./example.module.scss&#34;</span>;
-
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Component</span> <span style="color:#f92672">=</span> (
-  &lt;<span style="color:#f92672">div</span>&gt;
-    &lt;<span style="color:#f92672">SVG</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">classNames</span>.<span style="color:#a6e22e">svg</span>} /&gt;
-    &lt;<span style="color:#f92672">SVG</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">classNames</span>.<span style="color:#a6e22e">svg</span>} <span style="color:#a6e22e">defaultName</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Sass&#34;</span> /&gt;
-    &lt;<span style="color:#f92672">SVG</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">classNames</span>.<span style="color:#a6e22e">svg</span>} /&gt;
-  &lt;/<span style="color:#f92672">div</span>&gt;
-);
-</code></pre></div><p>Sass側のインタフェースは<a href="https://github.com/misuken-now/smart-svg">smart-svg</a>とほぼ同じですが、URLではなくマッピングしたSVG名で指定します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#66d9ef">@use</span> <span style="color:#e6db74">&#34;path/to/atoms/svg&#34;</span>;
-
-<span style="color:#a6e22e">.svg</span> {
-    <span style="color:#75715e">// 最後の要素はReactのアイコン
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:first-child</span> {
-        <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> svg</span><span style="color:#f92672">.</span><span style="color:#a6e22e">show</span>(svg<span style="color:#f92672">.</span>$React<span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">em</span>) {
-            <span style="color:#75715e">// 必要であれば、ここにローディング中のスタイルを書けます
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> svg</span><span style="color:#f92672">.</span>placeholder;
-        }
-        <span style="color:#75715e">// ホバーのときにアイコンの色を変更
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:hover</span> {
-            <span style="color:#f92672">&gt;</span> <span style="color:#f92672">*</span> {
-              <span style="color:#a6e22e">fill</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">lime</span>;
-            }
-        }
-    }
-    <span style="color:#75715e">// &#34;Sass&#34;のアイコンを表示中の要素にサイズだけ指定
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">&amp;</span><span style="color:#f92672">[</span><span style="color:#f92672">data-svg-name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Sass&#34;</span><span style="color:#f92672">]</span> {
-        <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> svg</span><span style="color:#f92672">.</span><span style="color:#a6e22e">show</span>(null<span style="color:#f92672">,</span> <span style="color:#ae81ff">2</span><span style="color:#66d9ef">em</span>);
-    }
-    <span style="color:#75715e">// 最後の要素はSVGのアイコン
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:last-child</span> {
-        <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> svg</span><span style="color:#f92672">.</span><span style="color:#a6e22e">show</span>(svg<span style="color:#f92672">.</span>$Svg<span style="color:#f92672">,</span> <span style="color:#ae81ff">3</span><span style="color:#66d9ef">em</span>);
-        <span style="color:#75715e">// ホバーのときにアイコンを変更
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:hover</span> {
-            <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> svg</span><span style="color:#f92672">.</span><span style="color:#a6e22e">show</span>(svg<span style="color:#f92672">.</span>$Sass);
-        }
-    }
-}
-</code></pre></div><p><a href="https://github.com/misuken-now/react-sass-inlinesvg">react-sass-inlinesvg</a>は<a href="https://github.com/misuken-now/react-sass-inlinesvg#apisass">SassからSVGを不可視化する機能</a>も充実しており、条件によってSVGを使用しない場合に不可視化したり、要素自体を消すことも可能です。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;react&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">SVG</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;path/to/atoms/svg/Svg&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">classNames</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./example.module.scss&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Component</span> <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">SVG</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">classNames</span>.<span style="color:#a6e22e">svg</span>} /&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">SVG</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">classNames</span>.<span style="color:#a6e22e">svg</span>} <span style="color:#a6e22e">defaultName</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Sass&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">SVG</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">classNames</span>.<span style="color:#a6e22e">svg</span>} /&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><p>Sass側のインタフェースは<a href="https://github.com/misuken-now/smart-svg">smart-svg</a>とほぼ同じですが、URLではなくマッピングしたSVG名で指定します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scss" data-lang="scss"><span style="display:flex;"><span><span style="color:#66d9ef">@use</span> <span style="color:#e6db74">&#34;path/to/atoms/svg&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">.svg</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 最後の要素はReactのアイコン
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:first-child</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> svg</span><span style="color:#f92672">.</span><span style="color:#a6e22e">show</span>(svg<span style="color:#f92672">.</span>$React<span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">em</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 必要であれば、ここにローディング中のスタイルを書けます
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> svg</span><span style="color:#f92672">.</span>placeholder;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ホバーのときにアイコンの色を変更
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:hover</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&gt;</span> <span style="color:#f92672">*</span> {
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">fill</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">lime</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// &#34;Sass&#34;のアイコンを表示中の要素にサイズだけ指定
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">&amp;</span><span style="color:#f92672">[</span><span style="color:#f92672">data-svg-name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Sass&#34;</span><span style="color:#f92672">]</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> svg</span><span style="color:#f92672">.</span><span style="color:#a6e22e">show</span>(null<span style="color:#f92672">,</span> <span style="color:#ae81ff">2</span><span style="color:#66d9ef">em</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 最後の要素はSVGのアイコン
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:last-child</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> svg</span><span style="color:#f92672">.</span><span style="color:#a6e22e">show</span>(svg<span style="color:#f92672">.</span>$Svg<span style="color:#f92672">,</span> <span style="color:#ae81ff">3</span><span style="color:#66d9ef">em</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ホバーのときにアイコンを変更
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:hover</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> svg</span><span style="color:#f92672">.</span><span style="color:#a6e22e">show</span>(svg<span style="color:#f92672">.</span>$Sass);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><a href="https://github.com/misuken-now/react-sass-inlinesvg">react-sass-inlinesvg</a>は<a href="https://github.com/misuken-now/react-sass-inlinesvg#apisass">SassからSVGを不可視化する機能</a>も充実しており、条件によってSVGを使用しない場合に不可視化したり、要素自体を消すことも可能です。</p>
 <h2 id="工夫したポイント">工夫したポイント</h2>
 <p><a href="https://github.com/misuken-now/react-sass-inlinesvg">react-sass-inlinesvg</a>を完成させるためには様々な問題を乗り越える必要がありました。</p>
 <p>問題を乗り越えるために工夫したポイントを紹介します。</p>
@@ -359,30 +362,30 @@ Sassを入れればReactに限らずあらゆる場面で使用でき、パフ�
 <h3 id="疑似要素に対するanimationの制約">疑似要素に対するanimationの制約</h3>
 <p><a href="https://github.com/misuken-now/react-sass-inlinesvg">react-sass-inlinesvg</a>では、任意に指定されるanimationとの競合を避けるため、疑似要素に対してanimationを設定し、animationstartイベントを発生させています。しかし、Firefoxでは<code>animation-name</code>だけでなく、<code>content</code>も一緒に変更しないとイベントが発生しない罠もありました。</p>
 <p>結果、<a href="https://developer.mozilla.org/ja/docs/Web/API/Element/animationstart_event">animationstart</a>を発生させる部分の実装は以下のようになっています。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss">  <span style="color:#66d9ef">&amp;</span><span style="color:#f92672">[</span><span style="color:#f92672">data-svg-status</span><span style="color:#f92672">]</span><span style="color:#a6e22e">::before</span> {
-    <span style="color:#75715e">// NOTE: contentも変更しないとFirefoxではanimationstartが発生しません
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">content</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span>$svg-name<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>;
-    <span style="color:#75715e">// アニメーションはpaused指定されているので、長い時間に指定しても問題ありません。
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// 逆に短すぎると処理に負荷が掛かっているときにアニメーションがスキップされるので注意。
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">animation</span><span style="color:#f92672">:</span> svg_<span style="color:#e6db74">#{</span>$svg-name<span style="color:#e6db74">}</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">s</span> paused <span style="color:#66d9ef">!important</span>;
-  }
-</code></pre></div><h3 id="丸や四角など形状に対応">丸や四角など形状に対応</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scss" data-lang="scss"><span style="display:flex;"><span>  <span style="color:#66d9ef">&amp;</span><span style="color:#f92672">[</span><span style="color:#f92672">data-svg-status</span><span style="color:#f92672">]</span><span style="color:#a6e22e">::before</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// NOTE: contentも変更しないとFirefoxではanimationstartが発生しません
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">content</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span>$svg-name<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// アニメーションはpaused指定されているので、長い時間に指定しても問題ありません。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// 逆に短すぎると処理に負荷が掛かっているときにアニメーションがスキップされるので注意。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">animation</span><span style="color:#f92672">:</span> svg_<span style="color:#e6db74">#{</span>$svg-name<span style="color:#e6db74">}</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">s</span> paused <span style="color:#66d9ef">!important</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><h3 id="丸や四角など形状に対応">丸や四角など形状に対応</h3>
 <p>これは<a href="https://github.com/misuken-now/smart-svg">smart-svg</a>側で導入されたものを<a href="https://github.com/misuken-now/react-sass-inlinesvg">react-sass-inlinesvg</a>でも使えるように工夫したポイントです。</p>
 <p>当初、<a href="https://github.com/misuken-now/smart-svg">smart-svg</a>の実態はただのCSSなので、ライブラリ化は不必要と考えていました。</p>
 <p>SVGに色を付ける場合。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.svg</span> {
-    <span style="color:#a6e22e">background-color</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">#888</span>;
-    <span style="color:#a6e22e">mask-image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">url(&#39;&#39;)</span>;
-    <span style="color:#a6e22e">mask-repeat</span><span style="color:#f92672">:</span> no-repeat;
-    <span style="color:#a6e22e">mask-position</span><span style="color:#f92672">:</span> center;
-}
-</code></pre></div><p>SVG自体の色を使う場合。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.svg</span> {
-    <span style="color:#a6e22e">background-image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">url(&#39;&#39;)</span>;
-    <span style="color:#a6e22e">background-repeat</span><span style="color:#f92672">:</span> no-repeat;
-    <span style="color:#a6e22e">background-position</span><span style="color:#f92672">:</span> center;
-}
-</code></pre></div><p>しかし、以下に挙げるように様々な利用シーンを想定するとSassのmixin1つで書けたほうが便利なため、インタフェースを洗練したライブラリに仕上げました。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scss" data-lang="scss"><span style="display:flex;"><span><span style="color:#a6e22e">.svg</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">background-color</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">#888</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mask-image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">url(&#39;&#39;)</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mask-repeat</span><span style="color:#f92672">:</span> no-repeat;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mask-position</span><span style="color:#f92672">:</span> center;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>SVG自体の色を使う場合。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scss" data-lang="scss"><span style="display:flex;"><span><span style="color:#a6e22e">.svg</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">background-image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">url(&#39;&#39;)</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">background-repeat</span><span style="color:#f92672">:</span> no-repeat;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">background-position</span><span style="color:#f92672">:</span> center;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>しかし、以下に挙げるように様々な利用シーンを想定するとSassのmixin1つで書けたほうが便利なため、インタフェースを洗練したライブラリに仕上げました。</p>
 <ul>
 <li>表示パターンによって複数のプロパティを設定するのが面倒</li>
 <li><code>background-color</code>で<code>fill</code>相当になる点がわかりにくい</li>
@@ -602,7 +605,7 @@ CPU slowdown x4 にも関わらず、onload後の処理では長時間タスク�
     </div>
 
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

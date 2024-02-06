@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.87.0" />
+  <meta name="generator" content="Hugo 0.122.0">
 
   <meta property="og:title" content="Service WorkerとCache APIによるWebサーバーの負荷軽減とテスト実装について-後編 - dwango on GitHub">
 
@@ -16,6 +16,9 @@
   <meta name="twitter:card" content="summary">
   
 
+
+  
+  
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -186,38 +189,38 @@
 <h3 id="テストコードの実装例">テストコードの実装例</h3>
 <p>本件では<code>iframe</code>によるリソースの呼び出しによってブラウザに<code>Service Worker</code>がインストールされるというやや特殊な構成になっています。
 例えば「<code>CacheStorage</code>にキャッシュが存在するか」のようなテストコードを実装する際には下記コードのような前提を頭に入れておくことが必要になります。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">test</span>(<span style="color:#e6db74">&#39;caches.keys()から1つのcacheNameが返ることを期待する&#39;</span>, <span style="color:#66d9ef">async</span> ({ <span style="color:#a6e22e">page</span>, <span style="color:#a6e22e">context</span> }) <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">page</span>.<span style="color:#66d9ef">goto</span>(<span style="color:#e6db74">&#39;http://localhost:4000&#39;</span>);
-  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">waitForEvent</span>(<span style="color:#e6db74">&#39;serviceworker&#39;</span>);
-  <span style="color:#75715e">// Playwrightによって取得されるWorkerクラスで、オリジナルのWorkerGlobalScope.selfオブジェクトとは別物
-</span><span style="color:#75715e"></span>  <span style="color:#75715e">// https://playwright.dev/docs/api/class-worker
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">serviceWorker</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">serviceWorkers</span>()[<span style="color:#ae81ff">0</span>];
-
-  <span style="color:#75715e">// Service Workerがページコントロールするまで待機する（後述）
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">waitUntilServiceWorkerActivated</span>(<span style="color:#a6e22e">page</span>, <span style="color:#e6db74">&#39;data-test-id=myIframe&#39;</span>);
-
-  <span style="color:#75715e">// 2回目のリクエストを発生させてキャッシュを取得するためにリロードする
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">page</span>.<span style="color:#a6e22e">reload</span>();
-
-  <span style="color:#75715e">// Workerクラスにより評価されたlocalhost:8080のService WorkerスクリプトがCacheStorageのキーを返す
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cacheNamesBySW</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">serviceWorker</span>.<span style="color:#a6e22e">evaluate</span>(() <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">caches</span>.<span style="color:#a6e22e">keys</span>());
-
-  <span style="color:#75715e">// 1つのcacheNameが存在する
-</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">cacheNamesBySW</span>).<span style="color:#a6e22e">toHaveLength</span>(<span style="color:#ae81ff">1</span>);
-
-  <span style="color:#75715e">// 表示中のウィンドウ（タブ）であるlocalhost:4000のPageクラスにより評価されるwindow.cachesがCacheStorageのキーを返す
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cacheNamesByHostedPage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">page</span>.<span style="color:#a6e22e">evaluate</span>(() <span style="color:#f92672">=&gt;</span> window.<span style="color:#a6e22e">caches</span>.<span style="color:#a6e22e">keys</span>());
-
-  <span style="color:#75715e">// こちらでは配列が0で返るので下記は失敗する
-</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">cacheNamesByHostedPage</span>).<span style="color:#a6e22e">toHaveLength</span>(<span style="color:#ae81ff">1</span>);
-});
-</code></pre></div><h3 id="同一オリジンポリシー">同一オリジンポリシー</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#a6e22e">test</span>(<span style="color:#e6db74">&#39;caches.keys()から1つのcacheNameが返ることを期待する&#39;</span>, <span style="color:#66d9ef">async</span> ({ <span style="color:#a6e22e">page</span>, <span style="color:#a6e22e">context</span> }) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">page</span>.<span style="color:#66d9ef">goto</span>(<span style="color:#e6db74">&#39;http://localhost:4000&#39;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">waitForEvent</span>(<span style="color:#e6db74">&#39;serviceworker&#39;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Playwrightによって取得されるWorkerクラスで、オリジナルのWorkerGlobalScope.selfオブジェクトとは別物
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// https://playwright.dev/docs/api/class-worker
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">serviceWorker</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">serviceWorkers</span>()[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Service Workerがページコントロールするまで待機する（後述）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">waitUntilServiceWorkerActivated</span>(<span style="color:#a6e22e">page</span>, <span style="color:#e6db74">&#39;data-test-id=myIframe&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 2回目のリクエストを発生させてキャッシュを取得するためにリロードする
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">page</span>.<span style="color:#a6e22e">reload</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Workerクラスにより評価されたlocalhost:8080のService WorkerスクリプトがCacheStorageのキーを返す
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cacheNamesBySW</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">serviceWorker</span>.<span style="color:#a6e22e">evaluate</span>(() <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">caches</span>.<span style="color:#a6e22e">keys</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 1つのcacheNameが存在する
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">cacheNamesBySW</span>).<span style="color:#a6e22e">toHaveLength</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 表示中のウィンドウ（タブ）であるlocalhost:4000のPageクラスにより評価されるwindow.cachesがCacheStorageのキーを返す
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cacheNamesByHostedPage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">page</span>.<span style="color:#a6e22e">evaluate</span>(() <span style="color:#f92672">=&gt;</span> window.<span style="color:#a6e22e">caches</span>.<span style="color:#a6e22e">keys</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// こちらでは配列が0で返るので下記は失敗する
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">cacheNamesByHostedPage</span>).<span style="color:#a6e22e">toHaveLength</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h3 id="同一オリジンポリシー">同一オリジンポリシー</h3>
 <p>先ほどの<a href="#%E3%83%86%E3%82%B9%E3%83%88%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E5%AE%9F%E8%A3%85%E4%BE%8B">実装例</a>にて<code>window.caches.keys()</code>で<code>CacheStorage</code>から期待するキャッシュが返却されないのは、<br>
 <code>localhost:8080</code>の<code>Service Worker</code>によって<code>CacheStorage</code>に保存されたリソースは<code>localhost:4000</code>から参照することが出来ないという<a href="https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy">同一オリジンポリシー</a>に従った動作です。</p>
 <h3 id="workerクラス">Workerクラス</h3>
 <p>前述の<a href="https://playwright.dev/docs/api/class-worker">Worker</a>という<code>Playwright</code>が提供するクラスですが、こちらは<a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">Web Worker</a>をテストコードから操作可能にするクラスとなっています。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#a6e22e">serviceWorker</span>.<span style="color:#a6e22e">evaluate</span>(() <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">caches</span>.<span style="color:#a6e22e">keys</span>());
-</code></pre></div><p>上記のevaluate関数を実行すると第一引数は本件の場合<code>localhost:8080</code>の<code>Service Worker</code>のコンテキストによって評価されるスコープになっています。
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#a6e22e">serviceWorker</span>.<span style="color:#a6e22e">evaluate</span>(() <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">caches</span>.<span style="color:#a6e22e">keys</span>());
+</span></span></code></pre></div><p>上記のevaluate関数を実行すると第一引数は本件の場合<code>localhost:8080</code>の<code>Service Worker</code>のコンテキストによって評価されるスコープになっています。
 例えばそのスコープ中で<code>globalThis.self</code>は<a href="https://developer.mozilla.org/ja/docs/Web/API/ServiceWorkerGlobalScope">ServiceWorkerGlobalScope</a>を参照しており、<a href="https://developer.mozilla.org/ja/docs/Web/API/Web_Workers_API/Functions_and_classes_available_to_workers">Web Workerの仕様</a>に沿うように<code>window</code>などのオブジェクトを参照することは出来なくなっています。
 また、スコープ中で参照したい変数がある場合は<a href="https://playwright.dev/docs/evaluating#evaluation-argument">第二引数</a>に渡すこと、およびその諸条件をクリアしている場合によってのみ第一引数で取得することが可能になっていたりと注意が必要です。</p>
 <h3 id="ページコントロール">ページコントロール</h3>
@@ -241,31 +244,31 @@
 </ul>
 <p>このような事情によって、「<code>Service Worker</code>のページコントロールを待たずにアプリケーションは動くが、テストコードはページコントロールが完了してキャッシュが取得できるまで<code>CacheStorage</code>にアクセスして欲しくない」という実装がテストコードに求められることとなります。</p>
 <p><code>Playwright</code>のドキュメントでは<a href="https://playwright.dev/docs/service-workers-experimental#accessing-service-workers-and-waiting-for-activation">Service Workerのページコントロールを待機する実装例</a>が紹介されているので参考にしつつ、本件の仕様を加味すると下記のような実装により<code>iframe</code>で実行される<code>Service Worker</code>スクリプトのページコントロールを待機します。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Page</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@playwright/test&#39;</span>;
-
-<span style="color:#75715e">/**
-</span><span style="color:#75715e"> * Service Workerがページコントロールするまで待機する
-</span><span style="color:#75715e"> * @param page
-</span><span style="color:#75715e"> * @param selector
-</span><span style="color:#75715e"> * @returns
-</span><span style="color:#75715e"> */</span>
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">waitUntilServiceWorkerActivated</span>(
-  <span style="color:#a6e22e">page</span>: <span style="color:#66d9ef">Page</span>,
-  ...<span style="color:#a6e22e">selector</span>: <span style="color:#66d9ef">Parameters</span>&lt;<span style="color:#f92672">Page</span><span style="color:#960050;background-color:#1e0010">[&#39;$&#39;]</span>&gt;
-)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">void</span>&gt; {
-  <span style="color:#75715e">// localhost:8080のiframeへの参照を取得する
-</span><span style="color:#75715e"></span>  <span style="color:#75715e">// https://playwright.dev/docs/api/class-frame
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">elementHandle</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">page</span>.<span style="color:#a6e22e">$</span>(...<span style="color:#a6e22e">selector</span>)
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">frameHandle</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">elementHandle</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">contentFrame</span>();
-  <span style="color:#75715e">// ページコントロールを待機する
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">frameHandle</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">evaluate</span>(<span style="color:#66d9ef">async</span> () <span style="color:#f92672">=&gt;</span> {
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">registration</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> window.<span style="color:#a6e22e">navigator</span>.<span style="color:#a6e22e">serviceWorker</span>.<span style="color:#a6e22e">getRegistration</span>();
-    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">registration</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">active</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">state</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;activated&#39;</span>)
-      <span style="color:#66d9ef">return</span>;
-    <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Promise</span>(<span style="color:#a6e22e">res</span> <span style="color:#f92672">=&gt;</span> window.<span style="color:#a6e22e">navigator</span>.<span style="color:#a6e22e">serviceWorker</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;controllerchange&#39;</span>, <span style="color:#a6e22e">res</span>));
-  });
-}
-</code></pre></div><p>このようにテストコード内においてはページコントロールを待機することで、ページコントロールされていない初回のリクエストはそのまま通してしまい、リロードを挟むことにより2回目以降のリクエストは<code>Service Worker</code>をフックするのでキャッシュが取得できているという、実際のアプリケーションの動作と近しい仕様を再現できます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Page</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@playwright/test&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Service Workerがページコントロールするまで待機する
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param page
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param selector
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @returns
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">waitUntilServiceWorkerActivated</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">page</span>: <span style="color:#66d9ef">Page</span>,
+</span></span><span style="display:flex;"><span>  ...<span style="color:#a6e22e">selector</span>: <span style="color:#66d9ef">Parameters</span>&lt;<span style="color:#f92672">Page</span><span style="color:#960050;background-color:#1e0010">[&#39;$&#39;]</span>&gt;
+</span></span><span style="display:flex;"><span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">void</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// localhost:8080のiframeへの参照を取得する
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// https://playwright.dev/docs/api/class-frame
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">elementHandle</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">page</span>.<span style="color:#a6e22e">$</span>(...<span style="color:#a6e22e">selector</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">frameHandle</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">elementHandle</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">contentFrame</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ページコントロールを待機する
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">frameHandle</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">evaluate</span>(<span style="color:#66d9ef">async</span> () <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">registration</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> window.<span style="color:#a6e22e">navigator</span>.<span style="color:#a6e22e">serviceWorker</span>.<span style="color:#a6e22e">getRegistration</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">registration</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">active</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">state</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;activated&#39;</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Promise</span>(<span style="color:#a6e22e">res</span> <span style="color:#f92672">=&gt;</span> window.<span style="color:#a6e22e">navigator</span>.<span style="color:#a6e22e">serviceWorker</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;controllerchange&#39;</span>, <span style="color:#a6e22e">res</span>));
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>このようにテストコード内においてはページコントロールを待機することで、ページコントロールされていない初回のリクエストはそのまま通してしまい、リロードを挟むことにより2回目以降のリクエストは<code>Service Worker</code>をフックするのでキャッシュが取得できているという、実際のアプリケーションの動作と近しい仕様を再現できます。</p>
 <h2 id="実現出来なかったもの">実現出来なかったもの</h2>
 <p>以上のような前提を踏まえてテストコードの実装に関してはほぼ満足するものが実装出来たのですが、
 1つ実現出来なかったものとして「<code>Service Worker</code>のスクリプト自身が更新されたら〇〇する」のという振る舞いのテストについては、
@@ -354,7 +357,7 @@
     </div>
 
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

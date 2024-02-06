@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.87.0" />
+  <meta name="generator" content="Hugo 0.122.0">
 
   <meta property="og:title" content="ニコニコ生放送におけるdockerの活用事例 - dwango on GitHub">
 
@@ -16,6 +16,9 @@
   <meta name="twitter:card" content="summary">
   
 
+
+  
+  
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -120,9 +123,9 @@
 <h4 id="カーネルパラメータ">カーネルパラメータ</h4>
 <p>Docker機材にはカーネルパラメータのチューニングが必要でした。（未だに試行錯誤はしています）</p>
 <p>具体的に一部事例を紹介させていただくと、コンテナを多数建てるとホストマシンのARPキャッシュが溢れる事があったため、GCの閾値を上げています。</p>
-<pre><code>  &quot;net.ipv4.neigh.default.gc_thresh1&quot;: 4096
-  &quot;net.ipv4.neigh.default.gc_thresh2&quot;: 8192
-  &quot;net.ipv4.neigh.default.gc_thresh3&quot;: 8192
+<pre tabindex="0"><code>  &#34;net.ipv4.neigh.default.gc_thresh1&#34;: 4096
+  &#34;net.ipv4.neigh.default.gc_thresh2&#34;: 8192
+  &#34;net.ipv4.neigh.default.gc_thresh3&#34;: 8192
 </code></pre><h2 id="個人的な感想">個人的な感想</h2>
 <p>以下は個人的な感想です。</p>
 <h3 id="docker--swarm-使ってみてどうだった">Docker / Swarm 使ってみてどうだった？</h3>
@@ -192,7 +195,7 @@
     </div>
 
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
