@@ -6,8 +6,15 @@
     <description>Recent content on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 06 Feb 2024 16:12:09 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 19 Feb 2024 00:00:00 +0900</lastBuildDate>
     <atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ニコニコ動画のコード改善の歩み</title>
+      <link>https://dwango.github.io/articles/2024-02_nvcore_code/</link>
+      <pubDate>Mon, 19 Feb 2024 00:00:00 +0900</pubDate>
+      <guid>https://dwango.github.io/articles/2024-02_nvcore_code/</guid>
+      <description>はじめに こんにちは。ニコニコ動画開発の小池です。 私の所属するチームではニコニコ動画の動画サービスのサーバーサイドをメインに担当しております。</description>
+    </item>
     <item>
       <title>楕円曲線暗号方式の強度について</title>
       <link>https://dwango.github.io/articles/2024-02_security_level/</link>
