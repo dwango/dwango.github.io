@@ -6,8 +6,15 @@
     <description>Recent content in Articles on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 19 Feb 2024 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jul 2024 00:00:00 +0900</lastBuildDate>
     <atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ニコニコ動画 iOS アプリでの Xcode Cloud の活用</title>
+      <link>https://dwango.github.io/articles/2024-07_nicoiphone_xcode_cloud/</link>
+      <pubDate>Mon, 29 Jul 2024 00:00:00 +0900</pubDate>
+      <guid>https://dwango.github.io/articles/2024-07_nicoiphone_xcode_cloud/</guid>
+      <description>はじめに こんにちは。ニコニコ開発部で ニコニコ動画 iOS アプリ を開発している兎澤です。 ニコニコ動画 iOS アプリでは2023年末より Jenkins から Xcode Cloud への移行を</description>
+    </item>
     <item>
       <title>ニコニコ動画のコード改善の歩み</title>
       <link>https://dwango.github.io/articles/2024-02_nvcore_code/</link>
