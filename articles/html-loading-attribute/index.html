@@ -1,1 +1,370 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="ja" lang="ja" >
 
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.122.0">
+
+  <meta property="og:title" content="仕様と実装から読み解くHTMLのloading属性 - dwango on GitHub">
+
+  <meta property="og:description" content="ドワンゴ社内の様子や、文化、技術をご紹介します。" />
+
+  <meta property="og:image" content="https://dwango.github.io/images/html-loading-attribute/thumb.webp">
+
+  <meta name="twitter:card" content="summary">
+  
+
+
+  
+  
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>仕様と実装から読み解くHTMLのloading属性 - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> ニコニコ開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://blog.nnn.dev/"> 教育サービス開発者ブログ </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
+      
+        Copyright &copy; DWANGO Co., Ltd.
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+  <div class="post">
+    <time class="content-date" datetime="2023-11-06 12:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2023-11-06 Mon</time
+    >
+    <h1 class="article-title">仕様と実装から読み解くHTMLのloading属性</h1>
+
+    <div>
+      
+        <aside>
+          <h2>目次</h2>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#執筆の動機">執筆の動機</a></li>
+    <li><a href="#遅延読み込みの歴史">遅延読み込みの歴史</a></li>
+    <li><a href="#遅延読み込みがlcp高速化に及ぼしうる可能性について">遅延読み込みがLCP高速化に及ぼしうる可能性について</a></li>
+    <li><a href="#仕様">仕様</a></li>
+    <li><a href="#各ブラウザにおける実装">各ブラウザにおける実装</a>
+      <ul>
+        <li><a href="#blink">Blink</a></li>
+        <li><a href="#webkit">WebKit</a></li>
+        <li><a href="#gecko">Gecko</a></li>
+        <li><a href="#実装まとめ">実装まとめ</a></li>
+      </ul>
+    </li>
+    <li><a href="#実装からねらいを推測する">実装からねらいを推測する</a></li>
+    <li><a href="#適切な利用方法">適切な利用方法</a></li>
+    <li><a href="#ユースケースを紹介">ユースケースを紹介</a>
+      <ul>
+        <li><a href="#webフロントエンド実装に携わる開発者">Webフロントエンド実装に携わる開発者</a></li>
+        <li><a href="#uiライブラリやwebフレームワーク実装に携わる開発者">UIライブラリやWebフレームワーク実装に携わる開発者</a></li>
+      </ul>
+    </li>
+    <li><a href="#まとめ">まとめ</a></li>
+  </ul>
+</nav>
+        </aside>
+        <hr />
+      
+      <article id="content"><p>こんにちは。ニコニコQセクションのHajime-san(<a href="https://github.com/Hajime-san">GitHub</a>)です。</p>
+<p>本稿では、HTMLのloading属性の仕様とブラウザの実装を解いていきます。これにより、ブラウザからのコンテンツ配信の最適化を支える判断材料の1つとなれば幸いです。</p>
+<h2 id="執筆の動機">執筆の動機</h2>
+<p>筆者が開発に携わっているサービスである<a href="../2023-02_nicoaudition_sw-1">ニコニコオーディション</a>が間接的に利用している社内ファミリーサービスについて、ふと自分のスマートフォンで見てみたところページの初期表示に時間がかかるように感じました。
+オーディションシステムはiframe要素によって社内ファミリーサービスなどに専用のUIを埋め込むことが可能になっており、iframe要素のloading属性を用いた「遅延読み込み」（以下、遅延読み込みはloading属性によるもの）が効果的なのではないかと考えました。</p>
+<p>まずは、実際に<code>loading=&quot;lazy&quot;</code>を適用して読み込みが後回しにされるのかと確認しようとしたところ、遅延読み込みでない即時の読み込みとなり、直感に反するように思えたことが執筆の動機です。</p>
+<h2 id="遅延読み込みの歴史">遅延読み込みの歴史</h2>
+<p>本稿で取り扱うloading属性は、今日のモダンブラウザに実装されているものですが、その歴史はサードパーティーによるスクリプト実装が由来です。
+古くはjQueryプラグインなどで提供され、その内部実装がscrollイベントを監視するものから、<code>Intersection Observer API</code>による対象要素とビューポートの交差を監視する実装への移り変わりを経るなどがありました。</p>
+<p>その後、ブラウザでloading属性によりネイティブに遅延読み込みがサポートされるに至ったという経緯があります。</p>
+<h2 id="遅延読み込みがlcp高速化に及ぼしうる可能性について">遅延読み込みがLCP高速化に及ぼしうる可能性について</h2>
+<p>HTMLのimg要素に代表されるサブリソースは、詳細を簡略して記述すると、ブラウザがHTMLをパース中に当該サブリソースへHTTPリクエストを発行<sup id="ref1"><a href="#note1">[1]</a></sup>し、レンダリングまでを行うことを通常のフローと仮定します。
+この時、<code>loading=&quot;lazy&quot;</code>と指定することによる遅延読み込みは、前述のフローの実行に必要なクライアントの計算資源が節約可能になります。</p>
+<p>これにより、<a href="https://web.dev/articles/lcp/">Largest Contentful Paint</a> (以下、LCP)を高速化できる可能性があります。</p>
+<h2 id="仕様">仕様</h2>
+<p>遅延読み込みについて、まずはHTMLの<a href="https://html.spec.whatwg.org/commit-snapshots/ad94bbee3be952bb35f3536f358394a954544c0a/#lazy-loading-attributes">仕様</a>から見ていきます。
+簡潔に書かれており物量も多くないものの、その中で下記に重要な点を掻い摘んで取り上げます。</p>
+<ul>
+<li>loading属性の値は<code>lazy</code>と<code>eager</code>の2つで、<code>eager</code>はデフォルト値になっている
+<ul>
+<li>草稿段階では<code>auto</code><sup id="ref2"><a href="#note2">[2]</a></sup>という値も<a href="https://github.com/whatwg/html/pull/3752#discussion_r205147827">提案</a>されていたが、標準化には至っていない</li>
+</ul>
+</li>
+<li>要素の交差の監視にはJavaScriptに提供している<a href="https://www.w3.org/TR/2023/WD-intersection-observer-20230914/">Intersection Observer API</a>をブラウザが内部で実行する</li>
+<li><code>Intersection Observer API</code>には、<code>rootMargin</code>というビューポートから対象の要素への交差判定に加算される矩形領域をオプションとして指定できる引数がある<br>
+この値はブラウザの実装依存となり、フィンガープリンティングとならないような判断材料、例えばネットワークレイテンシーなどを判別して<code>rootMargin</code>の値を指定できる</li>
+</ul>
+<h2 id="各ブラウザにおける実装">各ブラウザにおける実装</h2>
+<p>先述の仕様について、<code>rootMargin</code>の値はブラウザの実装に依存することが、まさに冒頭の直感に反する挙動を引き起こしていたようです。この実装について把握すべく、モダンブラウザのレンダリングエンジンのソースコードを見ていきます。</p>
+<h3 id="blink">Blink</h3>
+<table>
+<thead>
+<tr>
+<th>要素名</th>
+<th>rootMargin</th>
+<th>主たる実装へのリンク</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>img</td>
+<td>ネットワークレイテンシーに応じて<code>1250px</code>から<code>8000px</code>の間で5段階に変容</td>
+<td><a href="https://source.chromium.org/chromium/chromium/src/+/refs/tags/114.0.5735.248:third_party/blink/renderer/core/frame/settings.json5;l=963-995">settings.json5</a><br/><a href="https://source.chromium.org/chromium/chromium/src/+/refs/tags/114.0.5735.248:third_party/blink/renderer/core/html/lazy_load_image_observer.cc">lazy_load_image_observer.cc</a></td>
+<td><a href="https://web.dev/articles/browser-level-image-lazy-loading/">Browser-level image lazy loading for the web</a></td>
+</tr>
+<tr>
+<td>iframe</td>
+<td>ネットワークレイテンシーに応じて<code>2500px</code>から<code>8000px</code>の間で5段階に変容</td>
+<td><a href="https://source.chromium.org/chromium/chromium/src/+/refs/tags/114.0.5735.248:third_party/blink/renderer/core/frame/settings.json5;l=929-961">settings.json5</a><br/><a href="https://source.chromium.org/chromium/chromium/src/+/refs/tags/114.0.5735.248:third_party/blink/renderer/core/html/lazy_load_frame_observer.cc">lazy_load_frame_observer.cc</a></td>
+<td><a href="https://web.dev/articles/iframe-lazy-loading/">It&rsquo;s time to lazy-load offscreen iframes!</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="webkit">WebKit</h3>
+<table>
+<thead>
+<tr>
+<th>要素名</th>
+<th>rootMargin</th>
+<th>主たる実装へのリンク</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>img</td>
+<td><code>100%</code><br/>px単位では<code>window.innerHeight</code>と同等</td>
+<td><a href="https://github.com/WebKit/WebKit/blob/releases/Apple/Safari-16.4-macOS-13.3/Source/WebCore/html/LazyLoadImageObserver.cpp">LazyLoadImageObserver.cpp</a></td>
+<td></td>
+</tr>
+<tr>
+<td>iframe</td>
+<td>なし</td>
+<td><a href="https://github.com/WebKit/WebKit/blob/releases/Apple/Safari-16.4-macOS-13.3/Source/WebCore/html/LazyLoadFrameObserver.cpp">LazyLoadFrameObserver.cpp</a></td>
+<td>WebKitにはQuirksという互換性を維持するための内部実装がある<br/><a href="https://github.com/WebKit/WebKit/pull/9560">既存Webサイトのiframeの遅延読み込みに影響が出たことへの対策の例</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="gecko">Gecko</h3>
+<table>
+<thead>
+<tr>
+<th>要素名</th>
+<th>rootMargin</th>
+<th>主たる実装へのリンク</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>img</td>
+<td><code>600px</code></td>
+<td><a href="https://hg.mozilla.org/mozilla-central/file/FIREFOX_BETA_117_BASE/modules/libpref/init/StaticPrefList.yaml#l2727">StaticPrefList.yaml</a><br/><a href="https://hg.mozilla.org/mozilla-central/file/FIREFOX_BETA_117_BASE/dom/base/DOMIntersectionObserver.cpp#l181">DOMIntersectionObserver.cpp</a></td>
+<td></td>
+</tr>
+<tr>
+<td>iframe</td>
+<td>-</td>
+<td>-</td>
+<td>実装は<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1622090">検討段階</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="実装まとめ">実装まとめ</h3>
+<p>各ブラウザが対象要素の遅延読み込み判定に用いる<code>Intersection Observer API</code>の<code>rootMargin</code>の値は、三者三様になっています。<br>
+また、遅延読み込みの処理自体にもブラウザに僅かながらオーバヘッドが発生することを見て取れます。</p>
+<h2 id="実装からねらいを推測する">実装からねらいを推測する</h2>
+<p>img要素に関して、どのブラウザ実装にも共通することは、<code>loading=&quot;lazy&quot;</code>として配置されている場合は、 <code>rootMargin</code>に正の値が指定されています。<br>
+すなわち、ビューポートの下端より下の位置から読み込みを開始するように実装されているということです。</p>
+<p>また、iframe要素に関してその特性に触れておきます。<br>
+iframe要素は指定されたURLをドキュメント内に配置する要素であり、iframe要素から更にサブリソースの読み込みが発生するケースは多いです。<br>
+これにより、iframe要素は通常、表示に時間のかかる可能性が高い要素と言えます。</p>
+<p>Blinkの実装は、クライアントのネットワークレイテンシーを判別して少し早い段階から読み込みを開始し、
+ビューポートに入った際には画像の表示を終えている状態にしたいという意図が<a href="https://web.dev/articles/browser-level-image-lazy-loading#distance-from-viewport_thresholds">こちらに書かれて</a>あります。<br>
+iframe要素の場合はimg要素より大きい<code>rootMargin</code>の値の設定が設定されているのが見受けられ、まさに先述のiframe要素の特性を考慮した実装でないかと考えられます。</p>
+<p>WebKitのiframe要素の実装では特に<code>rootMargin</code>の値が設定されておらず、ビューポートの下端は対象のiframe要素と交差したら読み込みが開始される実装になっています。
+明確な意図が記述された文書を見つけられなかったものの、これはiframe要素により発生するサブリソースの読み込みを、可能な限り抑制しようとしている、と受け取ることも不可能ではないと言えます。</p>
+<p>Geckoではimg要素の<code>rootMargin</code>の値を幾度か検証<sup id="ref3"><a href="#note3">[3]</a></sup>した後に、最終的に<code>600px</code>が適当であるという着地点に落ち着いたようです。</p>
+<h2 id="適切な利用方法">適切な利用方法</h2>
+<p>以前より遅延読み込みの利用に関しては、主に以下のようなセオリーが流布しており、本稿でも主張は変わりません。</p>
+<ul>
+<li>ページのAbove the fold<sup id="ref4"><a href="#note4">[4]</a></sup>に位置するものに関しては、LCPを悪化させる可能性が高いので遅延読み込みを避ける</li>
+<li>遅延読み込みによる表示がユーザー操作によるスクロールに間に合わない場合を加味して、<a href="https://web.dev/articles/cls/">レイアウトシフト</a>を避けるための<code>width</code>および<code>height</code>属性の値の指定を考慮する</li>
+</ul>
+<p>加えて、先ほど紹介したブラウザの実装を踏まえると、サポート対象とするブラウザが限定されている場合は、より細かなパフォーマンスチューニングを実施できる可能性があります。</p>
+<h2 id="ユースケースを紹介">ユースケースを紹介</h2>
+<h3 id="webフロントエンド実装に携わる開発者">Webフロントエンド実装に携わる開発者</h3>
+<p>HTMLのコーディングに携わる開発者は、まずLCPなどパフォーマンスの改善が必要かどうかを、ブラウザの開発者ツール、<a href="https://developer.chrome.com/docs/lighthouse/overview/">Lighthouse</a>や<a href="https://www.w3.org/TR/2023/WD-paint-timing-20230703/">Paint Timing API</a>などを用いて計測します。</p>
+<p>その上で改善すべきと判断した時、その解決方法の1つとして遅延読み込みを選択し、実際に効果が出るかどうかを再び計測します。この時、ブラウザ実装の差異を思い浮かべ、最適な遅延読み込みを配置できる可能性があります。</p>
+<h3 id="uiライブラリやwebフレームワーク実装に携わる開発者">UIライブラリやWebフレームワーク実装に携わる開発者</h3>
+<h4 id="wordpressの例">WordPressの例</h4>
+<p>PHP製のCMSであり世界中で広く用いられる<a href="https://wordpress.com/">WordPress</a>の場合、細かなパフォーマンスの調整を期待することが難しい開発者以外もサイト構築に用いることが想定されます。そこで、可能な限り対象の要素を遅延読み込みに倒すことで、LCPを速くするような試みは選択肢の1つです。</p>
+<p>下記はWordPressの遅延読み込みに関するリンクおよびトピックです。</p>
+<ul>
+<li><a href="https://make.wordpress.org/core/2020/07/14/lazy-loading-images-in-5-5/">https://make.wordpress.org/core/2020/07/14/lazy-loading-images-in-5-5/</a>
+<ul>
+<li>img要素のwidthおよびheight属性の値の指定がある場合に自動で<code>loading=&quot;lazy&quot;</code>を付与するようになった<br/>
+この変更によって<a href="https://make.wordpress.org/core/2021/07/15/refining-wordpress-cores-lazy-loading-implementation/">パフォーマンス指標が悪化した例</a>も確認された</li>
+</ul>
+</li>
+<li><a href="https://make.wordpress.org/core/2021/02/19/lazy-loading-iframes-in-5-7/">https://make.wordpress.org/core/2021/02/19/lazy-loading-iframes-in-5-7/</a>
+<ul>
+<li>iframe要素のwidthおよびheight属性の値の指定がある場合に自動で<code>loading=&quot;lazy&quot;</code>を付与するようになった</li>
+</ul>
+</li>
+<li><a href="https://make.wordpress.org/core/2021/12/29/enhanced-lazy-loading-performance-in-5-9/">https://make.wordpress.org/core/2021/12/29/enhanced-lazy-loading-performance-in-5-9/</a>
+<ul>
+<li>この変更によってHTMLの最初に現れるimgおよびiframe要素は<code>loading=&quot;lazy&quot;</code>を付与しない実装になった</li>
+</ul>
+</li>
+<li><a href="https://web.dev/articles/lcp-lazy-loading/">https://web.dev/articles/lcp-lazy-loading/</a>
+<ul>
+<li>WordPress標準テーマの遅延読み込みによるパフォーマンスへの効果の検証</li>
+</ul>
+</li>
+</ul>
+<h4 id="nextjsの例">Next.jsの例</h4>
+<p>JavaScriptランタイム向けのWebフレームワークである<a href="https://nextjs.org/">Next.js</a>では、<code>&lt;Image /&gt;</code>という画像表示に有用なユーティリティReactコンポーネントを提供しています。</p>
+<p><a href="https://nextjs.org/docs/pages/api-reference/components/image">ドキュメント</a>および内部実装<sup id="ref5"><a href="#note5">[5]</a></sup>では、遅延読み込みがデフォルト値に設定されています。これに対し、Above the foldにおいては<code>priority</code>の値を設定する、あるいは<code>fetchPriority</code><sup id="ref6"><a href="#note6">[6]</a></sup>を実装していないブラウザの場合は<code>loading=&quot;eager&quot;</code>を指定することで遅延読み込みを無効にできます。こちらもWordPressと似て、多数の開発者に利用されるフレームワークが提供するUIコンポーネントという立場からLCPを高速化するための一例です。</p>
+<p>どちらにも共通するのは、様々なコンテンツの提供者（開発者）を想定し、彼らにとって最大公約数となる実装を提供することで、全体的なWebのパフォーマンスを高めようという狙いがあると考えられます。</p>
+<p>UIライブラリあるいはWebフレームーワーク立ち位置の開発者である場合、前述のような実装例や本稿で取り上げたブラウザ実装の差異を念頭に入れつつ、対象のコンテンツの提供者を想定して最適なものを提供できます。</p>
+<h2 id="まとめ">まとめ</h2>
+<p>Webサイトのパフォーマンス最適化の一手として、遅延読み込みがモダンブラウザに実装されてしばらく経ちました。遅延読み込みのための<code>rootMargin</code>の値は実装依存であり、Blink<sup id="ref7"><a href="#note7">[7]</a></sup>やGecko<sup id="ref3"><a href="#note3">[3]</a></sup>では幾度か変更されています。今後、世界のネットワーク事情によって将来的に変更される可能性もあります。</p>
+<p>本稿で取り上げた仕様や実装を1つのポインタとし、適宜最適な実装を行えるとよいでしょう。</p>
+<p><small id="note1">[1]: モダンブラウザによる<a href="https://web.dev/articles/preload-scanner/">preload scanner</a>が実行されていると仮定しています。<a href="#ref1">↩</a></small><br/>
+<small id="note2">[2]: <a href="https://web.dev/articles/browser-level-image-lazy-loading/#are-there-plans-to-automatically-lazy-load-images-in-chrome">loading=&ldquo;auto&quot;に関する説明</a><br/>
+BlinkではM100で廃止された<a href="https://support.google.com/chrome/answer/2392284?hl=ja&amp;sjid=15546078161588008177-AP">Lite mode</a>向けに<code>auto</code>を実装していた<br/>
+現在は<code>auto</code>を指定すると<code>eager</code>に倒される: <a href="https://source.chromium.org/chromium/chromium/src/+/114.0.5735.248:third_party/blink/renderer/platform/loader/fetch/loading_attribute_value.h;l=11;drc=fbc5089498940a1716ceec317d6281556049e0da">loading_attribute_value.h</a><br/>
+<a href="https://source.chromium.org/chromium/chromium/src/+/refs/tags/114.0.5735.248:third_party/blink/renderer/core/html/html_image_element.cc;l=344-350?ss=chromium%2Fchromium%2Fsrc">html_image_element.cc</a>
+<a href="#ref2">↩</a></small><br/>
+<small id="note3">[3]: Geckoにおける<a href="https://bugzilla.mozilla.org/buglist.cgi?j13=OR&amp;v4=margin&amp;f14=product&amp;v17=lazy-loading&amp;f16=alias&amp;v15=lazy-loading&amp;v7=margin&amp;query_format=advanced&amp;o5=substring&amp;v18=lazy-loading&amp;f13=OP&amp;v6=margin&amp;o9=substring&amp;v8=margin&amp;f19=cf_crash_signature&amp;o15=substring&amp;o7=substring&amp;f11=CP&amp;v5=margin&amp;o17=substring&amp;o4=substring&amp;f3=OP&amp;o8=substring&amp;v9=margin&amp;o6=substring&amp;j3=OR&amp;o18=substring&amp;f1=classification&amp;f20=CP&amp;short_desc_type=allwordssubstr&amp;f15=component&amp;f7=short_desc&amp;v16=lazy-loading&amp;f17=short_desc&amp;f4=product&amp;v14=lazy-loading&amp;short_desc=lazy-loading%20margin%20&amp;v19=lazy-loading&amp;f8=status_whiteboard&amp;f6=alias&amp;o1=notequals&amp;f12=OP&amp;f18=status_whiteboard&amp;f21=CP&amp;o14=substring&amp;o16=substring&amp;f5=component&amp;bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;v1=Graveyard&amp;f10=CP&amp;f9=cf_crash_signature&amp;f2=OP&amp;o19=substring">rootMarginの変遷</a>
+<a href="#ref3">↩</a></small><br/>
+<small id="note4">[4]: ユーザーのスクロール操作を含まないブラウザのページ初期表示領域のこと。語源は<a href="https://en.wikipedia.org/wiki/Above_the_fold">新聞の一面</a>。
+<a href="#ref4">↩</a></small><br/>
+<small id="note5">[5]: <a href="https://html.spec.whatwg.org/commit-snapshots/6ca960a99f5a11c4201ed47b0568714924d9a25a/#fetch-priority-attributes">fetchPriority</a>によるリソース読み込み優先度の制御している: <a href="https://github.com/vercel/next.js/blob/v13.4.19/packages/next/src/shared/lib/get-img-props.ts#L375-L392">https://github.com/vercel/next.js/blob/v13.4.19/packages/next/src/shared/lib/get-img-props.ts#L375-L392</a>
+<a href="https://github.com/vercel/next.js/blob/v13.4.19/packages/next/src/client/image-component.tsx">https://github.com/vercel/next.js/blob/v13.4.19/packages/next/src/client/image-component.tsx</a>
+<a href="#ref5">↩</a></small><br/>
+<small id="note6">[6]:<code>fetchPriority</code>は<a href="https://webkit.org/blog/14435/release-notes-for-safari-technology-preview-178/">Safari Technology Preview 178</a>よりデフォルトで利用可能<br/>
+<a href="https://github.com/whatwg/html/issues/7150#issuecomment-1299923593">Geckoは実装予定</a><a href="#ref6">↩</a></small><br/>
+<small id="note7">[7]: Blinkにおける<a href="https://source.chromium.org/chromium/chromium/src/+/refs/tags/114.0.5735.248:third_party/blink/renderer/core/frame/settings.json5;l=929-961;bpv=1;bpt=0;drc=5dfd30eb768cda192970b0325f8703810db28bcc;dlc=b1a9263176865b979cac774238d7b68ade2cd112">rootMarginの変遷</a>
+<a href="#ref7">↩</a></small></p>
+<hr>
+<p>株式会社ドワンゴでは、様々なサービス、コンテンツを一緒につくるメンバーを募集しています。
+ドワンゴに興味がある。または応募しようか迷っている方がいれば、気軽に応募してみてください。</p>
+<ul>
+<li><a href="https://dwango.snar.jp/index.aspx">新卒採用はこちら</a></li>
+<li><a href="https://hrmos.co/pages/dwango">キャリア採用はこちら</a></li>
+</ul>
+</article>
+    </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="仕様と実装から読み解くHTMLのloading属性 - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/html-loading-attribute/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/html-loading-attribute/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2fhtml-loading-attribute%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

@@ -1,1 +1,252 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="ja" lang="ja" >
 
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.122.0">
+
+  <meta property="og:title" content="ニコニコ動画のコメントサーバーを引っ越した時の話 - dwango on GitHub">
+
+  <meta property="og:description" content="ドワンゴ社内の様子や、文化、技術をご紹介します。" />
+
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  <meta name="twitter:card" content="summary">
+  
+
+
+  
+  
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>ニコニコ動画のコメントサーバーを引っ越した時の話 - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> ニコニコ開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://blog.nnn.dev/"> 教育サービス開発者ブログ </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
+      
+        Copyright &copy; DWANGO Co., Ltd.
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+  <div class="post">
+    <time class="content-date" datetime="2023-03-09 00:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2023-03-09 Thu</time
+    >
+    <h1 class="article-title">ニコニコ動画のコメントサーバーを引っ越した時の話</h1>
+
+    <div>
+      
+        <aside>
+          <h2>目次</h2>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#背景">背景</a></li>
+    <li><a href="#アーキテクチャ">アーキテクチャ</a></li>
+    <li><a href="#パフォーマンス">パフォーマンス</a>
+      <ul>
+        <li><a href="#php-ffi-を用いて-c-言語で処理を行う">PHP-FFI を用いて C 言語で処理を行う</a></li>
+        <li><a href="#goridge-を用いて-go-言語で処理を行う">Goridge を用いて Go 言語で処理を行う</a></li>
+        <li><a href="#ローカルに-grpc-サーバーを立てそこにリクエストを投げて処理を行う">ローカルに gRPC サーバーを立て、そこにリクエストを投げて処理を行う</a></li>
+      </ul>
+    </li>
+    <li><a href="#本番での稼働">本番での稼働</a></li>
+    <li><a href="#おわりに">おわりに</a></li>
+  </ul>
+</nav>
+        </aside>
+        <hr />
+      
+      <article id="content"><p>こんにちは。ニコニコ動画開発の多胡です。</p>
+<p>今回は <a href="https://phperkaigi.jp/2023/">PHPerKaigi2023</a> 向けの記事として、<a href="https://blog.nicovideo.jp/niconews/154478.html">2021年に実施したニコニコ動画のコメントサーバーをお引越しした時のこと</a>を書いてみたいと思います。</p>
+<p>文中の 5 つのフレーズを<span style="color:#ff2790">チャレンジトークン</span>としてみました。ぜひ探してみてください! （※ <strong>記事の見出しにの横についている「#」はチャレンジトークンではありません</strong>。チャレンジトークンは文中に配置されています。紛らわしくてすみません！）</p>
+<h2 id="背景">背景</h2>
+<p>実はニコニコ動画の <span style="color:#ff2790">#コメントサーバーを引っ越した</span> のはこの時が二度目でした。</p>
+<p>一度目は2014年から2016年にかけてのプロジェクトでファイルベースのシステムからの引っ越しでした。このファイルベースのシステムは、ニコニコ動画生誕当時から利用されており、当時のコメント参照や投稿にはすでに耐えられない状態になっていました。</p>
+<p>そこで、このファイルベースのシステムから HBase を用いたクラスタベースのシステムに引っ越しを行いました。<br>
+このシステム刷新により致命的な状況から脱却することができましたが、互換性を優先したため独自のメッセージ形式でのやり取り方式は変わらないためクライアントの特殊なパース処理は残ったままであり、また動画だけではなく生放送などでも利用できる汎用的なシステムを目指したため機能追加の柔軟性が失われたりしていました。それでも当時の開発チームが頑張って「ニコる」などの機能追加も行われました。<br>
+このクラスタベースのシステムは前述の問題を抱えながらも大きな問題もなく稼働していたのですが、データセンターの移転を行う必要が出たタイミングでクラスタ構成のための特殊機材を調達することが難しく、一般的なアーキテクチャで構成されたシステムに乗り換える必要が出ました。</p>
+<p>これが2021年のコメントサーバーの引っ越しを行うことになった背景です。</p>
+<h2 id="アーキテクチャ">アーキテクチャ</h2>
+<p>データセンターの移転という期限に加えて管理主体が動画開発チームになった<sup id="ref1"><a href="#note1">[1]</a></sup>ため、動画開発で開発・運用ノウハウが溜まっている PHP および MySQL を主とするシステムアーキテクチャを採用することにしました。<br>
+また、PHP はフレームワークとして Laravel を採用し、Eloquent や Laravel キューを用いることで開発速度の向上を目指しました。<br>
+なお、PHP のバージョンについては開発着手当時は PHP8.0 がちょうど出たくらいでしたが、安定度や Laravel の対応状況から PHP7.4 を当時は採用しました。</p>
+<h2 id="パフォーマンス">パフォーマンス</h2>
+<p>期限に間に合わせるために PHP を採用しましたが、引っ越し前のシステムは C++ で書かれておりパフォーマンス的に不利でした。とは言え、システムとしては DB から取得したコメントを返すという部分がほとんどであったので、全体の処理時間から見たプログラムパフォーマンスの占める割合は多くないとも考えていました。</p>
+<p>しかしながら実際には「投稿者用 NG」というループ処理が多用される機能があり、これについて事前に検証用コードを作成し検証したところ致命的なパフォーマンス劣化<sup id="ref2"><a href="#note2">[2]</a></sup>が確認されました。<br>
+検証用の4000件程度のコメントに対して2000件の NG 設定を反映させるようなフィルタ処理を行うと PHP では 2 秒弱かかってしまったのです。<br>
+これは小手先の対応ではどうやっても解決できそうになかったため、他の言語で処理することを検討しました。とは言え、チームのノウハウを考えると期限までに PHP 以外の言語を利用したシステムを作り上げて安定稼働させることは難しく、この部分の処理のみを移譲させることにしました。</p>
+<p>他言語に部分的に処理を移譲させるための仕組みとして以下の3つを検討しました。</p>
+<ul>
+<li>PHP-FFI を用いて C 言語で処理を行う</li>
+<li>goridge を用いて Go 言語で処理を行う</li>
+<li>ローカルに gRPC サーバーを立て、そこにリクエストを投げて処理を行う</li>
+</ul>
+<h3 id="php-ffi-を用いて-c-言語で処理を行う">PHP-FFI を用いて C 言語で処理を行う</h3>
+<p>FFI は Foreign Function Interface の略で、ある言語から他の言語の処理を呼び出す仕組みで Java など PHP 以外の言語にも存在します。 PHP の場合は基本的に FFI を用いると C 言語を呼び出すことができ、<a href="https://www.php.net/manual/ja/book.ffi.php">PHP7.4 から実装</a>されています。<br>
+C 言語で書いた処理を FFI で呼び出すようなテストコードで試したところ、実際に処理速度は90%ほど改善しました。<br>
+しかしながらマルチバイトの取り扱いに不安があったり、PHP 側でメモリを大量に消費した際に FFI が不安定になることが観測できたなど懸念があったため採用しませんでした。<br>
+（なお、前述の C 言語でのテストコードもマルチバイトがうまく考慮できていない状態だったので参考程度の値となっています）</p>
+<h3 id="goridge-を用いて-go-言語で処理を行う">Goridge を用いて Go 言語で処理を行う</h3>
+<p><a href="https://github.com/roadrunner-server/goridge">Goridge</a> とは PHP と Go 言語を RPC でブリッジするためのライブラリです。これを用いて Go 言語に処理を移譲させることでパフォーマンス向上を狙いました。<br>
+こちらも結果としては処理速度が92%程度改善し、かつマルチバイトも問題なく取り扱えました。<br>
+実は検証した中ではこの goridge を用いた方式が一番パフォーマンスの良い結果となりました。これは goridge が極力オーバーヘッドを無くした感じの実装になっているためで、gRPC のようにスキーマ定義などを挟んでいないためと考えられます。<br>
+裏を返すと連携については独自のプロトコルであるためロックインされてしまうというリスクがあるため、チーム内で議論した結果採用を見送りました。</p>
+<h3 id="ローカルに-grpc-サーバーを立てそこにリクエストを投げて処理を行う">ローカルに gRPC サーバーを立て、そこにリクエストを投げて処理を行う</h3>
+<p>最終的に採用したのはこちらの方式でした。<br>
+この方式は Go 言語で書いたフィルタ処理を含む gRPC サーバーを PHP サーバーのローカルに立て、そこにリクエストを投げて処理をさせるというものです。<br>
+結果として goridge を用いるケースにわずかに劣りますが、PHP での処理からはパフォーマンス向上が行えることが分かりました。<br>
+この方式であれば goridge と違いロックインされることもなく速度向上も行え、また gRPC によるつなぎこみ部分のコードの自動生成などの恩恵も受けられることなどから今回はこの手法を選択することにしました。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2023-03_nvcore_komesaba_moving/chart.png"   />
+  
+</div>
+
+<h2 id="本番での稼働">本番での稼働</h2>
+<p>パフォーマンス的な大きな問題を片付け、PHP および一部 Go 言語を用いるというアーキテクチャで開発は順調に進んでいき、実際に本番で稼働させられる状態まで無事持っていきました。<br>
+今回の引っ越しはシステムの実装とは別に、既存データの移行や新規投稿される動画のコメントの向き先を変えるなどの作業も必要でした。<br>
+実装した新規システムの安定稼働実現のため、以下の順序で本番稼働を始めました。</p>
+<ul>
+<li>phase1：一部の新規投稿動画のコメントを新システムへ</li>
+<li>phase2：すべての新規投稿動画のコメントを新システムへ</li>
+<li>phase3：既存のコメントを徐々に新システムへ移行<sup id="ref3"><a href="#note3">[3]</a></sup></li>
+</ul>
+<p>phase.1 が始まり順調に動いているなと思っていたのですが、受け持つ動画数が増えていくと想像以上に負荷が高まっていき、またレスポンスタイムが悪化しているケースが出てきました。<br>
+そこで <span style="color:#ff2790">#みんな大好きXhprof</span> を用いて原因究明に乗り出したところ、Laravel の Eloquent で利用している Carbon （厳密にはそこから呼び出される DateTimeZone）が悪さをしていることが分かってきました。<br>
+Laravel の Eloquent では、create_at や update_at などのカラム情報は Carobn クラスで値を取得することができ、これはフォーマット変換が容易だったりと非常に便利なため新システムでも利用していました。<br>
+しかしながら create_at や update_at といった情報はすべてのコメントに存在する情報で、これを取り扱うと各コメントごとに Carbon インスタンスが生成されることになります。要は4000コメントなら4000個の Carbon インスタンスが生成されます。<br>
+そしてこの Eloquent が生成する Carbon インスタンスは変化しない DateTimeZone が毎回初期化されており、これが処理時間の大半を占めていたのです。<sup id="ref4"><a href="#note4">[4]</a></sup><br>
+これを改善すべく、Carbon で取り扱っていたところを DateTime オブジェクトで取り扱うようにしたところ、負荷も無事下り、 <span style="color:#ff2790">#パフォーマンスも倍ほど改善</span> しました。</p>
+<p>その後は致命的な問題もなく、無事全動画のコメントを移行し、コメントサーバーの引っ越しを完遂することができました。<br>
+引っ越しプロジェクトから少し後には<a href="https://blog.nicovideo.jp/niconews/170663.html">コメント投稿者の NG 永続化</a>などの新機能も追加や、旧来の独自のメッセージ形式の I/F から json ベースの I/F への変更などができ、稼働も安定しています。<sup id="ref5"><a href="#note5">[5]</a></sup></p>
+<h2 id="おわりに">おわりに</h2>
+<p>この引っ越しプロジェクトでは新システムの開発メンバーはもちろん、旧システムのメンバー、クライアント開発の方々、企画担当者の方々など多くの方の協力をもって進めることができました。この場をお借りして改めてお礼申し上げます。<br>
+また、引っ越し期間中はコメントの投稿や表示が行えない動画があったりなど、ユーザーの皆さんにもご協力頂きました。ありがとうございました。</p>
+<p>今振り返ってみても PHP（Laravel）をベースに一部 Go 言語というアーキテクチャを選択したことは、期限厳守や安定稼働の観点からも当時としてはベストな選択だったと思っています。<br>
+また、ニコニコ動画システム本体も PHP で運用が続けられていますし、引き続き PHP と共に歩んでいこうと思っています。</p>
+<p>皆様も <span style="color:#ff2790">#良きPHPライフ</span> をお送りください！</p>
+<p><small id="note1">[1]: それまでのシステムは専用のチームで開発、運用、保守を行っていました。 <a href="#ref1">↩</a></small><br>
+<small id="note2">[2]: 「<a href="https://qa.nicovideo.jp/faq/show/4146?site_domain=default">投稿者用 NG</a>」機能とは、動画の投稿者が「NG ユーザー登録」や「NG ワード登録」によってコメントを非表示にする機能なのですが、これはサーバーサイドで各コメントの本文や投稿者 ID を正規化しながらチェックする必要があり、コメント数×NG設定数のループとなるためボトルネックとなっていました。 <a href="#ref2">↩</a></small><br>
+<small id="note3">[3]: 既存のコメントの移行は、引っ越し前のシステムで HBase から json を出力し、それを引越し先のシステムでパースしながら DB へ INSERT していく、というような引っ越し用のバッチを作成することで実現していました。（この json はとても巨大なことがあるためストリームでパースする必要があるなど、やや工夫が必要な点があったりしましたが今回は割愛します） <a href="#ref3">↩</a></small><br>
+<small id="note4">[4]: どうやら DateTimeZone が内部的に timezone を検索する際に無駄な検索が走っていたなどのようで、それが影響していたものと思われます。なお、この問題は PHP8.1 で修正されているため現状は Eloquent で Carbon を取り扱ってもあまり問題にならないかもしれません。原因調査の中で<a href="https://qiita.com/rana_kualu/items/5fb8c9f254ae37591646">こちらの記事</a>を参考にさせて頂きました。ありがとうございます。 <a href="#ref4">↩</a></small><br>
+<small id="note5">[5]: これらの機能追加や改善は PHP および Laravel を用いたことで、引っ越し完了後からそんなに時間をおかずに実施することができました。 <a href="#ref5">↩</a></small><br></p>
+<hr>
+<p>ドワンゴでは、<span style="color:#ff2790">#ニコニコ動画を一緒に作ってくれる仲間を募集</span> しています。<br>
+PHP や Go 言語に興味ある方、ドワンゴに興味がある、または応募しようか迷っている方がいれば、気軽に応募してみてください。</p>
+<ul>
+<li><a href="https://dwango.snar.jp/index.aspx">新卒採用はこちら</a></li>
+<li><a href="https://hrmos.co/pages/dwango">キャリア採用はこちら</a></li>
+</ul>
+</article>
+    </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="ニコニコ動画のコメントサーバーを引っ越した時の話 - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/2023-03_nvcore_komesaba_moving/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/2023-03_nvcore_komesaba_moving/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2f2023-03_nvcore_komesaba_moving%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

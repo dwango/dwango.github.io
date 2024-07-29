@@ -1,1 +1,339 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="ja" lang="ja" >
 
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.122.0">
+
+  <meta property="og:title" content="ニコニコ超会議2023でCTOと若手エンジニアがドワンゴについて語りました！ - dwango on GitHub">
+
+  <meta property="og:description" content="ドワンゴ社内の様子や、文化、技術をご紹介します。" />
+
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  <meta name="twitter:card" content="summary">
+  
+
+
+  
+  
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>ニコニコ超会議2023でCTOと若手エンジニアがドワンゴについて語りました！ - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> ニコニコ開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://blog.nnn.dev/"> 教育サービス開発者ブログ </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
+      
+        Copyright &copy; DWANGO Co., Ltd.
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+  <div class="post">
+    <time class="content-date" datetime="2023-06-30 12:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2023-06-30 Fri</time
+    >
+    <h1 class="article-title">ニコニコ超会議2023でCTOと若手エンジニアがドワンゴについて語りました！</h1>
+
+    <div>
+      
+        <aside>
+          <h2>目次</h2>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#はじめに">はじめに</a></li>
+    <li><a href="#プロフィール">プロフィール</a>
+      <ul>
+        <li><a href="#hikamayo">Hikamayo</a></li>
+        <li><a href="#len">len</a></li>
+      </ul>
+    </li>
+    <li><a href="#対談内容の紹介">対談内容の紹介</a>
+      <ul>
+        <li><a href="#なぜドワンゴに入社したの">なぜドワンゴに入社したの？</a></li>
+        <li><a href="#ドワンゴの入社前の印象はどうでしたか">ドワンゴの【入社前】の印象はどうでしたか？</a></li>
+        <li><a href="#ドワンゴに入社後の印象はどうでしたか">ドワンゴに【入社後】の印象はどうでしたか？</a></li>
+        <li><a href="#ドワンゴの良いところ悪いところ">ドワンゴの良いところ、悪いところ</a></li>
+        <li><a href="#ドワンゴエンジニアの1日">ドワンゴエンジニアの1日</a></li>
+        <li><a href="#ドワンゴでイチオシの福利厚生について">ドワンゴで【イチオシ】の福利厚生について</a></li>
+      </ul>
+    </li>
+    <li><a href="#おわりに">おわりに</a></li>
+  </ul>
+</nav>
+        </aside>
+        <hr />
+      
+      <article id="content"><h2 id="はじめに">はじめに</h2>
+<p>こんにちは。ニコニコ開発部のHikamayoと、教育事業本部のlenです。</p>
+<p>2023/4/29と4/30に幕張メッセで行われたニコニコ超会議2023の社員採用ブースにて、<strong>ドワンゴの『若手凄腕エンジニア』が語る！カルチャーから作られた環境や働き方がすごい！</strong> と題して、CTO との対談に登壇してきました。
+今回は、そこでお話しした内容を紹介しつつ、当日話しきれなかった内容についても二人でそれぞれ書いていこうと思います。</p>
+<ul>
+<li><a href="https://chokaigi.jp/">ニコニコ超会議公式サイトはこちら</a></li>
+<li><a href="https://live.nicovideo.jp/watch/lv340871704#4:30:30">対談イベントのタイムシフトはこちら</a>
+<ul>
+<li>2024/04/29まで公開予定です。</li>
+</ul>
+</li>
+</ul>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/chokaigi2023_talk/title.png" alt="title" width="60%" />
+  
+</div>
+
+<h2 id="プロフィール">プロフィール</h2>
+<h3 id="hikamayo">Hikamayo</h3>
+<p>2021年新卒入社で、現在はニコニコの共通バックエンドシステムの開発チームにいます。
+最近は主にニコニコのお知らせ機能の開発・運用や、それらのシステムでのパブリッククラウドの活用に取り組んでいます。
+趣味は楽器演奏（といいつつ、ここ10年くらいはギターだけ）で、余暇は結構な割合でギターを弾いています。</p>
+<p>しばらく前に、<a href="https://dwango.github.io/articles/hikamayo_rookie/">ドワンゴ21新卒がフルリモートでの入社から機能をリリースするまで</a>を書きました。
+そこから約1年半が経過し、”若手凄腕エンジニア”としてここに登壇させていただけたことを非常に光栄に思います。</p>
+<h3 id="len">len</h3>
+<p>2021年新卒入社で、教育事業本部でN予備校のバックエンド開発をしています。現在は教材入稿ツールのリプレイスを行っています。
+趣味は音ゲー、サウナです。サウナは上司からの誘いがきっかけでハマりました。
+気づいたら社会人3年目で、時の流れの速さに驚いている日々です。</p>
+<h2 id="対談内容の紹介">対談内容の紹介</h2>
+<h3 id="なぜドワンゴに入社したの">なぜドワンゴに入社したの？</h3>
+<!-- TOCに出したくない & 余計に行間を取りたくないので強制改行-->
+<p><strong>Hikamayo</strong><br>
+昔からニコニコが好きだったことが、ドワンゴを志望した一番大きな要因でした。
+小学生くらいから見始めて、中学生になるあたりからちょっとした動画を投稿したりしていました。
+動画説明文を書くときにHTMLタグを使用する必要があって、「なんだこれ？」と思ったのがプログラミングに興味を持つきっかけだったような気もします。
+かくして、就職活動中に「ニコニコを作る側になれたら、めちゃくちゃ楽しいのでは！？」と閃いたのは、僕の中では結構自然な流れでした。</p>
+<p>昔からニコニコのファンだった自分としては、”運営”はやはり特別な存在だったので、ニコニコ超会議で運営Tシャツを着て登壇するというのは、何か感慨深くさえありましたね。</p>
+<p><strong>len</strong><br>
+私も同じく小学生からニコニコ動画を見始めた「ニコ厨」でした。</p>
+<p>専門学校でプログラミングを学び興味を持ち、同時に教育に関わるアルバイトやインターンをしていたこともあり、教育×ITの仕事がしてみたいと思っていました。
+そこで調べていくうちN高等学校を知り、好きだったコンテンツを提供する会社に所属し未来の教育を作る一員になりたいと思ったのがドワンゴに入社したいと思った理由ですね。</p>
+<h3 id="ドワンゴの入社前の印象はどうでしたか">ドワンゴの【入社前】の印象はどうでしたか？</h3>
+<p><strong>Hikamayo</strong><br>
+働く環境としては自由で楽しそうなイメージがあった一方で、少数精鋭の個人プレー主義のイメージがありました。</p>
+<p>自由で楽しそうというイメージは、単純にニコニコを見ていて「これは作っている側も楽しんでいるに違いない」という感覚があったからですね。
+少数精鋭の個人プレー主義のイメージは、ニコニコ動画発足時、少人数で短期間で作り上げたという話をどこかで目にして、その記憶がずっと残っていたのだと思います。</p>
+<p><strong>len</strong><br>
+私がプログラミングを学んでいる時に技術書や技術関連の記事を漁っていてよく目にしたのがドワンゴのエンジニアの方が書かれたものでしたので、技術力が高い会社なんだなと思っていました。</p>
+<p>また、大きな会社ということもありなかなか他部署の方と話す機会はなさそうなイメージがありました。</p>
+<h3 id="ドワンゴに入社後の印象はどうでしたか">ドワンゴに【入社後】の印象はどうでしたか？</h3>
+<p><strong>Hikamayo</strong><br>
+ちゃんとしているところは思ったよりもちゃんとしていました。当たり前ですが単純に会社としてちゃんとしていますし、社員としてもただ自由なわけではなく、やることをやっているからこそあとは自由、という雰囲気を感じます。</p>
+<p>会社レベルで見ても、自由というか、柔軟さはかなりのものがあると思います。僕がドワンゴの選考を受けていたのは2020年春頃からでしたが、ちょうどその頃社員の全員テレワーク化が決まったらしく、なんと僕が入社した2021年春には既にオフィスのフリーアドレス化のリフォームが完了していました。実際ドワンゴに2年と少し在籍しているだけでも、何度か動き出しや判断の早さを目の当たりにして驚いています。</p>
+<p>仕事が個人プレー重視だと思っていた点については、完全に予想の真逆で、実際はチームプレーを非常に大事にする文化でした。チームプレーの重要性については、エンジニア研修のカリキュラムにもしっかり組み込まれていますし、配属されてからもチームでの働き方を大事にしているのを感じています。チームプレーを重視しているのは、ニコニコは10年以上かけて多くのエンジニアによって作り上げられたもので、これからも続けていくために必要なことだから、ということです。つまり、これからもドワンゴではチームプレーを重視する文化が続いていくと考えると、僕としてはとても安心感があります。</p>
+<p><strong>len</strong><br>
+テレワーク化も進んでいますし、PCにむかってもくもくと作業していくイメージがあったのですがそんなこともなくむしろみんなでワイワイ開発していこうぜ！という雰囲気があったのが印象的でした。</p>
+<p>プログラミング言語別や技術ごとにチャンネルがあり、質問を投げたら他部署の方が爆速でレスポンスをいただける環境は自分にとって素晴らしいなと思いました。</p>
+<p>また、ドワンゴ内だけではなくKADOKAWAグループ全体の統合Slackになっているのでもっと多くの方とのコミュニケーションをとることができます。</p>
+<h3 id="ドワンゴの良いところ悪いところ">ドワンゴの良いところ、悪いところ</h3>
+<p><strong>Hikamayo</strong><br>
+ドワンゴの良いところを紹介するなら、僕は<strong>ネットの空気感</strong>を挙げたいです。ドワンゴではほとんどのコミュニケーションを Slack 上で行いますが、使われ方が非常に自由で、かつアイコンやハンドルも自由なのでまるで SNS 上で仕事をしているかのようです。実際、社内ではほとんどハンドルで呼び合うので、本名も顔も知らない先輩が結構います。業務上の連絡をしたときに返事をくれた担当者の方が、他の雑談チャンネルで何度か話したことがある人だったりすると、「あ、この人知ってる人だ。ここで働いてたんだ」みたいな、奇妙な感覚に陥って面白いです。（Slackにいるのだから、ここで働いているのは当たり前なのに。）</p>
+<p>ドワンゴの悪いところは正直思いつかなかったのですが、強いて挙げるならいわゆる<strong>社会人っぽい体験はあまりできない</strong>ことですね。名刺も持っていないですし、スーツも持っていません。幼少の頃に思い描いていた THE・サラリーマン みたいなことは体験できていません。（これを悪いところと捉えるかどうかは人によると思います。正直に言うと僕はどちらかというと良いところだと思っていたりします。）</p>
+<p><strong>len</strong><br>
+ドワンゴの良いところは<strong>裁量労働制</strong>と<strong>アウトプットの場が豊富なところ</strong>です。</p>
+<p>裁量労働制は従業員一人一人に裁量を持たせ、好きな時間に出勤でき、退勤できる労働形態のことです。
+私は日によって朝なかなか起きれなかったり、集中力が続かなかったりとあるのですが、その日のコンディションに合わせ働く時間を柔軟に変えて一番パフォーマンスが出せる働き方ができるところがすごく自分に合っていると感じています。</p>
+<p>また技術的なアウトプットの場が豊富なのも良いところの1つです。
+ドワンゴでは、定期的な社内向けのエンジニアLTがあったり技術ブログを気軽に投稿できる環境が整っています。
+エンジニアLTでは自社サービスであるニコニコ生放送を使って実施されます。自分も何度か発表したことがあるのですが、発表した内容にコメントが流れてきて、それに反応して&hellip;など配信者気分(?)を味わうことができます。
+また技術ブログではブログ運営者や内容に関する技術の有識者からのレビューをいただけるのでそこで新たな知識を得たりすることもあります。</p>
+<p>悪いところをあげるとするならば、綺麗なオフィスに年に数回しかいけないことかなと思います。
+基本テレワークで稼働しているので、出社する用事がない限り会社にいくことはありません。入社してすぐは何回かあったのですが、2年目、3年目と年々出社する回数が減っている気がします..</p>
+<div style="display:flex; gap:1rem; justify-content: center; align-items: center;">
+  <div class="article-img">
+    
+    <img src="https://dwango.github.io/images/chokaigi2023_talk/office1.jpg" alt="office1"  />
+    
+  </div>
+
+  <div class="article-img">
+    
+    <img src="https://dwango.github.io/images/chokaigi2023_talk/office2.jpg" alt="office2"  />
+    
+  </div>
+
+  <div class="article-img">
+    
+    <img src="https://dwango.github.io/images/chokaigi2023_talk/office3.jpg" alt="office3"  />
+    
+  </div>
+
+</div>
+<h3 id="ドワンゴエンジニアの1日">ドワンゴエンジニアの1日</h3>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/chokaigi2023_talk/schedule.png" alt="schedule" width="60%" />
+  
+</div>
+
+<p><strong>Hikamayo</strong><br>
+僕はできる限り9:00出勤を目指しています。（実際は10:00以降に出勤することもよくありますが。）
+特に朝型なわけではないですが、僕は夕方以降著しく集中力が低下するタイプだとわかったので、そこからの逆算でこうなりました。</p>
+<p>出勤後しばらくは、タスクの整理やSlackの確認をすることが多いです。タスクの整理は、単純に一日の仕事の流れを自分の中で整理するための時間です。
+Slackの確認は、前日自分が退勤後にチーム内外でどんなことがあったかを把握するための時間です。その後は昼食まで黙々と作業をします。</p>
+<p>昼食を食べたあと、<strong>午後は朝会から始まります</strong>。
+僕のセクションは、午後の最初にプロジェクトごとのデイリーミーティングがあり、その少しあとにセクション全体のデイリーミーティングがあります。
+16:00頃に「今日も一日よろしくお願いします！」と言うのにも慣れてきました。残りの時間は、ミーティングがあればミーティング、空き時間は作業といった感じですが、僕は夕方に一度休憩を挟むことが多いです。
+ちょっと外に出て散歩をすると、考えが整理されてその後の作業が捗るので大事な時間です。</p>
+<p>その後は、キリの良いタイミングで、大体18:30くらいに退勤します。
+制度上は一日の実働時間に縛りはないのですが、多くの人が大体実働8時間前後に落ち着いているような気がします。僕もその一人です。
+退勤後は夕食を食べて、ゲームをしたり趣味の開発をちょっとしてみたり、外出したりして過ごしています。</p>
+<p>というのが普段の僕の1日ですが、コンディションや予定に合わせて柔軟に変えられるのが裁量労働制の強みだと思います。
+朝の調子が悪いときは遅めに出勤したり、手続き等で平日の昼に外出する必要があっても簡単に調整できるので、そういった面でストレスは非常に少ないです。</p>
+<p><strong>len</strong><br>
+基本的なスケジュールはこのような流れになっています。
+毎日がこの時間帯ではなく日によって時間が遅くなったり間の時間の休憩を長くしたりと柔軟にスケジュールを変えています。</p>
+<p>私はいつもは8時から10時の間に仕事を始めます。
+セクション内では早い方でまだメンバーがあつまっていないので朝は前日の夜に上がった内容のレビューやタスク確認を行います。
+午前中やデイリーMTGがはじまるまでは黙々と作業することが多いのですが、デイリーMTGや週1で行われる1on1やセクション内の雑談会など、メンバーと話す時間帯も多く設けられています。
+私はずっと集中できないタイプなので人と話したりする時間があるとリフレッシュできるのでとても良いです。</p>
+<h3 id="ドワンゴでイチオシの福利厚生について">ドワンゴで【イチオシ】の福利厚生について</h3>
+<p><strong>Hikamayo</strong><br>
+<strong>テレワーク手当</strong>、<strong>ハッカソン</strong>、<strong>忘年会</strong>です。</p>
+<p>まず<strong>テレワーク手当</strong>は、テレワークでかかる光熱費や自宅に作業環境を構築するための手当ですが、毎月2万円もらえます。
+個人的には、通勤するより圧倒的にテレワークの方が快適なので、快適な環境で仕事ができる上に手当ももらえて最高です。
+ちなみに、テレワークだからといってオフィスで仕事をすることに特に制限はありません。用事がある場合や、リフレッシュのためにオフィスに行くことも認められています。（細かいルールは部署によって違います）</p>
+<p>次は<strong>ハッカソン</strong>です。これを福利厚生として紹介するべきかは微妙ですが、ドワンゴでは定期的にアイデアソン・ハッカソンが開催されています。
+これが単純に楽しいのもありますが、注目すべきは入賞者へ賞金が出ることです。
+僕は入社して1ヶ月のときに開催されたハッカソンに参加して、非常に簡単なものを作ってみたらなんと優勝させていただきました。現在のデスクワーク環境の大半は、その時の賞金で購入したものです。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/chokaigi2023_talk/hikamayo_desk.jpg" alt="hikamayo_desk" width="60%" />
+  
+</div>
+
+<p>最後は、<strong>忘年会</strong>です。これも福利厚生として紹介するべきかは微妙ですが、ドワンゴ大忘年会というイベントがあります。
+僕はオンライン忘年会しか体験していませんが、以前はオフライン忘年会が大々的に行われていたようです。
+オフライン忘年会も楽しそうなのでいつか復活してほしいですが、少なくともオンライン忘年会も非常に楽しいものです。
+事前に選択した宅配のご飯を食べつつ、社員専用のニコ生を見ながら楽しみます。企画も充実していて、社員表彰、抽選会、動画コンテストなど、普段の業務を忘れて単純に楽しめます。僕の夢は動画コンテストで優勝することです。</p>
+<p><strong>len</strong><br>
+私が思うイチオシの福利厚生は<strong>資格取得手当</strong>、<strong>エンジニアLT</strong>、<strong>超会議スタッフ</strong>の3つです。</p>
+<p><strong>資格取得手当</strong>はドワンゴが推奨する資格を受けて合格すれば手当をいただけるシステムです。
+資格の数が豊富で現在の仕事に繋がるものも多く、またその資格ごとのSlackチャンネルも存在しているので知見を共有できたり得たりすることができます。</p>
+<p><strong>エンジニアLT</strong>では前述にもありますが、社内でLTがあり、気軽に発表できたり参加できるものです。
+現在はオンラインで生放送システムを使って実施していますが、今後はリアルLTもやれたらいいなあと思っています。</p>
+<p>最後に<strong>超会議スタッフ</strong>を挙げています。これは私がニコ厨なりたてだったころから参加しており憧れだったニコニコ超会議のスタッフとして稼働ができる点です。（有志です）
+普段教育事業本部として稼働しているので、なかなかニコニコ動画への関わりは少ないのですが、超会議スタッフをすることでニコニコユーザー様と近い距離で接することができるなかなかない機会だと思い毎年参加しています。
+100%希望が叶うわけではないですが稼働するブースも自由に選択できるので、興味のあるブースに行ける点も良いと思っています。</p>
+<h2 id="おわりに">おわりに</h2>
+<p>今回は、ニコニコ超会議2023の社員採用ブースで行われた CTO と若手エンジニアの対談内容を紹介させていただきました。
+今回書いた内容が、僕たちが新卒で入社してからの2年間で触れたドワンゴのカルチャー・環境・働き方について、現在2人が感じているそのままです。
+ドワンゴでは、自由で柔軟な働き方ができ、Slackを中心とした多くのコミュニケーションによってチームでの開発が活発に行われていると感じます。
+また、魅力的な福利厚生も多くあり、非常に快適な環境で働けていると感じています。</p>
+<p>もし興味を持っていただけましたら、こちらの<a href="https://www.wantedly.com/stories/s/workstyle_report">働き方レポート</a>もぜひご覧ください。</p>
+<p>この記事を読んで、ドワンゴに良いイメージを持っていただけたり、少しでもドワンゴで働くことの魅力をお伝えできていたら幸いです。</p>
+<p>株式会社ドワンゴでは、教育事業、ニコニコ事業、モバイル事業など様々なサービス、コンテンツを一緒につくるメンバーを募集しています。ドワンゴに興味がある。または迷っている方がいれば、気軽に応募してみてください。</p>
+<ul>
+<li><a href="https://dwango.snar.jp/index.aspx">新卒採用はこちら</a></li>
+<li><a href="https://hrmos.co/pages/dwango">キャリア採用はこちら</a></li>
+</ul>
+</article>
+    </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="ニコニコ超会議2023でCTOと若手エンジニアがドワンゴについて語りました！ - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/chokaigi2023_talk/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/chokaigi2023_talk/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2fchokaigi2023_talk%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

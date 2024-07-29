@@ -1,1 +1,485 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="ja" lang="ja" >
 
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.122.0">
+
+  <meta property="og:title" content="泥棒バスターを改造してみよう - dwango on GitHub">
+
+  <meta property="og:description" content="ドワンゴ社内の様子や、文化、技術をご紹介します。" />
+
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  <meta name="twitter:card" content="summary">
+  
+
+
+  
+  
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>泥棒バスターを改造してみよう - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> ニコニコ開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://blog.nnn.dev/"> 教育サービス開発者ブログ </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
+      
+        Copyright &copy; DWANGO Co., Ltd.
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+  <div class="post">
+    <time class="content-date" datetime="2018-10-25 18:30:00 &#43;0900 JST" itemprop="datepublished"
+      >2018-10-25 Thu</time
+    >
+    <h1 class="article-title">泥棒バスターを改造してみよう</h1>
+
+    <div>
+      
+      <article id="content"><hr>
+<p>この文書は 2018 年当時のものです。</p>
+<p>最新のニコ生ゲーム作成については <strong><a href="https://akashic-games.github.io/shin-ichiba/">https://akashic-games.github.io/shin-ichiba/</a></strong> をご参照ください。</p>
+<hr>
+<h2 id="本ページの内容">本ページの内容</h2>
+<p>本ページは、2018年10月25日～2018年12月14日（結果発表は2019年01月26日）までかけて行われる（行われた）、<a href="http://ch.nicovideo.jp/indies-game2019/blomaga/ar1687936">ニコニコ自作ゲームフェス新人賞　「実験放送ゲーム部門」</a>に合わせて制作された特集記事の第1回目です。</p>
+<p>この第一回目については、プログラミング経験のない方でもわかるように記述されています。</p>
+<h2 id="はじめに">はじめに</h2>
+<p>ドワンゴの、主に実験放送のコンテンツ制作に携わっているエンジニアのツゲハラと申します。</p>
+<p>実験放送でニコニコ新市場を通して利用できるコンテンツ群（以後ニコニコ新市場対応コンテンツ）が、2018年10月25日よりついに自分達で作れるようになりました。</p>
+<ul>
+<li><a href="http://blog.nicovideo.jp/niconews/90431.html">http://blog.nicovideo.jp/niconews/90431.html</a></li>
+</ul>
+<p>年末の自作ゲームフェスに合わせて、コンテストも開催されています。</p>
+<ul>
+<li><a href="http://ch.nicovideo.jp/indies-game2019/blomaga/ar1687936">ニコニコ自作ゲームフェス新人賞　「実験放送ゲーム部門」</a></li>
+</ul>
+<p>とはいえ、いきなりさあ作ろうと言われてもなかなか難しいと思います。</p>
+<p>皆様がスムーズに制作に挑める助力になればと、これから3回にわたって、制作ガイドとしての記事を公開します。</p>
+<ul>
+<li>2018年10月25日: 泥棒バスターを改造してみよう（この記事です）</li>
+<li>2018年11月01日: <a href="../akashic-content2/">ツールを作ってみよう</a></li>
+<li>2018年11月08日: <a href="../akashic-content3/">ゲームを作ってみよう</a></li>
+</ul>
+<p>ニコニコ新市場対応コンテンツについてのご不明点などがあれば、お気軽にお問合せください。</p>
+<ul>
+<li>公式Twitterカウント: <a href="https://twitter.com/akashic_talk">@akashic_talk</a></li>
+</ul>
+<h2 id="環境の用意">環境の用意</h2>
+<p>ニコニコ新市場対応コンテンツはAkashicというもので制作されています。Akashicは、ドワンゴが制作しているオープンソースのエンジンです。</p>
+<ul>
+<li>公式ページ: <a href="https://akashic-games.github.io/">https://akashic-games.github.io/</a></li>
+<li>紹介記事: <a href="https://dwango.github.io/articles/akashic/">https://dwango.github.io/articles/akashic/</a></li>
+</ul>
+<p>まずは、この環境を手元に用意しましょう。</p>
+<p>プログラミングの経験が無い方でも、この記事はなんとかいけると思いますので、ここで回れ右をせずになんとかお付き合いください（次回以降の記事は、プログラミング経験者向けになります）。</p>
+<p>公式のチュートリアルはこちらにあります。</p>
+<ul>
+<li><a href="https://akashic-games.github.io/tutorial/v2/">https://akashic-games.github.io/tutorial/v2/</a></li>
+</ul>
+<p>今回は<a href="https://akashic-games.github.io/tutorial/v2/1-introduction.html">akashic 導入</a>という節を参考に、スクリーンショットを交えて少し詳しく説明します。詳細な手順についてはリンク先を参照してください。</p>
+<p>まず、 <code>node.js</code> というアプリケーションをインストールする必要があります。こちらは <code>Akashic</code> を動作させるために必要なアプリケーションです。インストール済の方は、次項まで飛ばしてください。</p>
+<ul>
+<li><a href="https://nodejs.org/ja/">https://nodejs.org/ja/</a></li>
+</ul>
+<p>こちらのサイトに行くと、ダウンロードを促す二つのボタンが表示されます。どちらをインストールしてもいいのですが、左側のボタンからインストールするものが安定板なので、この記事では左側のボタンを推奨します。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/nodejs-website-lts.png" alt="node.jsのWebサイトにある左側のボタン"  />
+  
+</div>
+
+<p>読者の方をWindowsユーザだと仮定します。ダウンロードしたファイルを実行すると実行するとこのようなダイアログが出ますので <code>実行(R)</code> を選択してください。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/windows-dialog.png" alt="Windowsが出すインストール後のダイアログ"  />
+  
+</div>
+
+<p>インストーラーの起動画面です。 <code>Next</code> を押して次に進んでください。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/nodejs-dialog.png" alt="node.jsのダイアログ"  />
+  
+</div>
+
+<p>次に利用規約が表示されます。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/nodejs-agreement.png" alt="node.jsの利用規約"  />
+  
+</div>
+
+<p>利用規約を読んで、同意する場合は「I accept the terms in the License Agreement」というチェックボックスにチェックを入れてください。利用規約に同意する、という意味になります。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/nodejs-agreement-agree.png" alt="node.jsの利用規約に同意"  />
+  
+</div>
+
+<p>チェックを入れると<code>Next</code>が押せるようになるので、<code>Next</code>ボタンを押してください。</p>
+<p>インストール場所を決めるダイアログが表示されます。お好みで変更してください。特になければ、そのまま<code>Next</code>ボタンを押していただいて大丈夫です。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/nodejs-install-folder.png" alt="node.jsのインストール場所指定"  />
+  
+</div>
+
+<p>インストールする内容を決めるダイアログが表示されます。</p>
+<p>本記事の内容はこのまま<code>Next</code>を押してインストールされる内容で動かすことができます。わかる方は適時カスタマイズしていただいても問題ありません。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/nodejs-install-option.png" alt="node.jsのインストールオプション"  />
+  
+</div>
+
+<p>最後のダイアログです。<code>Install</code>ボタンを押してください。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/nodejs-confirm-install.png" alt="node.jsのインストール確認"  />
+  
+</div>
+
+<p>環境によりますが、以下の画面が表示された後、しばらく動かない事もあるかもしれません。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/nodejs-install-progress.png" alt="node.jsのインストール中画面"  />
+  
+</div>
+
+<p>その場合、しばらくすると管理者の操作を求めるダイアログが出てきますので、「はい」を押してインストールを続行してください。</p>
+<p>ダイアログも出てこずにエラーになってしまう場合、お使いのコンピュータの管理者の方にインストールしていただく必要があります。</p>
+<p>管理者の方にインストールしていただけない環境の場合は、Googleで「node.js 管理者権限」等で検索するといくつかの方法が見つかると思います。難しい場合は冒頭でご案内した<a href="https://twitter.com/akashic_talk">Twitterアカウント</a>などにお問い合わせください。</p>
+<p>無事にインストールができると、以下の画面が表示されると思います。<code>Finish</code>ボタンを押した後、再起動を求められる方もいるかもしれませんが、ともかくこれで最初の関門を突破です。お疲れ様でした。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/nodejs-install-finished.png" alt="node.jsのインストール完了画面"  />
+  
+</div>
+
+<h2 id="akashicのインストール">Akashicのインストール</h2>
+<p><code>node.js</code>がインストールできれば、あとは<code>Akashic</code>をインストールすれば環境準備は完了です。</p>
+<p>Windowsユーザの方は<code>コマンドプロンプト</code>や<code>Power Shell</code>、Macユーザの方は<code>ターミナル</code>などのツールを使う必要があります。</p>
+<p><code>Akashic</code>の公式文書にならい、このツールをCUIツールと呼びます。ここが最大の関門です。</p>
+<p>スタートメニューからコマンドプロンプトかPower Shellを起動してください。</p>
+<p>こことか、</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/windows-start-menu.png" alt="Windows7のスタートメニューとコマンドプロンプト"  />
+  
+</div>
+
+<p>こことかにいます。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/windows10-start-menu.png" alt="Windows10のスタートメニューのPower Shell"  />
+  
+</div>
+
+<p>Macの方はターミナルというツールになります。</p>
+<p>起動すると、このような画面が表示されます。以下はコマンドプロンプトの場合です。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/command-prompt.png" alt="コマンドプロンプト"  />
+  
+</div>
+
+<p>以下はPowerShellの場合です。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/power-shell.png" alt="Power Shell"  />
+  
+</div>
+
+<p>ここで、おもむろに以下の文字を入力し、Enterキーを押してください。「Akashic Sandboxというツールをインストールする」というような意味で、先ほどインストールしたnode.jsに含まれるnpmというものを使ってインストールしています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>npm install -g @akashic/akashic-sandbox
+</span></span></code></pre></div><p>長々と様々なログが表示されたあと、以下のような表示が出れば完了です。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/akashic-sandbox-install.png" alt="Akashic Sandboxのインストール"  />
+  
+</div>
+
+<p>もう一つ、以下のコマンドも実行してください。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>npm install -g @akashic/akashic-cli
+</span></span></code></pre></div><p>似たような表示が出れば、これにてインストール作業は完了です！</p>
+<h2 id="ソースの用意">ソースの用意</h2>
+<p>開発の準備は整いましたが、今回のテーマは「改造」ですので、元ネタが必要です。次に元ネタを持ってきましょう。</p>
+<p>今回利用するゲームは「泥棒バスター」というゲームです。アツマールにも登録されているので、まだやったことの無い人は、一度やってみてください。</p>
+<ul>
+<li><a href="https://game.nicovideo.jp/atsumaru/games/gm8599">https://game.nicovideo.jp/atsumaru/games/gm8599</a></li>
+</ul>
+<p>こういう感じのゲームです。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/thiefBuster.png" alt="泥棒バスター"  />
+  
+</div>
+
+<ul>
+<li>画面をタップすると攻撃と移動の両方を行います</li>
+<li>3種類の敵がいて、それぞれ特徴があり、敵を倒すと得点が入ります</li>
+<li>敵がドアまで到達すると減点になります</li>
+<li>ドアに到達する前に倒し続ければコンボボーナスが入ります</li>
+<li>途中で武器が現れることがあり、武器を攻撃するとパワーアップできます</li>
+</ul>
+<p>・・といったゲームですね。</p>
+<p>大体ゲーム内容がわかったところで、このゲームのソースコードをダウンロードしましょう！<code>GitHub</code>というところに登録されています。</p>
+<ul>
+<li><a href="https://github.com/akashic-contents/thiefBuster">https://github.com/akashic-contents/thiefBuster</a></li>
+</ul>
+<p>今回は完全なソースコードは不要なので、ゲームのバイナリだけダウンロードしたいと思います。画面右の方に<code>release</code>というリンクがあるので、こちらを選択してください。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/github-releases.png" alt="GitHubのrelease"  />
+  
+</div>
+
+<p><code>release</code>のページに移ったら、次に最新のリリースに含まれる<code>game.zip</code>というファイルを選択してください。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/download-gamezip.png" alt="game.zipのダウンロード"  />
+  
+</div>
+
+<p>この手順の通りにやると最新版の<code>game.zip</code>をダウンロードできますが、本記事時点の最新版でよければ<a href="https://github.com/akashic-contents/thiefBuster/releases/download/v0.0.0/game.zip">こちらのリンク</a>からダウンロードすることもできます。</p>
+<p>ZIPファイルの解凍方法がわかる方は、ダウンロードしたファイルを解凍してください。Windowsユーザの方は、エクスプローラ等からファイルを右クリックし、そこで出てくる<code>すべて展開</code>というメニューで解凍できます。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/thiefBuster-extract.png" alt="泥棒バスターの解凍"  />
+  
+</div>
+
+<p>こういったダイアログが出てくると思うので、<code>展開</code>というボタンを押せば展開されます。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/extract-folder.png" alt="泥棒バスターの解凍"  />
+  
+</div>
+
+<p>まずはダウンロードしたものを実行してみましょう。</p>
+<p>先ほどのCUIツールを起動して、以下のようなコマンドを実行してください。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>cd C:<span style="color:#ae81ff">\U</span>sers<span style="color:#ae81ff">\t</span>oyokazu_tsugehara<span style="color:#ae81ff">\D</span>ownloads<span style="color:#ae81ff">\g</span>ame<span style="color:#ae81ff">\g</span>ame
+</span></span></code></pre></div><p>cdの後は環境によって違います。「ダウンロードした場所\game\game」という感じのものです。</p>
+<p>本文章上は場所の区切りを示す記号が<code>\</code>（バックスラッシュ）に見えていますが、多くの環境では<code>￥</code>（円記号）のような表示になっていると思います。これは日本語キーボードでは<code>￥</code>の場所のキー、英語キーボードでは<code>\</code>の場所のキーを入力すると、環境に応じて表示が変わる文字として扱われるもので、どちらも正常です。以後、<code>￥</code>に見える環境では<code>\</code>を<code>￥</code>に読み替えてください。</p>
+<p>「cd 」と、cdの後の半角スペースまで入力してから、エクスプローラからドラッグすると間違えなくて済みます。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/drag-to-command-prompt.png" alt="エクスプローラからコマンドプロンプトにドラッグ"  />
+  
+</div>
+
+<p>ドラッグ＆ドロップに成功するとこのような表示になります。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/folder-dropped.png" alt="ドラッグ＆ドロップの成功"  />
+  
+</div>
+
+<p>これでenterを押すと、表示がこのように変わります。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/cd-finished.png" alt="cdの成功"  />
+  
+</div>
+
+<p>これで、ゲームをダウンロードした場所で作業している事になるので、以下のコマンドを実行してください。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>akashic-sandbox
+</span></span></code></pre></div><p>実行すると下図の表示が出ています。 <code>localhost</code> の <code>3000</code> 番ポートでこのゲーム用のサーバを起動したので、 <code>http://localhost:3000</code> にブラウザでアクセスしてください、という趣旨のメッセージが表示されています。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/akashic-sandbox-launched.png" alt="Akashic Sandboxの起動"  />
+  
+</div>
+
+<p><code>http://localhost:3000</code> をChrome等のブラウザで開いてみると、無事、ゲームが実行されている様子を見る事ができます。</p>
+<p><code>akashic-sandbox</code>はゲームを実行するためのサーバを起動するためのコマンドで、このコマンドをCUIツールで実行する事で、みなさんのPC上でゲームを実行できます。</p>
+<p>その前に実行した<code>cd</code>というコマンドは、作業場所を移すコマンドで、この<code>cd</code>を使う事でゲームを切り替える事ができます。</p>
+<p>CUIツールの操作は少し難易度が高いですが、どのゲームを作るのにも行う作業になるので、<code>cd</code>でゲームを切り替えて<code>akashic-sandbox</code>で実行、という使い方は覚えておく事をオススメします。</p>
+<p><code>akashic-sandbox</code>を実行したCUIツールと、<code>http://localhost:3000</code> で開いたブラウザは、次項でも使うのでそのままにしておいてください。</p>
+<h2 id="ゲームの改造">ゲームの改造</h2>
+<p>長くなってしまいましたが、準備が整ったので、いよいよゲームを改造していきたいと思います。今回は画像の改造だけで、ゲームの見た目を変えるという事をやりたいと思います。</p>
+<p>泥棒バスターを解凍したフォルダの中に、<code>game</code>というフォルダがあります。この中に、ゲームに必要なリソースが一式入っています。</p>
+<p>その中の、<code>asapj</code>というフォルダの中に色々なリソースファイルが入っています。この辺りの画像をいじれば、ゲーム中の画像も変わります。</p>
+<p><code>asapj</code>フォルダの中にある<code>stg_player</code>というフォルダを覗いてみると、<code>stg_player.png</code>というファイルがあります。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/stg_player.png" alt="stg_player.png"  />
+  
+</div>
+
+<p>これを改造すればプレイヤーが変わりそうな気配があります。ゲームの仕組みはよくわかりませんが、まずは変えてみましょう。以下辺りが怪しいですね！</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/ayashii.png" alt="変えればプレイヤーが変わりそうな場所"  />
+  
+</div>
+
+<p>これは、明らかに「1」が通常時の手、「2」が攻撃をした時の手、「３」がキャラクターの画像でしょう。</p>
+<p>なんとなく差し替えてみようと思います。こちらの手元ではこうなりました。みなさんも是非、記事を読むだけでなく、実際に改造してみてください。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/stg_player_nimobachan.png" alt="画像を実際に変えた様子"  />
+  
+</div>
+
+<p>ここで、先ほど開いているままのブラウザのリロードをしてください。私の手元ではこのような画面になりました。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/thief-nicomoBuster.png" alt="泥棒バスターの画像が変わった様子"  />
+  
+</div>
+
+<p>もうちょっといじってみましょうか。せっかくゲームを改造したので、タイトル画像も変えちゃいましょう。<code>asapj</code>の下の<code>nw_title</code>の下の、<code>title_logo.png</code>という画像が怪しいです。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/title_logo.png" alt="title_logo.png"  />
+  
+</div>
+
+<p>これを変えてみましょう。私の手元ではこうなりました。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic-content1/title_logo_nicomobachan.png" alt="タイトル画像を変えた様子"  />
+  
+</div>
+
+<p>またブラウザをリロードすると、タイトルが変わっているのが確認できると思います。</p>
+<h2 id="アツマールへのアップロード">アツマールへのアップロード</h2>
+<p>このように、ゲームの改造は、環境を作るまでが少し大変ですが、一度作ってしまばえゲームによっては割と簡単にできます。</p>
+<p>既に公開しているニコニコ新市場対応コンテンツの内、いくつかのゲームを公開していますので、是非改造してみてください。</p>
+<ul>
+<li>泥棒バスター: <a href="https://github.com/akashic-contents/thiefBuster">https://github.com/akashic-contents/thiefBuster</a></li>
+<li>今回作った改造版泥棒バスター（泥棒ニコモバスター）:  <a href="https://github.com/akashic-contents/thiefBuster-nicomoba">https://github.com/akashic-contents/thiefBuster-nicomoba</a></li>
+</ul>
+<p>最後に、せっかく作ったのですからRPGアツマールにアップロードし、ニコニコ新市場で利用できるようにしたいと思います。</p>
+<p>以下の記事を参考にアツマールにゲームの投稿、ニコニコ新市場へ登録申請を行ってください。</p>
+<ul>
+<li><a href="https://akashic-games.github.io/guide/export-atsumaru.html">https://akashic-games.github.io/guide/export-atsumaru.html</a></li>
+</ul>
+<p>申請後、実際に実験放送で登録したゲームが使えるようになるには少し時間がかかります（実験放送で使うにあたって問題が見つかった場合等で、使えるようにならない場合もあります）が、是非気軽に登録してみてください。</p>
+<p>無事に反映された後は、みなさんも生放送上で自分の作ったゲームを視聴者の皆さんと遊べるようになります。</p>
+<h2 id="終わりに">終わりに</h2>
+<p>今回は最初の一歩として、誰しもが苦労するであろう「環境の構築」と「CUIツールの導入」を説明させていただきました。</p>
+<p>この記事でお伝えしたいのは、最初の一歩さえクリアすれば、プログラミングの経験が無くてもゲームの改造ができるということ、一度ゲームを改造ができるようになれば画像の変更だけでも結構遊べるということです。</p>
+<p>ニコニコ新市場対応コンテンツの醍醐味として、1人で遊ぶだけでなく、実際に作ったゲームを自分の放送、あるいは自分の好きな放送者さんの放送で使われるという体験があるので、長い記事ではありますが皆さんにも最初の一歩をクリアし、実際にニコニコ新市場対応コンテンツの制作体験をしていただける事を願っています。</p>
+<hr>
+<p>とはいえ、やはりゲームにはプログラミングがつきものです。</p>
+<p>次回は、いよいよプログラミングを交えたニコニコ新市場対応コンテンツとして、簡単なツールを作ってみたいと思います。</p>
+<p>プログラミング経験者の方、あるいは、せっかくですのでプログラミングを覚えようとされる方、お付き合いください。</p>
+</article>
+    </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+          
+            <a href="https://dwango.github.io//categories/jikken-housou/">/jikken-housou</a>
+          
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="泥棒バスターを改造してみよう - dwango on GitHub"
+          data-url="https://dwango.github.io/niconico/jikken-housou/akashic-content1/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/niconico/jikken-housou/akashic-content1/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2fniconico%2fjikken-housou%2fakashic-content1%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

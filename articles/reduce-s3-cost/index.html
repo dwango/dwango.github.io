@@ -1,1 +1,506 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="ja" lang="ja" >
 
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.122.0">
+
+  <meta property="og:title" content="S3のコストダウンを実施してみた - dwango on GitHub">
+
+  <meta property="og:description" content="ドワンゴ社内の様子や、文化、技術をご紹介します。" />
+
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  <meta name="twitter:card" content="summary">
+  
+
+
+  
+  
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>S3のコストダウンを実施してみた - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> ニコニコ開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://blog.nnn.dev/"> 教育サービス開発者ブログ </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
+      
+        Copyright &copy; DWANGO Co., Ltd.
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+  <div class="post">
+    <time class="content-date" datetime="2022-02-16 12:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2022-02-16 Wed</time
+    >
+    <h1 class="article-title">S3のコストダウンを実施してみた</h1>
+
+    <div>
+      
+      <article id="content"><p>※本ブログは2022/2に執筆されています。そのため、アップデートによって内容が現在と異なる可能性があります。</p>
+<h2 id="はじめに">はじめに</h2>
+<p>モバイル事業本部プロダクトエンジニアリングセクション マネージャーの安田です。
+インフラっぽいことやクラウドっぽいことやデータエンジニアっぽいことをやってます。
+今回、モバイル事業部で使うS3のコスト削減のため、ストレージクラスの移行等を行うライフサイクルの設定を行いましたのでご紹介します。
+これからS3の管理を行っていく方、コスト削減に興味のある方の参考になれば幸いです。</p>
+<h2 id="実施の背景">実施の背景</h2>
+<p>モバイル事業本部ではドワンゴジェイピーやアニメロミックスなど音楽配信ビジネスを中心に展開しており、様々なレーベルからお預かりした楽曲データを管理しています。
+また、ニコニコ事業本部ができる前からサービスを行っており、多大な量のシステムログやクラウドサービスのログデータなどが存在しています。
+それらの多くはAmazon Simple Storage Service (Amazon S3)に保存されており、複数のバケットに分かれて保存されています。
+これまではそれらをすべて「S3標準」（以下Standard）のストレージクラスに保存していました。</p>
+<p>以前からストレージクラスを変更することでコストダウンが可能なことは知っていたのですが、ずっと実施して来ませんでした。
+ストレージクラスの機能に柔軟性が足りなかったことや、サービスの展開によりデータの使用傾向が大きく変化していた時期だったからです。
+しかし、2018年にはIntelligent-Tieringという柔軟なストレージクラスが発表され、2021年9月に機能も<a href="https://aws.amazon.com/jp/blogs/aws/amazon-s3-intelligent-tiering-further-automating-cost-savings-for-short-lived-and-small-objects/">アップデート</a>されたことや、モバイル事業のデータ利用傾向もある程度安定してきたことから、ストレージクラスの移行実施を検討しました。</p>
+<p>本ブログでは実施に際して、何を考慮しなければいけないか、注意点や躓きポイント、実施した結果などをご紹介していきます。</p>
+<h2 id="ストレージクラスとは">ストレージクラスとは？</h2>
+<p>一般的に、データによって重要度やアクセスの必要性、アクセス頻度が違うと思います。
+例えば、WEBページのようなデータであればアクセス頻度は高いでしょうし、ログのようなデータであれば古いものは年に数回程度のアクセス頻度でしょう。
+S3ではそのような要件に応じてコストを最適化できるように、ストレージクラスという仕組みを用意してくれています。</p>
+<p>Standardに対して他のストレージクラスは数分の1の価格でデータを保存することができます。
+ただし、データにアクセスをする際には取り出しデータ量に応じて料金がかかったり、アクセス可能になるまでに時間がかかったりといった違いがあります。</p>
+<p>今回の施策では以下の4つのストレージクラスを使用しました。
+それぞれの比較において重要な項目のみ書いておきます。
+詳細は公式の<a href="https://aws.amazon.com/jp/s3/pricing/">コストページ</a>をご覧ください。
+カタログスペック的な話なので、ご存じの方はスルーしていただいて結構です。</p>
+<p><strong>1. Amazon S3標準–低頻度アクセス (以下、SIA)</strong></p>
+<ul>
+<li>メリット
+<ul>
+<li>Standardとほぼ同じ要件で利用可能</li>
+<li>ストレージ料金はStandardの大体55％程度</li>
+</ul>
+</li>
+<li>デメリット
+<ul>
+<li>最低サイズが128 KB</li>
+<li>最小ストレージ期間が30日（30日以内に削除されると残り日数分の料金が加算される）</li>
+<li>APIコール料金はStandardの2倍～3倍</li>
+<li>データアクセス量に対して0.01USD/GB</li>
+<li>ライフサイクル移行リクエスト料金が1,000オブジェクトあたり0.01USD</li>
+</ul>
+</li>
+</ul>
+<p><strong>2. Amazon S3 Glacier Instant Retrieval (以下、GIR)</strong></p>
+<ul>
+<li>メリット
+<ul>
+<li>Standardとほぼ同じ要件で利用可能</li>
+<li>ストレージ料金はStandardの大体20％程度</li>
+</ul>
+</li>
+<li>デメリット
+<ul>
+<li>最低サイズが128 KB</li>
+<li>最小ストレージ期間が90日（90日以内に削除されると残り日数分の料金が加算される）</li>
+<li>APIコール料金はStandardの3倍～4倍</li>
+<li>データアクセス量に対して0.03USD/GB</li>
+<li>ライフサイクル移行リクエスト料金が1,000オブジェクトあたり0.02USD</li>
+</ul>
+</li>
+</ul>
+<p><strong>3. Amazon S3 Glacier Deep Archive (以下、GDA)</strong></p>
+<ul>
+<li>メリット
+<ul>
+<li>ストレージ料金はStandardの大体8％程度</li>
+</ul>
+</li>
+<li>デメリット
+<ul>
+<li>Standardと同じ要件で利用できない（即時アクセスできない）</li>
+<li>最低サイズが128 KB</li>
+<li>最小ストレージ期間が180日（180日以内に削除されると残り日数分の料金が加算される）</li>
+<li>一部APIコール料金はStandardの14倍程度</li>
+<li>データアクセス量に対して0.022USD/GB</li>
+<li>ライフサイクル移行リクエスト料金が1,000オブジェクトあたり0.065USD</li>
+</ul>
+</li>
+</ul>
+<p><strong>4. Amazon S3 Intelligent-Tiering (以下、INT)</strong> ※ディープアーカイブオプションは不使用</p>
+<ul>
+<li>メリット
+<ul>
+<li>Standardとほぼ同じ要件で利用可能</li>
+<li>アクセス傾向を判断し、自動的にStandard/SIA/GIR相当のストレージクラスに移行してくれる</li>
+<li>ストレージ料金はアクセス傾向によってStandard/SIA/GIR並みとなる</li>
+<li>取り出し料金が発生しない</li>
+<li>ストレージクラス移行料金が発生しない</li>
+<li>APIコール料金はStandardと同じ</li>
+</ul>
+</li>
+<li>デメリット
+<ul>
+<li>監視・オートメーションコストとして常にオブジェクト1,000 件あたり 0.0025USDかかる</li>
+<li>最低サイズが128 KB ⇒ <strong>2021/9のアップデートで128KB以下の監視・オートメーションの料金が無料に！</strong></li>
+<li>最小ストレージ期間が30日 ⇒ <strong>2021/9のアップデートで0日に！</strong></li>
+<li>移行後、30日・90日監視されないとコストメリットが出ない</li>
+<li>ライフサイクル移行リクエスト料金が1,000オブジェクトあたり0.01USD</li>
+</ul>
+</li>
+</ul>
+<p>いかがでしょうか？
+思った以上に複雑な項目で課金されるな、と思われたのではないかと思います。
+また、単純に安いストレージを選択すればよいわけではないということはわかっていただけたかと思います。
+最初の印象では、INTが非常に優秀で使いたいと思う一方で、オートメーション費用としてオブジェクトに継続的に課金されてしまう点が気になりました。</p>
+<p>私的なそれぞれのストレージクラスの用途については、ざっくりいうと以下のようなものだと考えています。</p>
+<ul>
+<li>SIAはアクセスはあまりされないが、長期保存しておく必要があるもの</li>
+<li>GIRはアクセスはされない前提のオブジェクトで、長期保存しておく必要があるもの</li>
+<li>GDAは塩漬けにするデータ・アクセスしたいときには翌日以降にアクセスできれば良いもの</li>
+<li>INTはアクセス傾向が読めず、古いファイルにも一定量以上アクセスがあるもの</li>
+</ul>
+<h2 id="何を重要視したか">何を重要視したか</h2>
+<p>今回、ストレージクラスを選択する際に重要視した点をまとめます。</p>
+<h3 id="コードに変更を加えずに利用できること">コードに変更を加えずに利用できること</h3>
+<p>S3をコンソールやCyberduck等から手動で更新することもあるかと思いますが、多くはコーディングされた一連の処理の中でデータの取得や出力がなされます。
+<strong>今回選択したGDA以外のストレージクラスはプログラムの変更なしに利用することができます</strong>。
+より安いアーカイブ層のストレージクラスを多く使おうとする場合、利用するソフトウェアに一工夫必要になり改修コストがかかってしまいますので、使用を避けました。
+GDAはコードからも一切アクセスされないオブジェクト・バケットに対して使用しました。</p>
+<h3 id="コストが低くなること">コストが低くなること</h3>
+<p>当たり前のことを言っているのですが、結構大事な観点です。
+Standardから他のストレージクラスに移行すると基本的にはストレージ料金は下がります。
+ですが、アクセスの頻度やアクセスデータ量が多いバケットだと結果コストが高くなる可能性もあります。
+容量の小さいバケットはコストダウンを目的にした場合、対応をする必要性が低いということでもあります。
+また、<strong>不要なファイルは削除するのが一番いい</strong>のです。
+どのストレージクラスを利用するか、という前に「定期削除してはだめなのか、平均ファイルサイズは移行効果があるサイズなのか、無駄なバージョニングはされていないか」などを調査しました。</p>
+<h3 id="移行コストがどのくらいかかるか">移行コストがどのくらいかかるか</h3>
+<p>ストレージクラスの移行にはストレージ移行コストがかかります。
+ストレージクラスによって異なる費用ですが、オブジェクト数が多くなると結構バカにならない費用が加算されます。
+オブジェクト数が1億を超えてくるようなバケットだと1回ライフサイクル移行するのに1000USDほどかかってきますので、結構大きいですよね。
+また、<strong>その移行費用は移行実施日にかかります</strong>。
+ですので、実施前にいくらかかるのかを割り出し、その費用が急に請求に載ってもびっくりしないでね、と関係各所に連絡と調整をしました。</p>
+<h2 id="移行の準備をする">移行の準備をする</h2>
+<h3 id="対象となるバケットを決める">対象となるバケットを決める</h3>
+<p>ストレージクラス移行はコストダウンが目標でした。
+ですので、まずはコストメリットの大きいバケットに絞って実施をしました。これはバケットを容量順に並べてみて、上位〇個や〇TB以上あるバケット、などそれぞれ基準を設けるとよいと思います。
+CloudWatchで1日1回取得されていますので、S3のメトリクスから「BucketSizeBytes」を確認すると把握できると思います。
+または、S3の左ペインにあるStorage Lensのダッシュボードを見ると、バケット単位のストレージ合計・オブジェクト数・平均オブジェクトサイズが取得できますのでおススメです。</p>
+<p>今回の施策では上位10個ほどを移行対象にしました。</p>
+<h3 id="現状の使われ方を把握する">現状の使われ方を把握する</h3>
+<p>次に実施したことは、現在のS3のバケットの使われ方を把握することです。
+それには<a href="https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/analytics-storage-class.html">ストレージクラス分析</a>の機能を利用しました。
+ストレージクラス分析を利用することで、ストレージクラス毎に使われ方やアクセス傾向を把握することができます。
+以下のような情報を得ることができました。</p>
+<p><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/reduce-s3-cost/current-usage.png" alt="current-usage-graph"  />
+  
+</div>
+
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/reduce-s3-cost/current-usage2.png" alt="current-usage-graph2"  />
+  
+</div>
+
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/reduce-s3-cost/current-usage3.png" alt="current-usage-graph3"  />
+  
+</div>
+</p>
+<p>バケット毎に設定する必要があるため、マネージメントコンソールからS3の対象バケットを表示し、上部ペインの「メトリクス」⇒ストレージクラス分析の項目にある「分析項目を作成」から作成できます。
+ストレージクラス分析を作成して数日すると、ある程度の傾向が把握できるようになりますが、より正確に傾向を測るためには１ヶ月程度分析し続けることが望ましいです（モニタリングされるオブジェクト 100 万個あたり/月 0.10USDかかります）。</p>
+<h3 id="現状の使われ方を把握する2">現状の使われ方を把握する（2）</h3>
+<p>現状の使われ方を把握する上で、利用者へのヒアリングは非常に重要です。
+ヒアリングをすることで、古いデータを消してもよいのか・消してはいけないのか、古いデータにアクセスをする業務があるのかなどを把握しました。年1実施する処理のようなストレージ分析では見えない範囲の業務を把握することができます。</p>
+<h3 id="バケット毎の移行方針を立てる">バケット毎の移行方針を立てる</h3>
+<p>ストレージクラス分析やヒアリングから取得した情報はまとめると以下になります。</p>
+<ol>
+<li>ストレージクラス別の保存傾向
+<ul>
+<li>オブジェクト作成後の経過日数毎の保存バイト数がわかる
+<ul>
+<li>保存されたファイルが多いボリュームゾーンを知ることで、何日目からファイルをストレージクラス移行するとコストメリットが大きいかを知ることができます。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>取得レート
+<ul>
+<li>どの程度古いデータにアクセスされているかがわかる
+<ul>
+<li>取得レートが高いデータをストレージ移行してしまった場合、そこにアクセスが多くされてしまい、ストレージのコストダウンの効果よりアクセス費用が掛かってしまうこともあり得ます。</li>
+<li>作成後365日以上前のデータにもアクセスが多い場合などは、ファイルの生存期間に依存しないアクセス傾向にあるバケットであると判断できます。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ヒアリング
+<ul>
+<li>データの削除の可否や突発的な業務の有無を確認する</li>
+</ul>
+</li>
+</ol>
+<p>入手した情報を元に、バケット毎に検討をした結果、今回のケースでは大まかに4パターンのバケットの傾向に分類できました。</p>
+<ol>
+<li>アクセス傾向がファイルの生存期間に依存しない全体にアクティブなデータが多いバケット
+<ul>
+<li>INTを選択</li>
+</ul>
+</li>
+<li>作成直後のデータには頻繁にアクセスされるが、その後のデータにはほぼアクセスされないバケット
+<ul>
+<li>30日程度でSIAに移行⇒その後一定日数経過後にGIRに移行</li>
+</ul>
+</li>
+<li>作成直後のデータには頻繁にアクセスされるが、その後のデータは不要になるバケット
+<ul>
+<li>ストレージ移行をせず、一定経過後に削除</li>
+<li>テスト環境・開発環境のバケットなど</li>
+</ul>
+</li>
+<li>保存しておく必要はあるが、誰からも一切アクセスされないバケット
+<ul>
+<li>GDAを選択</li>
+</ul>
+</li>
+</ol>
+<h2 id="コストを試算してみる">コストを試算してみる</h2>
+<p>コストの試算ではバケット毎に現状の費用・ストレージクラス移行費用・移行後月額費用を算出しました。ライフサイクルでの移行の場合、オブジェクトサイズが128KB以下のものは対象外なのですが、その数を特定する方法が簡単にはなかったため、すべてのオブジェクトをストレージクラス移行するものとしてMaxの移行費用を計算をしました。実際の移行費用は試算より小さくなるはずですし、128KB以下のものは移行対象外となってもサイズが小さいため、せいぜい数％の差にしかならないので、試算としてはこれで十分な精度です。
+計算上、<strong>最終的には対象バケットのコストは約70％程度コスト削減でき、移行コストは半月でペイできるという試算</strong>になりました。（実際は想定外のアクセス費用やAPIコールの費用などがかかるため、ここまで想定通りはいかないとはおもいますが。。。）</p>
+<p>ただ、ここでいくつかの問題が見つかりました。</p>
+<h3 id="バージョニングデータの計画が漏れていた">バージョニングデータの計画が漏れていた</h3>
+<p>いくつかのバケットでは<a href="https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/Versioning.html">バージョニング</a>が有効になっていました。バージョニングされたデータにも現行のオブジェクトと同様にストレージクラスが指定されています。こちらは追加でバージョニングの削除とも合わせてストレージクラスの移行を計画しました。</p>
+<h3 id="オブジェクト数が多すぎる">オブジェクト数が多すぎる</h3>
+<p>いくつかのバケットはオブジェクト数が多すぎるため、<strong>ストレージクラス移行費用がストレージコスト削減料金を大きく上回る</strong>ことがわかりました。特に、ELBやCloudfrontのアクセスログを保存するバケットはアクセス単位でログが保存されていて、非常に小さい平均オブジェクトサイズとなっていました。そのようなバケットは別の方法でオブジェクトを何かしらの単位で一つにまとめることでオブジェクト数を減らして対応することが効果的です。ですので、今回のライフサイクル＋ストレージクラスによる対応から対象外としました。</p>
+<h2 id="ライフサイクルを設定する">ライフサイクルを設定する</h2>
+<h3 id="設定日">設定日</h3>
+<p>今回は継続的にストレージ移行を実施したいため、ライフサイクルを設定することによるストレージクラスの移行を設定しました。まずはパターンの異なる２つのバケットを選んで、コンソールから設定をしてみました。</p>
+<p>サンプルで一つの設定例を載せておきます。
+設定内容はバケットの全オブジェクトを対象にして、30日後のオブジェクトをSIAに移行する。150日後のオブジェクトをGIRに移行する、という内容です。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/reduce-s3-cost/life-cycle-settings.png" alt="life-cycle-settings"  />
+  
+</div>
+
+<p>よし。作成完了。
+ライフサイクルの実行タイミングは0時0分(UTC)ですので、翌日を楽しみにしていました。</p>
+<h3 id="翌日">翌日</h3>
+<p>意気揚々とS3のコンソールを開いて確認してみた私</p>
+<p>が・・・・駄目っ・・・・・！
+たった一つのオブジェクトもストレージクラス移行されていませんでした・・・</p>
+<p>ということで、調査開始。
+こちらがライフサイクル設定をAPIから取得した内容になります。</p>
+<p><code>$ aws s3api get-bucket-lifecycle-configuration --bucket sample-bucket</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Rules&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;ID&#34;</span>: <span style="color:#e6db74">&#34;lifecycle&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Filter&#34;</span>: {},
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Status&#34;</span>: <span style="color:#e6db74">&#34;Enabled&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Transitions&#34;</span>: [
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;Days&#34;</span>: <span style="color:#ae81ff">30</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;StorageClass&#34;</span>: <span style="color:#e6db74">&#34;STANDARD_IA&#34;</span>
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;Days&#34;</span>: <span style="color:#ae81ff">150</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;StorageClass&#34;</span>: <span style="color:#e6db74">&#34;GLACIER_IR&#34;</span>
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>ソリューションアーキテクトの方とも相談しながら調査を進めたところ、どうやらCLIから設定した場合には正常に動作するライフサイクルが設定できるということがわかりました。正常に動くライフサイクルの設定をAPIで取得した結果がこちらです。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Rules&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;ID&#34;</span>: <span style="color:#e6db74">&#34;lifecycle&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Filter&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;Prefix&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Status&#34;</span>: <span style="color:#e6db74">&#34;Enabled&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Transitions&#34;</span>: [
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;Days&#34;</span>: <span style="color:#ae81ff">30</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;StorageClass&#34;</span>: <span style="color:#e6db74">&#34;STANDARD_IA&#34;</span>
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;Days&#34;</span>: <span style="color:#ae81ff">150</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;StorageClass&#34;</span>: <span style="color:#e6db74">&#34;GLACIER_IR&#34;</span>
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>なんと、コンソールから行ったライフサイクルの設定には<strong>Prefixが入ってない</strong>のです
+どうやらAPIのversionがv2になったときのバグ？があるようで、<strong>コンソールから設定をしても正常に動作しない</strong>ようです。
+(<strong>2022-02-17 追記</strong>:こちら、現在はコンソールから設定しても問題なく動作するようです。
+また、get/put-bucket-lifecycle-configuration で設定した際のprefixの追記は必要なく、getしたものと同じjsonで設定できました。)</p>
+<p>そこで、Prefixを自分で追加設定して、今度は設定をAPIからputすることにしました。そのために、上記ライフサイクルの設定をjsonファイルに記載します。そしてAPIから以下のコマンドを実行しました。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ aws s3api put-bucket-lifecycle-configuration  <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --bucket sample-bucket  <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --lifecycle-configuration file://sample-bucket.json
+</span></span></code></pre></div><p>何もエラーはなく、成功したようです。コンソールから見ても何も変化はありませんでしたが、再度APIからGETするときっちりPrefixが設定されていました。</p>
+<h3 id="また翌日">また翌日</h3>
+<p>恐る恐るコンソールを確認すると・・・</p>
+<p>無事動作していました！！
+対象バケットのメトリクスはこのようになりました（画像は数日後のもの）</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/reduce-s3-cost/bucket-size-metrics.png" alt="bucket-size-metrics"  />
+  
+</div>
+
+<p>Standardが大幅に減り、移行されたSIAとGIRのデータ量が表示されるようになりました！
+最後に、各ストレージクラスの容量が、事前に計算していた容量と大きな差がないことを確認し、他のバケットにも設定を行いました。</p>
+<h2 id="ライフサイクル設定後にチェックすること">ライフサイクル設定後にチェックすること</h2>
+<h3 id="総コスト">総コスト</h3>
+<p>ライフサイクルに設定した後、想定通りコストがダウンしているか、想定外のコスト増が発生していないか等を確認する必要があります。また、気を付けなくてはいけないこともいくつかあります。Cost Explolerで確認をすると最小単位で1日毎にコスト管理が可能です。</p>
+<ul>
+<li>2日程度経たないとCost Explolerに値が記載されない項目があります
+<ul>
+<li>気長に待ちましょう</li>
+</ul>
+</li>
+<li>INTは30日経過しないと低アクセスレイヤに移行されないので、INTに移行したバケットのコストは設定後すぐには削減されません
+<ul>
+<li>即コストダウンすると思っていると想定より効果が少ないと感じてしまうかもしれません</li>
+</ul>
+</li>
+<li>最低利用期間前に別のストレージクラスに移行されたオブジェクトや削除されたオブジェクトがある場合、APN1-EarlyDelete-SIAやAPN1-EarlyDelete-GIRの費用として請求されます。それらの項目が大きすぎる場合、想定していなかった利用ケースがある可能性もありますので注意が必要です。
+<ul>
+<li>今回の例ように、ライフサイクルによって30日でSIA、150日でGIRに移行するライフサイクルを設定した場合、多少EarlyDeleteが発生してしまいます。例えば、作成後149日経過したオブジェクトは初期設定でSIAに移行されますが、翌日は150日なのでたった1日でGIRに移行することとなってしまい、残りの29日分のストレージ費用がEarlyDelete-SIAとして請求されます。</li>
+<li>実際、APN1-EarlyDelete-SIAが計上されていました。本施策のケースでは1日数USDですがかかっており、ほかのバケットで同様の設定をした場合にも最初の30日は想定よりも多少コストが増えてしまうと思います。（GIRの移行を30日間遅らせるという方法もありますが、そちらの方がオペレーションコストやGIRによるコスト削減が遅れることでのコスト増になるケースが多いと思います）</li>
+</ul>
+</li>
+</ul>
+<h3 id="アクセス傾向">アクセス傾向</h3>
+<p>今回は事前にストレージクラス分析やヒアリングを行い、利用者の利用傾向を可能な限り把握してから設定を行いました。ただ、サービスの増減やデータ分析の導入など様々なケースでアクセス傾向が変わってくることが想定されます。
+少なくとも月1回程度はS3のアクセス料金やオブジェクト数の推移などを確認して、想定外のアクセスがされていないかをチェックしていく必要があるのかなと思っています。</p>
+<h2 id="最後に">最後に</h2>
+<p>今回はライフサイクルによるストレージクラスの変更を実施しました。具体的な設定というよりは移行計画を立てる方法や注意点についてフォーカスした説明をさせていただきました。
+移行のコスト削減効果は実施直後の現在でも多少出てきており、90日後にINTが自動的にアーカイブ層に移行されるのが待ち遠しい限りです。</p>
+<p>最初はストレージクラスの種類の多さや課金されるアクションや項目の多さなどで全容把握に非常に苦労しましたが、一つずつクリアにしていき、当初狙っていたコストダウンの効果をほぼほぼ得ることができました。</p>
+<p>実施してみてINTは非常に優秀だなと感じました。最初気になったINTの管理・オートメーション費用ですが、オブジェクトが１億を超えてくるようなバケットでは多少気にはなりますが、それでもストレージ移行の自動化はメリットが大きいのかなと思います。</p>
+<p>あとは、改めてデータレイク設計を利用当初からもっときめ細かくやっておけばよかったなと思いました。バケット単位でデータの種類や生存期間などを可能な限り統一することで、より適したストレージクラスの選択も可能になりますので、今後の設計に生かしていきたいと思いました。</p>
+<p>この記事を見た方が「自分のS3でもやってみよう」と思っていただけたら幸いです。</p>
+<p>株式会社ドワンゴでは、教育事業、ニコニコ事業、モバイル事業など様々なサービス、コンテンツを一緒につくるメンバーを募集しています。ドワンゴに興味がある。または迷っている方がいれば、気軽に応募してみてください。</p>
+<ul>
+<li><a href="https://saiyo.dwango.co.jp/">新卒採用はこちら</a></li>
+<li><a href="https://hrmos.co/pages/dwango">キャリア採用はこちら</a></li>
+</ul>
+</article>
+    </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+          
+            <a class="tag" href="https://dwango.github.io//tags/AWS/"
+              >#AWS</a
+            >
+          
+            <a class="tag" href="https://dwango.github.io//tags/S3/"
+              >#S3</a
+            >
+          
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="S3のコストダウンを実施してみた - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/reduce-s3-cost/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/reduce-s3-cost/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2freduce-s3-cost%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

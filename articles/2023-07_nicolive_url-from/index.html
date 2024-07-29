@@ -1,1 +1,412 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="ja" lang="ja" >
 
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.122.0">
+
+  <meta property="og:title" content="型安全なURL生成ライブラリ url-from を公開しました - dwango on GitHub">
+
+  <meta property="og:description" content="ドワンゴ社内の様子や、文化、技術をご紹介します。" />
+
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  <meta name="twitter:card" content="summary">
+  
+
+
+  
+  
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>型安全なURL生成ライブラリ url-from を公開しました - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> ニコニコ開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://blog.nnn.dev/"> 教育サービス開発者ブログ </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
+      
+        Copyright &copy; DWANGO Co., Ltd.
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+  <div class="post">
+    <time class="content-date" datetime="2023-07-25 12:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2023-07-25 Tue</time
+    >
+    <h1 class="article-title">型安全なURL生成ライブラリ url-from を公開しました</h1>
+
+    <div>
+      
+        <aside>
+          <h2>目次</h2>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#url-fromを作った動機">url-fromを作った動機</a>
+      <ul>
+        <li><a href="#発端">発端</a></li>
+        <li><a href="#パスにスラッシュを含む値を埋め込む場合">パスにスラッシュを含む値を埋め込む場合</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考にした情報">参考にした情報</a></li>
+    <li><a href="#url-fromの仕組み">url-fromの仕組み</a></li>
+    <li><a href="#安全性">安全性</a>
+      <ul>
+        <li><a href="#エンコード漏れを起こせない仕組み">エンコード漏れを起こせない仕組み</a></li>
+        <li><a href="#型による安全の担保">型による安全の担保</a></li>
+        <li><a href="#誤りに気付かせる方法">誤りに気付かせる方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#利便性">利便性</a>
+      <ul>
+        <li><a href="#型の絞り込み">型の絞り込み</a></li>
+        <li><a href="#柔軟且つ明示的なスラッシュ管理">柔軟且つ明示的なスラッシュ管理</a></li>
+        <li><a href="#理想的なサジェスト">理想的なサジェスト</a></li>
+      </ul>
+    </li>
+    <li><a href="#おすすめの使い方">おすすめの使い方</a></li>
+    <li><a href="#試してみたい方へ">試してみたい方へ</a></li>
+    <li><a href="#今後">今後</a></li>
+    <li><a href="#まとめ">まとめ</a></li>
+  </ul>
+</nav>
+        </aside>
+        <hr />
+      
+      <article id="content"><p>こんにちは。ニコニコ生放送生放送フロントエンドシステムセクションのmisuken(<a href="https://github.com/misuken-now">GitHub</a>/<a href="https://twitter.com/misuken_now">Twitter</a>)です。</p>
+<p>今回は最近公開した<a href="https://github.com/misuken-now/url-from">url-from</a>というライブラリに関して、作成した動機、安全性、利便性、おすすめの使い方を紹介していこうと思います。</p>
+<p><a href="https://github.com/misuken-now/url-from">url-from</a>が一般的なURL生成ライブラリと比較して強みを持っているのは以下の点になります。</p>
+<ul>
+<li>パス部分も含め、全体的にエンコードを意識せず使用できる</li>
+<li>URLの定義と生成を分離できる</li>
+<li>細部まで型や警告で保護してくれる</li>
+</ul>
+<p>実際の利用シーンに馴染む設計を心がけたため、安全性と利便性と書き味を兼ね備えたライブラリに仕上がっています。</p>
+<p>使用してもらったメンバーから「型がサクサク当たるので書いてて楽しい」といった声もあがるくらい、使っていて楽しくなるライブラリでもあります。</p>
+<h2 id="url-fromを作った動機">url-fromを作った動機</h2>
+<h3 id="発端">発端</h3>
+<p>以前からチーム内でURLの生成方法が時期や実装者によってまちまちで、書き方が安定しなかったり、エンコード漏れが発生したりと、度々問題に上がっていました。</p>
+<p>JavaScript標準の<a href="https://developer.mozilla.org/ja/docs/Web/API/URL/URL">new URL()</a>や<a href="https://developer.mozilla.org/ja/docs/Web/API/URLSearchParams">URLSearchParams</a>を使うことで合意したものの、インタフェースがイマイチで書き味が悪く、どうしても手続き的なコードになりがちです。
+Query生成に関しては、代表的な<a href="https://github.com/sindresorhus/query-string">query-string</a>や<a href="https://github.com/ljharb/qs">qs</a>があるものの、どのライブラリもパス部分は自力でエンコードしないといけないものがほとんどです。</p>
+<h3 id="パスにスラッシュを含む値を埋め込む場合">パスにスラッシュを含む値を埋め込む場合</h3>
+<p>例えば <code>https://example.com/tags/&lt;tag&gt;</code> のようなURLで、タグ名に&quot;/&ldquo;を含むゲームタイトルが使用された場合、&rdquo;/&ldquo;がエンコードされた <code>https://example.com/tags/foo%3Fbar</code> という結果を期待します。</p>
+<p>ユーザー入力のデータを埋め込む場合に<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent">encodeURIComponent</a>を使用することになるわけですが、ユーザー入力のデータを埋め込む場合だけ<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent">encodeURIComponent</a>を使用しましょうという決まりは、抜け漏れが発生する典型的なパターンです。</p>
+<p>抜け漏れを防ぐには、全ての動的な埋め込みに<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent">encodeURIComponent</a>が必要であり、それは人間の注意力に頼るしかありません。</p>
+<p>さすがにこれは厳しいので、以下の要件を満たすものを作れないものか？と試行錯誤し始めました。(HTMLやSQLで長年エスケープ周りのセオリーは把握している前提での話です)</p>
+<ul>
+<li>クエリだけでなくパスの部分も自動でエンコードされること</li>
+<li>誰が使っても安全になること(これ使っておけば大丈夫的な)</li>
+<li>書き味と使い勝手が良いこと</li>
+</ul>
+<h2 id="参考にした情報">参考にした情報</h2>
+<p>主に以下のサイトと、URL処理系ライブラリを参考にしながら作成しました。</p>
+<ul>
+<li><a href="https://efcl.info/2022/12/15/url-cheatsheet/">\[JavaScript\] URLを文字列結合で組み立てないために、url-cheatsheetを作った</a></li>
+<li><a href="https://zenn.dev/megeton/articles/5f1ba5c7e1bfd0">URLエンコード関連メモ</a></li>
+<li><a href="https://tex2e.github.io/rfc-translater/html/rfc3986.html">RFC 3986 - Uniform Resource Identifier (URI): Generic Syntax 日本語訳</a></li>
+</ul>
+<p>色々と調べて見てみたところ、JavaScript標準の<a href="https://developer.mozilla.org/ja/docs/Web/API/URL/URL">URL</a>と<a href="https://developer.mozilla.org/ja/docs/Web/API/URLSearchParams">URLSearchParams</a>はQuery部分から値を得るなど、URLを構成する値の参照系APIには問題が無さそうでした。
+その一方でURLの生成や更新系のAPIには空白の扱いで問題が生じることがなきにしもあらずといった感じです。</p>
+<blockquote>
+<p>URL (or URLSearchParams) は encodeURIComponent の代替にはならない
+URLSearchParams で作ったものを decodeURIComponent でデコードしてはならない</p>
+</blockquote>
+<p>2つ目の記事にあるように、API同士の関係性や、通信先の実装を理解していないとトラブルになる可能性がある点にも注意が必要です。</p>
+<p><a href="https://developer.mozilla.org/ja/docs/Web/API/URL/URL">URL</a>と<a href="https://developer.mozilla.org/ja/docs/Web/API/URLSearchParams">URLSearchParams</a>だけを使用していればある程度は問題なさそうですが、パス部分のエンコードを考慮すると<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent">encodeURIComponent</a>も必要になります。</p>
+<p>これらを全員に意識して実装やレビューをしようとしてもなかなか大変なので、なおさらQueryもパスも<a href="https://tex2e.github.io/rfc-translater/html/rfc3986.html">RFC3986</a>でエンコードしてくれるものが欲しくなりました。</p>
+<h2 id="url-fromの仕組み">url-fromの仕組み</h2>
+<p>技術的には以下とTypeScriptの型システムの機能を駆使して実現しています。</p>
+<ul>
+<li>JavaScript
+<ul>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Template_literals">Template Literals</a></li>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Template_literals#%E3%82%BF%E3%82%B0%E4%BB%98%E3%81%8D%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88">タグ付きテンプレート</a></li>
+</ul>
+</li>
+<li>TypeScript
+<ul>
+<li><a href="https://www.typescriptlang.org/docs/handbook/2/mapped-types.html">Mapped Types</a>
+<ul>
+<li><a href="https://www.typescriptlang.org/docs/handbook/2/mapped-types.html#key-remapping-via-as">Key Remapping via as</a></li>
+</ul>
+</li>
+<li><a href="https://www.typescriptlang.org/docs/handbook/2/conditional-types.html">Conditional Types</a>
+<ul>
+<li><a href="https://www.typescriptlang.org/docs/handbook/2/conditional-types.html#distributive-conditional-types">Distributive Conditional Types</a></li>
+</ul>
+</li>
+<li><a href="https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html">Template Literal Types</a></li>
+<li><a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-7.html#instantiation-expressions">Instantiation Expressions</a></li>
+</ul>
+</li>
+</ul>
+<p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Template_literals#%E3%82%BF%E3%82%B0%E4%BB%98%E3%81%8D%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88">タグ付きテンプレート</a>は値を埋め込むプレースホルダ<code>${}</code>の中身が型推論可能であるため、可変長引数の<code>...placeholders</code>をタプル型で推論しつつ、プレースホルダでリテラル型になる<code>&quot;tag?:string&quot;</code>のような文字列型を<a href="https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html">Template Literal Types</a>でパースし、戻り値になるURL生成関数の引数型に反映しています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">urlFrom</span>&lt;<span style="color:#f92672">T</span> <span style="color:#a6e22e">extends</span> <span style="color:#a6e22e">PlaceholderArg </span><span style="color:#f92672">=</span> <span style="color:#a6e22e">never</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">U</span> <span style="color:#a6e22e">extends</span> <span style="color:#a6e22e">keyof</span> <span style="color:#a6e22e">NativePlaceholderValueTable </span><span style="color:#f92672">=</span> <span style="color:#a6e22e">never</span>&gt;(
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">rawLiterals</span>: <span style="color:#66d9ef">TemplateStringsArray</span>,
+</span></span><span style="display:flex;"><span>  ...<span style="color:#a6e22e">placeholders</span><span style="color:#f92672">:</span> [...Array&lt;<span style="color:#f92672">ExtractValidPlaceholderSyntax</span><span style="color:#960050;background-color:#1e0010">&lt;</span><span style="color:#a6e22e">T</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">keyof</span> <span style="color:#a6e22e">ResolvePlaceholders</span><span style="color:#960050;background-color:#1e0010">&lt;</span><span style="color:#a6e22e">T</span>&gt; <span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">U</span> <span style="color:#f92672">|</span> [<span style="color:#a6e22e">Value</span>]<span style="color:#f92672">&gt;</span>]
+</span></span><span style="display:flex;"><span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">BindUrl</span>&lt;<span style="color:#f92672">T</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 省略
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h2 id="安全性">安全性</h2>
+<h3 id="エンコード漏れを起こせない仕組み">エンコード漏れを起こせない仕組み</h3>
+<p>url-fromは<a href="https://tex2e.github.io/rfc-translater/html/rfc3986.html">RFC3986</a>のルールに従ってエンコードを行います。</p>
+<p>パスやクエリの動的に埋め込む値はもちろん、リテラル部分に含まれるエンコード対象文字列もコンポーネントを考慮して処理するため、全体を通してエンコード漏れが発生する余地がありません。</p>
+<p>コンポーネントというのは、URLの各部位(scheme authority path query fragment)のことです。</p>
+<pre tabindex="0"><code>   foo://example.com:8042/over/there?name=ferret#nose
+   \_/   \______________/\_________/ \_________/ \__/
+    |           |            |            |        |
+ scheme     authority       path        query   fragment
+</code></pre><p>schemeやportの &ldquo;:&rdquo; はエンコードしてはいけませんが、path query fragment では非予約語(unreserved)に定義されている <code>ALPHA / DIGIT / &quot;-&quot; / &quot;.&quot; / &quot;_&quot; / &quot;~&quot;</code> 以外がエンコード対象になります。</p>
+<p>その上で以下も考慮して結果に反映されます。</p>
+<ul>
+<li>リテラル部分のpathの<code>&quot;/&quot;</code> はエンコード対象外(実装者が書く静的な部分なので意図的)</li>
+<li>リテラル部分のqueryの <code>&quot;&amp;&quot; / &quot;=&quot;</code> はエンコード対象外</li>
+<li>リテラル部分のqueryの <code>&quot;=&quot;</code> 後の <code>&quot;&amp;&quot; / &quot;#&quot;</code> 前にもう一度 <code>&quot;=&quot;</code> が現れたら警告を発してエンコード(queryの値部分のエンコード漏れか誤りの可能性が高いため)</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// ❗ Warn: The literal part contains an unencoded query string &#34;=&#34;. Received: `https://example.com/path/to?foo=bar=baz`
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">urlFrom</span><span style="color:#e6db74">`https://example.com/path/to?foo=bar=baz`</span>(); <span style="color:#75715e">// &#34;https://example.com/path/to?foo=bar%3Dbaz&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ✅ Direct Placeholderで意図的にエンコード対象文字列を埋め込めば警告は出ません
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">urlFrom</span><span style="color:#e6db74">`https://example.com/path/to?foo=bar</span><span style="color:#e6db74">${</span>[<span style="color:#e6db74">&#34;=&#34;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">baz`</span>(); <span style="color:#75715e">// &#34;https://example.com/path/to?foo=bar%3Dbaz&#34;
+</span></span></span></code></pre></div><p>これ以外にも、schemeやauthorityの各コンポーネントごとに適切な処理を行っています。</p>
+<h3 id="型による安全の担保">型による安全の担保</h3>
+<p>url-fromはプレースホルダの工夫により、型を通すことで大部分の安全が担保される仕組みになっています。</p>
+<p>TypeScript風の型指定で動的な値が必須であるか、期待する値は<code>string</code>か<code>number</code>であるか、といった要素を静的な型で解決することにより安全を実現します。型が通っていれば値の渡し忘れや、不適切な型が渡ってくるといった問題も起きません。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#a6e22e">urlFrom</span><span style="color:#e6db74">`https://example.com/users/</span><span style="color:#e6db74">${</span><span style="color:#e6db74">&#34;userId:number&#34;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>({ <span style="color:#a6e22e">userId</span>: <span style="color:#66d9ef">1234</span> }); <span style="color:#75715e">// 必須&amp;数値で number を渡す ✅OK
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">urlFrom</span><span style="color:#e6db74">`https://example.com/users/</span><span style="color:#e6db74">${</span><span style="color:#e6db74">&#34;userId:number&#34;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>({ <span style="color:#a6e22e">userId</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1234&#34;</span> }); <span style="color:#75715e">// 必須&amp;数値で string を渡す ❌型エラー
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">urlFrom</span><span style="color:#e6db74">`https://example.com/users/</span><span style="color:#e6db74">${</span><span style="color:#e6db74">&#34;userId?:number&#34;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>({ <span style="color:#a6e22e">userId</span>: <span style="color:#66d9ef">1234</span> }); <span style="color:#75715e">// 任意&amp;数値で number を渡す ✅OK
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">urlFrom</span><span style="color:#e6db74">`https://example.com/users/</span><span style="color:#e6db74">${</span><span style="color:#e6db74">&#34;userId?:number&#34;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>({ <span style="color:#a6e22e">userId</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1234&#34;</span> }); <span style="color:#75715e">// 任意&amp;数値で string を渡す ❌型エラー
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">urlFrom</span><span style="color:#e6db74">`https://example.com/users/</span><span style="color:#e6db74">${</span><span style="color:#e6db74">&#34;userId:number&#34;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>(); <span style="color:#75715e">// 必須&amp;数値で省略 ❌型エラー
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">urlFrom</span><span style="color:#e6db74">`https://example.com/users/</span><span style="color:#e6db74">${</span><span style="color:#e6db74">&#34;userId?:number&#34;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>(); <span style="color:#75715e">// 任意&amp;数値で省略 ✅OK
+</span></span></span></code></pre></div><h3 id="誤りに気付かせる方法">誤りに気付かせる方法</h3>
+<p>url-fromは実装者が誤っている可能性や、より良い書き方がある場合は警告を発して改善を促します。</p>
+<p>例えば、リテラル部分にエンコード対象文字列が含まれると適切にエンコードしますが、実装者の意図ではなく誤りの可能性があるので、同時に警告を発します。</p>
+<p>以下のように末尾に余計な &ldquo;}&rdquo; が残ってしまっている場合、警告を発することなくエンコードしてしまうと、実装者が気付くことが困難なためです。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// Warn: The literal part contains an unencoded path string &#34;}&#34;. Received: `https://example.com/tags${&#34;/tag?:string&#34;}}`
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">urlFrom</span><span style="color:#e6db74">`https://example.com/tags/</span><span style="color:#e6db74">${</span><span style="color:#e6db74">&#34;tag&#34;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">}`</span>;
+</span></span></code></pre></div><p>もしも意図的にこのようなURLを生成したい場合は、<a href="https://github.com/misuken-now/url-from#direct">Direct Placeholder</a>を使用することで実現できます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// 意図が明確なので警告は出ず、&#34;}&#34; は適切にエンコードされます
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">urlFrom</span><span style="color:#e6db74">`https://example.com/tags/</span><span style="color:#e6db74">${</span><span style="color:#e6db74">&#34;tag&#34;</span><span style="color:#e6db74">}${</span>[<span style="color:#e6db74">&#34;}&#34;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span></code></pre></div><p>現実の運用ではちょっとした修正の際にたった1文字の消し忘れでトラブルに繋がってしまうことがあり得るため、利用シーンを想定して運用レベルでトラブルが発生しにくくなるよう、いくつもの細かい配慮を施してあります。</p>
+<h2 id="利便性">利便性</h2>
+<h3 id="型の絞り込み">型の絞り込み</h3>
+<p>url-fromには<a href="https://github.com/misuken-now/url-from#type-narrowing">Type Narrowing</a>という面白く強力な機能があります。</p>
+<p>例えば以下のようなURLが必要だったとしましょう。</p>
+<ul>
+<li>パス部分には &ldquo;string&rdquo; &ldquo;number&rdquo; &ldquo;boolean&rdquo; のいずれかを許可する</li>
+<li>パスの &ldquo;string&rdquo; &ldquo;number&rdquo; &ldquo;boolean&rdquo; に応じてクエリの &ldquo;value&rdquo; の値の型も連動する</li>
+</ul>
+<p>この場合、narrowingを使って以下のように定義すれば、型レベルで意図した状態を実現でき、型を通せば安全が保証されます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bindUrl</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">urlFrom</span><span style="color:#e6db74">`/</span><span style="color:#e6db74">${</span><span style="color:#e6db74">&#34;type:string&#34;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>.<span style="color:#a6e22e">narrowing</span><span style="color:#f92672">&lt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">|</span> { <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;string&#34;</span>; <span style="color:#e6db74">&#34;?query&#34;</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">string</span> } }
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">|</span> { <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;number&#34;</span>; <span style="color:#e6db74">&#34;?query&#34;</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">number</span> } }
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">|</span> { <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;boolean&#34;</span>; <span style="color:#e6db74">&#34;?query&#34;</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">boolean</span> } }
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">bindUrl</span>({ <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;string&#34;</span>, <span style="color:#e6db74">&#34;?query&#34;</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;str&#34;</span> }}); <span style="color:#75715e">// &#34;/string?value=str&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">bindUrl</span>({ <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;number&#34;</span>, <span style="color:#e6db74">&#34;?query&#34;</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">1</span> }});     <span style="color:#75715e">// &#34;/number?value=1&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">bindUrl</span>({ <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;boolean&#34;</span>, <span style="color:#e6db74">&#34;?query&#34;</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">true</span> }}); <span style="color:#75715e">// &#34;/boolean?value=true&#34;
+</span></span></span></code></pre></div><p>narrowingはTypeScriptの<a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-7.html#instantiation-expressions">Instantiation Expressions</a>によって、URL生成関数の型をより明確なものにできる機能です。narrowingを使うと次のようなメリットを得られます。</p>
+<ul>
+<li><code>string</code>や<code>number</code>をより狭いリテラル型に制限できます</li>
+<li>URL生成時に何を渡すべきかが明確になります</li>
+<li>reducerのActionの型のように複数のパターンを定義できます</li>
+</ul>
+<p>このように、url-fromはURLの定義側を充実されればさせるほど、URLの生成側が安全で楽になっていくのが大きな特徴です。</p>
+<h3 id="柔軟且つ明示的なスラッシュ管理">柔軟且つ明示的なスラッシュ管理</h3>
+<p>URL生成ライブラリで気になるのがスラッシュの管理方法です。</p>
+<p>特に動的に埋め込む値の前後のスラッシュがどのように扱われるのかが明確でないと、実装していても本当に意図通りになるか不安になります。</p>
+<p><a href="https://github.com/misuken-now/url-from">url-from</a>では<a href="https://github.com/misuken-now/url-from#conditional-slash">Conditional Slash</a>という機能によって柔軟且つ明示的なスラッシュ管理を実現しています。プレースホルダ内の先頭と最後に &ldquo;/&rdquo; を記述できるようになっているため、値が有効なときだけ適用されるスラッシュであることが一目瞭然です。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bindUrl1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">urlFrom</span><span style="color:#e6db74">`https://example.com/users</span><span style="color:#e6db74">${</span><span style="color:#e6db74">&#34;/userId?&#34;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bindUrl1</span>()); <span style="color:#75715e">// =&gt; &#34;https://example.com/users&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bindUrl1</span>({ <span style="color:#a6e22e">userId</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;279642&#34;</span> })); <span style="color:#75715e">// =&gt; &#34;https://example.com/users/279642&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bindUrl2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">urlFrom</span><span style="color:#e6db74">`https://example.com/users</span><span style="color:#e6db74">${</span><span style="color:#e6db74">&#34;/userId?/&#34;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bindUrl2</span>()); <span style="color:#75715e">// =&gt; &#34;https://example.com/users&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bindUrl2</span>({ <span style="color:#a6e22e">userId</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;279642&#34;</span> })); <span style="color:#75715e">// =&gt; &#34;https://example.com/users/279642/&#34;
+</span></span></span></code></pre></div><h3 id="理想的なサジェスト">理想的なサジェスト</h3>
+<p><a href="https://github.com/misuken-now/url-from">url-from</a>はプレースホルダや引数部分のサジェストもしっかり効くように作られています。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2023-07_nicolive_url-from/url-from_suggest_demo.gif" alt="コーディング中にサジェストが効いている様子"  />
+  
+</div>
+
+<ul>
+<li>「あの<a href="https://github.com/misuken-now/url-from#utility-placeholder">Utility Placeholder</a>はどう書くんだっけ？」</li>
+<li>「このURL生成時の引数は何を渡せばいいんだっけ？」</li>
+</ul>
+<p>といったときに、適切にサジェストで教えてくれます。</p>
+<p>このあたり、型推論周りで理想的なサジェストを出すためにだいぶ苦労したポイントでもありました。</p>
+<h2 id="おすすめの使い方">おすすめの使い方</h2>
+<p><a href="https://github.com/misuken-now/url-from">url-from</a>のメリットが活かせるおすすめの使い方も紹介します。</p>
+<ol>
+<li>システム内で使用するURLを1つのファイルにまとめて定義</li>
+<li>期待するURL生成パターンの簡単なテストを書く</li>
+<li>各所で定義済みのURL生成関数を利用</li>
+</ol>
+<p>外部サイトのURL含め、システム内で使用するURLを1つのファイルにまとめておくと、システム内では常に定義済みのURL生成関数を使う習慣が生まれ、その場その場でURLを組み立てようとしなくなります。</p>
+<p>レビューの際にも、URLを生成する際に必ず定義済みの関数を使用しているかをチェックすれば良いことになります。</p>
+<p>テストを書くのは、期待するURLが生成できているかに加えて、警告や例外をPullRequestやそれ以前で察知できるようにするためです。
+このテストを通っていれば、各所で定義済みのURL生成関数を利用する際の信頼度は非常に高いものになります。</p>
+<p>また、URLの定義と生成が分離できる特性上、URLの管理を行いたいエンジニアが定義を担当し、他のエンジニアは定義済みの関数を使ってURLの生成を行えば、メンバー間にスキル差があってもシステム全体のURLを安定した制御下に置くことが可能です。</p>
+<p>システム内で使用するURLの仕様が変更された場合でも、URLの定義側を修正すれば、各所で型エラーになってくれるため、仕様変更に対する追従も安全且つ簡単に行えます。</p>
+<h2 id="試してみたい方へ">試してみたい方へ</h2>
+<p>将来的にはplayground的なものがあると試しやすいとは思っているのですが、現状で手軽に試せる方法を用意しています。</p>
+<pre tabindex="0"><code>git clone git@github.com:misuken-now/url-from.git
+cd url-from
+yarn install
+yarn test --watch ./src/__tests__/example.test.ts
+</code></pre><p>これで <a href="https://github.com/misuken-now/url-from/blob/main/src/__tests__/example.test.ts">https://github.com/misuken-now/url-from/blob/main/src/__tests__/example.test.ts</a> のサンプルコードを触って挙動を確認できるようになっているので、興味を持った方は是非使用感を体験してみてください。</p>
+<h2 id="今後">今後</h2>
+<p><a href="https://github.com/misuken-now/url-from">url-from</a>の今後について、まずは以下のようなことを検討しています。</p>
+<ul>
+<li>デフォルト値の指定
+<ul>
+<li>URL定義段階でデフォルト値を指定したい要求は必ず出てくるので、インタフェースを考慮して機能追加したい</li>
+</ul>
+</li>
+<li>警告や例外メッセージの最適化
+<ul>
+<li>もっとわかりやすいメッセージにできる箇所が色々あるので改善したい</li>
+</ul>
+</li>
+<li>コードの改善
+<ul>
+<li>パフォーマンス的にもっと効率の良い処理にできそうな部分がありそう</li>
+<li>一部処理が複雑になっている部分を単純化したい</li>
+<li>大量のテストケースをわかりやすく整理したい</li>
+</ul>
+</li>
+<li>型推論とサジェストの強化
+<ul>
+<li><code>scheme:</code>系のプレースホルダは、先頭のプレースホルダのみで使用するべきなので型で守れるようにしたい</li>
+</ul>
+</li>
+</ul>
+<p>デフォルト値の指定は個人的にも欲しいので、追加することは決めているのですが、デフォルト値を指定した上で上書き可能にしたい場合と、上書き不可にしたい場合がありそうなので適切なインタフェースを検討中です。</p>
+<p>また、警告や例外のメッセージはこうなっていたほうが適切であるといった提案や、セキュリティ面の懸念なども、お気軽に<a href="https://github.com/misuken-now/url-from/issues">issue</a>からご意見いただけると助かります。</p>
+<h2 id="まとめ">まとめ</h2>
+<p>今回は型安全なURL生成ライブラリ<a href="https://github.com/misuken-now/url-from">url-from</a>を紹介しました。</p>
+<p>これまでもテンプレート式のURL生成ライブラリはありましたが、文字列を直接置換するタイプが主流で、あまり筋の良いものではありませんでした。</p>
+<p><a href="https://github.com/misuken-now/url-from">url-from</a>はTypeScriptの型システムとうまく連携し、URLの定義と生成を分離するなどのアプローチにより、テンプレート式の短所を無くすだけでなく、新しい価値を生み出せたのではないかと感じています。</p>
+<p>書いてて楽しくなる<a href="https://github.com/misuken-now/url-from">url-from</a>を一度体験してみてはいかがでしょうか。</p>
+<p>株式会社ドワンゴでは、様々なサービス、コンテンツを一緒につくるメンバーを募集しています。
+ドワンゴに興味がある。または応募しようか迷っている方がいれば、気軽に応募してみてください。</p>
+<ul>
+<li><a href="https://dwango.snar.jp/index.aspx">新卒採用はこちら</a></li>
+<li><a href="https://hrmos.co/pages/dwango">キャリア採用はこちら</a></li>
+</ul>
+</article>
+    </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="型安全なURL生成ライブラリ url-from を公開しました - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/2023-07_nicolive_url-from/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/2023-07_nicolive_url-from/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2f2023-07_nicolive_url-from%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

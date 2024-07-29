@@ -1,1 +1,329 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="ja" lang="ja" >
 
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.122.0">
+
+  <meta property="og:title" content="Akashic Engineの紹介 - dwango on GitHub">
+
+  <meta property="og:description" content="ドワンゴ社内の様子や、文化、技術をご紹介します。" />
+
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  <meta name="twitter:card" content="summary">
+  
+
+
+  
+  
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Akashic Engineの紹介 - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> ニコニコ開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://blog.nnn.dev/"> 教育サービス開発者ブログ </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
+      
+        Copyright &copy; DWANGO Co., Ltd.
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+  <div class="post">
+    <time class="content-date" datetime="2018-08-03 15:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2018-08-03 Fri</time
+    >
+    <h1 class="article-title">Akashic Engineの紹介</h1>
+
+    <div>
+      
+      <article id="content"><h1 id="はじめに">はじめに</h1>
+<p>第二サービス開発本部 第一プロダクト開発部の告原と申します。</p>
+<p>ドワンゴには5年程前に入社し、最初のニコキャスに携わった後、この記事で触れるAkashic Engineの開発に関わりました。</p>
+<p>今はAkashic Engineを利用するサービスとして、ニコキャスや実験放送の開発に携わっていますが、昔から関わってきた思い入れのあるプロダクトなので、今回紹介記事を書かせていただく次第です。</p>
+<h1 id="akashic-engine概要">Akashic Engine概要</h1>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic/akashic.png" alt="logo"  />
+  
+</div>
+
+<p>Akashic Engineとは、2017年01月11日にオープンソースで公開していたプロダクトです。</p>
+<ul>
+<li>公式サイト: <a href="https://akashic-games.github.io">https://akashic-games.github.io</a></li>
+<li>github: <a href="https://github.com/akashic-games/akashic-engine">https://github.com/akashic-games/akashic-engine</a></li>
+</ul>
+<p>サービスが形になるまで説明がつかないため、これまでは2Dに特化したゲームエンジンという見せ方をしていましたが、実際はゲームに限らない <strong>インタラクティブコンテンツフレームワーク</strong> であり、HTML5という訳でもありません。</p>
+<p>Akashic Engineを説明するのに、今ならちょうどよい題材があります。「実験放送」です。本記事は実験放送の解説が主題ではないので、実験放送についての詳細は大百科等をご参照ください。</p>
+<ul>
+<li>実験放送: <a href="http://dic.nicovideo.jp/a/">http://dic.nicovideo.jp/a/</a>実験放送</li>
+</ul>
+<p>この実験放送で、新機能の一種としてゲームがお披露目されています。Akashic Engineで動作しています。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic/icon-game.png" alt="game" width="64" />
+  
+</div>
+
+<p>実験放送で、お絵かきツールや振るだけサイコロなどのツールがお披露目されています。これもAkashic Engineで動作しています。</p>
+<p><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic/icon-paint.png" alt="paint" width="64" />
+  
+</div>
+
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic/icon-dice.png" alt="dice" width="64" />
+  
+</div>
+</p>
+<p>オープニング、エンディング、鏡、ニコニコQなども、実はAkashic Engineで動作しています。</p>
+<p><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic/icon-op.png" alt="opening" width="64" />
+  
+</div>
+
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic/icon-ed.png" alt="ending" width="64" />
+  
+</div>
+
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic/icon-mosaic.png" alt="mosaic" width="64" />
+  
+</div>
+
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic/icon-8puzzle.png" alt="8puzzle" width="64" />
+  
+</div>
+
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic/icon-nicoq.png" alt="nicoq" width="64" />
+  
+</div>
+</p>
+<p>Akashic Engineを説明するのに、不可欠なキーワードが二つあります。</p>
+<ul>
+<li>いつでも</li>
+<li>どこでも</li>
+</ul>
+<p>本記事では、Akashic EngineがなぜただのHTML5ゲームエンジンではなく、インタラクティブコンテンツフレームワークであるのかを、これらのキーワードを基に解説していきます。</p>
+<h1 id="いつでも">いつでも</h1>
+<p>「いつでも」というキーワードは、Akashic Engineのリプレイ特性に対してかかっています。</p>
+<p>Akashic Engineで制作されたコンテンツは、全てリプレイが可能な形で動作します。</p>
+<p>この「リプレイ」という特徴は、一般的に連想されるプレイ後のリプレイだけでなく、遠隔地でプレイされている内容をリアルタイムでリプレイする特徴も内包しています。</p>
+<p>この特性の活用によって、以下のような機構を実現します。</p>
+<ul>
+<li>Aさんがスマートフォンでプレイしている内容をBさんの手元で再現して閲覧</li>
+<li>サーバで実行されているゲームに、AさんとBさんとCさんが参加</li>
+<li>生放送で実行されたお絵かき等のツールを、後日のタイムシフト視聴でも再現</li>
+</ul>
+<p>コンテンツ制作者は、Akashic Engineの命令セットだけで動作するように気をつけてコンテンツを作るだけで、これらの特性を獲得したコンテンツを作ることができます。</p>
+<p>放送者のプレイを視聴者全員の手元で見る、タイムシフトでも遊んでいる様子が再現される、といった実験放送の機能は、このようなAkashic Engineの「いつでも」特性を活用して実現されています。</p>
+<h1 id="どこでも">どこでも</h1>
+<p>Akashic Engineのもう一つ重要なキーワードとして「どこでも」があります。</p>
+<p>近年のゲームエンジンと比較してみると、Akashic Engineがサポートしている描画機能は貧弱です。</p>
+<p>たとえば、Akashic Engineは円を描く事すらできませんし、画像のピクセル情報を取得した当たり判定もサポートしていません。</p>
+<p>これらは、全て「どこでも」という特性を維持するためにデザインされた制約です。</p>
+<p>この特性の実現方法については長文になってしまうため、本記事では最小限に絞って解説します。</p>
+<p>Akashic Engineは、いわゆるHTML5に位置付けられるCanvasやWebGLやWebAudioといった機能に直接的には依存していません。</p>
+<p>iOSアプリであればアプリの機能で音を鳴らす、サーバであればOpenGLで描画する、ブラウザであればCanvas（RendaringContext2D）で描画するといった事を選べるよう、特に音と画像については慎重にサポートするものを選んで実装していきました。</p>
+<p>ピクセルを扱わないのも、描画処理でアンチエイリアスのかかり方が環境によって違い、環境によってゲームの実行結果が異なるのを避けるためです。</p>
+<p>HTML5ゲームエンジン、というと、ブラウザでできる事をフル活用しがちですが、Akashic EngineはあえてHTML5よりも機能を絞る事で、「どこでも」という特性を獲得しています。</p>
+<p>この特性によるメリットを箇条書きにするなら、以下のようになります。</p>
+<ul>
+<li>一部機能のネイティブ化により、特にスマートフォン環境での安定稼働を実現</li>
+<li>サーバ環境等、ブラウザを持たないプラットフォームでのコンテンツ実行をサポート</li>
+<li>プラットフォームによって描画結果に差異が出ても、ゲームの実行結果には差異が出ない事を保証</li>
+</ul>
+<p>実験放送での例として、ゲームを実行している様子を以下に示します。iOS、Android、PC等で同時実行されており、サウンド再生ライブラリはそれぞれで異なるものを利用しています。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic/game.jpg" alt="game"  />
+  
+</div>
+
+<p>「ブラウザを持たないプラットフォーム」としてサーバでエンディングというコンテンツを実行し、そのコンテンツがカメラ映像を加工してストリームを出力している様子を以下に示します。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/akashic/ending.png" alt="ending"  />
+  
+</div>
+
+<h1 id="いつでもxどこでもで実現する世界">「いつでも」x「どこでも」で実現する世界</h1>
+<p>Akashic Engineの二つの特性は、いずれも切り離せないものです。</p>
+<p>もし「いつでも」という特性が無い場合、どこでも安定して実行できる、スタンドアロンのゲームエンジンにすぎません。</p>
+<p>もし、「どこでも」という特性が無い場合、PCでは結果を再現できるがAndroidでは再現ができない、という事が起こりえます。</p>
+<p>これでは、PCの結果をリアルタイムにAndroidでリプレイできないことになるので、生放送の視聴者がAndroid端末で見ているとバグのような表示になってしまうでしょう。</p>
+<p>いつでも、どこでも実行できるインタラクティブコンテンツフレームワークであるからこそ、広範なプラットフォームで同時実行をするアンケートのようなコンテンツのエンジンとして採用することができます。</p>
+<p>それが、Akashic Engineをドワンゴが開発した本当の目的であり、Akashic Engineがインタラクティブコンテンツフレームワークである理由です。</p>
+<h1 id="その他のいくつかの仕掛け">その他のいくつかの仕掛け</h1>
+<p>全てを一つの記事で解説すると長くなりすぎるため、以下に要素を列挙します。</p>
+<ul>
+<li>「いつでも」を実現するためのシンプルなデータ構造
+<ul>
+<li>playlog</li>
+<li>時間、操作、乱数シード</li>
+<li>内蔵される乱数ジェネレータ</li>
+</ul>
+</li>
+<li>「どこでも」を実現するための抽象化
+<ul>
+<li>Renderer, Audio, Asset</li>
+<li>Renderer抽象化の例:  <a href="https://github.com/akashic-games/akashic-engine/blob/master/src/Renderer.ts">https://github.com/akashic-games/akashic-engine/blob/master/src/Renderer.ts</a></li>
+</ul>
+</li>
+<li>手動進行と自動進行
+<ul>
+<li>自動的に時間が進むゲーム</li>
+<li>イベントが無い限りは時間が進まないアンケート</li>
+</ul>
+</li>
+<li>Cross Border Bridgeによる領域外の通信サポート
+<ul>
+<li>CBB: <a href="https://cross-border-bridge.github.io">https://cross-border-bridge.github.io</a></li>
+<li>CBBを利用したプラグインのサポート
+<ul>
+<li>音源のネイティブ再生</li>
+<li>アンケートのタイトルをニコ割エリアに表示</li>
+<li>管理するアイテム情報を定期送信し、ネイティブで描画</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>映像合成
+<ul>
+<li>ビデオフレームをSurfaceとして受け取り、Spriteとして処理</li>
+</ul>
+</li>
+<li>「いつでも」を活用した簡単マルチプレイ</li>
+</ul>
+<p>これらのより詳細な解説は、また別の記事で行わせていただきます。</p>
+<h1 id="今後について">今後について</h1>
+<p>今回は、「いつでも」「どこでも」という特性を持っているAkashic Engineと、その代表的な利用例についてご紹介することで、インタラクティブコンテンツフレームワークとしてのAkashic Engineの概要について早めぐりで解説させていただきました。</p>
+<p>Akashic Engineは今後、実験放送で実行されるコンテンツを裏で支える存在として、皆さんにもご覧いただく機会が増えていきます。</p>
+<p>この記事の公開や実験放送の実施に伴い、Akashic Engineの存在を隠す必要もなくなってきました。</p>
+<p>今後は、まず関連ソースコードの一層のOSS化を進めます。</p>
+<p>また、コンテンツの制作方法について文書が少ないため、文書整備も進めていきます。</p>
+<p>準備が整い次第、ユーザの皆さんがAkashic Engineでコンテンツを作れば、それが実験放送等で使えるようになる、という世界を実現していくつもりです。</p>
+<p>まだまだ乗り越えなければいけないエンジニアリングの課題は多いのですが、可能な限り早く実現できるよう、努力していきます。</p>
+<p>Akashic Engineの今後に、是非ご期待ください。</p>
+</article>
+    </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="Akashic Engineの紹介 - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/akashic/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/akashic/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2fakashic%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

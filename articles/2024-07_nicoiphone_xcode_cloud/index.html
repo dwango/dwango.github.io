@@ -1,1 +1,757 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="ja" lang="ja" >
 
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.122.0">
+
+  <meta property="og:title" content="ニコニコ動画 iOS アプリでの Xcode Cloud の活用 - dwango on GitHub">
+
+  <meta property="og:description" content="ドワンゴ社内の様子や、文化、技術をご紹介します。" />
+
+  <meta property="og:image" content="https://dwango.github.io/images/default-thumbnail.png">
+
+  <meta name="twitter:card" content="summary">
+  
+
+
+  
+  
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>ニコニコ動画 iOS アプリでの Xcode Cloud の活用 - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> ニコニコ開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://blog.nnn.dev/"> 教育サービス開発者ブログ </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
+      
+        Copyright &copy; DWANGO Co., Ltd.
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+  <div class="post">
+    <time class="content-date" datetime="2024-07-29 00:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2024-07-29 Mon</time
+    >
+    <h1 class="article-title">ニコニコ動画 iOS アプリでの Xcode Cloud の活用</h1>
+
+    <div>
+      
+        <aside>
+          <h2>目次</h2>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#はじめに">はじめに</a></li>
+    <li><a href="#課題">課題</a></li>
+    <li><a href="#cicd-サービスの選定">CI/CD サービスの選定</a></li>
+    <li><a href="#xcode-cloud-について">Xcode Cloud について</a>
+      <ul>
+        <li><a href="#概要">概要</a></li>
+        <li><a href="#ワークフローとその閲覧方法">ワークフローとその閲覧方法</a></li>
+        <li><a href="#プランの選択">プランの選択</a></li>
+      </ul>
+    </li>
+    <li><a href="#移行の準備">移行の準備</a>
+      <ul>
+        <li><a href="#swift-package-に移行する">Swift Package に移行する</a></li>
+        <li><a href="#必要な-xcode-cloud-ワークフローについて整理する">必要な Xcode Cloud ワークフローについて整理する</a></li>
+        <li><a href="#swift-package-に対して-xcode-cloud-を利用できるか調査する">Swift Package に対して Xcode Cloud を利用できるか調査する</a></li>
+      </ul>
+    </li>
+    <li><a href="#custom-build-script-の作成">Custom Build Script の作成</a>
+      <ul>
+        <li><a href="#cocoapods-による依存のインストール">CocoaPods による依存のインストール</a></li>
+        <li><a href="#ストアページの作成">ストアページの作成</a></li>
+        <li><a href="#deploygate-による配信">DeployGate による配信</a></li>
+      </ul>
+    </li>
+    <li><a href="#移行後の問題とその対応策">移行後の問題とその対応策</a>
+      <ul>
+        <li><a href="#一部-pod-のインストールに失敗する問題">一部 Pod のインストールに失敗する問題</a></li>
+        <li><a href="#テスト実行時間が増加してしまう問題">テスト実行時間が増加してしまう問題</a></li>
+      </ul>
+    </li>
+    <li><a href="#まとめ">まとめ</a>
+      <ul>
+        <li><a href="#良かったところ悪かったところ">良かったところ/悪かったところ</a></li>
+        <li><a href="#今後の展望">今後の展望</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </aside>
+        <hr />
+      
+      <article id="content"><h2 id="はじめに">はじめに</h2>
+<p>こんにちは。ニコニコ開発部で <a href="https://apple.co/3VNbF7n">ニコニコ動画 iOS アプリ</a> を開発している兎澤です。<br>
+ニコニコ動画 iOS アプリでは2023年末より Jenkins から Xcode Cloud への移行を開始し、現在は完了しています。今回は、この移行をどのように進めていったのか？移行した結果どうだったか？について紹介します。</p>
+<p>iOSDC 2024 の<span style="color:#ff2790">チャレンジトークン</span>が記事内に 1つ 含まれています。ぜひ探してみてください! (<strong>※ 記事の見出しの横についている「#」はチャレンジトークンではありません</strong>。チャレンジトークンは文中に配置されています。)</p>
+<h2 id="課題">課題</h2>
+<p>ニコニコ動画 iOS アプリの従来の CI/CD サービスは以下のような状況でした。</p>
+<ul>
+<li>Jenkins を利用
+<ul>
+<li>社内クラウド上のマシンを Controller とする</li>
+<li>社内ネットワークに接続された複数台の Mac mini を Agent とする</li>
+</ul>
+</li>
+<li>社内ネットワークからのみアクセス可能</li>
+<li><a href="https://apple.co/3W6wRGK">ボカコレ iOS アプリチーム</a> と共有</li>
+</ul>
+<p>しかし、この環境には以下のような課題がありました。</p>
+<ul>
+<li>Mac mini の運用保守にコストがかかる
+<ul>
+<li>macOS/Jenkins/Xcode の定期的な更新が必要</li>
+<li>キャッシュ、Keychain 周りでの不定期な問題の発生</li>
+<li>作業の属人化</li>
+</ul>
+</li>
+<li>並列数に限度がある
+<ul>
+<li>マシンあたり単一ジョブのみを動作させていたため、管理している Mac mini の台数 (3台) が並列数の限界だった</li>
+<li>ボカコレ iOS アプリチームと共有していたので、一方のチームで占有してしまうと他方のチームに影響があった</li>
+</ul>
+</li>
+</ul>
+<p>さらに、組織の方針により社内クラウドから別環境へ移行する必要が出てきました。そこで、上記のような課題もあったため、これを機に別の CI/CD サービスへの全面的な移行を検討することになりました。</p>
+<h2 id="cicd-サービスの選定">CI/CD サービスの選定</h2>
+<p>CI/CD サービスを選定するために、簡単な試算を行いました。Jenkins API で1日あたりの Jenkins ジョブの実行時間を取得する cron を設定し1〜2月程収集したところ、以下のような結果となりました。</p>
+<ul>
+<li>中央値は232時間/月</li>
+<li>ワーストケースで440時間/月
+<ul>
+<li>最も実行時間が長かった日をベースに計算</li>
+</ul>
+</li>
+</ul>
+<p>Mac mini が M1 であるのに対し、Xcode Cloud は 2024/07 現在 Intel 版が使用されているようです。当時手元にあった Intel 版 Mac Pro でビルドしたところ、M1 Mac mini に対しておおよそ 70% の性能だったので、70% 程度の性能ベースで計算すると、中央値は332時間/月、ワーストケースで 629時間/月となります。予測が正しかった場合、Xcode Cloud のプランであれば 1000時間/月のプランが妥当そうです。</p>
+<p>CI/CD サービスの候補としては以下を考えました。</p>
+<ul>
+<li>Codemagic</li>
+<li>Xcode Cloud</li>
+<li>GitHub Actions</li>
+<li>Bitrise</li>
+</ul>
+<p>各社で公開されているプランをベースに、性能をなるだけ揃えて単位時間あたりの金額を計算すると、Codemagic と Xcode Cloud が同程度の安さでした。GitHub Actions および Bitrise は性能が良いのもありますが、例えば1000時間あたりの値段で比較すると桁が1つ違いそうです。<br>
+最終的には、以下のような理由から Xcode Cloud の1000時間/月プランを第一候補として考えることになりました。</p>
+<ul>
+<li>他と比べてコストが安い</li>
+<li>Xcode と統合されており、扱いやすそうだった</li>
+<li>App Store Connect との統合により、審査提出がしやすくなりそうだった</li>
+<li>Apple 公式が出しているものなので、チーム内にトライしたいというモチベーションがあった</li>
+</ul>
+<h2 id="xcode-cloud-について">Xcode Cloud について</h2>
+<h3 id="概要">概要</h3>
+<p>Xcode Cloud は、Apple プラットフォームのアプリ開発者のための CI/CD サービスです。Apple が既に提供している Xcode、TestFlight、App Store Connect 等のツール、 サービスと統合されているのが特徴で、SaaS でありながら各開発者ローカルの Xcode 上で閲覧/操作が行えます。一方で App Store Connect 上でも Xcode 上と同等の操作が行えるようになっています。</p>
+<h3 id="ワークフローとその閲覧方法">ワークフローとその閲覧方法</h3>
+<p>Xcode Cloud は他の CI/CD サービスと同様に、何らかの契機 (開始条件) によりソースコードのビルド&amp;デプロイフローを走らせます。このフローは<strong>ワークフロー</strong><sup id="ref1"><a href="#note1">[1]</a></sup><sup id="ref2"><a href="#note2">[2]</a></sup>と呼ばれます。<br>
+Xcode プロジェクト/ワークスペースを開いた後に Report ナビゲーターの Cloud タブに移行すると、Xcode はプロジェクト/ワークスペースを解析し、解決できた Product の一覧を表示してくれます<sup id="ref3"><a href="#note3">[3]</a></sup>。<br>
+この時解決される Product は、そのプロジェクト/ワークスペース内に存在し、かつ Xcode 上でログイン中の Apple ID で閲覧可能なものになるようです。例えば、ニコニコ動画 iOS アプリは複数の Swift Package に依存していますが、プロジェクトを開くとニコニコ動画アプリの  Product だけでなく、依存する Swift Package に対応する Framework 群のワークフローも閲覧できるようになりました。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2024-07_nicoiphone_xcode_cloud/xcode_products.png" alt="Xcode上のプロダクト一覧" width="500px" />
+  
+</div>
+
+<p>また、複数の Apple ID で Xcode にログインしていた場合でも、各 Apple ID に紐づく Product がプロジェクト内に存在すれば、それらも全て閲覧できるようでした。</p>
+<h3 id="プランの選択">プランの選択</h3>
+<p>2024/07 現在、Xcode Cloud には以下のプランがあります。</p>
+<ul>
+<li>25コンピューティング時間/月: 無料</li>
+<li>100コンピューティング時間/月: 49.99USD/月</li>
+<li>250コンピューティング時間/月: 99.99USD/月</li>
+<li>1000コンピューティング時間/月: 399.99USD/月</li>
+</ul>
+<p>無料プラン<sup id="ref4"><a href="#note4">[4]</a></sup>があるので、まずは無料で試してみるのが良さそうです。ニコニコ動画 iOS アプリチームでも、まずは無料プランで動作の検証を行いました。<br>
+プランの選択は Apple Developer アプリから行えます。公式ドキュメントにある通り、まずは適当な Xcode Cloud ワークフローを作成しておく必要があります。</p>
+<blockquote>
+<p>サブスクリプションの管理
+ワークフローを設定すると、Apple Developer ProgramメンバーシップのAccount Holderは、iPhoneおよびiPadのApple Developerアプリの「アカウント」タブでサブスクリプションに登録し、追加のコンピューティング時間を利用できるようになります。サブスクリプションプランの価格は米ドル、または現地通貨（利用可能な場合）で設定されています。</p>
+<p><a href="https://developer.apple.com/jp/xcode-cloud/get-started/">https://developer.apple.com/jp/xcode-cloud/get-started/</a></p>
+</blockquote>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2024-07_nicoiphone_xcode_cloud/xcode_cloud_plans.png" alt="Developer アプリでの Xcode Cloud プランの選択" width="600px" />
+  
+</div>
+
+<h2 id="移行の準備">移行の準備</h2>
+<p>Xcode Cloud ワークフローの作成前に行ったことについて紹介します。</p>
+<h3 id="swift-package-に移行する">Swift Package に移行する</h3>
+<p>Xcode Cloud における問題の一つはキャッシュです。<br>
+ニコニコ動画 iOS アプリは数多くのライブラリに依存しており、CI 実行の度にこれらをインストールすると時間がかかってしまいます。CI 実行時間削減のためにもキャッシュ機能が必要です。</p>
+<p>デフォルトでは DerivedData がキャッシュされ<sup id="ref5"><a href="#note5">[5]</a></sup>、その中に存在する Swift Package も同様にキャッシュされますが、CocoaPods/Carthage 等でインストールされたライブラリは基本的にキャッシュされません。</p>
+<p>ニコニコ動画 iOS アプリでは、将来的な Xcode Cloud 移行も見据えて、既にほぼ Swift Package 移行を完了した後でした。しかし一部の広告SDKが Swift Package をサポートしていなかったため、CocoaPods と Swift Package を併用する形となっています。<br>
+それでもほとんどのライブラリは Swift Package に移行済みであったため、Xcode Cloud のキャッシュの恩恵を受けることができそうでした。</p>
+<h3 id="必要な-xcode-cloud-ワークフローについて整理する">必要な Xcode Cloud ワークフローについて整理する</h3>
+<p>Xcode Cloud 移行の前に、従来の Jenkins ジョブを Xcode Cloud ワークフローで置き換えられるか検討します。従来の Jenkins ジョブには以下のような種類がありました。</p>
+<ul>
+<li>ユニットテストの実行</li>
+<li>DeployGate への InHouse/AdHoc/Development ビルドのアップロード</li>
+<li>fastlane deliver によるストアページの作成と TestFlight アップロード</li>
+<li>fastlane pilot による TestFlight アップロード</li>
+</ul>
+<p>社内ライブラリの多くはユニットテストの実行のみで、ニコニコ動画 iOS アプリのリポジトリでは DeployGate や TestFlight でのアップロードも行っていました。</p>
+<p>ユニットテストの実行については、適切なスキームと事前準備のための Custom Build Script (後述) を書けば問題なく行えそうです。TestFlight アップロードも Xcode Cloud だとスムーズに行えます。一方で、DeployGateについてはどうすべきかの検討が必要でした。</p>
+<p>DeployGate は開発者以外の企画/デザイナ/品証チームの方々とのアプリの共有のために使っています。そのまま利用しても良いですが、Xcode Cloud では TestFlight へのアップロードが少ない手間で行えるので、これを機に DeployGate の利用を TestFlightの内部テストへ置き換えられないか調査しました。
+双方の違いをまとめると、以下になります。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">TestFlight(内部テスト)</th>
+<th style="text-align:left">DeployGate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">制限</td>
+<td style="text-align:left"><ul><li>メンバーに Apple ID が必要</li><li>最新アプリバージョンでないとアップロードできない</li><li>プロファイルのインストールが不要</li></ul></td>
+<td style="text-align:left"><ul><li>メンバーに Apple ID が不要</li><li>アプリバージョンに関わらずアップロードできる</li><li>プロファイルのインストールが必要</td>
+</tr>
+<tr>
+<td style="text-align:left">ビルドの識別</td>
+<td style="text-align:left"><ul><li>ビルド番号</li><li>テストノート</li><li>ビルドグループ</li></ul></td>
+<td style="text-align:left"><ul><li>配布ページ</li><li>リリースノート</li></ul></td>
+</tr>
+<tr>
+<td style="text-align:left">メンバー数</td>
+<td style="text-align:left"><ul><li>最大100人 (アプリ毎)</li><li>一人あたり30デバイス</li></ul></td>
+<td style="text-align:left"><ul><li>無制限 (InHouse配布)</li></ul></td>
+</tr>
+<tr>
+<td style="text-align:left">過去バージョンの保存</td>
+<td style="text-align:left"><ul><li>最大60日間</li></ul></td>
+<td style="text-align:left"><ul><li>アプリ毎に500件</li></ul></td>
+</tr>
+</tbody>
+</table>
+<p>チーム内で相談したところ、メンバー毎の Apple ID の発行やメンバー数、メンバー毎の台数や過去バージョンの保存期間等の制約は、大きな問題にならないことがわかりました。<br>
+運用上問題になりそうだったのはビルドの識別です。Jenkins の場合はビルドパラメータとしてリリースノートを指定して、配布ページ上でどの案件向けのアプリが配布されているか？を利用者にわかるようにしていました。Xcode Cloud の場合はワークフロー実行時にビルドパラメータのような任意の引数は取れません。しかし、テスター向けの情報をテストノートに記載することができます<sup id="ref6"><a href="#note6">[6]</a></sup>。事前に指定のファイルをリポジトリ内に配置しておく必要があるのですが、Custom Build Script で動的に作成することもできそうです。</p>
+<p>あるいは、ビルドグループも活用できます。Xcode Cloud ワークフローとその実行時の Start Condition によって、TestFlight 上でビルドグループという単位でビルドがグルーピングされます。「特定の案件用のビルドは特定のブランチからビルドする」などの運用ルールにしておけば、ブランチ名を識別子として利用者にビルドを識別してもらうことができそうです。<br>
+以下は、TestFlight アプリのビルドグループ一覧です。タグとワークフロー名で分類されていることがわかります。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2024-07_nicoiphone_xcode_cloud/build_groups.png" alt="TestFlightアプリで見るビルドグループの一覧" width="400px" />
+  
+</div>
+
+<p>チーム内で相談した結果、DeployGate に関しては以下のような結論になりました。</p>
+<ul>
+<li>DeployGate も Xcode Cloud 経由でアップロードできるようにする
+<ul>
+<li>関係者が多く、一気に運用を変更するのが難しそうであったため</li>
+</ul>
+</li>
+<li>TestFlight 内部テスターの運用は並行して試していく
+<ul>
+<li>少ない利用者から始めて、徐々に適用範囲を広げていく</li>
+<li>問題がありそうなら DeployGate の運用に戻す</li>
+<li>問題なさそうなら TestFlight 内部テスターに移行していく</li>
+</ul>
+</li>
+</ul>
+<p>ビルドの識別については、TestFlight 内部テスト用のブランチを案件毎に各自で切って、そこにマージ後にアップロードを行うルールとしました。</p>
+<p>以上を踏まえると、最終的に必要な Xcode Cloud ワークフローの一覧は下記となります。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">ワークフロー名</th>
+<th style="text-align:left">開始条件</th>
+<th style="text-align:left">概要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Unit Test</td>
+<td style="text-align:left">任意のPRの更新</td>
+<td style="text-align:left">ユニットテストを実行する</td>
+</tr>
+<tr>
+<td style="text-align:left">DeployGate Development-XXX upload</td>
+<td style="text-align:left">ブランチ指定 (手動)</td>
+<td style="text-align:left">DeployGate に Development ビルドをアップロードする<br>XXX は配布ページの識別子であり、配布ページ毎にワークフローを用意する</td>
+</tr>
+<tr>
+<td style="text-align:left">DeployGate AdHoc-XXX upload</td>
+<td style="text-align:left">ブランチ指定 (手動)</td>
+<td style="text-align:left">DeployGate に AdHoc ビルドをアップロードする<br>XXX は配布ページの識別子であり、配布ページ毎にワークフローを用意する</td>
+</tr>
+<tr>
+<td style="text-align:left">TestFlight upload for Internal Testing</td>
+<td style="text-align:left">ブランチ指定 (手動)</td>
+<td style="text-align:left">内部テスト向けのアーカイブと内部テスト用の TestFlight アップロードを行う</td>
+</tr>
+<tr>
+<td style="text-align:left">TestFlight upload for Release</td>
+<td style="text-align:left">タグ指定 (手動)</td>
+<td style="text-align:left">ストア向けのアーカイブと内部テスト用の TestFlight アップロードを行う<br>ストアページ作成後、ビルドのみアップロードしたい場合に利用する</td>
+</tr>
+<tr>
+<td style="text-align:left">Release</td>
+<td style="text-align:left">タグ指定 (手動)</td>
+<td style="text-align:left">ストア向けのアーカイブと内部テスト用の TestFlight アップロード、ストアページの作成を行う</td>
+</tr>
+</tbody>
+</table>
+<p>基本的な社内ライブラリでは Unit Test のみ必要で、ニコニコ動画 iOS アプリの場合は全てのワークフローが必要です。</p>
+<p>DeployGate には複数の配布ページが存在し、Jenkins ジョブではジョブのビルドパラメータから対象ページを切り替えていました。しかし、Xcode Cloud ワークフローの実行時にはそのような任意のパラメータを指定することはできないので、仕方なく配布ページ毎にワークフローを作成します。また、Apple Developer Enterprise Program には Xcode Cloud が存在しないので、InHouse ビルドはそのままだと行えません。無理やり実行することもできますが、今回は割愛します。</p>
+<p>一部ワークフローについては、手動ではなくブランチやタグの push を開始条件にしても良さそうですが、一旦手動で運用して様子を見ています。</p>
+<h3 id="swift-package-に対して-xcode-cloud-を利用できるか調査する">Swift Package に対して Xcode Cloud を利用できるか調査する</h3>
+<p>Xcode Cloud ワークフローの実行対象となる Product には、App と Framework の2種類があります。以下は、複数のローカルの Swift Package を含んだニコニコ動画 iOS アプリにおいて、 Xcode Cluod ワークフロー作成を開始した時の画面です。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2024-07_nicoiphone_xcode_cloud/xcode_cloud_workflow_products.png" alt="Xcode Cloud ワークフローのプロダクト選択画面" width="600px" />
+  
+</div>
+
+<p>ここで App を選択すると、作成した Xcode Cloud ワークフローは App Store Connect 上に存在するアプリ定義と紐付きます。Framework を選択すると、まだ存在しなかった場合、App Store Connect 上に Framework が作成されます。これは現状 Xcode Cloud 関連操作のためだけの項目であるようです。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2024-07_nicoiphone_xcode_cloud/app_store_connect_frameworks.png" alt="App Store Connect 上の Framework 一覧表示" width="600px" />
+  
+</div>
+
+<p>iOS アプリの場合は App、アプリケーションではない社内ライブラリであれば Framework を選択すると良さそうです。ニコニコ動画 iOS アプリは複数の社内ライブラリに依存しており、それら社内ライブラリも Xcode Cloud に移行する必要があったため、それらは Framework として追加しました。</p>
+<p>ただし、Xcode Cloud ワークフローの追加のためには Xcode プロジェクトもしくはワークスペースが必要です。例えば、Package.swift のみが配置されている Swift Package リポジトリの場合、そのままだと Xcode Cloud は利用できません。Apple のドキュメントでも以下のように言及されています。</p>
+<blockquote>
+<p>You use a consistent Xcode project or workspace.
+<a href="https://developer.apple.com/documentation/xcode/requirements-for-using-xcode-cloud">https://developer.apple.com/documentation/xcode/requirements-for-using-xcode-cloud</a></p>
+</blockquote>
+<p>これを解決するために、Swift Package を配布しているリポジトリでは、以下のように workspace を追加する必要があります。</p>
+<ol>
+<li>{任意の名前}.xcworkspace を追加する</li>
+<li>{任意の名前}.xcworkspace にローカルの Swift Package を追加する
+<ul>
+<li>ワークスペースを開いた後に、Swift Package 配置先のディレクトリをドラッグ&amp;ドロップする</li>
+</ul>
+</li>
+<li>ローカルの Swift Package のテスト実行用スキームを追加する</li>
+</ol>
+<p>手順 2 では、{任意の名前}.xcworkspace/contents.xcworkspacedata が以下のようになっていれば良いです。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;Workspace</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">version =</span> <span style="color:#e6db74">&#34;1.0&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;FileRef</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#a6e22e">location =</span> <span style="color:#e6db74">&#34;group:{ローカルのSwiftPackageへのパス}&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/FileRef&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/Workspace&gt;</span>
+</span></span></code></pre></div><p>手順 3 のテスト実行用スキームの追加をしないと、Xcode が Swift Package を Framework として認識しません。ここで作成したスキームは、Xcode Cloud ワークフローでのテスト実行にも利用します。</p>
+<h2 id="custom-build-script-の作成">Custom Build Script の作成</h2>
+<p>ニコニコ動画 iOS アプリでは複数のワークフローを実行します。ワークフローの作成手順自体は特筆すべきものはないので割愛して、今回はワークフロー毎に必要な Custom Build Script <sup id="ref7"><a href="#note7">[7]</a></sup> 設定を紹介します。<br>
+Custom Build Script は Xcode Cloud ワークフローの特定タイミングで実行することができるスクリプトです。標準出力/標準エラー出力は Build Report のログに出力され、exit code も反映されます。実行タイミングには以下の種類があります。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">ファイル名</th>
+<th style="text-align:left">タイミング</th>
+<th style="text-align:left">利用例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ci_post_clone.sh</td>
+<td style="text-align:left">Git リポジトリを clone した後</td>
+<td style="text-align:left">必要に応じて Info.plist を更新する<br>ビルドに必要なツールをインストールする</td>
+</tr>
+<tr>
+<td style="text-align:left">ci_pre_xcodebuild.sh</td>
+<td style="text-align:left">xcodebuild コマンドを実行する前</td>
+<td style="text-align:left">追加の依存がある場合にそのビルドを行う</td>
+</tr>
+<tr>
+<td style="text-align:left">ci_post_xcodebuild.sh</td>
+<td style="text-align:left">xcodebuild コマンドを実行した後</td>
+<td style="text-align:left">外部サービスのストレージに成果物をアップロードする</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cocoapods-による依存のインストール">CocoaPods による依存のインストール</h3>
+<p>CocoaPods による依存のダウンロードは全てのワークフローで必要です。これを Xcode Cloud 上で行う場合、いくつかの選択肢があります<sup id="ref8"><a href="#note8">[8]</a></sup><sup id="ref9"><a href="#note9">[9]</a></sup>。</p>
+<ul>
+<li>Homebrew を利用する</li>
+<li>Bundler を利用する</li>
+<li>RubyGems を利用する</li>
+</ul>
+<p>元々開発チームでは Bundler を利用して fastlane や CocoaPods をインストールしていたため、Bundler を利用しようと考えていました。しかし、Xcode Cloud 上の Ruby のバージョンが古いために一部ツールのインストールがうまくいかず、最終的には Homebrew を利用することになりました。rbenv 等で Ruby の環境を整えることから始めると時間がかかってしまうためです。<br>
+実行タイミングは ci_post_clone.sh であり、以下のように記述します。ニコニコ動画 iOS アプリではプロジェクトルートに Podfile が存在するので、まずプロジェクトルートに移動しています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># ci_post_clone</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cd <span style="color:#e6db74">${</span>CI_PRIMARY_REPOSITORY_PATH<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>brew install cocoapods
+</span></span><span style="display:flex;"><span>pod install
+</span></span></code></pre></div><p>ニコニコ動画 iOS アプリでは、クラッシュ情報の収集に Firebase Crashlytics を利用しています。よってアーカイブを実施するワークフローでは dSYM アップロードが必要です。従来は fastlane の <a href="https://docs.fastlane.tools/actions/upload_symbols_to_crashlytics/">upload_symbols_to_crashlytics アクション</a> を利用していましたが、Xcode Cloud 移行によって fastlane の責務も減ったので、なるべく依存を少なくしていきたいと考えました。<br>
+実行タイミングはアーカイブ後なので、ci_post_xcode_build.sh に以下のように記述します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># ci_post_xcodebuild</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> -d <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>CI_ARCHIVE_PATH<span style="color:#e6db74">}</span><span style="color:#e6db74">/dSYMs&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;🔄 FirebaseにdSYMをアップロードします&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">${</span>CI_DERIVED_DATA_PATH<span style="color:#e6db74">}</span>/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/upload-symbols <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        -gsp <span style="color:#e6db74">${</span>CI_PRIMARY_REPOSITORY_PATH<span style="color:#e6db74">}</span>/NicoNico/Resources/GoogleService-Info.plist <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        -p ios <span style="color:#e6db74">${</span>CI_ARCHIVE_PATH<span style="color:#e6db74">}</span>/dSYMs
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;✅ FirebaseにdSYMをアップロードしました&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span></code></pre></div><p>GoogleService-Info.plist は、Buid Configuration やバンドル ID に合わせた適切なものを Custom Build Phase でコピーしています。これは Xcode Cloud 移行前からプロジェクトにあった設定です。</p>
+<h3 id="ストアページの作成">ストアページの作成</h3>
+<p>Release ワークフローの実行時には、fastlane によるストアページの作成を行いたいです。TestFlight アップロードは Xcode Cloud 側で行えますが、fastlane 実行については Custom Build Script の記述が必要です。<br>
+まず、Fastfile 側のレーン定義です。こちらは <a href="https://docs.fastlane.tools/actions/app_store_connect_api_key/">app_store_connect_api_key</a> と <a href="https://docs.fastlane.tools/actions/deliver/">deliver</a> のみのシンプルな定義になります。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#75715e"># Fastfile</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>platform <span style="color:#e6db74">:ios</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  desc <span style="color:#e6db74">&#34;次バージョンのストアページを作成する&#34;</span>
+</span></span><span style="display:flex;"><span>  lane <span style="color:#e6db74">:store_page</span> <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>options<span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>    app_store_connect_api_key
+</span></span><span style="display:flex;"><span>    deliver
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>次に、app_store_connect_api_key の実行のために Xcode Cloud ワークフローに環境変数を設定します。この時のポイントは、<code>APP_STORE_CONNECT_API_KEY_IS_KEY_CONTENT_BASE64</code> を true に設定することです<sup id="ref10"><a href="#note10">[10]</a></sup>。<code>APP_STORE_CONNECT_API_KEY_KEY</code> に設定する p8 ファイルの内容には改行が含まれますが、これを環境変数に設定すると改行が失われてしまいます。また、app_store_connect_api_key はデフォルトだと改行を含む p8 ファイルの内容を期待しているので、<code>APP_STORE_CONNECT_API_KEY_IS_KEY_CONTENT_BASE64</code> を true に設定した上で、<code>base64</code> コマンドによってエンコードした文字列を <code>APP_STORE_CONNECT_API_KEY_KEY</code> に設定する必要があります。エンコードのためにはターミナル上で <code>cat key.p8 | base64</code> を走らせます。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2024-07_nicoiphone_xcode_cloud/store_page_workflow_environments.png" alt="ストアページ作成用のワークフローのEnvironments管理画面" width="600px" />
+  
+</div>
+
+<p>以上で fastlane 実行のための準備が整ったので、以下のように ci_post_xcodebuild.sh を編集します。CocoaPods と同様の理由から、fastlane も Homebrew 経由でインストールすることにしています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># ci_post_xcodebuild</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> $CI_WORKFLOW <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Release&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;🔄 fastlaneをインストールします&#34;</span>
+</span></span><span style="display:flex;"><span>    brew install fastlane
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;✅ fastlaneをインストールしました&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;🔄 審査出しページを作成します&#34;</span>
+</span></span><span style="display:flex;"><span>    fastlane ios store_page
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;✅ 審査出しページを作成しました&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span></code></pre></div><h3 id="deploygate-による配信">DeployGate による配信</h3>
+<p>DeployGate による配信のために、以下を実施します。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">タイミング</th>
+<th style="text-align:left">作業</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ci_post_clone.sh</td>
+<td style="text-align:left">(必要であれば) アーカイブ時の Build Configuration を切り替える</td>
+</tr>
+<tr>
+<td style="text-align:left">ci_post_clone.sh</td>
+<td style="text-align:left">アプリ表示名を変更する</td>
+</tr>
+<tr>
+<td style="text-align:left">ci_post_xcodebuild.sh</td>
+<td style="text-align:left">DeployGate へアップロードする</td>
+</tr>
+</tbody>
+</table>
+<p>まず、ci_post_clone.sh の設定は以下のようになります。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># ci_post_clone</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> $CI_WORKFLOW <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;DeployGate &#34;</span>* <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    WORDS<span style="color:#f92672">=(</span>$CI_WORKFLOW<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    TARGET<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>WORDS[1]<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Build Configuration の書き換え</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>    SCHEME_PATH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;NicoMediaClient.xcodeproj/xcshareddata/xcschemes/NicoMediaClient.xcscheme&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> $TARGET <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Development&#34;</span>* <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        /usr/bin/xmllint --shell <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>SCHEME_PATH<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">&lt;&lt;EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">cd //ArchiveAction/@buildConfiguration
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">set DebugArchive
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">save
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># アプリ表示名の書き換え</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>    INFO_PLIST<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>CI_PRIMARY_REPOSITORY_PATH<span style="color:#e6db74">}</span><span style="color:#e6db74">/NicoNico/Info.plist&#34;</span>
+</span></span><span style="display:flex;"><span>    /usr/libexec/PlistBuddy -c <span style="color:#e6db74">&#34;Set :CFBundleDisplayName </span><span style="color:#e6db74">${</span>TARGET<span style="color:#e6db74">}</span><span style="color:#e6db74"> ニコニコ動画&#34;</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INFO_PLIST<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>   
+</span></span></code></pre></div><p>ワークフロー名が「DeployGate 」から開始する場合に必要な作業を実施します。ニコニコ動画 iOS アプリのデフォルトのスキームだと、アーカイブ時の Build Configuration は Release になっています。しかし、開発中の動作確認では DEBUG フラグをオンにした状態でアーカイブしたいです。とはいえ、このためだけに専用のスキームを用意するのも大げさなので、動的に Build Configuration を DebugArchive という専用の Build Configuration に切り替えています。アプリ表示名の切り替えは、Info.plist を PlistBuddy で書き換えることで実現します。</p>
+<p>ci_post_xcodebuild.sh の設定は以下のようになります。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># ci_post_xcodebuild</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cd <span style="color:#e6db74">${</span>CI_PRIMARY_REPOSITORY_PATH<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> $CI_WORKFLOW <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;DeployGate &#34;</span>* <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    WORDS<span style="color:#f92672">=(</span>$CI_WORKFLOW<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    TARGET<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>WORDS[1]<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> $TARGET <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;AdHoc&#34;</span>* <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        FILE_PATH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>CI_AD_HOC_SIGNED_APP_PATH<span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">${</span>CI_PRODUCT<span style="color:#e6db74">}</span><span style="color:#e6db74">.ipa&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elif</span> <span style="color:#f92672">[[</span> $TARGET <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Development&#34;</span>* <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        FILE_PATH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>CI_DEVELOPMENT_SIGNED_APP_PATH<span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">${</span>CI_PRODUCT<span style="color:#e6db74">}</span><span style="color:#e6db74">.ipa&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>        echo <span style="color:#e6db74">&#34;🛑 予期しないターゲット(</span><span style="color:#e6db74">${</span>TARGET<span style="color:#e6db74">}</span><span style="color:#e6db74">)が指定されました&#34;</span>
+</span></span><span style="display:flex;"><span>        exit <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> ! -f $FILE_PATH <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        echo <span style="color:#e6db74">&#34;🛑 ipaファイル </span><span style="color:#e6db74">${</span>FILE_PATH<span style="color:#e6db74">}</span><span style="color:#e6db74"> が存在しませんでした&#34;</span>
+</span></span><span style="display:flex;"><span>        exit <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;🔄 DeployGate </span><span style="color:#e6db74">${</span>TARGET<span style="color:#e6db74">}</span><span style="color:#e6db74"> にアップロードします&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># https://docs.deploygate.com/docs/api/application/upload/</span>
+</span></span><span style="display:flex;"><span>    curl <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        --url <span style="color:#e6db74">&#34;https://deploygate.com/api/users/</span><span style="color:#e6db74">${</span>DEPLOYGATE_USER<span style="color:#e6db74">}</span><span style="color:#e6db74">/apps&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        -H <span style="color:#e6db74">&#34;Authorization: Bearer </span><span style="color:#e6db74">${</span>DEPLOYGATE_API_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        -X POST <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        -F <span style="color:#e6db74">&#34;file=@</span><span style="color:#e6db74">${</span>FILE_PATH<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        --form-string <span style="color:#e6db74">&#34;message=</span><span style="color:#e6db74">${</span>CI_BRANCH<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        --form-string <span style="color:#e6db74">&#34;distribution_key=</span><span style="color:#e6db74">${</span>DEPLOYGATE_DISTRIBUTION_KEY<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        --form-string <span style="color:#e6db74">&#34;release_note=</span><span style="color:#e6db74">${</span>CI_BRANCH<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;✅ DeployGate にアップロードしました&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span></code></pre></div><p>Xcode Cloud でアーカイブを実行すると、各配布設定でコード署名されたアーカイブが専用のパスに出力されます<sup id="ref11"><a href="#note11">[11]</a></sup>。それを振り分けた上で、DeployGate の API を叩けば良さそうです。Jenkins ではリリースノートはビルドパラメータとして受け取った任意の文字列だったのですが、Xcode Cloud にはビルドパラメータのような仕組みはないので、ブランチ名を代わりに設定します。<br>
+Xcode Cloud ワークフローの環境変数には、以下をそれぞれ設定します。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">環境変数名</th>
+<th style="text-align:left">値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">DEPLOYGATE_USER</td>
+<td style="text-align:left">DeployGate ユーザー名</td>
+</tr>
+<tr>
+<td style="text-align:left">DEPLOYGATE_API_TOKEN</td>
+<td style="text-align:left">DeployGate の API トークン</td>
+</tr>
+<tr>
+<td style="text-align:left">DEPLOYGATE_DISTRIBUTION_KEY</td>
+<td style="text-align:left">配布ページの Distribution Key</td>
+</tr>
+</tbody>
+</table>
+<h2 id="移行後の問題とその対応策">移行後の問題とその対応策</h2>
+<p>移行時や移行後にハマった問題と、その解決策を紹介します。</p>
+<h3 id="一部-pod-のインストールに失敗する問題">一部 Pod のインストールに失敗する問題</h3>
+<p>CocoaPods 経由でとあるライブラリをダウンロードしてくる際に、ほぼ確実に以下のような curl のエラーでダウンロードに失敗してしまうようになりました。</p>
+<pre tabindex="0"><code>curl: (35) Recv failure: Connection reset by peer
+</code></pre><p>色々と調査してみたものの原因を割り出すことができず、結局対象の Pod を Git 管理の対象に追加することで解決しました。
+ちなみにこのエラーは、以下のような状況でも稀に発生することが確認されています。</p>
+<ul>
+<li>一部環境のために Java が必要なので、Xcode Cloud 上で Java をインストールする</li>
+<li>Xcode Cloud 上で DeployGate へバイナリをアップロードする</li>
+</ul>
+<p>幸い頻度はそこまで多くはないですが、不定期に CI が失敗するような状況は避けたいです。<a href="https://forums.developer.apple.com/forums/thread/738136">こちら</a>で報告されているのと似たような状況かとは思われますが、有効な解決策はなさそうでした。</p>
+<p>この問題については、現在Apple に問い合わせ中です。</p>
+<h3 id="テスト実行時間が増加してしまう問題">テスト実行時間が増加してしまう問題</h3>
+<p>ニコニコ動画 iOS アプリには 15,000 件超のテストがあります。このように大量のテストがあるリポジトリでテストアクションを走らせると、謎の処理時間 (スタックする時間) が発生してしまうことがわかりました。</p>
+<p>試しにとあるビルド結果を覗いてみます。 Xcode Cloud のログで Run xcodebuild test-without-building 時の時間を確認すると、23分ほどかかっています。ユニットテストの実行に 23 分というのはかなりかかっているように思えます。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2024-07_nicoiphone_xcode_cloud/nicoiphone_test_time.png" alt="ニコニコ動画iOSアプリのテスト実行時間" width="700px" />
+  
+</div>
+
+<p>しかし、成果物から test-without-building 時のログを取得し、xcodebuild-test-without-building.log の内容を確認すると、開始から終了までの間は 4 分ほどしかありません。</p>
+<pre tabindex="0"><code>2024-07-04T05:10:40.068483841Z	Command line invocation:
+...
+2024-07-04T05:14:30.824263538Z	Test session results, code coverage, and logs:
+2024-07-04T05:14:30.824309186Z		/Volumes/workspace/resultbundle.xcresult
+2024-07-04T05:14:30.824359593Z	
+2024-07-04T05:14:30.824427909Z	** TEST EXECUTE SUCCEEDED **
+2024-07-04T05:14:30.824470677Z	
+2024-07-04T05:14:35.869509216Z	Testing started
+</code></pre><p>別途 XCResult を取得し確認しても、同様に 4 分ほどしかかかっていませんでした。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2024-07_nicoiphone_xcode_cloud/nicoiphone_xcresult.png" alt="ニコニコ動画iOSアプリのテストのXCResultファイル" width="700px" />
+  
+</div>
+
+<p>一方で、Logs for Update Result Bundle with Metadata Command-stdout.log を確認すると以下のようになっており、この標準出力までの間に約20分が経過していることがわかります。</p>
+<pre tabindex="0"><code>2024-07-04T05:34:09.853383922Z	Added external location with identifier &#34;Xcode Cloud&#34; to /Volumes/workspace/resultbundle.xcresult/Info.plist.
+</code></pre><p>ログに現れていないこの時間を改善すべく、以下のような対応を試しましたが、いずれも効果はありませんでした。</p>
+<ul>
+<li>Parallel Testing を有効にする</li>
+<li>Collect Test Diagnostics on Failure をオフにする</li>
+<li>OS_ACTIVITY_MODE = disable にする</li>
+<li>fatalError の throw のテストをしている箇所の無効化</li>
+</ul>
+<p>このスタックは Xcode Cloud に移行した各リポジトリで大なり小なり発生しているようでした。その後、各リポジトリにおいて、テストケース数とスタックしている時間の相関を調べたところ、おおよそ 0.06-0.09秒/テストケース分のオーバーヘッドが発生していると考えると辻褄が合いそうなことがわかりました。この予測が仮に正しかった場合、1ケースあたり0.06秒だとしても、15000件あれば 900秒=15分 となり、日々の CI に関わる時間と考えると決して少なくありません。<br>
+多くのリポジトリではそこまで問題にならないのですが、ニコニコ動画 iOS アプリではテストケース数が今も増え続けているのもあり、開発生産性に悪影響を及ぼします。実は、移行前にこの問題があることはわかっており、ユニットテストの実行については代替案として GitHub Actions を用意しつつ、開発に支障があればユニットテストの実行のみそちらに切り替えることを考えていました。</p>
+<p>結果として、Xcode Cloud はそれなりの数並列実行することが可能なので、平時の開発業務ではそこまで問題になりませんでした。しかし急ぎのリリース作業時にはどうしてもボトルネックになってしまいます。</p>
+<p>よって、GitHub Actions への切り替えも視野に入れつつ、何か改善する術がないか Apple に問い合わせており、現在はその返答を待っている状態です。</p>
+<h2 id="まとめ">まとめ</h2>
+<h3 id="良かったところ悪かったところ">良かったところ/悪かったところ</h3>
+<p>ニコニコ動画 iOS アプリ開発チームでは、既に <span style="color:#ff2790">#XcodeCloudへ移行</span> してから数ヶ月が経過しています。現時点での良かったところと悪かったところをまとめます。</p>
+<h4 id="良かったところ">良かったところ</h4>
+<ul>
+<li>fastlane match による証明書の管理が減った</li>
+<li>fastlane の責務が減った</li>
+<li>最新の Xcode がすぐ使える
+<ul>
+<li>最近で言うと、Xcode 16 beta が公開されてすぐに使えるようになっていました</li>
+</ul>
+</li>
+<li>自動でビルドワーニングを Check notice として GitHub 上で報告してくれる</li>
+<li>手元の Xcode で CI 結果をすぐに確認できるのは便利</li>
+</ul>
+<h4 id="悪かったところ">悪かったところ</h4>
+<ul>
+<li>一部プロジェクトでテスト実行が非常に遅くなった
+<ul>
+<li>Apple に問い合わせ中</li>
+</ul>
+</li>
+<li>通信が安定しないことがある
+<ul>
+<li>Apple に問い合わせ中</li>
+</ul>
+</li>
+<li>App Store Connect がたまに不安定
+<ul>
+<li>ページの表示が重かったり</li>
+<li>Framework が閲覧できなくなったり</li>
+<li>一部ページが閲覧できなくなったり</li>
+<li>Xcode Cloud の bug fix については、<a href="https://developer.apple.com/jp/xcode-cloud/release-notes/">リリースノート</a> を確認すると良い</li>
+</ul>
+</li>
+</ul>
+<h3 id="今後の展望">今後の展望</h3>
+<p>まだまだ不安定な部分もありますが、一部テスト実行が遅くなってしまった点以外については概ね満足しています。チーム管理の Mac mini の保守も必要なくなり、運用が楽になりました。</p>
+<p>移行自体は完了したので、今後は DeployGate から  TestFlight 内部テストへの運用の切り替えを試していきます。また、ワークフローの開始条件が手動になっている箇所は、様子を見てルールを定め、できるだけ作業を自動化できるように改善していきます。</p>
+<p>ドワンゴでは、ニコニコ動画を一緒に作ってくれる仲間を募集しています！iOSやAndroidのネイティブアプリ開発が好きな方、ドワンゴに興味がある、または応募しようか迷っている方がいれば、気軽に応募してみてください。</p>
+<ul>
+<li><a href="https://dwango.snar.jp/index.aspx">新卒採用はこちら</a></li>
+<li><a href="https://hrmos.co/pages/dwango">キャリア採用はこちら</a></li>
+</ul>
+<hr>
+<p><small id="note1">[1]: <a href="https://developer.apple.com/documentation/xcode/configuring-your-first-xcode-cloud-workflow/">Configuring your first Xcode Cloud workflow - Apple Developer</a> <a href="#ref1">↩</a></small><br>
+<small id="note2">[2]: <a href="https://developer.apple.com/documentation/xcode/xcode-cloud-workflow-reference">Xcode Cloud Workflow Reference - Apple Developer</a> <a href="#ref2">↩</a></small><br>
+<small id="note3">[3]: <a href="https://developer.apple.com/documentation/xcode/configuring-your-first-xcode-cloud-workflow/#Choose-a-product">Configuring your first Xcode Cloud workflow - Apple Developer</a> <a href="#ref3">↩</a></small><br>
+<small id="note4">[4]: <a href="https://developer.apple.com/jp/xcode-cloud/get-started/">Xcode Cloudの利用開始</a> <a href="#ref4">↩</a></small><br>
+<small id="note5">[5]: <a href="https://developer.apple.com/documentation/xcode/xcode-cloud-workflow-reference#Perform-a-clean-build">Xcode Cloud workflow reference - Apple Developer</a> <a href="#ref5">↩</a></small><br>
+<small id="note6">[6]: <a href="https://developer.apple.com/documentation/xcode/including-notes-for-testers-with-a-beta-release-of-your-app">Including notes for testers with a beta release of your app - Apple Developer</a> <a href="#ref6">↩</a></small><br>
+<small id="note7">[7]: <a href="https://developer.apple.com/documentation/xcode/writing-custom-build-scripts">Writing Custom Build Scripts - Apple Developer</a> <a href="#ref7">↩</a></small><br>
+<small id="note8">[8]: <a href="https://wojciechkulik.pl/xcode/xcode-cloud-overview-and-setup">Xcode Cloud – overview &amp; setup - Wojciech Kulik</a> <a href="#ref8">↩</a></small><br>
+<small id="note9">[9]: <a href="https://developer.apple.com/documentation/xcode/making-dependencies-available-to-xcode-cloud">Making dependencies available to Xcode Cloud - Apple Developer</a> <a href="#ref9">↩</a></small><br>
+<small id="note10">[10]: <a href="https://pgu.dev/2021/06/26/app-store-connect-access-key.html">iOS: using App Store Connect API with fastlane</a> <a href="#ref10">↩</a></small><br>
+<small id="note11">[11]: <a href="https://developer.apple.com/documentation/xcode/environment-variable-reference">Environment variable reference - Apple Developer</a> <a href="#ref11">↩</a></small><br></p>
+</article>
+    </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="ニコニコ動画 iOS アプリでの Xcode Cloud の活用 - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/2024-07_nicoiphone_xcode_cloud/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/2024-07_nicoiphone_xcode_cloud/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2f2024-07_nicoiphone_xcode_cloud%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

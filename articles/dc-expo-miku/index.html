@@ -1,1 +1,273 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="ja" lang="ja" >
 
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.122.0">
+
+  <meta property="og:title" content="超歌舞伎に登場する初音ミクさんの美麗な舞を高品質なままMicrosoft HoloLensで鑑賞する技術 - dwango on GitHub">
+
+  <meta property="og:description" content="ドワンゴ社内の様子や、文化、技術をご紹介します。" />
+
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  <meta name="twitter:card" content="summary">
+  
+
+
+  
+  
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>超歌舞伎に登場する初音ミクさんの美麗な舞を高品質なままMicrosoft HoloLensで鑑賞する技術 - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> ニコニコ開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://blog.nnn.dev/"> 教育サービス開発者ブログ </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
+      
+        Copyright &copy; DWANGO Co., Ltd.
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+  <div class="post">
+    <time class="content-date" datetime="2017-12-27 08:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2017-12-27 Wed</time
+    >
+    <h1 class="article-title">超歌舞伎に登場する初音ミクさんの美麗な舞を高品質なままMicrosoft HoloLensで鑑賞する技術</h1>
+
+    <div>
+      
+      <article id="content"><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/dc-expo-miku/kabukimiku_1.jpg" alt="DCEXPOでの展示の様子"  />
+  
+</div>
+
+<h2 id="tldrとても長いのでまとめ">TL;DR（とても長いのでまとめ）</h2>
+<p>HoloLensの3D計算能力は限られているので、美麗なミクさんを美麗なまま鑑賞するために細々とした工夫をしたよ、という話。</p>
+<h2 id="ドワンゴhololens">ドワンゴ×HoloLens</h2>
+<p>ドワンゴでAR/VR/イベント演出システムなどの開発を担当している先端演出技術開発セクションの岩城(<a href="https://twitter.com/MobileHackerz">MIRO</a>)です。</p>
+<p>ドワンゴでは<a href="http://dwango.co.jp/pi/ns/2017/0331/index.html">HoloLensを使ったライブ体験を提供するための技術開発</a>を継続的に行っています。2017年4月には<a href="https://nnn.ed.jp/">N高等学校</a>の入学式において、<strong>75台のHoloLensを同期</strong>し<strong>沖縄の本校にいる校長先生</strong>を六本木ニコファーレに出現させ、<strong>式に遠隔でご参加いただく</strong>といった試みも実施しました。</p>
+<p><div class="article-img">
+  
+  <img src="https://dwango.github.io/images/dc-expo-miku/kabukimiku_3.jpg" alt="N高入学式の様子1"  />
+  
+</div>
+
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/dc-expo-miku/kabukimiku_4.jpg" alt="N高入学式の様子2"  />
+  
+</div>
+</p>
+<p>これらのHoloLens関連技術は先日「<a href="https://www.dcexpo.jp/innovative-technologies">Innovative Technologies+</a>」に<a href="https://www.dcexpo.jp/17689">採択され</a>、日本科学未来館で技術展示をさせていただきました。実はこの展示では（校長先生の式辞ではなく）「<a href="http://chokabuki.jp/">超歌舞伎 花街詞合鏡(くるわことばあわせかがみ) </a>」に登場した初音ミクさん（※初音太夫）の舞をごらんいただくことにしたのですが、この「ミクさんをHoloLensで出す」という裏側には結構いろいろな工夫をしていました。
+本記事では、この「超歌舞伎に登場した初音ミクさんの美麗な舞」を「HoloLensでなるべく高品質に」鑑賞するためにあらたに盛り込んだ工夫について解説します。</p>
+<h2 id="microsoft-hololensのもつパフォーマンス">Microsoft HoloLensのもつパフォーマンス</h2>
+<p>HoloLensはPCなどを使った他の「VR」ヘッドセットなどと違い、<strong>HoloLensそれ自身が単体で動作する単体のコンピュータ</strong>です。HoloLens自身にセンサ・プロセッサ・バッテリー・ディスプレイがすべて含まれており、自身で自分の位置をつねに追跡し、自分の位置から見えるべき仮想空間の物体を計算・現実世界に重ね合わせて表示します。
+これは言い換えると<strong>すべての（表示に必要な）計算能力はHoloLens上にあるチップを使わなければならない</strong>ということであり、つまりは<strong>強力なCPUやGPUを使って力業で品質を上げるという手段が使えない</strong>ということでもあります。</p>
+<p>HoloLensの能力の真骨頂はそれがもつセンサと、センサに高度に結合された恐るべき精度のトラッキング（位置追跡）、そしてトラッキングから超低遅延で表示に反映するシステム、さらにはそれを統合したOSであって、3Dの表示能力自体は正直いまひとつなのが現実。<strong>3Dまわりのレンダリング能力は数世代前の携帯電話程度</strong>と思っていただければしっくりくるでしょう。それで<strong>秒60フレームのレンダリングを死守</strong>しなければならない、といえば大変さが少しイメージできるでしょうか。</p>
+<p>たとえば<a href="http://bluebirdofoz.hatenablog.com/entry/2017/07/17/173650">こちらの記事</a>ではダンスモーションのキャラクタを表示するのに<strong>2000ポリゴンまで削減したモデルで秒30フレーム</strong>という結果が出ています。
+また、<a href="http://unity-chan.com/">リアルタイムに動かすためのキャラクターモデルであるUnityちゃん</a>が<strong>約1万6000ポリゴン</strong>。だいたい相場感としてはこのあたりが表示上の限界といったところでしょうか。</p>
+<h2 id="超歌舞伎ミクさんを出したいとは言ったものの">超歌舞伎ミクさんを出したい、とは言ったものの…</h2>
+<p>さて、そんなHoloLensで超歌舞伎のミクさんを見たい…！と思うのですが…</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/dc-expo-miku/kabukimiku_5.jpg" alt="超歌舞伎ミクさんBefore"  />
+  
+</div>
+
+<p>こちらのモデル、実は<strong>約17万ポリゴン、約4000個のボーン</strong>があります。もともとリアルタイムに動かすことを想定しているモデルなので極端なハイポリゴンではないのですが、<strong>それでも約17万ポリゴン</strong>！
+さらにはボーン（※CGモデルを動かすための軸となる「骨」のこと）の数は通常のキャラクターモデルと数の桁が違います。これはミクさんが着ている着物を繊細に動かすためのもの。細やかな着物の布の動きをこれで再現しているわけなのです。
+そういったデータも含めると…パワフルなGPUを持つパソコンならともかく、HoloLensで出すのはかなりの無理ゲー感があります…。</p>
+<p>とはいえまずはできるところから。
+まずポリゴン数はもっと減らせるんじゃないか…というわけで、CGデザイナーさんにお願いしてみます。</p>
+<p>「このミクさんHoloLensで出したいのでポリゴン数減らしてほしいんですけど…」
+「<strong>無理ですねー</strong>」
+「<strong>ｷﾞｬｰ!!</strong>」</p>
+<p>聞けば繊細な布の動きを再現するためにかなりのポリゴン数を割いており、ここは単純にポリゴンを減らしてしまうとシミュレーションが破綻し突き抜けてしまったり荒れたりしてしまうとのこと。ポリゴンを減らしたあとに再度全フレーム細かくチェックして手で修正していけばなんとかなるけれども、かなり時間も工数もかかる…。</p>
+<p>仕方ないので着物部分のポリゴン数削減はすっぱりあきらめて、それ以外の部分で頑張っていただきました。ミクさんの髪飾りなど細かいところも細部まで作り込んでいたので、そのあたりのポリゴンを削って（※見た目はほとんど変わらない）着物部分は手を触れず。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/dc-expo-miku/kabukimiku_6.jpg" alt="超歌舞伎ミクさんAfter"  />
+  
+</div>
+
+<p>結果…
+<strong>約7.7万ポリゴン（約6万頂点）に減りました！</strong> やったね！</p>
+<p>でも「2万ポリゴンでもカツカツ」なHoloLens。まだまだ工夫しなければ歌舞伎ミクさんはきれいに出ません。さあがんばろう。
+※ここからかなり専門的な話になります※</p>
+<h2 id="step1-スキニング計算をやめるモーションの事前焼き込み">STEP1: スキニング計算をやめる（モーションの事前焼き込み）</h2>
+<p>次に膨大なスキニング計算をばっさり削ります。キャラクタの実在感を高めるための手法としてよく <strong>「見ている人を認識して自然に反応する」ことが良い</strong>と言われています。が、今回は<strong>やろうとしているのが「歌舞伎の演目の再現」</strong>。生の「超歌舞伎」舞台では歌舞伎役者さんの間を読んで動かす必要があるためリアルタイムに動くこともありますが、今回は舞台の出演者たるミクさんが観客の動きに直接的に反応しなくとも特に不自然ではありません。<strong>（今回に限り）動きはリアルタイムに計算するのでなく、もう先に決めてしまいましょう</strong>。</p>
+<p>というわけで、4000本のボーンによる複雑な動きはすべて事前計算、計算済の情報をすべての頂点・すべてのフレームぶんデータとして持っておくことにします。アニメーションは2分33秒ですから、6万頂点×4650フレーム（秒30フレーム換算）でおおよそ8.8GB。HoloLensの端末ストレージには充分おさまります。
+このようにフレームごとに全頂点ぶんのデータを焼き込む形式としては「Alembic」というファイル形式が知られています。元のアニメーションをAlembicに出力し、そのデータをマスターとしてHoloLensに持ち込むことにします。</p>
+<h2 id="step2-ファイルio頂点ストリームの最適化">STEP2: ファイルI/O・頂点ストリームの最適化</h2>
+<p>これで膨大なスキニング計算は要らなくなったわけですが、かわりに登場するのが膨大な頂点位置データ。事前に確認したところHoloLensの内部ストレージはそこまで遅くはなかったので充分速度としては読み切れるのですが、再生が引っかかると興ざめです。なので、ファイルのキャッシングも含めた頂点ストリーム読み出し部分を自力で作ります。</p>
+<p>もともとAlembic形式は<a href="https://github.com/unity3d-jp/AlembicImporter">Alembic Importer</a>というUnity向けのプラグインが提供されているのですが、Alembicそのままでは使い勝手が悪かったこともありいったんオレオレフォーマットに変換したあとでDocuments領域に独自形式のデータを持っています。</p>
+<p>Index, UVは全フレーム共通なので各フレームには持たず、Position, Normalだけがアニメーションし、そのPosition・Normalもfloatではなく固定小数(-2.0fから2.0fの範囲をUInt16.Maxで分割)にして持つなど細かくファイルサイズが小さくなる工夫をしています。このデータがでかかったりアプリケーション埋め込みになったりすると各HoloLens端末へのデプロイがとても大変なので地味にだいじなのです（当初8.8GBが最終的には2.5GBくらいになりました）。</p>
+<p>当初は頂点情報の圧縮も検討したのですが、圧縮率を高めてファイルサイズを減らすよりもここはHoloLensでのCPU時間のほうが貴重！という結論になったのでした。</p>
+<h2 id="step3-レンダリングの最適化">STEP3: レンダリングの最適化</h2>
+<p>レンダリングもがっつり最適化。</p>
+<ul>
+<li>メインの光源は仮想点光源x2（自前のシェーダで照明ごとにパスを分けず、まとめて処理します。BRDFは物理ベースです。）</li>
+<li>環境光も追加（ドワンゴが実施しているARライブで使用する「リアルタイムの照明反映」システム用魚眼センサからの情報（の一部）にあたります。今回はセンサを置かなかったので固定の情報を使いましたが、リアルタイムでも流し込めます。照明のレンジは一応、HDRです。）</li>
+<li>一部、Metallic-Smoothnessマップ対応（着物の箔押し部分が一番目を引く部分なので、ここは欠かせない！）</li>
+<li>一部、AmbientOcclusionマップ対応。（Hololensでのリアルタイムシャドウは厳しいので、事前に焼き込むAOは結構大事だと思います。影大事。でも、暗くしすぎるとHololensでは薄くなるので注意。）</li>
+<li>Linear⇔sRGB変換はシェーダ内で行い、Linear色空間で計算しています。（Unity上の色空間の設定でLinearを選ぶと、Hololensの画面が真っ暗になったため、設定上はGammaを選択せざるを得ませんでした。）</li>
+</ul>
+<h2 id="step4-細かい実装の最適化">STEP4: 細かい実装の最適化</h2>
+<p>ここまで出来てくると、あとは完全に「細かい最適化」が大事になってきます。プロファイラとにらめっこしながら、CPU・GPUともにボトルネックになっているところを次々と潰していく感じですね。
+まずCPUは処理スレッドをきちんとわけて、メインスレッドのブロックが発生しないようにします。基本。</p>
+<ul>
+<li>IOスレッド(バイト列切り出し)。リクエストされたフレームに応じてシークする。10フレームほど先読みする。１フレーム16ms以内に終わる必要あり</li>
+<li>デコードスレッド(バイト列からVector3の配列への変換)。IOスレッドの出力を即座に変換する。1フレーム16ms以内に終わる必要あり</li>
+<li>Monitor.WaitとMonitor.Pulseでエンキューされるまで待機するキューを作成して複数スレッドを連携させている(N校のGearVRのJpegDecoderのところでも使った)</li>
+<li>GCが発生しないようにスレッド間の受け渡しに使うバッファを使いまわして循環させる</li>
+<li>byte[]からVector3[]への展開にGCHandle.Alloc(dataArray, GCHandleType.Pinned)からIntPtrを得てMarshal.Copy(byte[], IntPtr)している(memcpy的)</li>
+<li>毎フレーム実行するMesh.vertices, normalsへの代入は意外と速い</li>
+</ul>
+<p>また、アニメーションのフレームは30fpsで持っていますが、これを内部で補間し60fpsで再生しています。Position, Normalのトポロジが不変であることを活かして各頂点を補間しています。
+この補間はC#上でLerpなどで素直に実装すると非常に重い（new Vector3やVector3.Lerpが重い）ので、補間するだけのネイティブDLLを作り呼び出しています。やはり一番速度が欲しいところはネイティブで。</p>
+<h2 id="step5-レンダリング解像度を動的に下げる">STEP5: レンダリング解像度を動的に下げる</h2>
+<p>ここまでの最適化で、 <strong>レンダリングは（歌舞伎ミクさんが全身見えるくらい離れた位置からならば）60fpsを維持できる</strong> ようになりました。
+そう、「歌舞伎ミクさんが全身見えるくらい離れた位置からならば」。HoloLens最後のボトルネックは「ピクセルフィルレート」。歌舞伎ミクさんに近づいていくと（＝ミクさんの表示面積が大きくなると）描画が追いつかずフレームレートがどうしても下がってしまうのです。</p>
+<p>これは最終的にこうしました</p>
+<ul>
+<li>HoloLensではCGの画面占有率が上がるとFillRateが厳しい。ミクさんに近づくと動的にXR.renderViewportScaleを下げることでフレームレートを維持する</li>
+</ul>
+<p><strong>ミクさんに近づくにつれて動的にレンダリング解像度が下がる</strong>ようにしました。これは段階的に（離散的に）変わるのではなく、徐々に変化します。最も近づいたときにはrenderViewportScale=0.4くらい、つまり768x432くらいのレンダリング解像度に下がります。が、これ<strong>ミクさんがアップになるにつれ解像度が下がることになる</strong>ため<strong>意識して見ていてもほとんどわからない</strong>です。</p>
+<p>これでどこから見てもレンダリングもアニメーションも60fps実現！やった！！！</p>
+<h2 id="step6-舞台セットの工夫">STEP6: 舞台セットの工夫</h2>
+<p>ソフトウェア側ではやることはやりきったので、あとは「それをどう見せるか」にも工夫！これをやるかどうかで「実在感」の印象はだいぶ違います。</p>
+<ul>
+<li>舞台セット自体をきちんと空間演出することで雰囲気をつくる。今回は屏風柄の背景や舞台などをきちんとセットとして作りました</li>
+<li>照明をコントロールし連動。いままでドワンゴで実施するARライブは「照明状態をセンサで取得しCGで再現」というアプローチが多かったのですが、今回は照明の明滅をコントロールし、同じ情報をCG側で再現することで実在する照明とHoloLens上のミクさんの照明環境をあわせました。</li>
+<li>カメラ映像にはより高品質なレンダリング。HoloLens上のミクさんはがんばったとはいえやはりサブセット。その様子を（通りがかりの人にも）見ていただく外部モニターには全力でレンダリングしたミクさんを表示しました。</li>
+</ul>
+<h2 id="結果として">結果として…</h2>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/dc-expo-miku/kabukimiku_7.jpg" alt="超歌舞伎ミクさん(HoloLens実機録画)"  />
+  
+</div>
+
+<ul>
+<li>元は17万ポリゴン、リダクション済で7.7万ポリゴンの着物姿のミクさんアニメーションが</li>
+<li>舞台照明と連動したライティングを活かしつつ</li>
+<li>HoloLens実機上で</li>
+</ul>
+<p>アニメーション60fps、レンダリング60fpsが安定して出て、舞台演出も込みでHoloLensならではの実在感が楽しめるようになりました。各種演出や外部ARシステム・プロジェクタ投影との同期、アンカー管理・システムのヘルスチェック、また安定化平面のハンドリングなど、今回解説した「ミクさんを表示するための技術」以外のHoloLensの基本的な取り扱いに関してはDAHLESという仕組みの上にこのレンダリングを乗せることで別途おさえています。</p>
+<p>「HoloLensだからこんなもん」で諦めずにきちんと工夫すれば意外とちゃんとした絵が出せるんだ！というのがおわかりいただけたでしょうか。</p>
+<h2 id="このミクさんに会いたい">このミクさんに会いたい！</h2>
+<p><strong>年末年始（2017年12月27日（水）〜2018年1月4日（木））、池袋西武本店７階催事場で開催される<a href="https://www.sogo-seibu.jp/ikebukuro/kakutensublist/?article_seq=258876">「歌舞伎の世界展」</a>の一角で本技術を体験いただけます</strong>。デジタルコンテンツEXPOでの展示からさらにチューニングが進んでいますので、もしご興味がありましたらぜひどうぞ。</p>
+</article>
+    </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="超歌舞伎に登場する初音ミクさんの美麗な舞を高品質なままMicrosoft HoloLensで鑑賞する技術 - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/dc-expo-miku/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/dc-expo-miku/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2fdc-expo-miku%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

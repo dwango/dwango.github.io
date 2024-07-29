@@ -1,1 +1,252 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="ja" lang="ja" >
 
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.122.0">
+
+  <meta property="og:title" content="共通通知システムを刷新しました - dwango on GitHub">
+
+  <meta property="og:description" content="ドワンゴ社内の様子や、文化、技術をご紹介します。" />
+
+  <meta property="og:image" content="https://dwango.github.io/images/2023-10_push_system/aws.png">
+
+  <meta name="twitter:card" content="summary">
+  
+
+
+  
+  
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>共通通知システムを刷新しました - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> ニコニコ開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://blog.nnn.dev/"> 教育サービス開発者ブログ </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
+      
+        Copyright &copy; DWANGO Co., Ltd.
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+  <div class="post">
+    <time class="content-date" datetime="2023-10-02 12:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2023-10-02 Mon</time
+    >
+    <h1 class="article-title">共通通知システムを刷新しました</h1>
+
+    <div>
+      
+        <aside>
+          <h2>目次</h2>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#リプレース前の状況">リプレース前の状況</a></li>
+    <li><a href="#設計">設計</a></li>
+    <li><a href="#開発の進め方">開発の進め方</a></li>
+    <li><a href="#工夫したところ">工夫したところ</a></li>
+    <li><a href="#発生したトラブル">発生したトラブル</a></li>
+    <li><a href="#結果">結果</a></li>
+    <li><a href="#感想">感想</a></li>
+  </ul>
+</nav>
+        </aside>
+        <hr />
+      
+      <article id="content"><p>こんにちは。ニコニコ共通バックエンド開発担当の小野塚です。</p>
+<p>ニコニコには各ファミリーサービスが使っている共通通知システムがあります。このシステムを利用することで、各サービスはiOSアプリプッシュ通知、Androidアプリプッシュ通知、ブラウザーWebPush通知、Eメール通知、Webページやスマートフォンアプリの「あなたへのお知らせ」を送っています。</p>
+<p>そのリプレースが最近完了したので、ご紹介したいと思います。</p>
+<h2 id="リプレース前の状況">リプレース前の状況</h2>
+<p>リプレース前の共通通知システムは、通知生成システムと通知配信システムという2つのシステムから構成されていました。この2つのシステムの間では、通知生成システムがニコニコ独自の通知ロジックを担い、通知配信システムがニコニコに限定されない汎用的な通知機能を担う<sup id="ref1"><a href="#note1">[1]</a></sup>という分担がありました。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2023-10_push_system/before.png" alt="リプレース前の通知の流れ"  />
+  
+</div>
+
+<p>通知生成システムは、通知するイベントに含まれるコンテンツのIDから通知配信システムへと送り込む情報を生成するという機能を持っています。その中には、フォロワーへの通知を具体的にどのユーザーに届けるべきか変換するという不可欠<sup id="ref2"><a href="#note2">[2]</a></sup>な機能が含まれます。<br>
+この機能を実現するため、通知種別が増えるたびに個別の実装が必要となる<sup id="ref3"><a href="#note3">[3]</a></sup>という弱点を抱えていました。しかもニコニコの通知を一手に引き受けるという立ち位置にいることから、殺到する通知種別追加の対応でチームの工数が大きく消費されていたのです。さらに、将来的には設定を入れたら終わりにできるようなシステムにしたいと思っていたにもかかわらず、コードを実装すれば何でもできるという性質からどんどん処理が追加され、逆に責務が重くなってしまっていました。</p>
+<p>一方、通知配信システムは2014年にまで遡るシステムです。Scala製でgRPCを多用する<sup id="ref4"><a href="#note4">[4]</a></sup>など、構築時期を考えると意欲的なシステムなのですが、当時の想定と実運用でずれた部分が歪になってしまっていたり、システムの成長によりデプロイに時間がかかるようになったり、中でキューイングしているメッセージの互換性が壊れやすく変更前の検証に時間を要したりするなど、運用面での辛さが発生している状態でした。また、VMベースのシステムとなっており、これをクラウドサービスに適した形で移植しようとすると、追加でかなりの工数がかかることも予測されました。</p>
+<h2 id="設計">設計</h2>
+<p>以上を踏まえて、新システムを以下のように設計しました。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2023-10_push_system/after.png" alt="リプレース後の通知の流れ"  />
+  
+</div>
+
+<p>共通通知システムとしては、引き続き各通知種別の内容を管理し続けることにしました。ニコニコではどのような通知を送っているか中央で管理しているため、共通システムに設定が集まっていることは好都合だからです。また、スマートフォンアプリなど通知先特有の知識は、共通システムで吸収した方が通知の発生元となる各ファミリーサービスのバックエンドシステムから使いやすいという理由もありました。<br>
+その上で、各通知種別の管理を軽量化するため、各通知種別の内容を個別に実装するのではなく、設定として持つことにしました。</p>
+<p>その過程で、工数を消費する原因となっていた通知の判定や通知内容の肉付けロジックを、呼び出し元のファミリーサービスへと戻すことにしました。単に仕事を押し付けたように見えなくもありませんが、ファミリーサービス側にとってこのようなロジックを書くことは通常業務の範囲内であり、自サービスの詳細な仕様や動作確認方法も把握していることから、共通通知システムの開発者が対応するより負担が少ないと判断しました。</p>
+<p>技術的な要素も少しご紹介します。このシステムはGo言語で構築しました。理由としては、現時点でWebバックエンドシステムの主要言語の一つであり各技術のサポートが見込めること、静的型付け言語であり保守性の観点から好ましいこと、コンパイルが速く環境構築も容易であるなど楽な場面が多いことなどが挙げられます。また、チームとしてそのような理由でGoを選定したシステムを多く抱えていることから、技術スタックが過度に分散しないというメリットもありました。なお、近年のニコニコの新規システムでは、中でも堅く作る必要のあるシステムに関しては特に、Goが採用されることが多いように感じています。</p>
+<p>さらに、このシステムはAWS上に構築することが要求されました。そこでサーバーレスのコンテナ実行環境であるECS on Fargateと、マネージドのメッセージキューであるSQSを主体とすることで、クラウドのメリットを享受できる範囲で手堅い構成にしました。後に述べますが、AWSの経験が乏しかった一方で、Kubernetes上でシンプルなシステムを構築運用した経験があり、コンテナ技術自体には馴染みがあったためです。</p>
+<p>システム自体は単純化すると以下のような構成になっています。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2023-10_push_system/aws.png" alt="共通通知システムのAWS構成"  />
+  
+</div>
+
+<p>処理の流れを簡単に追っていくと以下のようになります。</p>
+<ol>
+<li>ファミリーサービスが通知受付APIを呼び出す。</li>
+<li>通知受付APIは、フォロワーへの通知であればフォロワー取得ワーカーのキューへとメッセージを送信する。通知先のユーザーIDが指定してあれば、送信先デバイス解決ワーカーのキューへとメッセージを直接送信する。</li>
+<li>フォロワー取得ワーカーは、外部のシステムからフォロワーを取得し、送信先デバイス解決ワーカーのキューへとメッセージを送信する。フォロワーが多い場合はユーザーIDリストを分割し、SQSのメッセージサイズ上限に収める。</li>
+<li>送信先デバイス解決ワーカーは、ユーザーの通知受信設定を適用した上で、ユーザーIDからそのユーザーが持つデバイスのリストへと変換する。そうして得られたリストを、SQSのメッセージサイズ上限に収まるよう分割しながら、通知配信ワーカーのキューへと送信する。</li>
+<li>通知配信ワーカーは、スマートフォンPush通知やあなたへのお知らせシステムなどのサーバーに対して通知を送信する。</li>
+</ol>
+<h2 id="開発の進め方">開発の進め方</h2>
+<p>実際に開発を進めるためには作り直しの工数を捻出する必要がありました。チームの人数は増えたものの、同時期に別の大規模案件を走らせなければならなかったため、通知システムに関わる開発者の人数をむしろ減らしたためです。<br>
+そこで通知生成システムへの通知種別の新規追加を止め、ファミリーサービスが新規に通知種別を追加する場合は一時的に通知配信システムを直接利用してもらうようにしました。通知配信システムはフォロワーへの通知機能を持っていないため、フォロワーに通知したいケースが出てきた場合はなるべく新システムの完成を待ってもらうことにしました。<br>
+さらに細かいことですが、通知種別を追加する際の企画ヒアリングへの開発者の出席も止めました。代わりにヒアリングシートを作成し、開発者が直接聞き取りを行わなくても作業ができるようにしました。</p>
+<p>また、前述した通りこのシステムはAWS上に構築することになりました。今までも部分的にAWSは利用されてきましたが、ニコニコ全体としてはオンプレミス主体のインフラ<sup id="ref5"><a href="#note5">[5]</a></sup>です。そのためチームにノウハウがなく、外からの応援も乏しい状態で進めざるを得ませんでした。<br>
+そこで重要性が低く単純なシステムを別案件としてAWSに移行させ、そこから1ヶ月程度当案件のインフラ構築を遅らせることでノウハウを転用しました。</p>
+<h2 id="工夫したところ">工夫したところ</h2>
+<p>新システム構築の際に工夫したところとしては以下があります。</p>
+<p>1つ目は、生放送番組開始のような即時性が強く求められる通知種別について、優先的に処理をするキューを用意することで通知を遅れにくくしたことです。</p>
+<p>2つ目は、通知受付API呼び出し時に、リクエストのIDとしてランダムな文字列を付与してもらうことで、リクエストの一意性を確保したことです。<br>
+これにより、ファミリーサービスが通知受付APIの呼び出しをリトライした場合や、SQSが同一のSQSメッセージを複数回配信<sup id="ref6"><a href="#note6">[6]</a></sup>した場合でも通知が重複しにくくなりました。（ただし処理の高速化・単純化の観点から、完全なロックは取っていません。）</p>
+<p>3つ目は、システムの構築をフェーズ1とフェーズ2に分け、フェーズ1の時点では通知受付APIとフォロワー取得ワーカーだけを作り、そこから先は旧システムである通知配信システムに繋ぎ込んだことです。<br>
+フェーズ1が完成した時点でフォロワーの取得はできるようになるので、新たにフォロワーへの通知を行いたい利用者にとって、新システム構築までの待ち時間が短縮されました。<br>
+また、フェーズ2の完成後は旧システムが廃止されるため、利用者であるファミリーサービスは新システムへの呼び変えを行わなければなりません。通知受付APIを先に完成させておけば、呼び変え作業の期間を長く取れるというメリットもありました。</p>
+<h2 id="発生したトラブル">発生したトラブル</h2>
+<p>特に大きな問題は発生しませんでしたが、いくつか遭遇したトラブルも紹介しておきます。</p>
+<p>1つ目は、当初の性能試験において通知配信ワーカーの性能が出なかったことです。通知配信ワーカーは、キューのメッセージに含まれる複数の送信先デバイスに対して、直列に通知を送信していました。もちろんこれでは性能が出ないことは容易に想像できたため、「メッセージを消化し直列に通知を送信する」という処理自体を並列に行うことで性能を稼ぐ作りになっていました。しかし性能試験を行いながらメッセージ消化の並列数を上げていったものの、その程度ではHTTPリクエスト送信の多重化が足りていなかったようで、旧システムと比べて性能が出ませんでした。<br>
+そこで1つのメッセージに含まれるデバイスへの送信処理も並列に行うようにしたところ、十分な性能が発揮されるようになりました。その他の最適化も組み合わせた結果、現在は旧システムより低いスペックでも以前より低遅延で通知を配信できています。</p>
+<p>2つ目は、ECSでFireLens (FluentBit)を用いてログを送信する構成で性能試験を行ったところ、ログの送信が詰まってロストしてしまったことです。互換性を確保するため旧システムと同様に1送信先デバイスあたり1行のログを出していたのですが、流量が大きすぎて送信が追いつかなくなっているようでした。<br>
+今考えるとFluentBitのCPUを明示的に多く確保したら動いたのかもしれませんが、そもそもそのようにログを出力する必要もなかったため、複数の送信結果をまとめてログを出力するようにしました。ログの利用者には事情を説明し、新たな集計クエリーを伝えて対応してもらいました。</p>
+<p>3つ目は、実際にWebPushの通知を新システムで送り始めたところ、WebPush配信先のAPIサーバーから少量のPayload Too Largeエラーが返ってきたことです。一旦旧システムで配信するように切り戻して調査したところ、Firefox Mobile<sup id="ref7"><a href="#note7">[7]</a></sup>が通常受け入れ可能なメッセージ長より低いところでエラーを返している<sup id="ref8"><a href="#note8">[8]</a></sup>ことが原因だと分かりました。<br>
+WebPushのメッセージは暗号化後のメッセージから元のメッセージサイズが分かってしまうため、パディングして実際のメッセージ長が分からなくなるような処理を入れていました。その際に規格上限の4096バイトまでパディングしていたため、それより低いところでエラーを返すFirefox Mobileが常にメッセージを受け付けなくなったようでした。</p>
+<h2 id="結果">結果</h2>
+<p>新システムが稼働を開始して数ヶ月が経過しました。「共通通知システムでは各通知種別を設定として持ち、複雑になる通知判定・肉付けロジックはファミリーサービスに戻すことで、通知運用の工数を削減する」というコンセプトは今のところ狙い通りに機能しています。企画担当に運用変更の影響を確認したところ、特に負担は増えておらず、むしろ工数が減少した分、通知種別の追加が早くなったことでメリットを感じているようでした。通知元のニコニコ動画バックエンドシステムの担当者にも聞いてみたところ、「前と比べてやることが増えたのは事実だが、最初からこのAPIだったら特に何も思わなかったと思う。」という感想でした。ただし、あるサブシステムでは通知内容の肉付けのため、今まで取得していなかった情報を新たに取得しなければならなくなったそうです。</p>
+<p>今のところ安定稼働をしていて手のかからないシステムになったので、浮いた工数で今は別の案件を手がけています。そちらもいつかまた紹介できることがあるかもしれません。</p>
+<h2 id="感想">感想</h2>
+<p>通知システムはかなり鋭いピークが立つシステムですので、特に通知配信ワーカーについては立ち上がりの速いAWS Lambdaを使って負荷に追従させるのがやはり理想的だとは思います。ただ、これはAWSのノウハウが無いところから無事移行を終えられた今だから感じることであるようにも思います。以前のチケットを見返していたところ、今では一瞬で解決するようなAWS関係のタスクが細かくチケットとして切ってあり、この間のチームの成長を感じて感慨深いものがありました。</p>
+<p>この新共通通知システムが、しばらくはニコニコの通知を十分に支えられることを期待しています。ここまで長文をお読みいただきありがとうございました。</p>
+<p><small id="note1">[1]: 教育事業からも使われており、<a href="https://blog.nnn.dev/entry/2022/05/26/110000">教育サービス開発者ブログ</a>にも少しだけ登場していました。 <a href="#ref1">↩</a></small><br>
+<small id="note2">[2]: ニコニコではフォロワー数に制限がないため、通知生成システムが無いと各システムが独自に非同期でフォロワーを全員取得するシステムを作り込まなくてはならなくなります。 <a href="#ref2">↩</a></small><br>
+<small id="note3">[3]: <a href="https://dwango.github.io/articles/hikamayo_rookie/#%E5%AE%9F%E9%9A%9B%E3%81%AE%E3%83%97%E3%83%AD%E3%83%80%E3%82%AF%E3%83%88%E3%82%92%E4%BD%9C%E6%88%90%E3%81%97%E3%81%A6%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7%E3%81%AEojt">以前の当ブログの記事</a>にその様子が紹介されていました。「必要な情報を集めるくん」と「お知らせを送りつけるくん」が通知生成システムに該当します。 <a href="#ref3">↩</a></small><br>
+<small id="note4">[4]: gRPCのリリースは通知配信システムのリリースより新しい2016年なので、後から追加されたと思われます。 <a href="#ref4">↩</a></small><br>
+<small id="note5">[5]: 教育事業など、ニコニコ以外ではAWS主体で構築されているシステムも数多くあります。 <a href="#ref5">↩</a></small><br>
+<small id="note6">[6]: 頻度としてはかなり少ないようですが、SQSは同一メッセージが複数回配信されうるat least onceモードで動作しています。 <a href="#ref6">↩</a></small><br>
+<small id="note7">[7]: Firefox Mobileは動作保証対象外の環境ですが、当初はどの条件で問題が発生したかも不明だったため、切り戻して調査を行いました。 <a href="#ref7">↩</a></small><br>
+<small id="note8">[8]: This message is intended for a constrained device and is limited in size. というエラーメッセージが返ってきていました。 <a href="#ref8">↩</a></small></p>
+<hr>
+<p>株式会社ドワンゴでは、様々なサービスを支えるバックエンドシステムを一緒につくるメンバーを募集しています。<br>
+ドワンゴに興味がある、または応募しようか迷っている方がいれば、気軽に応募してみてください。</p>
+<ul>
+<li><a href="https://dwango.snar.jp/index.aspx">新卒採用はこちら</a></li>
+<li><a href="https://hrmos.co/pages/dwango">キャリア採用はこちら</a></li>
+</ul>
+</article>
+    </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="共通通知システムを刷新しました - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/2023-10_push_sytem/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/2023-10_push_sytem/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2f2023-10_push_sytem%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

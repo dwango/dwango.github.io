@@ -1,1 +1,462 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="ja" lang="ja" >
 
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.122.0">
+
+  <meta property="og:title" content="ニコニコ動画iOSアプリ 改善の歴史 - dwango on GitHub">
+
+  <meta property="og:description" content="ドワンゴ社内の様子や、文化、技術をご紹介します。" />
+
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  <meta name="twitter:card" content="summary">
+  
+
+
+  
+  
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>ニコニコ動画iOSアプリ 改善の歴史 - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> ニコニコ開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://blog.nnn.dev/"> 教育サービス開発者ブログ </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
+      
+        Copyright &copy; DWANGO Co., Ltd.
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+  <div class="post">
+    <time class="content-date" datetime="2023-08-23 11:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2023-08-23 Wed</time
+    >
+    <h1 class="article-title">ニコニコ動画iOSアプリ 改善の歴史</h1>
+
+    <div>
+      
+        <aside>
+          <h2>目次</h2>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#はじめに">はじめに</a></li>
+    <li><a href="#ニコニコ動画iosアプリとは">ニコニコ動画iOSアプリとは</a></li>
+    <li><a href="#ハイブリッドアプリ時代10年前">ハイブリッドアプリ時代(〜10年前)</a></li>
+    <li><a href="#顕在化してきた課題や問題点">顕在化してきた課題や問題点</a></li>
+    <li><a href="#プレイヤーの内部処理を刷新">プレイヤーの内部処理を刷新</a></li>
+    <li><a href="#コメント描画ロジックを刷新">コメント描画ロジックを刷新</a></li>
+    <li><a href="#フルネイティブアプリへの段階的な移行">フルネイティブアプリへの段階的な移行</a></li>
+    <li><a href="#xcodegenでxcodeprojを管理しやすく">XcodeGenでxcodeprojを管理しやすく</a></li>
+    <li><a href="#デバイスサーバー依存を減らす">デバイスサーバー依存を減らす</a></li>
+    <li><a href="#openapi仕様からapiクライアントを自動生成">OpenAPI仕様からAPIクライアントを自動生成</a></li>
+    <li><a href="#ui部品をコンポーネント化">UI部品をコンポーネント化</a></li>
+    <li><a href="#watch画面改善">Watch画面改善</a></li>
+    <li><a href="#広告sdk">広告SDK</a></li>
+    <li><a href="#iosネイティブアプリならではの機能">iOSネイティブアプリならではの機能</a></li>
+    <li><a href="#今後の課題">今後の課題</a>
+      <ul>
+        <li><a href="#swift-concurrency移行">Swift Concurrency移行</a></li>
+        <li><a href="#swift-package-manager移行">Swift Package Manager移行</a></li>
+        <li><a href="#swiftuiの活用">SwiftUIの活用</a></li>
+      </ul>
+    </li>
+    <li><a href="#おわりに">おわりに</a></li>
+  </ul>
+</nav>
+        </aside>
+        <hr />
+      
+      <article id="content"><h2 id="はじめに">はじめに</h2>
+<p>こんにちは。ニコニコ開発部で、動画スマホアプリ開発を担当している秋元です。</p>
+<p>私たちのチームでは、いくつかのスマホアプリを開発しています。<br>
+その中でも、ニコニコ動画iOSアプリは、10年以上に渡り開発・保守・運用を行っている歴史あるアプリです。</p>
+<p>この記事ではその歴史を振り返りながら、私たち開発チームがどのように改善を進めてきたかについて紹介します。<br>
+大規模なiOSアプリ開発の楽しさや大変さ、そしてやりがいが、読んでくださる皆さんに伝われば嬉しいです。</p>
+<p>iOSDC 2023 のチャレンジトークンが記事内に <span style="color:#ff2790">2つ</span> 含まれています。ぜひ探してみてください!<br>
+(※ 記事の見出しにの横についている「#」はチャレンジトークンではありません。チャレンジトークンは文中に配置されています。)</p>
+<h2 id="ニコニコ動画iosアプリとは">ニコニコ動画iOSアプリとは</h2>
+<p><a href="https://site.nicovideo.jp/nicoapp/">ニコニコ動画iOSアプリ</a>は、iPhoneやiPadなどのiOS/iPadOSデバイスでニコニコ動画を視聴できるアプリです。<br>
+コメント付きの動画視聴、コメント投稿、検索、ランキングなどをメイン機能として持っています。<br>
+また、ニコニコにある様々なサービスやコンテンツにアクセスするための「ポータル」としての役割も担っています。</p>
+<p>その歴史はかなり古く、初期リリースは2009年で、今年で14周年を迎えました。 2009年といえば<a href="https://ja.wikipedia.org/wiki/IPhone_3GS">iPhone3GSが発売</a>された年です。<br>
+コードベースは、総Swiftコード行数は 39万、総コミット数は 5.8万と、比較的大規模なiOSアプリと言えるかと思います。 (主要リポジトリのみ、テストコードを除く)</p>
+<p>まず、10年前のアプリ構成からふりかえっていきます。</p>
+<h2 id="ハイブリッドアプリ時代10年前">ハイブリッドアプリ時代(〜10年前)</h2>
+<p>今から10年前、2013年頃のニコニコ動画iOSアプリは、純粋なネイティブ実装のアプリではなく、いわゆるハイブリッドアプリと言われる構成でした。<br>
+ハイブリッドアプリとは、WebViewを駆使して、HTML/CSS/JavaScriptを用いて画面や機能を構成するネイティブアプリのことです。<br>
+ニコニコ動画iOSアプリの場合だと、動画プレイヤーはネイティブ実装で、動画リストなどそれ以外のUIはWebView上でHTML/CSS/JavaScriptを用いて組み立てていました。</p>
+<p>この構成の主なメリットは、ちょっとしたUI改修の際に、Apple審査を通す必要が無いというのがありました。<br>
+今だと、ほとんどの場合は、1〜2日程度で審査結果が返ってきます。<br>
+しかし、当時はApple審査へ提出してから通過するまでにもっと時間がかかるものだったので、妥当な選択だったと思います。<br>
+詳細は<a href="http://www.slideshare.net/kenmaz/web-cat-13077116">当時の資料</a>を参照してください。</p>
+<p>以下は、当時のWatch画面です。<br>
+動画情報が表示されるViewはWebViewの上で構成されていて、右上の映像Viewだけがネイティブで実装されたViewになっていました。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/./images/2023-08_nicoiphone_kaizen_history/image_100.png" alt="image_100"  />
+  
+</div>
+
+<h2 id="顕在化してきた課題や問題点">顕在化してきた課題や問題点</h2>
+<p>しかし、それから数年間運用を続けていく中で、ハイブリッドアプリの課題や問題点が段々と目立つようになりました。<br>
+それに加えて、当時のiOSは毎年多くの機能追加があり、iOSバージョンが上がる度にiOS SDKやAPIの仕様や挙動が頻繁に変わりました。<br>
+アプリも当然その影響を受けるので、コードを修正して追従していくわけですが、これを繰り返していくうちに技術的な負債も溜まっていきました。</p>
+<p>具体的には、以下のような問題が顕在化してきました。</p>
+<ul>
+<li>UX上の問題
+<ul>
+<li>アプリの動作が全体的に重い</li>
+<li>動画視聴が不安定</li>
+</ul>
+</li>
+<li>開発上の問題
+<ul>
+<li>デバイスサーバーの性能がボトルネックになるケースが増えてきた(詳細は後述)</li>
+<li>Objective-C/Swiftだけでなく、HTML/CSS/JavaScript、サーバーサイドアプリケーションの実装についても把握が必要なため、プログラム全体を把握しづらい</li>
+<li>開発環境の構築に手間がかかる</li>
+<li>iOSが提供するネイティブアプリ向けの新APIの恩恵を受けられない</li>
+<li>アプリのUIが古くなってきたが、変更しづらい</li>
+</ul>
+</li>
+</ul>
+<p>これらを解消するべく、私たちは、フルネイティブなアプリに作り替えていくことを決断しました。</p>
+<p>大規模なリファクタリングには、まとまった期間が必要になります。<br>
+その間、機能追加や改修をストップ出来るのが理想ではありますが、事業運営の観点から受け入れ難いものです。<br>
+そこで、時間をかけて段階的にリファクタリングしていくことで、それらを両立させる選択をしました。</p>
+<h2 id="プレイヤーの内部処理を刷新">プレイヤーの内部処理を刷新</h2>
+<p>アプリのメイン機能である動画視聴の安定性を向上させることが急務であると考えて、ネイティブ化よりも先に、
+プレイヤーの内部処理の改善から始めました。<br>
+視聴に至るまでの処理フローおよびプレイヤーロジックの改善です。<br>
+ニコニコ動画iOSアプリは、プレイヤーで動画を再生開始するまでに、複数のサーバーAPIにアクセスします。<br>
+また、再生中も、動画データをサーバーから順次取得したり、コメントを流したりと様々な処理をしています。</p>
+<p>アプリのUIは変えずに、プレイヤーのコアライブラリを刷新し、同時にコメント描画ロジックを刷新しました。<br>
+また、動画再生の認証処理のためにアプリ内プロキシを使用していましたが、その部分が原因で動画再生が稀に失敗してしまったりと安定性に悪影響を与えていたこともあり、別の仕組みに置き換えました。</p>
+<p>開発期間は、6ヶ月ほどかけて実施しました。<br>
+この改善の効果としては、それ以前のバージョンと比較して4分の1程度までクラッシュ数を下げることができました。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/./images/2023-08_nicoiphone_kaizen_history/image_200.png" alt="image_200"  />
+  
+</div>
+
+<h2 id="コメント描画ロジックを刷新">コメント描画ロジックを刷新</h2>
+<p>ニコニコ動画において、最も特徴的な機能がコメント描画です。<br>
+映像の上にコメントが流れることで、視聴者の反応がわかり、動画視聴がより楽しいものになります。</p>
+<p>コメント描画機能は、動画アプリだけでなく、生放送アプリにもありますが、当時はそれぞれ別々のロジックで実装されていました。<br>
+これだと拡張しづらい状況にあったため、ライブラリとして一から作り直しました。<br>
+これにより、PC版などの他クライアントと近しい挙動ができるようになりました。</p>
+<p>また、このライブラリは、社内で他アプリとも共有していて、<a href="https://qiita.com/ogukei/items/4575b48474341f9364ef">生放送アプリでも活用</a>されています。</p>
+<h2 id="フルネイティブアプリへの段階的な移行">フルネイティブアプリへの段階的な移行</h2>
+<p>ここからは、いよいよ <span style="color:#ff2790">#アプリのフルネイティブ化</span> に向かってリファクタリングを進めていきました。<br>
+機能追加や改修とリファクタリングを両立させるため、画面ごとに置き換えを進めていきました。<br>
+UIや機能を刷新するプロジェクトが立ち上がる画面については、その案件の中でネイティブ化していきました。<br>
+それ以外の一部の画面については、UIを極力変更せずに、ネイティブ実装へ置き換えていきました。</p>
+<p>レイヤードアーキテクチャにして、各コンポーネントの依存関係をシンプルにしました。<br>
+また、新たに作成するコードはSwiftで書いていき、旧来のObjective-Cコードは移行用の変換層を通して依存関係を持たせることで、現行コードに入る変更の影響をなるべく受けないようにして開発を進めました。</p>
+<p>変換層を挟むイメージ図です。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/./images/2023-08_nicoiphone_kaizen_history/image_300.png" alt="image_300"  />
+  
+</div>
+
+<p>アプリ内のレイヤー構造を示す当時の資料です。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/./images/2023-08_nicoiphone_kaizen_history/image_310.png" alt="image_310"  />
+  
+</div>
+
+<p>そこから、2017年ごろから始めたネイティブ画面化は、約4年ほどかけて全画面移行を達成しました。</p>
+<h2 id="xcodegenでxcodeprojを管理しやすく">XcodeGenでxcodeprojを管理しやすく</h2>
+<p>Xcodeを使った開発で避けて通れないのが、xcodeprojの管理です。<br>
+プロジェクトの設定を持つXMLファイルで、ファイル追加/削除やプロジェクト設定の変更などXcodeのUI上で行った操作によって更新されるため、複数人で開発しているとコンフリクトしやすい上に、解消が非常に難しいという厄介なファイルです。</p>
+<p>この問題に対して、XcodeGenを導入して解決しました。<br>
+<a href="https://github.com/yonaskolb/XcodeGen">XcodeGen</a>は、YAMLファイルでプロジェクト設定を書き、そこからxcodeprojを生成することができるので、コンフリクト解消がとても楽になりました。<br>
+ニコニコ動画iOSアプリでは、前述のコンポーネントごとにターゲットを分けています。<br>
+XcodeGenには、<a href="https://github.com/yonaskolb/XcodeGen/blob/master/Docs/ProjectSpec.md#target-template">ターゲットをテンプレート化する機能</a>があるので、これを利用することで重複した記述を減らしてシンプルなYAMLファイルにできています。</p>
+<p>チーム内で導入イメージのやりとりをした時の資料です。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/./images/2023-08_nicoiphone_kaizen_history/image_350.png" alt="image_350"  />
+  
+</div>
+
+<h2 id="デバイスサーバー依存を減らす">デバイスサーバー依存を減らす</h2>
+<p>このネイティブ化は、UIがネイティブ実装になるだけでなく、デバイスサーバーへの依存を減らすといった目的もありました。<br>
+デバイスサーバーとは、社内用語で、スマホアプリなど特定のデバイス向けに特化したレスポンスを返すサーバーのことを指します。<br>
+ニコニコ動画iOSアプリ用のデバイスサーバーでは、専用のAPIや画面を表示するためのHTML/CSS/JavaScriptを持っていました。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/./images/2023-08_nicoiphone_kaizen_history/image_410.png" alt="image_410"  />
+  
+</div>
+
+<p>また、デバイスサーバーは、ニコニコのコアシステムからデータを取得する際に、クライアントアプリとの通信を単純に中継するだけでなく、必要に応じてデータのキャッシュ機構も持っていました。<br>
+負荷を軽減したり、クライアントアプリに素早くレスポンスを返すために活用されていました。
+しかし、アプリの利用者が増えていくにつれて、アプリから大量のアクセスがあった際にデバイスサーバーの性能がボトルネックになってしまったり、サーバーの故障などの障害も度々発生するようになってしまいました。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/./images/2023-08_nicoiphone_kaizen_history/image_420.png" alt="image_420"  />
+  
+</div>
+
+<p>保守運用の観点からも、デバイスサーバーは悩ましい存在になっていました。<br>
+デバイスサーバーの改修は、iOSアプリ開発チームで行なっていましたが、iOSアプリ開発の知識(Objective-C/Swift)はもちろん、HTML/CSS/JavaScript、サーバーサイドアプリケーションの実装、サーバー構築や運用など幅広い知識と経験が必要になり、エンジニアの負担も大きくなりがちでした。<br>
+WebViewは、パフォーマンスの面で問題があったり、当時は毎年のiOSメジャーバージョンアップごとに多くのAPIや挙動が変わり、ネイティブの部分とWebの部分のそれぞれの影響を受けやすい状況でした。<br>
+また、iOSに便利なAPIが提供されていきましたが、それらを活かしきれない歯痒さもありました。(主にUIKit関連のアップデートや、SizeClass、ダークモード等々…)</p>
+<p>これらの事情を鑑み、デバイスサーバーからの依存を減らしていくことになりました。<br>
+その結果、デバイスサーバーを経由せず、ニコニコ動画のコアシステムに直接アクセスすることで、実装がシンプルになり、視聴開始までの処理速度も向上しました。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/./images/2023-08_nicoiphone_kaizen_history/image_430.png" alt="image_430"  />
+  
+</div>
+
+<h2 id="openapi仕様からapiクライアントを自動生成">OpenAPI仕様からAPIクライアントを自動生成</h2>
+<p>アプリからアクセスするAPIが新しくなったことで、もう1つ大きなメリットが生まれました。<br>
+API仕様が、OpenAPIのYAML形式に対応したため、openapi-generatorを用いてAPIクライアントのロジックを自動生成できるようになりました。<br>
+詳細については、<a href="https://qiita.com/tasuwo/items/5e3aa7af8d4fee55714f">こちらの記事</a>を参照してください。</p>
+<h2 id="ui部品をコンポーネント化">UI部品をコンポーネント化</h2>
+<p>複数の画面で利用されるUI部品をコンポーネント化しました。<br>
+また、UIの動作確認がスムーズに行えるよう、UIカタログの仕組みも用意しました。<br>
+本体アプリを起動せずとも、カタログアプリを起動してUIコンポーネントの挙動が確認できるというものです。</p>
+<h2 id="watch画面改善">Watch画面改善</h2>
+<p>ネイティブ化を進めていく中で、最も時間をかけて移行した画面がWatch画面です。<br>
+Watch画面とは、動画視聴するための画面で、ニコニコ動画iOSアプリで最も重要な画面です。<br>
+映像を流すプレイヤー部分と、その動画のタイトルや説明文、コメント、関連動画などの動画情報枠とで構成されています。<br>
+デバイスの向きやコメント投稿状態などで様々な表示状態を持っているため、かなり複雑な仕様になっています。</p>
+<p>当時のWatch仕様の検討資料の一部です。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/./images/2023-08_nicoiphone_kaizen_history/image_540.png" alt="image_540"  />
+  
+</div>
+
+<p>5つのフェーズに分けて徐々にリリースしていき、理想型を目指しました。</p>
+<table>
+    <tr>
+        <th>フェーズ</th>
+        <th>主な改善内容</th>
+    </tr>
+    <tr>
+        <td>Phase1</td>
+        <td>
+            <ul>
+                <li>今後の改善に向けてベースの実装を刷新</li>
+                <li>Watch画面のデザイン変更、10秒シーク、レジューム再生、NG設定 等の機能を追加</li>
+                <li>Auto Layout対応</li>
+                <li>iPhoneXのSafeAreaがある端末への対応</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Phase2</td>
+        <td>
+            <ul>
+                <li>情報画面をポートレートで見られるようにする</li>
+                <li>情報画面をランドスケープ（左右分割表示）で見られるようにする</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Phase3</td>
+        <td>
+            <ul>
+                <li>説明文の開閉</li>
+                <li>広告表示などの修正</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Phase4</td>
+        <td>
+            <ul>
+                <li>プレイヤー設定追加</li>
+                <li>反転再生</li>
+                <li>コメント透過</li>
+                <li>コメントNG設定</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Phase5</td>
+        <td>
+            <ul>
+                <li>旧Watch情報viewの廃止</li>
+                <li>ながら見機能追加</li>
+                <li>Watchエラーまわりの仕様改善</li>
+                <li>自動再生のON/OFF設定の追加</li>
+                <li>ピンチイン／ピンチアウト操作の追加</li>
+            </ul>
+        </td>
+    </tr>
+</table>
+<p>左が旧プレイヤー画面で、右が現在のプレイヤー画面です。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/./images/2023-08_nicoiphone_kaizen_history/image_500.png" alt="image_500"  />
+  
+</div>
+
+<h2 id="広告sdk">広告SDK</h2>
+<p>ネイティブ化により、もうひとつ大きく変化したのが、広告表示の仕組みです。<br>
+ハイブリッドアプリ時代は、HTMLで画面を構成していたため、バナー広告はiframeによる埋め込みで実現していました。<br>
+ネイティブアプリになってからは、広告SDKを組み込むように変わりました。<br>
+ハイブリッドアプリの時代には、複数の広告SDKを導入することの負担を解消するためにiframeを用いていましたが、現在の広告SDK界隈には、メディエーションと呼ばれる仕組みがあり、複数の広告SDKをひとつの処理でまとめて扱うことができるようになっています。</p>
+<p>また、プレイヤーで表示する動画広告とバナー広告を連動させる仕組みもネイティブアプリならではのものです。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/./images/2023-08_nicoiphone_kaizen_history/image_600.png" alt="image_600"  />
+  
+</div>
+
+<h2 id="iosネイティブアプリならではの機能">iOSネイティブアプリならではの機能</h2>
+<p>アプリをネイティブ化したことで、iOSならではの機能に対応しやすくなりました。<br>
+以下に、その代表的な機能をいくつか紹介します。</p>
+<ul>
+<li><a href="https://blog.nicovideo.jp/niconews/133345.html">ダークモード</a></li>
+<li><a href="https://blog.nicovideo.jp/niconews/141320.html">節約視聴</a></li>
+<li><a href="https://blog.nicovideo.jp/niconews/152175.html">iPadマルチタスク機能(SplitView/SlideOver/StageManager)</a></li>
+<li><a href="https://blog.nicovideo.jp/niconews/165748.html">Widget、ショートカット</a></li>
+<li><a href="https://blog.nicovideo.jp/niconews/171078.html">ピクチャインピクチャ</a></li>
+<li><a href="https://blog.nicovideo.jp/niconews/195854.html">Chromecast</a></li>
+</ul>
+<h2 id="今後の課題">今後の課題</h2>
+<p>今後、開発的に実現したいことについても少しだけご紹介します。</p>
+<h3 id="swift-concurrency移行">Swift Concurrency移行</h3>
+<p>これは既にプロジェクトの一部に適用済みですが、最終的にはアプリ全体に適用したいと考えています。</p>
+<h3 id="swift-package-manager移行">Swift Package Manager移行</h3>
+<p>現状は、CocoaPodsを利用していますが、これをSPMに移行させる予定です。</p>
+<h3 id="swiftuiの活用">SwiftUIの活用</h3>
+<p>UIKitで組み立てている画面が大半ですが、今後はSwiftUIを使った画面を増やしていきたいです。</p>
+<h2 id="おわりに">おわりに</h2>
+<p><span style="color:#ff2790">#ニコニコ動画iOSアプリの歴史</span> をふりかえってみましたが、いかがでしたでしょうか？<br>
+新規アプリ開発のような華々しさはありませんが、大規模なアプリを改善していく事は、大きなやりがいと楽しさがあります。<br>
+特に、新機能や改善をリリースした時に、利用者の方々から多くの反響を頂けるというのは、プレッシャーでもありますがとても貴重な経験です。<br>
+そして、多くの方々から喜びの声を頂けた時は、エンジニアとして何ものにも代え難い喜びがあります。<br>
+これからもニコニコサービスを、楽しく気持ちよく使って頂けるように、より良いアプリを開発していきたいと思います。</p>
+<p>iOSDC 2023のチャレンジトークンは、以下の記事にも含まれています。<br>
+教育事業のiOSアプリ開発について紹介していますので、ぜひご覧ください。<br>
+<a href="https://blog.nnn.dev/entry/2023/08/23/110000">https://blog.nnn.dev/entry/2023/08/23/110000</a></p>
+<hr>
+<p>ドワンゴでは、ニコニコ動画を一緒に作ってくれる仲間を募集しています。<br>
+iOSやAndroidのネイティブアプリ開発が好きな方、ドワンゴに興味がある、または応募しようか迷っている方がいれば、気軽に応募してみてください。</p>
+<ul>
+<li><a href="https://dwango.snar.jp/index.aspx">新卒採用はこちら</a></li>
+<li><a href="https://hrmos.co/pages/dwango">キャリア採用はこちら</a></li>
+</ul>
+</article>
+    </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="ニコニコ動画iOSアプリ 改善の歴史 - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/2023-08_nicoiphone_kaizen_history/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/2023-08_nicoiphone_kaizen_history/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2f2023-08_nicoiphone_kaizen_history%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>
