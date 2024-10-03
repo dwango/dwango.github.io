@@ -2,11 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://dwango.github.io/articles/</loc>
-    <lastmod>2024-09-10T12:00:00+09:00</lastmod>
+    <loc>https://dwango.github.io/categories/</loc>
+    <lastmod>2024-10-03T19:45:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://dwango.github.io/en/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://dwango.github.io/categories/"
+                />
   </url><url>
     <loc>https://dwango.github.io/</loc>
-    <lastmod>2024-09-10T12:00:00+09:00</lastmod>
+    <lastmod>2024-10-03T19:45:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -17,6 +27,15 @@
                 hreflang="ja"
                 href="https://dwango.github.io/"
                 />
+  </url><url>
+    <loc>https://dwango.github.io/categories/nicovideo/</loc>
+    <lastmod>2024-10-03T19:45:00+09:00</lastmod>
+  </url><url>
+    <loc>https://dwango.github.io/niconico/genre_ranking/ranking_log/</loc>
+    <lastmod>2024-10-03T19:45:00+09:00</lastmod>
+  </url><url>
+    <loc>https://dwango.github.io/articles/</loc>
+    <lastmod>2024-09-10T12:00:00+09:00</lastmod>
   </url><url>
     <loc>https://dwango.github.io/articles/2024-09_timeline_system/</loc>
     <lastmod>2024-09-10T12:00:00+09:00</lastmod>
@@ -102,25 +121,6 @@
   </url><url>
     <loc>https://dwango.github.io/articles/hikamayo_rookie/</loc>
     <lastmod>2021-11-30T10:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://dwango.github.io/categories/</loc>
-    <lastmod>2019-06-25T13:40:14+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://dwango.github.io/en/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://dwango.github.io/categories/"
-                />
-  </url><url>
-    <loc>https://dwango.github.io/categories/nicovideo/</loc>
-    <lastmod>2019-06-25T13:40:14+09:00</lastmod>
-  </url><url>
-    <loc>https://dwango.github.io/niconico/genre_ranking/ranking_log/</loc>
-    <lastmod>2019-06-25T13:40:14+09:00</lastmod>
   </url><url>
     <loc>https://dwango.github.io/niconico/genre_ranking/ranking_rss/</loc>
     <lastmod>2019-06-04T13:40:14+09:00</lastmod>

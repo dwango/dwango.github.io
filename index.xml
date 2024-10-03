@@ -6,8 +6,15 @@
     <description>Recent content on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 10 Sep 2024 12:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 03 Oct 2024 19:45:00 +0900</lastBuildDate>
     <atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>新ランキングでのランキング過去ログファイル利用方法</title>
+      <link>https://dwango.github.io/niconico/genre_ranking/ranking_log/</link>
+      <pubDate>Thu, 03 Oct 2024 19:45:00 +0900</pubDate>
+      <guid>https://dwango.github.io/niconico/genre_ranking/ranking_log/</guid>
+      <description>【重要】ランキング過去ログファイル 提供終了のお知らせ いつもニコニコをご利用いただき、誠にありがとうございます。 2024年6月8日に発生したサ</description>
+    </item>
     <item>
       <title>フォロー新着: 多様なサービスに対応したタイムラインシステムの技術的変遷</title>
       <link>https://dwango.github.io/articles/2024-09_timeline_system/</link>
@@ -161,13 +168,6 @@
       <pubDate>Tue, 30 Nov 2021 10:00:00 +0900</pubDate>
       <guid>https://dwango.github.io/articles/hikamayo_rookie/</guid>
       <description>はじめに 2021年新卒エンジニアのHikamayoです。 先日、僕が入社して初めて開発に関わった機能がリリースされました。 ニコニコ動画で、自分</description>
-    </item>
-    <item>
-      <title>新ランキングでのランキング過去ログファイル利用方法</title>
-      <link>https://dwango.github.io/niconico/genre_ranking/ranking_log/</link>
-      <pubDate>Tue, 25 Jun 2019 13:40:14 +0900</pubDate>
-      <guid>https://dwango.github.io/niconico/genre_ranking/ranking_log/</guid>
-      <description>はじめに ニコニコ動画では、過去にどのような動画がランキングに掲載されていたかが分かる機能を提供しています。 これまではプレミアム会員専用機能と</description>
     </item>
     <item>
       <title>新ランキングでのランキングRSS利用方法</title>
