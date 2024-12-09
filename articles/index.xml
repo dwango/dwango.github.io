@@ -6,8 +6,15 @@
     <description>Recent content in Articles on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 10 Sep 2024 12:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 10 Dec 2024 12:00:00 +0900</lastBuildDate>
     <atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>新卒エンジニアが語る、ドワンゴの2024年エンジニア研修体験記</title>
+      <link>https://dwango.github.io/articles/2024-12_2024_engineer_onboarding/</link>
+      <pubDate>Tue, 10 Dec 2024 12:00:00 +0900</pubDate>
+      <guid>https://dwango.github.io/articles/2024-12_2024_engineer_onboarding/</guid>
+      <description>こんにちは。2024年新卒エンジニアのhayapo(@hayapo)です。 本記事では4月中旬~7月末の約3ヶ月間受けたドワンゴの2024年新</description>
+    </item>
     <item>
       <title>フォロー新着: 多様なサービスに対応したタイムラインシステムの技術的変遷</title>
       <link>https://dwango.github.io/articles/2024-09_timeline_system/</link>

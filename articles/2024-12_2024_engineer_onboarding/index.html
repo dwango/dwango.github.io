@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="ja" lang="ja" >
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.122.0">
+
+  <meta property="og:title" content="新卒エンジニアが語る、ドワンゴの2024年エンジニア研修体験記 - dwango on GitHub">
+
+  <meta property="og:description" content="ドワンゴ社内の様子や、文化、技術をご紹介します。" />
+
+  <meta property="og:image" content="https://dwango.github.io/images/2024-12_2024_engineer_onboarding/blue_lily.jpg">
+
+  <meta name="twitter:card" content="summary">
+  
+
+
+  
+  
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>新卒エンジニアが語る、ドワンゴの2024年エンジニア研修体験記 - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> ニコニコ開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://blog.nnn.dev/"> 教育サービス開発者ブログ </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
+      
+        Copyright &copy; DWANGO Co., Ltd.
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+  <div class="post">
+    <time class="content-date" datetime="2024-12-10 12:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2024-12-10 Tue</time
+    >
+    <h1 class="article-title">新卒エンジニアが語る、ドワンゴの2024年エンジニア研修体験記</h1>
+
+    <div>
+      
+        <aside>
+          <h2>目次</h2>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#エンジニア研修全体を通しての取り組み">エンジニア研修全体を通しての取り組み</a>
+      <ul>
+        <li><a href="#朝読書">朝読書</a></li>
+        <li><a href="#朝会振り返り会">朝会・振り返り会</a></li>
+        <li><a href="#雑談会">雑談会</a></li>
+      </ul>
+    </li>
+    <li><a href="#エンジニア研修について">エンジニア研修について</a></li>
+    <li><a href="#基礎研修">基礎研修</a></li>
+    <li><a href="#個人研修-ブログサービスを作る">個人研修: ブログサービスを作る</a></li>
+    <li><a href="#チーム研修-ニコ動クローンを作る">チーム研修: ニコ動クローンを作る</a>
+      <ul>
+        <li><a href="#チーム開発での工夫">チーム開発での工夫</a></li>
+        <li><a href="#チーム研修の特徴">チーム研修の特徴</a></li>
+        <li><a href="#成果発表ー">成果発表ー！</a></li>
+      </ul>
+    </li>
+    <li><a href="#研修全体を通した感想">研修全体を通した感想</a></li>
+    <li><a href="#おわりに">おわりに</a></li>
+  </ul>
+</nav>
+        </aside>
+        <hr />
+      
+      <article id="content"><p>こんにちは。2024年新卒エンジニアのhayapo(<a href="https://github.com/hayapo">@hayapo</a>)です。</p>
+<p>本記事では4月中旬~7月末の約3ヶ月間受けたドワンゴの2024年新卒エンジニア研修について、その内容と参加した感想について話したいと思います。<br>
+なお、今年度のエンジニア研修はサイバー攻撃の影響により、例年とは異なった形式で実施された部分もありますのでご了承ください。</p>
+<h2 id="エンジニア研修全体を通しての取り組み">エンジニア研修全体を通しての取り組み</h2>
+<p>研修内容を紹介する前に、研修全体を通して行われた3つの取り組みを紹介しようと思います。</p>
+<ol>
+<li>朝読書</li>
+<li>朝会・振り返り会</li>
+<li>雑談会</li>
+</ol>
+<h3 id="朝読書">朝読書</h3>
+<p>エンジニア研修を通して毎朝9時から1時間程度、朝読書として課題図書を読んだ後内容について共有する読書会を実施しました。<br>
+朝読書の狙いとしては、エンジニアとしての基礎的な知識をつけること、そして、毎日の読書を行うことによりインプットの習慣をつけることでした。
+読書会では読んだ本の内容をメモし自分なりにまとめた上で共有しましたが、このおかげで、ただ読むのでなく内容をまとめ解釈するということが身につきました。</p>
+<p>課題図書はインターネットの基礎的な知識をつけるものや、テクニカルライティングについての本、さらにはリーダブルコードや達人プログラマーなどのエンジニアリングについての本まで様々でした。<br>
+課題図書は読む順番が指定されていましたが、これはエンジニア研修の各段階の内容と課題図書の読む内容とがマッチするように考えて指定されており、朝読書で勉強した内容を実際に試して身につけるという良いフィードバックループができていたと思います。</p>
+<h4 id="課題図書抜粋">課題図書（抜粋）</h4>
+<ul>
+<li>リーダブルコード</li>
+<li>SCRUM BOOT CAMP</li>
+<li>単体テストの考え方・使い方</li>
+<li>書く技術・伝える技術</li>
+<li>Google エンジニアリング・プラクティス ドキュメント</li>
+<li>TeamGeek</li>
+<li>入門監視</li>
+<li>達人プログラマー</li>
+</ul>
+<p>特筆すべき点として、今年は昨年までの課題図書に加えて「単体テストの考え方/使い方」が追加されました。かなりページ数が多く扱う内容も難しい本でしたが、単体テストについて基礎的な知識から応用的な知識を学ぶことができました。この本を読んでいる時に後述する個人研修やチーム研修を行っていたので、得た単体テストの知識をすぐ試すことができたので知識の定着に繋がったと思います。</p>
+<h3 id="朝会振り返り会">朝会・振り返り会</h3>
+<p>研修期間は毎日朝10時からの朝会と17時からの振り返り会を行なっていました。
+朝会は個人が前日やったこと・その日にやること・KPTを共有し、振り返り会では主にその日やったことの進捗を報告しました。
+朝会と振り返り会では、「予定を立てて実行→進捗を把握→改善点があれば翌日から行動を改善していく」という、仕事を行う上で大切なサイクルを身につけることができたと思います。<br>
+また、研修のこと以外でも何でも困っていること・相談したいことを気軽にメンターの方に聞くことができる場でもあったので、不安なくリモートで研修を行うことができました。
+そして、後述する3つの研修フェーズが終わるごとに全体でKPT共有会を実施しました。これは毎日やっている朝会でのKPT共有を、行った研修にフォーカスして行うものでした。</p>
+<p>余談ですが、僕は6月ごろから1日1記事ずつ、zennやqiita、企業の技術ブログの記事から興味のあるものを選択して読んで感想やメモなどを残しておき、朝会のKPT発表の際に共有するということをやっていました。
+朝会で発表するという縛りを自身に課すことで怠けることなく続けることができ、現在も習慣として続けることができています。（最近はちょっとサボり気味です）</p>
+<div align="center">
+  <div class="article-img">
+    
+    <img src="https://dwango.github.io/images/2024-12_2024_engineer_onboarding/asakai_share.png"   />
+    
+  </div>
+
+  <p>朝会で読んだ技術記事の内容を共有している様子</p>
+</div>
+<h3 id="雑談会">雑談会</h3>
+<p>エンジニア研修中は、同期同士の交流を深めるためにオンラインでの雑談会が毎日30分行われました。
+最初は新卒エンジニア全員が一つの部屋に集まって雑談していましたが、話す人が固定化してしまったため途中から2つの部屋に分かれて行なっていました。
+今年度は全社研修（4月入社直後から2週間程度実施）が対面で行われたため、ある程度面識がある状態でしたが同期同士の親睦をさらに深める良い機会となりました。</p>
+<p>雑談会では研修にかかわることや、技術の話、ガジェットの話などいろんな話をしました。僕は好きなポッドキャストである<a href="https://rebuild.fm/">Rebuild.fm</a>を布教していたりしました。</p>
+<h2 id="エンジニア研修について">エンジニア研修について</h2>
+<p>ここからはいよいよ、エンジニア研修の内容について紹介していきます。
+ドワンゴでは入社してから2週間ほどの全社研修を終えてから、5月〜8月までの約3ヶ月間、エンジニア研修を実施しています。
+今年の研修は、サイバー攻撃の影響で予定とは異なる部分もありましたが、以下の三つの段階に分けて実施されました。それぞれの研修は約1ヶ月にかけて行われました。</p>
+<ol>
+<li>技術書やN予備校で基礎知識をつける基礎研修</li>
+<li>ブログサービスを個人で作り上げる個人学習</li>
+<li>チームでニコニコ動画のクローンサービスを開発するチーム研修の3つの研修</li>
+</ol>
+<h2 id="基礎研修">基礎研修</h2>
+<p>基礎研修では<a href="https://www.nnn.ed.nico/">ZEN Study</a>（研修当時はN予備校）の教材を使用し、IT技術の基礎知識からWebアプリケーション開発までを一通り学習した後、外部講習としてAWSの講習を受けました。</p>
+<p>この基礎研修の狙いとしては、開発未経験の人などさまざまなバックグラウンドや技術力を持った新卒エンジニアに最低限のIT・Web開発知識を身に付けさせることでした。
+ZEN Studyの教材は図やイラストが豊富で理解しやすく、Webアプリケーション開発の教材では設計からデプロイまで一通り学習することができました。
+今年はZEN StudyやZEN大学の教材を作っている方が研修の運営メンバーだったこともあり、教材へのフィードバックが頻繁に行われていました。</p>
+<p>そして、基礎研修の最後のコンテンツとして、AWS講習を行いました。
+近年、ニコニコではオンプレからAWSへの移行が進んでいるため、基礎学習の中でも特に重要なパートです。<sup id="ref1"><a href="#note1">[1]</a></sup><br>
+このAWS研修はAWS公式の学習講座であるSkill Builderを使った座学パートと、AWSの講師の方に手伝ってもらいながらサンドボックス環境でAWSプロダクトを触るクラスルームトレーニングに分かれており、主にTechnical Essentialsを受講しました。<br>
+この講習でもZEN Studyによる学習と同様に、座学で基礎を学習してから応用パートで実際に手を動かしてAWS環境の構築を行うことができたことで、より一層理解が深まりました。<br>
+特にAWSなどのインフラ関係は、実際に環境構築してデプロイしないと理解しきれない部分があると思うので、サンドボックス環境の中でコスト面の心配なくAWSに触れることができたのは大変有意義でした。
+講師の方もとても丁寧な説明をしてくださり、こちらが質問したことにも素早く的確に答えていただいたことでさらに理解が深まりました。</p>
+<p>ちなみに、基礎研修で使用したZEN Studyの教材である<a href="https://www.nnn.ed.nico/courses/2143">プログラミング入門:Webアプリケーション開発4</a>では、今年度から<a href="https://hono.dev/">Hono</a>がフレームワークとして使用されており、Honoを使用したWebアプリ制作を一通り学ぶことができます。僕自身これまでHonoを使用したことがなかったので学習するとても良い機会でしたし、実際にこの後に自分のWebサイト用のリバースプロキシをHono (+ Cloudflare) で書くきっかけになりました。（Hono最高！）</p>
+<h2 id="個人研修-ブログサービスを作る">個人研修: ブログサービスを作る</h2>
+<p>個人研修では、基礎研修の内容を踏まえて、一からブログサービスを作りました。
+基礎研修のWebアプリケーション開発ではTypeScriptとHonoを用いてCRUDのあるアプリケーションを実装しましたが、個人研修はその内容を踏まえた内容になっていたので、未経験のエンジニアでも一人で個人研修を進めていくことができました。</p>
+<p>課題のブログサービスには、記事のCRUD・ログイン機能などの機能要件と、AWSを用いてシステム構築する・社内からのアクセスに限定するなどの非機能要件が定義されており、これらの要件をもとに、技術選定やサービス、インフラの設計まで一気通貫して行いました。<br>
+個人研修の最中にサイバー攻撃があり、AWSでのシステム構築や社内公開ができなかったことは少し残念ですが、毎日の雑談会で他の人のAWS設計を見たり教えてもらったりすることで、置かれた状況の中で互いに助け合いながらスキルを身につけていくことができました。（やっててよかった雑談会！）</p>
+<p>僕は趣味開発でもブログをスクラップ＆ビルドしているのでブログサービスの開発は比較的スラスラ進めることができました。<br>
+構成はバックエンドとフロントエンドにNext.jsを用いて、機能としては要件を満たす最小限のものにしましたが、Markdownでブログを入稿する際にプレビューを表示するなどの工夫もしました。</p>
+<div align="center">
+  <div class="article-img">
+    
+    <img src="https://dwango.github.io/images/2024-12_2024_engineer_onboarding/blog_post.png"   />
+    
+  </div>
+
+  <p>ブログの入稿画面でMarkdownをプレビューしているところ</p>
+</div>
+<p>この後紹介するチーム研修も含めて、研修ではかなり自由にAWSをいじらせてもらえましたが、これはかなり珍しい取り組みだと思います。<br>
+もちろん、どれだけお金がかかっても良いというわけではなく、システムを設計する段階でAWSのコストシミュレーターを用いてコスト予測をすることも、研修の要件として含まれていました。
+ただAWSでオレオレなシステムを構築するのではなく、コストと性能などを考えたシステム設計を学ぶことができ、とても良い経験をさせていただいたと思います。</p>
+<h2 id="チーム研修-ニコ動クローンを作る">チーム研修: ニコ動クローンを作る</h2>
+<p>最後にチーム研修として、ニコニコ動画のクローンを作りました。</p>
+<p>チーム研修では、各チーム5人で構成された3チームに分かれて開発を行いました。各チームの名前は、「自然人（しぜんちゅ）」、「Container Crusher」、「ChyawangoX」でした。<br>
+各チーム名には真に驚くべき命名の経緯がありますが、このブログはそれを書くには狭すぎるので割愛します。</p>
+<p>チーム研修の内容は単にニコニコ動画のクローンを作るのではなく、動画閲覧サービスとして最低限の要件が定義されており、各チームさまざまな創意工夫を凝らしたサービスを考えて設計していました。
+他のチームは縦型動画 + 縦書きコメントといった面白い動画サービスを作っていましたが、僕のチームはほとんどニコニコ動画と同じようなサービスを作成しました。その代わり、ニコニコ動画の核心機能であるコメントの描画ロジックにはこだわり、たくさんのコメントを描画する時にもなるべくコメントが重ならないような工夫をしています。</p>
+<div align="center">
+  <div class="article-img">
+    
+    <img src="https://dwango.github.io/images/2024-12_2024_engineer_onboarding/watch_page.png"   />
+    
+  </div>
+
+  <p>動画視聴時の画面と流れるコメント達</p>
+</div>
+<h3 id="チーム開発での工夫">チーム開発での工夫</h3>
+<p>各チームがチーム開発する上で様々な工夫をしていましたが、その中で僕のチームがやっていた工夫をいくつか紹介します。</p>
+<h4 id="openapiを利用したバックエンドとフロントエンドの意思疎通">openapiを利用したバックエンドとフロントエンドの意思疎通</h4>
+<p>僕のチームではOpenAPIを利用してAPIを定義し、バックエンドとフロントエンドで <code>openapi-codegen</code> を利用することでAPI周りの開発を効率化しました。
+特にフロントエンド側では <code>openapi-typescript</code>と<code>openapi-fetch</code> を用いることでバックエンド側でAPI定義に変更があっても自動でそれに基づいた型とAPI clientを生成することができ、これによりスムーズな開発を行うことができました。</p>
+<h4 id="フロントエンド開発">フロントエンド開発</h4>
+<p>チームはフロントエンド（2人）とバックエンド（3人）に役割分担をしており、僕はフロントエンドを担当しました。もう1人のフロントエンド担当者が機械学習系の研究エンジニアだったため、フロントエンドではReact + TypeScriptでSPAにするという単純な構成とし、UIコンポーネントとして<a href="https://ui.shadcn.com/">shadcn/ui</a>を使うことで、スタイルの共通性を担保しつつフロントエンド未経験でもUIコンポーネントを簡単に作成できるような工夫をしました。</p>
+<p>また、フロントエンドのディレクトリ構成として、<a href="https://github.com/alan2207/bulletproof-react">Bulletproof React</a>を採用しました。
+Bulletproof Reactはアプリケーションの主要機能ごとにディレクトリを分割するディレクトリ構成方針で、たとえば動画アップロード機能として <code>feature/upload</code> というディレクトリを作成し、その配下にコンポーネントやapi処理を書くようにします。</p>
+<pre tabindex="0"><code>├── features/
+│   ├── upload/
+│   │   ├── __tests__/  // テスト
+│   │   ├── api/  // 単一の関数として定義したAPI処理
+│   │   ├── components/  // ライブラリ関係の関数 etc…
+│   │   ├── hooks/ // カスタムフックを定義
+│   │   ├── lib/  // zodのスキーマ定義
+│   │   └── utils/ // 定数など
+</code></pre><p>これらの工夫により、フロントエンドをほとんど触ったことがない人でも比較的スラスラと開発を進めることができたり、ゴチャゴチャしたディレクトリ構成にならず複数人での開発でも楽に進めることができたので、実務にも応用したいです。</p>
+<h3 id="チーム研修の特徴">チーム研修の特徴</h3>
+<p>このチーム研修では、要件としてスクラムを活用して開発を行うことが課されており、全チームが課題図書であったSCRUM BOOTCAMPを参考にしつつスクラムを行いました。
+初めてスクラムを行う人が多かったためみんな最初は苦労していましたが、研修が進むにつれ慣れていきすぐにでも業務で活躍できるようになったと思います。<br>
+チームの運用としては、バックログ管理にGitHub Projectを使い、Slackのハドルで気軽に通話をしながら問題解決をしたりと、効率的なチーム運用を心がけました。</p>
+<p>また、チーム研修でもAWS上でのシステム構築が要件にありましたが個人研修と同じく構成は指定されていなかったため、各チームさまざまな工夫やアイデアを取り入れた設計になっており、とても面白かったです。<br>
+個人研修でもそうでしたが、ほぼ同じ技術レベルをもった他チームの構成を比べたりすることでより良い構成を考えることができるようになったりと、とても学びが多い研修の仕組みであったと思います。</p>
+<p>さらに、GitHub Actionsを活用し、dev環境とprod環境を分けた上でCI/CDを構築する必要もあったため、AWSと連携させてCI/CDを実現するのに各チーム苦労していましたが、とても勉強になりました。</p>
+<div align="center">
+  <div class="article-img">
+    
+    <img src="https://dwango.github.io/images/2024-12_2024_engineer_onboarding/aws_design.png"   />
+    
+  </div>
+
+  <p>自チームのAWS構成</p>
+</div>
+<h3 id="成果発表ー">成果発表ー！</h3>
+<p>約1ヶ月のチーム研修の最後には、成果発表を行いました。個人研修ではサービスを社内に公開した形での成果発表は行えませんでしたが、チーム研修では作成したサービスを社内に公開し実際に使ってもらったりいたずらをしてもらったりすることができました。基本的にはオフラインで成果発表を行ったので、みんなでワイワイしながら他のチームのサービスを触ることができました。</p>
+<p>僕のチームもかなりギリギリの完成となってしまいましたが、<a href="https://blog.nnn.dev/entry/shinsotsu-kenshyu-2024#%E5%BC%8A%E3%83%81%E3%83%BC%E3%83%A0%E3%81%A7%E3%81%AF">発表直前までサービスの開発＆公開準備をしているチーム</a>もあったりし、研修ではありますがハッカソン的な雰囲気がありとても楽しかったです。<br>
+後悔した点としては、もっと時間があればHLSでの動画配信であったりCloudWatchを活用した監視を行いたかったです。</p>
+<p>先述しましたが、成果発表でも他のチームがどのような経緯や考えでサービス設計と工夫をしたのかを知ることができたのはとても貴重な経験であったと同時に、新卒エンジニアのみんながニコニコ動画が好きなんだなぁということがひしひしと感じられました。（良い話）</p>
+<h2 id="研修全体を通した感想">研修全体を通した感想</h2>
+<p>私は昨年度のドワンゴのエンジニア研修ブログエントリを読んでいたので、大体の研修内容については把握していましたが、それでも研修の手厚さに驚きました。<br>
+インプット→個人開発→チーム開発としっかりとステップアップしながら研修を行うことで、
+知識・技術力レベルがバラバラだった新卒エンジニアが一定以上の知識と技術力を身につけられたと思います。</p>
+<h2 id="おわりに">おわりに</h2>
+<p>いかがだったでしょうか？<br>
+この記事では、ドワンゴの新卒エンジニアが受ける研修について紹介しました。この記事を通じて、ドワンゴの新卒エンジニア研修への理解が深まれば幸いです。<br>
+また、<a href="https://blog.nnn.dev/entry/shinsotsu-kenshyu-2024">教育サービス所属の同期が書いた新卒エンジニア研修紹介ブログ</a>もあるのでそちらも読んでいただけると、僕とは違った視点で研修の様子がわかると思います。</p>
+<p>ちなみに、この記事のアイキャッチなどに使われている以下の写真は研修中に同期とランチをした時の写真です。</p>
+<div align="center">
+  <div class="article-img">
+    
+    <img src="https://dwango.github.io/images/2024-12_2024_engineer_onboarding/blue_lily.jpg"   />
+    
+  </div>
+
+  <p>おいしい麻婆豆腐</p>
+</div>
+<p><small id="note1">[1]: 現在はニコニコサービスの全てのシステムがAWS上で稼働しています。 <a href="#ref1">↩</a></small></p>
+<hr>
+<p>株式会社ドワンゴでは、教育事業、ニコニコ事業、モバイル事業など様々なサービス、コンテンツを一緒につくるメンバーを募集しています。<br>
+ドワンゴに興味がある・または応募しようか迷っている方がいれば、気軽に応募してみてください。</p>
+<ul>
+<li><a href="https://dwango.snar.jp/index.aspx">新卒採用はこちら</a></li>
+<li><a href="https://hrmos.co/pages/dwango">キャリア採用はこちら</a></li>
+</ul>
+</article>
+    </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="新卒エンジニアが語る、ドワンゴの2024年エンジニア研修体験記 - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/2024-12_2024_engineer_onboarding/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/2024-12_2024_engineer_onboarding/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2f2024-12_2024_engineer_onboarding%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>
