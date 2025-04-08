@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="ja" lang="ja" >
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.122.0">
+
+  <meta property="og:title" content="macOS で x86_64 な Linux を使う - dwango on GitHub">
+
+  <meta property="og:description" content="ドワンゴ社内の様子や、文化、技術をご紹介します。" />
+
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  <meta name="twitter:card" content="summary">
+  
+
+
+  
+  
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>macOS で x86_64 な Linux を使う - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> ニコニコ開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://blog.nnn.dev/"> 教育サービス開発者ブログ </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
+      
+        Copyright &copy; DWANGO Co., Ltd.
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+  <div class="post">
+    <time class="content-date" datetime="2025-04-08 12:30:00 &#43;0900 JST" itemprop="datepublished"
+      >2025-04-08 Tue</time
+    >
+    <h1 class="article-title">macOS で x86_64 な Linux を使う</h1>
+
+    <div>
+      
+        <aside>
+          <h2>目次</h2>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#はじめに">はじめに</a></li>
+    <li><a href="#仕組み">仕組み</a></li>
+    <li><a href="#事前準備">事前準備</a>
+      <ul>
+        <li><a href="#rosetta-2">Rosetta 2</a></li>
+        <li><a href="#vm-lima-の場合">VM (lima の場合)</a></li>
+        <li><a href="#vm-utm-の場合">VM (UTM の場合)</a></li>
+      </ul>
+    </li>
+    <li><a href="#ubuntu-の構築">Ubuntu の構築</a></li>
+    <li><a href="#x86_64-版-ubuntu-へのログインと終了">x86_64 版 Ubuntu へのログインと終了</a></li>
+    <li><a href="#docker">Docker</a></li>
+    <li><a href="#おわりに">おわりに</a></li>
+  </ul>
+</nav>
+        </aside>
+        <hr />
+      
+      <article id="content"><h2 id="はじめに">はじめに</h2>
+<p>　こんにちは。DMS 開発部の吉村です。DMS 開発部ではニコニコ動画やニコニコ生放送の配信基盤を開発しており、動画のアップロードを受け付けたり、視聴に適したフォーマットに変換してユーザーの皆様にお届けしています。私自身はその中でもインフラ周りの構築を担当しています。</p>
+<p>　普段は Apple Silicon で macOS を使用していますが、ソフトウェアを開発していると x86_64 (AMD64) のツール群が必要になる時があります。Docker でも x86_64 のバイナリを動かすことができますが、systemd も含めた一式が欲しい場合に高速な x86_64 の環境を用意する方法をご紹介していきます。</p>
+<h2 id="仕組み">仕組み</h2>
+<p>　今回使用する構成としては次のようになっており、端的にいうと systemd-nspawn と Rosetta 2 というものを使って x86_64 のコンテナを動かします。コンテナという言葉から分かる通り、x86_64 の Linux Kernel は動いておらず、技術的には Docker と似たものになります。</p>
+<ol>
+<li>aarch64 (ARM64) macOS</li>
+<li>aarch64 VM</li>
+<li>aarch64 Linux</li>
+<li>systemd-nspawn + Rosetta 2</li>
+<li>x86_64 Distribution</li>
+</ol>
+<p>　VM は <a href="https://lima-vm.io/">lima</a> を使用する場合と <a href="https://mac.getutm.app">UTM</a> を使用する場合で解説します。事前にインストールしておいてください。<br>
+　Linux は aarch64 のホストでは Ubuntu 24.04 を、x86_64 コンテナでは Ubuntu 22.04 を使用します。22.04 を利用する理由は、執筆時点で 24.04 だと journald や logind がクラッシュしてしまうためです。これについては原因が判明して解決すれば Ubuntu 24.04 にできますが、ここでは安全な方を使用します。古い環境の動作確認を行う場合、例えば x86_64 のディストリビューションに CentOS 7 を使用するといったことも可能ですが、CentOS 7 の深い知識が必要になります。<br>
+　systemd は Linux の管理を行うソフトウェアであり、systemd-nspawn は systemd が持つコンテナ機能です。<br>
+　Rosetta 2 は x86 の命令を ARM の命令に変換する仕組みで、macOS に備わっているものです。通常のソフトエミュレータに比べて非常に高速に動くところが特徴です。</p>
+<h2 id="事前準備">事前準備</h2>
+<h3 id="rosetta-2">Rosetta 2</h3>
+<p>　今まで Rosetta を使ったことがない場合は次のコマンドでインストールしておきます:</p>
+<p><em>(macOS)</em></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>softwareupdate --install-rosetta --agree-to-license
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="vm-lima-の場合">VM (lima の場合)</h3>
+<p>VM の設定を用意します:</p>
+<p><em>ubuntu.yaml</em></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">vmType</span>: <span style="color:#e6db74">&#34;vz&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">rosetta</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">binfmt</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">arch</span>: <span style="color:#e6db74">&#34;aarch64&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">cpus</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;2GiB&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">disk</span>: <span style="color:#e6db74">&#34;8GiB&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">images</span>:
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">location</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;https://cloud-images.ubuntu.com/releases/24.04/release/ubuntu-24.04-server-cloudimg-arm64.img&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">arch</span>: <span style="color:#e6db74">&#34;aarch64&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>VM を起動して、シェルに繋ぎます:</p>
+<p><em>(macOS)</em></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>limactl start ubuntu.yaml
+</span></span><span style="display:flex;"><span>limactl shell ubuntu
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="vm-utm-の場合">VM (UTM の場合)</h3>
+<p>　次の Linux ISO をあらかじめダウンロードしておきます。ただし執筆時点の UTM 4.6.4 では ISO サイズが小さな <a href="https://github.com/utmapp/UTM/issues/6340">cloudimg 版が動作しない</a> ため、Server 版の ISO を使用します:<br>
+<a href="https://cdimage.ubuntu.com/releases/24.04/release/ubuntu-24.04.2-live-server-arm64.iso">https://cdimage.ubuntu.com/releases/24.04/release/ubuntu-24.04.2-live-server-arm64.iso</a></p>
+<p>　UTM を起動し、メインウィンドウから「新規仮想マシンを作成」を実行します:
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2025-04_x86-linux-on-macos/utm-main-window.png" alt="メインウィンドウ"  />
+  
+</div>
+</p>
+<p>　「仮想化」を選択します:
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2025-04_x86-linux-on-macos/utm-create-start.png" alt="開始"  />
+  
+</div>
+</p>
+<p>　「Linux」を選択します:
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2025-04_x86-linux-on-macos/utm-create-os.png" alt="オペレーティングシステム"  />
+  
+</div>
+</p>
+<p>　次の設定を入力します:</p>
+<ul>
+<li>Apple 仮想化を使用</li>
+<li>Rosetta を有効にする</li>
+<li>起動ISOイメージ
+<ul>
+<li>ubuntu-24.04-server-cloudimg-arm64.img</li>
+</ul>
+</li>
+</ul>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2025-04_x86-linux-on-macos/utm-create-linux.png" alt="Linux"  />
+  
+</div>
+
+<p>　あとはそのまま進めて「保存」を実行してください。保存が完了したら VM を起動して Ubuntu をインストールしておきます。注意点としては Apple 純正 JIS キーボードを使用している際にキーボードレイアウトに <code>English</code> 以外を選択すると <code>_</code> や <code>/</code> が入力できなくなるため、<code>English</code> でインストールしてください。<br>
+　インストールが完了したら VM 内で Rosetta を有効化します:</p>
+<p><em>(aarch64 Ubuntu)</em></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">## x86 バイナリを認識して Rosetta で動かすように設定する</span>
+</span></span><span style="display:flex;"><span>sudo apt install binfmt-support
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sudo mkdir -p /media/rosetta
+</span></span><span style="display:flex;"><span>sudo mount -t virtiofs rosetta /media/rosetta
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;rosetta	/media/rosetta	virtiofs	ro,nofail	0	0&#39;</span> | sudo tee -a /etc/fstab
+</span></span><span style="display:flex;"><span>sudo systemctl daemon-reload
+</span></span><span style="display:flex;"><span>sudo mount -a
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sudo /usr/sbin/update-binfmts --install rosetta /media/rosetta/rosetta <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     --magic <span style="color:#e6db74">&#34;\x7fELF\x02\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x3e\x00&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     --mask <span style="color:#e6db74">&#34;\xff\xff\xff\xff\xff\xfe\xfe\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     --credentials yes --preserve no --fix-binary yes
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>　もし Ubuntu Server の minimal 版など、エディタが入っていないものをインストールした場合は、必要なエディタもインストールしておいてください。</p>
+<h2 id="ubuntu-の構築">Ubuntu の構築</h2>
+<p>　aarch64 版 Ubuntu の上に x86_64 版 Ubuntu を構築します。ついでに Ubuntu の中で Docker も使えるようにしておきます。<br>
+　要素としてはコンテナを実行する systemd-nwpawn と、Ubuntu を構築する debootstrap の2つです。systemd-nwpawn は <code>systemd-container</code> というパッケージで提供されています。debootstrap は Debian 系のディストリビューションの ISO やコンテナイメージを作成するために使用します。<br>
+　可変な部分としては Ubuntu のバージョンである <code>jammy</code> と、コンテナ名の <code>ubuntu-x86</code> 程度ですが、そのままでよければ基本的にはコピペで大丈夫です:</p>
+<p><em>(aarch64 Ubuntu)</em></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt install systemd-container debootstrap docker.io
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## x86_64 版 Ubuntu を /var/lib/machines/ubuntu-x86 の下にダウンロードする</span>
+</span></span><span style="display:flex;"><span>sudo mkdir -p /var/lib/machines/ubuntu-x86
+</span></span><span style="display:flex;"><span>sudo debootstrap <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --foreign <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --arch<span style="color:#f92672">=</span>amd64 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --components<span style="color:#f92672">=</span>main,restricted,universe,multiverse <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --include<span style="color:#f92672">=</span>systemd,dbus,docker.io <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    jammy <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    /var/lib/machines/ubuntu-x86
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## debootstrap の処理中に /proc がアンマウントされてしまい Rosetta が使えなくなるので、スクリプトをパッチする</span>
+</span></span><span style="display:flex;"><span>sudo sed -i -E <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e <span style="color:#e6db74">&#39;s!^(\s*)(umount &#34;\$TARGET/proc&#34;)!\1true # \2!g&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    /var/lib/machines/ubuntu-x86/debootstrap/functions
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## x86_64 の /proc は aarch64 の /proc をミラーリングする</span>
+</span></span><span style="display:flex;"><span>sudo mount --bind /proc /var/lib/machines/ubuntu-x86/proc
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## ダウンロードした Ubuntu をインストールする</span>
+</span></span><span style="display:flex;"><span>sudo chroot /var/lib/machines/ubuntu-x86 /debootstrap/debootstrap --second-stage
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>　これで <code>/var/lib/machines/ubuntu-x86</code> にコンテナが出来上がりましたが、パスワードがないとログインできないため root ユーザーのパスワードの設定とコンテナ内でネットワークと Docker が使えるように準備します。</p>
+<p><em>(aarch64 Ubuntu)</em></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">## コンテナに直接入る</span>
+</span></span><span style="display:flex;"><span>sudo systemd-nspawn -D /var/lib/machines/ubuntu-x86
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>　root ユーザーのパスワードを設定します。ここでは割愛しますが必要に応じて root 以外のユーザーを作成するのもこのタイミングです:</p>
+<p><em>(x86_64 Ubuntu)</em></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>passwd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>　ネットワークと Docker の準備を行ってコンテナから抜けます:</p>
+<p><em>(x86_64 Ubuntu)</em></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">## 標準的なパッケージのリポジトリを追加</span>
+</span></span><span style="display:flex;"><span>cat - <span style="color:#e6db74">&lt;&lt; EOF &gt;&gt; /etc/apt/sources.list
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">deb http://archive.ubuntu.com/ubuntu jammy-updates main restricted universe multiverse
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">deb http://archive.ubuntu.com/ubuntu jammy-backports main restricted universe multiverse
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">deb http://archive.ubuntu.com/ubuntu jammy-security main restricted universe multiverse
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## systemd-resolved の無効化</span>
+</span></span><span style="display:flex;"><span>systemctl disable systemd-resolved
+</span></span><span style="display:flex;"><span>rm -f /etc/resolv.conf
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## ユーザーを docker グループに追加</span>
+</span></span><span style="display:flex;"><span>usermod -aG docker $USER
+</span></span><span style="display:flex;"><span>exit
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>　コンテナが完成したため aarch64 版Ubuntu に戻ってきて systemd-nspawn の設定を行います。ここではネットワークは仮想化せずにホストネットワークをそのまま使います:</p>
+<p><em>(aarch64 Ubuntu)</em></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo mkdir -p /etc/systemd/nspawn
+</span></span><span style="display:flex;"><span>sudo tee /etc/systemd/nspawn/ubuntu-x86.nspawn <span style="color:#e6db74">&lt;&lt; EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">[Network]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">VirtualEthernet=no
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">[Files]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Bind=/var/run/docker.sock
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">[Exec]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">PrivateUsers=false
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="x86_64-版-ubuntu-へのログインと終了">x86_64 版 Ubuntu へのログインと終了</h2>
+<p>　前述の x86_64 版 Ubuntu の構築時にも扱いましたが、x86_64 版 Ubuntu を起動せずに次のコマンドで直接コンテナに入ることができます:</p>
+<p><em>(aarch64 Ubuntu)</em></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo systemd-nspawn -D /var/lib/machines/ubuntu-x86
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>これは <code>chroot</code> に近い使い方です。</p>
+<p>　コンテナに直接入るのではなく systemd とその他サービス類を起動してログインシェルを経由するには、手動で起動する方法と、自動的に起動する方法があります:</p>
+<p><em>(aarch64 Ubuntu)</em></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">## 手動で起動する方法</span>
+</span></span><span style="display:flex;"><span>sudo machinectl start ubuntu-x86
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## aarch64 版 Ubuntu の起動時に自動的に起動する方法</span>
+</span></span><span style="display:flex;"><span>sudo machinectl enable ubuntu-x86
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>　コンテナを終了するには次のように行います:</p>
+<p><em>(aarch64 Ubuntu)</em></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo machinectl poweroff ubuntu-x86
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>　ログインシェルでのログインは次のように行います:</p>
+<p><em>(aarch64 Ubuntu)</em></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo machinectl login ubuntu-x86
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>ログインシェルを経由した場合は <code>exit</code> してもログインシェルに戻るだけなので、コンテナから抜け出すには <code>control+]</code> を3回押します。同様の説明は <code>machinectl login</code> の時にも書かれています:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>Connected to machine ubuntu-x86. Press ^<span style="color:#f92672">]</span> three times within 1s to exit session.
+</span></span></code></pre></div><p>　ログインシェルが煩わしい場合は直接ログインすることもできます。パスワードも不要です:</p>
+<p><em>(aarch64 Ubuntu)</em></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">## ユーザーを作成した場合は user@ubuntu-x86</span>
+</span></span><span style="display:flex;"><span>sudo machinectl shell ubuntu-x86
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>こうすると <code>exit</code> してもログインシェルに戻ることはありません。</p>
+<h2 id="docker">Docker</h2>
+<p>x86_64 コンテナ内でも arm64 (aarch64) の Docker イメージが優先されます。x86_64 のイメージを優先するには <code>~/.bashrc</code> などで <code>DOCKER_DEFAULT_PLATFORM</code> を指定する必要があります:</p>
+<p><em>~/.bashrc (x86_64 Ubuntu)</em></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>export DOCKER_DEFAULT_PLATFORM<span style="color:#f92672">=</span>linux/amd64
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="おわりに">おわりに</h2>
+<p>　Raspberry Pi や Apple Silicon の登場以降 ARM に対応したアプリケーションが増えて不便しなくなってきましたが、まだたまに x86 が必要になることがあります。Docker の中でも systemd を動かす方法はあるのですが、Docker はストレージのパフォーマンスの扱いが難しかったりネットワーク周りも考えることが増えるため、別の解として systemd-nspawn をご紹介しました。Rosetta を前提とした ISO やコンテナイメージがないことで構築手順が少々煩雑なので、将来公式のイメージが公開されることを願ってやみません。</p>
+<hr>
+<p>株式会社ドワンゴでは、教育事業、ニコニコ事業、モバイル事業など様々なサービス、コンテンツを一緒につくるメンバーを募集しています。
+ドワンゴに興味がある・または応募しようか迷っている方がいれば、気軽に応募してみてください。</p>
+<ul>
+<li><a href="https://dwango.snar.jp/index.aspx">新卒採用はこちら</a></li>
+<li><a href="https://hrmos.co/pages/dwango">キャリア採用はこちら</a></li>
+</ul>
+</article>
+    </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="macOS で x86_64 な Linux を使う - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/2025-04_x86-linux-on-macos/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/2025-04_x86-linux-on-macos/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2f2025-04_x86-linux-on-macos%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>
