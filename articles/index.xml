@@ -6,8 +6,15 @@
     <description>Recent content in Articles on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 08 Apr 2025 12:30:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 09 Jun 2025 10:00:00 +0900</lastBuildDate>
     <atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ニコニコ生放送がサービスを再開するまでの記録</title>
+      <link>https://dwango.github.io/articles/2025-06_docs_of_recovering_from_a_cyberattack/</link>
+      <pubDate>Mon, 09 Jun 2025 10:00:00 +0900</pubDate>
+      <guid>https://dwango.github.io/articles/2025-06_docs_of_recovering_from_a_cyberattack/</guid>
+      <description>はじめに こんにちは、ニコニコ生放送 バックエンド開発マネージャーの yanagi です。 2024 年 6 月 8 日、ドワンゴはランサムウェアを含む大規模なサイバー攻撃を受</description>
+    </item>
     <item>
       <title>macOS で x86_64 な Linux を使う</title>
       <link>https://dwango.github.io/articles/2025-04_x86-linux-on-macos/</link>
