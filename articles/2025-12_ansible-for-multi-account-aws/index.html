@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="ja" lang="ja" >
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.122.0">
+
+  <meta property="og:title" content="多数のAWSアカウントに散在するEC2インスタンス群をAnsibleで一括管理する話 - dwango on GitHub">
+
+  <meta property="og:description" content="ドワンゴ社内の様子や、文化、技術をご紹介します。" />
+
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  <meta name="twitter:card" content="summary">
+  
+
+
+  
+  
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>多数のAWSアカウントに散在するEC2インスタンス群をAnsibleで一括管理する話 - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> ニコニコ開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://blog.nnn.dev/"> 教育サービス開発者ブログ </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
+      
+        Copyright &copy; DWANGO Co., Ltd.
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+  <div class="post">
+    <time class="content-date" datetime="2025-12-09 00:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2025-12-09 Tue</time
+    >
+    <h1 class="article-title">多数のAWSアカウントに散在するEC2インスタンス群をAnsibleで一括管理する話</h1>
+
+    <div>
+      
+      <article id="content"><h2 id="はじめに">はじめに</h2>
+<p>こんにちは。クラウド構築運用部PaaSセクションの尾﨑です。</p>
+<p>この記事では、多数のAWSアカウント上に分散して存在するEC2インスタンス群（仮想マシン群）をAnsibleで一括管理する方法に関して書いていきます。私の所属するチームでは、ある一群のWebサイトのインフラ構築・管理を担当しているのですが、その際に上記のような一括管理が必要になったため、調査とPoCを経てこの記事で説明するような仕組みを導入しました。調査の際に同様の事例の情報をあまり見つけられなかったこともあり、ここに知見を共有したいと思います。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2025-12_ansible-for-multi-account-aws/fig1.png" alt="多数のAWSアカウントに散在するEC2インスタンス群をAnsibleで一括管理するイメージ図"  />
+  
+</div>
+
+<h2 id="文脈解くべき問題">文脈――解くべき問題</h2>
+<p>昨年6月、弊社はサイバー攻撃の被害を受けました。被害は広範囲に及びましたが、その中にプライベートクラウド上の仮想マシンでホストしていた多数のWebサイトもありました。今回私たちのチームが携わっていたのはこれらのWebサイトの一部をAWS上へ移設復旧するプロジェクトです。</p>
+<p>ひとえにWebサイトといっても、当然ながらそれぞれ異なった目的で、異なった対象者に向けて、異なった技術によって作られています。今回は、復旧対象のうち同様の技術でつくられていたある一群のWebサイトを私たちのチームで担当することになりました。</p>
+<p>復旧先の大まかなインフラ構成は、次のようになりました。まずCloudFront (CDN)でリクエストを受け、ALB（L7ロードバランサ）を通してEC2インスタンス（Linux仮想マシン）にリクエストを導く。EC2インスタンスではWebサーバーとアプリケーションサーバーが立っていて、必要に応じてAurora MySQL (RDBMS)に問い合わせる……というもの。至って普通の構成です。</p>
+<p>ただ、やや特殊な点として、全てのWebサイトを1つのAWSアカウント<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>で復旧させるのではなく、複数のAWSアカウントで復旧させるという要件がありました。これは、Webサイトの運営元（部署）が多岐にわたるため、費用の計算をしやすくするために一定の部署の単位でAWSアカウントをつくることになったという事情によるものです。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2025-12_ansible-for-multi-account-aws/fig2.png" alt="今回のプロジェクトの簡易インフラ構成図"  />
+  
+</div>
+
+<p>複数のAWSアカウントに分けて構築するとはいえ、各サイトでほぼ同様のインフラ構成となるため（そもそもこれらのサイトをまとめて担当することになったのはそれが理由です）、できる限り一括で管理したいです。そのため、私たちのチームでは様々なIaC (Infrastructure as Code)技術で管理の省力化を図りました。</p>
+<p>AWSリソースの基本的な管理は、ほぼTerraformで行いました。ここについては今後別の記事で書いていただくことになっているので詳細は省略しますが、Terraformのモジュール機能やマルチプロバイダなどによって、システムの大部分をうまく管理できるようになりました。</p>
+<p>ただ、Terraformでは管理できない部分があります。それは「EC2インスタンスの中」です。TerraformのAWSプロバイダで管理できるのは、AWSのAPIで管理できるリソース、つまるところ「ガワ」であって、そのリソースの中身であるデータについては管理の対象外になっています。しかし、EC2インスタンスの中も、例えばdnfによるソフトウェアのインストール、Apacheなどのミドルウェアの設定、systemdやcronの設定、監視のためのエージェント設定など、一括で管理したいものがあります。ここにもIaCの需要があるわけですが、残念ながらここはTerraformの守備範囲外なのです。</p>
+<p>プロジェクトの中でも初期段階、つまり各サーバーの構築段階では初期構築用のシェルスクリプトを実行することで事足りていました。しかしながら、継続運用を考えると、「何らかの変更を全サイトのEC2インスタンスで行う際には、全インスタンスにログインしてそれぞれでシェルスクリプトを実行する必要がある」というのでは大変です。そのため、EC2インスタンス内を一括管理できる手段を模索することになりました。</p>
+<h2 id="技術選定">技術選定</h2>
+<p>さて、このようなEC2インスタンスの中の管理、一般的な言葉で言うと仮想マシン内の管理を行うツールはひとつのジャンルを成しており、一般に「<strong>構成管理ツール</strong>」と呼ばれます。その代表的なものが、AnsibleやItamae、Chefなどです。</p>
+<p>今回は、構成管理ツールとして <a href="https://docs.ansible.com/projects/ansible/latest/index.html"><strong>Ansible</strong></a> を選びました。</p>
+<p>理由のひとつは、社内での実績が豊富だったことです。プライベートクラウド（オンプレミス）上の仮想マシンの管理では、Ansibleが広く使われていました。そのため、今回の復旧プロジェクトのメンバーや運用の引き継ぎ先のメンバーの学習コストが低いことが想定できました。</p>
+<p>もうひとつの理由は、後述するようなSession Managerを利用したEC2インスタンスへのログインを簡易に実現できる方法がAnsible以外のツールでは見つからなかったことです。</p>
+<p>Ansibleで望ましい結果が得られないようであれば別の方法を探索していましたが、PoCの結果欲しい性質が問題なく得られたため、そのまま後述のようなAnsibleを利用した構成を採用することになりました。</p>
+<h2 id="アーキテクチャ">アーキテクチャ</h2>
+<p>さて、繰り返しになりますが、今回欲しいのは、</p>
+<ul>
+<li>複数のAWSアカウントにある、</li>
+<li>複数のEC2インスタンスに対して、</li>
+<li>できれば1回の実行でまとめて、</li>
+<li>同じ設定を流し込める</li>
+</ul>
+<p>管理のしくみです。</p>
+<p>これをどう実現するのかという話になりますが、そのためにまずAnsible自体のアーキテクチャについて軽く説明しておきます。</p>
+<p>Ansibleというのは、簡単にいうと複数のサーバーにSSHで接続してコマンドを実行してくれるようなツールです<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>。実際は単純なコマンド実行と違って、「Nginxがインストールされている状態にする」といった「望む状態」を書くことで冪等性を満たすようにするというのが一つ大事な点ではあるのですが、本記事の主題とはあまり関係ありませんので省略します。</p>
+<p>「複数のサーバーにSSHで接続してコマンドを実行」と書いたように、一般的には管理対象のホスト（サーバー）とは別に、Ansible実行用のホストを用意します。ここで、Ansibleを実行するホストを「<strong>コントロールノード</strong>」、Ansibleによって管理されるホストを「<strong>マネージドノード</strong>」<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>と言います。コントロールノードで <code>ansible-playbook</code> コマンドを実行すると、用意していた設定ファイルに書かれている状態になるようにマネージドノードに対してコマンドが送られる、という形です。なお、コントロールノードにはAnsibleの処理系のインストールが必要ですが、マネージドノードのほうにはAnsibleの処理系は不要で、Pythonの処理系が入っていればよいです。</p>
+<p>……というのがよくある使い方なのですが、実は、コントロールノードとマネージドノードを同じにするような使い方もあります。あるホストで <code>ansible-playbook</code> コマンドを実行して、そのホスト自身に対してコマンドを送るような使い方です。</p>
+<p>この点、すなわち</p>
+<ul>
+<li>「マネージドノード≠コントロールノード」とする</li>
+<li>「マネージドノード＝コントロールノード」とする</li>
+</ul>
+<p>のどちらを選ぶかというのが、一つのアーキテクチャ的な考慮点になります。</p>
+<p>SSH接続できる多数のサーバーを管理するような用途では、普通はマネージドノードと別にコントロールノードを用意すると思います。しかし、例えば管理したい対象がAWSリソースやネットワーク機器等APIで操作するものの場合は、Ansibleはコントロールノード上でAPIを叩くという操作を実行するため、マネージドノードはコントロールノードと一致します。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2025-12_ansible-for-multi-account-aws/fig3.png" alt="Ansibleの2種類の実行方式"  />
+  
+</div>
+
+<p>実は、最もAWSマネージドな（？）Ansible実行方式は、「マネージドノード＝コントロールノード」のほうです。これは、EC2インスタンス上で単発のコマンドを実行できる AWS Systems Manager Run Command という機能のプリセットにある「ドキュメント」（≒スクリプト）の1つ、<code>AWS-ApplyAnsiblePlaybooks</code>を利用するという方法になります。このドキュメントを実行することで、対象のEC2インスタンスにAnsibleをインストールし、そのインスタンス自身をマネージドノードとして <code>ansible-playbook</code> を実行するという一連の操作を行うことができるのです。</p>
+<p>しかしながら、この方法は、以下のような難点があります。</p>
+<ul>
+<li>AWSサービスがAnsibleの定義ファイルをダウンロードしてきて利用するため、Ansible定義ファイルを一度S3バケットかGitリポジトリに配置する必要がある。ローカルマシンから手軽に実行することができない。</li>
+<li>実行時のログがS3バケット（オブジェクトストレージ）に格納される<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>ため、確認が面倒。</li>
+<li>EC2インスタンスにAnsibleをインストールすることになるため、管理するものが増える（状態を持つ部分が増える）。特に、Ansibleのアップデートがある場合などの対処が煩雑になるおそれがある。</li>
+<li>Ansibleから見たときの実行対象が<code>localhost</code>になってしまう。Ansibleには<code>host_vars</code>や<code>group_vars</code>といった、対象ホストごとに別の変数を渡せる仕組みがあるのだが、これが使えない。</li>
+</ul>
+<p>そのため、こちらはあまり良い方法とは思えませんでした。特に、「EC2インスタンスにAnsibleをインストールしたくない」という点を考えると、やはり普通のVM（仮想マシン）管理と同様に「マネージドノード≠コントロールノード」とする方向でいくのがよさそうです。</p>
+<p>さて、この「マネージドノード≠コントロールノード」とするアーキテクチャをとるにしても、いくつか方式が考えられます。というのは、AnsibleからEC2インスタンス内に接続する方法（つまり、コントロールノードからマネージドノードに接続する方法）がいくつかあるからです：</p>
+<ul>
+<li>Session Manager で接続する方法</li>
+<li>EC2 Instance Connect で接続する方法</li>
+<li>コントロールノード用のEC2インスタンスを用意して、そこから普通のSSHで接続する方法</li>
+</ul>
+<p>今回は、Session Managerで接続する方法を選びました。この方法だと、別のEC2インスタンスを用意する必要がないためコストがかからず、EC2 Instance Connect で接続する場合のようにSSH鍵の管理で困ることもありません。詳細は後述しますが、AWS CLIで利用できるIAMの認証情報だけ用意すれば、通常のSSHと同じような使い勝手で接続することができます。EC2インスタンスをAnsibleで管理したい多くの場合で、この方法が第一候補になるのではないかと思います。</p>
+<h2 id="実装編前編1つのec2インスタンスを管理する">実装編（前編）――1つのEC2インスタンスを管理する</h2>
+<p>では、ここからはどのようにして実現するかを、設定ファイルのコードを示しつつ解説します。とはいえ一気に説明するとややこしいので、まず前半では1つのEC2インスタンスをAnsibleで管理する方法を示し、後半でそれを複数インスタンスへ展開する方法を説明しようと思います。</p>
+<p>「1つのEC2インスタンスを管理する方法」というと極めて基本的なことに聞こえるかもしれませんが、実際はそれほど簡単ではありません。AnsibleはVMにIPアドレスで直接SSH接続できるような世界観で使いやすいツールで、パブリッククラウド対応は後付けという趣が強いのがその一因でしょう<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>。</p>
+<h3 id="インベントリ">インベントリ</h3>
+<p>まずは、EC2インスタンスを探す方法についてです。Ansibleには「インベントリ」という仕組みがあります。端的に言うと、インベントリは「接続先のホスト（サーバー）のリスト」です。例えば、</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#75715e"># ===== ホスト一覧 =====</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[all]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server1 ansible_host</span><span style="color:#f92672">=</span><span style="color:#e6db74">192.168.10.11</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server2 ansible_host</span><span style="color:#f92672">=</span><span style="color:#e6db74">192.168.10.12</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server3 ansible_host</span><span style="color:#f92672">=</span><span style="color:#e6db74">192.168.10.21</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server4 ansible_host</span><span style="color:#f92672">=</span><span style="color:#e6db74">192.168.10.22</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ===== グループ定義 =====</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[web]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server1</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server2</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[db]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server3</span>
+</span></span></code></pre></div><p>といった風に、サーバーのリストを書きます（上記はINI形式の例ですが、YAML形式でも書けます）。</p>
+<p>ホストのリストとは言いましたが、単純な列記だけでなくサーバーの種別などによってグループ化（タグ付け）することもでき、上記の例では、 <code>server1</code> と <code>server2</code> を <code>web</code> グループに、<code>server3</code> と <code>server4</code> を <code>db</code> グループに所属させています。このようなインベントリを用意しておくと、Ansibleの定義ファイル（「<strong>プレイブック</strong>」といいます）に<code>hosts: web</code>と書いてWebサーバーの仮想マシンにだけNginxをインストールする、といったことができます。</p>
+<p>上で示したINI形式のインベントリはAnsibleの実行前に予め用意していくファイルですが、事前に用意するのではなく、Ansibleの実行時に何らかの情報源から自動的にインベントリを生成することもできます。これを「<strong>動的インベントリ</strong>」といいます。</p>
+<p>この動的インベントリの一つに、<a href="https://docs.ansible.com/projects/ansible/latest/collections/amazon/aws/index.html">Amazon.Aws コレクション</a>に含まれる <a href="https://docs.ansible.com/projects/ansible/latest/collections/amazon/aws/aws_ec2_inventory.html#ansible-collections-amazon-aws-aws-ec2-inventory">amazon.aws.aws_ec2 inventory</a> があります。これを使うと、Ansible実行時にAWS APIを利用してEC2インスタンスの一覧を取得してくれます。</p>
+<p>例えば、以下のように aws_ec2.yaml という名前の設定ファイルをつくるとします。</p>
+<p><code>inventories/aws_ec2.yaml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">plugin</span>: <span style="color:#ae81ff">aws_ec2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">aws_profile</span>: <span style="color:#ae81ff">default</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">regions</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">ap-northeast-1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">filters</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">instance-state-name</span>: <span style="color:#ae81ff">running</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">hostnames</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">tag:Name</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">keyed_groups</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">key</span>: <span style="color:#ae81ff">tags.Organization</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">prefix</span>: <span style="color:#ae81ff">org</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">key</span>: <span style="color:#ae81ff">tags.Service</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">prefix</span>: <span style="color:#ae81ff">svc</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">key</span>: <span style="color:#ae81ff">tags.Env</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">prefix</span>: <span style="color:#ae81ff">env</span>
+</span></span></code></pre></div><p>このファイルをインベントリとして指定すると、EC2インスタンスがAnsibleに認識されます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ ansible-inventory --graph -i inventories
+</span></span><span style="display:flex;"><span>@all:
+</span></span><span style="display:flex;"><span>  |--@ungrouped:
+</span></span><span style="display:flex;"><span>  |--@aws_ec2:
+</span></span><span style="display:flex;"><span>  |  |--org1-service1-prod-ec2
+</span></span><span style="display:flex;"><span>  |  |--org1-service2-dev-ec2
+</span></span><span style="display:flex;"><span>  |  |--org1-service2-prod-ec2
+</span></span><span style="display:flex;"><span>  |  |--org1-service1-dev-ec2
+</span></span><span style="display:flex;"><span>  |--@env_prod:
+</span></span><span style="display:flex;"><span>  |  |--org1-service1-prod-ec2
+</span></span><span style="display:flex;"><span>  |  |--org1-service2-prod-ec2
+</span></span><span style="display:flex;"><span>  |--@env_dev:
+</span></span><span style="display:flex;"><span>  |  |--org1-service2-dev-ec2
+</span></span><span style="display:flex;"><span>  |  |--org1-service1-dev-ec2
+</span></span><span style="display:flex;"><span>  |--@org_org1:
+</span></span><span style="display:flex;"><span>  |  |--org1-service1-prod-ec2
+</span></span><span style="display:flex;"><span>  |  |--org1-service2-dev-ec2
+</span></span><span style="display:flex;"><span>  |  |--org1-service2-prod-ec2
+</span></span><span style="display:flex;"><span>  |  |--org1-service1-dev-ec2
+</span></span><span style="display:flex;"><span>  |--@svc_service1:
+</span></span><span style="display:flex;"><span>  |  |--org1-service1-prod-ec2
+</span></span><span style="display:flex;"><span>  |  |--org1-service1-dev-ec2
+</span></span><span style="display:flex;"><span>  |--@svc_service2:
+</span></span><span style="display:flex;"><span>  |  |--org1-service2-dev-ec2
+</span></span><span style="display:flex;"><span>  |  |--org1-service2-prod-ec2
+</span></span></code></pre></div><p>単純に認識させるだけではなく、 <code>keyed_groups</code> の記述を元にグループ分けも行ってくれます。例えば、 <code>keyed_groups</code> に <code>key</code> が <code>tags.Env</code> で <code>prefix</code> が <code>env</code> の項目を入れると、「EC2インスタンスに<code>Env: prod</code>というタグがある場合は、Ansible側で <code>env_prod</code> というグループに所属させる」という処理をしてくれます。AWS側でつけたメタデータをAnsible側でも使えるようになるわけです。なお、ここでOrganizationとServiceは部署とサービス名（サイト名）を示す識別子で、EC2ホスト名（Nameタグ）は <code>${Organization}-${Service}-${Env}-ec2</code> でつけるようにしています（あくまで今回のプロジェクト特有の規約です）。</p>
+<p>また、デフォルトではAnsibleで使うホスト名はEC2のID（<code>i-</code>で始まる自動生成のID）になりますが、 <code>hostnames</code> に <code>tag:Name</code> を指定することで、 <code>Name</code> タグの値をAnsible側のホスト名として扱えるようになります。</p>
+<p>これでEC2インスタンスを探して選ぶ部分ができました。</p>
+<h3 id="ssm接続プラグイン">SSM接続プラグイン</h3>
+<p>次は、その見つけたEC2インスタンスにコマンドを流し込む部分です。ここでは、<a href="https://docs.ansible.com/projects/ansible/latest/collections/amazon/aws/index.html">Amazon.Aws コレクション</a>に含まれる <a href="https://docs.ansible.com/projects/ansible/latest/collections/amazon/aws/aws_ssm_connection.html#ansible-collections-amazon-aws-aws-ssm-connection">amazon.aws.aws_ssm connection</a> プラグインを使います。これは、Session ManagerでEC2インスタンスに接続できるようにしてくれるプラグインです。</p>
+<p>このプラグインを使って接続するようにするためには、先ほどのインベントリの設定ファイルを編集します<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup>。</p>
+<p><code>inventories/aws_ec2.yaml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">plugin</span>: <span style="color:#ae81ff">aws_ec2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">aws_profile</span>: <span style="color:#ae81ff">default</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">regions</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">ap-northeast-1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">filters</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">instance-state-name</span>: <span style="color:#ae81ff">running</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">hostnames</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">tag:Name</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">keyed_groups</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">key</span>: <span style="color:#ae81ff">tags.Organization</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">prefix</span>: <span style="color:#ae81ff">org</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">key</span>: <span style="color:#ae81ff">tags.Service</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">prefix</span>: <span style="color:#ae81ff">svc</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">key</span>: <span style="color:#ae81ff">tags.Env</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">prefix</span>: <span style="color:#ae81ff">env</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ここを追加する</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">compose</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ansible_connection</span>: <span style="color:#e6db74">&#34;&#39;aws_ssm&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ansible_aws_ssm_profile</span>: <span style="color:#e6db74">&#34;&#39;default&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ansible_aws_ssm_region</span>: <span style="color:#e6db74">&#34;&#39;ap-northeast-1&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ansible_aws_ssm_bucket_name</span>: <span style="color:#e6db74">&#34;&#39;sample-ansible-bucket&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ansible_host</span>: <span style="color:#ae81ff">instance_id</span>
+</span></span></code></pre></div><p><code>compose</code> に指定することで、プレイブック側に変数を渡してやることができます。 <code>ansible_connection</code> に <code>aws_ssm</code> を指定し、 <code>ansible_aws_ssm_profile</code> などの変数で使うプロファイルやリージョンを指定します。ここで注意が必要なのは <code>ansible_aws_ssm_bucket_name</code> で、ここに指定するのはファイル受け渡しに利用するS3バケットの名前です。 aws_ssm connection プラグインはファイルの転送の際に一度S3バケットにファイルを配置するので、別途S3バケットを用意する必要があります。また、<code>compose</code>の中で文字列を指定する場合は、例に示したように、二重引用符と一重引用符とを組み合わせた特殊な書き方にする必要があります（Jinja2テンプレートとして評価されるため）。</p>
+<p>このプラグインが、今回のようなアーキテクチャを実現するための肝となる部品です。他の方法だと接続用のSSH鍵の管理の必要が発生するなどの面倒な要素がありますが、この aws_ssm connection プラグインを利用すると、AWSの認証・認可の基盤にうまく乗っかって低い管理コストでセキュリティを担保できます。なお、このSSMプラグインはもともとコミュニティ開発の <a href="https://docs.ansible.com/projects/ansible/latest/collections/community/aws/index.html">Community.Aws コレクション</a> に含まれていましたが、今年Ansibleチームが管理する <a href="https://docs.ansible.com/projects/ansible/latest/collections/amazon/aws/index.html">Amazon.Aws コレクション</a> に取り込まれました。</p>
+<p>以上で説明したように、aws_ec2 inventory と aws_ssm connection  の2つの仕組みを使うことで、1つのEC2インスタンスをAnsibleで管理することができるようになります。</p>
+<p><code>sample-playbook.yaml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Ping all hosts</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">hosts</span>: <span style="color:#ae81ff">all</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">gather_facts</span>: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">tasks</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Ping all hosts</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">ansible.builtin.ping</span>:
+</span></span></code></pre></div><p>実行:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># 対象のインスタンスにプレイブックを流す</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># --check はドライランオプション</span>
+</span></span><span style="display:flex;"><span>$ ansible-playbook -i inventories -l <span style="color:#e6db74">${</span>インスタンスID<span style="color:#e6db74">}</span> --check sample-playbook.yaml
+</span></span></code></pre></div><h2 id="実装編後編複数のec2インスタンスを管理する">実装編（後編）――複数のEC2インスタンスを管理する</h2>
+<p>後編では複数のEC2インスタンスに対してAnsibleを流す方法を解説します。</p>
+<h3 id="同じawsアカウントの複数のec2インスタンスを管理する">同じAWSアカウントの複数のEC2インスタンスを管理する</h3>
+<p>まず、対象とするEC2インスタンスが同じAWSアカウントの中にある場合ですが、これはインスタンスが一つのときと同じです。何か特別な追加の準備は要りません。EC2用動的インベントリがそのAWSアカウントにあるEC2インスタンスの情報を全て取得してくれるからです。</p>
+<p>むしろ、Ansibleプレイブックに何も考えずに <code>hosts: all</code> などと書いているとホスト全てに対して実行されるので、複数EC2インスタンスが存在する場合に「1つだけに流す」場合には <code>hosts</code> か <code>-l</code> コマンドラインオプションで対象ホストを明示的に指定しないといけません。</p>
+<h3 id="複数のawsアカウントへの接続">複数のAWSアカウントへの接続</h3>
+<p>問題はここからで、複数のAWSアカウントに分散してEC2インスタンスがある場合には、話が複雑になってきます。EC2インスタンスを操作する際、それぞれのインスタンスが所属するAWSアカウントに応じて権限を使い分ける必要があるからです。とはいえ、若干複雑ではあるものの、AWSにはこのような権限の使い分けを行う方法があり、またAnsible側もそれに対応しているため、複数AWSアカウントへの接続は実現可能です。</p>
+<p>AWS CLIには「プロファイル」というものがあり、これを切り替えることで、別のAWSアカウントのIAMユーザーの、あるいは同じAWSアカウントの別のIAMユーザーの権限でAPIを叩くことができるようになります。</p>
+<p>例えば、 <code>~/.aws/config</code> に</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#66d9ef">[profile profile1]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">region</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">ap-northeast-1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[profile profile2]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">region</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">ap-northeast-1</span>
+</span></span></code></pre></div><p>のように2つのプロファイルが定義されているとき<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup>、</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># profile1 で実行（事前にprofile1でログインできる認証情報を用意する必要あり）</span>
+</span></span><span style="display:flex;"><span>$ aws s3 ls --profile profile1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># profile2 で実行（事前にprofile2でログインできる認証情報を用意する必要あり）</span>
+</span></span><span style="display:flex;"><span>$ aws s3 ls --profile profile2
+</span></span></code></pre></div><p>のようにオプションを渡せばそれぞれ別の権限で実行することができます。</p>
+<p>しかし、これを漫然と使うだけだと、プロファイルごとに別の認証情報を得る必要があります。例えば20個のAWSアカウントにまたがるEC2インスタンス群を操作するならば、20個のアクセスキーを発行して設定する必要があるといった具合です。MFAの手間も考えるとこれは現実的ではありません。こうではなく、1つの認証情報を用いて複数のAWSアカウントの操作の認可を得る方法がほしいわけです。</p>
+<p>これを実現するのが、IAMロールの引き受けという仕組みです。あるAWSアカウントのリソースを操作する権限（IAMロール）を別のAWSアカウントの権限主体（IAMユーザーなど）に与えることができるのです。これを利用して、ユーザーは一旦ひとつのアカウントにログインし、個別のアカウントにはそこからロールを引き受けることでアクセスする、という仕組みを作れます。世の中では、「踏み台アカウント」とか「Jumpアカウント」とか呼ばれている方法です<sup id="fnref:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup>。</p>
+<p>今回は、EC2やAuroraといった実際のWebサイト向けのリソースを置くAWSアカウント群とは別に、管理用のリソースを置くためのAWSアカウント（以下では「管理用AWSアカウント」と書くことにします）を用意しました。その管理用AWSアカウントにログインし、そこから更に各AWSアカウントのIAMロールを引き受けるようにすることで、一つの認証情報で各AWSアカウントのEC2インスタンスを操作を行えるようにしました。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2025-12_ansible-for-multi-account-aws/fig4.png" alt="IAMロール引き受けのイメージ図"  />
+  
+</div>
+
+<p>つまり、以下のように <code>management</code> プロファイルと、それを <code>source_profile</code> に設定した <code>profile1</code> 、 <code>profile2</code> を定義することで、</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#66d9ef">[profile management]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">region</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">ap-northeast-1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[profile profile1]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">role_arn</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">arn:aws:iam::${アカウント1のアカウントID}:role/ansible-role</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">source_profile</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">management</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">region</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">ap-northeast-1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[profile profile2]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">role_arn</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">arn:aws:iam::${アカウント2のアカウントID}:role/ansible-role</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">source_profile</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">management</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">region</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">ap-northeast-1</span>
+</span></span></code></pre></div><p>以下のように <code>management</code> でログインできる認証情報で  <code>profile1</code> 、 <code>profile2</code> でも実行できるようになります。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># managementで実行（事前にmanagementでログインできる認証情報を用意する必要あり）</span>
+</span></span><span style="display:flex;"><span>$ aws s3 ls --profile management
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># profile1 で実行（事前にmanagementでログインできる認証情報を用意する必要あり）</span>
+</span></span><span style="display:flex;"><span>$ aws s3 ls --profile profile1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># profile2 で実行（事前にmanagementでログインできる認証情報を用意する必要あり）</span>
+</span></span><span style="display:flex;"><span>$ aws s3 ls --profile profile2
+</span></span></code></pre></div><p>これで、AWS CLIを用いて複数のAWSアカウントのリソースを操作する仕組みはできました<sup id="fnref:10"><a href="#fn:10" class="footnote-ref" role="doc-noteref">10</a></sup>。次は、これを利用してAnsibleを動かす設定をしていきます。</p>
+<h3 id="動的インベントリの設定">動的インベントリの設定</h3>
+<p>EC2用動的インベントリの設定は、<code>aws_ec2.yaml</code>で終わる名前のファイルに書くという決まりになっています。複数AWSアカウントに対応させるには、そのようなファイルをAWSアカウントごとに1つずつ作っていきます（実際はスクリプトで自動生成しました）。</p>
+<p>例えば、 <code>inventories/account1_aws_ec2.yaml</code>に以下のように書きます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">plugin</span>: <span style="color:#ae81ff">aws_ec2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">aws_profile</span>: <span style="color:#ae81ff">profile1</span> <span style="color:#75715e"># プロファイルを指定</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">regions</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">ap-northeast-1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">filters</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">instance-state-name</span>: <span style="color:#ae81ff">running</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">hostnames</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">tag:Name</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">keyed_groups</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">key</span>: <span style="color:#ae81ff">tags.Organization</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">prefix</span>: <span style="color:#ae81ff">org</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">key</span>: <span style="color:#ae81ff">tags.Service</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">prefix</span>: <span style="color:#ae81ff">svc</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">key</span>: <span style="color:#ae81ff">tags.Env</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">prefix</span>: <span style="color:#ae81ff">env</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">compose</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ansible_connection</span>: <span style="color:#e6db74">&#34;&#39;aws_ssm&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ansible_aws_ssm_profile</span>: <span style="color:#e6db74">&#34;&#39;profile1&#39;&#34;</span> <span style="color:#75715e"># プロファイルを指定</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ansible_aws_ssm_region</span>: <span style="color:#e6db74">&#34;&#39;ap-northeast-1&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ansible_aws_ssm_bucket_name</span>: <span style="color:#e6db74">&#34;&#39;sample-ansible-bucket-account1&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ansible_host</span>: <span style="color:#ae81ff">instance_id</span>
+</span></span></code></pre></div><p>これらをアカウントの数だけつくって <code>inventories</code> ディレクトリに格納します。同じディレクトリに入れることで、<code>ansible-playbook -i</code>のオプションにそのディレクトリを指定するだけで全てのAWSアカウントにあるEC2インスタンスを見つけられるようになります。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ ansible-inventory --graph -i inventories
+</span></span></code></pre></div><h3 id="ssm接続プラグインの設定">SSM接続プラグインの設定</h3>
+<p>Session Manager で接続するときのプロファイルは、前節の例のように、動的インベントリの<code>compose</code>ブロックの <code>ansible_aws_ssm_profile</code> で指定します。 <code>aws_profile</code> のほうに指定するのがEC2インベントリで利用するプロファイル、 <code>ansible_aws_ssm_profile</code> のほうに指定するのがSSM接続プラグインで利用するプロファイルであることに注意してください。</p>
+<h3 id="実現">実現</h3>
+<p>以上のようにセットアップすることで、たくさんのAWSアカウントにまたがって存在するたくさんのEC2インスタンスに設定を流し込むことができます。特定の環境にのみ流すことも、コマンドラインオプション指定だけでできます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># 全部に流す</span>
+</span></span><span style="display:flex;"><span>$ ansible-playbook -i inventories sample-playbook.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># dev環境のみに流す</span>
+</span></span><span style="display:flex;"><span>$ ansible-playbook -i inventories -l env_dev sample-playbook.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># service1サービスのみに流す</span>
+</span></span><span style="display:flex;"><span>$ ansible-playbook -i inventories -l svc_service1 sample-playbook.yaml
+</span></span></code></pre></div><p>これで、systemdの設定を一括で変更したくなったり、全サイトのApacheログをまとめてダウンロードしたくなったりしても、簡単に対応できるようになりました！</p>
+<h2 id="cicd">CI/CD</h2>
+<p>CI/CDは、GitHub Actionsで実装しました。</p>
+<p>CIとしては、Ansible関係の変更があるPull Requestの場合に開発環境へのドライランの実行を行うようにしました。CDとしては、workflow dispatchによってGitHub ActionsのUI上から実行できるようにしました。</p>
+<p>AWSへの接続では、GitHub Actionsから管理用AWSアカウントへOpenID Connect (OIDC)で接続し、そこから各アカウントのIAMロールを引き受けるという形にしました。OIDCを使うと簡単にGitHub ActionsでAWS管理の自動化ができるため、有り難い仕組みだなと思います。</p>
+<h2 id="まとめ">まとめ</h2>
+<p>以上のようにして、Ansibleを利用して、オンプレミスにある仮想マシンのようにEC2インスタンスをまとめて操作することができるようになりました。</p>
+<p>振り返ると、オンプレミスと比べたときの難しいところは、主に</p>
+<ul>
+<li>EC2インスタンスごとに必要な権限が異なること</li>
+<li>IPアドレスではインスタンスを見つけられないこと</li>
+<li>通常のSSHでの接続ではなくSession Managerという独自形式での接続になること</li>
+</ul>
+<p>に要約されます。これらの問題を、IAMロール引き受けとAnsibleのAWS関連モジュール（特にaws_ec2インベントリとaws_ssmプラグイン）を使うことにより解決できるという点が、本稿の伝えたかったことです。</p>
+<p>本稿の情報が、多数のEC2インスタンスを抱える似たようなシステムの構築の際に役立てば嬉しいです。</p>
+<p><strong>ドワンゴでは、クラウド上に可用性・保守性・セキュリティに優れたシステムを構築・運用し、世界に誇る日本のコンテンツをたくさんの人々に届けにいく仲間を募集しています。ご興味がある方は、ぜひ<a href="https://recruit.dwango.co.jp/">採用情報</a>ページをご覧ください。</strong></p>
+<h2 id="参考文献">参考文献</h2>
+<ul>
+<li>公式ドキュメント系（Ansible）
+<ul>
+<li><a href="https://docs.ansible.com/">Ansible Community | Ansible documentation</a></li>
+<li><a href="https://www.redhat.com/en/ansible-collaborative/how-ansible-works">Ansible Collaborative - How Ansible Works</a></li>
+<li><a href="https://docs.ansible.com/projects/ansible/latest/collections/amazon/aws/aws_ec2_inventory.html">amazon.aws.aws_ec2 inventory – EC2 inventory source — Ansible Community Documentation</a></li>
+<li><a href="https://docs.ansible.com/projects/ansible/latest/collections/amazon/aws/aws_ssm_connection.html">amazon.aws.aws_ssm connection – connect to EC2 instances via AWS Systems Manager — Ansible Community Documentation</a></li>
+</ul>
+</li>
+<li>公式ドキュメント系（AWS）
+<ul>
+<li><a href="https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/cli-configure-files.html">Configuration and credential file settings in the AWS CLI - AWS Command Line Interface</a></li>
+<li><a href="https://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/id_roles_manage-assume.html">ロールを引き受けるための各種方法 - AWS Identity and Access Management</a></li>
+</ul>
+</li>
+<li>公式ドキュメント系（GitHub）
+<ul>
+<li><a href="https://docs.github.com/ja/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-aws">アマゾン ウェブ サービスでの OpenID Connect の構成 - GitHub ドキュメント</a></li>
+</ul>
+</li>
+<li>その他
+<ul>
+<li><a href="https://www.digihunch.com/2024/05/managing-ec2-instances-across-aws-accounts-ssm/">Multi-account EC2 Instance Management with SSM and Ansible</a></li>
+</ul>
+</li>
+</ul>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>AWSの「アカウント」は支払い管理やリソース隔離の単位となる最上位の管理境界のことを指す用語です。一人一人のユーザーに発行してログインに使う資格情報のことではありません（そちらはAWSでは「IAMユーザー」と呼びます）。「テナント」とか「契約単位」とか言った方がAWSを知らない人には通じやすそうに思います。Google Cloudの「プロジェクト」、Azureの「サブスクリプション」に概ね対応する単位です。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>SSH以外にも、APIを叩くなどいろいろできます。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>Ansibleというのはブランド名のようなもので、「Ansible」という名前がついたソフトウェアやサービスがたくさんあります。本記事で扱うのは Ansible Community です。&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>筆者は「ターゲットノード」という呼び名で覚えていたのですが、本記事を書くために調べたところ「マネージドノード」のほうが正式な名称のようでした。&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p>厳密には、最初の2500文字だけはAPIで確認できます。&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6">
+<p>「クラウドはオンプレミスより劣化した」と言いたいわけではないです。先ほどの選択肢にあった「コントロールノード用のEC2インスタンスを用意して、そこから普通のSSHで接続する方法」を選ぶならば、つまりコントロールノード用EC2インスタンスを払い出して、マネージドノードのIPアドレスを固定して、コントロールノードとマネージドノードの間のTCP22番ポートの通信もセキュリティグループで許可するならば、Ansibleの伝統的な使い方もできます。あくまで、「クラウドらしい」あるいは「クラウドの利点を生かせる」構成を取るためには、少し発展的なAnsibleの使い方が必要になる、ということです。&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:7">
+<p>amazon.aws.aws_ssm connection のドキュメントにはプレイブック側の <code>vars</code> で <code>ansible_connection</code> 等の変数を設定する例が書かれていますが、これでは複数AWSアカウントに対応させるのが難しいです。ここで書いた例のように、インベントリの <code>compose</code>で指定するのがよいでしょう。&#160;<a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:8">
+<p>実際は  <code>~/.aws/credentials</code> に認証情報が書かれている必要もあります。&#160;<a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:9">
+<p>なお、IAM Identity CenterのSSO機能でも似たことができるのですが、IAMユーザーを利用しなければならない場合やCI/CD関係を考慮して、IAMロールの引き受けを選びました。&#160;<a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:10">
+<p>実際はこのような仕組みはTerraformの実行用に既に整えていたため、それをAnsible用に横展開するだけでした。&#160;<a href="#fnref:10" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+</article>
+    </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="多数のAWSアカウントに散在するEC2インスタンス群をAnsibleで一括管理する話 - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/2025-12_ansible-for-multi-account-aws/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/2025-12_ansible-for-multi-account-aws/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2f2025-12_ansible-for-multi-account-aws%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

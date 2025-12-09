@@ -59,7 +59,7 @@ body {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font-family: "Helvetica Neue", Helvetica, Arial, "\30D2\30E9\30AE\30CE\89D2\30B4   ProN W3", "Hiragino Kaku Gothic ProN", "Meiryo UI", メイリオ, Meiryo, 游ゴシック, "Yu Gothic", 游ゴシック, "Yu Gothic", 游ゴシック体, YuGothic, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "Meiryo UI", メイリオ, Meiryo, 游ゴシック, "Yu Gothic", 游ゴシック, "Yu Gothic", 游ゴシック体, YuGothic, sans-serif;
   background-color: #F5F5F5;
   color: #333;
 }
@@ -67,144 +67,148 @@ body {
 h2 {
   font-family: 'Squada One', cursive;
 }
+
 :root {
+  --dwango-blue: #0075C2;
 }
 
-.Footer__footer___3xXba {
+.Footer__footer___ybKDd {
   box-sizing: border-box;
   border-top: solid 1px #CCC;
   width: 100%;
   padding: 16px 0 16px;
 }
 
-.Footer__logoAndLink___3xuBb {
+.Footer__logoAndLink___Upm80 {
   text-align: left;
 }
 
-.Footer__logoArea___21-q2 {
+.Footer__logoArea___X8TNS {
   box-sizing: border-box;
   display: inline-block;
   vertical-align: middle;
   width: 160px;
   padding-left: 8px;
-  padding-right: 32px
+  padding-right: 32px;
 }
 
-.Footer__logoArea___21-q2 svg {
+.Footer__logoArea___X8TNS svg {
     width: 120px;
     height: 21.22px;
   }
 
-.Footer__logoArea___21-q2 path {
+.Footer__logoArea___X8TNS path {
     fill: #999;
   }
 
 @media(max-width: 640px) {
 
-.Footer__logoArea___21-q2 {
+.Footer__logoArea___X8TNS {
     display: block;
     margin: 0 auto;
     width: 120px;
     padding-left: 0;
-    padding-right: 0
+    padding-right: 0;
 }
   }
 
-.Footer__logoLink___11D_Q {
+.Footer__logoLink___YJjAx {
   will-change: opacity;
-  transition: opacity 0.3s ease
+  transition: opacity 0.3s ease;
 }
 
-.Footer__logoLink___11D_Q:hover {
+.Footer__logoLink___YJjAx:hover {
    opacity: 0.6;
  }
 
-.Footer__links___udgsC {
+.Footer__links___orwnY {
   display: inline-block;
   vertical-align: middle;
   text-align: center;
-  padding: 8px 0
+  padding: 8px 0;
 }
 
 @media(max-width: 640px) {
 
-.Footer__links___udgsC {
-    display: block
+.Footer__links___orwnY {
+    display: block;
 }
   }
 
-.Footer__links__item___EG-T6 {
+.Footer__links__item___c4Mtw {
   display: inline-block;
   padding: 8px;
   font-size: 12px;
 }
 
-.Footer__links__link___197cQ, .Footer__links__link___197cQ:hover, .Footer__links__link___197cQ:visited, .Footer__links__link___197cQ:active, .Footer__links__link___197cQ:link {
+.Footer__links__link___HZ5bz,.Footer__links__link___HZ5bz:hover,.Footer__links__link___HZ5bz:visited,.Footer__links__link___HZ5bz:active,.Footer__links__link___HZ5bz:link {
     color: #999;
     text-decoration: none;
   }
 
-.Footer__links__link___197cQ:hover {
+.Footer__links__link___HZ5bz:hover {
     color: #AAA;
     text-decoration: underline;
   }
 
-.Footer__bottomText___1IQdK {
+.Footer__bottomText___hCgi6 {
   text-align: center;
   font-size: 12px;
   color: #999;
 }
+
 :root {
+  --dwango-blue: #0075C2;
 }
 
-.Header__header___3KxzJ {
+.Header__header___gjegt {
   background-color: #0075C2;
   padding: 64px 0 48px;
   width: 100%;
-  overflow: hidden
+  overflow: hidden;
 }
 
 @media(max-width: 640px) {
 
-.Header__header___3KxzJ {
-    padding: 32px 0 24px
+.Header__header___gjegt {
+    padding: 32px 0 24px;
 }
   }
 
-.Header__logoArea___ZtU8c {
+.Header__logoArea___rgkcc {
   display: block;
   width: 480px;
-  margin: 0 auto
+  margin: 0 auto;
 }
 
 @media(max-width: 640px) {
 
-.Header__logoArea___ZtU8c {
-    width: 80%
+.Header__logoArea___rgkcc {
+    width: 80%;
 }
   }
 
-.Header__logoArea___ZtU8c svg {
+.Header__logoArea___rgkcc svg {
     width: 100%;
   }
 
-.Header__logoArea___ZtU8c path {
+.Header__logoArea___rgkcc path {
     fill: #FFF;
   }
 
-.Header__logoArea___ZtU8c text {
+.Header__logoArea___rgkcc text {
     fill: #FFF;
     font-family: 'Squada One', cursive;
   }
 
-.Header__logoArea__text___-u-3n {
+.Header__logoArea__text___DDJ93 {
   width: 40%;
   color: #FFF;
   display: inline-block;
   font-size: 24px;
 }
 
-.Header__header__subText___wWMmz {
+.Header__header__subText___UgWfj {
   font-family: 'Squada One', cursive;
   display: block;
   width: 640px;
@@ -213,78 +217,80 @@ h2 {
   color: #FFF;
   font-size: 18px;
   line-height: 1.2;
-  text-align: center
+  text-align: center;
 }
 
 @media(max-width: 640px) {
 
-.Header__header__subText___wWMmz {
+.Header__header__subText___UgWfj {
     width: 90%;
     font-size: 14px;
-    padding: 8px 0
+    padding: 8px 0;
 }
   }
 
+
 :root {
+  --dwango-blue: #0075C2;
 }
 
-.Orgs__container___2y_IN {
+.Orgs__container___qZtnU {
   padding-bottom: 32px;
 }
 
-.Orgs__header___8X_aD {
+.Orgs__header___wkEez {
   display: block;
   padding-top: 32px;
   font-size: 32px;
   font-family: 'Squada One', cursive;
-  color: #333
+  color: #333;
 }
 
 @media(max-width: 640px) {
 
-.Orgs__header___8X_aD {
+.Orgs__header___wkEez {
     padding-top: 16px;
-    font-size: 24px
+    font-size: 24px;
 }
   }
 
-.Orgs__organizations___2wAHn {
+.Orgs__organizations___uQ8E1 {
   text-align: center;
-  padding-top: 16px
+  padding-top: 16px;
 }
 
 @media(max-width: 640px) {
 
-.Orgs__organizations___2wAHn {
-    padding-top: 8px
+.Orgs__organizations___uQ8E1 {
+    padding-top: 8px;
 }
   }
 
-.Orgs__organizations__item___1hlTW {
+.Orgs__organizations__item___UzBz3 {
   vertical-align: top;
   display: inline-block;
   box-sizing: border-box;
   width: 20%;
   padding: 16px;
-  overflow: hidden
+  overflow: hidden;
 }
 
 @media(max-width: 640px) {
 
-.Orgs__organizations__item___1hlTW {
-    width: 33.33%
+.Orgs__organizations__item___UzBz3 {
+    width: 33.33%;
 }
   }
 
-.Orgs__linkArea___24wx1 {
-  text-decoration: none
+.Orgs__linkArea___LIcIT {
+  text-decoration: none;
 }
 
-.Orgs__linkArea___24wx1:hover > .Orgs__avatarImage___2P-UG, .Orgs__linkArea___24wx1:hover > .Orgs__name___1yafU {
+.Orgs__linkArea___LIcIT:hover > .Orgs__avatarImage___FAV5E,.Orgs__linkArea___LIcIT:hover > .Orgs__name___zhAmS {
     opacity: 0.6;
   }
 
-.Orgs__avatarImage___2P-UG {
+.Orgs__avatarImage___FAV5E {
   background-size: cover;
   background-position: center;
   color: #fff;
@@ -293,16 +299,16 @@ h2 {
   border-radius: 50%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   will-change: opacity;
-  transition: opacity 0.3s ease
+  transition: opacity 0.3s ease;
 }
 
-.Orgs__avatarImage___2P-UG::after {
+.Orgs__avatarImage___FAV5E::after {
     content: '';
     display: block;
     padding-top: 100%;
   }
 
-.Orgs__name___1yafU {
+.Orgs__name___zhAmS {
   font-weight: bold;
   font-size: 14px;
   color: #666;
@@ -311,14 +317,14 @@ h2 {
   transition: opacity 0.3s ease;
 }
 
-.Orgs__repoCount___2-7YK {
+.Orgs__repoCount___cYmlF {
   padding-top: 2px;
   color: #999;
   font-family: 'Squada One', cursive;
   font-size: 14px;
 }
 
-.Orgs__description___74pqF {
+.Orgs__description___cdPwW {
   text-align: left;
   font-size: 12px;
   line-height: 1.5;
@@ -327,92 +333,108 @@ h2 {
   padding-top: 8px;
   overflow: hidden;
 }
+
 :root {
+  --dwango-blue: #0075C2;
 }
 
-.Repos__container___2RolD {
+.Repos__container___WLnTJ {
   padding-bottom: 32px;
 }
 
-.Repos__header___3N3Bq {
+.Repos__header___o4mJH {
   display: block;
   padding-top: 32px;
   font-size: 32px;
   font-family: 'Squada One', cursive;
-  color: #333
+  color: #333;
 }
 
 @media(max-width: 640px) {
 
-.Repos__header___3N3Bq {
+.Repos__header___o4mJH {
     padding-top: 16px;
-    font-size: 24px
+    font-size: 24px;
 }
   }
 
-.Repos__repositories___1ThzF {
-  padding-top: 16px
+.Repos__repositories___x0ytQ {
+  padding-top: 16px;
 }
 
 @media(max-width: 640px) {
 
-.Repos__repositories___1ThzF {
-    padding-top: 8px
+.Repos__repositories___x0ytQ {
+    padding-top: 8px;
 }
   }
 
-.Repos__repositories___1ThzF::after {
+.Repos__repositories___x0ytQ::after {
     content: '';
     clear: both;
     display: block;
   }
 
-.Repos__repositories__item___2mf8Z {
+.Repos__repositories__item___NjOmB {
   float: left;
   box-sizing: border-box;
   width: 25%;
   height: 200px;
   padding: 8px 1px;
   will-change: opacity;
-  -webkit-animation-name: Repos__appear___39VSE;
-          animation-name: Repos__appear___39VSE;
-  -webkit-animation-duration: 0.8s;
-          animation-duration: 0.8s
+  animation-name: Repos__appear___uBejz;
+  animation-duration: 0.8s;
 }
 
-.Repos__repositories__item___2mf8Z:nth-child(1), .Repos__repositories__item___2mf8Z:nth-child(2), .Repos__repositories__item___2mf8Z:nth-child(3) {
+.Repos__repositories__item___NjOmB:nth-child(1),.Repos__repositories__item___NjOmB:nth-child(2),.Repos__repositories__item___NjOmB:nth-child(3) {
     width: 33.33%;
-    height: 240px
+    height: 240px;
   }
 
 @media(max-width: 640px) {
 
-.Repos__repositories__item___2mf8Z:nth-child(1), .Repos__repositories__item___2mf8Z:nth-child(2), .Repos__repositories__item___2mf8Z:nth-child(3) {
+.Repos__repositories__item___NjOmB:nth-child(1),.Repos__repositories__item___NjOmB:nth-child(2),.Repos__repositories__item___NjOmB:nth-child(3) {
       width: 100%;
-      height: 200px
+      height: 200px;
   }
     }
 
-.Repos__repositories__item___2mf8Z:nth-child(1) .Repos__fullName___3NKba, .Repos__repositories__item___2mf8Z:nth-child(2) .Repos__fullName___3NKba, .Repos__repositories__item___2mf8Z:nth-child(3) .Repos__fullName___3NKba {
-      font-size: 16px
+.Repos__repositories__item___NjOmB:nth-child(1) .Repos__fullName___L_idh {
+      font-size: 16px;
+    }
+
+.Repos__repositories__item___NjOmB:nth-child(2) .Repos__fullName___L_idh {
+      font-size: 16px;
+    }
+
+.Repos__repositories__item___NjOmB:nth-child(3) .Repos__fullName___L_idh {
+      font-size: 16px;
     }
 
 @media(max-width: 640px) {
 
-.Repos__repositories__item___2mf8Z:nth-child(1) .Repos__fullName___3NKba, .Repos__repositories__item___2mf8Z:nth-child(2) .Repos__fullName___3NKba, .Repos__repositories__item___2mf8Z:nth-child(3) .Repos__fullName___3NKba {
-        font-size: 14px
+.Repos__repositories__item___NjOmB:nth-child(1) .Repos__fullName___L_idh {
+        font-size: 14px;
+    }
+
+.Repos__repositories__item___NjOmB:nth-child(2) .Repos__fullName___L_idh {
+        font-size: 14px;
+    }
+
+.Repos__repositories__item___NjOmB:nth-child(3) .Repos__fullName___L_idh {
+        font-size: 14px;
     }
       }
 
 @media(max-width: 640px) {
 
-.Repos__repositories__item___2mf8Z {
+.Repos__repositories__item___NjOmB {
     width: 100%;
-    padding: 8px 0
+    padding: 8px 0;
 }
   }
 
-@-webkit-keyframes Repos__appear___39VSE {
+@keyframes Repos__appear___uBejz {
   0% {
     opacity: 0;
   }
@@ -421,16 +443,7 @@ h2 {
   }
 }
 
-@keyframes Repos__appear___39VSE {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.Repos__repositories__itemInner___1yw0E {
+.Repos__repositories__itemInner___bKFfC {
   display: block;
   box-sizing: border-box;
   width: 100%;
@@ -438,38 +451,38 @@ h2 {
   padding: 12px;
   overflow: hidden;
   background-color: #FFF;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 @media(max-width: 640px) {
 
-.Repos__repositories__itemInner___1yw0E {
-    padding: 8px
+.Repos__repositories__itemInner___bKFfC {
+    padding: 8px;
 }
   }
 
-.Repos__fullName___3NKba {
+.Repos__fullName___L_idh {
   word-break: break-all;
   font-weight: bold;
   font-size: 14px;
-  line-height: 1.25
+  line-height: 1.25;
 }
 
-.Repos__fullName___3NKba, .Repos__fullName___3NKba:hover, .Repos__fullName___3NKba:visited, .Repos__fullName___3NKba:active, .Repos__fullName___3NKba:link {
+.Repos__fullName___L_idh,.Repos__fullName___L_idh:hover,.Repos__fullName___L_idh:visited,.Repos__fullName___L_idh:active,.Repos__fullName___L_idh:link {
     color: #666;
     text-decoration: none;
   }
 
-.Repos__fullName___3NKba:hover {
+.Repos__fullName___L_idh:hover {
     color: #999;
     text-decoration: underline;
   }
 
-.Repos__infomation___1-0jT {
+.Repos__infomation___gEZp6 {
   padding-top: 2px;
 }
 
-.Repos__language___mq9mB {
+.Repos__language___tZyJK {
   display: inline-block;
   color: #999;
   font-family: 'Squada One', cursive;
@@ -477,17 +490,21 @@ h2 {
   margin-right: 8px;
 }
 
-.Repos__stargazersCount___29ISA {
+.Repos__stargazersCount___YKs22 {
   display: inline-block;
   color: #FF8F00;
-  font-size: 12px
+  font-size: 12px;
 }
 
-.Repos__stargazersCount___29ISA svg {
+.Repos__stargazersCount___YKs22 svg {
     vertical-align: top !important;
   }
 
-.Repos__homepageLink___1yGm3, .Repos__githubLink___1fQXB {
+.Repos__links___ZKbSj {
+  display: block;
+}
+
+.Repos__homepageLink___uQlri, .Repos__githubLink___RsCks {
   display: inline-block;
   padding: 4px 8px;
   border-radius: 2px;
@@ -495,32 +512,62 @@ h2 {
   transition: opacity 0.2s ease;
   margin-top: 8px;
   margin-right: 4px;
-  will-change: opacity
+  will-change: opacity;
 }
 
-.Repos__homepageLink___1yGm3, .Repos__homepageLink___1yGm3:hover, .Repos__homepageLink___1yGm3:visited, .Repos__homepageLink___1yGm3:active, .Repos__homepageLink___1yGm3:link, .Repos__githubLink___1fQXB, .Repos__githubLink___1fQXB:hover, .Repos__githubLink___1fQXB:visited, .Repos__githubLink___1fQXB:active, .Repos__githubLink___1fQXB:link {
+.Repos__homepageLink___uQlri:visited {
     color: #FFF;
     text-decoration: none;
   }
 
-.Repos__homepageLink___1yGm3:hover, .Repos__githubLink___1fQXB:hover {
+.Repos__githubLink___RsCks:visited {
+    color: #FFF;
+    text-decoration: none;
+  }
+
+.Repos__homepageLink___uQlri:active {
+    color: #FFF;
+    text-decoration: none;
+  }
+
+.Repos__githubLink___RsCks:active {
+    color: #FFF;
+    text-decoration: none;
+  }
+
+.Repos__homepageLink___uQlri:link {
+    color: #FFF;
+    text-decoration: none;
+  }
+
+.Repos__githubLink___RsCks:link {
+    color: #FFF;
+    text-decoration: none;
+  }
+
+.Repos__homepageLink___uQlri,.Repos__githubLink___RsCks,.Repos__homepageLink___uQlri:hover,.Repos__githubLink___RsCks:hover {
+    color: #FFF;
+    text-decoration: none;
+  }
+
+.Repos__homepageLink___uQlri:hover,.Repos__githubLink___RsCks:hover {
     opacity: 0.6;
   }
 
-.Repos__homepageLink___1yGm3 svg, .Repos__githubLink___1fQXB svg {
+.Repos__homepageLink___uQlri svg,.Repos__githubLink___RsCks svg {
     vertical-align: top !important;
     margin-right: 2px;
   }
 
-.Repos__homepageLink___1yGm3 {
+.Repos__homepageLink___uQlri {
   background-color: #00BCD4;
 }
 
-.Repos__githubLink___1fQXB {
+.Repos__githubLink___RsCks {
   background-color: #FF4081;
 }
 
-.Repos__description___2dKbw {
+.Repos__description___S4uUw {
   font-size: 12px;
   line-height: 1.5;
   max-height: 7.5em;
@@ -529,7 +576,7 @@ h2 {
   overflow: hidden;
 }
 
-.Repos__moreButton___2r7Pa {
+.Repos__moreButton___NyFyx {
   display: block;
   cursor: pointer;
   width: 80%;
@@ -543,28 +590,31 @@ h2 {
   font-family: 'Squada One', cursive;
   transition: opacity 0.3s ease;
   will-change: opacity;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-.Repos__moreButton___2r7Pa:hover {
+.Repos__moreButton___NyFyx:hover {
     opacity: 0.7;
   }
 
+
 :root {
+  --dwango-blue: #0075C2;
 }
 
-.App__container___iOvhW {
+.App__container___rJPnU {
   box-sizing: border-box;
   width: 1024px;
   margin: 0 auto;
-  padding: 0 8px
+  padding: 0 8px;
 }
 
 @media (max-width: 1024px) {
 
-.App__container___iOvhW {
-    width: 100%
+.App__container___rJPnU {
+    width: 100%;
 }
   }
+
 
 /*# sourceMappingURL=main.css.map*/
