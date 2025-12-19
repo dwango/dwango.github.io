@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="ja" lang="ja" >
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.122.0">
+
+  <meta property="og:title" content="実践Terraform：マルチAWSアカウント環境の構成管理とモジュール分割 - dwango on GitHub">
+
+  <meta property="og:description" content="ドワンゴ社内の様子や、文化、技術をご紹介します。" />
+
+  <meta property="og:image" content="https://dwango.github.io/images/logo.png">
+
+  <meta name="twitter:card" content="summary">
+  
+
+
+  
+  
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>実践Terraform：マルチAWSアカウント環境の構成管理とモジュール分割 - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> ニコニコ開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://blog.nnn.dev/"> 教育サービス開発者ブログ </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
+      
+        Copyright &copy; DWANGO Co., Ltd.
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+  <div class="post">
+    <time class="content-date" datetime="2025-12-19 00:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2025-12-19 Fri</time
+    >
+    <h1 class="article-title">実践Terraform：マルチAWSアカウント環境の構成管理とモジュール分割</h1>
+
+    <div>
+      
+      <article id="content"><p>これは <strong><a href="https://qiita.com/advent-calendar/2025/dwango">ドワンゴ Advent Calendar 2025</a></strong> の20日目の記事です。</p>
+<h2 id="はじめに">はじめに</h2>
+<p>こんにちは！技術本部クラウド構築運用部クラウドプラットフォームセクションの堀内です。</p>
+<p>弊社では昨年6月、オンプレの仮想化基盤で大規模障害が発生し、急遽WebサービスをAWSへお引越しすることになりました。
+もともと1台のVMにキャッシュ・DB・Webサーバ・CMSが全部乗っているモノリス構成だったのですが、AWS移行にあたってCloudFront + ALB + EC2 + Auroraというクラウドネイティブな構成にリニューアルしました。
+この移行プロジェクトでは、すべてのWebサービスを1つのアカウントで管理するのではなく、複数のAWSアカウントに分散して構築する要件がありました。
+同じ構成のWebサービスが複数あったことからインフラ構成を統一して再利用性を高めつつ、複数AWSアカウントにそれぞれWebサービスをデプロイできる仕組みが求められました。
+この記事では、そんなWebサービス移行プロジェクトで得られたTerraformによるモジュール分割とマルチアカウント管理のノウハウを、実体験ベースでご紹介します。</p>
+<p>前回の記事では<a href="https://dwango.github.io/articles/2025-12_ansible-for-multi-account-aws/">AnsibleによるAWSマルチアカウント管理</a>について紹介しましたが、今回はTerraformを使ったマルチアカウント管理について紹介します。</p>
+<h3 id="全体像">全体像</h3>
+<p>今回のマルチアカウント構成の概要は以下の通りです。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2025-12_terraform-multi-account-aws/abstract.drawio.png" alt="マルチアカウント構成の概要図"  />
+  
+</div>
+
+<p>アカウントはざっくり分けると、管理用リソースが作成される管理用アカウントと、実際のWebサービスのAWSリソースが乗る複数のサービスアカウントがあります。
+管理用アカウントでは、tfstateの管理やメトリクス・アラートの集約、OIDC（OpenID Connect）でTerraformのplan/applyを行うロールの管理などを担当します。
+実際にWebサービスのAWSリソースを管理する各サービスアカウントでは、WebサービスごとにCloudFrontやVPC、ALBなどのリソースを作成します。</p>
+<hr>
+<h2 id="第1章-マルチawsアカウント管理のアーキテクチャ設計">第1章: マルチAWSアカウント管理のアーキテクチャ設計</h2>
+<p>まずは、マルチAWSアカウント管理のアーキテクチャ設計から始めます。</p>
+<h3 id="terraform権限設計">Terraform権限設計</h3>
+<p>Terraform用IAMロールは、plan用のロールとapply用のロールに分割しました。
+ロールを分割し付与する権限を分けることで、plan時にインフラ環境が変更されないことを保証できるようにしました。</p>
+<p>ロールの引き受け方は、管理用アカウントから各サービスアカウントへAssumeRoleする構成にしました。
+これは、第3章で説明するGitHub Actionsからのアクセスを一元管理しやすくするためです。
+GitHub Actionsでplan/applyを実行する時は、まず管理用AWSアカウントの管理用ロールにAssumeRoleし、その後各環境のAWSアカウントにある実行用ロールを使う流れです。</p>
+<p>管理用ロールからのAssumeRoleを許可する信頼ポリシーの設定例は以下の通りです。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json:ExecutionRoleTrustPolicy.json" data-lang="json:ExecutionRoleTrustPolicy.json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Version&#34;</span>: <span style="color:#e6db74">&#34;2012-10-17&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Statement&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Principal&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;AWS&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:iam::&lt;ManagementAccountId&gt;:root&#34;</span>
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Action&#34;</span>: <span style="color:#e6db74">&#34;sts:AssumeRole&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Condition&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;ArnEquals&#34;</span>: {
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;aws:PrincipalArn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:iam::&lt;ManagementAccountId&gt;:role/&lt;plan or apply&gt;-role&#34;</span>
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>管理用ロールには、各アカウントの実行用ロールへのAssumeRole権限とtfstate管理を管理するためのS3の権限を付与しました。Terraform v1.10以降では、<a href="https://developer.hashicorp.com/terraform/language/backend/s3#state-locking">S3バックエンドのロックにDynamoDBが不要になった</a>ため、DynamoDBの権限は付与せず、ロックファイル用の権限を以下の例のように付与しました。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json:ManagementRolePolicy.json" data-lang="json:ManagementRolePolicy.json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Version&#34;</span>: <span style="color:#e6db74">&#34;2012-10-17&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Statement&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Sid&#34;</span>: <span style="color:#e6db74">&#34;AssumeExecutionRole&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Action&#34;</span>: <span style="color:#e6db74">&#34;sts:AssumeRole&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Resource&#34;</span>: [
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;arn:aws:iam::&lt;ServiceAccountId&gt;:role/&lt;plan or apply&gt;-role&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;arn:aws:iam::&lt;OtherServiceAccountId&gt;:role/&lt;plan or apply&gt;-role&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#960050;background-color:#1e0010">...</span>
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Sid&#34;</span>: <span style="color:#e6db74">&#34;ListTfStateBucket&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Action&#34;</span>: <span style="color:#e6db74">&#34;s3:ListBucket&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:s3:::&lt;TfstateBucket&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Sid&#34;</span>: <span style="color:#e6db74">&#34;ReadWriteTfStateBucket&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;s3:GetObject&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;s3:PutObject&#34;</span>
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:s3:::&lt;TfstateBucket&gt;/*&#34;</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Sid&#34;</span>: <span style="color:#e6db74">&#34;DeleteLockFile&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;s3:DeleteObject&#34;</span>
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:s3:::&lt;TfstateBucket&gt;/*.tflock&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>AssumeRole対象のアカウントが複数ある場合、アカウントIDはjsonファイルで管理し、Terraformの<code>for_each</code>でjsonファイルを参照して動的に生成すると便利です。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json:account_list.json" data-lang="json:account_list.json"><span style="display:flex;"><span>[
+</span></span><span style="display:flex;"><span>  { <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;&lt;ServiceAccountId&gt;&#34;</span>, <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;ServiceAccount1&#34;</span> },
+</span></span><span style="display:flex;"><span>  { <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;&lt;OtherServiceAccountId&gt;&#34;</span>, <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;ServiceAccount2&#34;</span> }
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform" data-lang="terraform"><span style="display:flex;"><span><span style="color:#66d9ef">data</span> <span style="color:#e6db74">&#34;aws_iam_policy_document&#34;</span> <span style="color:#e6db74">&#34;management_role&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">statement</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">sid</span>    = <span style="color:#e6db74">&#34;AssumeExecutionRole&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">effect</span> = <span style="color:#e6db74">&#34;Allow&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">actions</span> = [
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;sts:AssumeRole&#34;</span>,
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">resources</span> = [
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">account</span> <span style="color:#66d9ef">in</span> jsondecode(file(<span style="color:#a6e22e">local</span>.<span style="color:#a6e22e">account_list</span>.<span style="color:#a6e22e">json</span>)) <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;arn:aws:iam::</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">account</span>.<span style="color:#a6e22e">id</span><span style="color:#e6db74">}</span><span style="color:#e6db74">:role/&lt;plan or apply&gt;-role&#34;</span>
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="ディレクトリ構成">ディレクトリ構成</h3>
+<p>Terraformのディレクトリ構成は<a href="https://cloud.google.com/docs/terraform/best-practices/general-style-structure?hl=ja">Google Cloudのベストプラクティス</a>をベースにしました。
+Google Cloudのベストプラクティスでは、環境ごとのルートモジュール、機能単位モジュールを分割して管理します。
+環境ごとのルートモジュールは<code>environments</code>ディレクトリに配置し、ルートモジュールから呼び出される機能単位モジュールは<code>modules</code>ディレクトリに配置します。</p>
+<p>今回のプロジェクトでは、複数のAWSアカウントに複数の環境があったため、<code>environments</code>ディレクトリ内でアカウントごと・サービスごとにさらにディレクトリを分けました。
+さらに、アカウントをまたぐリソースや第2章で説明するサービス単位モジュール用の<code>usecases</code>ディレクトリも用意しました。</p>
+<p>以上から全体のディレクトリ構成は以下のようになりました。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>├── environments
+</span></span><span style="display:flex;"><span>│   ├── ServiceAccount1
+</span></span><span style="display:flex;"><span>│   │   ├── ServiceA
+</span></span><span style="display:flex;"><span>│   │   │   ├── dev
+</span></span><span style="display:flex;"><span>│   │   │   ├── stg
+</span></span><span style="display:flex;"><span>│   │   │   └── prd
+</span></span><span style="display:flex;"><span>│   │   └── ServiceB
+</span></span><span style="display:flex;"><span>│   │       └── 略
+</span></span><span style="display:flex;"><span>│   └── ServiceAccount2
+</span></span><span style="display:flex;"><span>│       ├── ServiceA
+</span></span><span style="display:flex;"><span>│       │   └── 略
+</span></span><span style="display:flex;"><span>│       └── ServiceB
+</span></span><span style="display:flex;"><span>│           └── 略
+</span></span><span style="display:flex;"><span>├── cross-account
+</span></span><span style="display:flex;"><span>│   ├── TerraformManagement
+</span></span><span style="display:flex;"><span>│   ├── Notification
+</span></span><span style="display:flex;"><span>│   └── Alarm
+</span></span><span style="display:flex;"><span>├── modules
+</span></span><span style="display:flex;"><span>│   ├── ServiceA
+</span></span><span style="display:flex;"><span>│   │   ├── VPC
+</span></span><span style="display:flex;"><span>│   │   ├── EC2
+</span></span><span style="display:flex;"><span>│   │   ├── ALB
+</span></span><span style="display:flex;"><span>│   │   ├── CloudFront
+</span></span><span style="display:flex;"><span>│   │   └── RDS
+</span></span><span style="display:flex;"><span>│   └── ServiceB
+</span></span><span style="display:flex;"><span>│       └── 略
+</span></span><span style="display:flex;"><span>└── usecases
+</span></span><span style="display:flex;"><span>    ├── ServiceA
+</span></span><span style="display:flex;"><span>    └── ServiceB
+</span></span></code></pre></div><h3 id="アカウントをまたいだリソース">アカウントをまたいだリソース</h3>
+<p>CloudWatchアラームやSNSトピックなど、アカウントをまたぐ監視リソースは<code>cross-account</code>ディレクトリにまとめました。
+今回のプロジェクトのアカウントをまたぐ監視設定には、CloudWatch Observability Access Manager(OAM)やEventBridgeクロスアカウント配信を利用しました。
+CloudWatch Observability Access Manager(OAM)やEventBridgeクロスアカウント配信の詳細はAWS公式ドキュメントをどうぞ。</p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/ja_jp/prescriptive-guidance/latest/patterns/centralize-monitoring-by-using-amazon-cloudwatch-observability-access-manager.html">CloudWatch OAM</a></li>
+<li><a href="https://docs.aws.amazon.com/ja_jp/eventbridge/latest/userguide/eb-service-cross-account.html">EventBridge クロスアカウント配信</a></li>
+</ul>
+<hr>
+<h2 id="第2章-モジュール分割による再利用性とメンテナンス性の向上">第2章: モジュール分割による再利用性とメンテナンス性の向上</h2>
+<p>モジュールはVPCやS3、IAMロールなどの機能単位モジュールと、Webサービスを構成するために必要なリソースをまとめたサービス単位モジュールに分割しました。
+サービス単位モジュールは機能単位モジュールをまとめて呼び出し、依存関係を内部で完結させます。
+AWS CDK経験者向けに説明すると、機能単位モジュールはL2コンストラクト、サービス単位モジュールはL3コンストラクトまたはスタックに近いイメージです。
+機能単位モジュールは<code>modules</code>ディレクトリ、サービス単位モジュールは<code>usecases</code>ディレクトリに配置しています。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2025-12_terraform-multi-account-aws/usecase.drawio.png" alt="サービス単位モジュールを利用した場合の依存関係のイメージ図"  />
+  
+</div>
+
+<p>このプロジェクトの最初の段階ではルートモジュールから直接機能単位モジュールを呼び出しており、main.tfが非常に長くなってしまい、各ルートモジュールの記述の統一や管理が難しくなっていました。
+サービス単位モジュールを導入したことで、ルートモジュールの可読性と保守性を大幅に上げることができました。</p>
+<p>以下は機能単位モジュールの例です。</p>
+<p>VPC機能単位モジュール例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:modules/ServiceA/VPC/main.tf" data-lang="terraform:modules/ServiceA/VPC/main.tf"><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_vpc&#34;</span> <span style="color:#e6db74">&#34;main&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cidr_block</span> = var.<span style="color:#a6e22e">cidr_block</span>
+</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_subnet&#34;</span> <span style="color:#e6db74">&#34;public_1&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">vpc_id</span> = <span style="color:#a6e22e">aws_vpc</span>.<span style="color:#a6e22e">main</span>.<span style="color:#a6e22e">id</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cidr_block</span> = cidrsubnet(var.<span style="color:#a6e22e">cidr_block</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_subnet&#34;</span> <span style="color:#e6db74">&#34;public_2&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">vpc_id</span> = <span style="color:#a6e22e">aws_vpc</span>.<span style="color:#a6e22e">main</span>.<span style="color:#a6e22e">id</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cidr_block</span> = cidrsubnet(var.<span style="color:#a6e22e">cidr_block</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:modules/ServiceA/VPC/variables.tf" data-lang="terraform:modules/ServiceA/VPC/variables.tf"><span style="display:flex;"><span><span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;cidr_block&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span> = <span style="color:#a6e22e">string</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;The CIDR block for the VPC&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:modules/ServiceA/VPC/outputs.tf" data-lang="terraform:modules/ServiceA/VPC/outputs.tf"><span style="display:flex;"><span><span style="color:#66d9ef">output</span> <span style="color:#e6db74">&#34;vpc_id&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">value</span> = <span style="color:#a6e22e">aws_vpc</span>.<span style="color:#a6e22e">main</span>.<span style="color:#a6e22e">id</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;The ID of the VPC&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">output</span> <span style="color:#e6db74">&#34;public_subnet_ids&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">value</span> = <span style="color:#a6e22e">aws_subnet</span>.<span style="color:#a6e22e">public</span>[<span style="color:#f92672">*</span>].<span style="color:#a6e22e">id</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;List of public subnet IDs&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>ALB機能単位モジュール例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:modules/ServiceA/ALB/main.tf" data-lang="terraform:modules/ServiceA/ALB/main.tf"><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_lb&#34;</span> <span style="color:#e6db74">&#34;main&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>                       = var.<span style="color:#a6e22e">name</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">load_balancer_type</span>         = <span style="color:#e6db74">&#34;application&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">subnets</span>                    = var.<span style="color:#a6e22e">subnet_ids</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">enable_deletion_protection</span> = var.<span style="color:#a6e22e">enable_deletion_protection</span>
+</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:modules/ServiceA/ALB/variables.tf" data-lang="terraform:modules/ServiceA/ALB/variables.tf"><span style="display:flex;"><span><span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;name&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span> = <span style="color:#a6e22e">string</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;The name of the ALB&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;subnet_ids&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span> = list(<span style="color:#a6e22e">string</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;List of subnet IDs for the ALB&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;enable_deletion_protection&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span>    = <span style="color:#a6e22e">bool</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;Whether to enable deletion protection&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>サービス単位モジュールは、これらの機能単位モジュールを組み合わせてWebサービスを構成するリソースを作るためのモジュールです。
+入力変数として機能単位モジュールのパラメータをobject型で受け取り、サービス単位モジュール内で機能単位モジュールを呼び出すようにしました。
+複数の設定値（例: VPCやALBのパラメータなど）をobject型の変数にまとめてサービス単位モジュールに渡すことで、ルートモジュール側では個別の変数を一つずつ指定する必要がなくなり、記述がシンプルになります。
+このようにすることで、ルートモジュールからはobject型にまとめた設定値を渡すだけでサービス単位モジュールを利用でき、全体の見通しが良くなります。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:usecases/ServiceA/main.tf" data-lang="terraform:usecases/ServiceA/main.tf"><span style="display:flex;"><span><span style="color:#66d9ef">module</span> <span style="color:#e6db74">&#34;vpc&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">source</span> = <span style="color:#e6db74">&#34;../../modules/ServiceA/VPC&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cidr_block</span> = var.<span style="color:#a6e22e">vpc_config</span>.<span style="color:#a6e22e">vpc_cidr</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">module</span> <span style="color:#e6db74">&#34;alb&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">source</span> = <span style="color:#e6db74">&#34;../../modules/ServiceA/ALB&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span> = var.<span style="color:#a6e22e">alb_config</span>.<span style="color:#a6e22e">alb_name</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">subnet_ids</span> = module.<span style="color:#a6e22e">vpc</span>.<span style="color:#a6e22e">public_subnet_ids</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:usecases/ServiceA/variables.tf" data-lang="terraform:usecases/ServiceA/variables.tf"><span style="display:flex;"><span><span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;vpc_config&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span> = <span style="color:#a6e22e">object</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">vpc_cidr</span> = <span style="color:#a6e22e">string</span>
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;alb_config&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span> = <span style="color:#a6e22e">object</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alb_name</span>                   = <span style="color:#a6e22e">string</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">enable_deletion_protection</span> = <span style="color:#a6e22e">optional</span>(<span style="color:#a6e22e">bool</span>, <span style="color:#66d9ef">true</span>)
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>ルートモジュールからサービス単位モジュールを呼び出す際には、各環境の設定をsettings.tf内のlocalsで定義し、サービス単位モジュールの入力変数に渡すようにしました。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:environments/ServiceAccount1/ServiceA/dev/settings.tf" data-lang="terraform:environments/ServiceAccount1/ServiceA/dev/settings.tf"><span style="display:flex;"><span><span style="color:#a6e22e">locals</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">vpc_config</span> = {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">vpc_cidr</span> = <span style="color:#e6db74">&#34;&lt;VPC_CIDR&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alb_config</span> = {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">alb_name</span> = <span style="color:#e6db74">&#34;&lt;ALB_NAME&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:environments/ServiceAccount1/ServiceA/dev/main.tf" data-lang="terraform:environments/ServiceAccount1/ServiceA/dev/main.tf"><span style="display:flex;"><span><span style="color:#66d9ef">module</span> <span style="color:#e6db74">&#34;service_a&#34;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">source</span> = <span style="color:#e6db74">&#34;../../usecases/ServiceA&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">vpc_config</span> = <span style="color:#a6e22e">local</span>.<span style="color:#a6e22e">vpc_config</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alb_config</span> = <span style="color:#a6e22e">local</span>.<span style="color:#a6e22e">alb_config</span> 
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>このように、機能単位モジュールは渡された変数でリソースを作成するだけとし、サービス単位モジュールで依存関係を完結させることで、ルートモジュールからはサービス単位モジュールを呼び出すだけで済む構成にしています。
+サービス単位モジュールを使うことで、同じWebサービス構成を複数のAWSアカウントにデプロイする際にも、ルートモジュールの記述量を減らせて管理が楽になりました。</p>
+<p>この章で説明したモジュールをまとめます。</p>
+<ul>
+<li>機能単位モジュール：VPC、ALB、EC2、RDSなどの個別リソースを管理し、変数で受け取ったパラメータでリソースを作成</li>
+<li>サービス単位モジュール：機能単位モジュールを組み合わせて依存を解決し、Webサービス全体のリソースを管理</li>
+<li>ルートモジュール：各環境ごとにサービス単位モジュールを呼び出し、環境固有の設定を適用</li>
+</ul>
+<p>ルートモジュールから直接機能単位モジュールを呼び出している場合は、下図左のように依存数がルートモジュール数×機能単位モジュール数になりますが、サービス単位モジュールを使うことでルートモジュール数＋サービス単位モジュール数に減らせて管理が楽になりました。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/2025-12_terraform-multi-account-aws/module-dependency-comparison.drawio.png" alt="サービス単位モジュールを利用した場合と利用しない場合の依存関係の違い"  />
+  
+</div>
+
+<hr>
+<h2 id="第3章-github-actionsによるcicdパイプライン構築">第3章: GitHub ActionsによるCI/CDパイプライン構築</h2>
+<p>Terraformのplan/applyを自動化するため、CI/CDパイプラインも作りました。Pull Request作成時に<code>terraform plan</code>を自動実行してレビューを支援し、mainブランチへのマージ時に<code>terraform apply</code>を自動実行する流れです。</p>
+<p>GitHub ActionsからAWSへの認証にはOIDC（OpenID Connect）がおすすめです。アクセスキーをGitHub Secretsに保存する必要がなく、セキュアに運用できます。OIDCの設定手順は<a href="https://docs.github.com/ja/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-aws">公式ドキュメント</a>をどうぞ。</p>
+<p>各ルートモジュールにplanまたはapply用のvariableを追加し、GitHub Actionsのワークフローでplanを実行するかapplyを実行するかを切り替えられるようにしました。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:environments/ServiceAccount1/ServiceA/dev/variables.tf" data-lang="terraform:environments/ServiceAccount1/ServiceA/dev/variables.tf"><span style="display:flex;"><span><span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;execution_mode&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span>    = <span style="color:#a6e22e">string</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">default</span> = <span style="color:#e6db74">&#34;plan&#34;</span><span style="color:#75715e"> # or &#34;apply&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;Execution mode: plan or apply&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">validation</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">condition</span>     = contains([<span style="color:#e6db74">&#34;plan&#34;</span>, <span style="color:#e6db74">&#34;apply&#34;</span>], var.<span style="color:#a6e22e">execution_mode</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">error_message</span> = <span style="color:#e6db74">&#34;execution_mode must be either &#39;plan&#39; or &#39;apply&#39;.&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:environments/ServiceAccount1/ServiceA/dev/main.tf" data-lang="terraform:environments/ServiceAccount1/ServiceA/dev/main.tf"><span style="display:flex;"><span><span style="color:#66d9ef">provider</span> <span style="color:#e6db74">&#34;aws&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">region</span> = <span style="color:#e6db74">&#34;us-east-1&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">assume_role</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">role_arn</span> = var.<span style="color:#a6e22e">execution_mode</span> =<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;plan&#34;</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;arn:aws:iam::&lt;ServiceAccountId&gt;:role/plan-role&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;arn:aws:iam::&lt;ServiceAccountId&gt;:role/apply-role&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>以下はワークフローの例です。Pull Request作成時にplanを実行し、mainブランチへのマージ時にapplyを実行します。
+AWSの管理用ロールのARNはリポジトリのSecretsに保存します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Terraform CI/CD</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">pull_request</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">push</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">branches</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">inputs</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">targets</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#39;List of root modules to plan or apply, e.g. [&#34;environments/ServiceAccount1/ServiceA/dev&#34;, &#34;environments/ServiceAccount1/ServiceA/stg&#34;]&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">required</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">terraform</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">strategy</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">fail-fast</span>: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">max-parallel</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">matrix</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">root-module</span>: <span style="color:#ae81ff">${{ fromJson(inputs.targets) }}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">AWS_REGION</span>: <span style="color:#ae81ff">ap-northeast-1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Checkout code</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v5</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Configure Apply AWS credentials</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event_name == &#39;push&#39; &amp;&amp; github.ref == &#39;refs/heads/main&#39;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">aws-actions/configure-aws-credentials@v5</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">role-to-assume</span>: <span style="color:#ae81ff">${{ secrets.AWS_APPLY_ROLE_ARN }}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">aws-region</span>: <span style="color:#ae81ff">${{ env.AWS_REGION }}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">role-session-name</span>: <span style="color:#ae81ff">GitHubActionsSession</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Configure Plan AWS credentials</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event_name == &#39;pull_request&#39;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">aws-actions/configure-aws-credentials@v5</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">role-to-assume</span>: <span style="color:#ae81ff">${{ secrets.AWS_PLAN_ROLE_ARN }}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">aws-region</span>: <span style="color:#ae81ff">${{ env.AWS_REGION }}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">role-session-name</span>: <span style="color:#ae81ff">GitHubActionsSession</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Set up Terraform</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">hashicorp/setup-terraform@v2</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">terraform_version</span>: <span style="color:#ae81ff">1.10.0</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Terraform Init</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">run</span>: <span style="color:#ae81ff">terraform init</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">working-directory</span>: <span style="color:#ae81ff">${{ matrix.root-module }}</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Terraform Plan</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event_name == &#39;pull_request&#39;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">run</span>: <span style="color:#ae81ff">terraform plan -var=&#34;execution_mode=plan&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">working-directory</span>: <span style="color:#ae81ff">${{ matrix.root-module }}</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Terraform Apply</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event_name == &#39;push&#39; &amp;&amp; github.ref == &#39;refs/heads/main&#39;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">run</span>: <span style="color:#ae81ff">terraform apply -auto-approve -var=&#34;execution_mode=apply&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">working-directory</span>: <span style="color:#ae81ff">${{ matrix.root-module }}</span>
+</span></span></code></pre></div><p>このワークフローは、引数でルートモジュールのパスを受け取り、特定のルートモジュールだけ実行するようにしています。
+plan/apply対象のルートモジュールリストは、プログラムで差分を検出して生成します（第4章参照）。</p>
+<hr>
+<h2 id="第4章-補助プログラム">第4章: 補助プログラム</h2>
+<h3 id="差分検出プログラム">差分検出プログラム</h3>
+<p>Terraformプロジェクトの規模が大きくなると、CIのplan時間やAPIレートリミットが課題になります<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。
+そこで、変更のあったルートモジュールだけを出力するプログラムをGoで書きました。さらに、変更のあったルートモジュールが依存するモジュールも再帰的に探索して、差分検出対象に含めるようにしています。
+CI/CDではこのプログラムを実行し、変更のあったルートモジュールリストを第3章のGitHub Actionsの入力引数として渡すことで、効率的にplan/applyを実行できます。</p>
+<p>このプログラムは<a href="https://github.com/hurack3034217/tf-mod-watcher">tf-mod-watcher</a>という名前で公開していますのでぜひ見ていただけると嬉しいです。</p>
+<h3 id="import用プログラム">import用プログラム</h3>
+<p>プロジェクト開始直後は開発速度を優先し、手動でAWSコンソールからリソースを作ったり、CloudFormationで作ったりしていました。
+その後、これまで説明したTerraform構成に移行するため、既存リソースをTerraform管理下に置く必要が出てきました。
+既存リソースをTerraform管理下に置くには<a href="https://developer.hashicorp.com/terraform/cli/commands/import">importコマンド</a>ではなく、<a href="https://developer.hashicorp.com/terraform/language/block/import">importブロック</a>を使いました。
+これは、importコマンドは手動実行が必要で自動化が難しいのに対し、importブロックはHCLコードとして管理できるためCI/CDパイプラインで自動実行できるからです。
+importブロックを使うためには、import対象リソースのID（ARNなど）を調べてHCLコードとして書き起こす必要があるので、ただのHCLコード生成ではなくAWS SDKでリソース情報を取得してimport用のHCLコードを自動生成するプログラムをGoで作りました。</p>
+<p>テンプレートファイル<code>templates/import_alb.tf.tmpl</code>の例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text:templates/import_alb.tf.tmpl" data-lang="text:templates/import_alb.tf.tmpl"><span style="display:flex;"><span>import {
+</span></span><span style="display:flex;"><span>  to = module.service_a.module.alb.aws_lb.main
+</span></span><span style="display:flex;"><span>  id = &#34;{{ .AlbArn }}&#34;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># セキュリティグループは省略
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>import {
+</span></span><span style="display:flex;"><span>  to = module.alb.aws_lb_target_group.main
+</span></span><span style="display:flex;"><span>  id = &#34;{{ .TargetGroupArn }}&#34;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>import {
+</span></span><span style="display:flex;"><span>  to = module.alb.aws_lb_listener.main
+</span></span><span style="display:flex;"><span>  id = &#34;{{ .ListenerArn }}&#34;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Goプログラム例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;context&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;errors&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;io&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;os&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;path/filepath&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;text/template&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;github.com/aws/aws-sdk-go-v2/aws&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">GenerateImportAlbArgs</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">OutputDir</span>    <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Service</span>      <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Environment</span>  <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">awsConfig</span>    <span style="color:#a6e22e">aws</span>.<span style="color:#a6e22e">Config</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">AlbTemplateParams</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">AlbArn</span>                                 <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">TargetGroupArn</span>                         <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ListenerArn</span>                            <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">generateImportAlb</span>(<span style="color:#a6e22e">args</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">GenerateImportAlbArgs</span>) <span style="color:#66d9ef">error</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// security groupは省略
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">lbClient</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">elasticloadbalancingv2</span>.<span style="color:#a6e22e">NewFromConfig</span>(<span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">awsConfig</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tgRes</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">lbClient</span>.<span style="color:#a6e22e">DescribeTargetGroups</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">TODO</span>(), <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">elasticloadbalancingv2</span>.<span style="color:#a6e22e">DescribeTargetGroupsInput</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Names</span>: []<span style="color:#66d9ef">string</span>{<span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">Service</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;-&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">Environment</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;-alb-tg&#34;</span>},
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">tgRes</span>.<span style="color:#a6e22e">TargetGroups</span>) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;target group not found or more than one target group found&#34;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lbRes</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">lbClient</span>.<span style="color:#a6e22e">DescribeLoadBalancers</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">TODO</span>(), <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">elasticloadbalancingv2</span>.<span style="color:#a6e22e">DescribeLoadBalancersInput</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Names</span>: []<span style="color:#66d9ef">string</span>{<span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">Service</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;-&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">Environment</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;-alb&#34;</span>},
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">lbRes</span>.<span style="color:#a6e22e">LoadBalancers</span>) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;load balancer not found or more than one load balancer found&#34;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">listenerRes</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">lbClient</span>.<span style="color:#a6e22e">DescribeListeners</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">TODO</span>(), <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">elasticloadbalancingv2</span>.<span style="color:#a6e22e">DescribeListenersInput</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">LoadBalancerArn</span>: <span style="color:#a6e22e">lbRes</span>.<span style="color:#a6e22e">LoadBalancers</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">LoadBalancerArn</span>,
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">httpListenerArn</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">listener</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">listenerRes</span>.<span style="color:#a6e22e">Listeners</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">listener</span>.<span style="color:#a6e22e">Port</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">80</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">httpListenerArn</span> = <span style="color:#f92672">*</span><span style="color:#a6e22e">listener</span>.<span style="color:#a6e22e">ListenerArn</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">httpListenerArn</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;alb listener not found&#34;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">file</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Create</span>(<span style="color:#a6e22e">filepath</span>.<span style="color:#a6e22e">Join</span>(<span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">OutputDir</span>, <span style="color:#e6db74">&#34;import_alb.tf&#34;</span>))
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">file</span>.<span style="color:#a6e22e">Close</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">executeImportAlbTemplate</span>(<span style="color:#a6e22e">file</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">AlbTemplateParams</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">AlbArn</span>:                                 <span style="color:#f92672">*</span><span style="color:#a6e22e">lbRes</span>.<span style="color:#a6e22e">LoadBalancers</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">LoadBalancerArn</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">TargetGroupArn</span>:                         <span style="color:#f92672">*</span><span style="color:#a6e22e">tgRes</span>.<span style="color:#a6e22e">TargetGroups</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">TargetGroupArn</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ListenerArn</span>:                            <span style="color:#a6e22e">httpListenerArn</span>,
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">executeImportAlbTemplate</span>(<span style="color:#a6e22e">wr</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">Writer</span>, <span style="color:#a6e22e">params</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">AlbTemplateParams</span>) <span style="color:#66d9ef">error</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tmpl</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">template</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;import_alb.tf.tmpl&#34;</span>).<span style="color:#a6e22e">ParseFiles</span>(<span style="color:#e6db74">&#34;templates/import_alb.tf.tmpl&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">tmpl</span>.<span style="color:#a6e22e">Execute</span>(<span style="color:#a6e22e">wr</span>, <span style="color:#a6e22e">params</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>AWS SDKでリソース情報を取得し、テンプレートでimport用HCLを生成することで、import作業もサクッと効率化できます。</p>
+<hr>
+<h2 id="おわりに">おわりに</h2>
+<p>この記事では、実際のプロジェクトを元にTerraformによるマルチAWSアカウント環境の構成管理、モジュール分割、CI/CD自動化、補助プログラムによる運用効率化の実践手法をまとめてみました。</p>
+<p>この記事が、みなさんのマルチアカウント環境の構成管理や運用自動化のヒントになれば嬉しいです。</p>
+<p>ドワンゴでは、クラウド上に、可用性・保守性・セキュリティなどに優れたシステムを一緒に作る仲間を募集中です。ご興味のある方は、ぜひ<a href="https://recruit.dwango.co.jp/">採用情報</a>もチェックしてみてください！</p>
+<h2 id="参考文献">参考文献</h2>
+<ul>
+<li><a href="https://dwango.github.io/articles/2025-12_ansible-for-multi-account-aws/">多数のAWSアカウントに散在するEC2インスタンス群をAnsibleで一括管理する話</a></li>
+<li><a href="https://developer.hashicorp.com/terraform/docs">Terraform公式ドキュメント</a></li>
+<li><a href="https://docs.aws.amazon.com/ja_jp/index.html">AWS公式ドキュメント</a></li>
+<li><a href="https://cloud.google.com/docs/terraform/best-practices/general-style-structure?hl=ja">Google CloudのTerraformベストプラクティス</a></li>
+<li><a href="https://docs.github.com/ja/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-aws">GitHub ActionsでのOIDC設定手順</a></li>
+<li><a href="https://docs.aws.amazon.com/ja_jp/prescriptive-guidance/latest/patterns/centralize-monitoring-by-using-amazon-cloudwatch-observability-access-manager.html">CloudWatch OAM</a></li>
+<li><a href="https://docs.aws.amazon.com/ja_jp/eventbridge/latest/userguide/eb-service-cross-account.html">EventBridge クロスアカウント配信</a></li>
+<li><a href="https://github.com/hurack3034217/tf-mod-watcher">tf-mod-watcher GitHubリポジトリ</a></li>
+</ul>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://docs.aws.amazon.com/ja_jp/ec2/latest/devguide/ec2-api-throttling.html">EC2 APIのスロットリングの公式ドキュメント</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+</article>
+    </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="実践Terraform：マルチAWSアカウント環境の構成管理とモジュール分割 - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/2025-12_terraform-multi-account-aws/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/2025-12_terraform-multi-account-aws/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2f2025-12_terraform-multi-account-aws%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-LF3Z3TQ34F', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

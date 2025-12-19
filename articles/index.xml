@@ -6,14 +6,21 @@
     <description>Recent content in Articles on dwango on GitHub</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 09 Dec 2025 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 19 Dec 2025 00:00:00 +0900</lastBuildDate>
     <atom:link href="https://dwango.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>実践Terraform：マルチAWSアカウント環境の構成管理とモジュール分割</title>
+      <link>https://dwango.github.io/articles/2025-12_terraform-multi-account-aws/</link>
+      <pubDate>Fri, 19 Dec 2025 00:00:00 +0900</pubDate>
+      <guid>https://dwango.github.io/articles/2025-12_terraform-multi-account-aws/</guid>
+      <description>これは ドワンゴ Advent Calendar 2025 の20日目の記事です。 はじめに こんにちは！技術本部クラウド構築運用部クラウドプラットフォームセクションの堀内です。 弊社で</description>
+    </item>
     <item>
       <title>多数のAWSアカウントに散在するEC2インスタンス群をAnsibleで一括管理する話</title>
       <link>https://dwango.github.io/articles/2025-12_ansible-for-multi-account-aws/</link>
       <pubDate>Tue, 09 Dec 2025 00:00:00 +0900</pubDate>
       <guid>https://dwango.github.io/articles/2025-12_ansible-for-multi-account-aws/</guid>
-      <description>はじめに こんにちは。クラウド構築運用部PaaSセクションの尾﨑です。 この記事では、多数のAWSアカウント上に分散して存在するEC2インスタン</description>
+      <description>これは ドワンゴ Advent Calendar 2025 の9日目の記事です。 はじめに こんにちは。クラウド構築運用部PaaSセクションの尾﨑です。 この記事では、多数のAWSアカウ</description>
     </item>
     <item>
       <title>ニコニコ生放送がサービスを再開するまでの記録</title>
