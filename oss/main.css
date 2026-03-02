@@ -143,11 +143,13 @@ h2 {
 
 .Footer__links__link___HZ5bz,.Footer__links__link___HZ5bz:hover,.Footer__links__link___HZ5bz:visited,.Footer__links__link___HZ5bz:active,.Footer__links__link___HZ5bz:link {
     color: #999;
+    -webkit-text-decoration: none;
     text-decoration: none;
   }
 
 .Footer__links__link___HZ5bz:hover {
     color: #AAA;
+    -webkit-text-decoration: underline;
     text-decoration: underline;
   }
 
@@ -283,6 +285,7 @@ h2 {
   }
 
 .Orgs__linkArea___LIcIT {
+  -webkit-text-decoration: none;
   text-decoration: none;
 }
 
@@ -470,11 +473,13 @@ h2 {
 
 .Repos__fullName___L_idh,.Repos__fullName___L_idh:hover,.Repos__fullName___L_idh:visited,.Repos__fullName___L_idh:active,.Repos__fullName___L_idh:link {
     color: #666;
+    -webkit-text-decoration: none;
     text-decoration: none;
   }
 
 .Repos__fullName___L_idh:hover {
     color: #999;
+    -webkit-text-decoration: underline;
     text-decoration: underline;
   }
 
@@ -517,36 +522,43 @@ h2 {
 
 .Repos__homepageLink___uQlri:visited {
     color: #FFF;
+    -webkit-text-decoration: none;
     text-decoration: none;
   }
 
 .Repos__githubLink___RsCks:visited {
     color: #FFF;
+    -webkit-text-decoration: none;
     text-decoration: none;
   }
 
 .Repos__homepageLink___uQlri:active {
     color: #FFF;
+    -webkit-text-decoration: none;
     text-decoration: none;
   }
 
 .Repos__githubLink___RsCks:active {
     color: #FFF;
+    -webkit-text-decoration: none;
     text-decoration: none;
   }
 
 .Repos__homepageLink___uQlri:link {
     color: #FFF;
+    -webkit-text-decoration: none;
     text-decoration: none;
   }
 
 .Repos__githubLink___RsCks:link {
     color: #FFF;
+    -webkit-text-decoration: none;
     text-decoration: none;
   }
 
 .Repos__homepageLink___uQlri,.Repos__githubLink___RsCks,.Repos__homepageLink___uQlri:hover,.Repos__githubLink___RsCks:hover {
     color: #FFF;
+    -webkit-text-decoration: none;
     text-decoration: none;
   }
 

@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="楕円曲線暗号方式の強度について - dwango on GitHub">
 
@@ -99,7 +99,7 @@
 <li>暗号理論に興味のある人</li>
 <li>数学が好きな人</li>
 </ul>
-<p>また、簡単な群論の知識を仮定します。(<a href="https://ja.wikipedia.org/wiki/%E7%BE%A4_(%E6%95%B0%E5%AD%A6)">群</a>の定義など)</p>
+<p>また、簡単な群論の知識を仮定します。(<a href="https://ja.wikipedia.org/wiki/%E7%BE%A4_%28%E6%95%B0%E5%AD%A6%29">群</a>の定義など)</p>
 <h1 id="まとめ">まとめ</h1>
 <ul>
 <li>セキュリティーの強さはセキュリティーレベルと呼ばれる尺度で測ることができます。 \(k\) ビットセキュリティーはおよそ \(2^k\) 回の計算を要するレベルです。</li>
@@ -117,7 +117,7 @@
 </blockquote>
 <p>競プロの人向けに書くと、要するに計算量が \(2^n\) であれば \(n\) ビットセキュリティーが担保されています。2030 年まで使用されているものは 112 ビットセキュリティーが達成されていればよく、言い換えると \(2^{112}\) ステップの計算は 2030 年までは人類には不可能と思われています。</p>
 <h2 id="離散対数問題">離散対数問題</h2>
-<p><a href="https://ja.wikipedia.org/wiki/%E7%BE%A4_(%E6%95%B0%E5%AD%A6)">群</a> \(G\) および \(G\) の要素 \(g, h\) が与えられた時、 \(g^x = h\) という方程式を解かせる問題を<a href="https://ja.wikipedia.org/wiki/%E9%9B%A2%E6%95%A3%E5%AF%BE%E6%95%B0">離散対数問題</a>と呼びます。</p>
+<p><a href="https://ja.wikipedia.org/wiki/%E7%BE%A4_%28%E6%95%B0%E5%AD%A6%29">群</a> \(G\) および \(G\) の要素 \(g, h\) が与えられた時、 \(g^x = h\) という方程式を解かせる問題を<a href="https://ja.wikipedia.org/wiki/%E9%9B%A2%E6%95%A3%E5%AF%BE%E6%95%B0">離散対数問題</a>と呼びます。</p>
 <ul>
 <li>例: \(3^x \equiv 56306 \pmod{65537}\) である。x は何か? (答え: 47 など)</li>
 <li>例: <a href="https://github.com/koba-e964.keys">以下の ssh-ed25519 公開鍵</a>に対応する指数は何か?
@@ -134,28 +134,28 @@
 </ul>
 <p>普段使われている <a href="https://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%89%E3%83%AF%E3%83%BC%E3%82%BA%E6%9B%B2%E7%B7%9A%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E7%BD%B2%E5%90%8D%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0">Ed25519</a> は、位数が \(2^{256}\) 程度の群を使用しています。<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> また、もう一つよく使われる方式である ecdsa-sha2-nistp256 という方式は、NIST P-256 と呼ばれる曲線を使用しています。こちらも位数が \(2^{256}\) 程度の群を使用しています。</p>
 <table>
-<thead>
-<tr>
-<th>名前</th>
-<th>パラメーター</th>
-<th>位数</th>
-<th>ソース</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Curve25519</td>
-<td>\(p=2^{255}-19, y^2 = x^3+486662x^2+x\)</td>
-<td>\(8(2^{252} + 27742317777372353535851937790883648493)\)</td>
-<td><a href="https://cr.yp.to/ecdh.html">cr.yp.to</a></td>
-</tr>
-<tr>
-<td>NIST P-256</td>
-<td>\(p=2^{256} - 2^{224} + 2^{192} + 2^{96} - 1, y^2=x^3-3x+(\ldots)\)</td>
-<td>\(2^{256} - 2^{224} + 2^{192} - 89188191075325690597107910205041859247\)</td>
-<td><a href="https://csrc.nist.gov/files/pubs/fips/186-2/final/docs/fips186-2.pdf">FIPS</a></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>パラメーター</th>
+          <th>位数</th>
+          <th>ソース</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Curve25519</td>
+          <td>\(p=2^{255}-19, y^2 = x^3+486662x^2+x\)</td>
+          <td>\(8(2^{252} + 27742317777372353535851937790883648493)\)</td>
+          <td><a href="https://cr.yp.to/ecdh.html">cr.yp.to</a></td>
+      </tr>
+      <tr>
+          <td>NIST P-256</td>
+          <td>\(p=2^{256} - 2^{224} + 2^{192} + 2^{96} - 1, y^2=x^3-3x+(\ldots)\)</td>
+          <td>\(2^{256} - 2^{224} + 2^{192} - 89188191075325690597107910205041859247\)</td>
+          <td><a href="https://csrc.nist.gov/files/pubs/fips/186-2/final/docs/fips186-2.pdf">FIPS</a></td>
+      </tr>
+  </tbody>
 </table>
 <p>基本的に楕円曲線暗号方式は楕円曲線を群とみなしたものの上の離散対数問題の安全性に依存しています。</p>
 <h1 id="攻撃手法">攻撃手法</h1>
@@ -168,7 +168,7 @@
 </ol>
 <p>これは \(O(M) = O(2^{n/2})\) 時間、 \(O(2^{n/2})\) 空間で動作します。 (ただし、マッピングからの値の取得が \(O(1)\) 時間でできることを仮定します。)</p>
 <h2 id="ポラードのロー法">ポラードのロー法</h2>
-<p><a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%AD%E3%82%A4%E3%83%89%E3%81%AE%E5%BE%AA%E7%92%B0%E6%A4%9C%E5%87%BA%E6%B3%95#:~:text=%E3%83%95%E3%83%AD%E3%82%A4%E3%83%89%E3%81%AE%E5%BE%AA%E7%92%B0%E6%A4%9C%E5%87%BA%E6%B3%95%EF%BC%88%E8%8B%B1%3A%20Floyd's%20cycle%2Dfinding,1967%E5%B9%B4%E3%81%AB%E7%99%BA%E6%98%8E%E3%81%97%E3%81%9F%E3%80%82">Floyd の循環検出法</a>を使います。これは以下のようなアルゴリズムです。</p>
+<p><a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%AD%E3%82%A4%E3%83%89%E3%81%AE%E5%BE%AA%E7%92%B0%E6%A4%9C%E5%87%BA%E6%B3%95#:~:text=%E3%83%95%E3%83%AD%E3%82%A4%E3%83%89%E3%81%AE%E5%BE%AA%E7%92%B0%E6%A4%9C%E5%87%BA%E6%B3%95%EF%BC%88%E8%8B%B1%3A%20Floyd%27s%20cycle%2Dfinding,1967%E5%B9%B4%E3%81%AB%E7%99%BA%E6%98%8E%E3%81%97%E3%81%9F%E3%80%82">Floyd の循環検出法</a>を使います。これは以下のようなアルゴリズムです。</p>
 <ul>
 <li>入力: 関数 \(f : G \to G, a \in G\)</li>
 <li>出力: \(f^i(a) = f^j(a)\) となる \(i \neq j\)</li>
@@ -201,10 +201,10 @@
 <li>位数が \(p\) の場合: additive transfer という手法で \(ax \equiv b \pmod p\) を解くことに帰着できます。これは mod 逆元で簡単に解けるので、こういったパラメーターは全く使い物になりません。</li>
 <li>位数が \(p-1\) の場合: multiplicative transfer という手法で \(a^x \equiv b \pmod p\) を解くことに帰着されます。これも離散対数問題ですが、有限体上での離散対数問題なので汎用的な攻撃手法より高速に解けます。p が 256 ビットの整数だとおよそ 47 ビットのセキュリティーに相当するレベルとなり、これは普通に人類が解けるレベルです。</li>
 </ul>
-<h2 id="ed25519-などの楕円曲線暗号方式の解読には総当たりで-2256-回の操作が必要だと聞きましたこれは誤りなのですか">Ed25519 などの楕円曲線暗号方式の解読には、総当たりで \(2^{256}\) 回の操作が必要だと聞きました。これは誤りなのですか?</h2>
+<h2 id="ed25519-などの楕円曲線暗号方式の解読には総当たりで--回の操作が必要だと聞きましたこれは誤りなのですか">Ed25519 などの楕円曲線暗号方式の解読には、総当たりで \(2^{256}\) 回の操作が必要だと聞きました。これは誤りなのですか?</h2>
 <p>はい。この記事で見たように、もっと高速に解けるので誤りです。
 こういった説明は時々見かけますが、よくて勘違い、悪くて優良誤認表示になってしまうでしょうね。</p>
-<h2 id="でも-2256-と-2128-は何が違うのですか-どのみち解けないのだから一緒じゃないですか">でも \(2^{256}\) と \(2^{128}\) は何が違うのですか? どのみち解けないのだから一緒じゃないですか?</h2>
+<h2 id="でも--と--は何が違うのですか-どのみち解けないのだから一緒じゃないですか">でも \(2^{256}\) と \(2^{128}\) は何が違うのですか? どのみち解けないのだから一緒じゃないですか?</h2>
 <p>今は一緒かもしれませんが将来差が出てきます。
 同じく <a href="https://www.cryptrec.go.jp/list/cryptrec-ls-0003-2022r1.pdf">https://www.cryptrec.go.jp/list/cryptrec-ls-0003-2022r1.pdf</a> の 表 5 (p.16) を参照します。
 「128 ビットセキュリティ」の行を見ると、「2041～2050」まで問題ないことがわかるので、2050 年以降に差が出てきます。</p>
@@ -284,16 +284,19 @@
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

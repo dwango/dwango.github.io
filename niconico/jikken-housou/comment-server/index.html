@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="実験放送の構成 - コメントサーバー編 - dwango on GitHub">
 
@@ -109,55 +109,55 @@
 <p>XMLSocketでは圧縮や経路暗号がサポートされておらず、WebSocketでの接続を推奨しております。</p>
 <p>複数命令については、後程例を交えて解説します。</p>
 <table>
-<thead>
-<tr>
-<th>プロトコル</th>
-<th>メソッド</th>
-<th>リクエストフォーマット</th>
-<th>レスポンスフォーマット</th>
-<th>圧縮</th>
-<th>経路暗号</th>
-<th>複数命令</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>HTTP, HTTPS</td>
-<td>GET</td>
-<td>クエリーパラメーター</td>
-<td>XML又はJSON</td>
-<td>対応</td>
-<td>対応</td>
-<td>非対応</td>
-</tr>
-<tr>
-<td>HTTP, HTTPS</td>
-<td>POST</td>
-<td>XML又はJSON</td>
-<td>XML又はJSON</td>
-<td>対応</td>
-<td>対応</td>
-<td>対応</td>
-</tr>
-<tr>
-<td>WebSocket</td>
-<td>-</td>
-<td>JSON</td>
-<td>JSON</td>
-<td>対応</td>
-<td>対応</td>
-<td>対応</td>
-</tr>
-<tr>
-<td>XMLSocket</td>
-<td>-</td>
-<td>XML</td>
-<td>XML</td>
-<td>非対応</td>
-<td>非対応</td>
-<td>対応</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>プロトコル</th>
+          <th>メソッド</th>
+          <th>リクエストフォーマット</th>
+          <th>レスポンスフォーマット</th>
+          <th>圧縮</th>
+          <th>経路暗号</th>
+          <th>複数命令</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>HTTP, HTTPS</td>
+          <td>GET</td>
+          <td>クエリーパラメーター</td>
+          <td>XML又はJSON</td>
+          <td>対応</td>
+          <td>対応</td>
+          <td>非対応</td>
+      </tr>
+      <tr>
+          <td>HTTP, HTTPS</td>
+          <td>POST</td>
+          <td>XML又はJSON</td>
+          <td>XML又はJSON</td>
+          <td>対応</td>
+          <td>対応</td>
+          <td>対応</td>
+      </tr>
+      <tr>
+          <td>WebSocket</td>
+          <td>-</td>
+          <td>JSON</td>
+          <td>JSON</td>
+          <td>対応</td>
+          <td>対応</td>
+          <td>対応</td>
+      </tr>
+      <tr>
+          <td>XMLSocket</td>
+          <td>-</td>
+          <td>XML</td>
+          <td>XML</td>
+          <td>非対応</td>
+          <td>非対応</td>
+          <td>対応</td>
+      </tr>
+  </tbody>
 </table>
 <h1 id="アクセス例">アクセス例</h1>
 <h2 id="http-https-getでのアクセス例">HTTP, HTTPS GETでのアクセス例</h2>
@@ -191,73 +191,73 @@ Press Ctrl+C to quit
 <p>実験放送コメントサーバの接続先は下表のようになっております。</p>
 <p>汎用ポートとは、serviceを指定する必要のあるもので、WebSocketのアクセス例を参考にしてください。</p>
 <table>
-<thead>
-<tr>
-<th>ポート</th>
-<th>用途</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>80</td>
-<td>ニコニコ動画向け HTTP, WebSocket</td>
-</tr>
-<tr>
-<td>443</td>
-<td>ニコニコ動画向け HTTPS, WebSocket with SSL</td>
-</tr>
-<tr>
-<td>2580</td>
-<td>汎用 HTTP, WebSocket</td>
-</tr>
-<tr>
-<td>2543</td>
-<td>汎用 HTTPS, WebSocket with SSL</td>
-</tr>
-<tr>
-<td>2580</td>
-<td>実験放送向け XMLSocket</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>ポート</th>
+          <th>用途</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>80</td>
+          <td>ニコニコ動画向け HTTP, WebSocket</td>
+      </tr>
+      <tr>
+          <td>443</td>
+          <td>ニコニコ動画向け HTTPS, WebSocket with SSL</td>
+      </tr>
+      <tr>
+          <td>2580</td>
+          <td>汎用 HTTP, WebSocket</td>
+      </tr>
+      <tr>
+          <td>2543</td>
+          <td>汎用 HTTPS, WebSocket with SSL</td>
+      </tr>
+      <tr>
+          <td>2580</td>
+          <td>実験放送向け XMLSocket</td>
+      </tr>
+  </tbody>
 </table>
 <h1 id="フォーマット対応">フォーマット対応</h1>
 <p>コメントサーバーはクエリーパラメーター、XML、JSONをサポートしていますが、フォーマットを変更する場合の対応については下表のようになっております。</p>
 <p>無名パラメーターとは、コメント内容等で利用されている値です</p>
 <table>
-<thead>
-<tr>
-<th>名称</th>
-<th>クエリーパラメーター</th>
-<th>XML</th>
-<th>JSON</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>API名称</td>
-<td>URLのpathの2つ目</td>
-<td>XML要素名</td>
-<td>objectのname</td>
-</tr>
-<tr>
-<td>通常パラメーター</td>
-<td>クエリーパラメーター</td>
-<td>XML属性</td>
-<td>内部のobject</td>
-</tr>
-<tr>
-<td>無名パラメーター</td>
-<td>bodyパラメーターとして取り扱う</td>
-<td>TEXT要素</td>
-<td>contentパラメーターとして取り扱う</td>
-</tr>
-<tr>
-<td>複数API</td>
-<td>非対応</td>
-<td>packet要素で包む</td>
-<td>arrayで包む</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>名称</th>
+          <th>クエリーパラメーター</th>
+          <th>XML</th>
+          <th>JSON</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>API名称</td>
+          <td>URLのpathの2つ目</td>
+          <td>XML要素名</td>
+          <td>objectのname</td>
+      </tr>
+      <tr>
+          <td>通常パラメーター</td>
+          <td>クエリーパラメーター</td>
+          <td>XML属性</td>
+          <td>内部のobject</td>
+      </tr>
+      <tr>
+          <td>無名パラメーター</td>
+          <td>bodyパラメーターとして取り扱う</td>
+          <td>TEXT要素</td>
+          <td>contentパラメーターとして取り扱う</td>
+      </tr>
+      <tr>
+          <td>複数API</td>
+          <td>非対応</td>
+          <td>packet要素で包む</td>
+          <td>arrayで包む</td>
+      </tr>
+  </tbody>
 </table>
 </article>
     </div>
@@ -321,16 +321,19 @@ Press Ctrl+C to quit
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

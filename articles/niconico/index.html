@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="niconicoの開発者向け情報の公開 - dwango on GitHub">
 
@@ -80,11 +80,11 @@
       
       <article id="content"><p>本サイトに、ニコニコ動画、ニコニコ生放送他、niconicoに関する開発者向けの情報を掲載するスペースを作成しました。</p>
 <ul>
-<li><a href="../../niconico">niconicoの開発者向け情報</a></li>
+<li><a href="/niconico/">niconicoの開発者向け情報</a></li>
 </ul>
 <p>最初に、5月31日からニコニコ生放送で行っている実験放送で利用されているコメントのシステム構造についての記事を記載しています。</p>
 <ul>
-<li><a href="../../niconico/jikken-housou/comment/">実験放送の構成 - コメント編</a></li>
+<li><a href="/niconico/jikken-housou/comment/">実験放送の構成 - コメント編</a></li>
 </ul>
 <p>今後も少しずつ情報をまとめていく予定です。</p>
 </article>
@@ -145,16 +145,19 @@
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

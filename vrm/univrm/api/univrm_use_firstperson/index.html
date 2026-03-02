@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="VRMFirstPersonの使い方 - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -92,38 +92,38 @@
     <article id="content">
         <div class="toc"> <nav id="TableOfContents"></nav>
         </div>
-       <h1 id="vrmfirstpersonの設定univrm_firstperson"><a href="../univrm_firstperson/">VRMFirstPersonの設定</a></h1>
+       <h1 id="vrmfirstpersonの設定"><a href="../univrm_firstperson/">VRMFirstPersonの設定</a></h1>
 <p>VRMFirstPersonではRendererに対して設定があります。</p>
 <table>
-<thead>
-<tr>
-<th>FirstPersonFlag</th>
-<th>レイヤー</th>
-<th>備考</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Both</td>
-<td>default</td>
-<td>一人称と三人称で分ける必要のない部分に指定します</td>
-</tr>
-<tr>
-<td>ThirdPersonOnly</td>
-<td>THIRDPERSON_ONLY_LAYER</td>
-<td>一人称時に描画したくない部分に指定します</td>
-</tr>
-<tr>
-<td>FirstPersonOnly</td>
-<td>FIRSTPERSON_ONLY_LAYER</td>
-<td>三人称時に描画したくない部分に指定します。自動作成した頭部無しモデルが使います</td>
-</tr>
-<tr>
-<td>Auto</td>
-<td>THIRDPERSON_ONLY_LAYER</td>
-<td>実行時に一人称用モデルを自動で作成し、それをFIRSTPERSON_ONLY_LAYERに設定します</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>FirstPersonFlag</th>
+          <th>レイヤー</th>
+          <th>備考</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Both</td>
+          <td>default</td>
+          <td>一人称と三人称で分ける必要のない部分に指定します</td>
+      </tr>
+      <tr>
+          <td>ThirdPersonOnly</td>
+          <td>THIRDPERSON_ONLY_LAYER</td>
+          <td>一人称時に描画したくない部分に指定します</td>
+      </tr>
+      <tr>
+          <td>FirstPersonOnly</td>
+          <td>FIRSTPERSON_ONLY_LAYER</td>
+          <td>三人称時に描画したくない部分に指定します。自動作成した頭部無しモデルが使います</td>
+      </tr>
+      <tr>
+          <td>Auto</td>
+          <td>THIRDPERSON_ONLY_LAYER</td>
+          <td>実行時に一人称用モデルを自動で作成し、それをFIRSTPERSON_ONLY_LAYERに設定します</td>
+      </tr>
+  </tbody>
 </table>
 <p>実行時に<strong>VRMFirstPerson.Setup</strong>を呼び出すことで、上記のレイヤー設定を行うことができます。明示的に外部から呼び出してください。</p>
 <h1 id="アプリケーションに追加の描画レイヤーを指定する">アプリケーションに追加の描画レイヤーを指定する</h1>
@@ -136,21 +136,21 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 省略</span>
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/layer_setting.png"   />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>9番と１０番にLayerを設定</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>9番と１０番にLayerを設定</td>
+      </tr>
+  </tbody>
 </table>
 <h1 id="実行時にsetupを呼び出してカメラにlayermaskを設定する">実行時にSetupを呼び出して、カメラにLayerMaskを設定する</h1>
 <ul>
@@ -211,16 +211,19 @@
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

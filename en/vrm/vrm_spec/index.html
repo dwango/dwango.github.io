@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="VRM specifications - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -205,10 +205,10 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;extensions&#34;</span><span style="color:#f92672">:</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;VRM&#34;</span><span style="color:#f92672">:</span> {
 </span></span><span style="display:flex;"><span>      <span style="color:#75715e">// The information of VRM extension
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  },
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">// The information of general GLTF-2.0
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}</span></span></code></pre></div>
+</span></span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>VRM JsonSchema:</p>
 <ul>
 <li><a href="https://github.com/dwango/UniVRM/tree/master/specification/0.0/schema">https://github.com/dwango/UniVRM/tree/master/specification/0.0/schema</a></li>
@@ -267,7 +267,7 @@
 <p>Saves information that can revert back to GLTF material (it is used when file extension is changed to GLB).</p>
 <h2 id="vrm-extension-extensionsvrmmaterialproperties">VRM extension: <code>/extensions/VRM/materialProperties</code></h2>
 <p>Saves VRM unique material information and items necessary for Unity.
-Please refer to <a href="#vrmshader">Available shaders in VRM</a>.</p>
+Please refer to <a href="/en/vrm/vrm_spec/#vrmshader">Available shaders in VRM</a>.</p>
 <ul>
 <li><a href="https://github.com/dwango/UniVRM/blob/master/specification/0.0/schema/vrm.material.schema.json">https://github.com/dwango/UniVRM/blob/master/specification/0.0/schema/vrm.material.schema.json</a></li>
 </ul>
@@ -981,16 +981,19 @@ It is assumed that an offset from the head bone to the VR headset is added.</p>
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="VRMSpringBone - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -104,95 +104,95 @@
 <li>VRMSpringBoneColliderGroup is restored to the node previously attached during the export.</li>
 </ul>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/vrm_settings.png"   />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Please check<code>secondary</code>in the Hierarchy window if you cannot find VRMSpringBone</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Please check<code>secondary</code>in the Hierarchy window if you cannot find VRMSpringBone</td>
+      </tr>
+  </tbody>
 </table>
 <h1 id="vrmspringbone">VRMSpringBone</h1>
 <p>The setting for making objects swaying such as tail, hair, clothes and so on. Please set the parent GameObject of an object in<code>Root Bones</code>. Drag an object (e.g.<code>hair1_L</code>) to the<code>Element X</code>box (e.g.<code>Element 0</code>). The number of elements can be changed in<code>Size</code>.</p>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/VRMSpringBone.png" alt="lookat"  />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Example: Set the hair and ribbon in<code>Root Bones</code></td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Example: Set the hair and ribbon in<code>Root Bones</code></td>
+      </tr>
+  </tbody>
 </table>
 <p>That&rsquo;s it. The specified objects will perform swaying movements.</p>
 <h1 id="option-vrmspringbonecollidergroup-collision-detection">[Option] VRMSpringBoneColliderGroup (Collision detection)</h1>
 <p>The collision detection mechanism can be added to prevent swaying objects from penetrating user-specified parts.</p>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/collider.png" alt="collider"  />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Add the collision detection mechanism on the head (VRMSpringBoneColliderGroup)</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Add the collision detection mechanism on the head (VRMSpringBoneColliderGroup)</td>
+      </tr>
+  </tbody>
 </table>
 <p>For example, attach VRMSpringBoneColliderGroup script to<code>head</code>and drag<code>head</code>to the<code>Element 0</code>box in<code>Collider Groups</code>. You can change its offset and radius value by double clicking the<code>Element</code>box in<code>Collider Groups</code>.</p>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/set_collider.png" alt="set_collider"  />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Attach and set<code>head</code>in<code>Collider Groups</code></td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Attach and set<code>head</code>in<code>Collider Groups</code></td>
+      </tr>
+  </tbody>
 </table>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/spring_gizmo.png" alt="gizmo"  />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Gizmo at runtime (check<code>Draw Gizmo</code>in the Inspector of VRMSpringBone)</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Gizmo at runtime (check<code>Draw Gizmo</code>in the Inspector of VRMSpringBone)</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="set-multiple-collision-detections-in-one-vrmspringbonecollidergroup">Set multiple collision detections in one VRMSpringBoneColliderGroup</h2>
 <p>Though the default is only set for one collision detection (the range of a sphere ball), users can change the setting to multiple detections (multiple balls) by changing the value of<code>Size</code>.</p>
@@ -209,16 +209,19 @@
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

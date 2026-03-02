@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="ニコニコ動画のコード改善の歩み - dwango on GitHub">
 
@@ -105,14 +105,14 @@
 クラスでの実装もされていましたがデータのやり取りはarrayだったり、ドメインとインフラの分離などは皆無でした。<br>
 一部のページでは現在も2006年に書かれたであろうコードが稼働しています。<br></p>
 <h2 id="2015年-モダン実装への取り組み">2015年: モダン実装への取り組み</h2>
-<p>2015年頃<sup id="ref1"><a href="#note1">[1]</a></sup>に現代的コーディング規約を適用する新しいコード置き場が作られました。<br>
+<p>2015年頃<sup id="ref1"><a href="/articles/2024-02_nvcore_code/#note1">[1]</a></sup>に現代的コーディング規約を適用する新しいコード置き場が作られました。<br>
 フレームワークこそ導入しませんでしたが、各所で必要なライブラリを活用していって新しいメンバーにも分かりやすいコードが書かれていくようになりました。<br>
 当時はまだ古い実装に依存したラッパーも多かったですが、現在はDDDを適度に適用し、古い実装に依存しないで書き直したり新たに書かれたコードになっています。<br></p>
 <h2 id="コード量の計測">コード量の計測</h2>
 <p>ローンチから改善開始を経て現在と進んできたわけですが、そもそものコードの規模感やレガシー/モダン実装の比率などは誰も見ていませんでした。<br>
 そこでバージョン管理で過去に遡りながらコードを分析して行数を記録していく簡単なスクリプトをTypeScriptで実装して計測してみました。<br></p>
 <p>今回はレガシー/モダンの比較という事でそれらのコード量を計測します。(それら以外にもWebページ・APIのエントリポイント・バッチなどが実装としてありますが、それらは除外しています)<br>
-またニコニコ動画はバージョン管理をcvs,svn,gitと乗り換えていっており、残念ながら2012年10月<sup id="ref2"><a href="#note2">[2]</a></sup>までしか戻れませんでした。<br></p>
+またニコニコ動画はバージョン管理をcvs,svn,gitと乗り換えていっており、残念ながら2012年10月<sup id="ref2"><a href="/articles/2024-02_nvcore_code/#note2">[2]</a></sup>までしか戻れませんでした。<br></p>
 <h2 id="集計結果">集計結果</h2>
 <p><div class="article-img">
   
@@ -143,8 +143,8 @@
 <p>我々のチームでは毎週水曜の朝と夜に「<span style="color:#ff2790">#草むしり</span>」という時間を設けています。<br>
 この時間は今担当している案件から頭を切り替えて、コードやドキュメントや環境の整備をしようという事になっています。<br>
 この時間のおかげでレガシーコードの削減だけに限らず、日々の開発業務の中で気になった点を放置せず改善にリソースを振ることができるようになっています。<br></p>
-<p><small id="note1">[1]: <code>2013年10月8日</code> が <code>ニコニコ動画:GINZA</code> のリリース日、 <code>2018年6月28日</code> が <code>ニコニコ動画(く)</code> のリリース日なので真ん中あたりの時期になります <a href="#ref1">↩</a></small><br>
-<small id="note2">[2]: <code>2012年10月17日</code> が <code>ニコニコ動画:Q </code>のリリース日になります <a href="#ref2">↩</a></small><br></p>
+<p><small id="note1">[1]: <code>2013年10月8日</code> が <code>ニコニコ動画:GINZA</code> のリリース日、 <code>2018年6月28日</code> が <code>ニコニコ動画(く)</code> のリリース日なので真ん中あたりの時期になります <a href="/articles/2024-02_nvcore_code/#ref1">↩</a></small><br>
+<small id="note2">[2]: <code>2012年10月17日</code> が <code>ニコニコ動画:Q </code>のリリース日になります <a href="/articles/2024-02_nvcore_code/#ref2">↩</a></small><br></p>
 <hr>
 <p>ドワンゴでは<span style="font-weight:bold">ニコニコ動画を一緒に作ってくれる仲間を募集</span>しています。<br>
 PHP や Go 言語に興味ある方、ドワンゴに興味がある、または応募しようか迷っている方がいれば、気軽に応募してみてください。</p>
@@ -210,16 +210,19 @@ PHP や Go 言語に興味ある方、ドワンゴに興味がある、または
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

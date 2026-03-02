@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="ゲームを作ってみよう - dwango on GitHub">
 
@@ -136,7 +136,7 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">loaded</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>() {
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// glyphとfontを指定
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">glyph</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;glyph_area_16&#34;</span>].<span style="color:#a6e22e">data</span>);
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">glyph</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;glyph_area_16&#34;</span>].<span style="color:#a6e22e">data</span>);
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">font</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">BitmapFont</span>({
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;font16_1&#34;</span>],
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">map</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">glyph</span>,
@@ -144,24 +144,24 @@
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">defaultGlyphHeight</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">16</span>
 </span></span><span style="display:flex;"><span>		});
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// スコア表示用ラベルを配置
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scoreLabel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scoreLabel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">font</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">font</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fontSize</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">16</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1234567890&#34;</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">16</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>,  <span style="color:#75715e">// 右端に10文字くらい表示できるように配置
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>		});
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">scoreLabel</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 時間表示用ラベルを配置
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">timerLabel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">timerLabel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">font</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">font</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fontSize</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">16</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1234567890&#34;</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,   <span style="color:#75715e">// 左端に配置
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>		});
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">timerLabel</span>);
 </span></span><span style="display:flex;"><span>	});
@@ -175,7 +175,7 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>, <span style="color:#a6e22e">assetIds</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;font16_1&#34;</span>, <span style="color:#e6db74">&#34;glyph_area_16&#34;</span>]});
 </span></span></code></pre></div><p>読み込んだ<code>assetId</code>を用いて、<code>glyph</code>（グリフ）というものを作成し、作成した<code>glyph</code>を用いて、<code>font</code>を生成します。この辺りの詳細な説明はこの記事では省略します。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// glyphとfontを指定
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">glyph</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;glyph_area_16&#34;</span>].<span style="color:#a6e22e">data</span>);
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">glyph</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;glyph_area_16&#34;</span>].<span style="color:#a6e22e">data</span>);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">font</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">BitmapFont</span>({
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;font16_1&#34;</span>],
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">map</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">glyph</span>,
@@ -184,24 +184,24 @@
 </span></span><span style="display:flex;"><span>});
 </span></span></code></pre></div><p>あとはその<code>font</code>を利用して、ラベルを配置します。後で使うように、得点表示用のラベルと、時間表示用のラベルをそれぞれ右と左に配置するようにしました。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// スコア表示用ラベルを配置
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scoreLabel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scoreLabel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">font</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">font</span>,
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fontSize</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">16</span>,
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1234567890&#34;</span>,
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">16</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>,  <span style="color:#75715e">// 右端に10文字くらい表示できるように配置
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+</span></span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>});
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">scoreLabel</span>);
 </span></span><span style="display:flex;"><span> 
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// 時間表示用ラベルを配置
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">timerLabel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">timerLabel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">font</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">font</span>,
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fontSize</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">16</span>,
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1234567890&#34;</span>,
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,   <span style="color:#75715e">// 左端に配置
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+</span></span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>});
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">timerLabel</span>);
 </span></span></code></pre></div><p>ここまでのコードを書いて<code>akashic-sandbox</code>で実行すると、以下のような表示になっているのが確認できます。これで、フォントの利用準備は完了です。</p>
@@ -221,33 +221,33 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({ <span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span> });
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// 何も送られてこない時(ニコニコ新市場以外で起動された場合)は、この値がタイムリミットになる
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">totalTimeLimit</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">60</span>;
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">totalTimeLimit</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">60</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">msg</span>) {
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">type</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;start&#34;</span>) {
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// type: &#34;start&#34; でも parameters などが与えられないこともあるので存在を確認
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span>.<span style="color:#a6e22e">totalTimeLimit</span>) {
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span>.<span style="color:#a6e22e">totalTimeLimit</span>) {
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 制限時間は `totalTimeLimit` 秒
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">totalTimeLimit</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span>.<span style="color:#a6e22e">totalTimeLimit</span>;
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">totalTimeLimit</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span>.<span style="color:#a6e22e">totalTimeLimit</span>;
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>});
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">loaded</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span> () {
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 通常のゲームとしての初期化処理
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// ...
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>このコードを今回のコードに適用すると、アツマール等では60秒制限で、ランキングの時は外部から渡されるパラメータで動作するようになります。デフォルトを60秒のままにするか等は自由なので、適時変更してください。</p>
 <p>ただ、このゲームの制限時間はリンク先の文書にも言及があるように、「あくまでも目安」とされており、ゲームのロード時間等を加味して少し短く取り扱うべきです。今回は、7秒短く取り扱う事にしました。</p>
 <p>※注: この記事の内容は、以前 <code>gameTimeLimit + 25</code> という内容で記載されていましたが、 <code>totalTimeLimit</code> というパラメータが推奨仕様になった事に合わせて 2018年11月28日に記述内容が改訂されています。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>, <span style="color:#a6e22e">assetIds</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;font16_1&#34;</span>, <span style="color:#e6db74">&#34;glyph_area_16&#34;</span>]});
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">gameTimelimit</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">60</span>; <span style="color:#75715e">// デフォルトを60秒にする
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">msg</span>) {
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">type</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;start&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span>.<span style="color:#a6e22e">totalTimeLimit</span>) {
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 制限時間を通知するイベントを受信した時点で初期化する
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#75715e">// ゲームのローディング時間を考慮し、7秒短くする
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">gameTimeLimit</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span>.<span style="color:#a6e22e">totalTimeLimit</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span>;
+</span></span></span><span style="display:flex;"><span>		<span style="color:#75715e">// ゲームのローディング時間を考慮し、7秒短くする
+</span></span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">gameTimeLimit</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span>.<span style="color:#a6e22e">totalTimeLimit</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span>;
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>});
 </span></span></code></pre></div><p>あとは、この秒数が何秒残っているかを計算すればいいのですが、制限時間が途中で変更になることも加味して単純にこの値を減算するのではなく、「経過時間をカウントし、制限時間からそれを差し引いて表示する」という形で実装します。</p>
@@ -255,19 +255,19 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">main</span>(<span style="color:#a6e22e">param</span>) {
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>, <span style="color:#a6e22e">assetIds</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;font16_1&#34;</span>, <span style="color:#e6db74">&#34;glyph_area_16&#34;</span>]});
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">gameTimeLimit</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">60</span>; <span style="color:#75715e">// デフォルトを60秒にする
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">frameCount</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">// 経過時間をフレーム単位で記録
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">frameCount</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">// 経過時間をフレーム単位で記録
+</span></span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">msg</span>) {
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">type</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;start&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span>.<span style="color:#a6e22e">totalTimeLimit</span>) {
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 制限時間を通知するイベントを受信した時点で初期化する
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#75715e">// ゲームのローディング時間を考慮し、7秒短くする
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">gameTimeLimit</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span>.<span style="color:#a6e22e">totalTimeLimit</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span>;
+</span></span></span><span style="display:flex;"><span>			<span style="color:#75715e">// ゲームのローディング時間を考慮し、7秒短くする
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">gameTimeLimit</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span>.<span style="color:#a6e22e">totalTimeLimit</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span>;
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>	});
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">loaded</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>() {
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// glyphとfontを指定
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">glyph</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;glyph_area_16&#34;</span>].<span style="color:#a6e22e">data</span>);
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">glyph</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;glyph_area_16&#34;</span>].<span style="color:#a6e22e">data</span>);
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">font</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">BitmapFont</span>({
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;font16_1&#34;</span>],
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">map</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">glyph</span>,
@@ -275,24 +275,24 @@
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">defaultGlyphHeight</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">16</span>
 </span></span><span style="display:flex;"><span>		});
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// スコア表示用ラベルを配置
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scoreLabel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scoreLabel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">font</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">font</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fontSize</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">16</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1234567890&#34;</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">16</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>,  <span style="color:#75715e">// 右端に10文字くらい表示できるように配置
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>		});
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">scoreLabel</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 時間表示用ラベルを配置
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">timerLabel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">timerLabel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">font</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">font</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fontSize</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">16</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;&#34;</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,   <span style="color:#75715e">// 左端に配置
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>		});
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">timerLabel</span>);
 </span></span><span style="display:flex;"><span>
@@ -310,11 +310,11 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">updateHandler</span>() {
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// フレーム数を毎フレーム加算
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#f92672">++</span><span style="color:#a6e22e">frameCount</span>;
+</span></span></span><span style="display:flex;"><span>			<span style="color:#f92672">++</span><span style="color:#a6e22e">frameCount</span>;
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">countDown</span>() <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>) {
 </span></span><span style="display:flex;"><span>				<span style="color:#75715e">// TODO: 終了時処理
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>				<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">update</span>.<span style="color:#a6e22e">remove</span>(<span style="color:#a6e22e">updateHandler</span>); <span style="color:#75715e">// タイムアウトになったら毎フレーム処理自体を止める
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			}
+</span></span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">update</span>.<span style="color:#a6e22e">remove</span>(<span style="color:#a6e22e">updateHandler</span>); <span style="color:#75715e">// タイムアウトになったら毎フレーム処理自体を止める
+</span></span></span><span style="display:flex;"><span>			}
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">updateTimerLabel</span>();
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">update</span>.<span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">updateHandler</span>);
@@ -328,11 +328,11 @@
 <p>経過時間の計算のためここでフレームカウントを加算し、ラベルを表示するという処理を書きます。ついで、タイムアウトになったら処理を止めるところも書いてしまいます。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">updateHandler</span>() {
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e">// フレーム数を毎フレーム加算
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#f92672">++</span><span style="color:#a6e22e">frameCount</span>;
+</span></span></span><span style="display:flex;"><span>	<span style="color:#f92672">++</span><span style="color:#a6e22e">frameCount</span>;
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">countDown</span>() <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>) {
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// TODO: 終了時処理
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">update</span>.<span style="color:#a6e22e">remove</span>(<span style="color:#a6e22e">updateHandler</span>); <span style="color:#75715e">// タイムアウトになったら毎フレーム処理自体を止める
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">update</span>.<span style="color:#a6e22e">remove</span>(<span style="color:#a6e22e">updateHandler</span>); <span style="color:#75715e">// タイムアウトになったら毎フレーム処理自体を止める
+</span></span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">updateTimerLabel</span>();
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">update</span>.<span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">updateHandler</span>);
@@ -363,19 +363,19 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">main</span>(<span style="color:#a6e22e">param</span>) {
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>, <span style="color:#a6e22e">assetIds</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;font16_1&#34;</span>, <span style="color:#e6db74">&#34;glyph_area_16&#34;</span>]});
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">gameTimeLimit</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">60</span>; <span style="color:#75715e">// デフォルトを60秒にする
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">frameCount</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">// 経過時間をフレーム単位で記録
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">frameCount</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">// 経過時間をフレーム単位で記録
+</span></span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">msg</span>) {
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">type</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;start&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span>.<span style="color:#a6e22e">gameTimeLimit</span>) {
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 制限時間を通知するイベントを受信した時点で初期化する
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#75715e">// ゲームのローディング時間を考慮し、7秒短くする
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">gameTimeLimit</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span>.<span style="color:#a6e22e">totalTimeLimit</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span>;
+</span></span></span><span style="display:flex;"><span>			<span style="color:#75715e">// ゲームのローディング時間を考慮し、7秒短くする
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">gameTimeLimit</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span>.<span style="color:#a6e22e">totalTimeLimit</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span>;
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>	});
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">loaded</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>() {
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// glyphとfontを指定
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">glyph</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;glyph_area_16&#34;</span>].<span style="color:#a6e22e">data</span>);
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">glyph</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;glyph_area_16&#34;</span>].<span style="color:#a6e22e">data</span>);
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">font</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">BitmapFont</span>({
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;font16_1&#34;</span>],
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">map</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">glyph</span>,
@@ -383,24 +383,24 @@
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">defaultGlyphHeight</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">16</span>
 </span></span><span style="display:flex;"><span>		});
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// スコア表示用ラベルを配置
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scoreLabel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scoreLabel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">font</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">font</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fontSize</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">16</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1234567890&#34;</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">16</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>,  <span style="color:#75715e">// 右端に10文字くらい表示できるように配置
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>		});
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">scoreLabel</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 時間表示用ラベルを配置
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">timerLabel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">timerLabel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">font</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">font</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fontSize</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">16</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;&#34;</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,   <span style="color:#75715e">// 左端に配置
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>		});
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">timerLabel</span>);
 </span></span><span style="display:flex;"><span>
@@ -424,7 +424,7 @@
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">placeContainer</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// ランダムに1文字選ぶ処理
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">pickAlpha</span>() {
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">pickAlpha</span>() {
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">switch</span> (<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">random</span>.<span style="color:#a6e22e">get</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4</span>)) {
 </span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">case</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">:</span>
 </span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;A&#34;</span>;
@@ -443,25 +443,25 @@
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">breakAlpha</span>(<span style="color:#a6e22e">e</span>) {
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">places</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
 </span></span><span style="display:flex;"><span>				<span style="color:#75715e">// 一つでも空きスペースがあれば処理を中断
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>				<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">places</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#66d9ef">return</span>;
+</span></span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">places</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#66d9ef">return</span>;
 </span></span><span style="display:flex;"><span>			}
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">targetText</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span>;
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">places</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
 </span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">places</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">targetText</span>) {
 </span></span><span style="display:flex;"><span>					<span style="color:#75715e">// テキストが合致したら壊す
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>					<span style="color:#a6e22e">updatePlaceText</span>(<span style="color:#a6e22e">places</span>[<span style="color:#a6e22e">i</span>], <span style="color:#e6db74">&#34;&#34;</span>);
+</span></span></span><span style="display:flex;"><span>					<span style="color:#a6e22e">updatePlaceText</span>(<span style="color:#a6e22e">places</span>[<span style="color:#a6e22e">i</span>], <span style="color:#e6db74">&#34;&#34;</span>);
 </span></span><span style="display:flex;"><span>				}
 </span></span><span style="display:flex;"><span>			}
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">updatePlaceText</span>(<span style="color:#a6e22e">place</span>, <span style="color:#a6e22e">text</span>) {
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 内部のデータを更新する
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">place</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">text</span>;
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">place</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">text</span>;
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// children[0]はLabelなので、Labelのtextも更新する
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">place</span>.<span style="color:#a6e22e">children</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">text</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">text</span>;
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">place</span>.<span style="color:#a6e22e">children</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">text</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">text</span>;
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">place</span>.<span style="color:#a6e22e">children</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">invalidate</span>();
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 置き場所を作る処理
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createPlace</span>(<span style="color:#a6e22e">index</span>) {
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createPlace</span>(<span style="color:#a6e22e">index</span>) {
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">label</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">font</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">font</span>,
@@ -487,7 +487,7 @@
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">place</span>;
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 10個の場所を作る
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">place</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createPlace</span>(<span style="color:#a6e22e">i</span>);
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">placeContainer</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">place</span>);
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">places</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">place</span>);
@@ -495,24 +495,24 @@
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">visitAlpha</span>() {
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">places</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">place</span>) {
 </span></span><span style="display:flex;"><span>				<span style="color:#75715e">// テキストが空のもののみ更新をかける
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>				<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">place</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;&#34;</span>) {
+</span></span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">place</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;&#34;</span>) {
 </span></span><span style="display:flex;"><span>					<span style="color:#a6e22e">updatePlaceText</span>(<span style="color:#a6e22e">place</span>, <span style="color:#a6e22e">pickAlpha</span>());
 </span></span><span style="display:flex;"><span>				}
 </span></span><span style="display:flex;"><span>			});
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">tryVisitAlpha</span>() {
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 1秒に1回
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">frameCount</span> <span style="color:#f92672">%</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">fps</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>) {
+</span></span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">frameCount</span> <span style="color:#f92672">%</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">fps</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>) {
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">visitAlpha</span>();
 </span></span><span style="display:flex;"><span>			}
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">updateHandler</span>() {
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// フレーム数を毎フレーム加算
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#f92672">++</span><span style="color:#a6e22e">frameCount</span>;
+</span></span></span><span style="display:flex;"><span>			<span style="color:#f92672">++</span><span style="color:#a6e22e">frameCount</span>;
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">countDown</span>() <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>) {
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">update</span>.<span style="color:#a6e22e">remove</span>(<span style="color:#a6e22e">updateHandler</span>); <span style="color:#75715e">// タイムアウトになったら毎フレーム処理自体を止める
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			}
+</span></span></span><span style="display:flex;"><span>			}
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">tryVisitAlpha</span>();
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">updateTimerLabel</span>();
 </span></span><span style="display:flex;"><span>		}
@@ -534,7 +534,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">placeContainer</span>);
 </span></span></code></pre></div><p><code>place</code>は10個なので、for文で10の<code>place</code>を作成し、表示用のコンテナと配列にそれぞれ追加します。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// 10個の場所を作る
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">place</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createPlace</span>(<span style="color:#a6e22e">i</span>);
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">placeContainer</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">place</span>);
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">places</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">place</span>);
@@ -543,7 +543,7 @@
 <p>ここがこのゲームを構成する表示要素の本体になりますが、<code>place</code>は<code>FilledRect</code>で背景色を持ち、その中に<code>Label</code>で対応する文字を表示することで表現します。</p>
 <p>「タップされた文字と同種の文字が消える」という要件を満たすため、<code>FilledRect</code>は<code>tocuhable: true</code>の引数を与え、タッチも可能なエンティティとして作成しています。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// 置き場所を作る処理
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createPlace</span>(<span style="color:#a6e22e">index</span>) {
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createPlace</span>(<span style="color:#a6e22e">index</span>) {
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">label</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">font</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">font</span>,
@@ -572,7 +572,7 @@
 <p><code>tryVisitAlpha</code>で「1秒に1回」の要件を経過フレーム数を見る事で管理し、内部で呼び出す<code>visitAlpha</code>関数で「空いている場所」の判定をしつつ、<code>pickAlpha</code>関数で「ランダムで1文字」の処理を記述します。</p>
 <p>そうして選ばれた文字を表示に反映するため、<code>updatePlaceText</code>関数も用意します。要素が多いですが、以下でまとめてみていきます。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// ランダムに1文字選ぶ処理
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">pickAlpha</span>() {
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">pickAlpha</span>() {
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">switch</span> (<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">random</span>.<span style="color:#a6e22e">get</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4</span>)) {
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">case</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">:</span>
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;A&#34;</span>;
@@ -589,25 +589,25 @@
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// ～中略
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">updatePlaceText</span>(<span style="color:#a6e22e">place</span>, <span style="color:#a6e22e">text</span>) {
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">updatePlaceText</span>(<span style="color:#a6e22e">place</span>, <span style="color:#a6e22e">text</span>) {
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 内部のデータを更新する
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">place</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">text</span>;
+</span></span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">place</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">text</span>;
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e">// children[0]はLabelなので、Labelのtextも更新する
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">place</span>.<span style="color:#a6e22e">children</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">text</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">text</span>;
+</span></span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">place</span>.<span style="color:#a6e22e">children</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">text</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">text</span>;
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">place</span>.<span style="color:#a6e22e">children</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">invalidate</span>();
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// ～中略
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">visitAlpha</span>() {
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">visitAlpha</span>() {
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">places</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">place</span>) {
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// テキストが空のもののみ更新をかける
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">place</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;&#34;</span>) {
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">place</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;&#34;</span>) {
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">updatePlaceText</span>(<span style="color:#a6e22e">place</span>, <span style="color:#a6e22e">pickAlpha</span>());
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>	});
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">tryVisitAlpha</span>() {
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 1秒に1回
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">frameCount</span> <span style="color:#f92672">%</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">fps</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>) {
+</span></span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">frameCount</span> <span style="color:#f92672">%</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">fps</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>) {
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">visitAlpha</span>();
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>}
@@ -616,13 +616,13 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">breakAlpha</span>(<span style="color:#a6e22e">e</span>) {
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">places</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 一つでも空きスペースがあれば処理を中断
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">places</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#66d9ef">return</span>;
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">places</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#66d9ef">return</span>;
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">targetText</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span>;
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">places</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">places</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">targetText</span>) {
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// テキストが合致したら壊す
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">updatePlaceText</span>(<span style="color:#a6e22e">places</span>[<span style="color:#a6e22e">i</span>], <span style="color:#e6db74">&#34;&#34;</span>);
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">updatePlaceText</span>(<span style="color:#a6e22e">places</span>[<span style="color:#a6e22e">i</span>], <span style="color:#e6db74">&#34;&#34;</span>);
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>}
@@ -638,65 +638,65 @@
 <p>要件は「同時に消した文字の数が多い程高得点」です。</p>
 <p>スコアの決め方はなかなか奥深いのですが、今回は簡単に基準スコアを10とし、同時消し数を掛け算する式で作ります。一つ消すごとにスコアが入る事にするので、2個消しの場合は1個消しの点数 + 2個消しの点数という形です。</p>
 <table>
-<thead>
-<tr>
-<th>同時消し数</th>
-<th>単体の点</th>
-<th>合計の点数</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1個</td>
-<td>10</td>
-<td>10</td>
-</tr>
-<tr>
-<td>2個</td>
-<td>20</td>
-<td>30</td>
-</tr>
-<tr>
-<td>3個</td>
-<td>30</td>
-<td>60</td>
-</tr>
-<tr>
-<td>4個</td>
-<td>40</td>
-<td>100</td>
-</tr>
-<tr>
-<td>5個</td>
-<td>50</td>
-<td>150</td>
-</tr>
-<tr>
-<td>6個</td>
-<td>60</td>
-<td>210</td>
-</tr>
-<tr>
-<td>7個</td>
-<td>70</td>
-<td>280</td>
-</tr>
-<tr>
-<td>8個</td>
-<td>80</td>
-<td>360</td>
-</tr>
-<tr>
-<td>9個</td>
-<td>90</td>
-<td>450</td>
-</tr>
-<tr>
-<td>10個</td>
-<td>100</td>
-<td>550</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>同時消し数</th>
+          <th>単体の点</th>
+          <th>合計の点数</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1個</td>
+          <td>10</td>
+          <td>10</td>
+      </tr>
+      <tr>
+          <td>2個</td>
+          <td>20</td>
+          <td>30</td>
+      </tr>
+      <tr>
+          <td>3個</td>
+          <td>30</td>
+          <td>60</td>
+      </tr>
+      <tr>
+          <td>4個</td>
+          <td>40</td>
+          <td>100</td>
+      </tr>
+      <tr>
+          <td>5個</td>
+          <td>50</td>
+          <td>150</td>
+      </tr>
+      <tr>
+          <td>6個</td>
+          <td>60</td>
+          <td>210</td>
+      </tr>
+      <tr>
+          <td>7個</td>
+          <td>70</td>
+          <td>280</td>
+      </tr>
+      <tr>
+          <td>8個</td>
+          <td>80</td>
+          <td>360</td>
+      </tr>
+      <tr>
+          <td>9個</td>
+          <td>90</td>
+          <td>450</td>
+      </tr>
+      <tr>
+          <td>10個</td>
+          <td>100</td>
+          <td>550</td>
+      </tr>
+  </tbody>
 </table>
 <p>表示されるものはランダムなのでそこまで戦略性はないですが、「多く表示されているものを消せば高得点」で「もう少し残すか今消すかは各自の判断」という感じになり、多少ゲーム性はある形になります。</p>
 <p>60秒だと理論上の限界として58回消せるので、31,900点が最高になりますが、それはありえないので3個消しを58回連続でやって3,480点とれたらそれなり、上手くやると4個消し5,800点くらいもありうる、くらいのバランスになるのではないでしょうか。</p>
@@ -708,23 +708,23 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">main</span>(<span style="color:#a6e22e">param</span>) {
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>, <span style="color:#a6e22e">assetIds</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;font16_1&#34;</span>, <span style="color:#e6db74">&#34;glyph_area_16&#34;</span>]});
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">gameTimeLimit</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">60</span>;	<span style="color:#75715e">// デフォルトを60秒にする
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">frameCount</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;	<span style="color:#75715e">// 経過時間をフレーム単位で記録
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// ゲームスコアの初期化
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">vars</span>.<span style="color:#a6e22e">gameState</span> <span style="color:#f92672">=</span> {
+</span></span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">frameCount</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;	<span style="color:#75715e">// 経過時間をフレーム単位で記録
+</span></span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ゲームスコアの初期化
+</span></span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">vars</span>.<span style="color:#a6e22e">gameState</span> <span style="color:#f92672">=</span> {
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">score</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>	};
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">msg</span>) {
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">type</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;start&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span>.<span style="color:#a6e22e">gameTimeLimit</span>) {
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 制限時間を通知するイベントを受信した時点で初期化する
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#75715e">// ゲームのローディング時間を考慮し、7秒短くする
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">gameTimeLimit</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span>.<span style="color:#a6e22e">totalTimeLimit</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span>;
+</span></span></span><span style="display:flex;"><span>			<span style="color:#75715e">// ゲームのローディング時間を考慮し、7秒短くする
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">gameTimeLimit</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">parameters</span>.<span style="color:#a6e22e">totalTimeLimit</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span>;
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>	});
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">loaded</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>() {
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// glyphとfontを指定
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">glyph</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;glyph_area_16&#34;</span>].<span style="color:#a6e22e">data</span>);
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">glyph</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;glyph_area_16&#34;</span>].<span style="color:#a6e22e">data</span>);
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">font</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">BitmapFont</span>({
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;font16_1&#34;</span>],
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">map</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">glyph</span>,
@@ -732,24 +732,24 @@
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">defaultGlyphHeight</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">16</span>
 </span></span><span style="display:flex;"><span>		});
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// スコア表示用ラベルを配置
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scoreLabel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scoreLabel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">font</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">font</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fontSize</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">16</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">vars</span>.<span style="color:#a6e22e">gameState</span>.<span style="color:#a6e22e">score</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">16</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>,	<span style="color:#75715e">// 右端に10文字くらい表示できるように配置
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>		});
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">scoreLabel</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 時間表示用ラベルを配置
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">timerLabel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">timerLabel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">font</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">font</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fontSize</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">16</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;&#34;</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,	<span style="color:#75715e">// 左端に配置
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>		});
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">timerLabel</span>);
 </span></span><span style="display:flex;"><span>
@@ -777,7 +777,7 @@
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">placeContainer</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// ランダムに1文字選ぶ処理
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">pickAlpha</span>() {
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">pickAlpha</span>() {
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">switch</span> (<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">random</span>.<span style="color:#a6e22e">get</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4</span>)) {
 </span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">case</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">:</span>
 </span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;A&#34;</span>;
@@ -799,29 +799,29 @@
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">breakAlpha</span>(<span style="color:#a6e22e">e</span>) {
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">places</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
 </span></span><span style="display:flex;"><span>				<span style="color:#75715e">// 一つでも空きスペースがあれば処理を中断
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>				<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">places</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#66d9ef">return</span>;
+</span></span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">places</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#66d9ef">return</span>;
 </span></span><span style="display:flex;"><span>			}
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">targetText</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span>;
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">bonusCount</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">places</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
 </span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">places</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">targetText</span>) {
 </span></span><span style="display:flex;"><span>					<span style="color:#75715e">// テキストが合致したら壊す
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>					<span style="color:#a6e22e">updatePlaceText</span>(<span style="color:#a6e22e">places</span>[<span style="color:#a6e22e">i</span>], <span style="color:#e6db74">&#34;&#34;</span>);
+</span></span></span><span style="display:flex;"><span>					<span style="color:#a6e22e">updatePlaceText</span>(<span style="color:#a6e22e">places</span>[<span style="color:#a6e22e">i</span>], <span style="color:#e6db74">&#34;&#34;</span>);
 </span></span><span style="display:flex;"><span>					<span style="color:#75715e">// スコアを連鎖回数分加算
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>					<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">vars</span>.<span style="color:#a6e22e">gameState</span>.<span style="color:#a6e22e">score</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">calculateScore</span>(<span style="color:#a6e22e">bonusCount</span><span style="color:#f92672">++</span>);
+</span></span></span><span style="display:flex;"><span>					<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">vars</span>.<span style="color:#a6e22e">gameState</span>.<span style="color:#a6e22e">score</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">calculateScore</span>(<span style="color:#a6e22e">bonusCount</span><span style="color:#f92672">++</span>);
 </span></span><span style="display:flex;"><span>					<span style="color:#a6e22e">updateScoreLabel</span>();
 </span></span><span style="display:flex;"><span>				}
 </span></span><span style="display:flex;"><span>			}
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">updatePlaceText</span>(<span style="color:#a6e22e">place</span>, <span style="color:#a6e22e">text</span>) {
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 内部のデータを更新する
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">place</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">text</span>;
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">place</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">text</span>;
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// children[0]はLabelなので、Labelのtextも更新する
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">place</span>.<span style="color:#a6e22e">children</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">text</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">text</span>;
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">place</span>.<span style="color:#a6e22e">children</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">text</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">text</span>;
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">place</span>.<span style="color:#a6e22e">children</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">invalidate</span>();
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 置き場所を作る処理
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createPlace</span>(<span style="color:#a6e22e">index</span>) {
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createPlace</span>(<span style="color:#a6e22e">index</span>) {
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">label</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Label</span>({
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">font</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">font</span>,
@@ -847,7 +847,7 @@
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">place</span>;
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 10個の場所を作る
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">place</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createPlace</span>(<span style="color:#a6e22e">i</span>);
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">placeContainer</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">place</span>);
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">places</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">place</span>);
@@ -855,25 +855,25 @@
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">visitAlpha</span>() {
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">places</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">place</span>) {
 </span></span><span style="display:flex;"><span>				<span style="color:#75715e">// テキストが空のもののみ更新をかける
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>				<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">place</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;&#34;</span>) {
+</span></span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">place</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;&#34;</span>) {
 </span></span><span style="display:flex;"><span>					<span style="color:#a6e22e">updatePlaceText</span>(<span style="color:#a6e22e">place</span>, <span style="color:#a6e22e">pickAlpha</span>());
 </span></span><span style="display:flex;"><span>				}
 </span></span><span style="display:flex;"><span>			});
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">tryVisitAlpha</span>() {
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 1秒に1回
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">frameCount</span> <span style="color:#f92672">%</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">fps</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>) {
+</span></span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">frameCount</span> <span style="color:#f92672">%</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">fps</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>) {
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">visitAlpha</span>();
 </span></span><span style="display:flex;"><span>			}
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">updateHandler</span>() {
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// フレーム数を毎フレーム加算
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#f92672">++</span><span style="color:#a6e22e">frameCount</span>;
+</span></span></span><span style="display:flex;"><span>			<span style="color:#f92672">++</span><span style="color:#a6e22e">frameCount</span>;
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">countDown</span>() <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>) {
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">update</span>.<span style="color:#a6e22e">remove</span>(<span style="color:#a6e22e">updateHandler</span>);	<span style="color:#75715e">// タイムアウトになったら毎フレーム処理自体を止める
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>				<span style="color:#75715e">// 終了後はタップできないよう、テキストを空にしておく
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>				<span style="color:#a6e22e">places</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">place</span>) {
+</span></span></span><span style="display:flex;"><span>				<span style="color:#75715e">// 終了後はタップできないよう、テキストを空にしておく
+</span></span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">places</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">place</span>) {
 </span></span><span style="display:flex;"><span>					<span style="color:#a6e22e">updatePlaceText</span>(<span style="color:#a6e22e">place</span>, <span style="color:#e6db74">&#34;&#34;</span>);
 </span></span><span style="display:flex;"><span>				});
 </span></span><span style="display:flex;"><span>			}
@@ -889,7 +889,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">main</span>;
 </span></span></code></pre></div><p>まずはスコアの初期化処理です。0点からスタートにします。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// ゲームスコアの初期化
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">vars</span>.<span style="color:#a6e22e">gameState</span> <span style="color:#f92672">=</span> {
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">vars</span>.<span style="color:#a6e22e">gameState</span> <span style="color:#f92672">=</span> {
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">score</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></div><p>スコア表示を更新する関数も作っておきます。これは毎フレーム呼び出すものでもないので、同値の場合に更新を省略する等の処理は省略しています。</p>
@@ -906,16 +906,16 @@
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">breakAlpha</span>(<span style="color:#a6e22e">e</span>) {
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">places</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 一つでも空きスペースがあれば処理を中断
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">places</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#66d9ef">return</span>;
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">places</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#66d9ef">return</span>;
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">targetText</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span>;
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">bonusCount</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">places</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">places</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">targetText</span>) {
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// テキストが合致したら壊す
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">places</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">updateText</span>(<span style="color:#e6db74">&#34;&#34;</span>);
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">places</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">updateText</span>(<span style="color:#e6db74">&#34;&#34;</span>);
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// スコアを連鎖回数分加算
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">vars</span>.<span style="color:#a6e22e">gameState</span>.<span style="color:#a6e22e">score</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">calculateScore</span>(<span style="color:#a6e22e">bonusCount</span><span style="color:#f92672">++</span>);
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">vars</span>.<span style="color:#a6e22e">gameState</span>.<span style="color:#a6e22e">score</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">calculateScore</span>(<span style="color:#a6e22e">bonusCount</span><span style="color:#f92672">++</span>);
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">updateScoreLabel</span>();
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>	}
@@ -1051,16 +1051,19 @@
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

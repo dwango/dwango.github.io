@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="新卒エンジニアが語る、ドワンゴの2024年エンジニア研修体験記 - dwango on GitHub">
 
@@ -172,7 +172,7 @@
 ZEN Studyの教材は図やイラストが豊富で理解しやすく、Webアプリケーション開発の教材では設計からデプロイまで一通り学習することができました。
 今年はZEN StudyやZEN大学の教材を作っている方が研修の運営メンバーだったこともあり、教材へのフィードバックが頻繁に行われていました。</p>
 <p>そして、基礎研修の最後のコンテンツとして、AWS講習を行いました。
-近年、ニコニコではオンプレからAWSへの移行が進んでいるため、基礎学習の中でも特に重要なパートです。<sup id="ref1"><a href="#note1">[1]</a></sup><br>
+近年、ニコニコではオンプレからAWSへの移行が進んでいるため、基礎学習の中でも特に重要なパートです。<sup id="ref1"><a href="/articles/2024-12_2024_engineer_onboarding/#note1">[1]</a></sup><br>
 このAWS研修はAWS公式の学習講座であるSkill Builderを使った座学パートと、AWSの講師の方に手伝ってもらいながらサンドボックス環境でAWSプロダクトを触るクラスルームトレーニングに分かれており、主にTechnical Essentialsを受講しました。<br>
 この講習でもZEN Studyによる学習と同様に、座学で基礎を学習してから応用パートで実際に手を動かしてAWS環境の構築を行うことができたことで、より一層理解が深まりました。<br>
 特にAWSなどのインフラ関係は、実際に環境構築してデプロイしないと理解しきれない部分があると思うので、サンドボックス環境の中でコスト面の心配なくAWSに触れることができたのは大変有意義でした。
@@ -269,7 +269,7 @@ Bulletproof Reactはアプリケーションの主要機能ごとにディレク
 
   <p>おいしい麻婆豆腐</p>
 </div>
-<p><small id="note1">[1]: 現在はニコニコサービスの全てのシステムがAWS上で稼働しています。 <a href="#ref1">↩</a></small></p>
+<p><small id="note1">[1]: 現在はニコニコサービスの全てのシステムがAWS上で稼働しています。 <a href="/articles/2024-12_2024_engineer_onboarding/#ref1">↩</a></small></p>
 <hr>
 <p>株式会社ドワンゴでは、教育事業、ニコニコ事業、モバイル事業など様々なサービス、コンテンツを一緒につくるメンバーを募集しています。<br>
 ドワンゴに興味がある・または応募しようか迷っている方がいれば、気軽に応募してみてください。</p>
@@ -335,16 +335,19 @@ Bulletproof Reactはアプリケーションの主要機能ごとにディレク
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

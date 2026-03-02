@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="UniVRMのインストール - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -107,97 +107,97 @@
 <p>既存のVRMが存在している場合、あらかじめVRMフォルダを削除することを推奨しています。</p>
 <p>UniVRM-XXX.unitypackageファイルをUnityにインポートしてください。</p>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/package_import.png" alt="package_import"  />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>UnityPackageをインポート</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>UnityPackageをインポート</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="assetpostprocessorを止める">AssetPostProcessorを止める</h2>
 <p>UniVRMのインポーターは<code>AssetPostprocessor</code>で実装しています。
 UnityプロジェクトにUniVRMを含めるときにAssetPostProcessorが都合が悪い場合があり、これを無効にするシンボルを追加しました(v0.39から)。</p>
 <p><code>Editor - ProjectSettings - Player</code> の <code>Other Settings - Scripting Define Symbols</code>に<code>VRM_STOP_ASSETPOSTPROCESSOR</code>を設定します。</p>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/stop_assetpostprocessor.png"   />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>AssetPostProcessorを停止</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>AssetPostProcessorを停止</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="シェーダーバリアント">シェーダーバリアント</h2>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/shaders.png"   />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>同梱されるシェーダー。</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>同梱されるシェーダー。</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="shader-preloadingの設定">Shader Preloadingの設定</h2>
 <p><strong>v0.36からShaderがResourcesフォルダに移動して不要になりました</strong></p>
 <p>プロジェクトに以下のように設定してください。</p>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/graphics_setting.png"   />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Editor - Project Settings - Graphics</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Editor - Project Settings - Graphics</td>
+      </tr>
+  </tbody>
 </table>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/shader_preloading.png"   />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>shader preloadingの設定</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>shader preloadingの設定</td>
+      </tr>
+  </tbody>
 </table>
 
     </article>
@@ -212,16 +212,19 @@ UnityプロジェクトにUniVRMを含めるときにAssetPostProcessorが都合
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

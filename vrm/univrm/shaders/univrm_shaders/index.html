@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="UniVRMで使えるシェーダー - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -129,21 +129,21 @@
 <h3 id="vrmunlittransparentzwrite">VRM/UnlitTransparentZWrite</h3>
 <p>アルファブレンディングかつZWriteありです。半透明な衣装や髪など実体(深度値)のある半透明物への適用を想定しています。</p>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/TransparentZWrite.png"   />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>前髪が毛先に行くにつれて半透明</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>前髪が毛先に行くにつれて半透明</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="toonシェーダー">Toonシェーダー</h2>
 <h3 id="vrmmtoon">VRM/MToon</h3>
@@ -165,16 +165,19 @@
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

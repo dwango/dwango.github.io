@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="ツールを作ってみよう - dwango on GitHub">
 
@@ -116,30 +116,30 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>akashic init
 </span></span></code></pre></div><p>このコマンドを実行すると、対話型のインターフェースで色々聞かれると思いますが、それぞれ以下のように入力してEnterを押してください。</p>
 <table>
-<thead>
-<tr>
-<th>項目</th>
-<th>入力値</th>
-<th>備考</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>width:(320)</td>
-<td>640</td>
-<td>横幅</td>
-</tr>
-<tr>
-<td>height:(320)</td>
-<td>360</td>
-<td>縦幅</td>
-</tr>
-<tr>
-<td>fps:(30)</td>
-<td>（入力せずそのまま）</td>
-<td>フレームレート</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>項目</th>
+          <th>入力値</th>
+          <th>備考</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>width:(320)</td>
+          <td>640</td>
+          <td>横幅</td>
+      </tr>
+      <tr>
+          <td>height:(320)</td>
+          <td>360</td>
+          <td>縦幅</td>
+      </tr>
+      <tr>
+          <td>fps:(30)</td>
+          <td>（入力せずそのまま）</td>
+          <td>フレームレート</td>
+      </tr>
+  </tbody>
 </table>
 <p><code>width</code>は横幅、<code>height</code>は縦幅で、今回は放送で利用するツールを作りたいので、ニコニコ生放送の一般的な解像度である16:9でツールを作成します。この解像度比率にしておけば、映像とぴったり合ったサイズのコンテンツを作成できます。</p>
 <p><code>width</code>や<code>height</code>に表示されている<code>(320)</code>や<code>fps</code>の<code>(30)</code>はデフォルト値を意味しているので、<code>fps</code>はそのままEnterを押してもらう事で30fpsになります。</p>
@@ -154,55 +154,55 @@
 
 <p>この時、今回作成したフォルダをエクスプローラで眺めてみると、各種ファイルが自動生成されています。以下のようなファイル群になります。</p>
 <table>
-<thead>
-<tr>
-<th>ファイル、フォルダ名</th>
-<th>開設</th>
-<th>備考</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>game.json</td>
-<td>ゲームの各種情報を記述しているファイルです。<code>width</code>、<code>height</code>、<code>fps</code>等の情報もこちらに記載されています。</td>
-<td></td>
-</tr>
-<tr>
-<td>package.json</td>
-<td>この記事では利用しません。</td>
-<td></td>
-</tr>
-<tr>
-<td>README.md</td>
-<td>この記事では利用しません。</td>
-<td></td>
-</tr>
-<tr>
-<td>audio</td>
-<td>この記事では利用しません。</td>
-<td>音声ファイルを格納するためのフォルダです。</td>
-</tr>
-<tr>
-<td>image</td>
-<td>画像ファイルを格納するためのフォルダです。</td>
-<td></td>
-</tr>
-<tr>
-<td>script</td>
-<td>スクリプトを格納するためのフォルダです。</td>
-<td></td>
-</tr>
-<tr>
-<td>script\main.js</td>
-<td>赤い四角を横に動かすためのコードが入っているスクリプトです。</td>
-<td></td>
-</tr>
-<tr>
-<td>text</td>
-<td>この記事では利用しません。</td>
-<td>テキストファイルを格納するためのフォルダです。</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>ファイル、フォルダ名</th>
+          <th>開設</th>
+          <th>備考</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>game.json</td>
+          <td>ゲームの各種情報を記述しているファイルです。<code>width</code>、<code>height</code>、<code>fps</code>等の情報もこちらに記載されています。</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>package.json</td>
+          <td>この記事では利用しません。</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>README.md</td>
+          <td>この記事では利用しません。</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>audio</td>
+          <td>この記事では利用しません。</td>
+          <td>音声ファイルを格納するためのフォルダです。</td>
+      </tr>
+      <tr>
+          <td>image</td>
+          <td>画像ファイルを格納するためのフォルダです。</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>script</td>
+          <td>スクリプトを格納するためのフォルダです。</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>script\main.js</td>
+          <td>赤い四角を横に動かすためのコードが入っているスクリプトです。</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>text</td>
+          <td>この記事では利用しません。</td>
+          <td>テキストファイルを格納するためのフォルダです。</td>
+      </tr>
+  </tbody>
 </table>
 <p>※<code>.gitkeep</code>、<code>.eslint.json</code>というファイルも作成されていますが、環境によっては表示されないこともあるため割愛しています。</p>
 <p>なお、<a href="https://www.typescriptlang.org">TypeScript</a>で書きたいという方は、以下のコマンドを利用してセットアップする事もできます。</p>
@@ -263,7 +263,7 @@
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>});
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">loaded</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>() {
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 以下にゲームのロジックを記述します。
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">rect</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">FilledRect</span>({
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">rect</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">FilledRect</span>({
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">cssColor</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#ff0000&#34;</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">width</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">32</span>,
@@ -271,7 +271,7 @@
 </span></span><span style="display:flex;"><span>		});
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">rect</span>.<span style="color:#a6e22e">update</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span> () {
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 以下のコードは毎フレーム実行されます。
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">rect</span>.<span style="color:#a6e22e">x</span><span style="color:#f92672">++</span>;
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">rect</span>.<span style="color:#a6e22e">x</span><span style="color:#f92672">++</span>;
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">rect</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">width</span>) <span style="color:#a6e22e">rect</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">rect</span>.<span style="color:#a6e22e">modified</span>();
 </span></span><span style="display:flex;"><span>		});
@@ -295,7 +295,7 @@
 <p>先ほどのコードでは以下のようにシーンを作成しています。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>});
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// ～ 中略 ～
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">pushScene</span>(<span style="color:#a6e22e">scene</span>);
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">pushScene</span>(<span style="color:#a6e22e">scene</span>);
 </span></span></code></pre></div><p><code>scene</code>変数に<code>g.Scene</code>というエンティティのインスタンスを格納し、最後にゲームに対して<code>scene</code>変数を追加しています。</p>
 <p>このシーンに、先ほど追加した<code>heart</code>という画像を追加してあげましょう。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Scene</span>({<span style="color:#a6e22e">game</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>, <span style="color:#a6e22e">assetIds</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;heart&#34;</span>]});
@@ -356,23 +356,23 @@
 </span></span><span style="display:flex;"><span>		});
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">sprite</span>);
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// -- 「入力を扱ってみる」で追加
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#75715e">// pointDownCaptureトリガーに関数を登録
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">pointDownCapture</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+</span></span></span><span style="display:flex;"><span>		<span style="color:#75715e">// pointDownCaptureトリガーに関数を登録
+</span></span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">pointDownCapture</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// heart変数にheart画像のSpriteを追加
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">heart</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
+</span></span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">heart</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>]
 </span></span><span style="display:flex;"><span>			});
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// heartの位置をタッチされた場所にする。Akashicの基準座標は左上なので、タッチされた中心になるように微調整する
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">moveTo</span>(
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">moveTo</span>(
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>,
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
 </span></span><span style="display:flex;"><span>			);
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 作成したheartスプライトをシーンに追加
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">heart</span>);
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">heart</span>);
 </span></span><span style="display:flex;"><span>		});
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// ここまで「入力を扱ってみる」 --
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	});
+</span></span></span><span style="display:flex;"><span>	});
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">pushScene</span>(<span style="color:#a6e22e">scene</span>);
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
@@ -413,43 +413,43 @@
 </span></span><span style="display:flex;"><span>		});
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">sprite</span>);
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// -- 「入力を扱ってみる」で追加
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#75715e">// pointDownCaptureトリガーに関数を登録
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">pointDownCapture</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+</span></span></span><span style="display:flex;"><span>		<span style="color:#75715e">// pointDownCaptureトリガーに関数を登録
+</span></span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">pointDownCapture</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// heart変数にheart画像のSpriteを追加
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">heart</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
+</span></span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">heart</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>]
 </span></span><span style="display:flex;"><span>			});
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// heartの位置をタッチされた場所にする。Akashicの基準座標は左上なので、タッチされた中心になるように微調整する
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">moveTo</span>(
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">moveTo</span>(
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>,
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
 </span></span><span style="display:flex;"><span>			);
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// -- 「一定時間で削除する」で追加
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#75715e">// heartのtagという変数にcounterを格納
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span> <span style="color:#f92672">=</span> {
+</span></span></span><span style="display:flex;"><span>			<span style="color:#75715e">// heartのtagという変数にcounterを格納
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span> <span style="color:#f92672">=</span> {
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">counter</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>			};
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 毎フレーム実行されるイベントであるupdateにイベントを登録
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">update</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">update</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
 </span></span><span style="display:flex;"><span>				<span style="color:#75715e">// 毎フレームカウンタを追加
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>				<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span><span style="color:#f92672">++</span>;
+</span></span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span><span style="color:#f92672">++</span>;
 </span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>) {
 </span></span><span style="display:flex;"><span>					<span style="color:#75715e">// カウンタが100を超えていたら削除する
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">destroy</span>();
+</span></span></span><span style="display:flex;"><span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">destroy</span>();
 </span></span><span style="display:flex;"><span>				} <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">50</span>) {
 </span></span><span style="display:flex;"><span>					<span style="color:#75715e">// カウンタが50を超えていたら半透明にしていく
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">opacity</span> <span style="color:#f92672">=</span> (<span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">50</span>;
+</span></span></span><span style="display:flex;"><span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">opacity</span> <span style="color:#f92672">=</span> (<span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">50</span>;
 </span></span><span style="display:flex;"><span>					<span style="color:#75715e">// このエンティティが変更されたという通知
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">modified</span>();
+</span></span></span><span style="display:flex;"><span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">modified</span>();
 </span></span><span style="display:flex;"><span>				}
 </span></span><span style="display:flex;"><span>			});
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// ここまで「一定時間で削除する」で追加 --
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#75715e">// 作成したheartスプライトをシーンに追加
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">heart</span>);
+</span></span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 作成したheartスプライトをシーンに追加
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">heart</span>);
 </span></span><span style="display:flex;"><span>		});
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// ここまで「入力を扱ってみる」 --
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	});
+</span></span></span><span style="display:flex;"><span>	});
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">pushScene</span>(<span style="color:#a6e22e">scene</span>);
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
@@ -471,12 +471,12 @@
 <p>また、最初の50フレームは変化なくそのままで、50フレームからだんだん半透明にする事にしました。それをコードで表したのがこちらです。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>) {
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e">// カウンタが100を超えていたら削除する
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">destroy</span>();
+</span></span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">destroy</span>();
 </span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">50</span>) {
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e">// カウンタが50を超えていたら半透明にしていく
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">opacity</span> <span style="color:#f92672">=</span> (<span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">50</span>;
+</span></span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">opacity</span> <span style="color:#f92672">=</span> (<span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">50</span>;
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e">// このエンティティが変更されたという通知
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">modified</span>();
+</span></span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">modified</span>();
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>100フレームを超えていたら<code>destroy</code>を呼び出しています。Akashicのエンティティを削除する方法は<code>remove</code>と<code>destroy</code>の二つがあるのですが、<code>remove</code>だけだとイベントハンドラ等は解除されないので、<code>destroy</code>で存在ごと消滅させています。</p>
 <p>50フレームを超えていたら、<code>opacity</code>というプロパティを操作して、透明度を操作しています。<code>opacity</code>は<code>0</code>～<code>1.0</code>で透明度を指定するので、式でだんだん透明度を上げていく形にしました。</p>
@@ -487,40 +487,40 @@
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">loaded</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>() {
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">generateHeart</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>) {
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// heart変数にheart画像のSpriteを追加
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">heart</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
+</span></span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">heart</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Sprite</span>({
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">scene</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>,
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>]
 </span></span><span style="display:flex;"><span>			});
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// heartの位置をタッチされた場所にする。Akashicの基準座標は左上なので、タッチされた中心になるように微調整する
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">moveTo</span>(
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">moveTo</span>(
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">x</span>,
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">y</span>
 </span></span><span style="display:flex;"><span>			);
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// heartのtagという変数にcounterを格納
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span> <span style="color:#f92672">=</span> {
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span> <span style="color:#f92672">=</span> {
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">counter</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>			};
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 毎フレーム実行されるイベントであるupdateにイベントを登録
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">update</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">update</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
 </span></span><span style="display:flex;"><span>				<span style="color:#75715e">// 毎フレームカウンタを追加
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>				<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span><span style="color:#f92672">++</span>;
+</span></span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span><span style="color:#f92672">++</span>;
 </span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>) {
 </span></span><span style="display:flex;"><span>					<span style="color:#75715e">// カウンタが100を超えていたら削除する
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">destroy</span>();
+</span></span></span><span style="display:flex;"><span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">destroy</span>();
 </span></span><span style="display:flex;"><span>				} <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">50</span>) {
 </span></span><span style="display:flex;"><span>					<span style="color:#75715e">// カウンタが50を超えていたら半透明にしていく
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">opacity</span> <span style="color:#f92672">=</span> (<span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">50</span>;
+</span></span></span><span style="display:flex;"><span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">opacity</span> <span style="color:#f92672">=</span> (<span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">tag</span>.<span style="color:#a6e22e">counter</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">50</span>;
 </span></span><span style="display:flex;"><span>					<span style="color:#75715e">// このエンティティが変更されたという通知
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">modified</span>();
+</span></span></span><span style="display:flex;"><span>					<span style="color:#a6e22e">heart</span>.<span style="color:#a6e22e">modified</span>();
 </span></span><span style="display:flex;"><span>				}
 </span></span><span style="display:flex;"><span>			});
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 作成したheartスプライトをシーンに追加
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">heart</span>);
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">heart</span>);
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// pointDownCaptureトリガーに関数を登録
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">pointDownCapture</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+</span></span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">pointDownCapture</span>.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// タッチされたらハートを中心点に配置する
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">generateHeart</span>(
+</span></span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">generateHeart</span>(
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>].<span style="color:#a6e22e">width</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>,
 </span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">point</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>].<span style="color:#a6e22e">height</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
 </span></span><span style="display:flex;"><span>			);
@@ -528,7 +528,7 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 最初に中心にハートを出現させる
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">generateHeart</span>(
+</span></span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">generateHeart</span>(
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>].<span style="color:#a6e22e">width</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">game</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">assets</span>[<span style="color:#e6db74">&#34;heart&#34;</span>].<span style="color:#a6e22e">height</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
 </span></span><span style="display:flex;"><span>		);
@@ -713,16 +713,19 @@
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

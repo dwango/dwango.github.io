@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="Eye Control - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -108,42 +108,42 @@
         </div>
        <h2 id="vrmlookathead">VRMLookAtHead</h2>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/VRMLookAtHead.png"   />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>VRMLookAtHead</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>VRMLookAtHead</td>
+      </tr>
+  </tbody>
 </table>
 <p>This component calculates the direction from the model&rsquo;s head to the target.</p>
 <h3 id="target">Target</h3>
 <p>The target to be tracked by the model&rsquo;s eyes. If a camera is set as Target, the model will always look at the camera.</p>
 <h2 id="eye-control-with-bone-vrmlookatboneapplyer">Eye control with bone: VRMLookAtBoneApplyer</h2>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/VRMLookAtBoneApplyer.png"   />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>VRMLookAtBoneApplyer</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>VRMLookAtBoneApplyer</td>
+      </tr>
+  </tbody>
 </table>
 <p>Apply the parameters of the calculated eye gaze direction of VRMLookAtHead to EyeBone.</p>
 <h3 id="degreemapping">DegreeMapping</h3>
@@ -171,16 +171,19 @@ Settings related to VRMLookAtBlendShape <a href="https://github.com/dwango/UniVR
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

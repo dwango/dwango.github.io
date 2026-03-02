@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="実践Terraform：マルチAWSアカウント環境の構成管理とモジュール分割 - dwango on GitHub">
 
@@ -171,12 +171,12 @@ GitHub Actionsでplan/applyを実行する時は、まず管理用AWSアカウ�
 </span></span><span style="display:flex;"><span>]
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform" data-lang="terraform"><span style="display:flex;"><span><span style="color:#66d9ef">data</span> <span style="color:#e6db74">&#34;aws_iam_policy_document&#34;</span> <span style="color:#e6db74">&#34;management_role&#34;</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">statement</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">sid</span>    = <span style="color:#e6db74">&#34;AssumeExecutionRole&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">effect</span> = <span style="color:#e6db74">&#34;Allow&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">actions</span> = [
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">sid</span>    <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;AssumeExecutionRole&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">effect</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Allow&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">actions</span> <span style="color:#f92672">=</span> [
 </span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;sts:AssumeRole&#34;</span>,
 </span></span><span style="display:flex;"><span>    ]
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">resources</span> = [
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">resources</span> <span style="color:#f92672">=</span> [
 </span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">account</span> <span style="color:#66d9ef">in</span> jsondecode(file(<span style="color:#a6e22e">local</span>.<span style="color:#a6e22e">account_list</span>.<span style="color:#a6e22e">json</span>)) <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;arn:aws:iam::</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">account</span>.<span style="color:#a6e22e">id</span><span style="color:#e6db74">}</span><span style="color:#e6db74">:role/&lt;plan or apply&gt;-role&#34;</span>
 </span></span><span style="display:flex;"><span>    ]
 </span></span><span style="display:flex;"><span>  }
@@ -243,94 +243,94 @@ AWS CDK経験者向けに説明すると、機能単位モジュールはL2コ�
 <p>以下は機能単位モジュールの例です。</p>
 <p>VPC機能単位モジュール例：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:modules/ServiceA/VPC/main.tf" data-lang="terraform:modules/ServiceA/VPC/main.tf"><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_vpc&#34;</span> <span style="color:#e6db74">&#34;main&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cidr_block</span> = var.<span style="color:#a6e22e">cidr_block</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cidr_block</span> <span style="color:#f92672">=</span> var.<span style="color:#a6e22e">cidr_block</span>
 </span></span><span style="display:flex;"><span>  ...
 </span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_subnet&#34;</span> <span style="color:#e6db74">&#34;public_1&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">vpc_id</span> = <span style="color:#a6e22e">aws_vpc</span>.<span style="color:#a6e22e">main</span>.<span style="color:#a6e22e">id</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cidr_block</span> = cidrsubnet(var.<span style="color:#a6e22e">cidr_block</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_subnet&#34;</span> <span style="color:#e6db74">&#34;public_1&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">vpc_id</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">aws_vpc</span>.<span style="color:#a6e22e">main</span>.<span style="color:#a6e22e">id</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cidr_block</span> <span style="color:#f92672">=</span> cidrsubnet(var.<span style="color:#a6e22e">cidr_block</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span>)
 </span></span><span style="display:flex;"><span>  ...
 </span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_subnet&#34;</span> <span style="color:#e6db74">&#34;public_2&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">vpc_id</span> = <span style="color:#a6e22e">aws_vpc</span>.<span style="color:#a6e22e">main</span>.<span style="color:#a6e22e">id</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cidr_block</span> = cidrsubnet(var.<span style="color:#a6e22e">cidr_block</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_subnet&#34;</span> <span style="color:#e6db74">&#34;public_2&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">vpc_id</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">aws_vpc</span>.<span style="color:#a6e22e">main</span>.<span style="color:#a6e22e">id</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cidr_block</span> <span style="color:#f92672">=</span> cidrsubnet(var.<span style="color:#a6e22e">cidr_block</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">2</span>)
 </span></span><span style="display:flex;"><span>  ...
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:modules/ServiceA/VPC/variables.tf" data-lang="terraform:modules/ServiceA/VPC/variables.tf"><span style="display:flex;"><span><span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;cidr_block&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span> = <span style="color:#a6e22e">string</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;The CIDR block for the VPC&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">string</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;The CIDR block for the VPC&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:modules/ServiceA/VPC/outputs.tf" data-lang="terraform:modules/ServiceA/VPC/outputs.tf"><span style="display:flex;"><span><span style="color:#66d9ef">output</span> <span style="color:#e6db74">&#34;vpc_id&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">value</span> = <span style="color:#a6e22e">aws_vpc</span>.<span style="color:#a6e22e">main</span>.<span style="color:#a6e22e">id</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;The ID of the VPC&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">aws_vpc</span>.<span style="color:#a6e22e">main</span>.<span style="color:#a6e22e">id</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;The ID of the VPC&#34;</span>
 </span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">output</span> <span style="color:#e6db74">&#34;public_subnet_ids&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">value</span> = <span style="color:#a6e22e">aws_subnet</span>.<span style="color:#a6e22e">public</span>[<span style="color:#f92672">*</span>].<span style="color:#a6e22e">id</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;List of public subnet IDs&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">output</span> <span style="color:#e6db74">&#34;public_subnet_ids&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">aws_subnet</span>.<span style="color:#a6e22e">public</span>[<span style="color:#f92672">*</span>].<span style="color:#a6e22e">id</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;List of public subnet IDs&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>ALB機能単位モジュール例：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:modules/ServiceA/ALB/main.tf" data-lang="terraform:modules/ServiceA/ALB/main.tf"><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_lb&#34;</span> <span style="color:#e6db74">&#34;main&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>                       = var.<span style="color:#a6e22e">name</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">load_balancer_type</span>         = <span style="color:#e6db74">&#34;application&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">subnets</span>                    = var.<span style="color:#a6e22e">subnet_ids</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">enable_deletion_protection</span> = var.<span style="color:#a6e22e">enable_deletion_protection</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>                       <span style="color:#f92672">=</span> var.<span style="color:#a6e22e">name</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">load_balancer_type</span>         <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;application&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">subnets</span>                    <span style="color:#f92672">=</span> var.<span style="color:#a6e22e">subnet_ids</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">enable_deletion_protection</span> <span style="color:#f92672">=</span> var.<span style="color:#a6e22e">enable_deletion_protection</span>
 </span></span><span style="display:flex;"><span>  ...
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:modules/ServiceA/ALB/variables.tf" data-lang="terraform:modules/ServiceA/ALB/variables.tf"><span style="display:flex;"><span><span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;name&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span> = <span style="color:#a6e22e">string</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;The name of the ALB&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">string</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;The name of the ALB&#34;</span>
 </span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;subnet_ids&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span> = list(<span style="color:#a6e22e">string</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;List of subnet IDs for the ALB&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;subnet_ids&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span> <span style="color:#f92672">=</span> list(<span style="color:#a6e22e">string</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;List of subnet IDs for the ALB&#34;</span>
 </span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;enable_deletion_protection&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span>    = <span style="color:#a6e22e">bool</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;Whether to enable deletion protection&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;enable_deletion_protection&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span>    <span style="color:#f92672">=</span> <span style="color:#a6e22e">bool</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Whether to enable deletion protection&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>サービス単位モジュールは、これらの機能単位モジュールを組み合わせてWebサービスを構成するリソースを作るためのモジュールです。
 入力変数として機能単位モジュールのパラメータをobject型で受け取り、サービス単位モジュール内で機能単位モジュールを呼び出すようにしました。
 複数の設定値（例: VPCやALBのパラメータなど）をobject型の変数にまとめてサービス単位モジュールに渡すことで、ルートモジュール側では個別の変数を一つずつ指定する必要がなくなり、記述がシンプルになります。
 このようにすることで、ルートモジュールからはobject型にまとめた設定値を渡すだけでサービス単位モジュールを利用でき、全体の見通しが良くなります。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:usecases/ServiceA/main.tf" data-lang="terraform:usecases/ServiceA/main.tf"><span style="display:flex;"><span><span style="color:#66d9ef">module</span> <span style="color:#e6db74">&#34;vpc&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">source</span> = <span style="color:#e6db74">&#34;../../modules/ServiceA/VPC&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cidr_block</span> = var.<span style="color:#a6e22e">vpc_config</span>.<span style="color:#a6e22e">vpc_cidr</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">source</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;../../modules/ServiceA/VPC&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cidr_block</span> <span style="color:#f92672">=</span> var.<span style="color:#a6e22e">vpc_config</span>.<span style="color:#a6e22e">vpc_cidr</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">module</span> <span style="color:#e6db74">&#34;alb&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">source</span> = <span style="color:#e6db74">&#34;../../modules/ServiceA/ALB&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span> = var.<span style="color:#a6e22e">alb_config</span>.<span style="color:#a6e22e">alb_name</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">subnet_ids</span> = module.<span style="color:#a6e22e">vpc</span>.<span style="color:#a6e22e">public_subnet_ids</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">source</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;../../modules/ServiceA/ALB&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> var.<span style="color:#a6e22e">alb_config</span>.<span style="color:#a6e22e">alb_name</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">subnet_ids</span> <span style="color:#f92672">=</span> module.<span style="color:#a6e22e">vpc</span>.<span style="color:#a6e22e">public_subnet_ids</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:usecases/ServiceA/variables.tf" data-lang="terraform:usecases/ServiceA/variables.tf"><span style="display:flex;"><span><span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;vpc_config&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span> = <span style="color:#a6e22e">object</span>({
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">vpc_cidr</span> = <span style="color:#a6e22e">string</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">object</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">vpc_cidr</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">string</span>
 </span></span><span style="display:flex;"><span>  })
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;alb_config&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span> = <span style="color:#a6e22e">object</span>({
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alb_name</span>                   = <span style="color:#a6e22e">string</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">enable_deletion_protection</span> = <span style="color:#a6e22e">optional</span>(<span style="color:#a6e22e">bool</span>, <span style="color:#66d9ef">true</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">object</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alb_name</span>                   <span style="color:#f92672">=</span> <span style="color:#a6e22e">string</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">enable_deletion_protection</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">optional</span>(<span style="color:#a6e22e">bool</span>, <span style="color:#66d9ef">true</span>)
 </span></span><span style="display:flex;"><span>  })
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>ルートモジュールからサービス単位モジュールを呼び出す際には、各環境の設定をsettings.tf内のlocalsで定義し、サービス単位モジュールの入力変数に渡すようにしました。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:environments/ServiceAccount1/ServiceA/dev/settings.tf" data-lang="terraform:environments/ServiceAccount1/ServiceA/dev/settings.tf"><span style="display:flex;"><span><span style="color:#a6e22e">locals</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">vpc_config</span> = {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">vpc_cidr</span> = <span style="color:#e6db74">&#34;&lt;VPC_CIDR&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">vpc_config</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">vpc_cidr</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&lt;VPC_CIDR&gt;&#34;</span>
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alb_config</span> = {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">alb_name</span> = <span style="color:#e6db74">&#34;&lt;ALB_NAME&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alb_config</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">alb_name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&lt;ALB_NAME&gt;&#34;</span>
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:environments/ServiceAccount1/ServiceA/dev/main.tf" data-lang="terraform:environments/ServiceAccount1/ServiceA/dev/main.tf"><span style="display:flex;"><span><span style="color:#66d9ef">module</span> <span style="color:#e6db74">&#34;service_a&#34;</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">source</span> = <span style="color:#e6db74">&#34;../../usecases/ServiceA&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">source</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;../../usecases/ServiceA&#34;</span>
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">vpc_config</span> = <span style="color:#a6e22e">local</span>.<span style="color:#a6e22e">vpc_config</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alb_config</span> = <span style="color:#a6e22e">local</span>.<span style="color:#a6e22e">alb_config</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">vpc_config</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">local</span>.<span style="color:#a6e22e">vpc_config</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alb_config</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">local</span>.<span style="color:#a6e22e">alb_config</span> 
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>このように、機能単位モジュールは渡された変数でリソースを作成するだけとし、サービス単位モジュールで依存関係を完結させることで、ルートモジュールからはサービス単位モジュールを呼び出すだけで済む構成にしています。
 サービス単位モジュールを使うことで、同じWebサービス構成を複数のAWSアカウントにデプロイする際にも、ルートモジュールの記述量を減らせて管理が楽になりました。</p>
@@ -353,18 +353,18 @@ AWS CDK経験者向けに説明すると、機能単位モジュールはL2コ�
 <p>GitHub ActionsからAWSへの認証にはOIDC（OpenID Connect）がおすすめです。アクセスキーをGitHub Secretsに保存する必要がなく、セキュアに運用できます。OIDCの設定手順は<a href="https://docs.github.com/ja/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-aws">公式ドキュメント</a>をどうぞ。</p>
 <p>各ルートモジュールにplanまたはapply用のvariableを追加し、GitHub Actionsのワークフローでplanを実行するかapplyを実行するかを切り替えられるようにしました。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:environments/ServiceAccount1/ServiceA/dev/variables.tf" data-lang="terraform:environments/ServiceAccount1/ServiceA/dev/variables.tf"><span style="display:flex;"><span><span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;execution_mode&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span>    = <span style="color:#a6e22e">string</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">default</span> = <span style="color:#e6db74">&#34;plan&#34;</span><span style="color:#75715e"> # or &#34;apply&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;Execution mode: plan or apply&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span>    <span style="color:#f92672">=</span> <span style="color:#a6e22e">string</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">default</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;plan&#34;</span><span style="color:#75715e"> # or &#34;apply&#34;
+</span></span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Execution mode: plan or apply&#34;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">validation</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">condition</span>     = contains([<span style="color:#e6db74">&#34;plan&#34;</span>, <span style="color:#e6db74">&#34;apply&#34;</span>], var.<span style="color:#a6e22e">execution_mode</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">error_message</span> = <span style="color:#e6db74">&#34;execution_mode must be either &#39;plan&#39; or &#39;apply&#39;.&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">condition</span>     <span style="color:#f92672">=</span> contains([<span style="color:#e6db74">&#34;plan&#34;</span>, <span style="color:#e6db74">&#34;apply&#34;</span>], var.<span style="color:#a6e22e">execution_mode</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">error_message</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;execution_mode must be either &#39;plan&#39; or &#39;apply&#39;.&#34;</span>
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform:environments/ServiceAccount1/ServiceA/dev/main.tf" data-lang="terraform:environments/ServiceAccount1/ServiceA/dev/main.tf"><span style="display:flex;"><span><span style="color:#66d9ef">provider</span> <span style="color:#e6db74">&#34;aws&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">region</span> = <span style="color:#e6db74">&#34;us-east-1&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">region</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;us-east-1&#34;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">assume_role</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">role_arn</span> = var.<span style="color:#a6e22e">execution_mode</span> =<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;plan&#34;</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;arn:aws:iam::&lt;ServiceAccountId&gt;:role/plan-role&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;arn:aws:iam::&lt;ServiceAccountId&gt;:role/apply-role&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">role_arn</span> <span style="color:#f92672">=</span> var.<span style="color:#a6e22e">execution_mode</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;plan&#34;</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;arn:aws:iam::&lt;ServiceAccountId&gt;:role/plan-role&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;arn:aws:iam::&lt;ServiceAccountId&gt;:role/apply-role&#34;</span>
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>以下はワークフローの例です。Pull Request作成時にplanを実行し、mainブランチへのマージ時にapplyを実行します。
@@ -482,8 +482,8 @@ importブロックを使うためには、import対象リソースのID（ARNな
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">generateImportAlb</span>(<span style="color:#a6e22e">args</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">GenerateImportAlbArgs</span>) <span style="color:#66d9ef">error</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// security groupは省略
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">lbClient</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">elasticloadbalancingv2</span>.<span style="color:#a6e22e">NewFromConfig</span>(<span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">awsConfig</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// security groupは省略</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lbClient</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">elasticloadbalancingv2</span>.<span style="color:#a6e22e">NewFromConfig</span>(<span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">awsConfig</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tgRes</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">lbClient</span>.<span style="color:#a6e22e">DescribeTargetGroups</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">TODO</span>(), <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">elasticloadbalancingv2</span>.<span style="color:#a6e22e">DescribeTargetGroupsInput</span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Names</span>: []<span style="color:#66d9ef">string</span>{<span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">Service</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;-&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">Environment</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;-alb-tg&#34;</span>},
@@ -628,16 +628,19 @@ importブロックを使うためには、import対象リソースのID（ARNな
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

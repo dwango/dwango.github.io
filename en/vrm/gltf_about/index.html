@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="About GLTF - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -128,72 +128,72 @@
 More specifically, it is<code>Header part + JSON CHUNk + BINARY CHUNK</code>.</p>
 <p>Header part</p>
 <table>
-<thead>
-<tr>
-<th style="text-align:left">Length</th>
-<th style="text-align:left">Content</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">4</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">ascii</td>
-<td style="text-align:left">&ldquo;glTF&rdquo;</td>
-</tr>
-<tr>
-<td style="text-align:left">4</td>
-<td style="text-align:left">glTF version</td>
-<td style="text-align:left">int32</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">4</td>
-<td style="text-align:left">file size</td>
-<td style="text-align:left">int32</td>
-<td style="text-align:left"></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">Length</th>
+          <th style="text-align: left">Content</th>
+          <th style="text-align: left">Type</th>
+          <th style="text-align: left">Value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">4</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">ascii</td>
+          <td style="text-align: left">&ldquo;glTF&rdquo;</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4</td>
+          <td style="text-align: left">glTF version</td>
+          <td style="text-align: left">int32</td>
+          <td style="text-align: left">2</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4</td>
+          <td style="text-align: left">file size</td>
+          <td style="text-align: left">int32</td>
+          <td style="text-align: left"></td>
+      </tr>
+  </tbody>
 </table>
 <p>Chunk part</p>
 <table>
-<thead>
-<tr>
-<th style="text-align:left">Length</th>
-<th style="text-align:left">Content</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">4</td>
-<td style="text-align:left">chunk size</td>
-<td style="text-align:left">int32</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left">4</td>
-<td style="text-align:left">chunk type</td>
-<td style="text-align:left">ascii</td>
-<td style="text-align:left">&ldquo;JSON&rdquo; or &ldquo;BIN\x00&rdquo;</td>
-</tr>
-<tr>
-<td style="text-align:left">chunk size</td>
-<td style="text-align:left">chunk body</td>
-<td style="text-align:left">byte array</td>
-<td></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">Length</th>
+          <th style="text-align: left">Content</th>
+          <th style="text-align: left">Type</th>
+          <th style="text-align: left">Value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">4</td>
+          <td style="text-align: left">chunk size</td>
+          <td style="text-align: left">int32</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4</td>
+          <td style="text-align: left">chunk type</td>
+          <td style="text-align: left">ascii</td>
+          <td style="text-align: left">&ldquo;JSON&rdquo; or &ldquo;BIN\x00&rdquo;</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">chunk size</td>
+          <td style="text-align: left">chunk body</td>
+          <td style="text-align: left">byte array</td>
+          <td></td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="example-of-parsing-with-python3">Example of parsing with python3</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> struct
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> json
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Reader</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, data: bytes)<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, data: bytes)<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">None</span>:
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>data <span style="color:#f92672">=</span> data
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>
@@ -281,16 +281,19 @@ More specifically, it is<code>Header part + JSON CHUNk + BINARY CHUNK</code>.</p
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

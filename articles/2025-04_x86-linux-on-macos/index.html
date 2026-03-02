@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="macOS で x86_64 な Linux を使う - dwango on GitHub">
 
@@ -243,9 +243,9 @@
 </span></span><span style="display:flex;"><span>sudo mount -a
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>sudo /usr/sbin/update-binfmts --install rosetta /media/rosetta/rosetta <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     --magic <span style="color:#e6db74">&#34;\x7fELF\x02\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x3e\x00&#34;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     --mask <span style="color:#e6db74">&#34;\xff\xff\xff\xff\xff\xfe\xfe\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff&#34;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     --credentials yes --preserve no --fix-binary yes
+</span></span></span><span style="display:flex;"><span>     --magic <span style="color:#e6db74">&#34;\x7fELF\x02\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x3e\x00&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>     --mask <span style="color:#e6db74">&#34;\xff\xff\xff\xff\xff\xfe\xfe\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>     --credentials yes --preserve no --fix-binary yes
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>　もし Ubuntu Server の minimal 版など、エディタが入っていないものをインストールした場合は、必要なエディタもインストールしておいてください。</p>
@@ -282,16 +282,16 @@
 </span></span><span style="display:flex;"><span><span style="color:#75715e">## x86_64 版 Ubuntu を /var/lib/machines/ubuntu-x86 の下にダウンロードする</span>
 </span></span><span style="display:flex;"><span>sudo mkdir -p /var/lib/machines/ubuntu-x86
 </span></span><span style="display:flex;"><span>sudo debootstrap <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --foreign <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --arch<span style="color:#f92672">=</span>amd64 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --components<span style="color:#f92672">=</span>main,restricted,universe,multiverse <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --include<span style="color:#f92672">=</span>systemd,dbus,docker.io <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    jammy <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    /var/lib/machines/ubuntu-x86
+</span></span></span><span style="display:flex;"><span>    --foreign <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    --arch<span style="color:#f92672">=</span>amd64 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    --components<span style="color:#f92672">=</span>main,restricted,universe,multiverse <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    --include<span style="color:#f92672">=</span>systemd,dbus,docker.io <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    jammy <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    /var/lib/machines/ubuntu-x86
 </span></span><span style="display:flex;"><span><span style="color:#75715e">## debootstrap の処理中に /proc がアンマウントされてしまい Rosetta が使えなくなるので、スクリプトをパッチする</span>
 </span></span><span style="display:flex;"><span>sudo sed -i -E <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e <span style="color:#e6db74">&#39;s!^(\s*)(umount &#34;\$TARGET/proc&#34;)!\1true # \2!g&#39;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    /var/lib/machines/ubuntu-x86/debootstrap/functions
+</span></span></span><span style="display:flex;"><span>    -e <span style="color:#e6db74">&#39;s!^(\s*)(umount &#34;\$TARGET/proc&#34;)!\1true # \2!g&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    /var/lib/machines/ubuntu-x86/debootstrap/functions
 </span></span><span style="display:flex;"><span><span style="color:#75715e">## x86_64 の /proc は aarch64 の /proc をミラーリングする</span>
 </span></span><span style="display:flex;"><span>sudo mount --bind /proc /var/lib/machines/ubuntu-x86/proc
 </span></span><span style="display:flex;"><span><span style="color:#75715e">## ダウンロードした Ubuntu をインストールする</span>
@@ -525,16 +525,19 @@
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

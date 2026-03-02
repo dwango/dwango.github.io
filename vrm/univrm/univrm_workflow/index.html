@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="UniVRMモデルのワークフロー - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -119,21 +119,21 @@
 <p>Fbx等のUnityのHumanoidモデルを用意してください。</p>
 <p>FbxのImport SettingsのRigタブでAnimationTypeをHumanoidにしてください。</p>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/alicia_generic.png"   />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>humanoidに設定します</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>humanoidに設定します</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="rigのconfigureでボーンの割り当てを修正">rigのconfigureでボーンの割り当てを修正</h3>
 <p>fbxインポート時の自動認識が食い違うことがあります。</p>
@@ -143,73 +143,73 @@
 <li>目のハイライトに目ボーンが割り当てられる</li>
 </ul>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/fix_eye.png"   />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>立体ちゃんでは目のボーンの自動認識がうまくいっていなかったので手動で修正しました</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>立体ちゃんでは目のボーンの自動認識がうまくいっていなかったので手動で修正しました</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="メニューからエクスポート">メニューからエクスポート</h2>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/vrm_menu_disable.png"   />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ヒエラルキーでhumanoid avatarをセットしたanimatorを選択すると有効になります</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>ヒエラルキーでhumanoid avatarをセットしたanimatorを選択すると有効になります</td>
+      </tr>
+  </tbody>
 </table>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/vrm_menu_enable.png"   />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ヒエラルキーでhumanoid avatarをセットしたanimatorを選択すると有効になります</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>ヒエラルキーでhumanoid avatarをセットしたanimatorを選択すると有効になります</td>
+      </tr>
+  </tbody>
 </table>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/export_dialog.png"   />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>チェックボックスを設定してExportを押してください</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>チェックボックスを設定してExportを押してください</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="force-t-pose">Force T Pose</h3>
 <p>回転・スケールの除去前にモデルを強制的に<a href="../../vrm_tpose/">T-Pose</a>にします。</p>
@@ -224,111 +224,111 @@ VRMの規約に合致するようにモデルを正規化する処理です。
 事前にこの処理を通過させることにより各種コンポーネントが正しく動作するようになります。</p>
 <h4 id="ヒエラルキーの正規化">ヒエラルキーの正規化</h4>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/rot.png"   />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ボーンの向きに意味を持たせてあるタイプのモデル</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>ボーンの向きに意味を持たせてあるタイプのモデル</td>
+      </tr>
+  </tbody>
 </table>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/rot_scale.png"   />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Z-UPかつ非メートル単位のモデル(Blenderのデフォルト)</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Z-UPかつ非メートル単位のモデル(Blenderのデフォルト)</td>
+      </tr>
+  </tbody>
 </table>
 <p>回転とスケールを除去します。</p>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/without_rot_scale.png"   />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>正規化済み</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>正規化済み</td>
+      </tr>
+  </tbody>
 </table>
 <h4 id="メッシュの正規化">メッシュの正規化</h4>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/zup_mesh.png"   />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>非T-PoseかつZ-UPで格納されているメッシュ</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>非T-PoseかつZ-UPで格納されているメッシュ</td>
+      </tr>
+  </tbody>
 </table>
 <p>SkinnedMeshRenderer.BakeMeshを使ってT-Pose状態のメッシュを作り、座標操作でY-UP化します。</p>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/yup_mesh.png"   />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>T-PoseかつY-UPで格納されているメッシュ</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>T-PoseかつY-UPで格納されているメッシュ</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="import">Import</h2>
 <p>vrmファイルをAssetsフォルダにインポートしてください。</p>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/alicia_imported.png"   />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>立体ちゃんのVRMをインポート</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>立体ちゃんのVRMをインポート</td>
+      </tr>
+  </tbody>
 </table>
 <p>Texture, Material, PrefabがVRMから自動生成されます。</p>
 <ul>
@@ -348,16 +348,19 @@ VRMの規約に合致するようにモデルを正規化する処理です。
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

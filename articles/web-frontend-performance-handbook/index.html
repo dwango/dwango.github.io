@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="Webフロントエンド パフォーマンス改善ハンドブックを公開しました - dwango on GitHub">
 
@@ -78,7 +78,7 @@
 
     <div>
       
-      <article id="content"><h1 id="パフォーマンス改善ハンドブックhttpsdwango-jsgithubioperformance-handbook"><a href="https://dwango-js.github.io/performance-handbook/">パフォーマンス改善ハンドブック</a></h1>
+      <article id="content"><h1 id="パフォーマンス改善ハンドブック"><a href="https://dwango-js.github.io/performance-handbook/">パフォーマンス改善ハンドブック</a></h1>
 <p>ウェブページにおけるパフォーマンスに関する問題の見つけ方や考え方の事例をまとめた
 <a href="https://dwango-js.github.io/performance-handbook/">Webフロントエンド パフォーマンス改善ハンドブック</a>を公開しました。</p>
 <ul>
@@ -102,7 +102,7 @@
 <li><a href="https://dwango-js.github.io/performance-handbook/watching/">視聴中のパフォーマンス改善</a>（ランタイム）</li>
 <li><a href="https://dwango-js.github.io/performance-handbook/startup/">ページロードのパフォーマンス改善</a>（ロードタイム）</li>
 </ul>
-<h3 id="視聴中のパフォーマンス改善httpsdwango-jsgithubioperformance-handbookwatching"><a href="https://dwango-js.github.io/performance-handbook/watching/">視聴中のパフォーマンス改善</a></h3>
+<h3 id="視聴中のパフォーマンス改善"><a href="https://dwango-js.github.io/performance-handbook/watching/">視聴中のパフォーマンス改善</a></h3>
 <p><a href="https://dwango-js.github.io/performance-handbook/watching/">視聴中のパフォーマンス改善</a>はランタイムにおけるパフォーマンス改善について書いたものです。
 ランタイムとはページ上のUIの反応速度や画面の更新などウェブページの実行時の動作のことをいいます。</p>
 <p>ランタイムのパフォーマンスは操作したときにスムーズに動くかなど操作感に影響を与えます。
@@ -110,7 +110,7 @@
 そのため、ランタイムのパフォーマンスが安定して良くないと映像がカクカクしたように見えるなど<a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AC%E3%83%BC%E3%83%88">フレームレート</a>（FPS）の低下を引き起こします。</p>
 <p>またアプリケーションによってランタイムの性質は大きく異なります。
 このハンドブックでは<a href="https://reactjs.org/">React</a>を使って開発されている<a href="http://live.nicovideo.jp/">ニコニコ生放送</a>の視聴ページを例に、ランタイムのパフォーマンス計測や改善について扱っています。</p>
-<h3 id="ページロードのパフォーマンス改善httpsdwango-jsgithubioperformance-handbookstartup"><a href="https://dwango-js.github.io/performance-handbook/startup/">ページロードのパフォーマンス改善</a></h3>
+<h3 id="ページロードのパフォーマンス改善"><a href="https://dwango-js.github.io/performance-handbook/startup/">ページロードのパフォーマンス改善</a></h3>
 <p><a href="https://dwango-js.github.io/performance-handbook/startup/">ページロードのパフォーマンス改善</a>はURLにアクセスしてページが表示されるまでのパフォーマンス改善について書かれたものです。
 ページロードに関してはすでにさまざまな解説や書籍が存在するので、その中のファイルサイズについてを中心に扱っています。</p>
 <p>ウェブアプリケーションを開発していると、動作自体には影響がないためJavaScriptやCSSなどのファイルサイズを見落としがちです。そのようなファイルサイズの問題をどのように見つけるか改善のアプローチについてを扱っています。</p>
@@ -215,16 +215,19 @@
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

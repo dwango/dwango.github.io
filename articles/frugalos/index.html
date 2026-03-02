@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="Rust製の分散オブジェクトストレージをOSSとして公開しました - dwango on GitHub">
 
@@ -81,21 +81,21 @@
       <article id="content"><h2 id="はじめに">はじめに</h2>
 <p>ドワンゴでは<a href="https://www.nicovideo.jp/">niconico</a>の配信系サービスのバックエンドで利用するために、<strong>Frugalos</strong>という名前の分散オブジェクトストレージを開発しているのですが、この度OSSとして公開することとなりましたので、この場を借りて軽く紹介させて貰います。</p>
 <table>
-<thead>
-<tr>
-<th style="text-align:center"><div class="article-img">
+  <thead>
+      <tr>
+          <th style="text-align: center"><div class="article-img">
   
   <img src="https://dwango.github.io/images/frugalos/frugalos-logo.png" alt="frugalos"  />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><a href="https://github.com/frugalos">https://github.com/frugalos</a></td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><a href="https://github.com/frugalos">https://github.com/frugalos</a></td>
+      </tr>
+  </tbody>
 </table>
 <p>Frugalosは<a href="https://www.rust-lang.org/ja-JP/">Rust</a>で実装されており、現時点では以下のリポジトリが公開されています:</p>
 <ul>
@@ -128,21 +128,21 @@
 参考（ニコニコインフォ）: <a href="http://blog.nicovideo.jp/niconews/80407.html">【ユーザー生放送】タイムシフトが新配信システムに対応しました </a></p>
 <p>現時点での規模感としては、１PiB超のデータを３００個以上のHDDに分散して保持しており、ピーク時には１秒間で３GiB程度の読み書き要求を捌いています:</p>
 <table>
-<thead>
-<tr>
-<th style="text-align:center"><div class="article-img">
+  <thead>
+      <tr>
+          <th style="text-align: center"><div class="article-img">
   
   <img src="https://dwango.github.io/images/frugalos/peak-summary.png" alt="ピーク時の主要メトリクス"  />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">ある日のGrafanaダッシュボード</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">ある日のGrafanaダッシュボード</td>
+      </tr>
+  </tbody>
 </table>
 <p>将来的には、投稿動画の保存・配信用途に使用する計画もあるのですが、そちらは現在は鋭意開発中となっています。<br />
 <small>※ 現時点では、動画用途ではFrugalosとは別の、SSDベースの分散ストレージが使用されています</small></p>
@@ -256,21 +256,21 @@
 <p>つまり、HDDを高速化するために何か特別な機構を追加した、というよりは、ランダムアクセスは必ず発生するものと諦めた上で無駄を極限まで削ぎ落とした形になります。</p>
 <p>当時の検証結果ではないのですが、参考のために、<a href="%E5%A4%A7%E5%AE%B9%E9%87%8FHDD%E5%90%91%E3%81%91%E3%81%AE%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8">CannyLS</a>の<a href="https://github.com/frugalos/cannyls/wiki/Benchmark">ベンチマーク結果</a>の一部を載せておきます。</p>
 <table>
-<thead>
-<tr>
-<th style="text-align:center"><div class="article-img">
+  <thead>
+      <tr>
+          <th style="text-align: center"><div class="article-img">
   
   <img src="https://dwango.github.io/images/frugalos/put-latency.png" alt="PUTレイテンシ"  />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><a href="https://github.com/frugalos/cannyls/wiki/Benchmark">https://github.com/frugalos/cannyls/wiki/Benchmark</a> より一部結果を抜粋</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><a href="https://github.com/frugalos/cannyls/wiki/Benchmark">https://github.com/frugalos/cannyls/wiki/Benchmark</a> より一部結果を抜粋</td>
+      </tr>
+  </tbody>
 </table>
 <p>このベンチマークではHDDに対して「サイズが1MiBのオブジェクト（CannyLS用語では<a href="https://github.com/frugalos/cannyls/wiki/Terminology#lump">&ldquo;lump&rdquo;</a>）を、合計1TiB分だけPUT（保存）する」といった処理を実行しています（X軸は何番目のPUTかを、Y軸は各PUTに要した時間を、示しています）。</p>
 <p>左の図はCannyLS、中央は「一オブジェクトを一ファイル」としたファイルシステム（XFS）、右の図は<a href="https://rocksdb.org/">RocksDB</a>という組み込みKVS、をストレージとして使用した結果になります。右二つに関しては、HDD用に特別な最適化が行われている訳ではないためあくまでも参考結果に過ぎませんが、それでもCannyLSの場合には（ある程度）一貫して安定した低レイテンシが維持されていることが見て取れるのではないかと思います。</p>
@@ -281,21 +281,21 @@
 <h2 id="配信バックエンド全体の中での立ち位置">配信バックエンド全体の中での立ち位置</h2>
 <p>Frugalosの立ち位置を明確にするために、タイムシフトの録画および視聴時のストリームの流れを示した図を掲載しておきます:</p>
 <table>
-<thead>
-<tr>
-<th style="text-align:center"><div class="article-img">
+  <thead>
+      <tr>
+          <th style="text-align: center"><div class="article-img">
   
   <img src="https://dwango.github.io/images/frugalos/overall-view.png" alt="タイムシフト録画・視聴時のストリームの流れ"  />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">タイムシフト録画・視聴時のストリームの流れ</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">タイムシフト録画・視聴時のストリームの流れ</td>
+      </tr>
+  </tbody>
 </table>
 <p>実はFrugalosは「ストレージミドルウェアのためのミドルウェア」といったような立ち位置で使用されることを想定しています。</p>
 <p>Frugalosは性能（HDDの活用効率）や可用性、スケーラビリティには優れていますが、提供している機能は最低限で制限も少なくないため、動画ファイルやタイムシフトストリームをそのまま格納する用途には向いていません。</p>
@@ -366,21 +366,21 @@
 現在では、ローカルストレージや内部RPC部分も含めて、合計で71種類のメトリクスが収集されていますが、これによりクラスタ全体の状況把握や異常検知がかなり行いやすくなりました。</p>
 <p>また<a href="https://www.jaegertracing.io/">Jaeger</a>による分散トレースも部分的に導入されており、これによっていくつかレイテンシ上のボトルネックが解消できました（以下の図はHLS視聴時のトレースの例）。</p>
 <table>
-<thead>
-<tr>
-<th style="text-align:center"><div class="article-img">
+  <thead>
+      <tr>
+          <th style="text-align: center"><div class="article-img">
   
   <img src="https://dwango.github.io/images/frugalos/jaeger.png" alt="Jaegerによるトレース例"  />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">JaegerによるHLS視聴リクエスト処理のトレース例</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">JaegerによるHLS視聴リクエスト処理のトレース例</td>
+      </tr>
+  </tbody>
 </table>
 <p>それ以外に、デバッグ用のAPIも機会を見つけて実装してはいるのですが、これはまだ十分な数が揃っているとは言い難い状況です。</p>
 <h4 id="jemallocのメモリ使い過ぎ問題">jemallocのメモリ使い過ぎ問題</h4>
@@ -388,21 +388,21 @@
 <p>以下の図は、Frugalosの起動後から一カ月半が経過するまでの期間を切り取って、そのメモリ使用量を示したものになりますが、
 frugalosプロセスのメモリ使用量が山のような形状を取って推移していることが分かります（この期間中、オブジェクトの保存数自体には大きな変動がありませんでした）:</p>
 <table>
-<thead>
-<tr>
-<th style="text-align:center"><div class="article-img">
+  <thead>
+      <tr>
+          <th style="text-align: center"><div class="article-img">
   
   <img src="https://dwango.github.io/images/frugalos/memory.png" alt="メモリ使用量"  />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">frugalosプロセスのメモリ使用量の推移</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">frugalosプロセスのメモリ使用量の推移</td>
+      </tr>
+  </tbody>
 </table>
 <p>このピーク時のメモリ使用量は、どう考えても予測量よりも多いものであり、ピークを過ぎて下降し始めるまでは、メモリリークでも発生しているのではないかと肝を冷やしたものです。</p>
 <p>結局現時点でも詳細な理由は判明していないのですが、<a href="https://crates.io/crates/jemalloc-ctl">jemalloc-ctl</a>を使ってjemallocの統計情報をダンプしてしたところ、必要量よりも多めにメモリを（アロケータ用に）確保していそうだということが判明したため、<a href="https://github.com/jemalloc/jemalloc/blob/dev/TUNING.md">jemallocのチューニングガイド</a>を参考に、メモリ使用量を抑えるようなオプションを環境変数で指定するようにしたところ、上の図のような山を描くことはなくなりました。</p>
@@ -522,16 +522,19 @@ frugalosプロセスのメモリ使用量が山のような形状を取って推
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="MToon - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -136,21 +136,21 @@
 <p>MToon は日本のアニメ的表現をすることを目標としています。
 主色 (Lit Color) と陰色 (Shade Color) の 2 色を、Lighting パラメータや光源環境に応じて混合することでそれを実現します。</p>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/mtoon_about.png" alt="alicia MToon"  />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>MToon を適用したニコニ立体ちゃん</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>MToon を適用したニコニ立体ちゃん</td>
+      </tr>
+  </tbody>
 </table>
 <h1 id="手早く設定したい人向け">手早く設定したい人向け</h1>
 <h2 id="共通項目">共通項目</h2>
@@ -177,39 +177,39 @@
 <h2 id="準備">準備</h2>
 <p>目的のマテリアルを選択し、シェーダを <code>VRM/MToon</code> に変更します。</p>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/set_mtoon.png" alt="select MToon"  />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Material の Shader を VRM/MToon に変更.</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Material の Shader を VRM/MToon に変更.</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="rendering">Rendering</h2>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/mtoon_inspector_rendering.png" alt="MToon Rendering"  />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Rendering Inspector に含まれる項目.</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Rendering Inspector に含まれる項目.</td>
+      </tr>
+  </tbody>
 </table>
 <p>Rendering 項目では主色と影色、および描画方法を設定します。</p>
 <h3 id="rendering-type">Rendering Type</h3>
@@ -344,16 +344,19 @@
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

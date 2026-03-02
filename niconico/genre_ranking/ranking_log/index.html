@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="新ランキングでのランキング過去ログファイル利用方法 - dwango on GitHub">
 
@@ -192,60 +192,60 @@
 <h4 id="取得するランキングの種類">取得するランキングの種類</h4>
 <p><code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>total</code> の4種類。</p>
 <table>
-<thead>
-<tr>
-<th>取得するランキングの種類</th>
-<th>説明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>daily</td>
-<td>集計期間が24時間のランキングを取得する場合に指定</td>
-</tr>
-<tr>
-<td>weekly</td>
-<td>集計期間が週間のランキングを取得する場合に指定</td>
-</tr>
-<tr>
-<td>monthly</td>
-<td>集計期間が月間のランキングを取得する場合に指定</td>
-</tr>
-<tr>
-<td>total</td>
-<td>集計期間が全期間のランキングを取得する場合に指定</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>取得するランキングの種類</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>daily</td>
+          <td>集計期間が24時間のランキングを取得する場合に指定</td>
+      </tr>
+      <tr>
+          <td>weekly</td>
+          <td>集計期間が週間のランキングを取得する場合に指定</td>
+      </tr>
+      <tr>
+          <td>monthly</td>
+          <td>集計期間が月間のランキングを取得する場合に指定</td>
+      </tr>
+      <tr>
+          <td>total</td>
+          <td>集計期間が全期間のランキングを取得する場合に指定</td>
+      </tr>
+  </tbody>
 </table>
 <h4 id="取得したい日付">取得したい日付</h4>
 <p>yyyy-mm-dd形式で表記。<br>
 例: 2019年6月30日の場合、 <code>2019-06-30</code> と指定する。</p>
 <p>ただし、ランキングの種類に応じて、以下の制約がある。</p>
 <table>
-<thead>
-<tr>
-<th>取得するランキングの種類</th>
-<th>制約</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>daily</td>
-<td>2019-06-12 以降、任意の日付を指定可能</td>
-</tr>
-<tr>
-<td>weekly</td>
-<td>2019-06-17 以降、毎週月曜日のみ指定可能</td>
-</tr>
-<tr>
-<td>monthly</td>
-<td>2019-07-01 以降、毎月1日（初日）のみ指定可能</td>
-</tr>
-<tr>
-<td>total</td>
-<td>2019-06-12 以降、任意の日付を指定可能</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>取得するランキングの種類</th>
+          <th>制約</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>daily</td>
+          <td>2019-06-12 以降、任意の日付を指定可能</td>
+      </tr>
+      <tr>
+          <td>weekly</td>
+          <td>2019-06-17 以降、毎週月曜日のみ指定可能</td>
+      </tr>
+      <tr>
+          <td>monthly</td>
+          <td>2019-07-01 以降、毎月1日（初日）のみ指定可能</td>
+      </tr>
+      <tr>
+          <td>total</td>
+          <td>2019-06-12 以降、任意の日付を指定可能</td>
+      </tr>
+  </tbody>
 </table>
 <h4 id="午前5時のログファイル">午前5時のログファイル</h4>
 <p>可能な場合、午前0時に生成されるランキング過去ログファイルに加えて、24時間ランキング（<code>daily</code>）および全期間ランキング（<code>total</code>）のみ、午前5時にもランキング過去ログファイルを生成します。<br>
@@ -258,30 +258,30 @@
 <p>ジャンルランキングでは、ランキング集計対象である「ジャンル」と「人気のタグ」が、将来的に変更される可能性があります。<br>
 そこで、ランキング自体のファイルとは別に、「任意の日付において集計対象であった、ジャンルと人気のタグの一覧」を取得することができます。</p>
 <table>
-<thead>
-<tr>
-<th>ログファイルの種類</th>
-<th>説明</th>
-<th>ファイル名の例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>file_name_list.json</td>
-<td>その日に集計対象だったジャンルとタグの一覧が記載されているファイル</td>
-<td><code>file_name_list.json</code> のみ</td>
-</tr>
-<tr>
-<td>{ジャンル}.json</td>
-<td>ジャンルのランキングが記載されているファイル</td>
-<td><code>entertainment.json</code> や <code>cooking.json</code> など</td>
-</tr>
-<tr>
-<td>{ジャンル}_{01から始まる連番}.json</td>
-<td>ジャンル別の、人気のタグのランキングが記載されているファイル</td>
-<td><code>entertainment_01.json</code> や  <code>entertainment_02.json</code> など</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>ログファイルの種類</th>
+          <th>説明</th>
+          <th>ファイル名の例</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>file_name_list.json</td>
+          <td>その日に集計対象だったジャンルとタグの一覧が記載されているファイル</td>
+          <td><code>file_name_list.json</code> のみ</td>
+      </tr>
+      <tr>
+          <td>{ジャンル}.json</td>
+          <td>ジャンルのランキングが記載されているファイル</td>
+          <td><code>entertainment.json</code> や <code>cooking.json</code> など</td>
+      </tr>
+      <tr>
+          <td>{ジャンル}_{01から始まる連番}.json</td>
+          <td>ジャンル別の、人気のタグのランキングが記載されているファイル</td>
+          <td><code>entertainment_01.json</code> や  <code>entertainment_02.json</code> など</td>
+      </tr>
+  </tbody>
 </table>
 <h4 id="アクセス例">アクセス例</h4>
 <p>例1. <strong>2019年6月26日</strong> の、 <strong>全ジャンル総合</strong> の <strong>24時間ランキング</strong> を取得したい</p>
@@ -311,137 +311,137 @@
 <h4 id="file_name_listjson">file_name_list.json</h4>
 <p>「ジャンル」と、「ジャンルごとの人気のタグ」の一覧ファイル（file_name_list.json）のフォーマットは以下の通りです。</p>
 <table>
-<thead>
-<tr>
-<th>フィールド名</th>
-<th>説明</th>
-<th>型</th>
-<th>必ず値が入っているか</th>
-<th>例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>genre</td>
-<td>ジャンル名</td>
-<td>string</td>
-<td>YES</td>
-<td><code>全ジャンル</code> や <code>エンターテイメント</code> など</td>
-</tr>
-<tr>
-<td>tag</td>
-<td>人気のタグ名</td>
-<td>string または null</td>
-<td>NO</td>
-<td><code>歌ってみた</code>や <code>もっと評価されるべき</code> など<br>人気のタグではなく、ジャンル名そのものを示すときはnullが入る</td>
-</tr>
-<tr>
-<td>file</td>
-<td>ファイルへのパス</td>
-<td>string</td>
-<td>YES</td>
-<td><code>entertainment_01.json</code> など</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>フィールド名</th>
+          <th>説明</th>
+          <th>型</th>
+          <th>必ず値が入っているか</th>
+          <th>例</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>genre</td>
+          <td>ジャンル名</td>
+          <td>string</td>
+          <td>YES</td>
+          <td><code>全ジャンル</code> や <code>エンターテイメント</code> など</td>
+      </tr>
+      <tr>
+          <td>tag</td>
+          <td>人気のタグ名</td>
+          <td>string または null</td>
+          <td>NO</td>
+          <td><code>歌ってみた</code>や <code>もっと評価されるべき</code> など<br>人気のタグではなく、ジャンル名そのものを示すときはnullが入る</td>
+      </tr>
+      <tr>
+          <td>file</td>
+          <td>ファイルへのパス</td>
+          <td>string</td>
+          <td>YES</td>
+          <td><code>entertainment_01.json</code> など</td>
+      </tr>
+  </tbody>
 </table>
 <h4 id="ジャンルjson-および-ジャンル_01から始まる連番json">{ジャンル}.json および {ジャンル}_{01から始まる連番}.json</h4>
 <p>ランキング過去ログファイル（{ジャンル}.json  や {ジャンル}_{01から始まる連番}.json）のフォーマットは以下の通りです。</p>
 <table>
-<thead>
-<tr>
-<th>フィールド名</th>
-<th>説明</th>
-<th>型</th>
-<th>nullになりうるか</th>
-<th>例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td>動画ID</td>
-<td>string</td>
-<td>NO</td>
-<td><code>sm9</code></td>
-</tr>
-<tr>
-<td>title</td>
-<td>動画タイトル</td>
-<td>string</td>
-<td>NO</td>
-<td><code>新・豪血寺一族 -煩悩解放 - レッツゴー！陰陽師</code></td>
-</tr>
-<tr>
-<td>registeredAt</td>
-<td>投稿日時</td>
-<td>string（ISO-8601形式）</td>
-<td>NO</td>
-<td><code>2007-03-06T00:33:00+09:00</code></td>
-</tr>
-<tr>
-<td>count</td>
-<td>再生数・コメント数などが格納されたオブジェクト</td>
-<td>object</td>
-<td>(N/A)</td>
-<td>(N/A)</td>
-</tr>
-<tr>
-<td>count.view</td>
-<td>再生数</td>
-<td>int</td>
-<td>NO</td>
-<td><code>17981514</code></td>
-</tr>
-<tr>
-<td>count.like</td>
-<td>いいね！数</td>
-<td>int</td>
-<td>NO</td>
-<td><code>8770</code></td>
-</tr>
-<tr>
-<td>count.comment</td>
-<td>コメント数</td>
-<td>int</td>
-<td>NO</td>
-<td><code>4827749</code></td>
-</tr>
-<tr>
-<td>count.mylist</td>
-<td>マイリスト数</td>
-<td>int</td>
-<td>NO</td>
-<td><code>176308</code></td>
-</tr>
-<tr>
-<td>thumbnail</td>
-<td>サムネイルURLが格納されたオブジェクト</td>
-<td>object</td>
-<td>(N/A)</td>
-<td>(N/A)</td>
-</tr>
-<tr>
-<td>thumbnail.url</td>
-<td>通常サイズのサムネイルURL</td>
-<td>string</td>
-<td>YES</td>
-<td><code>http://tn.smilevideo.jp/smile?i=9</code></td>
-</tr>
-<tr>
-<td>thumbnail.middleUrl</td>
-<td>中サイズのサムネイル URL</td>
-<td>string または null</td>
-<td>YES</td>
-<td>null（存在しないこともあります）</td>
-</tr>
-<tr>
-<td>thumbnail.largeUrl</td>
-<td>大サイズのサムネイル URL</td>
-<td>string または null</td>
-<td>YES</td>
-<td>null（存在しないこともあります）</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>フィールド名</th>
+          <th>説明</th>
+          <th>型</th>
+          <th>nullになりうるか</th>
+          <th>例</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>id</td>
+          <td>動画ID</td>
+          <td>string</td>
+          <td>NO</td>
+          <td><code>sm9</code></td>
+      </tr>
+      <tr>
+          <td>title</td>
+          <td>動画タイトル</td>
+          <td>string</td>
+          <td>NO</td>
+          <td><code>新・豪血寺一族 -煩悩解放 - レッツゴー！陰陽師</code></td>
+      </tr>
+      <tr>
+          <td>registeredAt</td>
+          <td>投稿日時</td>
+          <td>string（ISO-8601形式）</td>
+          <td>NO</td>
+          <td><code>2007-03-06T00:33:00+09:00</code></td>
+      </tr>
+      <tr>
+          <td>count</td>
+          <td>再生数・コメント数などが格納されたオブジェクト</td>
+          <td>object</td>
+          <td>(N/A)</td>
+          <td>(N/A)</td>
+      </tr>
+      <tr>
+          <td>count.view</td>
+          <td>再生数</td>
+          <td>int</td>
+          <td>NO</td>
+          <td><code>17981514</code></td>
+      </tr>
+      <tr>
+          <td>count.like</td>
+          <td>いいね！数</td>
+          <td>int</td>
+          <td>NO</td>
+          <td><code>8770</code></td>
+      </tr>
+      <tr>
+          <td>count.comment</td>
+          <td>コメント数</td>
+          <td>int</td>
+          <td>NO</td>
+          <td><code>4827749</code></td>
+      </tr>
+      <tr>
+          <td>count.mylist</td>
+          <td>マイリスト数</td>
+          <td>int</td>
+          <td>NO</td>
+          <td><code>176308</code></td>
+      </tr>
+      <tr>
+          <td>thumbnail</td>
+          <td>サムネイルURLが格納されたオブジェクト</td>
+          <td>object</td>
+          <td>(N/A)</td>
+          <td>(N/A)</td>
+      </tr>
+      <tr>
+          <td>thumbnail.url</td>
+          <td>通常サイズのサムネイルURL</td>
+          <td>string</td>
+          <td>YES</td>
+          <td><code>http://tn.smilevideo.jp/smile?i=9</code></td>
+      </tr>
+      <tr>
+          <td>thumbnail.middleUrl</td>
+          <td>中サイズのサムネイル URL</td>
+          <td>string または null</td>
+          <td>YES</td>
+          <td>null（存在しないこともあります）</td>
+      </tr>
+      <tr>
+          <td>thumbnail.largeUrl</td>
+          <td>大サイズのサムネイル URL</td>
+          <td>string または null</td>
+          <td>YES</td>
+          <td>null（存在しないこともあります）</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="ファイルサンプル">ファイルサンプル</h3>
 <p>以下のファイルはデータフォーマットの参考用であり、実際のランキングデータとは異なります。</p>
@@ -558,16 +558,19 @@ titleは代替文言が格納され、thumbnailオブジェクト内に記載さ
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

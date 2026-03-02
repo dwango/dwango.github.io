@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="実験放送の構成 - コメント編 - dwango on GitHub">
 
@@ -179,30 +179,30 @@
 <p>これに加えて、storeスレッドにアクセスすることができれば、全コメントを取得することもできるようになります。</p>
 <p>本項では、storeスレッドを含む実験放送のスレッド情報を取得するAPIの情報を記します。</p>
 <table>
-<thead>
-<tr>
-<th>項目</th>
-<th>内容</th>
-<th>備考</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>URL</td>
-<td><code>https://api.cas.nicovideo.jp/v1/services/live/programs/{programId}/threads</code></td>
-<td></td>
-</tr>
-<tr>
-<td>メソッド</td>
-<td>GET</td>
-<td></td>
-</tr>
-<tr>
-<td>Cookie</td>
-<td>user_session</td>
-<td>ニコニコのログイン情報を指定。コミュニティ限定番組のコメントを見る場合に必須</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>項目</th>
+          <th>内容</th>
+          <th>備考</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>URL</td>
+          <td><code>https://api.cas.nicovideo.jp/v1/services/live/programs/{programId}/threads</code></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>メソッド</td>
+          <td>GET</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>Cookie</td>
+          <td>user_session</td>
+          <td>ニコニコのログイン情報を指定。コミュニティ限定番組のコメントを見る場合に必須</td>
+      </tr>
+  </tbody>
 </table>
 <p><code>programId</code> の部分に <code>lvXXXXX</code> の情報を入れれば、スレッド情報を取得することが出来ます。</p>
 <p>以下が本APIで得られる値のサンプルです。</p>
@@ -243,35 +243,35 @@
 <p>アリーナに投稿すれば問題なく実験放送上に反映されますが、正しい経路でのコメント投稿処理を実装するためにはAPIの情報が必要です。</p>
 <p>本項では、実験放送のコメント投稿APIについて記します。</p>
 <table>
-<thead>
-<tr>
-<th>項目</th>
-<th>内容</th>
-<th>備考</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>URL</td>
-<td><code>https://api.cas.nicovideo.jp/v1/services/live/programs/{programId}/comments</code></td>
-<td></td>
-</tr>
-<tr>
-<td>メソッド</td>
-<td>POST</td>
-<td></td>
-</tr>
-<tr>
-<td>Cookie</td>
-<td>user_session</td>
-<td>ニコニコのログイン情報を指定。コミュニティ限定番組にコメント投稿する場合に必須</td>
-</tr>
-<tr>
-<td>Content-Type</td>
-<td>application/json</td>
-<td></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>項目</th>
+          <th>内容</th>
+          <th>備考</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>URL</td>
+          <td><code>https://api.cas.nicovideo.jp/v1/services/live/programs/{programId}/comments</code></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>メソッド</td>
+          <td>POST</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>Cookie</td>
+          <td>user_session</td>
+          <td>ニコニコのログイン情報を指定。コミュニティ限定番組にコメント投稿する場合に必須</td>
+      </tr>
+      <tr>
+          <td>Content-Type</td>
+          <td>application/json</td>
+          <td></td>
+      </tr>
+  </tbody>
 </table>
 <p>リクエストBODYには、JSONで以下のような内容を入力する必要があります。</p>
 <pre tabindex="0"><code>{
@@ -285,25 +285,25 @@
 <h2 id="実験放送であることの識別">実験放送であることの識別</h2>
 <p>実験放送であるかどうかは、タグに実験放送が含まれているかどうかで識別できますが、以下のAPIを利用することもできます。</p>
 <table>
-<thead>
-<tr>
-<th>項目</th>
-<th>内容</th>
-<th>備考</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>URL</td>
-<td><code>https://api.cas.nicovideo.jp/v1/services/live/programs/{programId}</code></td>
-<td></td>
-</tr>
-<tr>
-<td>メソッド</td>
-<td>GET</td>
-<td></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>項目</th>
+          <th>内容</th>
+          <th>備考</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>URL</td>
+          <td><code>https://api.cas.nicovideo.jp/v1/services/live/programs/{programId}</code></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>メソッド</td>
+          <td>GET</td>
+          <td></td>
+      </tr>
+  </tbody>
 </table>
 <p>こちらのAPIから取得できる <code>programType</code> という情報が <code>cas</code> であれば、実験放送の番組という形になります。</p>
 <p>基本的にはタグのままで問題ないのですが、実験放送というタグが将来に渡ってつく保証はないため、正式なAPIから判別できるようにする場合にはこちらをご利用ください。</p>
@@ -369,16 +369,19 @@
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>

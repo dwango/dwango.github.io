@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="generator" content="Hugo 0.122.0">
+  <meta name="generator" content="Hugo 0.154.5">
 
   <meta property="og:title" content="How to Use VRMFirstPerson - dwango on GitHub">
   <meta property="og:image" content="https://dwango.github.io/images/logo.png">
@@ -92,38 +92,38 @@
     <article id="content">
         <div class="toc"> <nav id="TableOfContents"></nav>
         </div>
-       <h1 id="vrmfirstperson-settingsunivrm_firstperson"><a href="../univrm_firstperson/">VRMFirstPerson Settings</a></h1>
+       <h1 id="vrmfirstperson-settings"><a href="../univrm_firstperson/">VRMFirstPerson Settings</a></h1>
 <p>VRMFirstPerson has the following settings for Renderer:</p>
 <table>
-<thead>
-<tr>
-<th>FirstPersonFlag</th>
-<th>Layer</th>
-<th>Note</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Both</td>
-<td>default</td>
-<td>Specify parts that are not necessarily separated between first-person view and third-person view.</td>
-</tr>
-<tr>
-<td>ThirdPersonOnly</td>
-<td>THIRDPERSON_ONLY_LAYER</td>
-<td>Specify parts that are not rendered in first-person view.</td>
-</tr>
-<tr>
-<td>FirstPersonOnly</td>
-<td>FIRSTPERSON_ONLY_LAYER</td>
-<td>Specify parts that are not rendered in third-person view. The auto-created headless model is used.</td>
-</tr>
-<tr>
-<td>Auto</td>
-<td>THIRDPERSON_ONLY_LAYER</td>
-<td>Automatically create the model in first-person view at runtime and set it to FIRSTPERSON_ONLY_LAYER.</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>FirstPersonFlag</th>
+          <th>Layer</th>
+          <th>Note</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Both</td>
+          <td>default</td>
+          <td>Specify parts that are not necessarily separated between first-person view and third-person view.</td>
+      </tr>
+      <tr>
+          <td>ThirdPersonOnly</td>
+          <td>THIRDPERSON_ONLY_LAYER</td>
+          <td>Specify parts that are not rendered in first-person view.</td>
+      </tr>
+      <tr>
+          <td>FirstPersonOnly</td>
+          <td>FIRSTPERSON_ONLY_LAYER</td>
+          <td>Specify parts that are not rendered in third-person view. The auto-created headless model is used.</td>
+      </tr>
+      <tr>
+          <td>Auto</td>
+          <td>THIRDPERSON_ONLY_LAYER</td>
+          <td>Automatically create the model in first-person view at runtime and set it to FIRSTPERSON_ONLY_LAYER.</td>
+      </tr>
+  </tbody>
 </table>
 <p>By calling <strong>VRMFirstPerson.Setup</strong> at runtime, the layer settings described above can be performed. Please call the function explicitly from outside.</p>
 <h1 id="specify-the-additional-render-layers-for-the-application">Specify the additional render layers for the application</h1>
@@ -136,21 +136,21 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// The following parts are omitted</span>
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <table>
-<thead>
-<tr>
-<th><div class="article-img">
+  <thead>
+      <tr>
+          <th><div class="article-img">
   
   <img src="https://dwango.github.io/images/vrm/layer_setting.png"   />
   
 </div>
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Set Layer in #9 and #10</td>
-</tr>
-</tbody>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Set Layer in #9 and #10</td>
+      </tr>
+  </tbody>
 </table>
 <h1 id="call-setup-function-at-runtime-and-set-layermask-in-camera">Call Setup function at runtime and set LayerMask in Camera</h1>
 <ul>
@@ -211,16 +211,19 @@
     </div>
 
     
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-LF3Z3TQ34F', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
   </body>
 </html>
