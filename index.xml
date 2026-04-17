@@ -6,8 +6,15 @@
     <description>Recent content on dwango on GitHub</description>
     <generator>Hugo</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 02 Mar 2026 15:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 17 Apr 2026 00:00:00 +0900</lastBuildDate>
     <atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>新ランキングでのランキングRSS利用方法</title>
+      <link>https://dwango.github.io/niconico/genre_ranking/ranking_rss/</link>
+      <pubDate>Fri, 17 Apr 2026 00:00:00 +0900</pubDate>
+      <guid>https://dwango.github.io/niconico/genre_ranking/ranking_rss/</guid>
+      <description>&lt;h2 id=&#34;重要ランキングrss-提供終了のお知らせ&#34;&gt;【重要】ランキングRSS 提供終了のお知らせ&lt;/h2&gt;&#xA;&lt;p&gt;ランキングRSSは &lt;strong&gt;2026年4月24日（金）&lt;/strong&gt; をもって提供を終了する予定です。&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;いつもニコニコをご利用いただき、誠にありがとうございます。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2025年度新卒エンジニア研修レポート</title>
       <link>https://dwango.github.io/articles/2026-02_2025_engineer_onboarding/</link>
@@ -210,13 +217,6 @@
       <pubDate>Tue, 30 Nov 2021 10:00:00 +0900</pubDate>
       <guid>https://dwango.github.io/articles/hikamayo_rookie/</guid>
       <description>&lt;h2 id=&#34;はじめに&#34;&gt;はじめに&lt;/h2&gt;&#xA;&lt;p&gt;2021年新卒エンジニアのHikamayoです。&lt;/p&gt;&#xA;&lt;p&gt;先日、僕が入社して初めて開発に関わった機能がリリースされました。&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://blog.nicovideo.jp/niconews/157710.html&#34;&gt;ニコニコ動画で、自分の投稿動画の再生数・コメント数が伸びている際にお知らせが届くようになりました。https://blog.nicovideo.jp/niconews/157710.html&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;「ニコニコの&amp;quot;お知らせ&amp;quot;について」は&lt;a href=&#34;https://qa.nicovideo.jp/faq/show/15834&#34;&gt;こちら&lt;/a&gt;をご覧ください。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>新ランキングでのランキングRSS利用方法</title>
-      <link>https://dwango.github.io/niconico/genre_ranking/ranking_rss/</link>
-      <pubDate>Tue, 04 Jun 2019 13:40:14 +0900</pubDate>
-      <guid>https://dwango.github.io/niconico/genre_ranking/ranking_rss/</guid>
-      <description>&lt;p&gt;ジャンルランキングにおけるランキングRSSについて&lt;/p&gt;&#xA;&lt;h2 id=&#34;はじめに&#34;&gt;はじめに&lt;/h2&gt;&#xA;&lt;p&gt;ニコニコ動画では、ランキングページをRSS形式で取得できる機能を提供しています。&lt;/p&gt;&#xA;&lt;p&gt;2019年6月の新ランキング提供開始にともない、RSSの内容・URLを変更いたします。&lt;br&gt;&#xA;つきましては、本記事を通して、新しいランキングRSSの技術情報を解説させていただきます。&lt;/p&gt;</description>
     </item>
     <item>
       <title>新ランキングでのランキング過去ログファイル利用方法</title>

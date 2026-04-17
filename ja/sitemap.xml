@@ -2,14 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://dwango.github.io/articles/2026-02_2025_engineer_onboarding/</loc>
-    <lastmod>2026-03-02T15:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://dwango.github.io/articles/</loc>
-    <lastmod>2026-03-02T15:00:00+09:00</lastmod>
+    <loc>https://dwango.github.io/categories/</loc>
+    <lastmod>2026-04-17T00:00:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://dwango.github.io/en/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://dwango.github.io/categories/"
+                />
   </url><url>
     <loc>https://dwango.github.io/</loc>
-    <lastmod>2026-03-02T15:00:00+09:00</lastmod>
+    <lastmod>2026-04-17T00:00:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -20,6 +27,18 @@
                 hreflang="ja"
                 href="https://dwango.github.io/"
                 />
+  </url><url>
+    <loc>https://dwango.github.io/categories/nicovideo/</loc>
+    <lastmod>2026-04-17T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://dwango.github.io/niconico/genre_ranking/ranking_rss/</loc>
+    <lastmod>2026-04-17T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://dwango.github.io/articles/2026-02_2025_engineer_onboarding/</loc>
+    <lastmod>2026-03-02T15:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://dwango.github.io/articles/</loc>
+    <lastmod>2026-03-02T15:00:00+09:00</lastmod>
   </url><url>
     <loc>https://dwango.github.io/articles/2025-12_terraform-multi-account-aws/</loc>
     <lastmod>2025-12-19T00:00:00+09:00</lastmod>
@@ -35,22 +54,6 @@
   </url><url>
     <loc>https://dwango.github.io/articles/2024-12_2024_engineer_onboarding/</loc>
     <lastmod>2024-12-10T00:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://dwango.github.io/categories/</loc>
-    <lastmod>2024-11-20T19:45:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://dwango.github.io/en/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://dwango.github.io/categories/"
-                />
-  </url><url>
-    <loc>https://dwango.github.io/categories/nicovideo/</loc>
-    <lastmod>2024-11-20T19:45:00+09:00</lastmod>
   </url><url>
     <loc>https://dwango.github.io/niconico/genre_ranking/ranking_log/</loc>
     <lastmod>2024-11-20T19:45:00+09:00</lastmod>
@@ -139,9 +142,6 @@
   </url><url>
     <loc>https://dwango.github.io/articles/hikamayo_rookie/</loc>
     <lastmod>2021-11-30T10:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://dwango.github.io/niconico/genre_ranking/ranking_rss/</loc>
-    <lastmod>2019-06-04T13:40:14+09:00</lastmod>
   </url><url>
     <loc>https://dwango.github.io/niconico/ranking_logs_in_genre_ranking/</loc>
     <lastmod>2019-06-04T13:40:14+09:00</lastmod>
