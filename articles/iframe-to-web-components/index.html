@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="ja" lang="ja" >
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="generator" content="Hugo 0.154.5">
+
+  <meta property="og:title" content="Web Components関連技術を始めとするモダンブラウザーの機能でiframeを代替する - dwango on GitHub">
+
+  <meta property="og:description" content="ドワンゴ社内の様子や、文化、技術をご紹介します。" />
+
+  <meta property="og:image" content="https://dwango.github.io/images/iframe-to-web-components/web-components-logo.svg">
+
+  <meta name="twitter:card" content="summary">
+  
+
+
+  
+  
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Web Components関連技術を始めとするモダンブラウザーの機能でiframeを代替する - dwango on GitHub</title>
+
+  
+  <link rel="stylesheet" href="https://dwango.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://dwango.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://dwango.github.io/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="dwango on GitHub" />
+</head>
+
+  <body class="theme-dwango ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1><a href="https://dwango.github.io/">dwango on GitHub</a></h1>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/">Home</a></li>
+      <li><a href="/articles"> Articles </a></li><li><a href="/niconico"> ニコニコ開発者向け情報 </a></li><li><a href="https://dwango.co.jp/"> 会社情報 </a></li><li><a href="https://recruit.dwango.co.jp/"> 採用情報 </a></li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul class="sidebar-nav">
+      <li><a href="https://dwango.github.io/oss"> dwango OSS </a></li><li><a href="https://blog.nnn.dev/"> 教育サービス開発者ブログ </a></li><li><a href="https://vrm.dev/"> VRM </a></li><li><a href="https://dmv.nico/ja/"> Dwango Media Village </a></li>
+    </ul>
+
+    <p class="copyright">
+      
+        Copyright &copy; DWANGO Co., Ltd.
+      
+    </p>
+  </div>
+</div>
+
+    <div class="content container">
+    
+  <div class="post">
+    <time class="content-date" datetime="2026-06-02 00:00:00 &#43;0900 JST" itemprop="datepublished"
+      >2026-06-02 Tue</time
+    >
+    <h1 class="article-title">Web Components関連技術を始めとするモダンブラウザーの機能でiframeを代替する</h1>
+
+    <div>
+      
+        <aside>
+          <h2>目次</h2>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#変更点">変更点</a></li>
+    <li><a href="#ニコニコオーディションの紹介">ニコニコオーディションの紹介</a></li>
+    <li><a href="#iframeの抱える問題">iframeの抱える問題</a></li>
+    <li><a href="#iframe要素を配置すると起きること">iframe要素を配置すると起きること</a></li>
+    <li><a href="#web-components">Web Components</a></li>
+    <li><a href="#iframeとweb-components関連技術の違い">iframeとWeb Components関連技術の違い</a></li>
+    <li><a href="#javascript">JavaScript</a></li>
+    <li><a href="#css">CSS</a></li>
+    <li><a href="#実装における工夫">実装における工夫</a></li>
+    <li><a href="#実運用における注意点">実運用における注意点</a></li>
+    <li><a href="#パフォーマンスの差異">パフォーマンスの差異</a></li>
+    <li><a href="#まとめ">まとめ</a></li>
+  </ul>
+</nav>
+        </aside>
+        <hr />
+      
+      <article id="content"><p>こんにちは。ニコニコQセクションのHajime-san(<a href="https://github.com/Hajime-san">GitHub</a>)です。</p>
+<p>所属部署では開発に携わっている「ニコニコオーディション」のシステム間APIやWebフロントエンドモジュール（以後、ウィジェット）をファミリーサービスに提供しています。ウィジェットはこれまでiframeによるHTMLの埋め込みによって実現されてきました。本稿では、この度<a href="https://developer.mozilla.org/ja/docs/Web/API/Web_components">Web Components</a>関連技術を始めとするモダンブラウザーの機能によってiframeを代替するまでの経緯、具体的な実装およびそれらを支える技術仕様などを紹介します。</p>
+<h2 id="変更点">変更点</h2>
+<p>本稿で取り上げる内容を簡潔にまとめると、ニコニコオーディションのウィジェットを利用する側のHTMLの変更点は以下の通りになります。ウィジェットの利用者側で必要な変更は、iframe要素およびそのiframeに対して<code>postMessage</code>を実行するscript要素の代わりに新たなJavaScriptファイルをscript要素として設置するだけです。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span>&lt;!DOCTYPE html&gt;
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-   &lt;iframe src=&#34;https://example.com/service.html?id=1&amp;foo=bar&#34;&gt;&lt;/iframe&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">-   &lt;script src=&#34;https://example.com/postMessage.js&#34;&gt;&lt;/script&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+   &lt;script type=&#34;module&#34; src=&#34;https://example.com/service.js?id=1&amp;foo=bar&#34;&gt;&lt;/script&gt;
+</span></span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>&lt;/html&gt;
+</span></span></code></pre></div><h2 id="ニコニコオーディションの紹介">ニコニコオーディションの紹介</h2>
+<p>当ブログで以前に筆者が執筆した<a href="../2023-02_nicoaudition_sw-1">記事</a>にも登場していますが、改めてニコニコオーディションについて紹介します。</p>
+<p>ニコニコではサービスのお知らせを集約している<a href="https://blog.nicovideo.jp/niconews/">ニコニコインフォ</a>があります。
+また、開催するイベントによってはドメインが<code>*.nicovideo.jp</code>ではない特設ページを設置することがあります。ニコニコオーディションでは、これらのWebページ向けにニコニコオーディションのバックエンドシステムやその他ニコニコのファミリーサービスや内部サービスなどから取得したデータを基に、イベントに参加するための動的なエントリーフォームやランキング情報などを表示するウィジェットとして提供しています。例えばエントリーフォームのウィジェットをニコニコインフォに埋め込んだ際の表示例は以下のようになります。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/iframe-to-web-components/example-entry-widget.webp" alt="ニコニコインフォに埋め込んだエントリーフォームのウィジェット例" width="80%" />
+  
+</div>
+
+<p>このウィジェットには、ブラウザーの幅やランキングの件数に応じて動的な表示、およびイベントに紐づけるファミリーサービスやユーザーが利用しているネイティブアプリの種別に応じてリンク先の分岐が必要になります。</p>
+<p>ウィジェットはこれまでiframeによるHTMLの埋め込みによって実現されてきました。これらの要求に対応するため、非同期の<code>postMessage</code>を用いて親ドキュメントとウィジェット間で通信し、ウィジェットの高さや表示内容を動的に変更していました。</p>
+<h2 id="iframeの抱える問題">iframeの抱える問題</h2>
+<p>しかしながら、サービスの要求が複雑になるにつれ埋め込み元である親ドキュメントのURLや、そのドメインに紐付けられているブラウザーのストレージなどの機能が必要になりました。これらは1つずつ<code>postMessage</code>としてウィジェットに対してデータを送信可能ではあるものの、実装の複雑化が懸念されました。</p>
+<p>また、ウィジェットの種類自体も増加しており、一般的にiframeを1つのドキュメントに対して多数設置することはユーザー端末におけるパフォーマンスの悪化を招く<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>と知られています。</p>
+<p>これらに対し、Web Components関連技術によって解決できないかという案が浮かび上がりました。実装自体は試行錯誤を重ねつつ最終的にサービスの要求を満たすものとなりました。とはいえ、その時点では筆者にとってWeb Components関連技術およびその比較対象であったiframeはほぼブラックボックスであると感じていました。</p>
+<p>そこで、この移行に説得力のある技術仕様やブラウザーの実装などの裏付けがあることで、今後ウィジェットを拡張する際により自信を持って取り組んだり説明できると考えました。以降では、まずiframeを支える技術仕様から確認していきます。</p>
+<h2 id="iframe要素を配置すると起きること">iframe要素を配置すると起きること</h2>
+<p>iframe要素は置換要素<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>の1つであり、その内容はCSSの<a href="https://www.w3.org/TR/CSS22/visuren.html">視覚整形モデル</a>の対象外です。また、デバイスが十分な画面の大きさを持つ場合には、既定の表示サイズとして<a href="https://www.w3.org/TR/CSS22/visudet.html#inline-replaced-width">幅300px</a>、<a href="https://www.w3.org/TR/CSS22/visudet.html#inline-replaced-height">高さ150px</a>を持ちます。
+加えて、iframe要素は<a href="https://html.spec.whatwg.org/commit-snapshots/dfbc8713c2d61c4997dd656109367e47d694cb1a/#navigable">ナビゲーブル</a><sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>かつ<a href="https://html.spec.whatwg.org/commit-snapshots/dfbc8713c2d61c4997dd656109367e47d694cb1a/#child-navigables">子ナビゲーブル</a>です。
+その表示領域を変更するには、例えば<a href="https://html.spec.whatwg.org/commit-snapshots/dfbc8713c2d61c4997dd656109367e47d694cb1a/#nav-parent">親ナビゲーブル</a>において対象iframe要素の<code>width</code>属性および<code>height</code>属性、あるいはCSSで調整することになります。
+この手法は予めiframe要素の表示領域が静的に定まる場合は有効ですが、動的に幅や高さが決まる場合には適していません。
+この時、多くの場合に子ナビゲーブルで適当な表示領域を取得し、<a href="https://html.spec.whatwg.org/commit-snapshots/dfbc8713c2d61c4997dd656109367e47d694cb1a/#posting-messages">postMessage</a>を用いて親ナビゲーブルへ送信し、親ナビゲーブルは受け取った表示領域をiframe要素に設定するという手法が用いられていることでしょう。</p>
+<p>それ以外では、親ナビゲーブルとiframe要素である子ナビゲーブルが<a href="https://html.spec.whatwg.org/commit-snapshots/dfbc8713c2d61c4997dd656109367e47d694cb1a/#same-origin">同一オリジン</a>の場合は親ナビゲーブルの<a href="https://html.spec.whatwg.org/commit-snapshots/dfbc8713c2d61c4997dd656109367e47d694cb1a/#windows">閲覧コンテキスト</a><sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>に含まれる<a href="https://html.spec.whatwg.org/commit-snapshots/dfbc8713c2d61c4997dd656109367e47d694cb1a/#creating-a-new-javascript-realm">レルム(Realm)</a>の<a href="https://262.ecma-international.org/16.0/index.html#sec-global-object">グローバルオブジェクト</a>を<code>window.parent</code>で、子ナビゲーブルに対しては<code>HTMLIFrameElement.contentWindow</code>で、それぞれ<a href="https://html.spec.whatwg.org/commit-snapshots/dfbc8713c2d61c4997dd656109367e47d694cb1a/#windowproxy">WindowProxy</a>を通じて取得できます。ただし、オリジンが異なる場合<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>は、<a href="https://html.spec.whatwg.org/commit-snapshots/dfbc8713c2d61c4997dd656109367e47d694cb1a/#crossoriginproperties-%28-o-%29"><code>CrossOriginProperties</code></a>で列挙されている<code>location</code>、<code>parent</code>や<code>postMessage</code>などにアクセスできる一方、それ以外のプロパティへのアクセスは大きく制限されます。</p>
+<p>また、iframe要素がナビゲーブルを通じて閲覧コンテキストを作成する際、<a href="https://html.spec.whatwg.org/commit-snapshots/dfbc8713c2d61c4997dd656109367e47d694cb1a/#obtain-similar-origin-window-agent">類似オリジンウィンドウエージェント</a>およびレルムなどを始めとするリソースを都度必要とすることにより、iframe要素が増えるたびに、特にメモリの少ないモバイル端末への懸念があることは容易に想像できます。</p>
+<h2 id="web-components">Web Components</h2>
+<p>Web Componentsはカスタム要素、シャドウDOM、template要素およびslot要素から成る、再利用可能なカプセル化されたHTML要素を構築するための技術の総称です。本稿の題材となるウィジェット実装では、これらの技術に加えてESモジュールも活用し、可能な限りiframeの代替となるような構成を目指しました。</p>
+<h2 id="iframeとweb-components関連技術の違い">iframeとWeb Components関連技術の違い</h2>
+<p>まず、JavaScriptの観点からみるとiframeとWeb Componentsでは主に実行環境の分離に関する振る舞いが異なります。この違いがWeb Componentsを用いたウィジェットに移行した際のレンダリングなどのパフォーマンス向上に寄与すると考えています。そのような差異を導いた要因として、ブラウザーの仕様であるエージェントやECMAScript仕様のグローバル環境レコードなどに触れながら解説します。</p>
+<h2 id="javascript">JavaScript</h2>
+<p>前述のJavaScript実行環境の分離について、iframeではエージェント単位の分離が実現されます。一方、Web Components関連技術ではモジュール<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>を利用することで、<a href="https://262.ecma-international.org/16.0/index.html#sec-global-environment-records">グローバル環境レコード</a>への影響を低減できる可能性があります。</p>
+<p>以降で扱うJavaScriptコードはブラウザー環境のものを想定します。</p>
+<p>JavaScriptの実行には<a href="https://262.ecma-international.org/16.0/index.html#sec-agents">エージェント</a>というアーキテクチャに依存しない並行性を制御するための実行スレッドの仕組みがあります。
+例えば<code>a.example.com</code>というページにアクセスして、そのHTMLに<code>b.example.com</code>というオリジンのiframe要素が含まれる場合、ブラウザーは<a href="https://html.spec.whatwg.org/commit-snapshots/dfbc8713c2d61c4997dd656109367e47d694cb1a/#similar-origin-window-agent">類似オリジンウィンドウエージェント</a><sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup>を2つ作成します。</p>
+<p>エージェントを構成する<a href="https://262.ecma-international.org/16.0/index.html#sec-execution-contexts">実行コンテキスト</a>は、JavaScriptエンジンによるコードの実行時評価を追跡するための仕様上の概念およびその実装です。ある時点で実際にコードを実行している実行コンテキストは各エージェントにつき高々1つです。
+実行コンテキストはまた、実行コンテキストに関連付けられたコードを生成したクラシックスクリプト(<a href="https://262.ecma-international.org/16.0/index.html#prod-Script">ECMAScript</a>)(<a href="https://html.spec.whatwg.org/commit-snapshots/dfbc8713c2d61c4997dd656109367e47d694cb1a/#classic-script">HTML</a>)もしくはモジュールを、それらが利用するグローバルオブジェクトなどを保持するレルムを構成要素として持ちます。このグローバルオブジェクトはECMAScript実装より例えば<code>String</code>や<code>Date</code>などが含まれます。
+更に、<a href="https://html.spec.whatwg.org/commit-snapshots/dfbc8713c2d61c4997dd656109367e47d694cb1a/#global-object">グローバルオブジェクトをブラウザー仕様にマッピングする</a>際、レルムは、類似オリジンウィンドウエージェントに所属する場合は<code>window</code>、その他のエージェントに所属する場合は基底インターフェースである<a href="https://html.spec.whatwg.org/commit-snapshots/dfbc8713c2d61c4997dd656109367e47d694cb1a/#the-workerglobalscope-common-interface">WorkerGlobalScope.self</a>、などをそれぞれECMAScript実装に加えてグローバルオブジェクトに設定します。</p>
+<p>例えば<code>a.example.com</code>というページにアクセスして、そのHTMLに<code>a.example.com/foo.html</code>というsrc属性のiframe要素が含まれる場合、ブラウザーは類似オリジンウィンドウエージェントを1つ、レルムを2つ作成します。
+このようにエージェントが同一でもレルムが異なる場合は、<code>a.example.com</code>の<code>window</code>のプロパティに好きな値を代入しようともレルムが異なる<code>a.example.com/foo.html</code>の<code>window</code>には影響を及ぼさないという分離が実現されます。</p>
+<p>ただし、類似オリジンウィンドウエージェントが同一の場合にこのレルム単位の分離が有効でない場面も存在します。
+<code>localStorage</code>などの一部のグローバルオブジェクトはオリジン、タイムスタンプの精度などの、
+ブラウザーの行動基準を規定する<a href="https://html.spec.whatwg.org/commit-snapshots/dfbc8713c2d61c4997dd656109367e47d694cb1a/#environment-settings-object">環境設定オブジェクト</a>を参照します。これにより、現状ではグローバルオブジェクト自体がレルム単位で分離されていても、オリジンが同一であれば、実行結果は各実行コンテキストで評価されるコードに依存します。例えば、<code>a.example.com</code>というページで<code>localStorage.setItem('key', 'value');</code>を記述し、そのHTMLへ<code>a.example.com/foo.html</code>というsrc属性のiframe要素を含めるとします。このとき、<code>a.example.com/foo.html</code>で<code>localStorage.getItem('key');</code>を記述すると、<code>&quot;value&quot;</code>が取得できます。</p>
+<p>次に、前述のグローバル環境レコードについて触れる前に、その基底概念である環境レコードについて簡潔に説明します。
+環境レコードは、JavaScriptコード構文のネスト構造に基づいて、識別子と特定の変数および関数との関連付けを定義するために使用される基底クラスと例えることが可能な仕様概念であり、外部環境への参照である<code>[[OuterEnv]]</code>の値を持ちます。
+それを継承する<a href="https://262.ecma-international.org/16.0/index.html#sec-module-environment-records">モジュール環境レコード</a>は、当該モジュールにおけるトップレベルの宣言や<code>import</code>された別のモジュールへの束縛を持ち、<code>[[OuterEnv]]</code>はグローバル環境レコードが紐づけられます。</p>
+<p>グローバル環境レコードは、単一のレルムにおける組み込みグローバル変数への束縛、グローバルオブジェクトのプロパティやクラシックスクリプトにおける最上位レベル宣言から構成されます。</p>
+<p>例えば<code>a.example.com</code>というページにアクセスして、そのHTMLにscript要素が2つあり、1つはクラシックスクリプトでもう1つはモジュールの場合、それらが参照するレルムは同一です。
+この時、クラシックスクリプトで宣言された最上位レベルの変数などはグローバル環境レコードの最上位レベル宣言として他のモジュールあるいはクラシックスクリプトから操作可能になります。
+一方、それらがモジュールで宣言された場合、他のクラシックスクリプトあるいはモジュールから操作できません。
+とは言うものの、モジュール環境レコードの<code>[[OuterEnv]]</code>は、レルムにおけるグローバルオブジェクトのプロパティを操作可能なため、<code>window</code>の特定のプロパティに値を代入するなどして他のクラシックスクリプトあるいはモジュールに影響を与えることが可能です。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">b</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>    })();
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;module&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">a</span>); <span style="color:#75715e">// 1
+</span></span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">b</span>); <span style="color:#75715e">// Uncaught ReferenceError: b is not defined
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">c</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">c</span>); <span style="color:#75715e">// Uncaught ReferenceError: c is not defined
+</span></span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><p>これらを改めてまとめると、iframeでは一部の例を除いてレルムやエージェントなどのJavaScript実行基盤ごと分離されます。そして、それらを支える様々なリソースが作成されることにより、クライアント端末へのパフォーマンス影響は大きくなります。
+モジュールを用いる場合、前述のような分離は実現できないものの、比較的少ないリソースで、記述次第で他のクラシックスクリプトあるいはモジュールへの影響をより低減できる可能性があります。</p>
+<h2 id="css">CSS</h2>
+<p>続いてはCSSについて見ていきましょう。iframeは親ナビゲーブルであるドキュメントと自身として子ナビゲーブルであるiframe要素それぞれの<a href="https://www.w3.org/TR/css/#source-document">ドキュメント</a>単位の分離が可能です。Web Components関連技術では、シャドウDOMを利用したセレクターの分離やCSSプロパティの継承など柔軟な表現が実現できます。</p>
+<p>CSSの設計原則として、<a href="https://www.w3.org/TR/css-cascade-4/#intro">カスケード</a>によって複数のスタイルシートから単一のドキュメントの表示に影響を及ぼすことが可能になっています。iframeによるドキュメントの分離を示す例として、例えば親ナビゲーブルであるドキュメントにこのような宣言を含むスタイルシートが存在するとします。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span><span style="color:#f92672">body</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">font-family</span>: <span style="color:#e6db74">&#34;My Cool Font&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>その子ナビゲーブルであるiframeはドキュメントが異なることによりそのスタイルシートとは通常、関係性を持ちません<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup>。</p>
+<p>これに対し、Web Components関連技術ではシャドウDOMを活用できます。シャドウDOMの主な挙動としては、外部への影響なくスコープ化されたスタイルシートを記述できる点がよく挙げられます。実際にその挙動を再現するための仕様としては、セレクターの照合アルゴリズムが該当します。</p>
+<p>以降で引用するCSS仕様は<a href="https://www.w3.org/Style/CSS/current-work">CSS WG</a>より、安定した仕様を優先して参照しています。</p>
+<p>セレクターが特定の要素と照合するためのアルゴリズムは、その多くをDOM仕様に依存しています。<a href="https://dom.spec.whatwg.org/commit-snapshots/606ca767dcdd91815b4ceeab4407c8e496fda59e/#trees">DOMツリー</a>はその木構造を事前に順序付けられた深さ優先で走査します。そのような前提の後に、走査の起点となるルートを確定します。これによりセレクターは特定の要素を照合することが可能になります。<code>Node</code>インターフェースを実装する<a href="https://dom.spec.whatwg.org/commit-snapshots/780b8dd8d96c097bcc6a4e898e67b8bcf0a8c5c4/#concept-node-tree">DOMノードツリー</a>はこの規則に従います。シャドウDOM（シャドウツリー）に関しては別途<a href="https://dom.spec.whatwg.org/commit-snapshots/780b8dd8d96c097bcc6a4e898e67b8bcf0a8c5c4/#concept-shadow-including-tree-order">アルゴリズム</a>が定められており、シャドウルートがまさにその起点となります。
+CSSのセレクターにおいてもこの原則が適用<sup id="fnref:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup>され、ある任意のシャドウツリーに属するスタイルシートは、<a href="https://drafts.csswg.org/css-shadow-1/#host-element-in-tree">シャドウホストに対する照合</a>が行われた後に、そのルートであるシャドウルートから特定の要素への走査が行われます。</p>
+<p>さて、Web Componentsの主なユースケースとしては、ドキュメントに対してコンポーネントという単位で部品を組み合わせてページを構築するのが主たるものでしょう。
+その場合、コンポーネントを複数組み込みつつページ全体でスタイルに規則性を持たせるためにはCSSのプロパティ継承が有用です。</p>
+<p>通常、CSSの<a href="https://www.w3.org/TR/css-cascade-4/#inheriting">プロパティ継承</a>はDOMツリーに従って親要素から子要素へとプロパティが伝播します。</p>
+<p>しかしながら、先ほどのセレクターのアルゴリズムに登場したDOMツリーでは、シャドウツリーのルートがシャドウルートとして分離されていました。そのツリー構造およびアルゴリズムそのままでは、シャドウツリーの親要素が存在しないことになるため、シャドウツリーの外側のプロパティ継承を適用できません。
+そこで、シャドウツリーにおけるプロパティ継承には、ドキュメントルートをツリーの頂点とする<a href="https://drafts.csswg.org/css-shadow-1/#flat-tree">平坦化された要素ツリー</a>が別途設けられています。これに従うことにより、シャドウホストは<a href="https://dom.spec.whatwg.org/commit-snapshots/780b8dd8d96c097bcc6a4e898e67b8bcf0a8c5c4/#concept-light-tree">ライトツリー</a>に参加することが出来るようになり、シャドウルートの子要素はシャドウホストを介してライトツリーの要素からプロパティ継承することが可能になります。</p>
+<p>余談ですが、筆者はこの仕様を読むだけではこの平坦化された要素ツリーの構造が腑に落ちなかったため、以降に理解を深めるための疑似コードを併せて掲載します。実際にはこのような単純な処理ではないことに注意してください。</p>
+<details>
+<summary>TypeScriptを用いた平坦化された要素ツリー構築アルゴリズムの疑似コード</summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">PendingNode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Node</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">AssociatedParent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Node</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">flattenedElementTree</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Map</span>&lt;<span style="color:#f92672">PendingNode</span>, <span style="color:#a6e22e">AssociatedParent</span>&gt;();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">pendingNodes</span> <span style="color:#f92672">=</span> [ <span style="color:#a6e22e">documentRoot</span> ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">pendingNodes</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">pendingNode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pendingNodes</span>.<span style="color:#a6e22e">pop</span>()<span style="color:#f92672">!</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">associatedParent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pendingNode</span>.<span style="color:#a6e22e">associatedParent</span> <span style="color:#f92672">??</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">flattenedElementTree</span>.<span style="color:#66d9ef">set</span>(<span style="color:#a6e22e">pendingNode</span>, <span style="color:#a6e22e">associatedParent</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">pendingNode</span>.<span style="color:#a6e22e">isDocumentRoot</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">documentRoot</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pendingNode</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">childNodes</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">documentRoot</span>.<span style="color:#a6e22e">getLightTreeNodes</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">lightTreeNodes</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">childNodes</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">j</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">lightTreeNodes</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">j</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">lightTreeNode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">lightTreeNodes</span>[<span style="color:#a6e22e">j</span>];
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">lightTreeNode</span>.<span style="color:#a6e22e">associatedParent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">documentRoot</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">pendingNodes</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">lightTreeNode</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">pendingNode</span>.<span style="color:#a6e22e">isShadowHost</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">shadowHost</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pendingNode</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">childNodes</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">shadowHost</span>.<span style="color:#a6e22e">getShadowTreeNodes</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">shadowTreeNodes</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">childNodes</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">j</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">shadowTreeNodes</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">j</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">shadowTreeNode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">shadowTreeNodes</span>[<span style="color:#a6e22e">j</span>];
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">shadowTreeNode</span>.<span style="color:#a6e22e">associatedParent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">shadowHost</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">pendingNodes</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">shadowTreeNode</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">pendingNode</span>.<span style="color:#a6e22e">isSlot</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">slot</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pendingNode</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">slottables</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">slot</span>.<span style="color:#a6e22e">findSlottables</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">slottables</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">slottables</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">slottable</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">slottables</span>[<span style="color:#a6e22e">i</span>];
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">slottable</span>.<span style="color:#a6e22e">associatedParent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">slot</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">pendingNodes</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">slottable</span>);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">childNodes</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">slot</span>.<span style="color:#a6e22e">getChildTreeNodes</span>();
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">slotChildTreeNodes</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">childNodes</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">j</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">slotChildTreeNodes</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">j</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">childNode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">slotChildTreeNodes</span>[<span style="color:#a6e22e">j</span>];
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">childNode</span>.<span style="color:#a6e22e">associatedParent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">slot</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">pendingNodes</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">childNode</span>);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">pendingNode</span>.<span style="color:#a6e22e">isLightTreeNode</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">lightTreeNode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pendingNode</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">childNodes</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">lightTreeNode</span>.<span style="color:#a6e22e">getLightTreeNodes</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">lightTreeNodes</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">childNodes</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">j</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">lightTreeNodes</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">j</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">childNode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">lightTreeNodes</span>[<span style="color:#a6e22e">j</span>];
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">childNode</span>.<span style="color:#a6e22e">associatedParent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">lightTreeNode</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">pendingNodes</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">childNode</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></details>
+<p>また、カスケードには、最終的に適用される<a href="https://www.w3.org/TR/css-cascade-4/#value-stages">CSSプロパティ値の決定処理</a>があります。ここでは先ほど登場したプロパティ継承の挙動と合わせて、<a href="https://www.w3.org/TR/css-color-4/#the-color-property"><code>color</code>プロパティ</a>を用いた例を示します。以下のようなライトツリー（コンテキストの外側）の<a href="https://www.w3.org/TR/css-cascade-4/#cascade-origin-author">著者オリジン</a>の宣言とシャドウツリー（コンテキストの内側）の著者オリジンの宣言は、同一のdiv要素に対して照合されます。この例ではクラスセレクターが<code>(0,1,0)</code>の、<code>:host</code>擬似クラスセレクターが<code>(0,1,0)</code>の<a href="https://www.w3.org/TR/css-cascade-4/#cascade-specificity">詳細度</a>で計算されますが、カスケードにおいては<a href="https://www.w3.org/TR/css-cascade-4/#origin">オリジン</a>および<a href="https://www.w3.org/TR/css-cascade-4/#encapsulation-contexts">カプセル化されたコンテキスト</a>の確定は詳細度より上位の概念です。つまり、この例において詳細度はカスケードに影響を及ぼしません。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">normal</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">color</span>: <span style="color:#66d9ef">green</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">important</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">color</span>: <span style="color:#66d9ef">blue</span> <span style="color:#75715e">!important</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;normal&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">template</span> <span style="color:#a6e22e">shadowrootmode</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;open&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>        :<span style="color:#a6e22e">host</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">color</span>: <span style="color:#66d9ef">red</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">p</span>&gt;color: green&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;important&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">template</span> <span style="color:#a6e22e">shadowrootmode</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;open&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>        :<span style="color:#a6e22e">host</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">color</span>: <span style="color:#66d9ef">red</span> <span style="color:#75715e">!important</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">p</span>&gt;color: red&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><p>これを解決するのはカスケードの<a href="https://www.w3.org/TR/css-cascade-4/#cascade-sort">宣言ソート順序</a>およびそのソート結果により出力された値です。先ほど登場したセレクターに関するDOMツリーのアルゴリズムと同様のものを用いて、（ツリー）コンテキストの外側の通常の宣言が内側の宣言より優先されます。<a href="https://www.w3.org/TR/css-cascade-4/#importance"><code>!important</code>アノテーション</a>の宣言の場合は、ソート順序を反転することにより、コンテキストの内側の宣言が優先されます。</p>
+<p>プロパティ継承およびカプセル化されたコンテキストの挙動が組み合わさることで、シャドウツリー全体に継承したいプロパティを<code>:host</code>セレクターのフォールバック値として設定しつつ、ライトツリーの宣言によってシャドウツリーを含むドキュメント全体へのプロパティを適用させることが可能になります。継承せずに個別上書きしたいものはシャドウツリーに含まれる宣言で<code>!important</code>アノテーションを付与することもまた可能です。</p>
+<p>CSSに関して、iframeを用いる場合は、JavaScriptの時と同様にドキュメント分離に伴うパフォーマンスコストの増大が懸念されます。一方でシャドウDOMを用いる場合、比較的少ないと想像されるシャドウDOM特有の挙動を実現するためのリソースで、柔軟なスタイルシートの適用が可能になります。</p>
+<h2 id="実装における工夫">実装における工夫</h2>
+<p>さて、これまではiframeとWeb Componentsの機能性の違いなどについて仕様およびその挙動を確認してきました。ここからは実際のアプリケーションを構築する上で工夫した点などを紹介します。本稿の冒頭で記載のあった通り、実際のHTMLに追加されるものはscript要素のみです。このscript要素の位置を基準としてカスタム要素をDOMツリーに加えるには、以下のようなヘルパーを用いました。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">appendCustomElementToDOM</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">MyCustomElement</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">customElementName</span>: <span style="color:#66d9ef">string</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">entryPointModuleUrl</span>: <span style="color:#66d9ef">URL</span>
+</span></span><span style="display:flex;"><span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 同名のカスタム要素が存在しない場合のみ登録する
+</span></span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">customElements</span>.<span style="color:#66d9ef">get</span>(<span style="color:#a6e22e">customElementName</span>)) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">customElements</span>.<span style="color:#a6e22e">define</span>(<span style="color:#a6e22e">customElementName</span>, <span style="color:#66d9ef">constructor</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">customElement</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#a6e22e">customElementName</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// エントリーポイントのモジュールのURLパラメーターをカスタム要素の属性に設定
+</span></span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">entryPointModuleUrl</span>.<span style="color:#a6e22e">searchParams</span>.<span style="color:#a6e22e">forEach</span>((<span style="color:#a6e22e">value</span>, <span style="color:#a6e22e">key</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">customElement</span>.<span style="color:#a6e22e">setAttribute</span>(<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">value</span>);
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 呼び出し先のDOMツリーからエントリーポイントのモジュールを呼び出ししているscript要素を検索
+</span></span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">scriptElement</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">`script[src=&#34;</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">entryPointModuleUrl</span>.<span style="color:#a6e22e">toString</span>()<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;][type=&#34;module&#34;]`</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 指定の要素が存在しない場合のエラーがコンソールに出る方がミスが分かりやすいため、nullチェックは行わない
+</span></span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">scriptElement</span><span style="color:#f92672">!</span>.<span style="color:#a6e22e">insertAdjacentElement</span>(<span style="color:#e6db74">&#39;afterend&#39;</span>, <span style="color:#a6e22e">customElement</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// entrypoint.js
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">appendCustomElementToDOM</span>(<span style="color:#a6e22e">MyCustomElement</span>, <span style="color:#e6db74">&#39;my-custom-element&#39;</span>, <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">URL</span>(<span style="color:#66d9ef">import</span>.<span style="color:#a6e22e">meta</span>.<span style="color:#a6e22e">url</span>));
+</span></span></code></pre></div><p>上から順に見ていきましょう。まずは類似オリジンウィンドウエージェントで一意のスコープの無いカスタム要素<sup id="fnref:10"><a href="#fn:10" class="footnote-ref" role="doc-noteref">10</a></sup>を作成するためのチェックをかけつつ、定義します。他に重要な点としては、<code>appendCustomElementToDOM</code>の第三引数に<code>new URL(import.meta.url)</code>を割り当てている点です。これによりモジュール自身のURLを基に<code>querySelector</code>でDOMツリーから当該script要素を照合可能になります。また、自身のURLに含まれるURLパラメーターをカスタム要素の属性に割り当てることにより、カスタム要素から<code>Element.attributes</code>経由で値を取得できます。</p>
+<p>注意点としては、実際のアプリケーション開発では<a href="https://webpack.js.org/">webpack</a>や<a href="https://vite.dev/">Vite</a>のようなモジュールバンドラークライアントを利用することが多いことでしょう。この時、<code>appendCustomElementToDOM</code>を含むモジュールが<code>&lt;script type=&quot;module&quot; src=&quot;https://example.com/service.js?id=1&amp;foo=bar&quot;&gt;&lt;/script&gt;</code>というscript要素のエントリーポイントとなるようにバンドルする必要があります。</p>
+<p>また、同一のsrc属性を持つscript要素がDOMツリーに2つ以上存在する場合、最初に照合された要素をDOMツリーの基準としてしまいます。これに関しては、同一のsrc属性を持つscript要素を複数個DOMツリーに追加する要件が無いので、問題としていません。</p>
+<p>通常、1年間という上限は設けられつつ、ほぼ永続するキャッシュ期限を設定されることの多いJavaScriptファイルです。しかしながら、所謂キャッシュバストとしてファイルハッシュを持つファイル名、<code>service-b43i2we.js</code>をビルド時に生成してしまい、一意のエントリーポイントURLを参照できない可能性があります。これはアプリケーションの構成次第で動的なエントリーポイントのファイル名を取得できれば問題ないですが、そうでない場合はエントリーポイントファイルにはファイルハッシュを付与しないようにする必要が出てくることでしょう。また、その場合にエントリーポイントファイルのキャッシュ期限は比較的短いものを設定することで、デプロイ後の更新を受け取るまでの時間が短くなります。こちらに関しても、CDNのキャッシュをデプロイ時に破棄するなど、コンテンツ配信の構成次第で取るべき手段やトレードオフが異なります。</p>
+<h2 id="実運用における注意点">実運用における注意点</h2>
+<p>Web Componentsが策定されるまで<a href="https://www.w3.org/TR/css-fonts-4/#font-family-desc"><code>@font-face</code>ルールの<code>font-family</code>記述子</a>はドキュメントで一意の名前を宣言し、その定義を対応するCSSプロパティから参照できる仕組みとなっていました。この仕様に関しても、シャドウDOMの登場で、ドキュメントではなくシャドウツリーで一意であるべきであるという議論<sup id="fnref:11"><a href="#fn:11" class="footnote-ref" role="doc-noteref">11</a></sup>が交わされました。しかしながら<a href="https://drafts.csswg.org/css-shadow-1/#shadow-names">この仕様</a>に関しては、まだモダンブラウザーで正しく実装<sup id="fnref:12"><a href="#fn:12" class="footnote-ref" role="doc-noteref">12</a></sup>されていません。</p>
+<p>これは、例えばGoogle Fontsが提供する<code>Noto Sans JP</code>をシャドウツリーへ適用したい場面で問題が発生します。<code>Noto Sans JP</code>を利用する際、おおよその場面で以下のようなlink要素をHTMLに配置することが多いでしょう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;preconnect&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://fonts.googleapis.com&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;preconnect&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://fonts.gstatic.com&#34;</span> <span style="color:#a6e22e">crossorigin</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&amp;display=swap&#34;</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span>&gt;
+</span></span></code></pre></div><p>3つ目のlink要素のファイルの中身はこのようになっています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>@<span style="color:#66d9ef">font-face</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">font-family</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Noto Sans JP&#39;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">font-style</span><span style="color:#f92672">:</span> <span style="color:#f92672">normal</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">font-weight</span><span style="color:#f92672">:</span> <span style="color:#f92672">100</span> <span style="color:#f92672">900</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">font-display</span><span style="color:#f92672">:</span> <span style="color:#f92672">swap</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">src</span><span style="color:#f92672">:</span> <span style="color:#f92672">url</span><span style="color:#f92672">(</span><span style="color:#f92672">https</span><span style="color:#f92672">://</span><span style="color:#f92672">fonts</span>.<span style="color:#a6e22e">gstatic</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/../</span>.<span style="color:#a6e22e">woff2</span><span style="color:#f92672">)</span> <span style="color:#f92672">format</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#39;woff2&#39;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">unicode-range</span><span style="color:#f92672">:</span> <span style="color:#f92672">...;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span></code></pre></div><p>現在のモダンブラウザーで動作させるには、このようにしてシャドウツリーの外側であるライトツリーに配置して、シャドウツリーにおける宣言から<code>font-family: Noto Sans JP;</code>のように参照できるようにする回避策が必要になります。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">my-cool-component</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;preconnect&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://fonts.googleapis.com&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;preconnect&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://fonts.gstatic.com&#34;</span> <span style="color:#a6e22e">crossorigin</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&amp;display=swap&#34;</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">template</span> <span style="color:#a6e22e">shadowrootmode</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;open&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">p</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">font-family</span>: <span style="color:#e6db74">&#39;Noto Sans JP&#39;</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span>&gt;...&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">my-cool-component</span>&gt;
+</span></span></code></pre></div><p>このような回避策はある一方、幾つか注意しておくべき点はあります。1つは、ライトツリーにおいて複数の<code>Noto Sans JP</code>の名前空間（仕様ではツリースコープ名）が衝突し、意図しない宣言となってしまう可能性があります。また、一般的なWeb Componentsのユースケースとしてはドキュメント全体でフォントを統一したいことが多いと考えられることにより、その場合は先ほど紹介したCSSプロパティ継承の仕様に従うことで実現できます。そして、このような実態があることにより、<code>@font-face</code>ルールがドキュメント全体ではなくシャドウツリーで一意であるという仕様に対して、ブラウザー実装側では仕様に追従するための実装の優先度はどうしても低くなると見ています。</p>
+<p>また、前述の通りモジュールによるJavaScriptの分離には限界があります。自分達が管理するGit等のバージョン管理ツールに含まれるコードには問題がない場合でも、サードパーティーライブラリーがそこを徹底しているとも限らないため、入念な調査および動作確認が必要になります。</p>
+<h2 id="パフォーマンスの差異">パフォーマンスの差異</h2>
+<p>このような置き換えに対して、実際にどの程度のパフォーマンス差異があるのか、計測しました。対象のブラウザープロジェクトのバージョンはChromium 143.0、Firefox 144.0およびWebKit 26.0です。実行環境は以下に示します。</p>
+<ul>
+<li>実行環境: macOS 26.3.1</li>
+<li>マシン: MacBook Air</li>
+<li>SoC: Apple M4</li>
+<li>CPUコア数: 10コア（Pコア4、Eコア6）</li>
+<li>メモリ: 24 GB</li>
+</ul>
+<p>計測に用いるコンテンツですが、iframeとWeb Componentsそれぞれ4つずつを1つのドキュメントに埋め込む形で、実際のサービス運用とほぼ同様の内容となるようにしました。</p>
+<p>また、計測の対象とする指標ですが、意義のある読み込みの速さを比較するためにCore Web Vitalsより<a href="https://web.dev/articles/lcp?hl=ja">Largest Contentful Paint（LCP）</a>を用いています。<a href="https://www.w3.org/TR/performance-timeline/#observe-method">PerformanceObserver</a> APIを用いて<a href="https://developer.mozilla.org/en-US/docs/Web/API/LargestContentfulPaint#observing_the_largest_contentful_paint"><code>largest-contentful-paint</code></a>の値を計測しました。ビューポートは幅664高さ720ピクセルという経験的に決めた値を設定しています。システム側でクライアント端末のビューポートを集計していないため、この値についてはウィジェットを利用しているニコニコインフォなどのコンテンツ幅を考慮した、ある程度の決め打ちと言えます。</p>
+<p>また、Playwrightでブラウザーをセットアップし、前述のような環境を想定した設定およびパフォーマンス計測のコードを記述しました。</p>
+<p>試行回数を100として、結果をP50/P75/P99で算出したものが以下の通りです。LCPのP75はWeb Components実装の方がおよそ4倍ほど高速化されています。</p>
+<div class="article-img">
+  
+  <img src="https://dwango.github.io/images/iframe-to-web-components/lcp.svg" alt="図1: 各ブラウザーにおけるLCPの比較 (n=100)" width="100%" />
+  
+</div>
+
+<table>
+  <thead>
+      <tr>
+          <th>Browser</th>
+          <th>Mode</th>
+          <th>P50 (ms)</th>
+          <th>P75 (ms)</th>
+          <th>P99 (ms)</th>
+          <th>Min (ms)</th>
+          <th>Max (ms)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Chromium</td>
+          <td>iframe</td>
+          <td>208.00</td>
+          <td>241.00</td>
+          <td>673.72</td>
+          <td>156.00</td>
+          <td>844.00</td>
+      </tr>
+      <tr>
+          <td>Chromium</td>
+          <td>Web Components</td>
+          <td>44.00</td>
+          <td>52.00</td>
+          <td>66.44</td>
+          <td>32.00</td>
+          <td>308.00</td>
+      </tr>
+      <tr>
+          <td>Firefox</td>
+          <td>iframe</td>
+          <td>217.50</td>
+          <td>238.25</td>
+          <td>330.76</td>
+          <td>159.00</td>
+          <td>505.00</td>
+      </tr>
+      <tr>
+          <td>Firefox</td>
+          <td>Web Components</td>
+          <td>51.00</td>
+          <td>54.00</td>
+          <td>66.16</td>
+          <td>41.00</td>
+          <td>82.00</td>
+      </tr>
+      <tr>
+          <td>WebKit</td>
+          <td>iframe</td>
+          <td>372.00</td>
+          <td>423.25</td>
+          <td>1009.66</td>
+          <td>220.00</td>
+          <td>2065.00</td>
+      </tr>
+      <tr>
+          <td>WebKit</td>
+          <td>Web Components</td>
+          <td>110.00</td>
+          <td>120.25</td>
+          <td>471.93</td>
+          <td>86.00</td>
+          <td>564.00</td>
+      </tr>
+  </tbody>
+</table>
+<p>メモリ使用量についても算出の対象に含めようと検討しましたが、iframeに関してはオリジンごとにプロセスを分離するか否かは実装依存<sup id="fnref:13"><a href="#fn:13" class="footnote-ref" role="doc-noteref">13</a></sup>であることと、
+利用可能なAPIは一部ブラウザーで提供されている<sup id="fnref:14"><a href="#fn:14" class="footnote-ref" role="doc-noteref">14</a></sup>ものの、信頼できる値を算出することが難しいと考えて対象としませんでした。</p>
+<h2 id="まとめ">まとめ</h2>
+<p>モダンブラウザーによる実装とその普及が進み、本稿のようなユースケースにおいてWeb Componentsがiframeを代替できるようになりました。ニコニコオーディションの本番環境において、Web Componentsによるウィジェットの提供の開始からおよそ1年ほど経過しました。移行してから提供するウィジェットの個数も増えている中で、現在でも安定して運用できています。</p>
+<p>一方で、Web Componentsはセキュリティ機能ではないため、厳密なオリジンごとのリソース分離を実現したい場合であったり、JavaScriptの利用が困難な場合にはiframeを利用することになると想定されます。</p>
+<p>また、本稿の事例とは異なるため大きく取り上げなかったものの、シャドウツリーとその外側では連携できない場合<sup id="fnref:15"><a href="#fn:15" class="footnote-ref" role="doc-noteref">15</a></sup>があります。このような状況ではWeb Componentsで代替とならないこともあるため、要件に基づいて事前に検証する必要があります。</p>
+<p>他に、本稿で紹介したレルムという単語は、一部の読者に<a href="https://github.com/tc39/proposal-shadowrealm">ShadowRealm APIのプロポーザル</a>を想起させる語でもあります。レルムと併せて登場したエージェントなどの概念や仕様を踏まえると、当APIで可能なことと不可能なことはある程度想像できます。この提案自体はおおよそ10年ほど前に行われたものの、<a href="https://github.com/tc39/proposal-shadowrealm/issues/284">HTML仕様および非ブラウザー環境へどのようにマッピングすべきであるのかという核心の部分について結論</a>が出ておらず、標準化に大きな進展は無いようです。</p>
+<p>本稿で取り上げた仕様や実装を1つのポインタとし、適宜最適な実装を行えるとよいでしょう。</p>
+<hr>
+<p>株式会社ドワンゴでは、標準仕様とその実装と睨めっこしたり、様々なサービス、コンテンツを一緒につくるメンバーを募集しています。
+ドワンゴに興味がある。または応募しようか迷っている方がいれば、気軽に応募してみてください。</p>
+<ul>
+<li><a href="https://dwango.snar.jp/index.aspx">新卒採用はこちら</a></li>
+<li><a href="https://hrmos.co/pages/dwango">キャリア採用はこちら</a></li>
+</ul>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/iframe#%E8%A9%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%97%E3%82%87%E3%81%86">&lt;iframe&gt;: インラインフレーム要素</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>それぞれ<a href="https://html.spec.whatwg.org/commit-snapshots/dfbc8713c2d61c4997dd656109367e47d694cb1a/#replaced-elements">HTML仕様</a>および<a href="https://www.w3.org/TR/CSS22/conform.html">CSS 2.2仕様の置換要素定義</a>。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>ナビゲーブル（Navigable）は、後述の閲覧コンテキスト<sup id="fnref1:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>の概念をより適切に扱う目的で、<a href="https://github.com/whatwg/html/pull/6315">2022年頃にブラウザー仕様</a>へ追加されました。ブラウザーのウィンドウ、タブやiframeなどを表すブラウザー利用者向けの概念であり、終了フラグやセッション履歴など、ブラウザー利用者に<a href="https://html.spec.whatwg.org/commit-snapshots/dfbc8713c2d61c4997dd656109367e47d694cb1a/#documents">ドキュメント</a>を案内するための仕様を含みます。HTML仕様に則った上でドキュメントの親子関係を説明する場合、特にiframeを扱う際にはナビゲーブルの方が仕様を読む上で適当と考えてナビゲーブルを扱っています。
+一方で、執筆時点ではブラウザーの長い歴史で見ると比較的新しい概念であり、主要ブラウザーエンジンのナビゲーブルの実装はほとんどの箇所で閲覧コンテキストによって実現されているようです。
+そんな中、新興ブラウザーエンジンである<a href="https://github.com/LadybirdBrowser/ladybird">LadyBird</a>の<a href="https://github.com/LadybirdBrowser/ladybird/blob/970100e789373fc3d6e4e75fe36802b14435540f/Documentation/ProcessArchitecture.md#process-webcontent">LibWeb</a>は<a href="https://github.com/LadybirdBrowser/ladybird/blob/970100e789373fc3d6e4e75fe36802b14435540f/Libraries/LibWeb/HTML/Navigable.cpp">ナビゲーブルの実装</a>と<a href="https://github.com/LadybirdBrowser/ladybird/blob/970100e789373fc3d6e4e75fe36802b14435540f/Libraries/LibWeb/HTML/BrowsingContext.cpp">閲覧コンテキストの実装</a>が区別されています。&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>閲覧コンテキスト（Browsing Context）は常に<code>WindowProxy</code>と1対1の関係になり、JavaScript実行など開発者向け機構の概念です。一方で、HTML仕様において、現在ではほとんどの場合ナビゲーブルおよびドキュメントでその概念を賄うべきとの注意書きがあります。ナビゲーブル間の開発者実装によるコミュニケーション、例えば<code>postMessage</code>を用いる場合は、ナビゲーブルが保持する閲覧コンテキスト間のコミュニケーションと捉える方が適切でしょう。&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p>サブドメイン(<a href="https://html.spec.whatwg.org/commit-snapshots/dfbc8713c2d61c4997dd656109367e47d694cb1a/#sites">同一サイト</a>)から<a href="https://html.spec.whatwg.org/commit-snapshots/dfbc8713c2d61c4997dd656109367e47d694cb1a/#relaxing-the-same-origin-restriction">document.domain</a>のsetterによって同一オリジンとなる場合も考えられるが、今では推奨されない機能であり、<a href="https://developer.chrome.com/blog/document-domain-setter-deprecation?hl=ja">Google Chromeでは既に無効化されている</a>。&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6">
+<p>（通称ESM）それぞれ<a href="https://262.ecma-international.org/16.0/index.html#sec-modules">ECMAScript仕様</a>および<a href="https://html.spec.whatwg.org/commit-snapshots/dfbc8713c2d61c4997dd656109367e47d694cb1a/#module-script">HTML仕様</a>&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:7">
+<p>これは<sup id="fnref1:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>が存在することによって、similar originと命名されたと考えられます。&#160;<a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:8">
+<p>ただし、iframe要素が同一オリジンの場合は、<a href="https://www.w3.org/TR/cssom-1">CSS Object Model</a>で定義されているJavaScript経由、例えば<a href="https://www.w3.org/TR/cssom-1/#dom-elementcssinlinestyle-style">HTMLElement.style</a>で特定の要素のスタイルを操作可能です。&#160;<a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:9">
+<p><a href="https://drafts.csswg.org/css-shadow-1/#selectors-data-model">CSS Shadow Module Level 1</a>&#160;<a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:10">
+<p><code>CustomElementRegistry</code>は類似オリジンウィンドウエージェントを作成する際に、<a href="https://html.spec.whatwg.org/commit-snapshots/dfbc8713c2d61c4997dd656109367e47d694cb1a/#creating-browsing-contexts">閲覧コンテキスト作成フロー</a>で初期化されます。以前までは、その単一の<code>CustomElementRegistry</code>を使い回していることにより、同一の要素名に対して複数のコンストラクターを定義できませんでした。比較的最近、スコープ付きの<code>CustomElementRegistry</code>を作成可能な提案が<a href="https://github.com/whatwg/html/pull/10869">HTML仕様</a>および<a href="https://github.com/whatwg/dom/pull/1341">DOM仕様</a>に追加されました。執筆時点では<a href="https://developer.apple.com/documentation/safari-release-notes/safari-26-release-notes#Web-API">Safari 26.0</a>よりこの機能が利用可能になっています。これにより、要素名の衝突を考慮せずにカスタム要素を定義することが容易になります。&#160;<a href="#fnref:10" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:11">
+<p><a href="https://github.com/w3c/csswg-drafts/issues/1995">[css-scoping] Handling global name-defining constructs in shadow trees</a>&#160;<a href="#fnref:11" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:12">
+<p>WebKitは一見動いているように見えるものの、実際はシャドウツリーにおける宣言がグローバルに巻き上げられるという挙動になっています。<br/><a href="https://bugs.webkit.org/show_bug.cgi?id=270664">@font-face rules in shadow trees should not leak outside to document</a><br/><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1077396">@font-face definitions in shadowRoot cannot be used within the shadowRoot</a><br/><a href="https://issues.chromium.org/issues/41085401">@font-face definitions in shadowRoot cannot be used within the shadowRoot</a>&#160;<a href="#fnref:12" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:13">
+<p><a href="https://web.dev/articles/origin-agent-cluster#why_browsers_cant_automatically_segregate_same-site_origins">Requesting performance isolation with the Origin-Agent-Cluster header</a>&#160;<a href="#fnref:13" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:14">
+<p><a href="https://web.dev/articles/monitor-total-page-memory-usage">Monitor your web page&rsquo;s total memory usage with measureUserAgentSpecificMemory()</a>&#160;<a href="#fnref:14" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:15">
+<p>シャドウの境界を跨ぐ要素の参照が出来ないとの指摘。<a href="https://blogs.igalia.com/mrego/solving-cross-root-aria-issues-in-shadow-dom/">Solving Cross-root ARIA Issues in Shadow DOM</a>&#160;<a href="#fnref:15" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+</article>
+    </div>
+    <div class="content-info">
+      <div class="post-categories">
+        
+      </div>
+
+      <div class="post-tags">
+        
+      </div>
+      <div class="share">
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="Web Components関連技術を始めとするモダンブラウザーの機能でiframeを代替する - dwango on GitHub"
+          data-url="https://dwango.github.io/articles/iframe-to-web-components/"
+          data-show-count="false"
+          >Tweet</a
+        >      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <a
+        href="http://b.hatena.ne.jp/entry/https://dwango.github.io/articles/iframe-to-web-components/"
+        class="hatena-bookmark-button"
+        data-hatena-bookmark-layout="basic-label-counter"
+        data-hatena-bookmark-lang="ja"
+        title="このエントリーをはてなブックマークに追加"
+        ><img
+          src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+          alt="このエントリーをはてなブックマークに追加"
+          width="20"
+          height="20"
+          style="border: none"
+      /></a>
+      <script
+        type="text/javascript"
+        src="https://b.st-hatena.com/js/bookmark_button.js"
+        charset="utf-8"
+        async="async"
+      ></script>
+        <iframe
+          src="https://www.facebook.com/plugins/share_button.php?href=https%3a%2f%2fdwango.github.io%2farticles%2fiframe-to-web-components%2f&layout=button&size=small&mobile_iframe=false&width=61&height=20&appId"
+          height="20"
+          width="69"
+          style="border: none; overflow: hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF3Z3TQ34F"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LF3Z3TQ34F');
+        }
+      </script>
+  </body>
+</html>

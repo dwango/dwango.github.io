@@ -6,8 +6,15 @@
     <description>Recent content on dwango on GitHub</description>
     <generator>Hugo</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 17 Apr 2026 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 02 Jun 2026 00:00:00 +0900</lastBuildDate>
     <atom:link href="https://dwango.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Web Components関連技術を始めとするモダンブラウザーの機能でiframeを代替する</title>
+      <link>https://dwango.github.io/articles/iframe-to-web-components/</link>
+      <pubDate>Tue, 02 Jun 2026 00:00:00 +0900</pubDate>
+      <guid>https://dwango.github.io/articles/iframe-to-web-components/</guid>
+      <description>&lt;p&gt;こんにちは。ニコニコQセクションのHajime-san(&lt;a href=&#34;https://github.com/Hajime-san&#34;&gt;GitHub&lt;/a&gt;)です。&lt;/p&gt;&#xA;&lt;p&gt;所属部署では開発に携わっている「ニコニコオーディション」のシステム間APIやWebフロントエンドモジュール（以後、ウィジェット）をファミリーサービスに提供しています。ウィジェットはこれまでiframeによるHTMLの埋め込みによって実現されてきました。本稿では、この度&lt;a href=&#34;https://developer.mozilla.org/ja/docs/Web/API/Web_components&#34;&gt;Web Components&lt;/a&gt;関連技術を始めとするモダンブラウザーの機能によってiframeを代替するまでの経緯、具体的な実装およびそれらを支える技術仕様などを紹介します。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>新ランキングでのランキングRSS利用方法</title>
       <link>https://dwango.github.io/niconico/genre_ranking/ranking_rss/</link>
