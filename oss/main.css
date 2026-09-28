@@ -23,37 +23,29 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline;
 }
-
 /* HTML5 display-role reset for older browsers */
-
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
 }
-
 body {
   line-height: 1;
 }
-
 ol, ul {
   list-style: none;
 }
-
 blockquote, q {
   quotes: none;
 }
-
 blockquote:before, blockquote:after,
 q:before, q:after {
   content: '';
   content: none;
 }
-
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
 body {
   margin: 0;
   padding: 0;
@@ -172,7 +164,7 @@ h2 {
 
 @media(max-width: 640px) {
 
-.Header__header___gjegt {
+  .Header__header___gjegt {
     padding: 32px 0 24px;
 }
   }
@@ -255,18 +247,16 @@ h2 {
     font-size: 24px;
 }
   }
-
 .Orgs__organizations___uQ8E1 {
   text-align: center;
   padding-top: 16px;
 }
-
 @media(max-width: 640px) {
-
 .Orgs__organizations___uQ8E1 {
     padding-top: 8px;
 }
   }
+
 
 .Orgs__organizations__item___UzBz3 {
   vertical-align: top;
@@ -277,7 +267,9 @@ h2 {
   overflow: hidden;
 }
 
+
 @media(max-width: 640px) {
+
 
 .Orgs__organizations__item___UzBz3 {
     width: 33.33%;
@@ -483,6 +475,7 @@ h2 {
     text-decoration: underline;
   }
 
+
 .Repos__infomation___gEZp6 {
   padding-top: 2px;
 }
@@ -574,7 +567,6 @@ h2 {
 .Repos__homepageLink___uQlri {
   background-color: #00BCD4;
 }
-
 .Repos__githubLink___RsCks {
   background-color: #FF4081;
 }
@@ -613,17 +605,14 @@ h2 {
 :root {
   --dwango-blue: #0075C2;
 }
-
 .App__container___rJPnU {
   box-sizing: border-box;
   width: 1024px;
   margin: 0 auto;
   padding: 0 8px;
 }
-
 @media (max-width: 1024px) {
-
-.App__container___rJPnU {
+  .App__container___rJPnU {
     width: 100%;
 }
   }
